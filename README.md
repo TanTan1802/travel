@@ -4,7 +4,7 @@ link: https://tantan1802.github.io/travel/
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (`index.html`): 28 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (`index.html`): 34 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
@@ -40,7 +40,12 @@ npm run build
 ```
 
 Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi chia sẻ Facebook/Zalo),
-dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
+dữ liệu có cấu trúc schema.org `TouristDestination` + `BreadcrumbList` + `FAQPage` (hỏi đáp tự sinh từ
+thời điểm đẹp, số ngày, điểm nổi bật, cách đi) và được liệt kê trong `sitemap.xml`. Bài cẩm nang có `Article`,
+trang chủ có `WebSite`.
+
+Tên tỉnh ghi theo địa giới sau sáp nhập ngày 1/7/2025, kèm tên cũ trong ngoặc cho dễ tìm, ví dụ
+`Tuyên Quang (Hà Giang cũ)`.
 
 ## Song ngữ
 - Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
