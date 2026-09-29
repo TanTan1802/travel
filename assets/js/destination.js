@@ -183,6 +183,19 @@ function initItineraryTabs() {
     })
 }
 
+/* Chọn mức chi tiêu để xem chi tiết từng khoản */
+document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-budget-tier]')
+    if (!btn) return
+    const box = btn.closest('.budget')
+    box.querySelectorAll('[data-budget-tier]').forEach(b => {
+        const active = b === btn
+        b.classList.toggle('budget__option--active', active)
+        b.setAttribute('aria-pressed', active)
+    })
+    box.querySelectorAll('[data-budget-detail]').forEach(el => { el.hidden = el.dataset.budgetDetail !== btn.dataset.budgetTier })
+})
+
 /* In chỉ phần lịch trình (tour đang chọn, đủ các ngày) hoặc chia sẻ trang */
 function initTourActions(d) {
     document.addEventListener('click', e => {

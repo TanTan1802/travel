@@ -46,7 +46,8 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
 - Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
   (`ui`, `html`, `destinations`, `itineraries`).
 - Lịch trình nằm trong `assets/js/data/itineraries.js`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
-  lấy lần lượt 3/4/5 ngày đầu; `budget` là chi phí cho [3, 4, 5] ngày.
+  lấy lần lượt 3/4/5 ngày đầu; `fees` là vé tham quan & trải nghiệm mỗi ngày [tiết kiệm, thoải mái].
+- Chi phí tour tính theo từng khoản bằng `tripCost()` (components.js): lưu trú (phòng đôi chia 2, từ `places.js`), ăn uống (từ giá các quán), đi lại tại chỗ và vé tham quan. Mức thoải mái = khách sạn 3–4 sao, nhà hàng, Grab (≈ 1,7–1,9 lần mức tiết kiệm). Bấm vào mỗi mức để xem bảng chi tiết.
 - Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
 
@@ -78,7 +79,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 - Mẫu `planner.html` → build ra `ke-hoach/index.html` và `en/ke-hoach/index.html`; logic ở `assets/js/planner.js`.
 - Ghép tối đa 10 điểm đến, mỗi nơi 1–7 ngày; nút "Sắp xếp tuyến ngắn nhất" (láng giềng gần nhất + 2-opt, giữ điểm xuất phát).
-- Ước tính quãng đường (đường chim bay × 1,3), phương tiện (xe khách/ô tô hoặc máy bay khi xa trên 450 km hay ra đảo) và chi phí/người (nội suy từ ngân sách tour 3/4/5 ngày + di chuyển). Hằng số ở đầu `planner.js`.
+- Ước tính quãng đường (đường chim bay × 1,3), phương tiện (xe khách/ô tô hoặc máy bay khi xa trên 450 km hay ra đảo) và chi phí/người (tổng `tripCost()` từng điểm dừng + di chuyển giữa các điểm, có bảng "Xem chi tiết chi phí"). Hằng số ở đầu `planner.js`.
 - Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.

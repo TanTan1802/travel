@@ -471,19 +471,19 @@
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
                                 aria-selected="true" aria-controls="tour-3" data-tour="3">
                             <strong>3 days 2 nights</strong>
-                            <small>from 1,800,000 VND</small>
+                            <small>from 1,790,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
                                 aria-selected="false" aria-controls="tour-4" data-tour="4">
                             <strong>4 days 3 nights</strong>
-                            <small>from 2,400,000 VND</small>
+                            <small>from 2,430,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
                                 aria-selected="false" aria-controls="tour-5" data-tour="5">
                             <strong>5 days 4 nights</strong>
-                            <small>from 3,000,000 VND</small>
+                            <small>from 3,070,000 VND</small>
                         </button>
                     
                 </div>
@@ -627,21 +627,143 @@
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>1,800,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>4,500,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
-                        </div>
+                        
+        <div class="budget">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>1,790,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>3,230,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Don – Hieu villages (250k–700k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>260,000 VND</strong>
+                        <small>2 night × 130,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Bếp homestay bản Đôn, Quán ăn Phố Đoàn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>660,000 VND</strong>
+                        <small>3 days × 220,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180,000 VND</strong>
+                        <small>3 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>690,000 VND</strong>
+                        <small>3 days × 230,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>620,000 VND</strong>
+                        <small>2 night × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,200,000 VND</strong>
+                        <small>3 days × 400,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450,000 VND</strong>
+                        <small>3 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>960,000 VND</strong>
+                        <small>3 days × 320,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
                     </div>
                 
                     <div class="tour" id="tour-4" data-tour="4" hidden>
@@ -820,21 +942,143 @@
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>2,400,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>6,000,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
-                        </div>
+                        
+        <div class="budget">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>2,430,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>4,410,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Don – Hieu villages (250k–700k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>390,000 VND</strong>
+                        <small>3 night × 130,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Bếp homestay bản Đôn, Quán ăn Phố Đoàn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>880,000 VND</strong>
+                        <small>4 days × 220,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240,000 VND</strong>
+                        <small>4 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>920,000 VND</strong>
+                        <small>4 days × 230,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>930,000 VND</strong>
+                        <small>3 night × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,600,000 VND</strong>
+                        <small>4 days × 400,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>4 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,280,000 VND</strong>
+                        <small>4 days × 320,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
                     </div>
                 
                     <div class="tour" id="tour-5" data-tour="5" hidden>
@@ -1051,21 +1295,143 @@
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>3,000,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>7,500,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
-                        </div>
+                        
+        <div class="budget">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>3,070,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>5,590,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Don – Hieu villages (250k–700k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>520,000 VND</strong>
+                        <small>4 night × 130,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Bếp homestay bản Đôn, Quán ăn Phố Đoàn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,100,000 VND</strong>
+                        <small>5 days × 220,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>300,000 VND</strong>
+                        <small>5 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,150,000 VND</strong>
+                        <small>5 days × 230,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,240,000 VND</strong>
+                        <small>4 night × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,000,000 VND</strong>
+                        <small>5 days × 400,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>750,000 VND</strong>
+                        <small>5 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,600,000 VND</strong>
+                        <small>5 days × 320,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
                     </div>
                 
 
