@@ -163,9 +163,9 @@ const DESTINATIONS = [
         highlights: ['Bến thuyền Tràng An', 'Tam Cốc – Bích Động', 'Hang Múa', 'Chùa Bái Đính'],
         bestTime: 'Tháng 5 – 6 (lúa chín)',
         duration: '1 – 2 ngày',
-        hero: 'Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg',
+        hero: 'Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg',
         gallery: [
-            { file: 'Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg', caption: 'Thuyền nan Tràng An' },
+            { file: 'Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg', caption: 'Núi rừng Tràng An' },
             { file: 'Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg', caption: 'Dòng sông giữa núi đá' },
             { file: 'Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg', caption: 'Núi đá vôi Tràng An' },
             { file: 'Tam Cốc-Bích Động in Ninh Binh province 2.jpg', caption: 'Tam Cốc – Bích Động' },
@@ -274,7 +274,6 @@ const DESTINATIONS = [
             { file: 'Lan Ha Bay.JPG', caption: 'Vịnh Lan Hạ' },
             { file: 'Cat Ba island fishing village.jpg', caption: 'Làng chài trên vịnh' },
             { file: 'Beach in Cat Ba.JPG', caption: 'Bãi tắm Cát Bà' },
-            { file: 'Cat Ba Vietnam-Feb06.jpg', caption: 'Thị trấn Cát Bà' },
         ],
         foods: [
             { name: 'Hải sản Cát Bà', desc: 'Tu hài, bề bề, ốc hương tươi rói chế biến ngay tại bè nổi.', price: 'Theo thời giá', file: null },
@@ -376,13 +375,13 @@ const DESTINATIONS = [
         highlights: ['Hang Sơn Đoòng', 'Động Thiên Đường', 'Động Phong Nha', 'Hang Én'],
         bestTime: 'Tháng 3 – 8',
         duration: '2 – 3 ngày',
-        hero: 'Son Doong Cave 1.jpg',
+        hero: 'Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg',
         gallery: [
-            { file: 'Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg', caption: 'Động Thiên Đường' },
             { file: 'Cueva Phong Nha, Vietnam (38652790530).jpg', caption: 'Động Phong Nha' },
             { file: 'Phong Nha-Ke Bang cave3.jpg', caption: 'Nhũ đá kỳ ảo' },
             { file: 'Hang Én Cave - 201505 - JB.jpg', caption: 'Hang Én' },
             { file: 'Son Doong Cave by Daniel Burka.jpg', caption: 'Sơn Đoòng – hang lớn nhất thế giới' },
+            { file: 'Son Doong Cave 1.jpg', caption: 'Bên trong hang Sơn Đoòng' },
         ],
         foods: [
             { name: 'Bánh bột lọc Quảng Bình', desc: 'Vỏ bột trong veo, nhân tôm đất rim đậm đà, chấm nước mắm ớt.', price: '30.000đ', file: 'Banh Bot Loc in Danang, Vietnam.jpg' },
@@ -454,7 +453,7 @@ const DESTINATIONS = [
             { file: 'Hội An, Ancient Town, 2020-01 CN-11.jpg', caption: 'Đèn lồng và nhà phố cổ' },
             { file: 'Lanterns in Hoi An 4.jpg', caption: 'Đèn lồng Hội An về đêm' },
             { file: '2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg', caption: 'Chùa Cầu sau trùng tu' },
-            { file: 'Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg', caption: 'Chùa Cầu' },
+            { file: 'Hoi An, Japanese covered bridge (6223785067).jpg', caption: 'Chùa Cầu' },
             { file: 'Hội An, Ancient Town, 2020-01 CN-03.jpg', caption: 'Góc phố vàng' },
         ],
         foods: [
@@ -521,13 +520,12 @@ const DESTINATIONS = [
         highlights: ['Hồ Xuân Hương', 'Ga Đà Lạt', 'Thung lũng Tình Yêu', 'Đồi chè Cầu Đất'],
         bestTime: 'Tháng 11 – 3 (mùa hoa)',
         duration: '3 ngày',
-        hero: 'Xuan Huong Lake (31404267520).jpg',
+        hero: 'Da Lat - Viet Nam.jpg',
         gallery: [
-            { file: 'Da Lat Panorama.JPG', caption: 'Toàn cảnh Đà Lạt' },
             { file: 'HoXuanHuong.JPG', caption: 'Hồ Xuân Hương' },
             { file: 'Hồ Xuân Hương, Đà Lạt (2).JPG', caption: 'Hồ Xuân Hương về đêm' },
             { file: 'Rail cars at Dalat Station.JPG', caption: 'Ga xe lửa Đà Lạt' },
-            { file: 'Da Lat - Viet Nam.jpg', caption: 'Thành phố giữa rừng thông' },
+            { file: 'Xuan Huong Lake (31404267520).jpg', caption: 'Hồ Xuân Hương buổi sớm' },
         ],
         foods: [
             { name: 'Bánh tráng nướng', desc: '"Pizza Việt Nam" – bánh tráng nướng than với trứng, hành, xúc xích.', price: '20.000đ', file: 'Bánh tráng nướng TP. Hồ Chí Minh - street food in Ho Chi Minh City, Vietnam.jpg' },
@@ -560,7 +558,6 @@ const DESTINATIONS = [
         duration: '2 ngày',
         hero: 'Vietnam, Mui Ne sand dunes.jpg',
         gallery: [
-            { file: 'Mui Ne sand dunes voyage.jpg', caption: 'Đồi cát trải dài' },
             { file: 'Đồi cát Mũi Né.jpg', caption: 'Đồi cát Mũi Né' },
             { file: 'Fishing Boats, Mui Ne.jpg', caption: 'Làng chài Mũi Né' },
         ],
@@ -593,10 +590,10 @@ const DESTINATIONS = [
         highlights: ['Kỳ Co', 'Eo Gió', 'Tháp Đôi', 'Ghềnh Ráng Tiên Sa'],
         bestTime: 'Tháng 3 – 9',
         duration: '2 – 3 ngày',
-        hero: 'Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg',
+        hero: 'Quy-Nhon-morning-city-view-1300px.jpg',
         gallery: [
             { file: 'Skyline of Quy Nhon.jpg', caption: 'Thành phố Quy Nhơn' },
-            { file: 'Quy-Nhon-morning-city-view-1300px.jpg', caption: 'Quy Nhơn buổi sáng' },
+            { file: 'Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg', caption: 'Đường quê Bình Định' },
             { file: '0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg', caption: 'Tháp Đôi' },
             { file: 'Xuan Dieu Avenue Quy Nhon 2.JPG', caption: 'Đường biển Xuân Diệu' },
         ],
@@ -628,12 +625,12 @@ const DESTINATIONS = [
         highlights: ['Gành Đá Đĩa', 'Mũi Điện', 'Vịnh Xuân Đài', 'Tháp Nhạn'],
         bestTime: 'Tháng 2 – 8',
         duration: '2 ngày',
-        hero: 'Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg',
+        hero: 'Gành Đá Đĩa - Phú Yên.jpg',
         gallery: [
-            { file: 'Gành Đá Đĩa - Phú Yên.jpg', caption: 'Những cột đá bazan lục giác' },
-            { file: 'Gành Đá Đĩa.jpg', caption: 'Gành Đá Đĩa' },
+            { file: 'Gành Đá Đĩa.jpg', caption: 'Những cột đá bazan lục giác' },
             { file: 'Xuan Dai Bay, Phu Yen, Vietnam.JPG', caption: 'Vịnh Xuân Đài' },
             { file: 'Tháp Nhạn, Tuy Hòa, Phú Yên.JPG', caption: 'Tháp Nhạn' },
+            { file: 'Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg', caption: 'Gành Đá Đĩa nhìn từ trên cao' },
         ],
         foods: [
             { name: 'Mắt cá ngừ đại dương', desc: 'Mắt cá ngừ hầm thuốc bắc bổ dưỡng – đặc sản trứ danh Tuy Hòa.', price: '60.000đ', file: null },
@@ -674,7 +671,7 @@ const DESTINATIONS = [
             { file: 'Ben Thanh Market, Saigon.jpg', caption: 'Nhộn nhịp Bến Thành' },
         ],
         foods: [
-            { name: 'Cơm tấm', desc: 'Sườn nướng mật ong, bì, chả trứng trên đĩa cơm tấm thơm dẻo.', price: '45.000đ', file: 'Broken rice restaurant in Saigon.JPG' },
+            { name: 'Cơm tấm', desc: 'Sườn nướng mật ong, bì, chả trứng trên đĩa cơm tấm thơm dẻo.', price: '45.000đ', file: 'Broken rice restaurant in Saigon.JPG', illustrative: 'Quán cơm tấm Sài Gòn' },
             { name: 'Bánh mì Sài Gòn', desc: 'Ổ bánh mì đầy ắp pate, chả lụa, thịt nguội, đồ chua.', price: '25.000đ', file: 'Hai ổ bánh mì.jpg' },
             { name: 'Gỏi cuốn', desc: 'Tôm thịt cuốn bánh tráng cùng bún và rau sống, chấm tương đậu.', price: '10.000đ/cuốn', file: 'East-asian-food-spring-rolls-3.jpg' },
             { name: 'Hủ tiếu', desc: 'Sợi hủ tiếu dai, nước dùng xương ngọt thanh, tôm, gan, thịt bằm.', price: '45.000đ', file: 'Hu tieu trieu chau.JPG' },
@@ -737,12 +734,11 @@ const DESTINATIONS = [
         highlights: ['Bãi Sao', 'Hòn Thơm', 'Grand World', 'Làng chài Hàm Ninh'],
         bestTime: 'Tháng 11 – 4',
         duration: '3 – 4 ngày',
-        hero: 'Amazing beach on Phu Quoc island Vietnam (38647607275).jpg',
+        hero: 'Bai-sao-phu-quoc-tuonglamphotos.jpg',
         gallery: [
             { file: 'Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg', caption: 'Bãi biển hoang sơ' },
-            { file: 'Sunset on Phu Quoc island.jpg', caption: 'Hoàng hôn Phú Quốc' },
             { file: 'Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg', caption: 'Rạch Vẹm – bãi sao biển' },
-            { file: 'Bai-sao-phu-quoc-tuonglamphotos.jpg', caption: 'Bãi Sao cát trắng' },
+            { file: 'Amazing beach on Phu Quoc island Vietnam (38647607275).jpg', caption: 'Làn nước trong xanh' },
         ],
         foods: [
             { name: 'Gỏi cá trích', desc: 'Cá trích tươi trộn dừa nạo, hành tây, cuốn bánh tráng rau rừng.', price: '120.000đ', file: 'Ham Ninh market, Phu Quoc- Kien Giang, Vietnam - panoramio.jpg', illustrative: 'Chợ hải sản Hàm Ninh' },
@@ -772,11 +768,11 @@ const DESTINATIONS = [
         highlights: ['Tượng Chúa Kitô Vua', 'Hải đăng Vũng Tàu', 'Hòn Bà', 'Bạch Dinh'],
         bestTime: 'Tháng 11 – 4',
         duration: '1 – 2 ngày',
-        hero: 'Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg',
+        hero: 'Một phần Vũng Tàu 2.JPG',
         gallery: [
             { file: 'Statue of Jesus in Vung Tau.jpg', caption: 'Tượng Chúa Kitô Vua' },
             { file: 'Vung Tau Hon Ba.JPG', caption: 'Miếu Hòn Bà' },
-            { file: 'Một phần Vũng Tàu 2.JPG', caption: 'Toàn cảnh Vũng Tàu' },
+            { file: 'Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg', caption: 'Bãi Sau gần Hòn Bà' },
             { file: 'Cửa sổ Bạch Dinh nhìn ra biển.JPG', caption: 'Bạch Dinh nhìn ra biển' },
         ],
         foods: [
@@ -844,7 +840,6 @@ const DESTINATIONS = [
         hero: 'Pulo Condore island beach.jpg',
         gallery: [
             { file: 'Côn Đảo National Park.jpg', caption: 'Vườn quốc gia Côn Đảo' },
-            { file: 'Côn Đảo banner prison.jpg', caption: 'Di tích nhà tù Côn Đảo' },
             { file: 'Con Dao Tiger Käfige.jpg', caption: 'Chuồng cọp Côn Đảo' },
         ],
         foods: [

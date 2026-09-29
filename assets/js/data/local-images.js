@@ -132,10 +132,6 @@ const LOCAL_IMAGES = {
         "sm": "assets/img/wiki/cao-lau-hoi-an-48f973-960.jpg",
         "lg": "assets/img/wiki/cao-lau-hoi-an-48f973-1920.jpg"
     },
-    "Cat Ba Vietnam-Feb06.jpg": {
-        "sm": "assets/img/wiki/cat-ba-vietnam-feb06-67cc68-960.jpg",
-        "lg": "assets/img/wiki/cat-ba-vietnam-feb06-67cc68-1920.jpg"
-    },
     "Cat Ba island fishing village.jpg": {
         "sm": "assets/img/wiki/cat-ba-island-fishing-village-419564-960.jpg",
         "lg": "assets/img/wiki/cat-ba-island-fishing-village-419564-1920.jpg"
@@ -180,10 +176,6 @@ const LOCAL_IMAGES = {
         "sm": "assets/img/wiki/con-dao-national-park-17d3e7-960.jpg",
         "lg": "assets/img/wiki/con-dao-national-park-17d3e7-1920.jpg"
     },
-    "Côn Đảo banner prison.jpg": {
-        "sm": "assets/img/wiki/con-dao-banner-prison-310c87-960.jpg",
-        "lg": "assets/img/wiki/con-dao-banner-prison-310c87-1920.jpg"
-    },
     "Cửa sổ Bạch Dinh nhìn ra biển.JPG": {
         "sm": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-960.jpg",
         "lg": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-1920.jpg"
@@ -191,10 +183,6 @@ const LOCAL_IMAGES = {
     "Da Lat - Viet Nam.jpg": {
         "sm": "assets/img/wiki/da-lat-viet-nam-7afd6a-960.jpg",
         "lg": "assets/img/wiki/da-lat-viet-nam-7afd6a-1920.jpg"
-    },
-    "Da Lat Panorama.JPG": {
-        "sm": "assets/img/wiki/da-lat-panorama-49abbe-960.jpg",
-        "lg": "assets/img/wiki/da-lat-panorama-49abbe-1920.jpg"
     },
     "Dragon Bridge, Da Nang at night - 20230819.jpg": {
         "sm": "assets/img/wiki/dragon-bridge-da-nang-at-night-20230819-a97408-960.jpg",
@@ -332,10 +320,6 @@ const LOCAL_IMAGES = {
         "sm": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-960.jpg",
         "lg": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-1920.jpg"
     },
-    "Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg": {
-        "sm": "assets/img/wiki/japanese-covered-bridge-hoi-an-vietnam-6944563878-c7cd15-960.jpg",
-        "lg": "assets/img/wiki/japanese-covered-bridge-hoi-an-vietnam-6944563878-c7cd15-1920.jpg"
-    },
     "Khao lam87.jpg": {
         "sm": "assets/img/wiki/khao-lam87-aea848-960.jpg",
         "lg": "assets/img/wiki/khao-lam87-aea848-1920.jpg"
@@ -391,10 +375,6 @@ const LOCAL_IMAGES = {
     "Mu Cang Chai.jpg": {
         "sm": "assets/img/wiki/mu-cang-chai-66e931-960.jpg",
         "lg": "assets/img/wiki/mu-cang-chai-66e931-1920.jpg"
-    },
-    "Mui Ne sand dunes voyage.jpg": {
-        "sm": "assets/img/wiki/mui-ne-sand-dunes-voyage-efa32f-960.jpg",
-        "lg": "assets/img/wiki/mui-ne-sand-dunes-voyage-efa32f-1920.jpg"
     },
     "My Khe Beach Da Nang.jpg": {
         "sm": "assets/img/wiki/my-khe-beach-da-nang-ffc916-960.jpg",
@@ -507,10 +487,6 @@ const LOCAL_IMAGES = {
     "Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG": {
         "sm": "assets/img/wiki/stelae-of-doctors-temple-of-literature-hanoi-dsc04563-ca4e18-960.jpg",
         "lg": "assets/img/wiki/stelae-of-doctors-temple-of-literature-hanoi-dsc04563-ca4e18-1920.jpg"
-    },
-    "Sunset on Phu Quoc island.jpg": {
-        "sm": "assets/img/wiki/sunset-on-phu-quoc-island-4abc12-960.jpg",
-        "lg": "assets/img/wiki/sunset-on-phu-quoc-island-4abc12-1920.jpg"
     },
     "Tam Coc, Ninh Binh ,Vietnam.jpg": {
         "sm": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-960.jpg",
