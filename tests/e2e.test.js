@@ -64,7 +64,10 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     await page.click('#region-filters .chip[data-value="nam"]')
     const south = await page.$$eval('#dest-grid .dest-card__region', a => a.map(x => x.textContent.trim()))
     assert.ok(south.length && south.every(r => r === 'Miền Nam'), 'lọc Miền Nam sai')
-    await page.click('#region-filters .chip[data-value="all"]')
+    assert.ok(await page.isVisible('#filter-reset'), 'phải hiện nút xóa bộ lọc khi đang lọc')
+    await page.click('#filter-reset')
+    assert.equal(await count(), total, 'xóa bộ lọc phải hiện lại tất cả')
+    assert.ok(await page.isHidden('#filter-reset'))
 
     await page.selectOption('#month-filter', '10')
     const oct = await count()
@@ -102,7 +105,10 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.equal(await page.$eval('.tour:not([hidden])', t => t.dataset.tour), '5')
     await page.click('.tour:not([hidden]) .itinerary__tab[data-day="4"]')
     assert.equal(await visiblePanels(), '00001')
-    assert.ok(await page.isVisible('.tour:not([hidden]) .itinerary__panel:not([hidden]) .itinerary__farewell'), 'ngày cuối phải có ghi chú kết thúc tour')
+    const lastDay = '.tour:not([hidden]) .itinerary__panel:not([hidden])'
+    assert.match(await page.textContent(`${lastDay} .day-tl__item--rest`), /Kết thúc tour/, 'ngày cuối phải có mục kết thúc tour')
+    assert.ok(await page.$$eval(`${lastDay} .day-tl__item`, a => a.length) >= 8, 'mỗi ngày cần timeline chi tiết')
+    assert.ok(await page.$$eval(`${lastDay} .day-tl__item--cafe, ${lastDay} .day-tl__item--drink`, a => a.length) >= 2, 'timeline cần quán cà phê / quán nước')
 
     await page.click('.tour:not([hidden]) .tour__expand')
     assert.equal(await visiblePanels(), '11111')
@@ -163,7 +169,8 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     await page.fill('#planner-start', '2026-11-10')
     assert.match(page.url(), /d=2026-11-10/)
     assert.equal(await page.textContent('.plan-day__date'), '10/11/2026')
-    assert.ok(await page.$$eval('.plan-day__meals', a => a.length) >= 8, 'mỗi ngày phải có gợi ý quán ăn')
+    assert.ok(await page.$$eval('.plan-day .day-tl__item--meal', a => a.length) >= 8 * 3, 'mỗi ngày phải có 3 bữa ở quán cụ thể')
+    assert.ok(await page.$$eval('.plan-day .day-tl__item--cafe', a => a.length) >= 8, 'mỗi ngày phải có quán cà phê')
     const bookingUrl = await page.getAttribute('.booking a[href*="booking.com"]', 'href')
     assert.match(bookingUrl, /checkin=2026-11-10&checkout=2026-11-12/)
     await page.click('.cost-details summary')

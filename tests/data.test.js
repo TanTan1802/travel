@@ -75,6 +75,12 @@ test('quán ăn, lưu trú, đi lại: đủ cho mọi điểm đến và có c�
             pair(e.dish, `${id}.eats[${i}].dish`)
             range(e.price, `${id}.eats[${i}].price`)
         })
+        assert.ok(p.cafes && p.cafes.length >= 3, `${id}: cần ít nhất 3 quán cà phê / quán nước`)
+        p.cafes.forEach((c, i) => {
+            assert.ok(c.name && c.address, `${id}.cafes[${i}]: thiếu tên/địa chỉ`)
+            pair(c.drink, `${id}.cafes[${i}].drink`)
+            range(c.price, `${id}.cafes[${i}].price`)
+        })
         assert.ok(p.stays.length >= 2, `${id}: cần ít nhất 2 khu lưu trú`)
         p.stays.forEach((st, i) => {
             assert.ok(STAY_TYPES[st.type], `${id}.stays[${i}]: loại "${st.type}" không hợp lệ`)

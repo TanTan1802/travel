@@ -10,12 +10,6 @@ const homeUrl = (suffix = '') => `${SITE_ROOT}${LANG_PREFIX}index.html${suffix}`
 
 applyTranslations()
 
-const DAY_SLOTS = [
-    { key: 'morning', label: () => t('Sáng'), icon: 'ri-sun-foggy-line' },
-    { key: 'afternoon', label: () => t('Chiều'), icon: 'ri-sun-line' },
-    { key: 'evening', label: () => t('Tối'), icon: 'ri-moon-clear-line' },
-]
-
 /* Định dạng tiền VND theo ngôn ngữ: 2.400.000đ / 2,400,000 VND */
 function formatVnd(amount) {
     const grouped = String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'en' ? ',' : '.')
@@ -215,6 +209,91 @@ function costBreakdownHtml(cost) {
                 </li>
             `).join('')}
         </ul>
+    `
+}
+
+/*==================== TIMELINE CHI TIẾT TỪNG NGÀY ====================*/
+/*
+ * Ghép một ngày trong lịch trình (sáng / chiều / tối) với quán ăn, quán cà phê – quán nước
+ * trong PLACES thành timeline theo giờ: ăn sáng → tham quan → ăn trưa → cà phê → tham quan
+ * → quán nước → ăn tối → buổi tối → cà phê/trà đêm. Quán được xoay vòng theo ngày để không lặp.
+ */
+const NIGHT_SPOT = /chợ đêm|night|ăn đêm|nướng|bè|bbq|carnival/i
+const BIG_MEAL = /nhà hàng|hải sản|lẩu|dê|vịt|gà|bò bảy/i
+
+function dayMeals(id, dayIndex) {
+    const eats = (placesOf(id) || {}).eats || []
+    const pick = (list, k) => (list.length ? list[k % list.length] : null)
+    const breakfasts = eats.filter(e => e.price[0] <= 50000 && !NIGHT_SPOT.test(e.name) && !BIG_MEAL.test(e.name))
+    const breakfast = pick(breakfasts, dayIndex)
+    const rest = eats.filter(e => e !== breakfast)
+    const dinners = rest.filter(e => NIGHT_SPOT.test(e.name) || BIG_MEAL.test(e.name))
+    const dinner = pick(dinners.length ? dinners : rest, dayIndex)
+    const lunches = rest.filter(e => e !== dinner)
+    return { breakfast, lunch: pick(lunches.length ? lunches : rest, dayIndex), dinner }
+}
+
+/*
+ * Trả về danh sách mục { time, icon, kind, title, text, place }.
+ * options.arrival: { from, text } thay buổi sáng bằng chặng di chuyển; options.last: ngày cuối (trả phòng).
+ */
+function dayTimeline(id, dayIndex, day, { arrival = null, last = false } = {}) {
+    const places = placesOf(id) || {}
+    const cafes = places.cafes || []
+    const meals = dayMeals(id, dayIndex)
+    const cafe = k => (cafes.length ? cafes[(2 * dayIndex + k) % cafes.length] : null)
+    const entries = []
+    const add = (time, icon, kind, title, text, place = null) => {
+        if (text || place) entries.push({ time, icon, kind, title, text, place })
+    }
+
+    add('06:30', 'ri-sun-foggy-line', 'meal', t('Ăn sáng'), meals.breakfast ? '' : t('Ăn sáng món địa phương gần nơi ở'), meals.breakfast)
+    if (arrival) add('07:30', 'ri-route-line', 'travel', t('Di chuyển'), arrival.text)
+    else if (day) add('07:30', 'ri-map-pin-line', 'visit', t('Tham quan buổi sáng'), day.morning)
+    add('11:30', 'ri-restaurant-line', 'meal', t('Ăn trưa'), '', meals.lunch)
+    add('13:00', 'ri-cup-line', 'cafe', t('Cà phê & nghỉ trưa'), '', cafe(0))
+    if (day) add('14:30', 'ri-camera-line', 'visit', t('Tham quan buổi chiều'), day.afternoon)
+    else add('14:30', 'ri-compass-3-line', 'visit', t('Buổi chiều tự do'), t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.'))
+    add('16:30', 'ri-goblet-line', 'drink', t('Quán nước, ăn vặt'), '', cafe(1))
+    add('18:00', 'ri-restaurant-2-line', 'meal', t('Ăn tối'), '', meals.dinner)
+    if (day) add('19:30', 'ri-moon-clear-line', 'visit', t('Buổi tối'), day.evening)
+    if (last) add('21:00', 'ri-luggage-cart-line', 'rest', t('Kết thúc tour'), t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.'))
+    else add('21:30', 'ri-hotel-bed-line', 'rest', t('Cà phê đêm & về nghỉ'), '', cafe(2))
+    return entries
+}
+
+function timelinePlaceHtml(place) {
+    const what = pickLang(place.dish || place.drink)
+    return `
+        <a href="${mapsSearchUrl(`${place.name}, ${place.address}`)}" target="_blank" rel="noopener" class="day-tl__place">${place.name}</a>
+        <span class="day-tl__what">${what}</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> ${place.address} · ${priceRange(place.price)}</small>
+    `
+}
+
+/* Buổi tham quan liệt kê nhiều điểm ("A, B, C") → hiện thành từng dòng cho dễ theo dõi */
+function activityTextHtml(e) {
+    const parts = e.kind === 'visit' ? e.text.split(/,\s+/).map(x => x.trim()).filter(Boolean) : []
+    if (parts.length < 2) return `<p class="day-tl__text">${e.text}</p>`
+    const cap = x => x.charAt(0).toLocaleUpperCase(LANG) + x.slice(1)
+    return `<ul class="day-tl__list">${parts.map(x => `<li>${cap(x.replace(/\.$/, ''))}</li>`).join('')}</ul>`
+}
+
+function dayTimelineHtml(entries) {
+    return `
+        <ol class="day-tl">
+            ${entries.map(e => `
+                <li class="day-tl__item day-tl__item--${e.kind}">
+                    <time class="day-tl__time">${e.time}</time>
+                    <span class="day-tl__icon"><i class="${e.icon}"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">${e.title}</h4>
+                        ${e.text ? activityTextHtml(e) : ''}
+                        ${e.place ? timelinePlaceHtml(e.place) : ''}
+                    </div>
+                </li>
+            `).join('')}
+        </ol>
     `
 }
 

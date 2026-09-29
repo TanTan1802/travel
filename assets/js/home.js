@@ -139,23 +139,72 @@ function setView(view) {
     else document.getElementById('explore-map').hidden = true
 }
 
-function renderChips(containerId, options, key) {
+const CATEGORY_ICONS = {
+    all: 'ri-apps-2-line',
+    bien: 'ri-sailboat-line',
+    nui: 'ri-landscape-line',
+    'di-san': 'ri-ancient-pavilion-line',
+    'thanh-pho': 'ri-building-2-line',
+    'hang-dong': 'ri-moon-foggy-line',
+}
+
+/* Số điểm đến của mỗi lựa chọn (hiện cạnh tên bộ lọc) */
+function optionCount(key, value) {
+    if (value === 'all') return DESTINATIONS.length
+    return DESTINATIONS.filter(d => (key === 'region' ? d.region === value : d.categories.includes(value))).length
+}
+
+function syncChips(containerId, key) {
+    document.querySelectorAll(`#${containerId} .chip`).forEach(c => {
+        const active = c.dataset.value === exploreState[key]
+        c.classList.toggle('chip--active', active)
+        c.setAttribute('aria-pressed', active)
+    })
+}
+
+function renderChips(containerId, options, key, { icons = null } = {}) {
     const container = document.getElementById(containerId)
     if (!container) return
 
     container.innerHTML = Object.entries(options).map(([value, label]) => `
-        <button type="button" class="chip${exploreState[key] === value ? ' chip--active' : ''}" data-value="${value}">
-            ${label}
+        <button type="button" class="chip" data-value="${value}" aria-pressed="false">
+            ${icons ? `<i class="${icons[value] || 'ri-price-tag-3-line'}"></i>` : ''}
+            <span>${label}</span>
+            <small class="chip__count">${optionCount(key, value)}</small>
         </button>
     `).join('')
+    syncChips(containerId, key)
 
     container.addEventListener('click', e => {
         const chip = e.target.closest('.chip')
         if (!chip) return
         exploreState[key] = chip.dataset.value
-        container.querySelectorAll('.chip').forEach(c => c.classList.toggle('chip--active', c === chip))
+        syncChips(containerId, key)
         renderGrid()
     })
+}
+
+/* Có bộ lọc nào đang bật không (để hiện nút "Xóa bộ lọc") */
+const filtersActive = () => exploreState.region !== 'all' || exploreState.category !== 'all'
+    || exploreState.month > 0 || exploreState.favoritesOnly || exploreState.query.trim() !== ''
+
+function resetFilters() {
+    Object.assign(exploreState, { region: 'all', category: 'all', month: 0, favoritesOnly: false, query: '' })
+    syncChips('region-filters', 'region')
+    syncChips('category-filters', 'category')
+    const search = document.getElementById('explore-search')
+    if (search) search.value = ''
+    const month = document.getElementById('month-filter')
+    if (month) {
+        month.value = '0'
+        month.parentElement.classList.remove('month-filter--active')
+    }
+    const fav = document.getElementById('fav-filter')
+    if (fav) {
+        fav.classList.remove('chip--active')
+        fav.setAttribute('aria-pressed', 'false')
+    }
+    renderGrid()
 }
 
 function renderGrid() {
@@ -184,6 +233,9 @@ function renderGrid() {
         : t('Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!')
     document.getElementById('explore-result').textContent =
         t('Hiển thị {count} / {total} điểm đến', { count: results.length, total: DESTINATIONS.length })
+
+    const reset = document.getElementById('filter-reset')
+    if (reset) reset.hidden = !filtersActive()
 
     const tip = document.getElementById('explore-tip')
     const looseSearch = LANG === 'vi' && tokens.some(token => !hasDiacritics(token)) && results.length > 4
@@ -231,7 +283,8 @@ function initExplore() {
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
 
     renderChips('region-filters', { all: t('Tất cả'), ...REGIONS }, 'region')
-    renderChips('category-filters', { all: t('Mọi loại hình'), ...CATEGORIES }, 'category')
+    renderChips('category-filters', { all: t('Mọi loại hình'), ...CATEGORIES }, 'category', { icons: CATEGORY_ICONS })
+    document.getElementById('filter-reset')?.addEventListener('click', resetFilters)
 
     const search = document.getElementById('explore-search')
     if (search) {

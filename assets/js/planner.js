@@ -118,14 +118,13 @@ function planDays(plan, totals) {
     plan.stops.forEach((stop, si) => {
         const d = totals.dests[si]
         const source = (ITINERARIES[d.id] || { days: [] }).days
-        const eats = (placesOf(d.id) || {}).eats || []
         for (let i = 0; i < stop.days; i++) {
             out.push({
                 dest: d,
                 stopIndex: si,
                 date: plan.start ? addDays(plan.start, stays[si].dayIndex + i) : '',
                 day: source[i] || null,
-                meals: eats.length ? { lunch: eats[(2 * i) % eats.length], dinner: eats[(2 * i + 1) % eats.length] } : null,
+                dayOfStop: i,
                 checkin: i === 0 ? stays[si] : null,
                 arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] } : null,
                 departure: i === stop.days - 1 && si === plan.stops.length - 1,
@@ -345,35 +344,16 @@ function renderDays(plan, totals) {
                         ${item.date ? `<span class="plan-day__date">${formatDate(item.date)}</span>` : ''}
                         <h3 class="plan-day__title">${item.dest.name}${item.day ? ` – ${item.day.title}` : ''}</h3>
                     </div>
-                    ${item.arrival ? `
-                        <p class="plan-day__travel">
-                            ${legLabel(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}
-                        </p>
-                    ` : ''}
-                    ${item.day ? `
-                        <ul class="plan-day__slots">
-                            ${DAY_SLOTS.map(slot => `
-                                <li><span><i class="${slot.icon}"></i> ${slot.label()}</span><p>${item.day[slot.key]}</p></li>
-                            `).join('')}
-                        </ul>
-                    ` : `<p class="plan-day__free"><i class="ri-cup-line"></i> ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}</p>`}
-                    ${item.meals ? `
-                        <ul class="plan-day__meals">
-                            ${[['lunch', t('Ăn trưa'), 'ri-restaurant-line'], ['dinner', t('Ăn tối'), 'ri-restaurant-2-line']].map(([key, label, icon]) => `
-                                <li>
-                                    <span><i class="${icon}"></i> ${label}</span>
-                                    <p><a href="${mapsSearchUrl(`${item.meals[key].name}, ${item.meals[key].address}`)}" target="_blank" rel="noopener"><strong>${item.meals[key].name}</strong></a> – ${pickLang(item.meals[key].dish)} <small>(${item.meals[key].address} · ${priceRange(item.meals[key].price)})</small></p>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    ` : ''}
+                    ${dayTimelineHtml(dayTimeline(item.dest.id, item.dayOfStop, item.day, {
+                        arrival: item.arrival ? { text: `${legMode(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}` } : null,
+                        last: item.departure,
+                    }))}
                     ${item.checkin && item.checkin.stay ? `
                         <div class="plan-day__stay">
                             <p><i class="ri-hotel-bed-line"></i> <strong>${t('Nghỉ đêm')}:</strong> ${pickLang(item.checkin.stay.area)} · ${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')} · ${t('{n} đêm', { n: item.checkin.nights })}</p>
                             <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights))}</div>
                         </div>
                     ` : ''}
-                    ${item.departure ? `<p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> ${t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.')}</p>` : ''}
                 </li>
             `).join('')}
         </ol>
@@ -513,20 +493,17 @@ function planAsText(plan) {
     ]
     if (plan.month) lines.push(`${t('Tháng khởi hành')}: ${t('Tháng {m}', { m: monthLabel(plan.month) })}`)
     planDays(plan, totals).forEach((item, i) => {
-        lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}`)
-        if (item.arrival) {
-            lines.push(`  ${t('Di chuyển')}: ${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})`)
-        }
-        if (item.date) lines[lines.length - 1] += ` (${formatDate(item.date)})`
-        if (item.day) DAY_SLOTS.forEach(slot => lines.push(`  ${slot.label()}: ${item.day[slot.key]}`))
-        if (item.meals) {
-            lines.push(`  ${t('Ăn trưa')}: ${item.meals.lunch.name} – ${item.meals.lunch.address}`)
-            lines.push(`  ${t('Ăn tối')}: ${item.meals.dinner.name} – ${item.meals.dinner.address}`)
-        }
+        lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}${item.date ? ` (${formatDate(item.date)})` : ''}`)
+        const arrival = item.arrival
+            ? { text: `${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})` }
+            : null
+        dayTimeline(item.dest.id, item.dayOfStop, item.day, { arrival, last: item.departure }).forEach(e => {
+            const detail = e.place ? `${e.place.name} – ${e.place.address}` : e.text
+            lines.push(`  ${e.time} ${e.title}: ${detail}`)
+        })
         if (item.checkin && item.checkin.stay) {
             lines.push(`  ${t('Nghỉ đêm')}: ${pickLang(item.checkin.stay.area)} (${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')}, ${t('{n} đêm', { n: item.checkin.nights })})`)
         }
-        else lines.push(`  ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}`)
     })
     lines.push('', `${t('Xem kế hoạch')}: ${planShareUrl(plan)}`)
     return lines.join('\n')
