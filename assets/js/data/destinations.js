@@ -941,6 +941,8 @@ function hydrateWikiImages(root = document) {
             else markImgFallback(img)
         })
         if (!img.hasAttribute('decoding')) img.decoding = 'async'
+        if ('priority' in img.dataset) img.fetchPriority = 'high'
+        else if (!img.hasAttribute('loading')) img.loading = 'lazy'
         load(files[0])
     })
 }

@@ -74,6 +74,12 @@ dùng chung một luồng):
 
 Khi chưa cấu hình, mục bình luận được ẩn.
 
+## Hiệu năng (Lighthouse)
+
+- Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.
+- Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); font Google và Remix Icon tải không chặn hiển thị; toàn bộ script dùng `defer`.
+- `data-sizes` trên thẻ ảnh cho biết kích thước hiển thị thực để trình duyệt chọn file WebP vừa đủ.
+
 ## Test tự động
 
 ```bash

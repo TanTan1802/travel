@@ -22,7 +22,7 @@ function destinationCard(d, hint = '') {
         <div class="dest-card-wrap">
             <a href="${destinationUrl(d.id)}" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" alt="${d.name}" class="dest-card__img" loading="lazy">
+                    <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="${d.name}" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">${REGIONS[d.region]}</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> ${d.rating.toFixed(1)}</span>
                 </div>

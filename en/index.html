@@ -8,8 +8,16 @@
         <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <!-- Font & icon tải không chặn hiển thị -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </noscript>
         <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="../assets/css/styles.css">
         <link rel="stylesheet" href="../assets/css/vietnam.css">
@@ -74,7 +82,7 @@
         <main class="main">
             <!--==================== HOME ====================-->
             <section class="home" id="home">
-                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Ha Long Bay" class="home__img">
+                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Ha Long Bay" class="home__img" data-priority src="../assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp" srcset="../assets/img/wiki/halong-bay-in-vietnam-363c5b-480.webp 480w, ../assets/img/wiki/halong-bay-in-vietnam-363c5b-960.webp 960w, ../assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp 1920w" sizes="100vw" fetchpriority="high">
 
                 <div class="home__container container grid">
                     <div class="home__data">
@@ -84,13 +92,13 @@
                     </div>
 
                     <div class="home__social">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Facebook">
                             <i class="ri-facebook-box-fill"></i>
                         </a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="home__social-link">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Instagram">
                             <i class="ri-instagram-fill"></i>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="home__social-link">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Twitter">
                             <i class="ri-twitter-fill"></i>
                         </a>
                     </div>
@@ -104,7 +112,7 @@
                         </div>
 
                         <a href="../en/diem-den/hoi-an/index.html" class="home__info-overlay">
-                            <img data-wiki="Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg" data-width="500" alt="Hoi An Ancient Town" class="home__info-img">
+                            <img data-wiki="Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg" data-width="500" data-sizes="(max-width: 1024px) 145px, 240px" alt="Hoi An Ancient Town" class="home__info-img">
                         </a>
                     </div>
                 </div>
@@ -122,11 +130,11 @@
 
                     <div class="about__img">
                         <a href="../en/diem-den/sa-pa/index.html" class="about__img-overlay">
-                            <img data-wiki="Rice terraces in Sa Pa 03.jpg|Rice terraces in Sa Pa 02.jpg|Terraced fields Sa Pa Vietnam.JPG" data-width="960" alt="Sa Pa rice terraces" class="about__img-one">
+                            <img data-wiki="Rice terraces in Sa Pa 03.jpg|Rice terraces in Sa Pa 02.jpg|Terraced fields Sa Pa Vietnam.JPG" data-width="960" data-sizes="(max-width: 1024px) 130px, 230px" alt="Sa Pa rice terraces" class="about__img-one">
                         </a>
 
                         <a href="../en/diem-den/hue/index.html" class="about__img-overlay">
-                            <img data-wiki="Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Hue Thien Mu-Pagoda.JPG|Vietnam, Hue, Imperial City of Hue.jpg" data-width="960" alt="Thien Mu Pagoda, Hue" class="about__img-two">
+                            <img data-wiki="Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Hue Thien Mu-Pagoda.JPG|Vietnam, Hue, Imperial City of Hue.jpg" data-width="960" data-sizes="(max-width: 1024px) 180px, 290px" alt="Thien Mu Pagoda, Hue" class="about__img-two">
                         </a>
                     </div>
                 </div>
@@ -206,7 +214,7 @@
                         <input type="search" id="explore-search" class="explore__input" placeholder="Search destinations, provinces, dishes...">
                     </div>
 
-                    <div class="explore__filters" id="region-filters" role="tablist" aria-label="Filter by region"></div>
+                    <div class="explore__filters" id="region-filters" role="group" aria-label="Filter by region"></div>
                     <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Filter by type"></div>
 
                     <div class="explore__toolbar">
@@ -237,7 +245,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/vinh-ha-long/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" alt="Ha Long Bay" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Ha Long Bay" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -263,7 +271,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/sa-pa/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" alt="Sa Pa" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Sa Pa" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -289,7 +297,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/ha-noi/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="960" alt="Hanoi" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Hanoi" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -315,7 +323,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/ninh-binh/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" alt="Trang An – Ninh Binh" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Trang An – Ninh Binh" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -341,7 +349,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/ha-giang/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="960" alt="Ha Giang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Ha Giang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -367,7 +375,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/ban-gioc/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 01 (48119813303).jpg|Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 16 (48119888466).jpg|Thác Bản Giốc.jpg|Ban Gioc - Detian Falls2.jpg" data-width="960" alt="Ban Gioc Waterfall" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 01 (48119813303).jpg|Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 16 (48119888466).jpg|Thác Bản Giốc.jpg|Ban Gioc - Detian Falls2.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Ban Gioc Waterfall" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -393,7 +401,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/cat-ba/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Lan Ha Bay 40.jpg|Lan Ha Bay.JPG|Cat Ba island fishing village.jpg|Beach in Cat Ba.JPG" data-width="960" alt="Cat Ba – Lan Ha Bay" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Lan Ha Bay 40.jpg|Lan Ha Bay.JPG|Cat Ba island fishing village.jpg|Beach in Cat Ba.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Cat Ba – Lan Ha Bay" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -419,7 +427,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/mu-cang-chai/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Mu Cang Chai 02.JPG|Mu Cang Chai.jpg|Mu Cang Chai Town - Yen Bai - Vietnam.jpg" data-width="960" alt="Mu Cang Chai" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Mu Cang Chai 02.JPG|Mu Cang Chai.jpg|Mu Cang Chai Town - Yen Bai - Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Mu Cang Chai" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Northern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -445,7 +453,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/hue/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" alt="Hue Imperial City" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Hue Imperial City" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -471,7 +479,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/phong-nha/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg|Son Doong Cave 1.jpg" data-width="960" alt="Phong Nha – Ke Bang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg|Son Doong Cave 1.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Phong Nha – Ke Bang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -497,7 +505,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/da-nang/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" alt="Da Nang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Da Nang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -523,7 +531,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/hoi-an/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Hoi An, Japanese covered bridge (6223785067).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="960" alt="Hoi An Ancient Town" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Hoi An, Japanese covered bridge (6223785067).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Hoi An Ancient Town" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -549,7 +557,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/nha-trang/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Nha Trang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
@@ -575,7 +583,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/da-lat/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Da Lat - Viet Nam.jpg|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Xuan Huong Lake (31404267520).jpg" data-width="960" alt="Da Lat" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Da Lat - Viet Nam.jpg|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Xuan Huong Lake (31404267520).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Da Lat" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -601,7 +609,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/mui-ne/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mui Ne" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Mui Ne" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
                 </div>
@@ -627,7 +635,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/quy-nhon/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg|Skyline of Quy Nhon.jpg|Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" alt="Quy Nhon" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg|Skyline of Quy Nhon.jpg|Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Quy Nhon" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
@@ -653,7 +661,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/phu-yen/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Gành Đá Đĩa - Phú Yên.jpg|Gành Đá Đĩa.jpg|Xuan Dai Bay, Phu Yen, Vietnam.JPG|Tháp Nhạn, Tuy Hòa, Phú Yên.JPG|Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg" data-width="960" alt="Phu Yen – Ganh Da Dia" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Gành Đá Đĩa - Phú Yên.jpg|Gành Đá Đĩa.jpg|Xuan Dai Bay, Phu Yen, Vietnam.JPG|Tháp Nhạn, Tuy Hòa, Phú Yên.JPG|Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Phu Yen – Ganh Da Dia" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
@@ -679,7 +687,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/sai-gon/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Ho Chi Minh City Skyline at Night.jpg|Ho Chi Minh City Skyline 2022 (1).jpg|Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg|Ben Thanh Market, 2023 (02).jpg|Saigon skyline night view.jpg|Ben Thanh Market, Saigon.jpg" data-width="960" alt="Ho Chi Minh City" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Ho Chi Minh City Skyline at Night.jpg|Ho Chi Minh City Skyline 2022 (1).jpg|Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg|Ben Thanh Market, 2023 (02).jpg|Saigon skyline night view.jpg|Ben Thanh Market, Saigon.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Ho Chi Minh City" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
@@ -705,7 +713,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/can-tho/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="960" alt="Can Tho – Mekong Delta" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Can Tho – Mekong Delta" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
@@ -731,7 +739,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/phu-quoc/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Bai-sao-phu-quoc-tuonglamphotos.jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Amazing beach on Phu Quoc island Vietnam (38647607275).jpg" data-width="960" alt="Phu Quoc" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Bai-sao-phu-quoc-tuonglamphotos.jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Amazing beach on Phu Quoc island Vietnam (38647607275).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Phu Quoc" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -757,7 +765,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/vung-tau/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Một phần Vũng Tàu 2.JPG|Statue of Jesus in Vung Tau.jpg|Vung Tau Hon Ba.JPG|Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg|Cửa sổ Bạch Dinh nhìn ra biển.JPG" data-width="960" alt="Vung Tau" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Một phần Vũng Tàu 2.JPG|Statue of Jesus in Vung Tau.jpg|Vung Tau Hon Ba.JPG|Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg|Cửa sổ Bạch Dinh nhìn ra biển.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Vung Tau" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
                 </div>
@@ -783,7 +791,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/chau-doc/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Vietnam, Temple in Chau Doc 2.jpg|Miếu Bà Chúa Xứ Núi Sam.jpg|Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg|Chùa Tam Bửu ở Ba Chúc.jpg" data-width="960" alt="Chau Doc – Sam Mountain" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Vietnam, Temple in Chau Doc 2.jpg|Miếu Bà Chúa Xứ Núi Sam.jpg|Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg|Chùa Tam Bửu ở Ba Chúc.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Chau Doc – Sam Mountain" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
                 </div>
@@ -809,7 +817,7 @@
         <div class="dest-card-wrap">
             <a href="../en/diem-den/con-dao/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Pulo Condore island beach.jpg|Côn Đảo National Park.jpg|Con Dao Tiger Käfige.jpg" data-width="960" alt="Con Dao" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Pulo Condore island beach.jpg|Côn Đảo National Park.jpg|Con Dao Tiger Käfige.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Con Dao" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Southern Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -872,16 +880,16 @@
                             the full experience.
                         </p>
                         <div>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">
                                 <i class="ri-facebook-box-fill"></i>
                             </a>
-                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">
                                 <i class="ri-twitter-fill"></i>
                             </a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">
                                 <i class="ri-instagram-fill"></i>
                             </a>
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">
                                 <i class="ri-youtube-fill"></i>
                             </a>
                         </div>
@@ -932,25 +940,24 @@
 
         <!--=============== SCROLL REVEAL===============-->
         <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'en'</script>
-        <script src="../assets/js/scrollreveal.min.js"></script>
+        <script defer src="../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== SWIPER JS ===============-->
-        <script src="../assets/js/swiper-bundle.min.js"></script>
+        <script defer src="../assets/js/swiper-bundle.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-        <script src="../assets/js/data/en.js"></script>
-        <script src="../assets/js/data/local-images.js"></script>
-        <script src="../assets/js/i18n.js"></script>
-        <script src="../assets/js/data/destinations.js"></script>
-        <script src="../assets/js/favorites.js"></script>
-        <script src="../assets/js/components.js"></script>
-        <script src="../assets/js/map.js"></script>
-        <script src="../assets/js/home.js"></script>
-        <script src="../assets/js/config.js"></script>
-        <script src="../assets/js/newsletter.js"></script>
+        <script defer src="../assets/js/data/en.js"></script>
+        <script defer src="../assets/js/data/local-images.js"></script>
+        <script defer src="../assets/js/i18n.js"></script>
+        <script defer src="../assets/js/data/destinations.js"></script>
+        <script defer src="../assets/js/favorites.js"></script>
+        <script defer src="../assets/js/components.js"></script>
+        <script defer src="../assets/js/map.js"></script>
+        <script defer src="../assets/js/home.js"></script>
+        <script defer src="../assets/js/config.js"></script>
+        <script defer src="../assets/js/newsletter.js"></script>
 
         <!--=============== MAIN JS ===============-->
-        <script src="../assets/js/main.js"></script>
+        <script defer src="../assets/js/main.js"></script>
     </body>
 </html>

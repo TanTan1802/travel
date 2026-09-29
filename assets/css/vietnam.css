@@ -26,6 +26,12 @@ body.no-scroll {
   margin-bottom: var(--mb-0-5);
 }
 
+/* Nền sáng: cam đậm hơn để chữ nhỏ đủ tương phản (WCAG AA) */
+body:not(.dark-theme) .section__subtitle,
+body:not(.dark-theme) .itinerary__tab--active span {
+  color: hsl(33, 90%, 31%);
+}
+
 .button--ghost {
   background-color: transparent;
   border: 2px solid var(--white-color);
@@ -1877,18 +1883,24 @@ body.dark-theme .tour__expand {
 }
 
 .itinerary__day-title {
-  display: none;
   font-size: var(--h3-font-size);
   margin: var(--mb-1-5) 0 var(--mb-0-75);
+}
+
+/* Khi xem theo tab: tiêu đề ngày chỉ dành cho trình đọc màn hình (giữ thứ bậc tiêu đề) */
+.tour:not(.tour--expanded) .itinerary__day-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* Chế độ xem tất cả các ngày: ẩn tab, hiện tiêu đề từng ngày */
 .tour--expanded .itinerary__tabs {
   display: none;
-}
-
-.tour--expanded .itinerary__day-title {
-  display: block;
 }
 
 .itinerary__farewell {

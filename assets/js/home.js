@@ -78,7 +78,7 @@ function renderDiscover() {
 
     list.innerHTML = FEATURED_IDS.map(getDestination).filter(Boolean).map(d => `
         <a href="${destinationUrl(d.id)}" class="discover__card swiper-slide">
-            <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" alt="${d.name}" class="discover__img">
+            <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" data-sizes="(max-width: 1024px) 200px, 237px" alt="${d.name}" class="discover__img">
             <div class="discover__data">
                 <h2 class="discover__title">${d.name}</h2>
                 <span class="discover__description">${d.province} · ${REGIONS[d.region]}</span>
@@ -114,10 +114,11 @@ function updateExploreMap(results) {
     }
 }
 
-function showExploreMap() {
+async function showExploreMap() {
     const el = document.getElementById('explore-map')
     el.hidden = false
-    if (!mapAvailable()) return showMapUnavailable(el)
+    if (!(await loadLeaflet())) return showMapUnavailable(el)
+    if (exploreState.view !== 'map') return // người dùng đã chuyển lại dạng lưới khi đang tải
 
     if (!exploreMap.map) {
         exploreMap.map = createMap(el)

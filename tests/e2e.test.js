@@ -104,6 +104,22 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     await close()
 })
 
+test('bản đồ: Leaflet chỉ tải khi cần, hiện đủ điểm đến', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.equal(await page.evaluate(() => typeof L), 'undefined', 'Leaflet không được tải sẵn khi chưa mở bản đồ')
+    await page.click('.view-toggle__btn[data-view="map"]')
+    await page.waitForSelector('#explore-map .leaflet-marker-icon')
+    const total = await page.$$eval('#dest-grid .dest-card', a => a.length)
+    assert.ok(await page.$$eval('#explore-map .leaflet-marker-icon:not(.map-label)', a => a.length) >= total)
+    await close()
+
+    const detail = await openPage('diem-den/sa-pa/index.html')
+    await detail.page.locator('#dest-map').scrollIntoViewIfNeeded()
+    await detail.page.waitForSelector('#dest-map .leaflet-marker-icon')
+    assert.deepEqual([...errors, ...detail.errors], [])
+    await detail.close()
+})
+
 test('bản tiếng Anh và nút chuyển ngôn ngữ', async () => {
     const { page, errors, close } = await openPage('en/diem-den/hue/index.html')
     assert.equal(await page.$eval('html', h => h.lang), 'en')

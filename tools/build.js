@@ -33,7 +33,7 @@ const SCRIPTS = [
     'assets/js/destination-render.js',
 ]
 const EXPORTS = ['DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
-    'renderDestinationPage', 'destinationCard']
+    'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -98,6 +98,23 @@ function translateHtml(html, map) {
     return html.replace(/\u0000(\d+)\u0000/g, (m, i) => scripts[i])
 }
 
+/*
+ * Ảnh quan trọng nhất trang (data-priority: ảnh bìa) được ghi sẵn src/srcset vào HTML
+ * để trình duyệt tải ngay từ đầu thay vì chờ JavaScript – cải thiện LCP.
+ */
+function prioritizeImages(html, site) {
+    return html.replace(/<img ([^>]*?)data-priority([^>]*)>/g, (m, before, after) => {
+        const attrs = (before + after).replace(/\s(src|srcset|sizes|fetchpriority)="[^"]*"/g, '').replace(/\s+/g, ' ')
+        const files = (attrs.match(/data-wiki="([^"]*)"/) || [])[1]?.split('|') || []
+        const file = files.find(f => site.LOCAL_IMAGES[f.replace(/&quot;/g, '"')])
+        if (!file) return `<img ${before}data-priority${after}>`
+        const width = Number((attrs.match(/data-width="(\d+)"/) || [])[1]) || 1280
+        const name = file.replace(/&quot;/g, '"')
+        return `<img ${attrs.trim()} data-priority src="${site.wikiImg(name, width)}" ` +
+            `srcset="${site.wikiSrcset(name)}" sizes="${site.imageSizes(width)}" fetchpriority="high">`
+    })
+}
+
 function alternateLinks(viRel, enRel) {
     return `
         <link rel="alternate" hreflang="vi" href="${pageUrl(viRel)}">
@@ -119,8 +136,8 @@ function prepareTemplate(template, lang, rel, site) {
     if (lang === 'en') {
         html = translateHtml(html, site.TRANSLATION_EN.html)
             .replace('<html lang="vi">', '<html lang="en">')
-            .replace('<script src="assets/js/data/local-images.js"></script>',
-                '<script src="assets/js/data/en.js"></script>\n        <script src="assets/js/data/local-images.js"></script>')
+            .replace('<script defer src="assets/js/data/local-images.js"></script>',
+                '<script defer src="assets/js/data/en.js"></script>\n        <script defer src="assets/js/data/local-images.js"></script>')
     }
     html = prefixPaths(html, siteRoot, siteRoot + LANGS[lang].prefix)
     return { html, siteRoot }
@@ -170,11 +187,12 @@ function buildDestinationPage(template, lang, d, site) {
         .replace(/<meta name="description" content="[^"]*">/,
             `<meta name="description" content="${escapeHtml(truncate(d.description))}">`)
         .replace('</head>', `${headTags(site, d, lang)}</head>`)
-        .replace(/(\s*)<script src="/,
-            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'; window.DEST_ID = '${d.id}'</script>$1<script src="`)
+        .replace(/(\s*)<script defer src="/,
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'; window.DEST_ID = '${d.id}'</script>$1<script defer src="`)
         .replace('<main class="main" id="destination"></main>',
             `<main class="main" id="destination" data-prerendered>${site.renderDestinationPage(d)}</main>`)
 
+    html = prioritizeImages(html, site)
     if (!html.includes('data-prerendered')) throw new Error('Không tìm thấy <main id="destination"> trong destination.html')
     return html
 }
@@ -193,9 +211,10 @@ function buildHome(template, lang, site) {
         .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${LANGS[lang].locale}$2`)
 
+    html = prioritizeImages(html, site)
     if (lang === 'en') {
-        html = html.replace(/(\s*)<script src="/,
-            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = 'en'</script>$1<script src="`)
+        html = html.replace(/(\s*)<script defer src="/,
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = 'en'</script>$1<script defer src="`)
     }
     return html
 }

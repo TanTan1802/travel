@@ -51,6 +51,8 @@ if(document.querySelector('.discover__container')){
             rotate: 0,
         },
     })
+    // Thẻ trượt là liên kết <a>: bỏ role="group" do Swiper tự gán (không hợp lệ với <a>)
+    swiper.slides.removeAttr('role')
 }
 
 /*==================== VIDEO ====================*/

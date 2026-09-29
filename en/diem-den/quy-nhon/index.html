@@ -8,8 +8,16 @@
         <link rel="apple-touch-icon" href="../../../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../../../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <!-- Font & icon tải không chặn hiển thị -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </noscript>
         <link rel="stylesheet" href="../../../assets/css/styles.css">
         <link rel="stylesheet" href="../../../assets/css/vietnam.css">
 
@@ -75,7 +83,7 @@
         <!-- Nội dung được tạo động từ dữ liệu theo tham số ?id=... (assets/js/destination.js) -->
         <main class="main" id="destination" data-prerendered>
         <section class="dest-hero" id="top">
-            <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg|Skyline of Quy Nhon.jpg|Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="1920" alt="Quy Nhon" class="dest-hero__img">
+            <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg|Skyline of Quy Nhon.jpg|Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="1920" alt="Quy Nhon" class="dest-hero__img" data-priority src="../../../assets/img/wiki/quy-nhon-morning-city-view-1300px-c8d001-1920.webp" srcset="../../../assets/img/wiki/quy-nhon-morning-city-view-1300px-c8d001-480.webp 480w, ../../../assets/img/wiki/quy-nhon-morning-city-view-1300px-c8d001-960.webp 960w, ../../../assets/img/wiki/quy-nhon-morning-city-view-1300px-c8d001-1920.webp 1920w" sizes="100vw" fetchpriority="high">
             <div class="dest-hero__overlay"></div>
 
             <div class="dest-hero__content container">
@@ -214,27 +222,27 @@
             <div class="gallery__grid container">
                 
                     <button type="button" class="gallery__item is-featured" data-index="0" aria-label="View photo: Quy Nhon">
-                        <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg" data-width="960" alt="Quy Nhon" class="gallery__img" loading="lazy">
+                        <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Quy Nhon</span>
                     </button>
                 
                     <button type="button" class="gallery__item" data-index="1" aria-label="View photo: Quy Nhon city">
-                        <img data-wiki="Skyline of Quy Nhon.jpg" data-width="960" alt="Quy Nhon city" class="gallery__img" loading="lazy">
+                        <img data-wiki="Skyline of Quy Nhon.jpg" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Quy Nhon city</span>
                     </button>
                 
                     <button type="button" class="gallery__item" data-index="2" aria-label="View photo: A Binh Dinh countryside road">
-                        <img data-wiki="Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg" data-width="960" alt="A Binh Dinh countryside road" class="gallery__img" loading="lazy">
+                        <img data-wiki="Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> A Binh Dinh countryside road</span>
                     </button>
                 
                     <button type="button" class="gallery__item" data-index="3" aria-label="View photo: The Twin Towers">
-                        <img data-wiki="0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg" data-width="960" alt="The Twin Towers" class="gallery__img" loading="lazy">
+                        <img data-wiki="0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> The Twin Towers</span>
                     </button>
                 
                     <button type="button" class="gallery__item" data-index="4" aria-label="View photo: Xuan Dieu seafront road">
-                        <img data-wiki="Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" alt="Xuan Dieu seafront road" class="gallery__img" loading="lazy">
+                        <img data-wiki="Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Xuan Dieu seafront road</span>
                     </button>
                 
@@ -988,7 +996,7 @@
         <div class="dest-card-wrap">
             <a href="../../../en/diem-den/hue/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" alt="Hue Imperial City" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Hue Imperial City" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
@@ -1014,7 +1022,7 @@
         <div class="dest-card-wrap">
             <a href="../../../en/diem-den/phong-nha/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg|Son Doong Cave 1.jpg" data-width="960" alt="Phong Nha – Ke Bang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg|Son Doong Cave 1.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Phong Nha – Ke Bang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
                 </div>
@@ -1040,7 +1048,7 @@
         <div class="dest-card-wrap">
             <a href="../../../en/diem-den/da-nang/index.html" class="dest-card">
                 <div class="dest-card__media">
-                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" alt="Da Nang" class="dest-card__img" loading="lazy">
+                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="Da Nang" class="dest-card__img" loading="lazy">
                     <span class="dest-card__region">Central Vietnam</span>
                     <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
@@ -1095,16 +1103,16 @@
                             the full experience.
                         </p>
                         <div>
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">
                                 <i class="ri-facebook-box-fill"></i>
                             </a>
-                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">
                                 <i class="ri-twitter-fill"></i>
                             </a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">
                                 <i class="ri-instagram-fill"></i>
                             </a>
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">
                                 <i class="ri-youtube-fill"></i>
                             </a>
                         </div>
@@ -1155,24 +1163,23 @@
 
         <!--=============== SCROLL REVEAL===============-->
         <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'quy-nhon'</script>
-        <script src="../../../assets/js/scrollreveal.min.js"></script>
+        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-        <script src="../../../assets/js/data/en.js"></script>
-        <script src="../../../assets/js/data/local-images.js"></script>
-        <script src="../../../assets/js/i18n.js"></script>
-        <script src="../../../assets/js/data/destinations.js"></script>
-        <script src="../../../assets/js/data/itineraries.js"></script>
-        <script src="../../../assets/js/favorites.js"></script>
-        <script src="../../../assets/js/components.js"></script>
-        <script src="../../../assets/js/config.js"></script>
-        <script src="../../../assets/js/map.js"></script>
-        <script src="../../../assets/js/weather.js"></script>
-        <script src="../../../assets/js/destination-render.js"></script>
-        <script src="../../../assets/js/destination.js"></script>
+        <script defer src="../../../assets/js/data/en.js"></script>
+        <script defer src="../../../assets/js/data/local-images.js"></script>
+        <script defer src="../../../assets/js/i18n.js"></script>
+        <script defer src="../../../assets/js/data/destinations.js"></script>
+        <script defer src="../../../assets/js/data/itineraries.js"></script>
+        <script defer src="../../../assets/js/favorites.js"></script>
+        <script defer src="../../../assets/js/components.js"></script>
+        <script defer src="../../../assets/js/config.js"></script>
+        <script defer src="../../../assets/js/map.js"></script>
+        <script defer src="../../../assets/js/weather.js"></script>
+        <script defer src="../../../assets/js/destination-render.js"></script>
+        <script defer src="../../../assets/js/destination.js"></script>
 
         <!--=============== MAIN JS ===============-->
-        <script src="../../../assets/js/main.js"></script>
+        <script defer src="../../../assets/js/main.js"></script>
     </body>
 </html>
