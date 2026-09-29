@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-    <html lang="en">
+    <html lang="vi">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.">
         <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/vietnam.css">
 
-        <title>Responsive Website Travel</title>
+        <title>Du lịch Việt Nam – Khám phá danh lam thắng cảnh</title>
     </head>
     <body>
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="#" class="nav__logo">Travel</a>
+                <a href="index.html" class="nav__logo">Việt Travel</a>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">Home</a>
+                            <a href="#home" class="nav__link active-link">Trang chủ</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#about" class="nav__link">About</a>
+                            <a href="#about" class="nav__link">Giới thiệu</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#discover" class="nav__link">Discover</a>
+                            <a href="#discover" class="nav__link">Nổi bật</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#place" class="nav__link">Places</a>
+                            <a href="#place" class="nav__link">Điểm đến</a>
                         </li>
                     </ul>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
-                        <span class="change-theme-name">Dark mode</span>
+                        <span class="change-theme-name">Chế độ tối</span>
                         <i class="ri-moon-line change-theme" id="theme-button"></i>
                     </div>
 
@@ -49,39 +51,38 @@
         <main class="main">
             <!--==================== HOME ====================-->
             <section class="home" id="home">
-                <img src="assets/img/home1.jpg" alt="" class="home__img">
+                <img data-wiki="Halong Bay in Vietnam.jpg" data-width="1920" alt="Vịnh Hạ Long" class="home__img">
 
                 <div class="home__container container grid">
                     <div class="home__data">
-                        <span class="home__data-subtitle">Discover your place</span>
-                        <h1 class="home__data-title">Explore The <br> Best <b>Beautiful <br> Beaches</b></h1>
-                        <a href="#" class="button">Explore</a>
-
+                        <span class="home__data-subtitle">Việt Nam – Vẻ đẹp bất tận</span>
+                        <h1 class="home__data-title">Khám Phá <br> Danh Thắng <b>Tuyệt Đẹp <br> Của Việt Nam</b></h1>
+                        <a href="#place" class="button">Khám phá ngay</a>
                     </div>
 
                     <div class="home__social">
-                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-facebook-box-fill"></i>
                         </a>
-                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-instagram-fill"></i>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-twitter-fill"></i>
                         </a>
                     </div>
 
                     <div class="home__info">
                         <div>
-                            <span class="home__info-title">5 best places to visit</span>
-                            <a href="" class="button button--flex button--link home__info-button">
-                                More <i class="ri-arrow-right-line"></i>
+                            <span class="home__info-title"><span id="dest-count">17</span> điểm đến không thể bỏ lỡ</span>
+                            <a href="#place" class="button button--flex button--link home__info-button">
+                                Xem thêm <i class="ri-arrow-right-line"></i>
                             </a>
                         </div>
 
-                        <div class="home__info-overlay">
-                            <img src="assets/img/home2.jpg" alt="" class="home__info-img">
-                        </div>
+                        <a href="destination.html?id=hoi-an" class="home__info-overlay">
+                            <img data-wiki="Hội An, Ancient Town, 2020-01 CN-11.jpg" data-width="500" alt="Phố cổ Hội An" class="home__info-img">
+                        </a>
                     </div>
                 </div>
             </section>
@@ -90,112 +91,78 @@
             <section class="about section" id="about">
                 <div class="about__container container grid">
                     <div class="about__data">
-                        <h2 class="section__title about__title">More Information <br> About The Best Beaches</h2>
-                        <p class="about__description">You can find the most beautiful and pleasant places at the best 
-                            prices with special discounts, you choose the place we will guide you all the way to wait, get your 
-                            place now.
+                        <h2 class="section__title about__title">Hình Chữ S <br> Ngàn Cảnh Sắc</h2>
+                        <p class="about__description">Từ ruộng bậc thang Sa Pa, vịnh Hạ Long kỳ vĩ, phố cổ Hội An
+                            lung linh đèn lồng đến chợ nổi miền Tây và đảo ngọc Phú Quốc – mỗi vùng đất Việt Nam
+                            mang một vẻ đẹp riêng. Chọn một điểm đến để xem hình ảnh, món ngon và những trải nghiệm
+                            thú vị đang chờ bạn.
                         </p>
-                        <a href="#" class="button">Reserve a place</a>
+                        <a href="#place" class="button">Chọn điểm đến</a>
                     </div>
 
                     <div class="about__img">
-                        <div class="about__img-overlay">
-                            <img src="assets/img/about1.jpg" alt="" class="about__img-one">
-                        </div>
+                        <a href="destination.html?id=sa-pa" class="about__img-overlay">
+                            <img data-wiki="Rice terraces in Sa Pa 03.jpg" data-width="960" alt="Ruộng bậc thang Sa Pa" class="about__img-one">
+                        </a>
 
-                        <div class="about__img-overlay">
-                            <img src="assets/img/about2.jpg" alt="" class="about__img-two">
-                        </div>
+                        <a href="destination.html?id=hue" class="about__img-overlay">
+                            <img data-wiki="Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg" data-width="960" alt="Chùa Thiên Mụ, Huế" class="about__img-two">
+                        </a>
                     </div>
                 </div>
             </section>
-            
+
             <!--==================== DISCOVER ====================-->
             <section class="discover section" id="discover">
-                <h2 class="section__title">Discover the most <br> attractive places</h2>
-                
+                <h2 class="section__title">Những điểm đến <br> nổi bật nhất</h2>
+
                 <div class="discover__container container swiper-container">
-                    <div class="swiper-wrapper">
-                        <!--==================== DISCOVER 1 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover1.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Bali</h2>
-                                <span class="discover__description">24 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 2 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover2.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Hawaii</h2>
-                                <span class="discover__description">15 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 3 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover3.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Hvar</h2>
-                                <span class="discover__description">18 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 4 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover4.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Whitehaven</h2>
-                                <span class="discover__description">32 tours available</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Các thẻ được tạo động từ dữ liệu (assets/js/home.js) -->
+                    <div class="swiper-wrapper" id="discover-list"></div>
                 </div>
             </section>
 
             <!--==================== EXPERIENCE ====================-->
             <section class="experience section">
-                <h2 class="section__title">With Our Experience <br> We Will Serve You</h2>
+                <h2 class="section__title">Việt Nam <br> Qua Những Con Số</h2>
 
                 <div class="experience__container container grid">
                     <div class="experience__content grid">
                         <div class="experience__data">
-                            <h2 class="experience__number">20</h2>
-                            <span class="experience__description">Year <br> Experience</span>
+                            <h2 class="experience__number">8</h2>
+                            <span class="experience__description">Di sản <br> UNESCO</span>
                         </div>
 
                         <div class="experience__data">
-                            <h2 class="experience__number">75</h2>
-                            <span class="experience__description">Complete <br> tours</span>
+                            <h2 class="experience__number">3.260</h2>
+                            <span class="experience__description">Km <br> bờ biển</span>
                         </div>
 
                         <div class="experience__data">
-                            <h2 class="experience__number">650+</h2>
-                            <span class="experience__description">Tourist <br> Destination</span>
+                            <h2 class="experience__number">54</h2>
+                            <span class="experience__description">Dân tộc <br> anh em</span>
                         </div>
                     </div>
 
                     <div class="experience__img grid">
-                        <div class="experience__overlay">
-                            <img src="assets/img/experience1.jpg" alt="" class="experience__img-one">
-                        </div>
-                        
-                        <div class="experience__overlay">
-                            <img src="assets/img/experience2.jpg" alt="" class="experience__img-two">
-                        </div>
+                        <a href="destination.html?id=ninh-binh" class="experience__overlay">
+                            <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg" data-width="960" alt="Tràng An, Ninh Bình" class="experience__img-one">
+                        </a>
+
+                        <a href="destination.html?id=phong-nha" class="experience__overlay">
+                            <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg" data-width="500" alt="Động Thiên Đường" class="experience__img-two">
+                        </a>
                     </div>
                 </div>
             </section>
 
             <!--==================== VIDEO ====================-->
             <section class="video section">
-                <h2 class="section__title">Video Tour</h2>
+                <h2 class="section__title">Video Du Lịch</h2>
 
                 <div class="video__container container">
-                    <p class="video__description">Find out more with our video of the most beautiful and 
-                        pleasant places for you and your family.
+                    <p class="video__description">Cùng xem những thước phim về những vùng biển tuyệt đẹp
+                        dành cho bạn và gia đình.
                     </p>
 
                     <div class="video__content">
@@ -203,7 +170,7 @@
                             <source src="assets/video/video.mp4" type="video/mp4">
                         </video>
 
-                        <button class="button button--flex video__button" id="video-button">
+                        <button class="button button--flex video__button" id="video-button" aria-label="Phát video">
                             <i class="ri-play-line video__button-icon" id="video-icon"></i>
                         </button>
                     </div>
@@ -212,117 +179,24 @@
 
             <!--==================== PLACES ====================-->
             <section class="place section" id="place">
-                <h2 class="section__title">Choose Your Place</h2>
+                <h2 class="section__title">Khám phá mọi <br> danh lam thắng cảnh</h2>
 
-                <div class="place__container container grid">
-                    <!--==================== PLACES CARD 1 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place1.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Bali</h3>
-                                <span class="place__subtitle">Indonesia</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                <div class="container explore">
+                    <div class="explore__search">
+                        <i class="ri-search-line"></i>
+                        <input type="search" id="explore-search" class="explore__input" placeholder="Tìm điểm đến, tỉnh thành, món ăn...">
                     </div>
 
-                    <!--==================== PLACES CARD 2 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place2.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">5,0</span>
-                            </span>
+                    <div class="explore__filters" id="region-filters" role="tablist" aria-label="Lọc theo vùng miền"></div>
+                    <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Lọc theo loại hình"></div>
 
-                            <div class="place__data">
-                                <h3 class="place__title">Bora Bora</h3>
-                                <span class="place__subtitle">Polinesia</span>
-                                <span class="place__price">$1599</span>
-                            </div>
-                        </div>
+                    <p class="explore__result" id="explore-result"></p>
 
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
+                    <div class="dest__grid" id="dest-grid"></div>
 
-                    <!--==================== PLACES CARD 3 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place3.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,9</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Hawaii</h3>
-                                <span class="place__subtitle">EE.UU</span>
-                                <span class="place__price">$3499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-                    <!--==================== PLACES CARD 4 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place4.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Whitehaven</h3>
-                                <span class="place__subtitle">Australia</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-                    <!--==================== PLACES CARD 5 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place5.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Hvar</h3>
-                                <span class="place__subtitle">Croacia</span>
-                                <span class="place__price">$1999</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                    <div class="explore__empty" id="explore-empty" hidden>
+                        <i class="ri-map-pin-line"></i>
+                        <p>Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!</p>
                     </div>
                 </div>
             </section>
@@ -331,39 +205,18 @@
             <section class="subscribe section">
                 <div class="subscribe__bg">
                     <div class="subscribe__container container">
-                        <h2 class="section__title subscribe__title">Subscribe Our <br> Newsletter</h2>
-                        <p class="subscribe__description">Subscribe to our newsletter and get a 
-                            special 30% discount.
+                        <h2 class="section__title subscribe__title">Đăng Ký <br> Nhận Tin</h2>
+                        <p class="subscribe__description">Nhận cẩm nang du lịch Việt Nam và ưu đãi
+                            đặc biệt giảm đến 30%.
                         </p>
-    
+
                         <form action="" class="subscribe__form">
-                            <input type="text" placeholder="Enter email" class="subscribe__input">
-    
+                            <input type="email" placeholder="Nhập email của bạn" class="subscribe__input">
+
                             <button class="button">
-                                Subscribe
+                                Đăng ký
                             </button>
                         </form>
-                    </div>
-                </div>
-            </section>
-            
-            <!--==================== SPONSORS ====================-->
-            <section class="sponsor section">
-                <div class="sponsor__container container grid">
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors1.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors2.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors3.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors4.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors5.png" alt="" class="sponsor__img">
                     </div>
                 </div>
             </section>
@@ -374,92 +227,79 @@
             <div class="footer__container container grid">
                 <div class="footer__content grid">
                     <div class="footer__data">
-                        <h3 class="footer__title">Travel</h3>
-                        <p class="footer__description">Travel you choose the <br> destination, 
-                            we offer you the <br> experience.
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">Bạn chọn điểm đến, <br> chúng tôi mang đến <br>
+                            trải nghiệm trọn vẹn.
                         </p>
                         <div>
-                            <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-facebook-box-fill"></i>
                             </a>
-                            <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-twitter-fill"></i>
                             </a>
-                            <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-instagram-fill"></i>
                             </a>
-                            <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-youtube-fill"></i>
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">About</h3>
+                        <h3 class="footer__subtitle">Miền Bắc</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">About Us</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Features</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">New & Blog</a>
-                            </li>
+                            <li class="footer__item"><a href="destination.html?id=vinh-ha-long" class="footer__link">Vịnh Hạ Long</a></li>
+                            <li class="footer__item"><a href="destination.html?id=sa-pa" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="destination.html?id=ha-giang" class="footer__link">Hà Giang</a></li>
                         </ul>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">Company</h3>
+                        <h3 class="footer__subtitle">Miền Trung</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Team</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Plan y Pricing</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Become a member</a>
-                            </li>
+                            <li class="footer__item"><a href="destination.html?id=hoi-an" class="footer__link">Hội An</a></li>
+                            <li class="footer__item"><a href="destination.html?id=da-nang" class="footer__link">Đà Nẵng</a></li>
+                            <li class="footer__item"><a href="destination.html?id=da-lat" class="footer__link">Đà Lạt</a></li>
                         </ul>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">Support</h3>
+                        <h3 class="footer__subtitle">Miền Nam</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">FAQs</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Support Center</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Contact Us</a>
-                            </li>
+                            <li class="footer__item"><a href="destination.html?id=sai-gon" class="footer__link">TP. Hồ Chí Minh</a></li>
+                            <li class="footer__item"><a href="destination.html?id=can-tho" class="footer__link">Cần Thơ</a></li>
+                            <li class="footer__item"><a href="destination.html?id=phu-quoc" class="footer__link">Phú Quốc</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="footer__rights">
-                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan.</p>
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).</p>
                     <div class="footer__terms">
-                        <a href="#" class="footer__terms-link">Terms & Agreements</a>
-                        <a href="#" class="footer__terms-link">Privacy Policy</a>
+                        <a href="#" class="footer__terms-link">Điều khoản</a>
+                        <a href="#" class="footer__terms-link">Chính sách bảo mật</a>
                     </div>
                 </div>
             </div>
         </footer>
 
          <!--========== SCROLL UP ==========-->
-        <a href="#" class="scrollup" id="scroll-up">
+        <a href="#" class="scrollup" id="scroll-up" aria-label="Lên đầu trang">
             <i class="ri-arrow-up-line scrollup__icon"></i>
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
         <script src="assets/js/scrollreveal.min.js"></script>
-        
+
         <!--=============== SWIPER JS ===============-->
         <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script src="assets/js/data/destinations.js"></script>
+        <script src="assets/js/components.js"></script>
+        <script src="assets/js/home.js"></script>
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>
