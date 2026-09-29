@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Hình ảnh, ẩm thực và trải nghiệm vui chơi tại các danh lam thắng cảnh Việt Nam.">
+        <meta name="description" content="Tự lên kế hoạch du lịch Việt Nam nhiều điểm đến: chọn số ngày, sắp xếp tuyến ngắn nhất, ước tính chi phí và lịch trình từng ngày.">
         <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
         <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="manifest.webmanifest">
@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/vietnam.css">
 
-        <title>Điểm đến – Việt Travel</title>
+        <title>Lên kế hoạch chuyến đi – Việt Travel</title>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -34,19 +34,10 @@
                             <a href="index.html" class="nav__link">Trang chủ</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#overview" class="nav__link">Tổng quan</a>
+                            <a href="index.html#place" class="nav__link">Điểm đến</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#gallery" class="nav__link">Hình ảnh</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#food" class="nav__link">Ẩm thực</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#activities" class="nav__link">Vui chơi</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="ke-hoach/index.html" class="nav__link">Lên kế hoạch</a>
+                            <a href="ke-hoach/index.html" class="nav__link active-link">Lên kế hoạch</a>
                         </li>
                     </ul>
 
@@ -67,22 +58,32 @@
             </nav>
         </header>
 
-        <!-- Nội dung được tạo động từ dữ liệu theo tham số ?id=... (assets/js/destination.js) -->
-        <main class="main" id="destination"></main>
+        <main class="main planner-page" id="planner-page">
+            <section class="planner-hero">
+                <div class="container">
+                    <span class="section__subtitle">Hành trình của bạn</span>
+                    <h1 class="planner-hero__title">Lên kế hoạch chuyến đi</h1>
+                    <p class="planner-hero__text">Ghép nhiều điểm đến thành một hành trình: chọn số ngày mỗi nơi, sắp xếp tuyến ngắn nhất, xem chi phí ước tính và lịch trình từng ngày.</p>
+                </div>
+            </section>
 
-        <!--==================== LIGHTBOX ====================-->
-        <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
-            <button class="lightbox__close" id="lightbox-close" aria-label="Đóng"><i class="ri-close-line"></i></button>
-            <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Ảnh trước"><i class="ri-arrow-left-s-line"></i></button>
-            <figure class="lightbox__figure">
-                <img src="" alt="" class="lightbox__img" id="lightbox-img">
-                <figcaption class="lightbox__caption">
-                    <span id="lightbox-caption"></span>
-                    <a href="#" target="_blank" rel="noopener" class="lightbox__credit" id="lightbox-credit">Nguồn ảnh</a>
-                </figcaption>
-            </figure>
-            <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Ảnh tiếp"><i class="ri-arrow-right-s-line"></i></button>
-        </div>
+            <section class="planner section container">
+                <div class="planner__grid">
+                    <div class="planner__main">
+                        <div class="planner__controls" id="planner-controls"></div>
+                        <div id="planner-stops"></div>
+                    </div>
+                    <aside class="planner__side">
+                        <div class="planner__card">
+                            <div class="planner__settings" id="planner-settings"></div>
+                            <div id="planner-summary"></div>
+                        </div>
+                        <div class="planner__map" id="planner-map" hidden></div>
+                    </aside>
+                </div>
+                <div class="planner__days" id="planner-days"></div>
+            </section>
+        </main>
 
         <!--==================== FOOTER ====================-->
         <footer class="footer section">
@@ -162,11 +163,8 @@
         <script defer src="assets/js/data/itineraries.js"></script>
         <script defer src="assets/js/favorites.js"></script>
         <script defer src="assets/js/components.js"></script>
-        <script defer src="assets/js/config.js"></script>
         <script defer src="assets/js/map.js"></script>
-        <script defer src="assets/js/weather.js"></script>
-        <script defer src="assets/js/destination-render.js"></script>
-        <script defer src="assets/js/destination.js"></script>
+        <script defer src="assets/js/planner.js"></script>
 
         <!--=============== MAIN JS ===============-->
         <script defer src="assets/js/main.js"></script>
