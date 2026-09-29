@@ -214,60 +214,184 @@ function costBreakdownHtml(cost) {
 
 /*==================== TIMELINE CHI TIẾT TỪNG NGÀY ====================*/
 /*
- * Ghép một ngày trong lịch trình (sáng / chiều / tối) với quán ăn, quán cà phê – quán nước
- * trong PLACES thành timeline theo giờ: ăn sáng → tham quan → ăn trưa → cà phê → tham quan
- * → quán nước → ăn tối → buổi tối → cà phê/trà đêm. Quán được xoay vòng theo ngày để không lặp.
+ * Ghép một ngày trong lịch trình (sáng / chiều / tối) với quán ăn, quán cà phê trong PLACES
+ * và món đặc sản của điểm đến thành timeline theo giờ.
+ * - Mỗi quán / món chỉ xuất hiện MỘT lần trong cả chuyến: phân bổ lần lượt từ ngày đầu,
+ *   nên tour 3 ngày chính là 3 ngày đầu của tour 5 ngày.
+ * - Hết quán có tên → dùng món đặc sản (tìm quán trên Google Maps) → gợi ý chung.
+ * - Nếu lịch tham quan đã có bữa ăn (vd. buổi tối "ăn cao lầu") thì không chèn thêm bữa đó.
  */
 const NIGHT_SPOT = /chợ đêm|night|ăn đêm|nướng|bè|bbq|carnival/i
 const BIG_MEAL = /nhà hàng|hải sản|lẩu|dê|vịt|gà|bò bảy/i
+/* Quán chỉ bán đồ uống / quà vặt: không tính là bữa chính, dùng cho khung "quán nước, ăn vặt" */
+const SNACK_SPOT = /cà phê|coffee|chè|hạt bàng|sữa|bánh bông lan|dãy mắm|bảo tàng|trái cây|bánh ít|bánh bò/i
+const BREAKFAST_DISH = /phở|bánh mì|bún|cháo|xôi|bánh cuốn|hủ tiếu|bánh căn|bánh canh|mì|bánh đa|bánh khọt|cơm tấm|bánh bèo/i
+const MEAL_IN_TEXT = {
+    breakfast: /ăn sáng|bữa sáng|breakfast/i,
+    lunch: /ăn trưa|bữa trưa|lunch/i,
+    dinner: /(^|[\s,])(ăn|thưởng thức|nếm)\s|ăn tối|bữa tối|food tour|dinner|\beat\b|\btry\b|seafood|bbq/i,
+}
 
-function dayMeals(id, dayIndex) {
-    const eats = (placesOf(id) || {}).eats || []
-    const pick = (list, k) => (list.length ? list[k % list.length] : null)
-    const breakfasts = eats.filter(e => e.price[0] <= 50000 && !NIGHT_SPOT.test(e.name) && !BIG_MEAL.test(e.name))
-    const breakfast = pick(breakfasts, dayIndex)
-    const rest = eats.filter(e => e !== breakfast)
-    const dinners = rest.filter(e => NIGHT_SPOT.test(e.name) || BIG_MEAL.test(e.name))
-    const dinner = pick(dinners.length ? dinners : rest, dayIndex)
-    const lunches = rest.filter(e => e !== dinner)
-    return { breakfast, lunch: pick(lunches.length ? lunches : rest, dayIndex), dinner }
+/* Đồ uống đường phố theo vùng – dùng cho buổi chiều khi đã hết quán cà phê có tên */
+const STREET_DRINKS = {
+    bac: [
+        ['Trà đá vỉa hè và hướng dương', 'Street iced tea with sunflower seeds'],
+        ['Cà phê trứng hoặc cà phê cốt dừa', 'Egg coffee or coconut coffee'],
+        ['Chè, kem que vỉa hè', 'Sweet soups and street ice-cream sticks'],
+        ['Nước mía, sữa chua mít', 'Sugarcane juice or jackfruit yogurt'],
+        ['Trà nóng và bánh ngô nướng', 'Hot tea with grilled corn cakes'],
+    ],
+    trung: [
+        ['Cà phê muối', 'Salted coffee'],
+        ['Nước mía, nước sâm mát lạnh', 'Chilled sugarcane juice or herbal drink'],
+        ['Chè đậu, chè bột lọc', 'Bean and tapioca sweet soups'],
+        ['Nước dừa tươi', 'Fresh coconut water'],
+        ['Sinh tố, nước ép trái cây', 'Fruit smoothies and juices'],
+    ],
+    nam: [
+        ['Cà phê sữa đá vỉa hè', 'Street-side iced milk coffee'],
+        ['Nước dừa tươi', 'Fresh coconut water'],
+        ['Nước mía, sâm bổ lượng', 'Sugarcane juice or sam bo luong'],
+        ['Chè, tàu hũ nước đường', 'Sweet soups and tofu in ginger syrup'],
+        ['Sinh tố bơ, xoài', 'Avocado or mango smoothies'],
+    ],
+}
+
+/* Món đặc sản của điểm đến dưới dạng "quán" để đưa vào timeline */
+function specialtyPlaces(d) {
+    return (d.foods || []).map(f => ({
+        name: f.name,
+        dish: f.desc,
+        address: t('Quán địa phương ở {name}', { name: d.name }),
+        priceText: f.price,
+        search: `${f.name} ${placesOf(d.id)?.city || d.name}`,
+        specialty: true,
+    }))
+}
+
+/* Gợi ý chung khi đã dùng hết quán có tên – luân phiên theo ngày để không lặp câu */
+const GENERIC_MEALS = {
+    breakfast: [
+        () => t('Ăn sáng tại nơi ở (thường đã gồm trong giá phòng)'),
+        () => t('Ăn sáng quán bình dân đông người địa phương gần nơi ở'),
+        () => t('Mang theo bánh mì, xôi nếu khởi hành sớm'),
+    ],
+    lunch: [
+        () => t('Ăn trưa ngay tại khu tham quan buổi sáng – nhiều quán gần bến, cổng'),
+        () => t('Cơm trưa bình dân gần điểm tham quan'),
+        () => t('Ăn trưa nhẹ, mang theo nước và đồ ăn nếu đi xa'),
+    ],
+    dinner: [
+        () => t('Dạo chợ đêm hoặc phố ẩm thực để chọn món ăn tối'),
+        () => t('Ăn tối gần nơi ở – chọn quán đông khách địa phương'),
+        () => t('Ăn tối tự chọn: thử lại món bạn thích nhất'),
+    ],
+}
+const genericMeal = (meal, day) => GENERIC_MEALS[meal][day % GENERIC_MEALS[meal].length]()
+
+const mealPlanCache = {}
+
+/* Phân bổ quán ăn / cà phê / đồ uống cho các ngày 0..count-1, không lặp trong cả chuyến */
+function mealPlan(id, count) {
+    const cached = mealPlanCache[id]
+    if (cached && cached.length >= count) return cached
+    const d = getDestination(id)
+    const places = placesOf(id) || {}
+    const itinerary = (typeof ITINERARIES !== 'undefined' && ITINERARIES[id]) || { days: [] }
+    const allEats = places.eats || []
+    const eats = allEats.filter(e => !SNACK_SPOT.test(e.name))
+    const snacks = allEats.filter(e => SNACK_SPOT.test(e.name))
+    const specials = d ? specialtyPlaces(d).filter(f => !SNACK_SPOT.test(f.name)) : []
+    const cafes = places.cafes || []
+    const drinks = STREET_DRINKS[d?.region] || STREET_DRINKS.nam
+
+    /* Coi "Cao lầu" và "Cao lầu Thanh" là cùng một món để không gợi ý hai lần */
+    const norm = x => x.toLowerCase().normalize('NFC')
+    const usedNames = []
+    const isUsed = p => usedNames.some(n => n.includes(norm(p.name)) || norm(p.name).includes(n))
+
+    /* Món / quán đã nhắc trong phần tham quan (vd. "ăn cao lầu") thì không gợi ý lại ở bữa ăn */
+    const itineraryText = norm(itinerary.days.map(day => [day.morning, day.afternoon, day.evening].join(' ')).join(' '))
+    const specialNames = (d ? specialtyPlaces(d) : []).map(f => norm(f.name))
+    const covered = p => itineraryText.includes(norm(p.name))
+        || specialNames.some(n => norm(p.name).includes(n) && itineraryText.includes(n))
+    const take = (...lists) => {
+        for (const list of lists) {
+            const hit = list.find(p => !isUsed(p) && !covered(p))
+            if (hit) {
+                usedNames.push(norm(hit.name))
+                return hit
+            }
+        }
+        return null
+    }
+    const plan = []
+    for (let k = 0; k < Math.max(count, 5); k++) {
+        const day = itinerary.days[k] || null
+        const has = (meal, ...keys) => Boolean(day) && keys.some(key => MEAL_IN_TEXT[meal].test(day[key] || ''))
+        const entry = {}
+        if (!has('breakfast', 'morning')) {
+            entry.breakfast = take(
+                eats.filter(e => e.price[0] <= 50000 && !NIGHT_SPOT.test(e.name) && !BIG_MEAL.test(e.name)),
+                specials.filter(f => BREAKFAST_DISH.test(f.name)),
+            )
+        }
+        if (!has('lunch', 'morning', 'afternoon')) {
+            entry.lunch = take(eats.filter(e => !NIGHT_SPOT.test(e.name)), specials, eats)
+        }
+        entry.dinnerInEvening = has('dinner', 'evening')
+        if (!entry.dinnerInEvening) {
+            entry.dinner = take(eats.filter(e => NIGHT_SPOT.test(e.name) || BIG_MEAL.test(e.name)), eats, specials)
+        }
+        entry.cafe = take(cafes)
+        entry.snack = take(snacks)
+        entry.drink = drinks[k % drinks.length]
+        plan.push(entry)
+    }
+    mealPlanCache[id] = plan
+    return plan
 }
 
 /*
  * Trả về danh sách mục { time, icon, kind, title, text, place }.
- * options.arrival: { from, text } thay buổi sáng bằng chặng di chuyển; options.last: ngày cuối (trả phòng).
+ * options.arrival: { text } thay buổi sáng bằng chặng di chuyển; options.last: ngày cuối (trả phòng).
  */
 function dayTimeline(id, dayIndex, day, { arrival = null, last = false } = {}) {
-    const places = placesOf(id) || {}
-    const cafes = places.cafes || []
-    const meals = dayMeals(id, dayIndex)
-    const cafe = k => (cafes.length ? cafes[(2 * dayIndex + k) % cafes.length] : null)
+    const meals = mealPlan(id, dayIndex + 1)[dayIndex]
     const entries = []
     const add = (time, icon, kind, title, text, place = null) => {
         if (text || place) entries.push({ time, icon, kind, title, text, place })
     }
+    /* Ngày có lịch riêng dùng phân bổ bữa đã tính; ngày tự do / ngày di chuyển luôn cần đủ bữa */
+    const ownDay = Boolean(day) && !arrival
+    const breakfast = 'breakfast' in meals || !ownDay
+    const lunch = 'lunch' in meals || !ownDay
+    const dinnerInEvening = ownDay && meals.dinnerInEvening
 
-    add('06:30', 'ri-sun-foggy-line', 'meal', t('Ăn sáng'), meals.breakfast ? '' : t('Ăn sáng món địa phương gần nơi ở'), meals.breakfast)
+    if (breakfast) add('06:30', 'ri-sun-foggy-line', 'meal', t('Ăn sáng'), meals.breakfast ? '' : genericMeal('breakfast', dayIndex), meals.breakfast)
     if (arrival) add('07:30', 'ri-route-line', 'travel', t('Di chuyển'), arrival.text)
     else if (day) add('07:30', 'ri-map-pin-line', 'visit', t('Tham quan buổi sáng'), day.morning)
-    add('11:30', 'ri-restaurant-line', 'meal', t('Ăn trưa'), '', meals.lunch)
-    add('13:00', 'ri-cup-line', 'cafe', t('Cà phê & nghỉ trưa'), '', cafe(0))
+    if (lunch) add('11:30', 'ri-restaurant-line', 'meal', t('Ăn trưa'), meals.lunch ? '' : genericMeal('lunch', dayIndex), meals.lunch)
+    if (meals.cafe) add('13:00', 'ri-cup-line', 'cafe', t('Cà phê & nghỉ trưa'), '', meals.cafe)
+    else add('13:00', 'ri-hotel-bed-line', 'rest', t('Nghỉ trưa'), t('Về nơi ở nghỉ ngơi, tránh nắng giữa trưa'))
     if (day) add('14:30', 'ri-camera-line', 'visit', t('Tham quan buổi chiều'), day.afternoon)
     else add('14:30', 'ri-compass-3-line', 'visit', t('Buổi chiều tự do'), t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.'))
-    add('16:30', 'ri-goblet-line', 'drink', t('Quán nước, ăn vặt'), '', cafe(1))
-    add('18:00', 'ri-restaurant-2-line', 'meal', t('Ăn tối'), '', meals.dinner)
-    if (day) add('19:30', 'ri-moon-clear-line', 'visit', t('Buổi tối'), day.evening)
+    add('16:30', 'ri-goblet-line', 'drink', t('Quán nước, ăn vặt'), meals.snack ? '' : pickLang(meals.drink), meals.snack)
+    if (!dinnerInEvening) add('18:00', 'ri-restaurant-2-line', 'meal', t('Ăn tối'), meals.dinner ? '' : genericMeal('dinner', dayIndex), meals.dinner)
+    if (day) add(dinnerInEvening ? '18:00' : '19:30', 'ri-moon-clear-line', 'visit', dinnerInEvening ? t('Ăn tối & buổi tối') : t('Buổi tối'), day.evening)
     if (last) add('21:00', 'ri-luggage-cart-line', 'rest', t('Kết thúc tour'), t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.'))
-    else add('21:30', 'ri-hotel-bed-line', 'rest', t('Cà phê đêm & về nghỉ'), '', cafe(2))
+    else add('21:30', 'ri-hotel-bed-line', 'rest', t('Về nghỉ'), t('Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi'))
     return entries
 }
 
 function timelinePlaceHtml(place) {
     const what = pickLang(place.dish || place.drink)
+    const price = place.price ? priceRange(place.price) : place.priceText
+    const query = place.search || `${place.name}, ${place.address}`
     return `
-        <a href="${mapsSearchUrl(`${place.name}, ${place.address}`)}" target="_blank" rel="noopener" class="day-tl__place">${place.name}</a>
+        <a href="${mapsSearchUrl(query)}" target="_blank" rel="noopener" class="day-tl__place">${place.specialty ? `${t('Món đặc sản')}: ` : ''}${place.name}</a>
         <span class="day-tl__what">${what}</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> ${place.address} · ${priceRange(place.price)}</small>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> ${place.address}${price ? ` · ${price}` : ''}</small>
     `
 }
 
