@@ -91,8 +91,9 @@ async function main() {
     })
 
     /* Xóa ảnh không còn được dùng (điểm đến/ảnh đã bị bỏ khỏi dữ liệu) */
-    const keep = new Set(Object.values(manifest).flatMap(e => Object.values(e).map(p => path.basename(p))))
-    const removed = fs.readdirSync(path.join(ROOT, OUT_DIR)).filter(f => !keep.has(f))
+    /* Giữ mọi kích thước của ảnh còn dùng (kể cả bản WebP 480px do optimize-images.js tạo) */
+    const keepBases = new Set(Object.values(manifest).flatMap(e => Object.values(e).map(p => path.basename(p).replace(/-\d+\.\w+$/, ''))))
+    const removed = fs.readdirSync(path.join(ROOT, OUT_DIR)).filter(f => !keepBases.has(f.replace(/-\d+\.\w+$/, '')))
     removed.forEach(f => fs.unlinkSync(path.join(ROOT, OUT_DIR, f)))
     if (removed.length) console.log(`\nĐã xóa ${removed.length} file ảnh không còn dùng.`)
 
@@ -106,7 +107,7 @@ async function main() {
         console.log(`\n❌ ${failed.length} ảnh lỗi (site sẽ tự dùng ảnh dự phòng):`)
         failed.forEach(f => console.log(`  - ${f}`))
     }
-    console.log('\nChạy `npm run build` để cập nhật các trang tĩnh.')
+    console.log('\nTiếp theo: tối ưu ảnh (optimize-images.js) rồi `npm run build`.')
 }
 
 main().catch(err => {

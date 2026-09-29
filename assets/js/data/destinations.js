@@ -14,10 +14,27 @@ const SITE_ROOT = (typeof window !== 'undefined' && window.SITE_ROOT) || ''
  * Ảnh đã tải về máy (sinh bởi tools/download-images.js, khai báo trong local-images.js)
  * được ưu tiên dùng; nếu chưa có thì lấy trực tiếp từ Wikimedia Commons.
  */
+const localImage = file => (typeof LOCAL_IMAGES !== 'undefined' && LOCAL_IMAGES[file]) || null
+
 function wikiImg(file, width = 1280) {
-    const local = typeof LOCAL_IMAGES !== 'undefined' && LOCAL_IMAGES[file]
-    if (local) return SITE_ROOT + (width > 960 ? local.lg : local.sm)
+    const local = localImage(file)
+    if (local) return SITE_ROOT + (width > 960 ? local.lg : width > 500 && local.sm ? local.sm : local.xs || local.sm)
     return `${WIKI_BASE}Special:FilePath/${encodeURIComponent(file)}?width=${width}`
+}
+
+/* srcset cho ảnh đã tối ưu (WebP 480/960/1920) – trình duyệt tự chọn ảnh vừa với màn hình */
+function wikiSrcset(file) {
+    const local = localImage(file)
+    if (!local || !local.xs) return ''
+    return [['xs', 480], ['sm', 960], ['lg', 1920]]
+        .map(([key, w]) => `${SITE_ROOT}${local[key]} ${w}w`).join(', ')
+}
+
+/* Chiều rộng hiển thị ước tính theo vị trí ảnh (data-width) */
+function imageSizes(width) {
+    if (width >= 1920) return '100vw'
+    if (width >= 960) return '(max-width: 768px) 100vw, 50vw'
+    return '(max-width: 768px) 50vw, 320px'
 }
 
 function wikiPage(file) {
@@ -907,11 +924,23 @@ function hydrateWikiImages(root = document) {
         let index = 0
 
         img.dataset.hydrated = ''
+        const load = file => {
+            const srcset = wikiSrcset(file)
+            if (srcset) {
+                img.sizes = img.dataset.sizes || imageSizes(width)
+                img.srcset = srcset
+            } else {
+                img.removeAttribute('srcset')
+            }
+            img.src = wikiImg(file, width)
+        }
+
         img.addEventListener('error', () => {
             index++
-            if (index < files.length) img.src = wikiImg(files[index], width)
+            if (index < files.length) load(files[index])
             else markImgFallback(img)
         })
-        img.src = wikiImg(files[0], width)
+        if (!img.hasAttribute('decoding')) img.decoding = 'async'
+        load(files[0])
     })
 }

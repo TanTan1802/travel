@@ -60,6 +60,12 @@ const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
 /* URL tuyệt đối của ảnh (dùng cho og:image) */
+/* Ảnh chia sẻ của điểm đến (JPEG 1200x630 do optimize-images.js tạo), nếu chưa có thì dùng ảnh bìa */
+function ogImage(site, d) {
+    const rel = `assets/img/og/${d.id}.jpg`
+    return fs.existsSync(path.join(ROOT, rel)) ? SITE_URL + rel : absoluteImage(site, d.hero)
+}
+
 function absoluteImage(site, file) {
     const local = site.LOCAL_IMAGES && site.LOCAL_IMAGES[file]
     if (local) return SITE_URL + local.lg
@@ -124,7 +130,7 @@ function headTags(site, d, lang) {
     const rel = destPath(lang, d.id)
     const url = pageUrl(rel)
     const title = `${d.name} – ${d.tagline}`
-    const image = absoluteImage(site, d.hero)
+    const image = ogImage(site, d)
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'TouristDestination',
@@ -147,6 +153,8 @@ function headTags(site, d, lang) {
         <meta property="og:description" content="${escapeHtml(truncate(d.description))}">
         <meta property="og:url" content="${url}">
         <meta property="og:image" content="${escapeHtml(image)}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
         <meta name="twitter:card" content="summary_large_image">
         <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
     `
