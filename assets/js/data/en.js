@@ -479,7 +479,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ninh Binh crispy rice (cơm cháy)', desc: 'Crunchy scorched rice topped with a rich sauce – a specialty of the ancient capital.', price: '80,000 VND' },
-                { name: 'Mountain goat', desc: 'Firm goat meat served rare with lime, grilled or steamed.', price: '200,000 VND' },
+                { name: 'Mountain goat', desc: 'Firm goat meat served rare with lime, grilled or steamed.', price: '200,000 VND', illustrative: 'Charcoal-grilled meat' },
                 { name: 'Bánh mì', desc: 'A crispy baguette – handy for a day of sightseeing.', price: '25,000 VND' },
             ],
             activities: [
@@ -532,9 +532,9 @@ const TRANSLATION_EN = {
                 { caption: 'The Quay Son river' },
             ],
             foods: [
-                { name: 'Seven-flavour roast duck', desc: 'Duck roasted with mắc mật leaves, fragrant with golden crispy skin – Cao Bang\'s pride.', price: '250,000 VND/duck' },
+                { name: 'Seven-flavour roast duck', desc: 'Duck roasted with mắc mật leaves, fragrant with golden crispy skin – Cao Bang\'s pride.', price: '250,000 VND/duck', illustrative: 'Roast duck' },
                 { name: 'Cao Bang rice rolls', desc: 'Thin rolls served with hot bone broth instead of fish sauce.', price: '30,000 VND' },
-                { name: 'Sour phở', desc: 'Phở tossed in a sweet-sour sauce with roast pork, peanuts and herbs.', price: '40,000 VND' },
+                { name: 'Sour phở', desc: 'Phở tossed in a sweet-sour sauce with roast pork, peanuts and herbs.', price: '40,000 VND', illustrative: 'A bowl of phở' },
             ],
             activities: [
                 { title: 'Bamboo raft', desc: 'Float right up to the foot of the falls and feel the cool spray.' },
@@ -557,9 +557,9 @@ const TRANSLATION_EN = {
                 { caption: 'A Cat Ba beach' },
             ],
             foods: [
-                { name: 'Cat Ba seafood', desc: 'Geoduck, mantis shrimp and sweet snails cooked fresh on floating rafts.', price: 'Market price' },
+                { name: 'Cat Ba seafood', desc: 'Geoduck, mantis shrimp and sweet snails cooked fresh on floating rafts.', price: 'Market price', illustrative: 'Cat Ba fishing village – where the seafood comes from' },
                 { name: 'Hai Phong crab noodle soup', desc: 'Red rice noodles in a rich crab broth – the port city\'s breakfast.', price: '40,000 VND' },
-                { name: 'Sea crab spring rolls', desc: 'Square spring rolls filled with sea crab, fried crispy.', price: '15,000 VND/roll' },
+                { name: 'Sea crab spring rolls', desc: 'Square spring rolls filled with sea crab, fried crispy.', price: '15,000 VND/roll', illustrative: 'Fried spring rolls' },
             ],
             activities: [
                 { title: 'Kayak Lan Ha Bay', desc: 'Paddle through the Light and Dark caves, swim at Ba Trai Dao beach.' },
@@ -642,7 +642,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Quang Binh bánh bột lọc', desc: 'Translucent dumplings with braised river shrimp, dipped in chilli fish sauce.', price: '30,000 VND' },
-                { name: 'Phong Nha grilled chicken', desc: 'Free-range chicken grilled over charcoal, with salt, pepper and lime.', price: '250,000 VND/chicken' },
+                { name: 'Phong Nha grilled chicken', desc: 'Free-range chicken grilled over charcoal, with salt, pepper and lime.', price: '250,000 VND/chicken', illustrative: 'Charcoal grill' },
                 { name: 'Bánh xèo', desc: 'Crispy pancakes with shrimp and pork, wrapped in wild greens.', price: '30,000 VND' },
             ],
             activities: [
@@ -727,7 +727,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Fish cake noodle soup', desc: 'Mackerel and flying-fish cakes, fried and steamed, in a light broth.', price: '35,000 VND' },
-                { name: 'Ninh Hoa grilled pork rolls', desc: 'Charcoal-grilled pork sausage wrapped in rice paper with herbs and a special dip.', price: '50,000 VND' },
+                { name: 'Ninh Hoa grilled pork rolls', desc: 'Charcoal-grilled pork sausage wrapped in rice paper with herbs and a special dip.', price: '50,000 VND', illustrative: 'Charcoal-grilled meat' },
                 { name: 'Bánh căn', desc: 'Mini rice cakes cooked in clay moulds with egg, squid or shrimp.', price: '30,000 VND' },
             ],
             activities: [
@@ -780,7 +780,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Phan Thiet bánh căn', desc: 'Crispy-edged bánh căn dipped in braised-fish sauce.', price: '25,000 VND' },
-                { name: 'Mackerel salad (gỏi cá mai)', desc: 'Lime-cured fish with toasted rice powder, wrapped in rice paper with herbs.', price: '120,000 VND' },
+                { name: 'Mackerel salad (gỏi cá mai)', desc: 'Lime-cured fish with toasted rice powder, wrapped in rice paper with herbs.', price: '120,000 VND', illustrative: 'Mui Ne fishing boats' },
                 { name: 'Bánh xèo', desc: 'Crispy squid pancakes by the sea.', price: '30,000 VND' },
             ],
             activities: [
@@ -833,9 +833,9 @@ const TRANSLATION_EN = {
                 { caption: 'Ganh Da Dia from above' },
             ],
             foods: [
-                { name: 'Tuna eyes', desc: 'Ocean tuna eyes stewed with herbal medicine – Tuy Hoa\'s famous delicacy.', price: '60,000 VND' },
-                { name: 'Chive noodle soup (bánh canh hẹ)', desc: 'Thick noodles, fish cake and plenty of fresh garlic chives.', price: '25,000 VND' },
-                { name: 'O Loan blood cockles', desc: 'Cockles grilled with spring-onion oil, rich and sweet from the brackish lagoon.', price: '120,000 VND' },
+                { name: 'Tuna eyes', desc: 'Ocean tuna eyes stewed with herbal medicine – Tuy Hoa\'s famous delicacy.', price: '60,000 VND', illustrative: 'A braised fish dish' },
+                { name: 'Chive noodle soup (bánh canh hẹ)', desc: 'Thick noodles, fish cake and plenty of fresh garlic chives.', price: '25,000 VND', illustrative: 'Bánh canh noodle soup' },
+                { name: 'O Loan blood cockles', desc: 'Cockles grilled with spring-onion oil, rich and sweet from the brackish lagoon.', price: '120,000 VND', illustrative: 'Grilled shellfish' },
             ],
             activities: [
                 { title: 'Sunrise at Mui Dien', desc: 'The first sunrise on mainland Vietnam.' },
@@ -945,8 +945,8 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Bánh khọt', desc: 'Crispy mini pancakes with fresh shrimp, wrapped in mustard greens with sweet-sour fish sauce.', price: '50,000 VND' },
-                { name: 'Stingray hotpot', desc: 'A sweet-sour hotpot with crunchy stingray and pickled bamboo shoots.', price: '250,000 VND' },
-                { name: 'Salted egg sponge cake', desc: 'A famous cake to bring home from Vung Tau.', price: '50,000 VND/box' },
+                { name: 'Stingray hotpot', desc: 'A sweet-sour hotpot with crunchy stingray and pickled bamboo shoots.', price: '250,000 VND', illustrative: 'A steaming hotpot' },
+                { name: 'Salted egg sponge cake', desc: 'A famous cake to bring home from Vung Tau.', price: '50,000 VND/box', illustrative: 'Salted-egg baked cake' },
             ],
             activities: [
                 { title: 'Climb to Christ the King', desc: 'Over 800 steps to the top of Small Mountain for city views.' },
@@ -970,8 +970,8 @@ const TRANSLATION_EN = {
                 { caption: 'Tam Buu Pagoda' },
             ],
             foods: [
-                { name: 'Fermented fish hotpot (lẩu mắm)', desc: 'A pungent hotpot of fermented linh and sac fish, eaten with flood-season vegetables.', price: '250,000 VND' },
-                { name: 'Chau Doc fish noodle soup', desc: 'Turmeric broth with snakehead fish and sesbania flowers.', price: '30,000 VND' },
+                { name: 'Fermented fish hotpot (lẩu mắm)', desc: 'A pungent hotpot of fermented linh and sac fish, eaten with flood-season vegetables.', price: '250,000 VND', illustrative: 'Fermented snakehead fish – the base of lẩu mắm' },
+                { name: 'Chau Doc fish noodle soup', desc: 'Turmeric broth with snakehead fish and sesbania flowers.', price: '30,000 VND', illustrative: 'Mekong-style fish noodle soup' },
                 { name: 'Palm sugar sponge cake', desc: 'Golden, lightly sweet cake made with Bay Nui palm sugar.', price: '20,000 VND', illustrative: 'Bánh bò cake' },
             ],
             activities: [
@@ -995,8 +995,8 @@ const TRANSLATION_EN = {
                 { caption: 'The "tiger cages"' },
             ],
             foods: [
-                { name: 'Con Dao seafood', desc: 'Squid, limpets and rock crab fresh from the sea.', price: 'Market price' },
-                { name: 'Tropical almond nuts (hạt bàng)', desc: 'A rustic specialty – roasted or made into candy, rich and nutty.', price: '400,000 VND/kg' },
+                { name: 'Con Dao seafood', desc: 'Squid, limpets and rock crab fresh from the sea.', price: 'Market price', illustrative: 'Grilled seafood' },
+                { name: 'Tropical almond nuts (hạt bàng)', desc: 'A rustic specialty – roasted or made into candy, rich and nutty.', price: '400,000 VND/kg', illustrative: 'Tropical almond tree' },
                 { name: 'Bánh xèo', desc: 'Hot, crispy seafood pancakes by the beach.', price: '35,000 VND' },
             ],
             activities: [
@@ -1021,10 +1021,10 @@ const TRANSLATION_EN = {
                 { caption: 'Moc Chau square' },
             ],
             foods: [
-                { name: 'Bê chao (fried veal)', desc: 'Young veal boiled then flash-fried, dipped in spicy cham cheo sauce.', price: '200,000 VND/plate' },
-                { name: 'Grilled stream fish', desc: 'Small fish clamped in bamboo and grilled with mac khen pepper.', price: '150,000 VND' },
-                { name: 'Moc Chau milk & milk cakes', desc: 'Fresh milk, yogurt and milk candy from the plateau\'s dairy farms.', price: '30,000 VND' },
-                { name: 'Upland sticky rice', desc: 'Fragrant sticky rice with sesame salt and smoked buffalo.', price: '30,000 VND' },
+                { name: 'Bê chao (fried veal)', desc: 'Young veal boiled then flash-fried, dipped in spicy cham cheo sauce.', price: '200,000 VND/plate', illustrative: 'A highland meat platter' },
+                { name: 'Grilled stream fish', desc: 'Small fish clamped in bamboo and grilled with mac khen pepper.', price: '150,000 VND', illustrative: 'Grilled fish' },
+                { name: 'Moc Chau milk & milk cakes', desc: 'Fresh milk, yogurt and milk candy from the plateau\'s dairy farms.', price: '30,000 VND', illustrative: 'Dairy cows like those raised in Moc Chau' },
+                { name: 'Upland sticky rice', desc: 'Fragrant sticky rice with sesame salt and smoked buffalo.', price: '30,000 VND', illustrative: 'Sticky rice' },
             ],
             activities: [
                 { title: 'Walk the heart-shaped tea hill', desc: 'Photos among curving tea rows in the early morning.' },
@@ -1046,10 +1046,10 @@ const TRANSLATION_EN = {
                 { caption: 'Pu Luong Nature Reserve' },
             ],
             foods: [
-                { name: 'Co Lung duck', desc: 'Free-range duck with firm meat, boiled or grilled with mac khen.', price: '250,000 VND/small duck' },
+                { name: 'Co Lung duck', desc: 'Free-range duck with firm meat, boiled or grilled with mac khen.', price: '250,000 VND/small duck', illustrative: 'Roast duck' },
                 { name: 'Bamboo-tube rice (cơm lam)', desc: 'Sticky rice roasted in bamboo, eaten with sesame salt.', price: '20,000 VND/tube' },
-                { name: 'Grilled stream fish', desc: 'Small stream fish grilled crisp over a wood fire.', price: '100,000 VND' },
-                { name: 'Stir-fried wild bamboo shoots', desc: 'Bitter and forest bamboo shoots with garlic.', price: '60,000 VND' },
+                { name: 'Grilled stream fish', desc: 'Small stream fish grilled crisp over a wood fire.', price: '100,000 VND', illustrative: 'Grilled fish' },
+                { name: 'Stir-fried wild bamboo shoots', desc: 'Bitter and forest bamboo shoots with garlic.', price: '60,000 VND', illustrative: 'Wild bamboo shoots' },
             ],
             activities: [
                 { title: 'Trek Don – Kho Muong', desc: 'Walk through terraces, bamboo forest and Bang cave.' },
@@ -1073,10 +1073,10 @@ const TRANSLATION_EN = {
                 { caption: 'The gateway of Ly Son island district' },
             ],
             foods: [
-                { name: 'Ly Son garlic salad', desc: 'Young garlic leaves tossed with shrimp, pork belly and peanuts – found only here.', price: '80,000 VND' },
-                { name: 'Rock snails', desc: 'Snails from volcanic reefs, boiled with lemongrass or grilled with scallion oil.', price: '100,000 VND/plate' },
-                { name: 'Ly Son seaweed', desc: 'Seaweed salad or a cooling sweet soup.', price: '30,000 VND' },
-                { name: 'Sea urchin porridge', desc: 'Fresh sea urchin cooked into a rich, sweet porridge.', price: '50,000 VND' },
+                { name: 'Ly Son garlic salad', desc: 'Young garlic leaves tossed with shrimp, pork belly and peanuts – found only here.', price: '80,000 VND', illustrative: 'Single-clove garlic' },
+                { name: 'Rock snails', desc: 'Snails from volcanic reefs, boiled with lemongrass or grilled with scallion oil.', price: '100,000 VND/plate', illustrative: 'Boiled snails' },
+                { name: 'Ly Son seaweed', desc: 'Seaweed salad or a cooling sweet soup.', price: '30,000 VND', illustrative: 'Seaweed' },
+                { name: 'Sea urchin porridge', desc: 'Fresh sea urchin cooked into a rich, sweet porridge.', price: '50,000 VND', illustrative: 'Sea urchin' },
             ],
             activities: [
                 { title: 'Sunset at To Vo arch', desc: 'A natural stone arch framing the sun sinking into the sea.' },
@@ -1101,8 +1101,8 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ban Me coffee', desc: 'Bold robusta, drip-filtered or as salted coffee.', price: '20,000 VND' },
-                { name: 'Red noodle soup (bún đỏ)', desc: 'Red rice noodles with fish cake, quail eggs and field crab – a breakfast staple.', price: '30,000 VND' },
-                { name: 'Grilled chicken with bamboo rice', desc: 'Free-range chicken grilled over charcoal with e-leaf salt.', price: '250,000 VND' },
+                { name: 'Red noodle soup (bún đỏ)', desc: 'Red rice noodles with fish cake, quail eggs and field crab – a breakfast staple.', price: '30,000 VND', illustrative: 'A red-broth noodle bowl' },
+                { name: 'Grilled chicken with bamboo rice', desc: 'Free-range chicken grilled over charcoal with e-leaf salt.', price: '250,000 VND', illustrative: 'Bamboo-tube rice' },
                 { name: 'Highland avocado & durian', desc: 'Red-soil fruit, best from May to August.', price: 'Seasonal' },
             ],
             activities: [
@@ -1127,9 +1127,9 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Crab thick noodle soup', desc: 'Sweet Ha Tien blue crab in a rich broth.', price: '60,000 VND' },
-                { name: 'Xôi xiêm', desc: 'Sticky rice with coconut milk and palm sugar – a Chinese-Khmer sweet.', price: '20,000 VND' },
-                { name: 'Bún kèn', desc: 'Coconut-milk noodle soup with minced fish and turmeric.', price: '30,000 VND' },
-                { name: 'Mui Nai seafood', desc: 'Crab, squid and grilled snails on the beach at sunset.', price: 'Market price' },
+                { name: 'Xôi xiêm', desc: 'Sticky rice with coconut milk and palm sugar – a Chinese-Khmer sweet.', price: '20,000 VND', illustrative: 'Sticky rice' },
+                { name: 'Bún kèn', desc: 'Coconut-milk noodle soup with minced fish and turmeric.', price: '30,000 VND', illustrative: 'Mekong noodle soup' },
+                { name: 'Mui Nai seafood', desc: 'Crab, squid and grilled snails on the beach at sunset.', price: 'Market price', illustrative: 'A seaside seafood market' },
             ],
             activities: [
                 { title: 'Sunset at Mui Nai', desc: 'Swim, eat seafood and watch the sun set over the Gulf of Thailand.' },
