@@ -29,6 +29,13 @@ function balanceGallery() {
     const sideCols = Math.max(cols - 2, 0)
     const sideSlots = sideCols * 2
 
+    if (!rest.length) {
+        /* Chỉ còn ảnh nổi bật: cho trải hết chiều ngang */
+        const featured = items.find(item => item.classList.contains('is-featured'))
+        if (featured) featured.style.gridColumn = '1 / -1'
+        return
+    }
+
     if (rest.length === 1 && sideCols > 0) {
         /* Chỉ còn 1 ảnh phụ: cho nó lấp trọn vùng bên cạnh ảnh nổi bật */
         rest[0].style.gridColumn = `span ${sideCols}`

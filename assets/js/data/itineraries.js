@@ -131,4 +131,49 @@ const ITINERARIES = {
         ],
         budget: { saving: '3.500.000đ', comfort: '8.000.000đ' },
     },
+    'cat-ba': {
+        days: [
+            { title: 'Đảo ngọc Cát Bà', morning: 'Di chuyển Hà Nội – Hải Phòng, đi tàu cao tốc ra đảo, nhận phòng.', afternoon: 'Tắm biển Cát Cò 1, 2, 3, đi bộ đường ven vách đá.', evening: 'Ngắm hoàng hôn pháo đài Thần Công, ăn hải sản tại bến cá.' },
+            { title: 'Vịnh Lan Hạ', morning: 'Lên thuyền ra vịnh Lan Hạ, chèo kayak qua hang Sáng – Tối.', afternoon: 'Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.', evening: 'Dạo phố đi bộ thị trấn, thưởng thức bánh đa cua.' },
+            { title: 'Rừng quốc gia', morning: 'Trekking vườn quốc gia Cát Bà, leo đỉnh Ngự Lâm.', afternoon: 'Tham quan hang Quân Y, lên tàu về đất liền.', evening: 'Về lại Hà Nội.' },
+        ],
+        budget: { saving: '2.000.000đ', comfort: '5.000.000đ' },
+    },
+    'mu-cang-chai': {
+        days: [
+            { title: 'Nghĩa Lộ – Tú Lệ', morning: 'Xe khách đêm từ Hà Nội, ăn sáng xôi Tú Lệ.', afternoon: 'Tắm suối khoáng nóng Tú Lệ, ngắm cánh đồng lúa.', evening: 'Nghỉ homestay người Thái, ăn cơm lam, gà đồi.' },
+            { title: 'Đèo Khau Phạ – Mâm Xôi', morning: 'Vượt đèo Khau Phạ, xem bay dù lượn (mùa lúa chín).', afternoon: 'Check-in đồi Mâm Xôi và ruộng bậc thang La Pán Tẩn.', evening: 'Ngủ homestay H\'Mông, thưởng thức thịt trâu gác bếp.' },
+            { title: 'Chế Cu Nha – về xuôi', morning: 'Săn mây và ngắm ruộng bậc thang Chế Cu Nha.', afternoon: 'Mua mật ong, thảo quả làm quà.', evening: 'Lên xe về Hà Nội.' },
+        ],
+        budget: { saving: '1.800.000đ', comfort: '4.000.000đ' },
+    },
+    'quy-nhon': {
+        days: [
+            { title: 'Kỳ Co – Eo Gió', morning: 'Đi cano ra Kỳ Co, tắm biển và lặn ngắm san hô Bãi Dứa.', afternoon: 'Eo Gió – ngắm biển từ đường đi bộ trên vách đá.', evening: 'Ăn bánh xèo tôm nhảy, dạo biển Xuân Diệu.' },
+            { title: 'Nội thành Quy Nhơn', morning: 'Ghềnh Ráng Tiên Sa, mộ Hàn Mặc Tử.', afternoon: 'Tháp Đôi, chùa Long Khánh.', evening: 'Ăn hải sản tại chợ đêm Quy Nhơn.' },
+            { title: 'Tây Sơn – đất võ', morning: 'Bảo tàng Quang Trung, xem biểu diễn võ cổ truyền.', afternoon: 'Tháp Bánh Ít, thưởng thức bánh hỏi cháo lòng.', evening: 'Kết thúc hành trình hoặc đi tiếp Phú Yên.' },
+        ],
+        budget: { saving: '2.000.000đ', comfort: '5.500.000đ' },
+    },
+    'phu-yen': {
+        days: [
+            { title: 'Mũi Điện – Bãi Môn', morning: 'Đón bình minh sớm nhất đất liền tại Mũi Điện, leo hải đăng Đại Lãnh.', afternoon: 'Tắm biển Bãi Môn, thăm đầm Ô Loan.', evening: 'Ăn mắt cá ngừ, dạo tháp Nhạn về đêm.' },
+            { title: 'Gành Đá Đĩa – Xuân Đài', morning: 'Khám phá Gành Đá Đĩa, nhà thờ Mằng Lăng.', afternoon: 'Đi thuyền vịnh Xuân Đài, làng Đo Đo (phim "Mắt Biếc").', evening: 'Ăn sò huyết đầm Ô Loan rồi về Tuy Hòa.' },
+        ],
+        budget: { saving: '1.500.000đ', comfort: '4.000.000đ' },
+    },
+    'vung-tau': {
+        days: [
+            { title: 'Núi Nhỏ – Bãi Sau', morning: 'Khởi hành từ TP.HCM, leo tượng Chúa Kitô Vua trên núi Nhỏ.', afternoon: 'Tắm biển Bãi Sau, đi bộ ra Hòn Bà khi triều rút.', evening: 'Ăn bánh khọt, lẩu cá đuối, dạo Bãi Trước.' },
+            { title: 'Hải đăng – Bạch Dinh', morning: 'Ngắm bình minh ở ngọn hải đăng Vũng Tàu.', afternoon: 'Thăm Bạch Dinh, cáp treo Hồ Mây.', evening: 'Mua bánh bông lan trứng muối, về lại TP.HCM.' },
+        ],
+        budget: { saving: '1.000.000đ', comfort: '3.000.000đ' },
+    },
+    'chau-doc': {
+        days: [
+            { title: 'Núi Sam – Châu Đốc', morning: 'Đến Châu Đốc, viếng miếu Bà Chúa Xứ, lăng Thoại Ngọc Hầu.', afternoon: 'Leo núi Sam ngắm cánh đồng biên giới, chùa Tây An.', evening: 'Ăn lẩu mắm, dạo chợ Châu Đốc mua mắm làm quà.' },
+            { title: 'Trà Sư – núi Cấm', morning: 'Xuồng rừng tràm Trà Sư giữa thảm bèo và đàn chim.', afternoon: 'Cáp treo núi Cấm, tượng Phật Di Lặc.', evening: 'Thử bánh bò thốt nốt, về lại TP.HCM hoặc Cần Thơ.' },
+        ],
+        budget: { saving: '1.300.000đ', comfort: '3.200.000đ' },
+    },
 }

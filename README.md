@@ -4,11 +4,15 @@ link: https://tantan1802.github.io/travel/
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (`index.html`): danh sách 17 danh lam thắng cảnh trên cả 3 miền, có ô tìm kiếm
-  (không phân biệt dấu) và bộ lọc theo vùng miền / loại hình.
+- **Trang chủ** (`index.html`): 23 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+  lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
   ẩm thực, hoạt động vui chơi, kinh nghiệm du lịch và gợi ý điểm đến cùng vùng.
+- **Lịch trình gợi ý** theo ngày (sáng / chiều / tối) kèm chi phí ước tính.
+- **Bản đồ** (Leaflet + OpenStreetMap) với điểm lân cận và khoảng cách.
+- **Thời tiết hiện tại** (Open-Meteo) và thanh 12 tháng tô màu mùa đẹp.
+- **Yêu thích**: lưu điểm đến ngay trên trình duyệt, không cần đăng nhập.
 
 ## Cấu trúc & quy trình
 | Đường dẫn | Vai trò |
