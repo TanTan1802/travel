@@ -1773,3 +1773,17 @@ body.dark-theme .season__status--good {
     color: var(--text-color);
   }
 }
+
+/*=============== BÌNH LUẬN ===============*/
+.comments__container {
+  max-width: 820px;
+}
+
+.comments__intro {
+  text-align: center;
+  margin-bottom: var(--mb-1-5);
+}
+
+.giscus {
+  min-height: 200px;
+}

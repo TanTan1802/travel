@@ -173,6 +173,53 @@ function initLocationMap(d) {
     })
 }
 
+/*==================== BÌNH LUẬN (GISCUS) ====================*/
+function giscusTheme() {
+    return document.body.classList.contains('dark-theme') ? 'dark' : 'light'
+}
+
+function initComments() {
+    const el = document.getElementById('giscus')
+    if (!el || !giscusEnabled()) return
+    const g = SITE_CONFIG.giscus
+
+    whenVisible(el, () => {
+        const script = document.createElement('script')
+        script.src = 'https://giscus.app/client.js'
+        script.async = true
+        script.crossOrigin = 'anonymous'
+        Object.entries({
+            repo: g.repo,
+            'repo-id': g.repoId,
+            category: g.category,
+            'category-id': g.categoryId,
+            /* Dùng mã điểm đến để trang tiếng Việt và tiếng Anh chung một luồng thảo luận */
+            mapping: 'specific',
+            term: el.dataset.term,
+            strict: '1',
+            'reactions-enabled': '1',
+            'emit-metadata': '0',
+            'input-position': 'top',
+            theme: giscusTheme(),
+            lang: LANG,
+            loading: 'lazy',
+        }).forEach(([key, value]) => script.setAttribute(`data-${key}`, value))
+        el.appendChild(script)
+    })
+
+    /* Đồng bộ giao diện sáng/tối với nút đổi theme của site */
+    const themeButton = document.getElementById('theme-button')
+    if (themeButton) {
+        themeButton.addEventListener('click', () => {
+            /* Đợi main.js đổi class dark-theme xong mới đọc theme mới */
+            setTimeout(() => {
+                const frame = document.querySelector('iframe.giscus-frame')
+                if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme() } } }, 'https://giscus.app')
+            })
+        })
+    }
+}
+
 /*==================== RENDER ====================*/
 if (dest) {
     if (!isPrerendered) {
@@ -195,6 +242,7 @@ if (dest) {
     initItineraryTabs()
     initLocationMap(dest)
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
+    initComments()
     markCurrentMonth(destRoot)
 } else {
     document.title = `${t('Không tìm thấy điểm đến')} – Việt Travel`

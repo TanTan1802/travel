@@ -100,6 +100,9 @@ const TRANSLATION_EN = {
         'Tuyết': 'Snow',
         'Dông': 'Thunderstorm',
         'Không rõ': 'Unknown',
+        'Cộng đồng': 'Community',
+        'Chia sẻ trải nghiệm của bạn': 'Share your experience',
+        'Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!': 'Been to {name}? Leave your impressions, tips or questions for other travellers!',
     },
 
     regions: {

@@ -292,6 +292,20 @@ function locationSection(d) {
     `
 }
 
+function commentsSection(d) {
+    if (typeof giscusEnabled === 'undefined' || !giscusEnabled()) return ''
+    return `
+        <section class="comments section" id="comments">
+            <span class="section__subtitle">${t('Cộng đồng')}</span>
+            <h2 class="section__title">${t('Chia sẻ trải nghiệm của bạn')}</h2>
+            <div class="comments__container container">
+                <p class="comments__intro">${t('Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!', { name: d.name })}</p>
+                <div class="giscus" id="giscus" data-term="${d.id}"></div>
+            </div>
+        </section>
+    `
+}
+
 function relatedSection(d) {
     /* Các điểm đến cùng vùng, bỏ qua những điểm đã có trong "lân cận" */
     const nearbyIds = nearestDestinations(d, 3).map(n => n.d.id)
@@ -339,6 +353,7 @@ function renderDestinationPage(d) {
         activitiesSection(d),
         itinerarySection(d),
         locationSection(d),
+        commentsSection(d),
         relatedSection(d),
     ].join('')
 }

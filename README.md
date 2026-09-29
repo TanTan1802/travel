@@ -58,6 +58,17 @@ newsletterEndpoint: 'https://formspree.io/f/xxxxxxx',
 
 Khi để trống, form hiển thị thông báo "sắp ra mắt" thay vì gửi đi.
 
+## Bình luận (Giscus)
+Mỗi trang điểm đến có thể có mục bình luận lưu trong GitHub Discussions (trang tiếng Việt và tiếng Anh
+dùng chung một luồng):
+
+1. Bật **Discussions** trong Settings của repo và cài app [giscus](https://github.com/apps/giscus).
+2. Vào [giscus.app](https://giscus.app), nhập repo, chọn category → copy `data-repo-id`, `data-category`,
+   `data-category-id` vào mục `giscus` trong `assets/js/config.js`.
+3. Chạy `npm run build`.
+
+Khi chưa cấu hình, mục bình luận được ẩn.
+
 ## Thêm điểm đến mới
 Thêm một object vào mảng `DESTINATIONS` (mã `id`, tên, vùng, mô tả, ảnh, món ăn, hoạt động...)
 rồi chạy `npm run build`.

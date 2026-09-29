@@ -29,6 +29,7 @@ const SCRIPTS = [
     'assets/js/data/destinations.js',
     'assets/js/data/itineraries.js',
     'assets/js/components.js',
+    'assets/js/config.js',
     'assets/js/destination-render.js',
 ]
 const EXPORTS = ['DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
