@@ -887,9 +887,9 @@ const DESTINATIONS = [
         highlights: ['Đồi chè trái tim', 'Thác Dải Yếm', 'Rừng thông bản Áng', 'Cầu kính Bạch Long'],
         bestTime: 'Tháng 10 – 3',
         duration: '2 – 3 ngày',
-        hero: 'Thị trấn Mộc Châu, Sơn La.jpg',
+        hero: 'Nha san Moc Chau.jpg',
         gallery: [
-            { file: 'Nha san Moc Chau.jpg', caption: 'Nhà sàn người Thái ở Mộc Châu' },
+            { file: 'Thị trấn Mộc Châu, Sơn La.jpg', caption: 'Phố chợ thị trấn Mộc Châu' },
             { file: 'Quốc lộ 6 qua địa phận thị trấn Mộc Châu.jpg', caption: 'Quốc lộ 6 qua thị trấn Mộc Châu' },
             { file: 'Quảng trường huyện Mộc Châu.jpg', caption: 'Quảng trường Mộc Châu' },
         ],
@@ -1025,10 +1025,10 @@ const DESTINATIONS = [
         highlights: ['Bãi Mũi Nai', 'Thạch Động', 'Đầm Đông Hồ', 'Quần đảo Hải Tặc'],
         bestTime: 'Tháng 11 – 4',
         duration: '2 – 3 ngày',
-        hero: 'Ha Tien Banner.jpg',
+        hero: 'Kênh đào Rạch Giá - Hà Tiên.jpg',
         gallery: [
             { file: 'Beach, Thuận Yên commune, Hà Tiên city, Kiên Giang, Vietnam, at June-2022.jpg', caption: 'Bãi biển Thuận Yên, Hà Tiên' },
-            { file: 'Kênh đào Rạch Giá - Hà Tiên.jpg', caption: 'Kênh Rạch Giá – Hà Tiên' },
+            { file: 'Ha Tien Banner.jpg', caption: 'Nét cổ kính trong một ngôi miếu ở Hà Tiên' },
         ],
         foods: [
             { name: 'Bánh canh ghẹ', desc: 'Ghẹ Hà Tiên ngọt thịt, nước dùng đậm đà.', price: '60.000đ', file: 'Bánh canh cua (Vietnamese thick noodle with crab soup).jpg' },
