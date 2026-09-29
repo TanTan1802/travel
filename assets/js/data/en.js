@@ -7,6 +7,16 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        'Đã sao chép liên kết': 'Link copied',
+        'In lịch trình {tour}': 'Print the {tour} itinerary',
+        'In / PDF': 'Print / PDF',
+        'Chia sẻ lịch trình': 'Share itinerary',
+        'Chia sẻ': 'Share',
+        'Kế hoạch chuyến đi': 'Trip plan',
+        '{n} điểm đến': '{n} destinations',
+        'Sao chép dạng chữ': 'Copy as text',
+        'Xem kế hoạch': 'View plan',
+        'Đã sao chép lịch trình dạng chữ': 'Itinerary copied as text',
         'Muốn đi nhiều nơi trong một chuyến? Ghép {name} với các điểm đến khác.': 'Visiting more than one place? Combine {name} with other destinations.',
         'Thêm vào kế hoạch chuyến đi': 'Add to trip plan',
         'Xem kế hoạch chuyến đi': 'View trip plan',

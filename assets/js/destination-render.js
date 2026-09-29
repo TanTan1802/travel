@@ -243,6 +243,11 @@ function itinerarySection(d) {
             <h2 class="section__title">${t('Lịch trình tour {name}', { name: d.name })}</h2>
 
             <div class="itinerary__container container">
+                <div class="print-only print-header">
+                    <strong>${t('Lịch trình tour {name}', { name: d.name })}</strong>
+                    <p>Việt Travel · ${d.province} · ${t('Thời điểm đẹp')}: ${d.bestTime}</p>
+                    <p class="print-url"></p>
+                </div>
                 <div class="tour-picker" role="tablist" aria-label="${t('Chọn tour')}">
                     ${lengths.map((n, i) => `
                         <button type="button" class="tour-picker__btn${i === 0 ? ' tour-picker__btn--active' : ''}" role="tab"
@@ -257,9 +262,17 @@ function itinerarySection(d) {
                     <div class="tour" id="tour-${n}" data-tour="${n}"${i === 0 ? '' : ' hidden'}>
                         <div class="tour__toolbar">
                             <p class="tour__summary"><i class="ri-route-line"></i> ${tourLabel(n)} · ${plan.days.slice(0, n).map(day => day.title).join(' → ')}</p>
-                            <button type="button" class="tour__expand" data-expanded="false">
-                                <i class="ri-list-check-2"></i> <span>${t('Xem tất cả các ngày')}</span>
-                            </button>
+                            <div class="tour__buttons">
+                                <button type="button" class="tour__expand" data-expanded="false">
+                                    <i class="ri-list-check-2"></i> <span>${t('Xem tất cả các ngày')}</span>
+                                </button>
+                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="${t('In lịch trình {tour}', { tour: tourLabel(n) })}">
+                                    <i class="ri-printer-line"></i> <span>${t('In / PDF')}</span>
+                                </button>
+                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="${t('Chia sẻ lịch trình')}">
+                                    <i class="ri-share-line"></i> <span>${t('Chia sẻ')}</span>
+                                </button>
+                            </div>
                         </div>
 
                         ${tourDaysHtml(d, plan, n)}
