@@ -36,26 +36,29 @@ function scrollHeader(){
     if(this.scrollY >= 100) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
 }
 window.addEventListener('scroll', scrollHeader)
+scrollHeader.call(window) // cập nhật ngay khi tải lại trang ở vị trí đã cuộn
 
 /*==================== SWIPER DISCOVER ====================*/
-let swiper = new Swiper(".discover__container", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    loop: true,
-    spaceBetween: 32,
-    coverflowEffect: {
-        rotate: 0,
-    },
-})
+if(document.querySelector('.discover__container')){
+    let swiper = new Swiper(".discover__container", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        loop: true,
+        spaceBetween: 32,
+        coverflowEffect: {
+            rotate: 0,
+        },
+    })
+}
 
 /*==================== VIDEO ====================*/
 const videoFile = document.getElementById('video-file'),
       videoButton = document.getElementById('video-button'),
       videoIcon = document.getElementById('video-icon')
 
-function playPause(){ 
+function playPause(){
     if (videoFile.paused){
         videoFile.play()
         videoIcon.classList.add('ri-pause-line')
@@ -63,22 +66,25 @@ function playPause(){
     }
     else {
         // Pause video
-        videoFile.pause(); 
+        videoFile.pause();
         videoIcon.classList.remove('ri-pause-line')
         videoIcon.classList.add('ri-play-line')
 
     }
 }
-videoButton.addEventListener('click', playPause)
 
 function finalVideo(){
     videoIcon.classList.remove('ri-pause-line')
     videoIcon.classList.add('ri-play-line')
 }
-videoFile.addEventListener('ended', finalVideo)
+
+if(videoFile && videoButton){
+    videoButton.addEventListener('click', playPause)
+    videoFile.addEventListener('ended', finalVideo)
+}
 
 
-/*==================== SHOW SCROLL UP ====================*/ 
+/*==================== SHOW SCROLL UP ====================*/
 function scrollUp(){
     const scrollUp = document.getElementById('scroll-up');
     if(this.scrollY >= 200) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
@@ -94,12 +100,14 @@ function scrollActive(){
     sections.forEach(current =>{
         const sectionHeight = current.offsetHeight
         const sectionTop = current.offsetTop - 50;
-        sectionId = current.getAttribute('id')
+        const sectionId = current.getAttribute('id')
+        const link = document.querySelector('.nav__menu a[href*="#' + sectionId + '"]')
+        if(!link) return
 
         if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            link.classList.add('active-link')
         }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            link.classList.remove('active-link')
         }
     })
 }
@@ -115,27 +123,30 @@ const sr = ScrollReveal({
 sr.reveal(`.home__data, .home__social-link, .home__info,
            .discover__container,
            .experience__data, .experience__overlay,
-           .place__card,
-           .sponsor__content,
+           .explore__search, .explore__filters,
+           .dest-hero__content, .dest-facts,
+           .food-card, .activity-card, .tip-item,
            .footer__data, .footer__rights`,{
     origin: 'top',
     interval: 100,
 })
 
-sr.reveal(`.about__data, 
+sr.reveal(`.about__data,
            .video__description,
-           .subscribe__description`,{
+           .subscribe__description,
+           .overview__data`,{
     origin: 'left',
 })
 
-sr.reveal(`.about__img-overlay, 
+sr.reveal(`.about__img-overlay,
            .video__content,
-           .subscribe__form`,{
+           .subscribe__form,
+           .overview__img`,{
     origin: 'right',
     interval: 100,
 })
 
-/*==================== DARK LIGHT THEME ====================*/ 
+/*==================== DARK LIGHT THEME ====================*/
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-line'
@@ -150,7 +161,7 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moo
 
 
 if (selectedTheme) {
- 
+
   document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
   themeButton.classList[selectedIcon === 'ri-moon-line' ? 'add' : 'remove'](iconTheme)
 }
@@ -164,3 +175,11 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== PWA: SERVICE WORKER ====================*/
+/* Chỉ đăng ký trên HTTPS hoặc localhost (yêu cầu của trình duyệt) */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register(`${window.SITE_ROOT || ''}sw.js`).catch(() => { /* bỏ qua */ })
+    })
+}

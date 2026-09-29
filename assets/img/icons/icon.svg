@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f6f78"/>
+      <stop offset="1" stop-color="#0f3d44"/>
+    </linearGradient>
+    <clipPath id="round"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <circle cx="352" cy="170" r="54" fill="#f5a524"/>
+    <!-- núi đá vôi kiểu vịnh Hạ Long -->
+    <path d="M0 400 C60 300 100 240 150 300 C170 200 205 180 230 290 C255 230 280 240 300 320 C330 250 400 260 512 400 Z" fill="#8fd3c7"/>
+    <path d="M0 392 C100 360 190 420 256 392 C330 360 420 420 512 392 L512 512 L0 512 Z" fill="#2aa198"/>
+    <path d="M0 440 C100 420 190 460 256 440 C330 420 420 460 512 440 L512 512 L0 512 Z" fill="#1d8a82"/>
+    <path d="M190 360 l40 0 l-20 -46 z" fill="#f5a524"/>
+    <path d="M170 372 h80 l-12 14 h-56 z" fill="#fdf6e3"/>
+  </g>
+</svg>

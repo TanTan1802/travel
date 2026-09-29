@@ -1,39 +1,62 @@
 <!DOCTYPE html>
-    <html lang="en">
+    <html lang="vi">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.">
         <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/vietnam.css">
 
-        <title>Responsive Website Travel</title>
+        <link rel="canonical" href="https://tantan1802.github.io/travel/">
+        <!-- build:alternate -->
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/">
+        <!-- /build:alternate -->
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="vi_VN">
+        <meta property="og:title" content="Du lịch Việt Nam – Khám phá danh lam thắng cảnh">
+        <meta property="og:description" content="Hình ảnh, ẩm thực và trải nghiệm vui chơi tại các danh lam thắng cảnh trên khắp Việt Nam.">
+        <meta property="og:url" content="https://tantan1802.github.io/travel/">
+        <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Halong%20Bay%20in%20Vietnam.jpg?width=1280">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <title>Du lịch Việt Nam – Khám phá danh lam thắng cảnh</title>
     </head>
     <body>
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="#" class="nav__logo">Travel</a>
+                <a href="index.html" class="nav__logo">Việt Travel</a>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">Home</a>
+                            <a href="#home" class="nav__link active-link">Trang chủ</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#about" class="nav__link">About</a>
+                            <a href="#about" class="nav__link">Giới thiệu</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#discover" class="nav__link">Discover</a>
+                            <a href="#discover" class="nav__link">Nổi bật</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#place" class="nav__link">Places</a>
+                            <a href="#place" class="nav__link">Điểm đến</a>
                         </li>
                     </ul>
 
+                    <a class="nav__lang" id="lang-switch" href="en/index.html" hreflang="en" lang="en" title="English">EN</a>
+
                     <div class="nav__dark">
                         <!-- Theme change button -->
-                        <span class="change-theme-name">Dark mode</span>
+                        <span class="change-theme-name">Chế độ tối</span>
                         <i class="ri-moon-line change-theme" id="theme-button"></i>
                     </div>
 
@@ -49,39 +72,38 @@
         <main class="main">
             <!--==================== HOME ====================-->
             <section class="home" id="home">
-                <img src="assets/img/home1.jpg" alt="" class="home__img">
+                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Vịnh Hạ Long" class="home__img">
 
                 <div class="home__container container grid">
                     <div class="home__data">
-                        <span class="home__data-subtitle">Discover your place</span>
-                        <h1 class="home__data-title">Explore The <br> Best <b>Beautiful <br> Beaches</b></h1>
-                        <a href="#" class="button">Explore</a>
-
+                        <span class="home__data-subtitle">Việt Nam – Vẻ đẹp bất tận</span>
+                        <h1 class="home__data-title">Khám Phá <br> Danh Thắng <b>Tuyệt Đẹp <br> Của Việt Nam</b></h1>
+                        <a href="#place" class="button">Khám phá ngay</a>
                     </div>
 
                     <div class="home__social">
-                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-facebook-box-fill"></i>
                         </a>
-                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-instagram-fill"></i>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="home__social-link">
                             <i class="ri-twitter-fill"></i>
                         </a>
                     </div>
 
                     <div class="home__info">
                         <div>
-                            <span class="home__info-title">5 best places to visit</span>
-                            <a href="" class="button button--flex button--link home__info-button">
-                                More <i class="ri-arrow-right-line"></i>
+                            <span class="home__info-title"><span id="dest-count">23</span> điểm đến không thể bỏ lỡ</span>
+                            <a href="#place" class="button button--flex button--link home__info-button">
+                                Xem thêm <i class="ri-arrow-right-line"></i>
                             </a>
                         </div>
 
-                        <div class="home__info-overlay">
-                            <img src="assets/img/home2.jpg" alt="" class="home__info-img">
-                        </div>
+                        <a href="diem-den/hoi-an/index.html" class="home__info-overlay">
+                            <img data-wiki="Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg" data-width="500" alt="Phố cổ Hội An" class="home__info-img">
+                        </a>
                     </div>
                 </div>
             </section>
@@ -90,112 +112,78 @@
             <section class="about section" id="about">
                 <div class="about__container container grid">
                     <div class="about__data">
-                        <h2 class="section__title about__title">More Information <br> About The Best Beaches</h2>
-                        <p class="about__description">You can find the most beautiful and pleasant places at the best 
-                            prices with special discounts, you choose the place we will guide you all the way to wait, get your 
-                            place now.
+                        <h2 class="section__title about__title">Hình Chữ S <br> Ngàn Cảnh Sắc</h2>
+                        <p class="about__description">Từ ruộng bậc thang Sa Pa, vịnh Hạ Long kỳ vĩ, phố cổ Hội An
+                            lung linh đèn lồng đến chợ nổi miền Tây và đảo ngọc Phú Quốc – mỗi vùng đất Việt Nam
+                            mang một vẻ đẹp riêng. Chọn một điểm đến để xem hình ảnh, món ngon và những trải nghiệm
+                            thú vị đang chờ bạn.
                         </p>
-                        <a href="#" class="button">Reserve a place</a>
+                        <a href="#place" class="button">Chọn điểm đến</a>
                     </div>
 
                     <div class="about__img">
-                        <div class="about__img-overlay">
-                            <img src="assets/img/about1.jpg" alt="" class="about__img-one">
-                        </div>
+                        <a href="diem-den/sa-pa/index.html" class="about__img-overlay">
+                            <img data-wiki="Rice terraces in Sa Pa 03.jpg|Rice terraces in Sa Pa 02.jpg|Terraced fields Sa Pa Vietnam.JPG" data-width="960" alt="Ruộng bậc thang Sa Pa" class="about__img-one">
+                        </a>
 
-                        <div class="about__img-overlay">
-                            <img src="assets/img/about2.jpg" alt="" class="about__img-two">
-                        </div>
+                        <a href="diem-den/hue/index.html" class="about__img-overlay">
+                            <img data-wiki="Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Hue Thien Mu-Pagoda.JPG|Vietnam, Hue, Imperial City of Hue.jpg" data-width="960" alt="Chùa Thiên Mụ, Huế" class="about__img-two">
+                        </a>
                     </div>
                 </div>
             </section>
-            
+
             <!--==================== DISCOVER ====================-->
             <section class="discover section" id="discover">
-                <h2 class="section__title">Discover the most <br> attractive places</h2>
-                
+                <h2 class="section__title">Những điểm đến <br> nổi bật nhất</h2>
+
                 <div class="discover__container container swiper-container">
-                    <div class="swiper-wrapper">
-                        <!--==================== DISCOVER 1 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover1.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Bali</h2>
-                                <span class="discover__description">24 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 2 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover2.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Hawaii</h2>
-                                <span class="discover__description">15 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 3 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover3.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Hvar</h2>
-                                <span class="discover__description">18 tours available</span>
-                            </div>
-                        </div>
-
-                        <!--==================== DISCOVER 4 ====================-->
-                        <div class="discover__card swiper-slide">
-                            <img src="assets/img/discover4.jpg" alt="" class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title">Whitehaven</h2>
-                                <span class="discover__description">32 tours available</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Các thẻ được tạo động từ dữ liệu (assets/js/home.js) -->
+                    <div class="swiper-wrapper" id="discover-list"></div>
                 </div>
             </section>
 
             <!--==================== EXPERIENCE ====================-->
             <section class="experience section">
-                <h2 class="section__title">With Our Experience <br> We Will Serve You</h2>
+                <h2 class="section__title">Việt Nam <br> Qua Những Con Số</h2>
 
                 <div class="experience__container container grid">
                     <div class="experience__content grid">
                         <div class="experience__data">
-                            <h2 class="experience__number">20</h2>
-                            <span class="experience__description">Year <br> Experience</span>
+                            <h2 class="experience__number">8</h2>
+                            <span class="experience__description">Di sản <br> UNESCO</span>
                         </div>
 
                         <div class="experience__data">
-                            <h2 class="experience__number">75</h2>
-                            <span class="experience__description">Complete <br> tours</span>
+                            <h2 class="experience__number">3.260</h2>
+                            <span class="experience__description">Km <br> bờ biển</span>
                         </div>
 
                         <div class="experience__data">
-                            <h2 class="experience__number">650+</h2>
-                            <span class="experience__description">Tourist <br> Destination</span>
+                            <h2 class="experience__number">54</h2>
+                            <span class="experience__description">Dân tộc <br> anh em</span>
                         </div>
                     </div>
 
                     <div class="experience__img grid">
-                        <div class="experience__overlay">
-                            <img src="assets/img/experience1.jpg" alt="" class="experience__img-one">
-                        </div>
-                        
-                        <div class="experience__overlay">
-                            <img src="assets/img/experience2.jpg" alt="" class="experience__img-two">
-                        </div>
+                        <a href="diem-den/ninh-binh/index.html" class="experience__overlay">
+                            <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg" data-width="960" alt="Tràng An, Ninh Bình" class="experience__img-one">
+                        </a>
+
+                        <a href="diem-den/phong-nha/index.html" class="experience__overlay">
+                            <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Son Doong Cave 1.jpg|Phong Nha-Ke Bang cave3.jpg" data-width="500" alt="Động Thiên Đường" class="experience__img-two">
+                        </a>
                     </div>
                 </div>
             </section>
 
             <!--==================== VIDEO ====================-->
             <section class="video section">
-                <h2 class="section__title">Video Tour</h2>
+                <h2 class="section__title">Video Du Lịch</h2>
 
                 <div class="video__container container">
-                    <p class="video__description">Find out more with our video of the most beautiful and 
-                        pleasant places for you and your family.
+                    <p class="video__description">Cùng xem những thước phim về những vùng biển tuyệt đẹp
+                        dành cho bạn và gia đình.
                     </p>
 
                     <div class="video__content">
@@ -203,7 +191,7 @@
                             <source src="assets/video/video.mp4" type="video/mp4">
                         </video>
 
-                        <button class="button button--flex video__button" id="video-button">
+                        <button class="button button--flex video__button" id="video-button" aria-label="Phát video">
                             <i class="ri-play-line video__button-icon" id="video-icon"></i>
                         </button>
                     </div>
@@ -212,117 +200,640 @@
 
             <!--==================== PLACES ====================-->
             <section class="place section" id="place">
-                <h2 class="section__title">Choose Your Place</h2>
+                <h2 class="section__title">Khám phá mọi <br> danh lam thắng cảnh</h2>
 
-                <div class="place__container container grid">
-                    <!--==================== PLACES CARD 1 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place1.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Bali</h3>
-                                <span class="place__subtitle">Indonesia</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                <div class="container explore">
+                    <div class="explore__search">
+                        <i class="ri-search-line"></i>
+                        <input type="search" id="explore-search" class="explore__input" placeholder="Tìm điểm đến, tỉnh thành, món ăn...">
                     </div>
 
-                    <!--==================== PLACES CARD 2 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place2.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">5,0</span>
-                            </span>
+                    <div class="explore__filters" id="region-filters" role="tablist" aria-label="Lọc theo vùng miền"></div>
+                    <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Lọc theo loại hình"></div>
 
-                            <div class="place__data">
-                                <h3 class="place__title">Bora Bora</h3>
-                                <span class="place__subtitle">Polinesia</span>
-                                <span class="place__price">$1599</span>
-                            </div>
+                    <div class="explore__toolbar">
+                        <div class="explore__toolbar-left">
+                            <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
+                                <i class="ri-heart-3-fill"></i> Yêu thích <span class="chip__count" id="fav-count">0</span>
+                            </button>
+                            <p class="explore__result" id="explore-result"></p>
                         </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                        <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
+                            <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
+                                <i class="ri-layout-grid-line"></i> Danh sách
+                            </button>
+                            <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
+                                <i class="ri-map-2-line"></i> Bản đồ
+                            </button>
+                        </div>
                     </div>
+                    <p class="explore__tip" id="explore-tip" hidden></p>
 
-                    <!--==================== PLACES CARD 3 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place3.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,9</span>
-                            </span>
+                    <div class="explore__map" id="explore-map" hidden></div>
 
-                            <div class="place__data">
-                                <h3 class="place__title">Hawaii</h3>
-                                <span class="place__subtitle">EE.UU</span>
-                                <span class="place__price">$3499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                    <div class="dest__grid" id="dest-grid"><!-- build:grid -->
+        <div class="dest-card-wrap">
+            <a href="diem-den/vinh-ha-long/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" alt="Vịnh Hạ Long" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Vịnh Hạ Long</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Ninh</span>
+                    
+                    <p class="dest-card__tagline">Kỳ quan thiên nhiên thế giới giữa lòng vịnh Bắc Bộ</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Di sản</span>
                     </div>
-
-                    <!--==================== PLACES CARD 4 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place4.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Whitehaven</h3>
-                                <span class="place__subtitle">Australia</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="vinh-ha-long" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/sa-pa/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" alt="Sa Pa" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Sa Pa</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lào Cai</span>
+                    
+                    <p class="dest-card__tagline">Thị trấn trong sương và những thửa ruộng bậc thang</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span>
                     </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="sa-pa" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/ha-noi/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="960" alt="Hà Nội" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Hà Nội</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Thủ đô</span>
+                    
+                    <p class="dest-card__tagline">Nghìn năm văn hiến bên hồ Gươm</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Thành phố</span><span class="tag">Di sản</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ha-noi" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/ninh-binh/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" alt="Tràng An – Ninh Bình" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Tràng An – Ninh Bình</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Ninh Bình</span>
+                    
+                    <p class="dest-card__tagline">"Hạ Long trên cạn" giữa núi non hùng vĩ</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Di sản</span><span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ninh-binh" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/ha-giang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="960" alt="Hà Giang" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Hà Giang</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Hà Giang</span>
+                    
+                    <p class="dest-card__tagline">Cung đường đèo hùng vĩ nhất Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ha-giang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/ban-gioc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 01 (48119813303).jpg|Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 16 (48119888466).jpg|Thác Bản Giốc.jpg|Ban Gioc - Detian Falls2.jpg" data-width="960" alt="Thác Bản Giốc" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Thác Bản Giốc</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Cao Bằng</span>
+                    
+                    <p class="dest-card__tagline">Thác nước biên giới đẹp nhất Đông Nam Á</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ban-gioc" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/cat-ba/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Lan Ha Bay 40.jpg|Lan Ha Bay.JPG|Cat Ba island fishing village.jpg|Beach in Cat Ba.JPG|Cat Ba Vietnam-Feb06.jpg" data-width="960" alt="Cát Bà – Vịnh Lan Hạ" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Cát Bà – Vịnh Lan Hạ</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Hải Phòng</span>
+                    
+                    <p class="dest-card__tagline">Hòn đảo xanh bên vịnh Lan Hạ hoang sơ</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="cat-ba" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/mu-cang-chai/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Mu Cang Chai 02.JPG|Mu Cang Chai.jpg|Mu Cang Chai Town - Yen Bai - Vietnam.jpg" data-width="960" alt="Mù Cang Chải" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Bắc</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Mù Cang Chải</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Yên Bái</span>
+                    
+                    <p class="dest-card__tagline">Những thửa ruộng bậc thang đẹp nhất Tây Bắc</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mu-cang-chai" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/hue/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" alt="Cố đô Huế" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Cố đô Huế</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Thừa Thiên Huế</span>
+                    
+                    <p class="dest-card__tagline">Kinh thành triều Nguyễn bên dòng Hương mộng mơ</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Di sản</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="hue" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/phong-nha/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Son Doong Cave 1.jpg|Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg" data-width="960" alt="Phong Nha – Kẻ Bàng" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Phong Nha – Kẻ Bàng</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Bình</span>
+                    
+                    <p class="dest-card__tagline">Vương quốc hang động của thế giới</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Hang động</span><span class="tag">Di sản</span><span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phong-nha" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/da-nang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" alt="Đà Nẵng" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Đà Nẵng</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Đà Nẵng</span>
+                    
+                    <p class="dest-card__tagline">Thành phố đáng sống bên bờ biển Mỹ Khê</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Thành phố</span><span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-nang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/hoi-an/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="960" alt="Phố cổ Hội An" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Phố cổ Hội An</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Nam</span>
+                    
+                    <p class="dest-card__tagline">Thương cảng cổ lung linh ánh đèn lồng</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Di sản</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="hoi-an" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/nha-trang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Nha Trang</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Khánh Hòa</span>
+                    
+                    <p class="dest-card__tagline">Hòn ngọc của biển Đông</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="nha-trang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/da-lat/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="960" alt="Đà Lạt" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Đà Lạt</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lâm Đồng</span>
+                    
+                    <p class="dest-card__tagline">Thành phố ngàn hoa trên cao nguyên Lâm Viên</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-lat" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/mui-ne/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mũi Né" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Mũi Né</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Thuận</span>
+                    
+                    <p class="dest-card__tagline">"Tiểu sa mạc Sahara" của Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mui-ne" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/quy-nhon/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|Skyline of Quy Nhon.jpg|Quy-Nhon-morning-city-view-1300px.jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" alt="Quy Nhơn" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Quy Nhơn</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Định</span>
+                    
+                    <p class="dest-card__tagline">Thành phố biển yên bình của đất võ</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="quy-nhon" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/phu-yen/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg|Gành Đá Đĩa - Phú Yên.jpg|Gành Đá Đĩa.jpg|Xuan Dai Bay, Phu Yen, Vietnam.JPG|Tháp Nhạn, Tuy Hòa, Phú Yên.JPG" data-width="960" alt="Phú Yên – Gành Đá Đĩa" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Phú Yên – Gành Đá Đĩa</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Phú Yên</span>
+                    
+                    <p class="dest-card__tagline">"Xứ hoa vàng cỏ xanh" với ghềnh đá độc nhất vô nhị</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-yen" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/sai-gon/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ho Chi Minh City Skyline at Night.jpg|Ho Chi Minh City Skyline 2022 (1).jpg|Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg|Ben Thanh Market, 2023 (02).jpg|Saigon skyline night view.jpg|Ben Thanh Market, Saigon.jpg" data-width="960" alt="TP. Hồ Chí Minh" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">TP. Hồ Chí Minh</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Sài Gòn</span>
+                    
+                    <p class="dest-card__tagline">Thành phố không ngủ đầy năng động</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="sai-gon" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/can-tho/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="960" alt="Cần Thơ – Miền Tây" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Cần Thơ – Miền Tây</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Cần Thơ</span>
+                    
+                    <p class="dest-card__tagline">Chợ nổi, vườn trái cây và sông nước miệt vườn</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="can-tho" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/phu-quoc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Amazing beach on Phu Quoc island Vietnam (38647607275).jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Sunset on Phu Quoc island.jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Bai-sao-phu-quoc-tuonglamphotos.jpg" data-width="960" alt="Phú Quốc" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Phú Quốc</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Kiên Giang</span>
+                    
+                    <p class="dest-card__tagline">Đảo ngọc với hoàng hôn đẹp nhất Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-quoc" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/vung-tau/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg|Statue of Jesus in Vung Tau.jpg|Vung Tau Hon Ba.JPG|Một phần Vũng Tàu 2.JPG|Cửa sổ Bạch Dinh nhìn ra biển.JPG" data-width="960" alt="Vũng Tàu" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Vũng Tàu</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bà Rịa – Vũng Tàu</span>
+                    
+                    <p class="dest-card__tagline">Thành phố biển gần Sài Gòn nhất</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="vung-tau" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/chau-doc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Temple in Chau Doc 2.jpg|Miếu Bà Chúa Xứ Núi Sam.jpg|Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg|Chùa Tam Bửu ở Ba Chúc.jpg" data-width="960" alt="Châu Đốc – Núi Sam" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Châu Đốc – Núi Sam</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> An Giang</span>
+                    
+                    <p class="dest-card__tagline">Miền tâm linh và rừng tràm mùa nước nổi</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Di sản</span><span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="chau-doc" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="diem-den/con-dao/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Pulo Condore island beach.jpg|Côn Đảo National Park.jpg|Côn Đảo banner prison.jpg|Con Dao Tiger Käfige.jpg" data-width="960" alt="Côn Đảo" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Côn Đảo</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bà Rịa – Vũng Tàu</span>
+                    
+                    <p class="dest-card__tagline">Thiên nhiên hoang sơ và những trang sử bi hùng</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Di sản</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="con-dao" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    <!-- /build:grid --></div>
 
-                    <!--==================== PLACES CARD 5 ====================-->
-                    <div class="place__card">
-                        <img src="assets/img/place5.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Hvar</h3>
-                                <span class="place__subtitle">Croacia</span>
-                                <span class="place__price">$1999</span>
-                            </div>
-                        </div>
-
-                        <button class="button button--flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
+                    <div class="explore__empty" id="explore-empty" hidden>
+                        <i class="ri-map-pin-line"></i>
+                        <p id="explore-empty-text">Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!</p>
                     </div>
                 </div>
             </section>
@@ -331,39 +842,20 @@
             <section class="subscribe section">
                 <div class="subscribe__bg">
                     <div class="subscribe__container container">
-                        <h2 class="section__title subscribe__title">Subscribe Our <br> Newsletter</h2>
-                        <p class="subscribe__description">Subscribe to our newsletter and get a 
-                            special 30% discount.
+                        <h2 class="section__title subscribe__title">Đăng Ký <br> Nhận Tin</h2>
+                        <p class="subscribe__description">Nhận cẩm nang du lịch Việt Nam và ưu đãi
+                            đặc biệt giảm đến 30%.
                         </p>
-    
-                        <form action="" class="subscribe__form">
-                            <input type="text" placeholder="Enter email" class="subscribe__input">
-    
+
+                        <form action="" class="subscribe__form" novalidate>
+                            <label for="subscribe-email" class="visually-hidden">Email</label>
+                            <input type="email" id="subscribe-email" name="email" placeholder="Nhập email của bạn" class="subscribe__input" required autocomplete="email">
+
                             <button class="button">
-                                Subscribe
+                                Đăng ký
                             </button>
                         </form>
-                    </div>
-                </div>
-            </section>
-            
-            <!--==================== SPONSORS ====================-->
-            <section class="sponsor section">
-                <div class="sponsor__container container grid">
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors1.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors2.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors3.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors4.png" alt="" class="sponsor__img">
-                    </div>
-                    <div class="sponsor__content">
-                        <img src="assets/img/sponsors5.png" alt="" class="sponsor__img">
+                        <p class="subscribe__message" id="subscribe-message" role="status" aria-live="polite"></p>
                     </div>
                 </div>
             </section>
@@ -374,92 +866,86 @@
             <div class="footer__container container grid">
                 <div class="footer__content grid">
                     <div class="footer__data">
-                        <h3 class="footer__title">Travel</h3>
-                        <p class="footer__description">Travel you choose the <br> destination, 
-                            we offer you the <br> experience.
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">Bạn chọn điểm đến, <br> chúng tôi mang đến <br>
+                            trải nghiệm trọn vẹn.
                         </p>
                         <div>
-                            <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-facebook-box-fill"></i>
                             </a>
-                            <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-twitter-fill"></i>
                             </a>
-                            <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-instagram-fill"></i>
                             </a>
-                            <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
                                 <i class="ri-youtube-fill"></i>
                             </a>
                         </div>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">About</h3>
+                        <h3 class="footer__subtitle">Miền Bắc</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">About Us</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Features</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">New & Blog</a>
-                            </li>
+                            <li class="footer__item"><a href="diem-den/vinh-ha-long/index.html" class="footer__link">Vịnh Hạ Long</a></li>
+                            <li class="footer__item"><a href="diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="diem-den/ha-giang/index.html" class="footer__link">Hà Giang</a></li>
                         </ul>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">Company</h3>
+                        <h3 class="footer__subtitle">Miền Trung</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Team</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Plan y Pricing</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Become a member</a>
-                            </li>
+                            <li class="footer__item"><a href="diem-den/hoi-an/index.html" class="footer__link">Hội An</a></li>
+                            <li class="footer__item"><a href="diem-den/da-nang/index.html" class="footer__link">Đà Nẵng</a></li>
+                            <li class="footer__item"><a href="diem-den/da-lat/index.html" class="footer__link">Đà Lạt</a></li>
                         </ul>
                     </div>
-    
+
                     <div class="footer__data">
-                        <h3 class="footer__subtitle">Support</h3>
+                        <h3 class="footer__subtitle">Miền Nam</h3>
                         <ul>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">FAQs</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Support Center</a>
-                            </li>
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Contact Us</a>
-                            </li>
+                            <li class="footer__item"><a href="diem-den/sai-gon/index.html" class="footer__link">TP. Hồ Chí Minh</a></li>
+                            <li class="footer__item"><a href="diem-den/can-tho/index.html" class="footer__link">Cần Thơ</a></li>
+                            <li class="footer__item"><a href="diem-den/phu-quoc/index.html" class="footer__link">Phú Quốc</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="footer__rights">
-                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan.</p>
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).</p>
                     <div class="footer__terms">
-                        <a href="#" class="footer__terms-link">Terms & Agreements</a>
-                        <a href="#" class="footer__terms-link">Privacy Policy</a>
+                        <a href="#" class="footer__terms-link">Điều khoản</a>
+                        <a href="#" class="footer__terms-link">Chính sách bảo mật</a>
                     </div>
                 </div>
             </div>
         </footer>
 
          <!--========== SCROLL UP ==========-->
-        <a href="#" class="scrollup" id="scroll-up">
+        <a href="#" class="scrollup" id="scroll-up" aria-label="Lên đầu trang">
             <i class="ri-arrow-up-line scrollup__icon"></i>
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
         <script src="assets/js/scrollreveal.min.js"></script>
-        
+
         <!--=============== SWIPER JS ===============-->
         <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+        <script src="assets/js/data/local-images.js"></script>
+        <script src="assets/js/i18n.js"></script>
+        <script src="assets/js/data/destinations.js"></script>
+        <script src="assets/js/favorites.js"></script>
+        <script src="assets/js/components.js"></script>
+        <script src="assets/js/map.js"></script>
+        <script src="assets/js/home.js"></script>
+        <script src="assets/js/config.js"></script>
+        <script src="assets/js/newsletter.js"></script>
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>

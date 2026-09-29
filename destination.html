@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Hình ảnh, ẩm thực và trải nghiệm vui chơi tại các danh lam thắng cảnh Việt Nam.">
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/vietnam.css">
+
+        <title>Điểm đến – Việt Travel</title>
+    </head>
+    <body class="page-detail">
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="index.html" class="nav__logo">Việt Travel</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link">Trang chủ</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#overview" class="nav__link">Tổng quan</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#gallery" class="nav__link">Hình ảnh</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#food" class="nav__link">Ẩm thực</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#activities" class="nav__link">Vui chơi</a>
+                        </li>
+                    </ul>
+
+                    <a class="nav__lang" href="en/index.html" hreflang="en" lang="en" title="English">EN</a>
+
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">Chế độ tối</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
+
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Nội dung được tạo động từ dữ liệu theo tham số ?id=... (assets/js/destination.js) -->
+        <main class="main" id="destination"></main>
+
+        <!--==================== LIGHTBOX ====================-->
+        <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
+            <button class="lightbox__close" id="lightbox-close" aria-label="Đóng"><i class="ri-close-line"></i></button>
+            <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Ảnh trước"><i class="ri-arrow-left-s-line"></i></button>
+            <figure class="lightbox__figure">
+                <img src="" alt="" class="lightbox__img" id="lightbox-img">
+                <figcaption class="lightbox__caption">
+                    <span id="lightbox-caption"></span>
+                    <a href="#" target="_blank" rel="noopener" class="lightbox__credit" id="lightbox-credit">Nguồn ảnh</a>
+                </figcaption>
+            </figure>
+            <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Ảnh tiếp"><i class="ri-arrow-right-s-line"></i></button>
+        </div>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">Bạn chọn điểm đến, <br> chúng tôi mang đến <br>
+                            trải nghiệm trọn vẹn.
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Bắc</h3>
+                        <ul>
+                            <li class="footer__item"><a href="diem-den/vinh-ha-long/index.html" class="footer__link">Vịnh Hạ Long</a></li>
+                            <li class="footer__item"><a href="diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="diem-den/ha-giang/index.html" class="footer__link">Hà Giang</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Trung</h3>
+                        <ul>
+                            <li class="footer__item"><a href="diem-den/hoi-an/index.html" class="footer__link">Hội An</a></li>
+                            <li class="footer__item"><a href="diem-den/da-nang/index.html" class="footer__link">Đà Nẵng</a></li>
+                            <li class="footer__item"><a href="diem-den/da-lat/index.html" class="footer__link">Đà Lạt</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Nam</h3>
+                        <ul>
+                            <li class="footer__item"><a href="diem-den/sai-gon/index.html" class="footer__link">TP. Hồ Chí Minh</a></li>
+                            <li class="footer__item"><a href="diem-den/can-tho/index.html" class="footer__link">Cần Thơ</a></li>
+                            <li class="footer__item"><a href="diem-den/phu-quoc/index.html" class="footer__link">Phú Quốc</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).</p>
+                    <div class="footer__terms">
+                        <a href="#" class="footer__terms-link">Điều khoản</a>
+                        <a href="#" class="footer__terms-link">Chính sách bảo mật</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up" aria-label="Lên đầu trang">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+        <script src="assets/js/data/local-images.js"></script>
+        <script src="assets/js/i18n.js"></script>
+        <script src="assets/js/data/destinations.js"></script>
+        <script src="assets/js/data/itineraries.js"></script>
+        <script src="assets/js/favorites.js"></script>
+        <script src="assets/js/components.js"></script>
+        <script src="assets/js/config.js"></script>
+        <script src="assets/js/map.js"></script>
+        <script src="assets/js/weather.js"></script>
+        <script src="assets/js/destination-render.js"></script>
+        <script src="assets/js/destination.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

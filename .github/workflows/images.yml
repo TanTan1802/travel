@@ -1,0 +1,55 @@
+# Tải ảnh Wikimedia Commons về repo và sinh lại trang tĩnh.
+# Chạy tự động khi dữ liệu/giao diện trên main thay đổi, hoặc bấm "Run workflow" trong tab Actions.
+name: Tải ảnh & build trang
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/js/data/destinations.js'
+      - 'assets/js/data/itineraries.js'
+      - 'assets/js/data/en.js'
+      - 'index.html'
+      - 'destination.html'
+      - 'tools/**'
+      - '.github/workflows/images.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: images-build
+  cancel-in-progress: false
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Kiểm tra ảnh trên Wikimedia Commons
+        run: npm run check-images
+        continue-on-error: true
+
+      - name: Tải ảnh về repo
+        run: npm run images
+
+      - name: Sinh lại trang tĩnh
+        run: npm run build
+
+      - name: Commit kết quả
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/img/wiki assets/js/data/local-images.js diem-den en index.html sitemap.xml robots.txt sw.js
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "Tự động: tải ảnh Wikimedia Commons và build lại trang"
+            git push
+          fi

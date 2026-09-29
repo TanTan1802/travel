@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Đà Nẵng hội tụ đủ biển xanh, núi rừng và phố thị hiện đại. Bãi biển Mỹ Khê từng được bình chọn là một trong những bãi biển quyến rũ nhất hành tinh, Cầu Vàng…">
+        <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="../../manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+        <link rel="stylesheet" href="../../assets/css/styles.css">
+        <link rel="stylesheet" href="../../assets/css/vietnam.css">
+
+        <title>Đà Nẵng – Việt Travel</title>
+    
+        <link rel="canonical" href="https://tantan1802.github.io/travel/diem-den/da-nang/">
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/diem-den/da-nang/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/diem-den/da-nang/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/diem-den/da-nang/">
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="vi_VN">
+        <meta property="og:title" content="Đà Nẵng – Thành phố đáng sống bên bờ biển Mỹ Khê">
+        <meta property="og:description" content="Đà Nẵng hội tụ đủ biển xanh, núi rừng và phố thị hiện đại. Bãi biển Mỹ Khê từng được bình chọn là một trong những bãi biển quyến rũ nhất hành tinh, Cầu Vàng…">
+        <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/da-nang/">
+        <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/The%20Golden%20Bridge%2C%20Ba%20Na%20Hills%2C%20Vietnam.jpg?width=1280">
+        <meta name="twitter:card" content="summary_large_image">
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Đà Nẵng","description":"Đà Nẵng hội tụ đủ biển xanh, núi rừng và phố thị hiện đại. Bãi biển Mỹ Khê từng được bình chọn là một trong những bãi biển quyến rũ nhất hành tinh, Cầu Vàng trên Bà Nà Hills nổi tiếng toàn cầu, và Cầu Rồng phun lửa mỗi tối cuối tuần.","url":"https://tantan1802.github.io/travel/diem-den/da-nang/","inLanguage":"vi","image":["https://commons.wikimedia.org/wiki/Special:FilePath/The%20Golden%20Bridge%2C%20Ba%20Na%20Hills%2C%20Vietnam.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20Bridge%20at%20Ba%20Na%20Hills%2020250718.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Dragon%20Bridge%2C%20Da%20Nang%20at%20night%20-%2020230819.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/My%20Khe%20Beach%20Da%20Nang.jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Đà Nẵng","addressCountry":"VN"},"touristType":["Thành phố","Biển đảo"],"geo":{"@type":"GeoCoordinates","latitude":16.0544,"longitude":108.2022}}</script>
+    </head>
+    <body class="page-detail">
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="../../index.html" class="nav__logo">Việt Travel</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="../../index.html" class="nav__link">Trang chủ</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#overview" class="nav__link">Tổng quan</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#gallery" class="nav__link">Hình ảnh</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#food" class="nav__link">Ẩm thực</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#activities" class="nav__link">Vui chơi</a>
+                        </li>
+                    </ul>
+
+                    <a class="nav__lang" id="lang-switch" href="../../en/diem-den/da-nang/index.html" hreflang="en" lang="en" title="English">EN</a>
+
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">Chế độ tối</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
+
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Nội dung được tạo động từ dữ liệu theo tham số ?id=... (assets/js/destination.js) -->
+        <main class="main" id="destination" data-prerendered>
+        <section class="dest-hero" id="top">
+            <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="1920" alt="Đà Nẵng" class="dest-hero__img">
+            <div class="dest-hero__overlay"></div>
+
+            <div class="dest-hero__content container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../../index.html">Trang chủ</a>
+                    <i class="ri-arrow-right-s-line"></i>
+                    <a href="../../index.html?region=trung#place">Miền Trung</a>
+                    <i class="ri-arrow-right-s-line"></i>
+                    <span>Đà Nẵng</span>
+                </nav>
+
+                <span class="dest-hero__subtitle"><i class="ri-map-pin-2-fill"></i> Đà Nẵng</span>
+                <h1 class="dest-hero__title">Đà Nẵng</h1>
+                <p class="dest-hero__tagline">Thành phố đáng sống bên bờ biển Mỹ Khê</p>
+
+                <div class="dest-hero__actions">
+                    <a href="#gallery" class="button button--flex">Xem hình ảnh <i class="ri-image-line"></i></a>
+                    <a href="#food" class="button button--flex button--ghost">Ẩm thực <i class="ri-restaurant-line"></i></a>
+                    
+        <button type="button" class="fav-btn fav-btn--labeled" data-favorite="da-nang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            <span class="fav-btn__label">Lưu yêu thích</span>
+        </button>
+    
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="dest-facts">
+                
+        <div class="dest-facts__item">
+            <i class="ri-star-fill dest-facts__icon"></i>
+            <div>
+                <span class="dest-facts__label">Đánh giá</span>
+                <span class="dest-facts__value">4.8 / 5</span>
+            </div>
+        </div>
+    
+                
+        <div class="dest-facts__item">
+            <i class="ri-calendar-event-line dest-facts__icon"></i>
+            <div>
+                <span class="dest-facts__label">Thời điểm đẹp</span>
+                <span class="dest-facts__value">Tháng 3 – 8</span>
+            </div>
+        </div>
+    
+                
+        <div class="dest-facts__item">
+            <i class="ri-time-line dest-facts__icon"></i>
+            <div>
+                <span class="dest-facts__label">Thời gian gợi ý</span>
+                <span class="dest-facts__value">3 – 4 ngày</span>
+            </div>
+        </div>
+    
+                
+        <div class="dest-facts__item">
+            <i class="ri-compass-3-line dest-facts__icon"></i>
+            <div>
+                <span class="dest-facts__label">Vùng miền</span>
+                <span class="dest-facts__value">Miền Trung</span>
+            </div>
+        </div>
+    
+            </div>
+        </div>
+    
+        <section class="overview section" id="overview">
+            <div class="overview__container container grid">
+                <div class="overview__data">
+                    <span class="section__subtitle">Tổng quan</span>
+                    <h2 class="section__title overview__title">Vì sao nên đến Đà Nẵng?</h2>
+                    <p class="overview__description">Đà Nẵng hội tụ đủ biển xanh, núi rừng và phố thị hiện đại. Bãi biển Mỹ Khê từng được bình chọn là một trong những bãi biển quyến rũ nhất hành tinh, Cầu Vàng trên Bà Nà Hills nổi tiếng toàn cầu, và Cầu Rồng phun lửa mỗi tối cuối tuần.</p>
+
+                    <h3 class="overview__highlights-title">Điểm nhấn không thể bỏ lỡ</h3>
+                    <ul class="overview__highlights">
+                        <li><i class="ri-checkbox-circle-fill"></i> Cầu Vàng – Bà Nà Hills</li><li><i class="ri-checkbox-circle-fill"></i> Biển Mỹ Khê</li><li><i class="ri-checkbox-circle-fill"></i> Ngũ Hành Sơn</li><li><i class="ri-checkbox-circle-fill"></i> Cầu Rồng</li>
+                    </ul>
+
+                    <div class="dest-card__tags">
+                        <span class="tag">Thành phố</span><span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+
+                
+                <div class="overview__img">
+                    <img data-wiki="Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg" data-width="960" alt="Cầu Vàng giữa mây" loading="lazy">
+                </div>
+            </div>
+        </section>
+    
+        <section class="climate section" id="climate">
+            <span class="section__subtitle">Thời tiết</span>
+            <h2 class="section__title">Thời tiết & mùa đẹp</h2>
+
+            <div class="climate__container container">
+                <div class="climate__card weather weather--loading" id="weather" aria-live="polite">
+                    <p class="weather__loading"><i class="ri-loader-4-line"></i> Đang tải thời tiết...</p>
+                </div>
+
+                <div class="climate__card season">
+                    <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: Tháng 3 – 8</h3>
+                    <ol class="season__months" aria-label="Các tháng trong năm">
+                        <li class="season__month" data-month="1"
+                                        title="Tháng 1">T1</li><li class="season__month" data-month="2"
+                                        title="Tháng 2">T2</li><li class="season__month season__month--best" data-month="3"
+                                        title="Tháng 3 – mùa đẹp">T3</li><li class="season__month season__month--best" data-month="4"
+                                        title="Tháng 4 – mùa đẹp">T4</li><li class="season__month season__month--best" data-month="5"
+                                        title="Tháng 5 – mùa đẹp">T5</li><li class="season__month season__month--best" data-month="6"
+                                        title="Tháng 6 – mùa đẹp">T6</li><li class="season__month season__month--best" data-month="7"
+                                        title="Tháng 7 – mùa đẹp">T7</li><li class="season__month season__month--best" data-month="8"
+                                        title="Tháng 8 – mùa đẹp">T8</li><li class="season__month" data-month="9"
+                                        title="Tháng 9">T9</li><li class="season__month" data-month="10"
+                                        title="Tháng 10">T10</li><li class="season__month" data-month="11"
+                                        title="Tháng 11">T11</li><li class="season__month" data-month="12"
+                                        title="Tháng 12">T12</li>
+                    </ol>
+                    <div class="season__legend">
+                        <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
+                        <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                    </div>
+                    <p class="season__status" data-season-status="3,4,5,6,7,8"></p>
+                </div>
+            </div>
+        </section>
+    
+        <section class="gallery section" id="gallery">
+            <span class="section__subtitle">Hình ảnh</span>
+            <h2 class="section__title">Vẻ đẹp Đà Nẵng</h2>
+
+            <div class="gallery__grid container">
+                
+                    <button type="button" class="gallery__item is-featured" data-index="0" aria-label="Xem ảnh: Đà Nẵng">
+                        <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg" data-width="960" alt="Đà Nẵng" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Đà Nẵng</span>
+                    </button>
+                
+                    <button type="button" class="gallery__item" data-index="1" aria-label="Xem ảnh: Cầu Vàng giữa mây">
+                        <img data-wiki="Golden Bridge at Ba Na Hills 20250718.jpg" data-width="960" alt="Cầu Vàng giữa mây" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Cầu Vàng giữa mây</span>
+                    </button>
+                
+                    <button type="button" class="gallery__item" data-index="2" aria-label="Xem ảnh: Cầu Rồng về đêm">
+                        <img data-wiki="Dragon Bridge, Da Nang at night - 20230819.jpg" data-width="960" alt="Cầu Rồng về đêm" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Cầu Rồng về đêm</span>
+                    </button>
+                
+                    <button type="button" class="gallery__item" data-index="3" aria-label="Xem ảnh: Biển Mỹ Khê">
+                        <img data-wiki="My Khe Beach Da Nang.jpg" data-width="960" alt="Biển Mỹ Khê" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Biển Mỹ Khê</span>
+                    </button>
+                
+                    <button type="button" class="gallery__item" data-index="4" aria-label="Xem ảnh: Ngũ Hành Sơn">
+                        <img data-wiki="Marble Mountains, Vietnam.jpg" data-width="960" alt="Ngũ Hành Sơn" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Ngũ Hành Sơn</span>
+                    </button>
+                
+                    <button type="button" class="gallery__item" data-index="5" aria-label="Xem ảnh: Chùa trên núi Ngũ Hành Sơn">
+                        <img data-wiki="Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" alt="Chùa trên núi Ngũ Hành Sơn" class="gallery__img" loading="lazy">
+                        <span class="gallery__caption"><i class="ri-zoom-in-line"></i> Chùa trên núi Ngũ Hành Sơn</span>
+                    </button>
+                
+            </div>
+        </section>
+    
+        <section class="food section" id="food">
+            <span class="section__subtitle">Ẩm thực</span>
+            <h2 class="section__title">Món ngon phải thử</h2>
+
+            <div class="food__grid container">
+                
+        <article class="food-card">
+            <div class="food-card__media">
+                <span class="food-card__menu"><small>Đặc sản</small>Mì Quảng</span>
+                <img data-wiki="Mi Quang at Ngoc Mai (with noodles uncovered).jpg" data-width="960" alt="Mì Quảng" class="food-card__img" loading="lazy">
+                
+                <span class="food-card__price">35.000đ</span>
+            </div>
+            <div class="food-card__body">
+                <h3 class="food-card__title">Mì Quảng</h3>
+                <p class="food-card__desc">Sợi mì vàng nghệ, ít nước, tôm thịt, bánh tráng mè giòn.</p>
+                
+            </div>
+        </article>
+    
+        <article class="food-card">
+            <div class="food-card__media">
+                <span class="food-card__menu"><small>Đặc sản</small>Bánh tráng cuốn thịt heo</span>
+                <img data-wiki="Bánh tráng cuốn thịt heo.jpg" data-width="960" alt="Bánh tráng cuốn thịt heo" class="food-card__img" loading="lazy">
+                
+                <span class="food-card__price">90.000đ</span>
+            </div>
+            <div class="food-card__body">
+                <h3 class="food-card__title">Bánh tráng cuốn thịt heo</h3>
+                <p class="food-card__desc">Thịt heo luộc cuốn rau rừng, chấm mắm nêm đậm đà.</p>
+                
+            </div>
+        </article>
+    
+        <article class="food-card">
+            <div class="food-card__media">
+                <span class="food-card__menu"><small>Đặc sản</small>Bánh bèo</span>
+                <img data-wiki="Banh beo Da Nang.JPG" data-width="960" alt="Bánh bèo" class="food-card__img" loading="lazy">
+                
+                <span class="food-card__price">25.000đ</span>
+            </div>
+            <div class="food-card__body">
+                <h3 class="food-card__title">Bánh bèo</h3>
+                <p class="food-card__desc">Bánh bèo Đà Nẵng dẻo mềm, chan nước mắm ngọt và tôm chấy.</p>
+                
+            </div>
+        </article>
+    
+        <article class="food-card">
+            <div class="food-card__media">
+                <span class="food-card__menu"><small>Đặc sản</small>Bánh xèo</span>
+                <img data-wiki="Bánh xèo with nước mắm.jpg" data-width="960" alt="Bánh xèo" class="food-card__img" loading="lazy">
+                
+                <span class="food-card__price">30.000đ</span>
+            </div>
+            <div class="food-card__body">
+                <h3 class="food-card__title">Bánh xèo</h3>
+                <p class="food-card__desc">Bánh xèo miền Trung nhỏ xinh, giòn tan, chấm tương gan.</p>
+                
+            </div>
+        </article>
+    
+            </div>
+        </section>
+    
+        <section class="activities section" id="activities">
+            <span class="section__subtitle">Vui chơi</span>
+            <h2 class="section__title">Trải nghiệm đáng nhớ</h2>
+
+            <div class="activities__grid container">
+                
+                    <article class="activity-card">
+                        <span class="activity-card__icon"><i class="ri-riding-line"></i></span>
+                        <h3 class="activity-card__title">Cáp treo Bà Nà</h3>
+                        <p class="activity-card__desc">Tuyến cáp treo kỷ lục lên Cầu Vàng và làng Pháp.</p>
+                    </article>
+                
+                    <article class="activity-card">
+                        <span class="activity-card__icon"><i class="ri-water-flash-line"></i></span>
+                        <h3 class="activity-card__title">Lướt sóng Mỹ Khê</h3>
+                        <p class="activity-card__desc">Tắm biển, chèo SUP, lướt ván buổi sáng sớm.</p>
+                    </article>
+                
+                    <article class="activity-card">
+                        <span class="activity-card__icon"><i class="ri-fire-line"></i></span>
+                        <h3 class="activity-card__title">Xem Cầu Rồng phun lửa</h3>
+                        <p class="activity-card__desc">21h tối thứ 7 và Chủ nhật hàng tuần.</p>
+                    </article>
+                
+                    <article class="activity-card">
+                        <span class="activity-card__icon"><i class="ri-motorbike-line"></i></span>
+                        <h3 class="activity-card__title">Đèo Hải Vân</h3>
+                        <p class="activity-card__desc">"Thiên hạ đệ nhất hùng quan" trên đường đi Huế.</p>
+                    </article>
+                
+            </div>
+
+            
+            <div class="tips container">
+                <h3 class="tips__title"><i class="ri-lightbulb-flash-line"></i> Kinh nghiệm du lịch</h3>
+                <ul class="tips__list">
+                    <li class="tip-item">Kết hợp Đà Nẵng – Hội An – Huế cho lịch trình miền Trung trọn vẹn.</li><li class="tip-item">Mùa mưa bão từ tháng 9 đến tháng 12.</li>
+                </ul>
+            </div>
+        </section>
+    
+        <section class="itinerary section" id="itinerary">
+            <span class="section__subtitle">Lịch trình</span>
+            <h2 class="section__title">Gợi ý 3 ngày tại Đà Nẵng</h2>
+
+            <div class="itinerary__container container">
+                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                    
+                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
+                            <span>Ngày 1</span>
+                            <small>Bà Nà Hills – Cầu Vàng</small>
+                        </button>
+                    
+                        <button type="button" class="itinerary__tab" role="tab"
+                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
+                            <span>Ngày 2</span>
+                            <small>Sơn Trà – Ngũ Hành Sơn</small>
+                        </button>
+                    
+                        <button type="button" class="itinerary__tab" role="tab"
+                                id="day-tab-2" aria-controls="day-panel-2" aria-selected="false" data-day="2">
+                            <span>Ngày 3</span>
+                            <small>Đèo Hải Vân</small>
+                        </button>
+                    
+                </div>
+
+                
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
+                        <ol class="timeline">
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Sáng</h3>
+                                        <p>Đi cáp treo lên Bà Nà, check-in Cầu Vàng khi còn sớm.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Chiều</h3>
+                                        <p>Làng Pháp, vườn hoa Le Jardin, Fantasy Park.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Tối</h3>
+                                        <p>Xuống núi, ăn mì Quảng và hải sản ven biển.</p>
+                                    </div>
+                                </li>
+                            
+                        </ol>
+                    </div>
+                
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
+                        <ol class="timeline">
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Sáng</h3>
+                                        <p>Tắm biển Mỹ Khê, chùa Linh Ứng Sơn Trà.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Chiều</h3>
+                                        <p>Ngũ Hành Sơn, làng đá Non Nước.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Tối</h3>
+                                        <p>Xem Cầu Rồng phun lửa (tối cuối tuần), chợ đêm Sơn Trà.</p>
+                                    </div>
+                                </li>
+                            
+                        </ol>
+                    </div>
+                
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-2" aria-labelledby="day-tab-2" hidden>
+                        <ol class="timeline">
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Sáng</h3>
+                                        <p>Chạy xe máy đèo Hải Vân, ghé Lăng Cô.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Chiều</h3>
+                                        <p>Ăn bánh tráng cuốn thịt heo, cà phê view sông Hàn.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Tối</h3>
+                                        <p>Du thuyền sông Hàn ngắm thành phố lên đèn.</p>
+                                    </div>
+                                </li>
+                            
+                        </ol>
+                    </div>
+                
+
+                <div class="budget">
+                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
+                    <div class="budget__options">
+                        <div class="budget__option">
+                            <span>Tiết kiệm</span>
+                            <strong>2.200.000đ</strong>
+                            <small>Homestay, ăn quán địa phương</small>
+                        </div>
+                        <div class="budget__option budget__option--comfort">
+                            <span>Thoải mái</span>
+                            <strong>6.000.000đ</strong>
+                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                        </div>
+                    </div>
+                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Đà Nẵng. Giá tham khảo, thay đổi theo mùa.</p>
+                </div>
+            </div>
+        </section>
+    
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ Đà Nẵng"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần Đà Nẵng</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/hoi-an/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="500" alt="Phố cổ Hội An" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Phố cổ Hội An</strong>
+                                        <small>Quảng Nam</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~24 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/hue/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="500" alt="Cố đô Huế" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Cố đô Huế</strong>
+                                        <small>Thừa Thiên Huế</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~81 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/phong-nha/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Son Doong Cave 1.jpg|Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg" data-width="500" alt="Phong Nha – Kẻ Bàng" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Phong Nha – Kẻ Bàng</strong>
+                                        <small>Quảng Bình</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~266 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=16.0544,108.2022" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        <section class="related section" id="related">
+            <span class="section__subtitle">Gợi ý</span>
+            <h2 class="section__title">Điểm đến khác ở Miền Trung</h2>
+
+            <div class="dest__grid container">
+                
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/nha-trang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Nha Trang</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Khánh Hòa</span>
+                    
+                    <p class="dest-card__tagline">Hòn ngọc của biển Đông</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="nha-trang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/da-lat/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="960" alt="Đà Lạt" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Đà Lạt</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lâm Đồng</span>
+                    
+                    <p class="dest-card__tagline">Thành phố ngàn hoa trên cao nguyên Lâm Viên</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-lat" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/mui-ne/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mũi Né" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Mũi Né</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Thuận</span>
+                    
+                    <p class="dest-card__tagline">"Tiểu sa mạc Sahara" của Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mui-ne" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+            </div>
+
+            <div class="related__more">
+                <a href="../../index.html#place" class="button button--flex">Xem tất cả điểm đến <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </section>
+    </main>
+
+        <!--==================== LIGHTBOX ====================-->
+        <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
+            <button class="lightbox__close" id="lightbox-close" aria-label="Đóng"><i class="ri-close-line"></i></button>
+            <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Ảnh trước"><i class="ri-arrow-left-s-line"></i></button>
+            <figure class="lightbox__figure">
+                <img src="" alt="" class="lightbox__img" id="lightbox-img">
+                <figcaption class="lightbox__caption">
+                    <span id="lightbox-caption"></span>
+                    <a href="#" target="_blank" rel="noopener" class="lightbox__credit" id="lightbox-credit">Nguồn ảnh</a>
+                </figcaption>
+            </figure>
+            <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Ảnh tiếp"><i class="ri-arrow-right-s-line"></i></button>
+        </div>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">Bạn chọn điểm đến, <br> chúng tôi mang đến <br>
+                            trải nghiệm trọn vẹn.
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Bắc</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../diem-den/vinh-ha-long/index.html" class="footer__link">Vịnh Hạ Long</a></li>
+                            <li class="footer__item"><a href="../../diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="../../diem-den/ha-giang/index.html" class="footer__link">Hà Giang</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Trung</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../diem-den/hoi-an/index.html" class="footer__link">Hội An</a></li>
+                            <li class="footer__item"><a href="../../diem-den/da-nang/index.html" class="footer__link">Đà Nẵng</a></li>
+                            <li class="footer__item"><a href="../../diem-den/da-lat/index.html" class="footer__link">Đà Lạt</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Miền Nam</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../diem-den/sai-gon/index.html" class="footer__link">TP. Hồ Chí Minh</a></li>
+                            <li class="footer__item"><a href="../../diem-den/can-tho/index.html" class="footer__link">Cần Thơ</a></li>
+                            <li class="footer__item"><a href="../../diem-den/phu-quoc/index.html" class="footer__link">Phú Quốc</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).</p>
+                    <div class="footer__terms">
+                        <a href="#" class="footer__terms-link">Điều khoản</a>
+                        <a href="#" class="footer__terms-link">Chính sách bảo mật</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up" aria-label="Lên đầu trang">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'vi'; window.DEST_ID = 'da-nang'</script>
+        <script src="../../assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+        <script src="../../assets/js/data/local-images.js"></script>
+        <script src="../../assets/js/i18n.js"></script>
+        <script src="../../assets/js/data/destinations.js"></script>
+        <script src="../../assets/js/data/itineraries.js"></script>
+        <script src="../../assets/js/favorites.js"></script>
+        <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/config.js"></script>
+        <script src="../../assets/js/map.js"></script>
+        <script src="../../assets/js/weather.js"></script>
+        <script src="../../assets/js/destination-render.js"></script>
+        <script src="../../assets/js/destination.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="../../assets/js/main.js"></script>
+    </body>
+</html>
