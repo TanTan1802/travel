@@ -3253,3 +3253,231 @@ body.dark-theme .booking__icon {
     display: none;
   }
 }
+
+/*=============== CẨM NANG ===============*/
+.guides__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.guide-card {
+  display: grid;
+  align-content: start;
+  gap: .6rem;
+  color: var(--text-color);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  transition: .25s;
+}
+
+.guide-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--first-color);
+}
+
+.guide-card__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--input-color);
+  color: var(--first-color);
+  font-size: 1.5rem;
+}
+
+body.dark-theme .guide-card__icon {
+  color: var(--accent-color);
+}
+
+.guide-card__title {
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+}
+
+.guide-card__summary {
+  font-size: var(--small-font-size);
+}
+
+.guide-card__more {
+  display: inline-flex;
+  gap: .3rem;
+  align-items: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .guide-card__more {
+  color: var(--accent-color);
+}
+
+.guides-home__more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.guide-hero .breadcrumb {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.guide-hero__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: .75rem;
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 100%, .15);
+  font-size: 1.75rem;
+  color: var(--accent-color);
+}
+
+.guide-hero__updated {
+  margin-top: .75rem;
+  font-size: var(--small-font-size);
+  opacity: .8;
+}
+
+.guide {
+  display: grid;
+  gap: 2rem;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+}
+
+.guide__toc {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--input-color);
+  align-self: start;
+}
+
+.guide__toc strong {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--title-color);
+}
+
+.guide__toc ol {
+  display: grid;
+  gap: .4rem;
+  padding-left: 1.1rem;
+  font-size: var(--small-font-size);
+}
+
+.guide__toc a {
+  color: var(--text-color);
+}
+
+.guide__toc a:hover {
+  color: var(--first-color);
+  text-decoration: underline;
+}
+
+.guide__body {
+  display: grid;
+  gap: 2rem;
+  max-width: 760px;
+}
+
+.guide-section {
+  scroll-margin-top: 6rem;
+}
+
+.guide-section__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.guide-section p {
+  margin-bottom: var(--mb-0-75);
+  line-height: 1.7;
+}
+
+.guide-section__list {
+  display: grid;
+  gap: .6rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  line-height: 1.6;
+}
+
+.guide-section__list li::marker {
+  color: var(--accent-color);
+}
+
+.months-table {
+  display: grid;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background-color: var(--container-color);
+}
+
+.months-table__row {
+  display: grid;
+  gap: .5rem;
+  padding: .85rem 1rem;
+  border-bottom: 1px solid var(--input-color);
+}
+
+.months-table__row:last-child {
+  border-bottom: none;
+}
+
+.months-table__month {
+  color: var(--title-color);
+}
+
+.months-table__places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.months-table__places .tag:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+@media screen and (min-width: 568px) {
+  .months-table__row {
+    grid-template-columns: 7rem 1fr;
+    align-items: start;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .guides__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .guides__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .guide {
+    grid-template-columns: 260px 1fr;
+    align-items: start;
+  }
+
+  .guide__toc {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+@media print {
+  .guide__toc,
+  .guides-home {
+    display: none !important;
+  }
+}

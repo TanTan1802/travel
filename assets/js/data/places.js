@@ -395,4 +395,85 @@ const PLACES = {
             { area: ['Bãi Đất Dốc', 'Dat Doc beach'], type: 'resort', price: [5000000, 15000000], note: ['Resort cao cấp, biển riêng.', 'Luxury resorts with private beaches.'] },
         ],
     },
+    'moc-chau': {
+        city: 'Moc Chau',
+        airport: 'HAN',
+        getThere: ['Xe khách/limousine Hà Nội – Mộc Châu ~4 giờ theo QL6 (200 km), nhiều chuyến từ bến xe Mỹ Đình.', 'Bus or limousine Hanoi – Moc Chau ~4 h via Highway 6 (200 km), frequent departures from My Dinh bus station.'],
+        eats: [
+            { name: 'Nhà hàng bê chao Thảo Nguyên', dish: ['Bê chao, bê hấp, cá suối nướng', 'Fried veal, steamed veal, grilled stream fish'], address: 'Thị trấn Nông Trường Mộc Châu', price: [150000, 300000] },
+            { name: 'Sữa & bánh sữa Mộc Châu (cửa hàng nông trường)', dish: ['Sữa tươi, sữa chua, bánh sữa', 'Fresh milk, yogurt, milk candy'], address: 'QL6, thị trấn Nông Trường Mộc Châu', price: [20000, 80000] },
+            { name: 'Lẩu cá hồi Mộc Châu', dish: ['Lẩu cá hồi, cá tầm nuôi suối lạnh', 'Salmon and sturgeon hotpot'], address: 'Tiểu khu 19/5, thị trấn Mộc Châu', price: [200000, 400000] },
+            { name: 'Chợ Mộc Châu', dish: ['Xôi nếp nương, thịt trâu gác bếp, mận', 'Upland sticky rice, smoked buffalo, plums'], address: 'Chợ trung tâm thị trấn Mộc Châu', price: [30000, 100000] },
+        ],
+        stays: [
+            { area: ['Thị trấn Nông Trường', 'Nong Truong town'], type: 'hotel', price: [400000, 1000000], note: ['Gần đồi chè, quán bê chao, tiện di chuyển.', 'Near the tea hills and veal restaurants, easy to get around.'] },
+            { area: ['Bản Áng – Đông Sang', 'Ang village – Dong Sang'], type: 'homestay', price: [250000, 700000], note: ['Nhà sàn người Thái cạnh rừng thông.', 'Thai stilt houses by the pine forest.'] },
+            { area: ['Resort đồi chè – thung lũng', 'Tea-hill & valley resorts'], type: 'resort', price: [1200000, 3500000], note: ['Bungalow view đồi chè, hồ bơi.', 'Bungalows overlooking tea hills, with pools.'] },
+        ],
+    },
+    'pu-luong': {
+        city: 'Pu Luong',
+        airport: 'HAN',
+        getThere: ['Từ Hà Nội ~4 giờ (170 km) qua Mai Châu: xe khách đi Bá Thước rồi homestay đón, hoặc thuê xe riêng/limousine.', 'From Hanoi ~4 h (170 km) via Mai Chau: bus to Ba Thuoc and a homestay pick-up, or a private car/limousine.'],
+        eats: [
+            { name: 'Bếp homestay bản Đôn', dish: ['Vịt Cổ Lũng, cơm lam, rau rừng', 'Co Lung duck, bamboo rice, wild greens'], address: 'Bản Đôn, xã Thành Lâm, Bá Thước', price: [100000, 200000] },
+            { name: 'Quán ăn Phố Đoàn', dish: ['Cá suối nướng, măng đắng xào', 'Grilled stream fish, bitter bamboo shoots'], address: 'Phố Đoàn, xã Lũng Niêm, Bá Thước', price: [80000, 180000] },
+            { name: 'Chợ phiên Phố Đoàn (thứ Bảy)', dish: ['Xôi, bánh chưng đen, rượu cần', 'Sticky rice, black banh chung, rice wine'], address: 'Chợ Phố Đoàn, Bá Thước', price: [20000, 80000] },
+            { name: 'Nhà hàng vịt Cổ Lũng thị trấn Cành Nàng', dish: ['Vịt Cổ Lũng luộc, nướng mắc khén', 'Co Lung duck boiled or grilled with mac khen'], address: 'Thị trấn Cành Nàng, Bá Thước', price: [150000, 300000] },
+        ],
+        stays: [
+            { area: ['Bản Đôn – bản Hiêu', 'Don – Hieu villages'], type: 'homestay', price: [250000, 700000], note: ['Nhà sàn giữa ruộng bậc thang, gần guồng nước.', 'Stilt houses among terraces, near the water wheels.'] },
+            { area: ['Eco-lodge ven thung lũng', 'Valley eco-lodges'], type: 'resort', price: [1200000, 3000000], note: ['Hồ bơi vô cực view lúa – nên đặt sớm mùa lúa chín.', 'Infinity pools over the paddies – book early at harvest.'] },
+            { area: ['Thị trấn Cành Nàng', 'Canh Nang town'], type: 'hotel', price: [300000, 600000], note: ['Nhà nghỉ bình dân, gần bến xe.', 'Simple guesthouses near the bus station.'] },
+        ],
+    },
+    'ly-son': {
+        city: 'Ly Son',
+        airport: 'VCL',
+        rail: 'Quảng Ngãi',
+        getThere: ['Bay tới sân bay Chu Lai (VCL) hoặc tàu hỏa tới ga Quảng Ngãi, đi xe ~40 phút ra cảng Sa Kỳ, rồi tàu cao tốc ~30 phút ra đảo.', 'Fly to Chu Lai (VCL) or take the train to Quang Ngai, drive ~40 min to Sa Ky port, then a ~30-min speedboat to the island.'],
+        eats: [
+            { name: 'Chợ đêm Lý Sơn', dish: ['Gỏi tỏi, ốc cừ, hải sản nướng', 'Garlic salad, rock snails, grilled seafood'], address: 'Trung tâm xã An Vĩnh, Lý Sơn', price: [50000, 200000] },
+            { name: 'Quán hải sản bờ kè An Vĩnh', dish: ['Cá mú, tôm hùm, cháo nhum', 'Grouper, lobster, sea urchin porridge'], address: 'Đường bờ kè An Vĩnh, Lý Sơn', price: [200000, 500000] },
+            { name: 'Quán ốc Đảo Bé', dish: ['Ốc, rong biển, cá nướng trên Đảo Bé', 'Snails, seaweed and grilled fish on Little Island'], address: 'Đảo Bé (xã An Bình)', price: [100000, 250000] },
+            { name: 'Chè rong biển Lý Sơn', dish: ['Chè rong biển mát lạnh', 'Chilled seaweed sweet soup'], address: 'Xã An Hải, Lý Sơn', price: [15000, 30000] },
+        ],
+        stays: [
+            { area: ['Xã An Vĩnh (gần cảng)', 'An Vinh (near the port)'], type: 'hotel', price: [400000, 1000000], note: ['Gần cảng tàu, chợ đêm, chùa Hang.', 'Near the port, night market and Hang pagoda.'] },
+            { area: ['Xã An Hải', 'An Hai'], type: 'homestay', price: [300000, 700000], note: ['Yên tĩnh, gần cánh đồng tỏi và hang Câu.', 'Quiet, near the garlic fields and Hang Cau.'] },
+            { area: ['Đảo Bé', 'Little Island'], type: 'homestay', price: [250000, 500000], note: ['Ngủ lại đảo nhỏ, nước biển trong nhất.', 'Stay overnight on the islet with the clearest water.'] },
+        ],
+    },
+    'buon-ma-thuot': {
+        city: 'Buon Ma Thuot',
+        airport: 'BMV',
+        getThere: ['Sân bay Buôn Ma Thuột (BMV) cách trung tâm ~8 km. Xe giường nằm từ Sài Gòn ~8 giờ, từ Đà Lạt/Nha Trang ~4–5 giờ.', 'Buon Ma Thuot Airport (BMV) is ~8 km from the centre. Sleeper buses take ~8 h from Saigon and ~4–5 h from Da Lat or Nha Trang.'],
+        eats: [
+            { name: 'Bún đỏ Ban Mê (đường Hai Bà Trưng)', dish: ['Bún đỏ chả cá, trứng cút', 'Red noodles with fish cake and quail eggs'], address: 'Đường Hai Bà Trưng, TP Buôn Ma Thuột', price: [25000, 40000] },
+            { name: 'Bảo tàng Thế giới Cà phê', dish: ['Cà phê robusta, cà phê muối trong nhà dài', 'Robusta and salted coffee in a longhouse setting'], address: 'Đường Lê Duẩn, TP Buôn Ma Thuột', price: [40000, 100000] },
+            { name: 'Gà nướng cơm lam Ban Mê', dish: ['Gà nướng, cơm lam, muối lá é', 'Grilled chicken, bamboo rice, e-leaf salt'], address: 'Đường Y Wang, TP Buôn Ma Thuột', price: [150000, 300000] },
+            { name: 'Chợ Buôn Ma Thuột', dish: ['Bánh căn, bơ, cà phê, tiêu mang về', 'Banh can, avocados, coffee and pepper to take home'], address: 'Chợ trung tâm Buôn Ma Thuột', price: [20000, 200000] },
+        ],
+        stays: [
+            { area: ['Trung tâm (Ngã 6 Ban Mê)', 'City centre (Ban Me six-way junction)'], type: 'hotel', price: [400000, 1200000], note: ['Gần quảng trường, quán cà phê, chợ.', 'Near the square, cafés and market.'] },
+            { area: ['Buôn Kô Siêr – buôn Akô Dhông', 'Ko Sier – Ako Dhong villages'], type: 'homestay', price: [300000, 700000], note: ['Nhà dài Ê Đê ngay trong thành phố.', 'Ede longhouses right inside the city.'] },
+            { area: ['Hồ Lắk', 'Lak Lake'], type: 'resort', price: [700000, 2000000], note: ['Resort ven hồ, gần buôn Jun.', 'Lakeside resorts near Jun village.'] },
+        ],
+    },
+    'ha-tien': {
+        city: 'Ha Tien',
+        airport: 'PQC',
+        getThere: ['Xe khách Sài Gòn – Hà Tiên ~7–8 giờ; từ Rạch Giá ~2 giờ. Tàu cao tốc nối Phú Quốc ~1,5 giờ; bay tới Phú Quốc (PQC) hoặc Rạch Giá (VKG).', 'Bus Saigon – Ha Tien ~7–8 h; ~2 h from Rach Gia. Fast ferries link Phu Quoc in ~1.5 h; fly to Phu Quoc (PQC) or Rach Gia (VKG).'],
+        eats: [
+            { name: 'Chợ đêm Hà Tiên', dish: ['Hải sản nướng, bánh canh ghẹ, xôi xiêm', 'Grilled seafood, crab noodle soup, xôi xiêm'], address: 'Đường Tô Châu – ven sông, Hà Tiên', price: [30000, 200000] },
+            { name: 'Quán bánh canh ghẹ chợ Hà Tiên', dish: ['Bánh canh ghẹ, bún kèn', 'Crab noodle soup, bún kèn'], address: 'Chợ Hà Tiên', price: [40000, 80000] },
+            { name: 'Nhà hàng hải sản Mũi Nai', dish: ['Ghẹ hấp, mực nướng, ốc len xào dừa', 'Steamed crab, grilled squid, coconut snails'], address: 'Bãi Mũi Nai, Hà Tiên', price: [200000, 450000] },
+            { name: 'Cà phê ven đầm Đông Hồ', dish: ['Cà phê, nước dừa ngắm hoàng hôn', 'Coffee and coconut water at sunset'], address: 'Đường Trần Hầu, Hà Tiên', price: [25000, 60000] },
+        ],
+        stays: [
+            { area: ['Trung tâm – ven đầm Đông Hồ', 'Centre – Dong Ho lagoon'], type: 'hotel', price: [350000, 1000000], note: ['Gần chợ đêm, bến tàu đi Phú Quốc.', 'Near the night market and Phu Quoc ferry pier.'] },
+            { area: ['Mũi Nai', 'Mui Nai'], type: 'resort', price: [700000, 2000000], note: ['Ngay bãi biển, ngắm hoàng hôn.', 'Right on the beach with sunset views.'] },
+            { area: ['Quần đảo Hải Tặc', 'Hai Tac islands'], type: 'homestay', price: [300000, 700000], note: ['Homestay đơn giản trên đảo, điện nước có giờ.', 'Simple island homestays, limited power and water hours.'] },
+        ],
+    },
 }
