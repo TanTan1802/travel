@@ -133,6 +133,20 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Buah durian.jpg": {
+        "xs": "assets/img/wiki/buah-durian-4717c6-480.webp",
+        "sm": "assets/img/wiki/buah-durian-4717c6-960.webp",
+        "lg": "assets/img/wiki/buah-durian-4717c6-1920.webp",
+        "w": 1200,
+        "h": 1600
+    },
+    "Bun nuoc leo.jpg": {
+        "xs": "assets/img/wiki/bun-nuoc-leo-569cb3-480.webp",
+        "sm": "assets/img/wiki/bun-nuoc-leo-569cb3-960.webp",
+        "lg": "assets/img/wiki/bun-nuoc-leo-569cb3-1920.webp",
+        "w": 960,
+        "h": 1280
+    },
     "Bun-Bo-Hue-from-Huong-Giang-2011.jpg": {
         "xs": "assets/img/wiki/bun-bo-hue-from-huong-giang-2011-00e034-480.webp",
         "sm": "assets/img/wiki/bun-bo-hue-from-huong-giang-2011-00e034-960.webp",
@@ -196,6 +210,13 @@ const LOCAL_IMAGES = {
         "w": 945,
         "h": 713
     },
+    "Bánh nướng thập cẩm trứng muối.JPG": {
+        "xs": "assets/img/wiki/banh-nuong-thap-cam-trung-muoi-7062d0-480.webp",
+        "sm": "assets/img/wiki/banh-nuong-thap-cam-trung-muoi-7062d0-960.webp",
+        "lg": "assets/img/wiki/banh-nuong-thap-cam-trung-muoi-7062d0-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
     "Bánh tráng cuốn thịt heo.jpg": {
         "xs": "assets/img/wiki/banh-trang-cuon-thit-heo-908ce3-480.webp",
         "sm": "assets/img/wiki/banh-trang-cuon-thit-heo-908ce3-960.webp",
@@ -223,6 +244,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/banh-da-cua-hai-phong-27-2-1-74b2d3-1920.webp",
         "w": 1920,
         "h": 2199
+    },
+    "Bún chả cá, tháng 8 năm 2018.JPG": {
+        "xs": "assets/img/wiki/bun-cha-ca-thang-8-nam-2018-2f1849-480.webp",
+        "sm": "assets/img/wiki/bun-cha-ca-thang-8-nam-2018-2f1849-960.webp",
+        "lg": "assets/img/wiki/bun-cha-ca-thang-8-nam-2018-2f1849-1920.webp",
+        "w": 1920,
+        "h": 1361
+    },
+    "Bún riêu cua nước.jpg": {
+        "xs": "assets/img/wiki/bun-rieu-cua-nuoc-956649-480.webp",
+        "sm": "assets/img/wiki/bun-rieu-cua-nuoc-956649-960.webp",
+        "lg": "assets/img/wiki/bun-rieu-cua-nuoc-956649-1920.webp",
+        "w": 1920,
+        "h": 1285
     },
     "Ca Phe Sua Da.jpg": {
         "xs": "assets/img/wiki/ca-phe-sua-da-53db0a-480.webp",
@@ -259,6 +294,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 2562
     },
+    "Cha gio.jpg": {
+        "xs": "assets/img/wiki/cha-gio-af7dc6-480.webp",
+        "sm": "assets/img/wiki/cha-gio-af7dc6-960.webp",
+        "lg": "assets/img/wiki/cha-gio-af7dc6-1920.webp",
+        "w": 533,
+        "h": 800
+    },
     "Cho noi (Cai Rang, Can Tho).JPG": {
         "xs": "assets/img/wiki/cho-noi-cai-rang-can-tho-444ef3-480.webp",
         "sm": "assets/img/wiki/cho-noi-cai-rang-can-tho-444ef3-960.webp",
@@ -277,6 +319,13 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/cha-ca-la-vong-b96fae-480.webp",
         "sm": "assets/img/wiki/cha-ca-la-vong-b96fae-960.webp",
         "lg": "assets/img/wiki/cha-ca-la-vong-b96fae-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Chả cá Thát Lát chiên.JPG": {
+        "xs": "assets/img/wiki/cha-ca-that-lat-chien-04c3d2-480.webp",
+        "sm": "assets/img/wiki/cha-ca-that-lat-chien-04c3d2-960.webp",
+        "lg": "assets/img/wiki/cha-ca-that-lat-chien-04c3d2-1920.webp",
         "w": 1920,
         "h": 1440
     },
@@ -301,6 +350,13 @@ const LOCAL_IMAGES = {
         "w": 1178,
         "h": 1374
     },
+    "Cooked snails.JPG": {
+        "xs": "assets/img/wiki/cooked-snails-50cd3c-480.webp",
+        "sm": "assets/img/wiki/cooked-snails-50cd3c-960.webp",
+        "lg": "assets/img/wiki/cooked-snails-50cd3c-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg": {
         "xs": "assets/img/wiki/cueva-paraiso-phong-nha-vietnam-36277324796-5af582-480.webp",
         "sm": "assets/img/wiki/cueva-paraiso-phong-nha-vietnam-36277324796-5af582-960.webp",
@@ -322,12 +378,40 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1281
     },
+    "Cá kho tộ, cá hú.jpg": {
+        "xs": "assets/img/wiki/ca-kho-to-ca-hu-198fcb-480.webp",
+        "sm": "assets/img/wiki/ca-kho-to-ca-hu-198fcb-960.webp",
+        "lg": "assets/img/wiki/ca-kho-to-ca-hu-198fcb-1920.webp",
+        "w": 1024,
+        "h": 768
+    },
+    "Cá lóc nướng trui.JPG": {
+        "xs": "assets/img/wiki/ca-loc-nuong-trui-1d0190-480.webp",
+        "sm": "assets/img/wiki/ca-loc-nuong-trui-1d0190-960.webp",
+        "lg": "assets/img/wiki/ca-loc-nuong-trui-1d0190-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Côn Đảo National Park.jpg": {
         "xs": "assets/img/wiki/con-dao-national-park-17d3e7-480.webp",
         "sm": "assets/img/wiki/con-dao-national-park-17d3e7-960.webp",
         "lg": "assets/img/wiki/con-dao-national-park-17d3e7-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Cơm cháy kho quẹt.jpg": {
+        "xs": "assets/img/wiki/com-chay-kho-quet-0b73bd-480.webp",
+        "sm": "assets/img/wiki/com-chay-kho-quet-0b73bd-960.webp",
+        "lg": "assets/img/wiki/com-chay-kho-quet-0b73bd-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Cơm rang.JPG": {
+        "xs": "assets/img/wiki/com-rang-34f53d-480.webp",
+        "sm": "assets/img/wiki/com-rang-34f53d-960.webp",
+        "lg": "assets/img/wiki/com-rang-34f53d-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Cổng chào trên Huyện Đảo Lý Sơn - Quảng Ngãi.jpg": {
         "xs": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-480.webp",
@@ -525,6 +609,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Holstein dairy cows.jpg": {
+        "xs": "assets/img/wiki/holstein-dairy-cows-c22300-480.webp",
+        "sm": "assets/img/wiki/holstein-dairy-cows-c22300-960.webp",
+        "lg": "assets/img/wiki/holstein-dairy-cows-c22300-1920.webp",
+        "w": 1920,
+        "h": 1314
+    },
     "Homemade Hotpot.jpg": {
         "xs": "assets/img/wiki/homemade-hotpot-22e27f-480.webp",
         "sm": "assets/img/wiki/homemade-hotpot-22e27f-960.webp",
@@ -552,6 +643,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/hue-vietnam-thien-mu-temple-and-pagoda-01-7dd0af-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg": {
+        "xs": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-480.webp",
+        "sm": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-960.webp",
+        "lg": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-1920.webp",
+        "w": 1920,
+        "h": 2560
     },
     "Hạ Long Bay.jpg": {
         "xs": "assets/img/wiki/ha-long-bay-afe747-480.webp",
@@ -658,6 +756,20 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg": {
+        "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-480.webp",
+        "sm": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-960.webp",
+        "lg": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-1920.webp",
+        "w": 1920,
+        "h": 2560
+    },
+    "Lợn mán mẹt.jpg": {
+        "xs": "assets/img/wiki/lon-man-met-2b333f-480.webp",
+        "sm": "assets/img/wiki/lon-man-met-2b333f-960.webp",
+        "lg": "assets/img/wiki/lon-man-met-2b333f-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Ma Pi Leng pass plateau in 2014.jpg": {
         "xs": "assets/img/wiki/ma-pi-leng-pass-plateau-in-2014-af9258-480.webp",
         "sm": "assets/img/wiki/ma-pi-leng-pass-plateau-in-2014-af9258-960.webp",
@@ -725,6 +837,20 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/my-khe-beach-da-nang-ffc916-480.webp",
         "sm": "assets/img/wiki/my-khe-beach-da-nang-ffc916-960.webp",
         "lg": "assets/img/wiki/my-khe-beach-da-nang-ffc916-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Măng chua ngâm quả móc mật.jpg": {
+        "xs": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-480.webp",
+        "sm": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-960.webp",
+        "lg": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-1920.webp",
+        "w": 1920,
+        "h": 2560
+    },
+    "Mắm cá lóc.JPG": {
+        "xs": "assets/img/wiki/mam-ca-loc-276ddd-480.webp",
+        "sm": "assets/img/wiki/mam-ca-loc-276ddd-960.webp",
+        "lg": "assets/img/wiki/mam-ca-loc-276ddd-1920.webp",
         "w": 1920,
         "h": 1440
     },
@@ -896,6 +1022,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Roasted Beijing Duck sliced.jpg": {
+        "xs": "assets/img/wiki/roasted-beijing-duck-sliced-b882ba-480.webp",
+        "sm": "assets/img/wiki/roasted-beijing-duck-sliced-b882ba-960.webp",
+        "lg": "assets/img/wiki/roasted-beijing-duck-sliced-b882ba-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "SaPhin HaGiang Vietnam.JPG": {
         "xs": "assets/img/wiki/saphin-hagiang-vietnam-46a9f4-480.webp",
         "sm": "assets/img/wiki/saphin-hagiang-vietnam-46a9f4-960.webp",
@@ -909,6 +1042,27 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/saigon-skyline-night-view-197a26-1920.webp",
         "w": 1920,
         "h": 1283
+    },
+    "Sea urchin 01.jpg": {
+        "xs": "assets/img/wiki/sea-urchin-01-20c8a2-480.webp",
+        "sm": "assets/img/wiki/sea-urchin-01-20c8a2-960.webp",
+        "lg": "assets/img/wiki/sea-urchin-01-20c8a2-1920.webp",
+        "w": 1640,
+        "h": 877
+    },
+    "Seaweed M0010165.jpg": {
+        "xs": "assets/img/wiki/seaweed-m0010165-e5c371-480.webp",
+        "sm": "assets/img/wiki/seaweed-m0010165-e5c371-960.webp",
+        "lg": "assets/img/wiki/seaweed-m0010165-e5c371-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Single clove garlic.jpg": {
+        "xs": "assets/img/wiki/single-clove-garlic-87acfa-480.webp",
+        "sm": "assets/img/wiki/single-clove-garlic-87acfa-960.webp",
+        "lg": "assets/img/wiki/single-clove-garlic-87acfa-1920.webp",
+        "w": 500,
+        "h": 333
     },
     "Skyline of Quy Nhon.jpg": {
         "xs": "assets/img/wiki/skyline-of-quy-nhon-b25e3e-480.webp",
@@ -987,6 +1141,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1115
     },
+    "Terminalia catappa 1.jpg": {
+        "xs": "assets/img/wiki/terminalia-catappa-1-f81f96-480.webp",
+        "sm": "assets/img/wiki/terminalia-catappa-1-f81f96-960.webp",
+        "lg": "assets/img/wiki/terminalia-catappa-1-f81f96-1920.webp",
+        "w": 1400,
+        "h": 950
+    },
     "Terraced fields Sa Pa Vietnam.JPG": {
         "xs": "assets/img/wiki/terraced-fields-sa-pa-vietnam-5cdf12-480.webp",
         "sm": "assets/img/wiki/terraced-fields-sa-pa-vietnam-5cdf12-960.webp",
@@ -1026,6 +1187,13 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-480.webp",
         "sm": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-960.webp",
         "lg": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Thịt trâu gác bếp Tả Phìn Hồ.jpg": {
+        "xs": "assets/img/wiki/thit-trau-gac-bep-ta-phin-ho-d6b8a3-480.webp",
+        "sm": "assets/img/wiki/thit-trau-gac-bep-ta-phin-ho-d6b8a3-960.webp",
+        "lg": "assets/img/wiki/thit-trau-gac-bep-ta-phin-ho-d6b8a3-1920.webp",
         "w": 1920,
         "h": 1440
     },
@@ -1077,6 +1245,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/vietnam-08-112-cai-be-floating-market-3185044019-a5c80a-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Vietnam distilled coffee (3861948911).jpg": {
+        "xs": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-480.webp",
+        "sm": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-960.webp",
+        "lg": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-1920.webp",
+        "w": 1920,
+        "h": 2880
     },
     "Vietnam, Hue, Imperial City of Hue, Enclosure.jpg": {
         "xs": "assets/img/wiki/vietnam-hue-imperial-city-of-hue-enclosure-998fda-480.webp",
@@ -1161,6 +1336,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/xuan-huong-lake-31404267520-d3b506-1920.webp",
         "w": 1920,
         "h": 1282
+    },
+    "Xôi ngũ sắc.JPG": {
+        "xs": "assets/img/wiki/xoi-ngu-sac-03ac97-480.webp",
+        "sm": "assets/img/wiki/xoi-ngu-sac-03ac97-960.webp",
+        "lg": "assets/img/wiki/xoi-ngu-sac-03ac97-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Xôi xéo.jpg": {
+        "xs": "assets/img/wiki/xoi-xeo-35801e-480.webp",
+        "sm": "assets/img/wiki/xoi-xeo-35801e-960.webp",
+        "lg": "assets/img/wiki/xoi-xeo-35801e-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Đồi cát Mũi Né.jpg": {
         "xs": "assets/img/wiki/doi-cat-mui-ne-4d2df4-480.webp",
