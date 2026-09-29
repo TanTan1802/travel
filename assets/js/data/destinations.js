@@ -7,7 +7,16 @@
  */
 const WIKI_BASE = 'https://commons.wikimedia.org/wiki/'
 
+/* Đường dẫn gốc của site so với trang hiện tại (vd: "../../" cho trang diem-den/<id>/) */
+const SITE_ROOT = (typeof window !== 'undefined' && window.SITE_ROOT) || ''
+
+/*
+ * Ảnh đã tải về máy (sinh bởi tools/download-images.js, khai báo trong local-images.js)
+ * được ưu tiên dùng; nếu chưa có thì lấy trực tiếp từ Wikimedia Commons.
+ */
 function wikiImg(file, width = 1280) {
+    const local = typeof LOCAL_IMAGES !== 'undefined' && LOCAL_IMAGES[file]
+    if (local) return SITE_ROOT + (width > 960 ? local.lg : local.sm)
     return `${WIKI_BASE}Special:FilePath/${encodeURIComponent(file)}?width=${width}`
 }
 

@@ -1,0 +1,14 @@
+{
+  "name": "viet-travel",
+  "private": true,
+  "description": "Website khám phá danh lam thắng cảnh Việt Nam",
+  "scripts": {
+    "images": "node tools/download-images.js",
+    "check-images": "node tools/check-images.js",
+    "build": "node tools/build.js",
+    "serve": "python3 -m http.server 8000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

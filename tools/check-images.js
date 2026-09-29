@@ -3,42 +3,9 @@
  * Chạy trên máy có Internet (Node.js 18+):   node tools/check-images.js
  * Kết quả liệt kê ảnh không tồn tại và ảnh có độ phân giải thấp (< 1200px).
  */
-const fs = require('fs')
-const path = require('path')
-const vm = require('vm')
+const { collectWikiFiles } = require('./lib')
 
-const root = path.join(__dirname, '..')
 const MIN_WIDTH = 1200
-
-function loadDestinations() {
-    const code = fs.readFileSync(path.join(root, 'assets/js/data/destinations.js'), 'utf8')
-    const context = {}
-    vm.runInNewContext(`${code}\nthis.DESTINATIONS = DESTINATIONS`, context)
-    return context.DESTINATIONS
-}
-
-function collectFiles() {
-    const files = new Map() // tên file -> nơi sử dụng
-    const add = (file, where) => {
-        if (!file) return
-        ;(Array.isArray(file) ? file : [file]).forEach(f => {
-            if (!files.has(f)) files.set(f, new Set())
-            files.get(f).add(where)
-        })
-    }
-
-    for (const d of loadDestinations()) {
-        add(d.hero, `${d.id} (ảnh bìa)`)
-        d.gallery.forEach(g => add(g.file, `${d.id} (gallery)`))
-        d.foods.forEach(f => add(f.file, `${d.id} (món: ${f.name})`))
-    }
-
-    const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8')
-    for (const [, attr] of html.matchAll(/data-wiki="([^"]+)"/g)) {
-        attr.split('|').forEach(f => add(f, 'index.html'))
-    }
-    return files
-}
 
 async function checkBatch(names) {
     const url = 'https://commons.wikimedia.org/w/api.php?' + new URLSearchParams({
@@ -62,7 +29,7 @@ async function checkBatch(names) {
 }
 
 async function main() {
-    const files = collectFiles()
+    const files = collectWikiFiles()
     const names = [...files.keys()]
     const results = []
     for (let i = 0; i < names.length; i += 50) {
