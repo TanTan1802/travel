@@ -6,6 +6,7 @@
         <meta name="description" content="Vịnh Nha Trang là thành viên câu lạc bộ những vịnh biển đẹp nhất thế giới với bờ cát dài, nước trong xanh và hệ sinh thái san hô phong phú. Du khách có thể lặn…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/vietnam.css">
 
@@ -20,7 +21,7 @@
         <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/nha-trang/">
         <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%20Beach%2C%20Vietnam.jpg?width=1280">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Nha Trang","description":"Vịnh Nha Trang là thành viên câu lạc bộ những vịnh biển đẹp nhất thế giới với bờ cát dài, nước trong xanh và hệ sinh thái san hô phong phú. Du khách có thể lặn biển ngắm san hô, tắm bùn khoáng hay khám phá tháp Chăm Po Nagar cổ kính.","url":"https://tantan1802.github.io/travel/diem-den/nha-trang/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%20Beach%2C%20Vietnam.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%20Beach%201.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Po%20Nagar%20Nha%20Trang%20Vietnam.JPG?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%2C%20Po%20Nagar%20Cham%2C%20North%20Tower%20(6223880651).jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Khánh Hòa","addressCountry":"VN"},"touristType":["Biển đảo","Thành phố"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Nha Trang","description":"Vịnh Nha Trang là thành viên câu lạc bộ những vịnh biển đẹp nhất thế giới với bờ cát dài, nước trong xanh và hệ sinh thái san hô phong phú. Du khách có thể lặn biển ngắm san hô, tắm bùn khoáng hay khám phá tháp Chăm Po Nagar cổ kính.","url":"https://tantan1802.github.io/travel/diem-den/nha-trang/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%20Beach%2C%20Vietnam.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%20Beach%201.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Po%20Nagar%20Nha%20Trang%20Vietnam.JPG?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Nha%20Trang%2C%20Po%20Nagar%20Cham%2C%20North%20Tower%20(6223880651).jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Khánh Hòa","addressCountry":"VN"},"touristType":["Biển đảo","Thành phố"],"geo":{"@type":"GeoCoordinates","latitude":12.2388,"longitude":109.1967}}</script>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -283,6 +284,64 @@
             </div>
         </section>
     
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ Nha Trang"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần Nha Trang</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/da-lat/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="500" alt="Đà Lạt" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Đà Lạt</strong>
+                                        <small>Lâm Đồng</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~87 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/mui-ne/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="500" alt="Mũi Né" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Mũi Né</strong>
+                                        <small>Bình Thuận</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~176 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/sai-gon/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Ho Chi Minh City Skyline at Night.jpg|Ho Chi Minh City Skyline 2022 (1).jpg|Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg|Ben Thanh Market, 2023 (02).jpg|Saigon skyline night view.jpg|Ben Thanh Market, Saigon.jpg" data-width="500" alt="TP. Hồ Chí Minh" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>TP. Hồ Chí Minh</strong>
+                                        <small>Sài Gòn</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~317 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=12.2388,109.1967" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
         <section class="related section" id="related">
             <span class="section__subtitle">Gợi ý</span>
             <h2 class="section__title">Điểm đến khác ở Miền Trung</h2>
@@ -316,7 +375,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Phong Nha – Kẻ Bàng</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Bình</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 1</span>
+                
                 <p class="dest-card__tagline">Vương quốc hang động của thế giới</p>
                 <div class="dest-card__tags">
                     <span class="tag">Hang động</span><span class="tag">Di sản</span><span class="tag">Núi rừng</span>
@@ -334,7 +393,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Đà Nẵng</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Đà Nẵng</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 2</span>
+                
                 <p class="dest-card__tagline">Thành phố đáng sống bên bờ biển Mỹ Khê</p>
                 <div class="dest-card__tags">
                     <span class="tag">Thành phố</span><span class="tag">Biển đảo</span>
@@ -438,9 +497,11 @@
         <script src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 

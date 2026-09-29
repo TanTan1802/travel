@@ -119,6 +119,30 @@ function initLightbox(photos) {
     })
 }
 
+/*==================== BẢN ĐỒ VỊ TRÍ ====================*/
+function initLocationMap(d) {
+    const el = document.getElementById('dest-map')
+    if (!el) return
+
+    whenVisible(el, () => {
+        if (!mapAvailable()) return showMapUnavailable(el)
+
+        const map = createMap(el, { center: [d.lat, d.lng], zoom: 8 })
+        L.marker([d.lat, d.lng], { icon: pinIcon(d.region, { active: true }), title: d.name, zIndexOffset: 1000 })
+            .addTo(map)
+            .bindTooltip(d.name, { permanent: true, direction: 'left', offset: [-12, -16], className: 'map-tooltip' })
+
+        const nearby = nearestDestinations(d, 3)
+        nearby.forEach(({ d: n, km }) => {
+            bindDestinationPopup(L.marker([n.lat, n.lng], { icon: pinIcon(n.region), title: n.name }), n, ` · ~${Math.round(km)} km`)
+                .addTo(map)
+        })
+
+        const bounds = L.latLngBounds([[d.lat, d.lng], ...nearby.map(({ d: n }) => [n.lat, n.lng])])
+        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 9 })
+    })
+}
+
 /*==================== RENDER ====================*/
 if (dest) {
     if (!isPrerendered) {
@@ -133,6 +157,7 @@ if (dest) {
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()
     window.addEventListener('resize', balanceGallery)
+    initLocationMap(dest)
 } else {
     document.title = 'Không tìm thấy điểm đến – Việt Travel'
     destRoot.innerHTML = notFoundSection()

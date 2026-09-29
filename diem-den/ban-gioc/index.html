@@ -6,6 +6,7 @@
         <meta name="description" content="Nằm trên dòng Quây Sơn nơi biên giới Việt – Trung, thác Bản Giốc đổ xuống qua nhiều tầng đá vôi tạo nên màn nước trắng xóa giữa núi rừng xanh thẳm. Kết hợp…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/vietnam.css">
 
@@ -20,7 +21,7 @@
         <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/ban-gioc/">
         <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20Waterfall%20-%20Trung%20Kanh%20District%20-%20Cao%20Bang%20Province%20-%20Vietnam%20-%2001%20(48119813303).jpg?width=1280">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Thác Bản Giốc","description":"Nằm trên dòng Quây Sơn nơi biên giới Việt – Trung, thác Bản Giốc đổ xuống qua nhiều tầng đá vôi tạo nên màn nước trắng xóa giữa núi rừng xanh thẳm. Kết hợp khám phá động Ngườm Ngao và hồ Ba Bể cho một hành trình Đông Bắc trọn vẹn.","url":"https://tantan1802.github.io/travel/diem-den/ban-gioc/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20Waterfall%20-%20Trung%20Kanh%20District%20-%20Cao%20Bang%20Province%20-%20Vietnam%20-%2001%20(48119813303).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20Waterfall%20-%20Trung%20Kanh%20District%20-%20Cao%20Bang%20Province%20-%20Vietnam%20-%2016%20(48119888466).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20-%20Detian%20Falls2.jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Cao Bằng","addressCountry":"VN"},"touristType":["Núi rừng"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Thác Bản Giốc","description":"Nằm trên dòng Quây Sơn nơi biên giới Việt – Trung, thác Bản Giốc đổ xuống qua nhiều tầng đá vôi tạo nên màn nước trắng xóa giữa núi rừng xanh thẳm. Kết hợp khám phá động Ngườm Ngao và hồ Ba Bể cho một hành trình Đông Bắc trọn vẹn.","url":"https://tantan1802.github.io/travel/diem-den/ban-gioc/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20Waterfall%20-%20Trung%20Kanh%20District%20-%20Cao%20Bang%20Province%20-%20Vietnam%20-%2001%20(48119813303).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20Waterfall%20-%20Trung%20Kanh%20District%20-%20Cao%20Bang%20Province%20-%20Vietnam%20-%2016%20(48119888466).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ban%20Gioc%20-%20Detian%20Falls2.jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Cao Bằng","addressCountry":"VN"},"touristType":["Núi rừng"],"geo":{"@type":"GeoCoordinates","latitude":22.8551,"longitude":106.7234}}</script>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -267,30 +268,70 @@
             </div>
         </section>
     
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ Thác Bản Giốc"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần Thác Bản Giốc</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/ha-giang/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="500" alt="Hà Giang" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Hà Giang</strong>
+                                        <small>Hà Giang</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~147 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/vinh-ha-long/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="500" alt="Vịnh Hạ Long" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Vịnh Hạ Long</strong>
+                                        <small>Quảng Ninh</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~221 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/ha-noi/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="500" alt="Hà Nội" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Hà Nội</strong>
+                                        <small>Thủ đô</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~222 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=22.8551,106.7234" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
         <section class="related section" id="related">
             <span class="section__subtitle">Gợi ý</span>
             <h2 class="section__title">Điểm đến khác ở Miền Bắc</h2>
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/vinh-ha-long/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" alt="Vịnh Hạ Long" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Bắc</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Vịnh Hạ Long</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Ninh</span>
-                
-                <p class="dest-card__tagline">Kỳ quan thiên nhiên thế giới giữa lòng vịnh Bắc Bộ</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Biển đảo</span><span class="tag">Di sản</span>
-                </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
-    
         <a href="../../diem-den/sa-pa/index.html" class="dest-card">
             <div class="dest-card__media">
                 <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" alt="Sa Pa" class="dest-card__img" loading="lazy">
@@ -300,7 +341,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Sa Pa</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lào Cai</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 1</span>
+                
                 <p class="dest-card__tagline">Thị trấn trong sương và những thửa ruộng bậc thang</p>
                 <div class="dest-card__tags">
                     <span class="tag">Núi rừng</span>
@@ -309,19 +350,19 @@
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
         </a>
     
-        <a href="../../diem-den/ha-noi/index.html" class="dest-card">
+        <a href="../../diem-den/ninh-binh/index.html" class="dest-card">
             <div class="dest-card__media">
-                <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="960" alt="Hà Nội" class="dest-card__img" loading="lazy">
+                <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" alt="Tràng An – Ninh Bình" class="dest-card__img" loading="lazy">
                 <span class="dest-card__region">Miền Bắc</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
             </div>
             <div class="dest-card__body">
-                <h3 class="dest-card__title">Hà Nội</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Thủ đô</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 2</span>
-                <p class="dest-card__tagline">Nghìn năm văn hiến bên hồ Gươm</p>
+                <h3 class="dest-card__title">Tràng An – Ninh Bình</h3>
+                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Ninh Bình</span>
+                
+                <p class="dest-card__tagline">"Hạ Long trên cạn" giữa núi non hùng vĩ</p>
                 <div class="dest-card__tags">
-                    <span class="tag">Thành phố</span><span class="tag">Di sản</span>
+                    <span class="tag">Di sản</span><span class="tag">Núi rừng</span>
                 </div>
             </div>
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
@@ -422,9 +463,11 @@
         <script src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 

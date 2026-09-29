@@ -6,6 +6,7 @@
         <meta name="description" content="Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.">
         <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/vietnam.css">
@@ -200,8 +201,20 @@
                     <div class="explore__filters" id="region-filters" role="tablist" aria-label="Lọc theo vùng miền"></div>
                     <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Lọc theo loại hình"></div>
 
-                    <p class="explore__result" id="explore-result"></p>
+                    <div class="explore__toolbar">
+                        <p class="explore__result" id="explore-result"></p>
+                        <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
+                            <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
+                                <i class="ri-layout-grid-line"></i> Danh sách
+                            </button>
+                            <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
+                                <i class="ri-map-2-line"></i> Bản đồ
+                            </button>
+                        </div>
+                    </div>
                     <p class="explore__tip" id="explore-tip" hidden></p>
+
+                    <div class="explore__map" id="explore-map" hidden></div>
 
                     <div class="dest__grid" id="dest-grid"><!-- build:grid -->
         <a href="diem-den/vinh-ha-long/index.html" class="dest-card">
@@ -614,9 +627,11 @@
         <script src="assets/js/swiper-bundle.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="assets/js/data/local-images.js"></script>
         <script src="assets/js/data/destinations.js"></script>
         <script src="assets/js/components.js"></script>
+        <script src="assets/js/map.js"></script>
         <script src="assets/js/home.js"></script>
 
         <!--=============== MAIN JS ===============-->

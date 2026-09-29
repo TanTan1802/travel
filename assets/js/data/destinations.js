@@ -47,6 +47,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['bien', 'di-san'],
         rating: 4.9,
+        lat: 20.9101,
+        lng: 107.1839,
         tagline: 'Kỳ quan thiên nhiên thế giới giữa lòng vịnh Bắc Bộ',
         description: 'Gần 2.000 hòn đảo đá vôi nhô lên giữa làn nước xanh ngọc tạo nên một bức tranh thủy mặc sống động. Hai lần được UNESCO công nhận là Di sản Thiên nhiên Thế giới, Hạ Long là nơi bạn có thể ngủ đêm trên du thuyền, chèo kayak qua những hang động bí ẩn và ngắm hoàng hôn buông xuống trên mặt vịnh.',
         highlights: ['Hang Sửng Sốt', 'Đảo Ti Tốp', 'Làng chài Cửa Vạn', 'Vịnh Lan Hạ'],
@@ -80,6 +82,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['nui'],
         rating: 4.8,
+        lat: 22.3364,
+        lng: 103.8438,
         tagline: 'Thị trấn trong sương và những thửa ruộng bậc thang',
         description: 'Nằm ở độ cao 1.600m, Sa Pa quyến rũ bởi khí hậu mát mẻ quanh năm, ruộng bậc thang uốn lượn như những nấc thang lên trời và bản sắc văn hóa đặc sắc của người H\'Mông, Dao đỏ. Đây cũng là cửa ngõ chinh phục Fansipan – "nóc nhà Đông Dương".',
         highlights: ['Đỉnh Fansipan', 'Bản Cát Cát', 'Thung lũng Mường Hoa', 'Đèo Ô Quy Hồ'],
@@ -112,6 +116,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['thanh-pho', 'di-san'],
         rating: 4.7,
+        lat: 21.0285,
+        lng: 105.8542,
         tagline: 'Nghìn năm văn hiến bên hồ Gươm',
         description: 'Thủ đô ngàn năm tuổi là nơi giao thoa giữa nét cổ kính của 36 phố phường, những công trình kiến trúc Pháp và nhịp sống hiện đại. Dạo quanh hồ Hoàn Kiếm, thưởng thức một ly cà phê trứng hay bát phở gia truyền là cách tuyệt vời để cảm nhận hồn cốt Hà Nội.',
         highlights: ['Hồ Hoàn Kiếm', 'Văn Miếu – Quốc Tử Giám', 'Phố cổ', 'Lăng Chủ tịch Hồ Chí Minh'],
@@ -146,6 +152,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['di-san', 'nui'],
         rating: 4.9,
+        lat: 20.2506,
+        lng: 105.9745,
         tagline: '"Hạ Long trên cạn" giữa núi non hùng vĩ',
         description: 'Quần thể danh thắng Tràng An là di sản hỗn hợp văn hóa và thiên nhiên đầu tiên của Việt Nam. Ngồi thuyền nan xuôi dòng Ngô Đồng, len qua những hang động xuyên núi và cánh đồng lúa vàng ở Tam Cốc – Bích Động là trải nghiệm khó quên.',
         highlights: ['Bến thuyền Tràng An', 'Tam Cốc – Bích Động', 'Hang Múa', 'Chùa Bái Đính'],
@@ -179,6 +187,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['nui'],
         rating: 4.9,
+        lat: 23.2787,
+        lng: 105.362,
         tagline: 'Cung đường đèo hùng vĩ nhất Việt Nam',
         description: 'Vùng cao nguyên đá Đồng Văn – công viên địa chất toàn cầu UNESCO – là thiên đường của dân phượt. Đèo Mã Pí Lèng uốn lượn trên vực sâu, dòng Nho Quế xanh biếc, cột cờ Lũng Cú nơi địa đầu Tổ quốc và mùa hoa tam giác mạch tím hồng cả sườn đồi.',
         highlights: ['Đèo Mã Pí Lèng', 'Sông Nho Quế', 'Cột cờ Lũng Cú', 'Phố cổ Đồng Văn'],
@@ -212,6 +222,8 @@ const DESTINATIONS = [
         region: 'bac',
         categories: ['nui'],
         rating: 4.8,
+        lat: 22.8551,
+        lng: 106.7234,
         tagline: 'Thác nước biên giới đẹp nhất Đông Nam Á',
         description: 'Nằm trên dòng Quây Sơn nơi biên giới Việt – Trung, thác Bản Giốc đổ xuống qua nhiều tầng đá vôi tạo nên màn nước trắng xóa giữa núi rừng xanh thẳm. Kết hợp khám phá động Ngườm Ngao và hồ Ba Bể cho một hành trình Đông Bắc trọn vẹn.',
         highlights: ['Thác Bản Giốc', 'Động Ngườm Ngao', 'Chùa Phật tích Trúc Lâm', 'Hồ Thang Hen'],
@@ -244,6 +256,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['di-san', 'thanh-pho'],
         rating: 4.7,
+        lat: 16.4698,
+        lng: 107.5796,
         tagline: 'Kinh thành triều Nguyễn bên dòng Hương mộng mơ',
         description: 'Kinh đô của 13 đời vua triều Nguyễn lưu giữ quần thể di tích cung đình đồ sộ, những lăng tẩm uy nghiêm và nhịp sống chậm rãi, trầm mặc. Nghe ca Huế trên sông Hương và thưởng thức ẩm thực cung đình là trải nghiệm chỉ có ở Huế.',
         highlights: ['Đại Nội', 'Chùa Thiên Mụ', 'Lăng Khải Định', 'Sông Hương'],
@@ -278,6 +292,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['hang-dong', 'di-san', 'nui'],
         rating: 4.9,
+        lat: 17.5905,
+        lng: 106.283,
         tagline: 'Vương quốc hang động của thế giới',
         description: 'Vườn quốc gia Phong Nha – Kẻ Bàng sở hữu hệ thống hang động karst cổ nhất châu Á, trong đó có Sơn Đoòng – hang động lớn nhất hành tinh. Động Thiên Đường với nhũ đá lộng lẫy và động Phong Nha với dòng sông ngầm là những điểm đến không thể bỏ lỡ.',
         highlights: ['Hang Sơn Đoòng', 'Động Thiên Đường', 'Động Phong Nha', 'Hang Én'],
@@ -311,6 +327,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['thanh-pho', 'bien'],
         rating: 4.8,
+        lat: 16.0544,
+        lng: 108.2022,
         tagline: 'Thành phố đáng sống bên bờ biển Mỹ Khê',
         description: 'Đà Nẵng hội tụ đủ biển xanh, núi rừng và phố thị hiện đại. Bãi biển Mỹ Khê từng được bình chọn là một trong những bãi biển quyến rũ nhất hành tinh, Cầu Vàng trên Bà Nà Hills nổi tiếng toàn cầu, và Cầu Rồng phun lửa mỗi tối cuối tuần.',
         highlights: ['Cầu Vàng – Bà Nà Hills', 'Biển Mỹ Khê', 'Ngũ Hành Sơn', 'Cầu Rồng'],
@@ -345,6 +363,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['di-san', 'thanh-pho'],
         rating: 4.9,
+        lat: 15.8801,
+        lng: 108.338,
         tagline: 'Thương cảng cổ lung linh ánh đèn lồng',
         description: 'Từng là thương cảng sầm uất bậc nhất Đông Nam Á thế kỷ XVI–XVII, Hội An ngày nay vẫn giữ nguyên vẹn những dãy nhà tường vàng mái ngói rêu phong. Khi đêm xuống, hàng nghìn chiếc đèn lồng sắc màu thắp sáng phố cổ và dòng sông Hoài.',
         highlights: ['Chùa Cầu', 'Sông Hoài', 'Hội quán Phúc Kiến', 'Rừng dừa Bảy Mẫu'],
@@ -378,6 +398,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['bien', 'thanh-pho'],
         rating: 4.6,
+        lat: 12.2388,
+        lng: 109.1967,
         tagline: 'Hòn ngọc của biển Đông',
         description: 'Vịnh Nha Trang là thành viên câu lạc bộ những vịnh biển đẹp nhất thế giới với bờ cát dài, nước trong xanh và hệ sinh thái san hô phong phú. Du khách có thể lặn biển ngắm san hô, tắm bùn khoáng hay khám phá tháp Chăm Po Nagar cổ kính.',
         highlights: ['Tháp Bà Po Nagar', 'Hòn Mun', 'VinWonders', 'Đảo Bình Ba'],
@@ -411,6 +433,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['nui', 'thanh-pho'],
         rating: 4.7,
+        lat: 11.9404,
+        lng: 108.4583,
         tagline: 'Thành phố ngàn hoa trên cao nguyên Lâm Viên',
         description: 'Với khí hậu se lạnh quanh năm, rừng thông reo, hồ nước thơ mộng và những biệt thự kiểu Pháp, Đà Lạt là điểm đến lãng mạn bậc nhất Việt Nam. Buổi sáng săn mây, chiều dạo hồ Xuân Hương và tối lang thang chợ đêm với ly sữa đậu nành nóng.',
         highlights: ['Hồ Xuân Hương', 'Ga Đà Lạt', 'Thung lũng Tình Yêu', 'Đồi chè Cầu Đất'],
@@ -445,6 +469,8 @@ const DESTINATIONS = [
         region: 'trung',
         categories: ['bien'],
         rating: 4.5,
+        lat: 10.9333,
+        lng: 108.287,
         tagline: '"Tiểu sa mạc Sahara" của Việt Nam',
         description: 'Mũi Né nổi tiếng với những đồi cát đỏ, cát trắng thay hình đổi dạng theo gió, Suối Tiên với dòng nước chảy giữa vách đất đỏ và làng chài rộn ràng thuyền thúng. Đây cũng là thủ phủ lướt ván diều của Đông Nam Á.',
         highlights: ['Đồi cát Bay', 'Bàu Trắng', 'Suối Tiên', 'Làng chài Mũi Né'],
@@ -478,6 +504,8 @@ const DESTINATIONS = [
         region: 'nam',
         categories: ['thanh-pho'],
         rating: 4.6,
+        lat: 10.7769,
+        lng: 106.7009,
         tagline: 'Thành phố không ngủ đầy năng động',
         description: 'Sài Gòn là đô thị lớn nhất Việt Nam với nhịp sống sôi động suốt ngày đêm. Từ Nhà thờ Đức Bà, Bưu điện Thành phố mang dấu ấn Pháp đến những tòa cao ốc chọc trời, từ chợ Bến Thành nhộn nhịp đến những con hẻm ẩm thực bất tận.',
         highlights: ['Nhà thờ Đức Bà', 'Chợ Bến Thành', 'Dinh Độc Lập', 'Phố đi bộ Nguyễn Huệ'],
@@ -512,6 +540,8 @@ const DESTINATIONS = [
         region: 'nam',
         categories: ['thanh-pho'],
         rating: 4.6,
+        lat: 10.0452,
+        lng: 105.7469,
         tagline: 'Chợ nổi, vườn trái cây và sông nước miệt vườn',
         description: 'Thủ phủ đồng bằng sông Cửu Long mang đến trải nghiệm sông nước độc đáo: chợ nổi Cái Răng họp từ tờ mờ sáng, những miệt vườn trĩu quả, kênh rạch rợp bóng dừa và con người miền Tây hiền hòa, mến khách.',
         highlights: ['Chợ nổi Cái Răng', 'Bến Ninh Kiều', 'Nhà cổ Bình Thủy', 'Vườn trái cây Phong Điền'],
@@ -544,6 +574,8 @@ const DESTINATIONS = [
         region: 'nam',
         categories: ['bien'],
         rating: 4.8,
+        lat: 10.2899,
+        lng: 103.984,
         tagline: 'Đảo ngọc với hoàng hôn đẹp nhất Việt Nam',
         description: 'Hòn đảo lớn nhất Việt Nam sở hữu những bãi cát trắng mịn, làn nước trong xanh như ngọc và hoàng hôn rực rỡ ở bờ Tây. Phú Quốc còn nổi tiếng với nước mắm, hồ tiêu, ngọc trai và tuyến cáp treo vượt biển dài nhất thế giới.',
         highlights: ['Bãi Sao', 'Hòn Thơm', 'Grand World', 'Làng chài Hàm Ninh'],
@@ -576,6 +608,8 @@ const DESTINATIONS = [
         region: 'nam',
         categories: ['bien', 'di-san'],
         rating: 4.7,
+        lat: 8.682,
+        lng: 106.609,
         tagline: 'Thiên nhiên hoang sơ và những trang sử bi hùng',
         description: 'Quần đảo gồm 16 hòn đảo với rừng nguyên sinh, bãi biển vắng và rạn san hô còn nguyên vẹn. Côn Đảo cũng là chứng tích lịch sử với hệ thống nhà tù và nghĩa trang Hàng Dương – nơi yên nghỉ của nữ anh hùng Võ Thị Sáu.',
         highlights: ['Bãi Đầm Trầu', 'Nhà tù Côn Đảo', 'Nghĩa trang Hàng Dương', 'Hòn Bảy Cạnh'],
@@ -604,6 +638,24 @@ const DESTINATIONS = [
 
 function getDestination(id) {
     return DESTINATIONS.find(d => d.id === id)
+}
+
+/* Khoảng cách đường chim bay (km) giữa hai điểm đến – công thức Haversine */
+function distanceKm(a, b) {
+    const rad = deg => deg * Math.PI / 180
+    const dLat = rad(b.lat - a.lat)
+    const dLng = rad(b.lng - a.lng)
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng / 2) ** 2
+    return 2 * 6371 * Math.asin(Math.sqrt(h))
+}
+
+/* Các điểm đến gần nhất, kèm khoảng cách */
+function nearestDestinations(dest, count = 3) {
+    return DESTINATIONS
+        .filter(d => d.id !== dest.id)
+        .map(d => ({ d, km: distanceKm(dest, d) }))
+        .sort((a, b) => a.km - b.km)
+        .slice(0, count)
 }
 
 /*=============== ẢNH NHIỀU TẦNG DỰ PHÒNG ===============*/

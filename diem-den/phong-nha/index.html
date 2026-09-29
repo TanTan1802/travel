@@ -6,6 +6,7 @@
         <meta name="description" content="Vườn quốc gia Phong Nha – Kẻ Bàng sở hữu hệ thống hang động karst cổ nhất châu Á, trong đó có Sơn Đoòng – hang động lớn nhất hành tinh. Động Thiên Đường với…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/vietnam.css">
 
@@ -20,7 +21,7 @@
         <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/phong-nha/">
         <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Doong%20Cave%201.jpg?width=1280">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Phong Nha – Kẻ Bàng","description":"Vườn quốc gia Phong Nha – Kẻ Bàng sở hữu hệ thống hang động karst cổ nhất châu Á, trong đó có Sơn Đoòng – hang động lớn nhất hành tinh. Động Thiên Đường với nhũ đá lộng lẫy và động Phong Nha với dòng sông ngầm là những điểm đến không thể bỏ lỡ.","url":"https://tantan1802.github.io/travel/diem-den/phong-nha/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Doong%20Cave%201.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Cueva%20Para%C3%ADso%2C%20Phong%20Nha%2C%20Vietnam%20(36277324796).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Cueva%20Phong%20Nha%2C%20Vietnam%20(38652790530).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Phong%20Nha-Ke%20Bang%20cave3.jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Quảng Bình","addressCountry":"VN"},"touristType":["Hang động","Di sản","Núi rừng"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Phong Nha – Kẻ Bàng","description":"Vườn quốc gia Phong Nha – Kẻ Bàng sở hữu hệ thống hang động karst cổ nhất châu Á, trong đó có Sơn Đoòng – hang động lớn nhất hành tinh. Động Thiên Đường với nhũ đá lộng lẫy và động Phong Nha với dòng sông ngầm là những điểm đến không thể bỏ lỡ.","url":"https://tantan1802.github.io/travel/diem-den/phong-nha/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Doong%20Cave%201.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Cueva%20Para%C3%ADso%2C%20Phong%20Nha%2C%20Vietnam%20(36277324796).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Cueva%20Phong%20Nha%2C%20Vietnam%20(38652790530).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Phong%20Nha-Ke%20Bang%20cave3.jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Quảng Bình","addressCountry":"VN"},"touristType":["Hang động","Di sản","Núi rừng"],"geo":{"@type":"GeoCoordinates","latitude":17.5905,"longitude":106.283}}</script>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -283,61 +284,119 @@
             </div>
         </section>
     
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ Phong Nha – Kẻ Bàng"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần Phong Nha – Kẻ Bàng</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/hue/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="500" alt="Cố đô Huế" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Cố đô Huế</strong>
+                                        <small>Thừa Thiên Huế</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~186 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/da-nang/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="500" alt="Đà Nẵng" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Đà Nẵng</strong>
+                                        <small>Đà Nẵng</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~266 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/hoi-an/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="500" alt="Phố cổ Hội An" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Phố cổ Hội An</strong>
+                                        <small>Quảng Nam</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~290 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=17.5905,106.283" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
         <section class="related section" id="related">
             <span class="section__subtitle">Gợi ý</span>
             <h2 class="section__title">Điểm đến khác ở Miền Trung</h2>
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/hue/index.html" class="dest-card">
+        <a href="../../diem-den/nha-trang/index.html" class="dest-card">
             <div class="dest-card__media">
-                <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" alt="Cố đô Huế" class="dest-card__img" loading="lazy">
+                <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
+                <span class="dest-card__region">Miền Trung</span>
+                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+            </div>
+            <div class="dest-card__body">
+                <h3 class="dest-card__title">Nha Trang</h3>
+                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Khánh Hòa</span>
+                
+                <p class="dest-card__tagline">Hòn ngọc của biển Đông</p>
+                <div class="dest-card__tags">
+                    <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                </div>
+            </div>
+            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+        </a>
+    
+        <a href="../../diem-den/da-lat/index.html" class="dest-card">
+            <div class="dest-card__media">
+                <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="960" alt="Đà Lạt" class="dest-card__img" loading="lazy">
                 <span class="dest-card__region">Miền Trung</span>
                 <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
             </div>
             <div class="dest-card__body">
-                <h3 class="dest-card__title">Cố đô Huế</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Thừa Thiên Huế</span>
+                <h3 class="dest-card__title">Đà Lạt</h3>
+                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lâm Đồng</span>
                 
-                <p class="dest-card__tagline">Kinh thành triều Nguyễn bên dòng Hương mộng mơ</p>
+                <p class="dest-card__tagline">Thành phố ngàn hoa trên cao nguyên Lâm Viên</p>
                 <div class="dest-card__tags">
-                    <span class="tag">Di sản</span><span class="tag">Thành phố</span>
+                    <span class="tag">Núi rừng</span><span class="tag">Thành phố</span>
                 </div>
             </div>
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
         </a>
     
-        <a href="../../diem-den/da-nang/index.html" class="dest-card">
+        <a href="../../diem-den/mui-ne/index.html" class="dest-card">
             <div class="dest-card__media">
-                <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" alt="Đà Nẵng" class="dest-card__img" loading="lazy">
+                <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mũi Né" class="dest-card__img" loading="lazy">
                 <span class="dest-card__region">Miền Trung</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
             </div>
             <div class="dest-card__body">
-                <h3 class="dest-card__title">Đà Nẵng</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Đà Nẵng</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 1</span>
-                <p class="dest-card__tagline">Thành phố đáng sống bên bờ biển Mỹ Khê</p>
+                <h3 class="dest-card__title">Mũi Né</h3>
+                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Thuận</span>
+                
+                <p class="dest-card__tagline">"Tiểu sa mạc Sahara" của Việt Nam</p>
                 <div class="dest-card__tags">
-                    <span class="tag">Thành phố</span><span class="tag">Biển đảo</span>
-                </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
-    
-        <a href="../../diem-den/hoi-an/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Japanese Covered Bridge, Hoi An, Vietnam (6944563878).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="960" alt="Phố cổ Hội An" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Trung</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Phố cổ Hội An</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Nam</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 2</span>
-                <p class="dest-card__tagline">Thương cảng cổ lung linh ánh đèn lồng</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Di sản</span><span class="tag">Thành phố</span>
+                    <span class="tag">Biển đảo</span>
                 </div>
             </div>
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
@@ -438,9 +497,11 @@
         <script src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 

@@ -6,6 +6,7 @@
         <meta name="description" content="Thủ đô ngàn năm tuổi là nơi giao thoa giữa nét cổ kính của 36 phố phường, những công trình kiến trúc Pháp và nhịp sống hiện đại. Dạo quanh hồ Hoàn Kiếm, thưởng…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/vietnam.css">
 
@@ -20,7 +21,7 @@
         <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/ha-noi/">
         <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Turtle%20Tower%2C%20Hoan%20Kiem%20Lake%2C%20Hanoi%204G4A7301.jpg?width=1280">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Hà Nội","description":"Thủ đô ngàn năm tuổi là nơi giao thoa giữa nét cổ kính của 36 phố phường, những công trình kiến trúc Pháp và nhịp sống hiện đại. Dạo quanh hồ Hoàn Kiếm, thưởng thức một ly cà phê trứng hay bát phở gia truyền là cách tuyệt vời để cảm nhận hồn cốt Hà Nội.","url":"https://tantan1802.github.io/travel/diem-den/ha-noi/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Turtle%20Tower%2C%20Hoan%20Kiem%20Lake%2C%20Hanoi%204G4A7301.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Hoan%20Kiem%20lake%20Hanoi%20(39513889222).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20Literature%2C%20Hanoi%20by%20Xiquinho%20Silva%2004.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Well%20of%20Heavenly%20Clarity%20-%20Temple%20of%20Literature%2C%20Hanoi%20-%20DSC04565.JPG?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Thủ đô","addressCountry":"VN"},"touristType":["Thành phố","Di sản"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Hà Nội","description":"Thủ đô ngàn năm tuổi là nơi giao thoa giữa nét cổ kính của 36 phố phường, những công trình kiến trúc Pháp và nhịp sống hiện đại. Dạo quanh hồ Hoàn Kiếm, thưởng thức một ly cà phê trứng hay bát phở gia truyền là cách tuyệt vời để cảm nhận hồn cốt Hà Nội.","url":"https://tantan1802.github.io/travel/diem-den/ha-noi/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Turtle%20Tower%2C%20Hoan%20Kiem%20Lake%2C%20Hanoi%204G4A7301.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Hoan%20Kiem%20lake%20Hanoi%20(39513889222).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20Literature%2C%20Hanoi%20by%20Xiquinho%20Silva%2004.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Well%20of%20Heavenly%20Clarity%20-%20Temple%20of%20Literature%2C%20Hanoi%20-%20DSC04565.JPG?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Thủ đô","addressCountry":"VN"},"touristType":["Thành phố","Di sản"],"geo":{"@type":"GeoCoordinates","latitude":21.0285,"longitude":105.8542}}</script>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -297,30 +298,70 @@
             </div>
         </section>
     
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ Hà Nội"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần Hà Nội</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/ninh-binh/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="500" alt="Tràng An – Ninh Bình" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Tràng An – Ninh Bình</strong>
+                                        <small>Ninh Bình</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~87 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/vinh-ha-long/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="500" alt="Vịnh Hạ Long" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Vịnh Hạ Long</strong>
+                                        <small>Quảng Ninh</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~139 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/ban-gioc/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 01 (48119813303).jpg|Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 16 (48119888466).jpg|Thác Bản Giốc.jpg|Ban Gioc - Detian Falls2.jpg" data-width="500" alt="Thác Bản Giốc" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Thác Bản Giốc</strong>
+                                        <small>Cao Bằng</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~222 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=21.0285,105.8542" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
         <section class="related section" id="related">
             <span class="section__subtitle">Gợi ý</span>
             <h2 class="section__title">Điểm đến khác ở Miền Bắc</h2>
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/vinh-ha-long/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" alt="Vịnh Hạ Long" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Bắc</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Vịnh Hạ Long</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Quảng Ninh</span>
-                
-                <p class="dest-card__tagline">Kỳ quan thiên nhiên thế giới giữa lòng vịnh Bắc Bộ</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Biển đảo</span><span class="tag">Di sản</span>
-                </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
-    
         <a href="../../diem-den/sa-pa/index.html" class="dest-card">
             <div class="dest-card__media">
                 <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" alt="Sa Pa" class="dest-card__img" loading="lazy">
@@ -330,7 +371,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Sa Pa</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lào Cai</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 1</span>
+                
                 <p class="dest-card__tagline">Thị trấn trong sương và những thửa ruộng bậc thang</p>
                 <div class="dest-card__tags">
                     <span class="tag">Núi rừng</span>
@@ -339,19 +380,19 @@
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
         </a>
     
-        <a href="../../diem-den/ninh-binh/index.html" class="dest-card">
+        <a href="../../diem-den/ha-giang/index.html" class="dest-card">
             <div class="dest-card__media">
-                <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" alt="Tràng An – Ninh Bình" class="dest-card__img" loading="lazy">
+                <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="960" alt="Hà Giang" class="dest-card__img" loading="lazy">
                 <span class="dest-card__region">Miền Bắc</span>
                 <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
             </div>
             <div class="dest-card__body">
-                <h3 class="dest-card__title">Tràng An – Ninh Bình</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Ninh Bình</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 2</span>
-                <p class="dest-card__tagline">"Hạ Long trên cạn" giữa núi non hùng vĩ</p>
+                <h3 class="dest-card__title">Hà Giang</h3>
+                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Hà Giang</span>
+                
+                <p class="dest-card__tagline">Cung đường đèo hùng vĩ nhất Việt Nam</p>
                 <div class="dest-card__tags">
-                    <span class="tag">Di sản</span><span class="tag">Núi rừng</span>
+                    <span class="tag">Núi rừng</span>
                 </div>
             </div>
             <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
@@ -452,9 +493,11 @@
         <script src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 

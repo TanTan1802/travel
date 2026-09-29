@@ -160,8 +160,49 @@ function activitiesSection(d) {
     `
 }
 
+function locationSection(d) {
+    const nearby = nearestDestinations(d, 3)
+    return `
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ ${d.name}"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần ${d.name}</h3>
+                    <ul class="location__nearby">
+                        ${nearby.map(({ d: n, km }) => `
+                            <li>
+                                <a href="${destinationUrl(n.id)}" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="${wikiAttr(heroCandidates(n))}" data-width="500" alt="${n.name}" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>${n.name}</strong>
+                                        <small>${n.province}</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~${Math.round(km)} km</span>
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${d.lat},${d.lng}" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    `
+}
+
 function relatedSection(d) {
-    const related = DESTINATIONS.filter(x => x.region === d.region && x.id !== d.id).slice(0, 3)
+    /* Các điểm đến cùng vùng, bỏ qua những điểm đã có trong "lân cận" */
+    const nearbyIds = nearestDestinations(d, 3).map(n => n.d.id)
+    const related = DESTINATIONS
+        .filter(x => x.region === d.region && x.id !== d.id && !nearbyIds.includes(x.id))
+        .slice(0, 3)
     if (!related.length) return ''
     return `
         <section class="related section" id="related">
@@ -169,7 +210,7 @@ function relatedSection(d) {
             <h2 class="section__title">Điểm đến khác ở ${REGIONS[d.region]}</h2>
 
             <div class="dest__grid container">
-                ${related.map(destinationCard).join('')}
+                ${related.map(x => destinationCard(x)).join('')}
             </div>
 
             <div class="related__more">
@@ -200,6 +241,7 @@ function renderDestinationPage(d) {
         gallerySection(d),
         foodSection(d),
         activitiesSection(d),
+        locationSection(d),
         relatedSection(d),
     ].join('')
 }

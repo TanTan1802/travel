@@ -92,6 +92,48 @@ const exploreState = {
     region: 'all',
     category: 'all',
     query: '',
+    view: 'grid',
+}
+
+/*==================== EXPLORE: BẢN ĐỒ ====================*/
+const exploreMap = { map: null, markers: [], results: [] }
+
+function updateExploreMap(results) {
+    exploreMap.results = results
+    if (!exploreMap.map) return
+
+    exploreMap.markers.forEach(m => m.remove())
+    exploreMap.markers = results.map(({ d }) =>
+        bindDestinationPopup(L.marker([d.lat, d.lng], { icon: pinIcon(d.region), title: d.name }), d).addTo(exploreMap.map))
+
+    if (results.length) {
+        const bounds = L.latLngBounds(results.map(({ d }) => [d.lat, d.lng]))
+        exploreMap.map.fitBounds(bounds, { padding: [40, 40], maxZoom: 9 })
+    }
+}
+
+function showExploreMap() {
+    const el = document.getElementById('explore-map')
+    el.hidden = false
+    if (!mapAvailable()) return showMapUnavailable(el)
+
+    if (!exploreMap.map) {
+        exploreMap.map = createMap(el)
+        updateExploreMap(exploreMap.results)
+    }
+    exploreMap.map.invalidateSize()
+}
+
+function setView(view) {
+    exploreState.view = view
+    document.querySelectorAll('.view-toggle__btn').forEach(btn => {
+        const active = btn.dataset.view === view
+        btn.classList.toggle('view-toggle__btn--active', active)
+        btn.setAttribute('aria-pressed', active)
+    })
+    document.getElementById('dest-grid').hidden = view !== 'grid'
+    if (view === 'map') showExploreMap()
+    else document.getElementById('explore-map').hidden = true
 }
 
 function renderChips(containerId, options, key) {
@@ -128,6 +170,7 @@ function renderGrid() {
 
     grid.innerHTML = results.map(r => destinationCard(r.d, r.match.hint)).join('')
     hydrateWikiImages(grid)
+    updateExploreMap(results)
 
     document.getElementById('explore-empty').hidden = results.length > 0
     document.getElementById('explore-result').textContent =
@@ -155,6 +198,10 @@ function initExplore() {
             renderGrid()
         })
     }
+
+    document.querySelectorAll('.view-toggle__btn').forEach(btn =>
+        btn.addEventListener('click', () => setView(btn.dataset.view)))
+    if (params.get('view') === 'map') setView('map')
 
     const count = document.getElementById('dest-count')
     if (count) count.textContent = DESTINATIONS.length

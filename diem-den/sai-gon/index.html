@@ -6,6 +6,7 @@
         <meta name="description" content="Sài Gòn là đô thị lớn nhất Việt Nam với nhịp sống sôi động suốt ngày đêm. Từ Nhà thờ Đức Bà, Bưu điện Thành phố mang dấu ấn Pháp đến những tòa cao ốc chọc…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/vietnam.css">
 
@@ -20,7 +21,7 @@
         <meta property="og:url" content="https://tantan1802.github.io/travel/diem-den/sai-gon/">
         <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Ho%20Chi%20Minh%20City%20Skyline%20at%20Night.jpg?width=1280">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"TP. Hồ Chí Minh","description":"Sài Gòn là đô thị lớn nhất Việt Nam với nhịp sống sôi động suốt ngày đêm. Từ Nhà thờ Đức Bà, Bưu điện Thành phố mang dấu ấn Pháp đến những tòa cao ốc chọc trời, từ chợ Bến Thành nhộn nhịp đến những con hẻm ẩm thực bất tận.","url":"https://tantan1802.github.io/travel/diem-den/sai-gon/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Ho%20Chi%20Minh%20City%20Skyline%20at%20Night.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ho%20Chi%20Minh%20City%20Skyline%202022%20(1).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Notre%20Dame%20Cathedral%20Ho%20Chi%20Minh%20city%20(39543912241).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ben%20Thanh%20Market%2C%202023%20(02).jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Sài Gòn","addressCountry":"VN"},"touristType":["Thành phố"]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"TP. Hồ Chí Minh","description":"Sài Gòn là đô thị lớn nhất Việt Nam với nhịp sống sôi động suốt ngày đêm. Từ Nhà thờ Đức Bà, Bưu điện Thành phố mang dấu ấn Pháp đến những tòa cao ốc chọc trời, từ chợ Bến Thành nhộn nhịp đến những con hẻm ẩm thực bất tận.","url":"https://tantan1802.github.io/travel/diem-den/sai-gon/","image":["https://commons.wikimedia.org/wiki/Special:FilePath/Ho%20Chi%20Minh%20City%20Skyline%20at%20Night.jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ho%20Chi%20Minh%20City%20Skyline%202022%20(1).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Notre%20Dame%20Cathedral%20Ho%20Chi%20Minh%20city%20(39543912241).jpg?width=1280","https://commons.wikimedia.org/wiki/Special:FilePath/Ben%20Thanh%20Market%2C%202023%20(02).jpg?width=1280"],"address":{"@type":"PostalAddress","addressRegion":"Sài Gòn","addressCountry":"VN"},"touristType":["Thành phố"],"geo":{"@type":"GeoCoordinates","latitude":10.7769,"longitude":106.7009}}</script>
     </head>
     <body class="page-detail">
         <header class="header" id="header">
@@ -297,30 +298,70 @@
             </div>
         </section>
     
+        <section class="location section" id="location">
+            <span class="section__subtitle">Vị trí</span>
+            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+
+            <div class="location__container container">
+                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ TP. Hồ Chí Minh"></div>
+
+                <div class="location__side">
+                    <h3 class="location__title">Gần TP. Hồ Chí Minh</h3>
+                    <ul class="location__nearby">
+                        
+                            <li>
+                                <a href="../../diem-den/can-tho/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="500" alt="Cần Thơ – Miền Tây" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Cần Thơ – Miền Tây</strong>
+                                        <small>Cần Thơ</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~132 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/mui-ne/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="500" alt="Mũi Né" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Mũi Né</strong>
+                                        <small>Bình Thuận</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~174 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="../../diem-den/da-lat/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="500" alt="Đà Lạt" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Đà Lạt</strong>
+                                        <small>Lâm Đồng</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~231 km</span>
+                                </a>
+                            </li>
+                        
+                    </ul>
+                    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=10.7769,106.7009" target="_blank" rel="noopener" class="button button--flex location__directions">
+                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    
         <section class="related section" id="related">
             <span class="section__subtitle">Gợi ý</span>
             <h2 class="section__title">Điểm đến khác ở Miền Nam</h2>
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/can-tho/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="960" alt="Cần Thơ – Miền Tây" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Nam</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Cần Thơ – Miền Tây</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Cần Thơ</span>
-                
-                <p class="dest-card__tagline">Chợ nổi, vườn trái cây và sông nước miệt vườn</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Thành phố</span>
-                </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
-    
         <a href="../../diem-den/phu-quoc/index.html" class="dest-card">
             <div class="dest-card__media">
                 <img data-wiki="Amazing beach on Phu Quoc island Vietnam (38647607275).jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Sunset on Phu Quoc island.jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Bai-sao-phu-quoc-tuonglamphotos.jpg" data-width="960" alt="Phú Quốc" class="dest-card__img" loading="lazy">
@@ -330,7 +371,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Phú Quốc</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Kiên Giang</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 1</span>
+                
                 <p class="dest-card__tagline">Đảo ngọc với hoàng hôn đẹp nhất Việt Nam</p>
                 <div class="dest-card__tags">
                     <span class="tag">Biển đảo</span>
@@ -348,7 +389,7 @@
             <div class="dest-card__body">
                 <h3 class="dest-card__title">Côn Đảo</h3>
                 <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bà Rịa – Vũng Tàu</span>
-                <span class="dest-card__hint"><i class="ri-search-line"></i> 2</span>
+                
                 <p class="dest-card__tagline">Thiên nhiên hoang sơ và những trang sử bi hùng</p>
                 <div class="dest-card__tags">
                     <span class="tag">Biển đảo</span><span class="tag">Di sản</span>
@@ -452,9 +493,11 @@
         <script src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/components.js"></script>
+        <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 
