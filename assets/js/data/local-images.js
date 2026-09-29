@@ -98,6 +98,13 @@ const LOCAL_IMAGES = {
         "w": 1024,
         "h": 768
     },
+    "Beach, Thuận Yên commune, Hà Tiên city, Kiên Giang, Vietnam, at June-2022.jpg": {
+        "xs": "assets/img/wiki/beach-thuan-yen-commune-ha-tien-city-kien-giang-vietnam-at-june-2022-9d3f14-480.webp",
+        "sm": "assets/img/wiki/beach-thuan-yen-commune-ha-tien-city-kien-giang-vietnam-at-june-2022-9d3f14-960.webp",
+        "lg": "assets/img/wiki/beach-thuan-yen-commune-ha-tien-city-kien-giang-vietnam-at-june-2022-9d3f14-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg": {
         "xs": "assets/img/wiki/beautiful-beach-on-phu-quoc-island-vietnam-39543775721-b0b105-480.webp",
         "sm": "assets/img/wiki/beautiful-beach-on-phu-quoc-island-vietnam-39543775721-b0b105-960.webp",
@@ -139,6 +146,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/bun-cha-hanoi-7f6ffe-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Buôn Ma Thuột banner Đray Nur waterfall.jpg": {
+        "xs": "assets/img/wiki/buon-ma-thuot-banner-dray-nur-waterfall-3c96c7-480.webp",
+        "sm": "assets/img/wiki/buon-ma-thuot-banner-dray-nur-waterfall-3c96c7-960.webp",
+        "lg": "assets/img/wiki/buon-ma-thuot-banner-dray-nur-waterfall-3c96c7-1920.webp",
+        "w": 1920,
+        "h": 274
+    },
+    "Buôn Ma Thuột city square.jpg": {
+        "xs": "assets/img/wiki/buon-ma-thuot-city-square-87a0df-480.webp",
+        "sm": "assets/img/wiki/buon-ma-thuot-city-square-87a0df-960.webp",
+        "lg": "assets/img/wiki/buon-ma-thuot-city-square-87a0df-1920.webp",
+        "w": 1920,
+        "h": 1273
     },
     "Bánh Canh Nam Phổ, Da Nang, Vietnam.jpg": {
         "xs": "assets/img/wiki/banh-canh-nam-pho-da-nang-vietnam-b823c3-480.webp",
@@ -308,6 +329,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Cổng chào trên Huyện Đảo Lý Sơn - Quảng Ngãi.jpg": {
+        "xs": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-480.webp",
+        "sm": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-960.webp",
+        "lg": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Cửa sổ Bạch Dinh nhìn ra biển.JPG": {
         "xs": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-480.webp",
         "sm": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-960.webp",
@@ -419,6 +447,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ha-long-bay-sunset-96f0bf-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Ha Tien Banner.jpg": {
+        "xs": "assets/img/wiki/ha-tien-banner-accb4b-480.webp",
+        "sm": "assets/img/wiki/ha-tien-banner-accb4b-960.webp",
+        "lg": "assets/img/wiki/ha-tien-banner-accb4b-1920.webp",
+        "w": 1920,
+        "h": 274
     },
     "Hai ổ bánh mì.jpg": {
         "xs": "assets/img/wiki/hai-o-banh-mi-362b22-480.webp",
@@ -574,6 +609,13 @@ const LOCAL_IMAGES = {
         "w": 924,
         "h": 1149
     },
+    "Kênh đào Rạch Giá - Hà Tiên.jpg": {
+        "xs": "assets/img/wiki/kenh-dao-rach-gia-ha-tien-47f288-480.webp",
+        "sm": "assets/img/wiki/kenh-dao-rach-gia-ha-tien-47f288-960.webp",
+        "lg": "assets/img/wiki/kenh-dao-rach-gia-ha-tien-47f288-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Lan Ha Bay 40.jpg": {
         "xs": "assets/img/wiki/lan-ha-bay-40-62643a-480.webp",
         "sm": "assets/img/wiki/lan-ha-bay-40-62643a-960.webp",
@@ -599,6 +641,20 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/le-col-de-ma-pi-leng-dong-van-meo-vac-9cf8bb-480.webp",
         "sm": "assets/img/wiki/le-col-de-ma-pi-leng-dong-van-meo-vac-9cf8bb-960.webp",
         "lg": "assets/img/wiki/le-col-de-ma-pi-leng-dong-van-meo-vac-9cf8bb-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Ly Son Island 19 - panoramio.jpg": {
+        "xs": "assets/img/wiki/ly-son-island-19-panoramio-ade4fa-480.webp",
+        "sm": "assets/img/wiki/ly-son-island-19-panoramio-ade4fa-960.webp",
+        "lg": "assets/img/wiki/ly-son-island-19-panoramio-ade4fa-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Ly Son Island 26 - panoramio.jpg": {
+        "xs": "assets/img/wiki/ly-son-island-26-panoramio-d063c8-480.webp",
+        "sm": "assets/img/wiki/ly-son-island-26-panoramio-d063c8-960.webp",
+        "lg": "assets/img/wiki/ly-son-island-26-panoramio-d063c8-1920.webp",
         "w": 1920,
         "h": 1440
     },
@@ -679,6 +735,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1278
     },
+    "Ngã 6 và toàn cảnh Ban Mê Thuột -2015.jpg": {
+        "xs": "assets/img/wiki/nga-6-va-toan-canh-ban-me-thuot-2015-88f4a9-480.webp",
+        "sm": "assets/img/wiki/nga-6-va-toan-canh-ban-me-thuot-2015-88f4a9-960.webp",
+        "lg": "assets/img/wiki/nga-6-va-toan-canh-ban-me-thuot-2015-88f4a9-1920.webp",
+        "w": 1023,
+        "h": 534
+    },
     "Nha Trang Beach 1.jpg": {
         "xs": "assets/img/wiki/nha-trang-beach-1-3a1a40-480.webp",
         "sm": "assets/img/wiki/nha-trang-beach-1-3a1a40-960.webp",
@@ -699,6 +762,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/nha-trang-po-nagar-cham-north-tower-6223880651-2e1c08-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Nha san Moc Chau.jpg": {
+        "xs": "assets/img/wiki/nha-san-moc-chau-12cabe-480.webp",
+        "sm": "assets/img/wiki/nha-san-moc-chau-12cabe-960.webp",
+        "lg": "assets/img/wiki/nha-san-moc-chau-12cabe-1920.webp",
+        "w": 1920,
+        "h": 1356
     },
     "Nhatrang Beach at night.jpg": {
         "xs": "assets/img/wiki/nhatrang-beach-at-night-550ff9-480.webp",
@@ -749,6 +819,20 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 2560
     },
+    "Pu Luong 01.JPG": {
+        "xs": "assets/img/wiki/pu-luong-01-b3e5d5-480.webp",
+        "sm": "assets/img/wiki/pu-luong-01-b3e5d5-960.webp",
+        "lg": "assets/img/wiki/pu-luong-01-b3e5d5-1920.webp",
+        "w": 1920,
+        "h": 1275
+    },
+    "Pu Luong National Reserve (15179778663).jpg": {
+        "xs": "assets/img/wiki/pu-luong-national-reserve-15179778663-d2bebc-480.webp",
+        "sm": "assets/img/wiki/pu-luong-national-reserve-15179778663-d2bebc-960.webp",
+        "lg": "assets/img/wiki/pu-luong-national-reserve-15179778663-d2bebc-1920.webp",
+        "w": 1024,
+        "h": 680
+    },
     "Pulo Condore island beach.jpg": {
         "xs": "assets/img/wiki/pulo-condore-island-beach-ca7da5-480.webp",
         "sm": "assets/img/wiki/pulo-condore-island-beach-ca7da5-960.webp",
@@ -776,6 +860,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/quyet-tien-market-ha-giang-vietnam-2-a02ca2-1920.webp",
         "w": 1920,
         "h": 2875
+    },
+    "Quảng trường huyện Mộc Châu.jpg": {
+        "xs": "assets/img/wiki/quang-truong-huyen-moc-chau-8ca11c-480.webp",
+        "sm": "assets/img/wiki/quang-truong-huyen-moc-chau-8ca11c-960.webp",
+        "lg": "assets/img/wiki/quang-truong-huyen-moc-chau-8ca11c-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Quốc lộ 6 qua địa phận thị trấn Mộc Châu.jpg": {
+        "xs": "assets/img/wiki/quoc-lo-6-qua-dia-phan-thi-tran-moc-chau-e65659-480.webp",
+        "sm": "assets/img/wiki/quoc-lo-6-qua-dia-phan-thi-tran-moc-chau-e65659-960.webp",
+        "lg": "assets/img/wiki/quoc-lo-6-qua-dia-phan-thi-tran-moc-chau-e65659-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Rail cars at Dalat Station.JPG": {
         "xs": "assets/img/wiki/rail-cars-at-dalat-station-df264d-480.webp",
@@ -875,6 +973,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 960
     },
+    "Tau danh ca tai Ly Son.jpg": {
+        "xs": "assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-480.webp",
+        "sm": "assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-960.webp",
+        "lg": "assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-1920.webp",
+        "w": 1632,
+        "h": 1224
+    },
     "Temple of Literature, Hanoi by Xiquinho Silva 04.jpg": {
         "xs": "assets/img/wiki/temple-of-literature-hanoi-by-xiquinho-silva-04-5c4573-480.webp",
         "sm": "assets/img/wiki/temple-of-literature-hanoi-by-xiquinho-silva-04-5c4573-960.webp",
@@ -903,12 +1008,26 @@ const LOCAL_IMAGES = {
         "w": 1544,
         "h": 1024
     },
+    "Thác Dray Sap-Dak Nông - panoramio.jpg": {
+        "xs": "assets/img/wiki/thac-dray-sap-dak-nong-panoramio-d97193-480.webp",
+        "sm": "assets/img/wiki/thac-dray-sap-dak-nong-panoramio-d97193-960.webp",
+        "lg": "assets/img/wiki/thac-dray-sap-dak-nong-panoramio-d97193-1920.webp",
+        "w": 1920,
+        "h": 960
+    },
     "Tháp Nhạn, Tuy Hòa, Phú Yên.JPG": {
         "xs": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-480.webp",
         "sm": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-960.webp",
         "lg": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-1920.webp",
         "w": 1920,
         "h": 2560
+    },
+    "Thị trấn Mộc Châu, Sơn La.jpg": {
+        "xs": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-480.webp",
+        "sm": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-960.webp",
+        "lg": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg": {
         "xs": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1419-5252-943d6e-480.webp",
