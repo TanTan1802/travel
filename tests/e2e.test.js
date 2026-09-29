@@ -23,6 +23,11 @@ test.after(async () => {
 async function openPage(url, { viewport = { width: 1280, height: 900 } } = {}) {
     const context = await browser.newContext({ viewport, serviceWorkers: 'block' })
     await setupRoutes(context)
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: server.url.replace(/\/$/, '') })
+    /* Ghi nhận lệnh in thay vì mở hộp thoại in */
+    await context.addInitScript(() => {
+        window.print = () => { window.__printed = { count: (window.__printed?.count || 0) + 1, bodyClass: document.body.className } }
+    })
     const page = await context.newPage()
     const errors = []
     page.on('pageerror', e => errors.push(`JS: ${e.message}`))
@@ -154,6 +159,35 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     await page.click('[data-plan-add="da-lat"]')
     await page.waitForURL(/ke-hoach/)
     assert.ok((await stops()).includes('Đà Lạt'))
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('in & chia sẻ: in lịch trình, chia sẻ liên kết, sao chép kế hoạch dạng chữ', async () => {
+    const { page, errors, close } = await openPage('diem-den/hue/index.html')
+    await page.click('.tour:not([hidden]) [data-tour-action="print"]')
+    const printed = await page.evaluate(() => window.__printed)
+    assert.equal(printed?.count, 1)
+    assert.match(printed.bodyClass, /print-itinerary/, 'phải bật chế độ chỉ in lịch trình')
+
+    await page.click('.tour:not([hidden]) [data-tour-action="share"]')
+    assert.match(await page.evaluate(() => navigator.clipboard.readText()), /diem-den\/hue\/index\.html#itinerary$/)
+
+    /* Bản in hiện đủ các ngày của tour đang chọn */
+    await page.emulateMedia({ media: 'print' })
+    assert.equal(await page.$$eval('.tour:not([hidden]) .itinerary__panel', a => a.filter(p => getComputedStyle(p).display !== 'none').length), 3)
+    assert.ok(await page.isHidden('.header'), 'bản in không có thanh menu')
+    await page.emulateMedia({ media: 'screen' })
+
+    await page.goto(page.url().replace('diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,hoi-an.1&m=3'))
+    await page.click('[data-action="copy-text"]')
+    const text = await page.evaluate(() => navigator.clipboard.readText())
+    assert.match(text, /^Kế hoạch chuyến đi: Cố đô Huế → Phố cổ Hội An/)
+    assert.match(text, /Ngày 3 – Phố cổ Hội An/)
+    assert.match(text, /ke-hoach\/index\.html\?p=hue\.2,hoi-an\.1&m=3/)
+    await page.click('[data-action="print"]')
+    assert.equal((await page.evaluate(() => window.__printed))?.count, 1)
 
     assert.deepEqual(errors, [])
     await close()

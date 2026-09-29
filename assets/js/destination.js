@@ -183,6 +183,26 @@ function initItineraryTabs() {
     })
 }
 
+/* In chỉ phần lịch trình (tour đang chọn, đủ các ngày) hoặc chia sẻ trang */
+function initTourActions(d) {
+    document.addEventListener('click', e => {
+        const btn = e.target.closest('[data-tour-action]')
+        if (!btn) return
+        if (btn.dataset.tourAction === 'print') {
+            document.body.classList.add('print-itinerary')
+            window.addEventListener('afterprint', () => document.body.classList.remove('print-itinerary'), { once: true })
+            window.print()
+        } else {
+            const tour = btn.closest('.tour')
+            shareLink({
+                title: `${d.name} – Việt Travel`,
+                text: t('Gợi ý {days} ngày tại {name}', { days: tour.dataset.tour, name: d.name }),
+                url: location.href.split('#')[0] + '#itinerary',
+            })
+        }
+    })
+}
+
 /*==================== THANH 12 THÁNG: BẤM CHỌN THÁNG ====================*/
 function initSeasonPicker(d) {
     const months = [...document.querySelectorAll('.season__month')]
@@ -306,6 +326,7 @@ if (dest) {
     syncFavoriteButtons()
     syncPlanButtons()
     initItineraryTabs()
+    initTourActions(dest)
     initLocationMap(dest)
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
     initComments()

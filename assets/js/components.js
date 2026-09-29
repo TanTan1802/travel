@@ -56,3 +56,34 @@ function destinationCard(d, hint = '') {
         </div>
     `
 }
+
+/*==================== CHIA SẺ & IN ====================*/
+/* Sao chép chữ vào bộ nhớ tạm; trình duyệt chặn thì hiện hộp để người dùng tự chép */
+async function copyText(text, message) {
+    try {
+        await navigator.clipboard.writeText(text)
+        showToast(message)
+    } catch {
+        window.prompt(t('Sao chép liên kết này:'), text)
+    }
+}
+
+/* Chia sẻ qua ứng dụng của máy (điện thoại) hoặc sao chép liên kết (máy tính) */
+async function shareLink({ title, text = '', url }) {
+    if (navigator.share) {
+        try {
+            await navigator.share({ title, text, url })
+            return
+        } catch (err) {
+            if (err && err.name === 'AbortError') return
+        }
+    }
+    copyText(url, t('Đã sao chép liên kết'))
+}
+
+/* Bản in ghi kèm địa chỉ trang để mở lại bản online */
+if (typeof window.addEventListener === 'function') {
+    window.addEventListener('beforeprint', () => {
+        document.querySelectorAll('.print-url').forEach(el => { el.textContent = location.href.split('#')[0] })
+    })
+}

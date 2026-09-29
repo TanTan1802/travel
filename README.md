@@ -83,6 +83,12 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
 
+## In / lưu PDF & chia sẻ
+
+- CSS `@media print` ở cuối `vietnam.css`: bỏ menu, bản đồ, nút bấm; luôn nền sáng; mỗi ngày/điểm dừng không bị cắt ngang trang; ghi kèm địa chỉ trang (`.print-url`).
+- Trang điểm đến: nút **In / PDF** ở lịch trình chỉ in tour đang chọn (đủ các ngày + chi phí); nút **Chia sẻ** dùng bảng chia sẻ của điện thoại hoặc sao chép liên kết `#itinerary`. In cả trang (Ctrl+P) vẫn gọn.
+- Trang kế hoạch: bản in gồm trang tóm tắt tuyến/chi phí và lịch từng ngày; nút **Sao chép dạng chữ** tạo lịch trình để dán vào Zalo/Messenger.
+
 ## Hiệu năng (Lighthouse)
 
 - Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.

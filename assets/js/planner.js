@@ -134,9 +134,11 @@ function planFromQuery(search) {
 }
 
 /*---------- Giao diện ----------*/
-const legLabel = leg => (leg.mode === 'flight'
-    ? `<i class="ri-plane-line"></i> ${t('Máy bay / tàu cao tốc')}`
-    : `<i class="ri-bus-2-line"></i> ${t('Xe khách / ô tô ~{h} giờ', { h: String(leg.hours).replace('.', LANG === 'en' ? '.' : ',') })}`)
+const legMode = leg => (leg.mode === 'flight'
+    ? t('Máy bay / tàu cao tốc')
+    : t('Xe khách / ô tô ~{h} giờ', { h: LANG === 'en' ? leg.hours : String(leg.hours).replace('.', ',') }))
+
+const legLabel = leg => `<i class="${leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line'}"></i> ${legMode(leg)}`
 
 function destinationOptions(plan) {
     return Object.keys(REGIONS).map(region => `
@@ -196,6 +198,12 @@ function renderStops(plan, totals) {
     }
 
     return `
+        <div class="print-only print-header">
+            <strong>Việt Travel – ${t('Kế hoạch chuyến đi')}</strong>
+            <p>${planRoute(plan)}</p>
+            <p>${t('{n} ngày', { n: totals.days })} · ${t('{n} điểm đến', { n: plan.stops.length })} · ~${totals.km} km · ${t('Chi phí ước tính / người')}: ${formatVnd(totals.total)} (${plan.tier === 'comfort' ? t('Thoải mái') : t('Tiết kiệm')})${plan.month ? ` · ${t('Tháng khởi hành')}: ${t('Tháng {m}', { m: monthLabel(plan.month) })}` : ''}</p>
+            <p class="print-url"></p>
+        </div>
         <ol class="planner__stops">
             ${plan.stops.map((stop, i) => {
                 const d = totals.dests[i]
@@ -271,6 +279,7 @@ function renderSummary(plan, totals) {
         <p class="budget__note">${t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
         <div class="planner__share">
             <button type="button" class="button button--flex" data-action="share"><i class="ri-share-line"></i> ${t('Chia sẻ kế hoạch')}</button>
+            <button type="button" class="button button--flex button--ghost" data-action="copy-text"><i class="ri-file-copy-line"></i> ${t('Sao chép dạng chữ')}</button>
             <button type="button" class="button button--flex button--ghost" data-action="print"><i class="ri-printer-line"></i> ${t('In / lưu PDF')}</button>
         </div>
     `
@@ -364,23 +373,32 @@ function addStops(plan, ids) {
     return { ...plan, stops }
 }
 
-async function sharePlan() {
-    const url = new URL(planToQuery(planner.plan), location.href).href
-    const title = t('Kế hoạch chuyến đi: {route}', { route: planner.plan.stops.map(s => getDestination(s.id).name).join(' → ') })
-    if (navigator.share) {
-        try {
-            await navigator.share({ title, url })
-            return
-        } catch (err) {
-            if (err && err.name === 'AbortError') return
+const planRoute = plan => plan.stops.map(s => getDestination(s.id).name).join(' → ')
+const planShareUrl = plan => new URL(planToQuery(plan), location.href).href
+
+function sharePlan() {
+    const plan = planner.plan
+    shareLink({ title: t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) }), url: planShareUrl(plan) })
+}
+
+/* Lịch trình dạng chữ để dán vào tin nhắn (Zalo, Messenger...) */
+function planAsText(plan) {
+    const totals = planTotals(plan)
+    const lines = [
+        t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) }),
+        `${t('{n} ngày', { n: totals.days })} · ~${totals.km} km · ${t('Chi phí ước tính / người')}: ${formatVnd(totals.total)} (${plan.tier === 'comfort' ? t('Thoải mái') : t('Tiết kiệm')})`,
+    ]
+    if (plan.month) lines.push(`${t('Tháng khởi hành')}: ${t('Tháng {m}', { m: monthLabel(plan.month) })}`)
+    planDays(plan, totals).forEach((item, i) => {
+        lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}`)
+        if (item.arrival) {
+            lines.push(`  ${t('Di chuyển')}: ${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})`)
         }
-    }
-    try {
-        await navigator.clipboard.writeText(url)
-        showToast(t('Đã sao chép liên kết kế hoạch'))
-    } catch {
-        window.prompt(t('Sao chép liên kết này:'), url)
-    }
+        if (item.day) DAY_SLOTS.forEach(slot => lines.push(`  ${slot.label()}: ${item.day[slot.key]}`))
+        else lines.push(`  ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}`)
+    })
+    lines.push('', `${t('Xem kế hoạch')}: ${planShareUrl(plan)}`)
+    return lines.join('\n')
 }
 
 function handlePlannerClick(e) {
@@ -419,6 +437,8 @@ function handlePlannerClick(e) {
             return commit({ ...plan, tier: btn.dataset.tier })
         case 'share':
             return sharePlan()
+        case 'copy-text':
+            return copyText(planAsText(plan), t('Đã sao chép lịch trình dạng chữ'))
         case 'print':
             return window.print()
     }

@@ -2626,3 +2626,224 @@ body.dark-theme .planner__stat i {
     column-gap: 3rem;
   }
 }
+
+/*=============== NÚT IN / CHIA SẺ Ở LỊCH TRÌNH ===============*/
+.tour__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+/*=============== BẢN IN / LƯU PDF ===============*/
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 14mm 12mm;
+  }
+
+  /* Luôn in nền sáng, chữ đậm dễ đọc – kể cả khi đang bật chế độ tối */
+  body,
+  body.dark-theme {
+    --title-color: hsl(190, 40%, 14%);
+    --text-color: hsl(190, 12%, 25%);
+    --text-color-light: hsl(190, 8%, 38%);
+    --container-color: #FFF;
+    --input-color: hsl(190, 20%, 95%);
+    --body-color: #FFF;
+    background: #FFF !important;
+    color: var(--text-color);
+    font-size: 10.5pt;
+  }
+
+  .header,
+  .footer,
+  .scrollup,
+  .toast,
+  .lightbox,
+  .fav-btn,
+  .plan-cta,
+  .tour-picker,
+  .tour__buttons,
+  .itinerary__tabs,
+  .leaflet-container,
+  .planner-hero,
+  .planner__controls,
+  .planner__settings,
+  .planner__share,
+  .planner__map,
+  .stop__img,
+  .stop__tools,
+  .stop__days button,
+  .location,
+  .comments,
+  .related,
+  .weather,
+  .dest-hero__actions {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* ScrollReveal ẩn phần tử chưa cuộn tới – bản in phải hiện hết */
+  [data-sr-id] {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .section,
+  .main {
+    padding: 0 !important;
+  }
+
+  .section {
+    margin-bottom: 1.25rem;
+  }
+
+  .container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .print-header {
+    margin-bottom: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--title-color);
+  }
+
+  .print-header strong {
+    display: block;
+    font-size: 16pt;
+    color: var(--title-color);
+  }
+
+  .print-header p {
+    margin-top: .2rem;
+  }
+
+  .print-url {
+    font-size: 9pt;
+    color: var(--text-color-light);
+    word-break: break-all;
+  }
+
+  /* Trang điểm đến: in đủ các ngày của tour đang chọn */
+  .tour:not([hidden]) .itinerary__panel {
+    display: block !important;
+  }
+
+  .tour .itinerary__day-title,
+  .tour:not(.tour--expanded) .itinerary__day-title {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: .9rem 0 .4rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    font-size: 12pt;
+  }
+
+  .itinerary__panel,
+  .timeline__item,
+  .budget,
+  .plan-day,
+  .stop,
+  .leg,
+  .planner__card {
+    break-inside: avoid;
+  }
+
+  .budget__option,
+  .budget__option--comfort,
+  .planner__cost {
+    background: none !important;
+    color: var(--title-color) !important;
+    border: 1px solid hsl(190, 15%, 80%);
+  }
+
+  .budget__option *,
+  .planner__cost * {
+    color: var(--title-color) !important;
+    opacity: 1 !important;
+  }
+
+  /* Chế độ "In lịch trình": chỉ giữ phần lịch trình */
+  body.print-itinerary .main > :not(#itinerary),
+  body.print-itinerary .itinerary > .section__subtitle,
+  body.print-itinerary .itinerary > .section__title {
+    display: none !important;
+  }
+
+  body.print-itinerary .itinerary .section__title {
+    text-align: left;
+    margin-bottom: .5rem;
+  }
+
+  /* Trang kế hoạch */
+  .planner__grid {
+    display: block;
+  }
+
+  .planner__side {
+    position: static;
+    margin-top: 1rem;
+  }
+
+  .planner__card {
+    padding: 0;
+  }
+
+  .stop {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "num info days";
+    padding: .5rem .75rem;
+    border: 1px solid hsl(190, 15%, 85%);
+  }
+
+  .stop__number,
+  .plan-day__number {
+    border: 1px solid var(--title-color);
+    background: none !important;
+    color: var(--title-color) !important;
+  }
+
+  .plan-day {
+    padding: .75rem 0;
+    border: none;
+    border-bottom: 1px solid hsl(190, 15%, 85%);
+    border-radius: 0;
+  }
+
+  .plan-day--travel {
+    border-left: none;
+  }
+
+  .planner__days {
+    margin-top: 1.5rem;
+    break-before: page;
+  }
+
+  .planner__days .section__title {
+    text-align: left;
+    font-size: 14pt;
+  }
+}
