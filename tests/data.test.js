@@ -162,6 +162,15 @@ test('timeline: mỗi ngày có quán nước có tên và ước tính chi phí
     }
 })
 
+test('món đặc sản nào cũng có ảnh (ảnh thật hoặc ảnh minh họa có chú thích)', () => {
+    for (const d of DESTINATIONS) {
+        d.foods.forEach(f => {
+            const files = [].concat(f.file || [])
+            assert.ok(files.length && files.every(x => typeof x === 'string' && /\.(jpe?g|png|webp)$/i.test(x)), `${d.id}: món "${f.name}" chưa có ảnh`)
+        })
+    }
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]
@@ -202,7 +211,7 @@ test('ảnh trong repo: mọi file trong manifest đều tồn tại', () => {
 
     /* Ảnh mới chưa được workflow tải về: chỉ cảnh báo (site vẫn dùng ảnh Wikimedia) */
     const used = new Set()
-    DESTINATIONS.forEach(d => [d.hero, ...d.gallery.map(g => g.file), ...d.foods.map(f => f.file)].filter(Boolean).forEach(f => used.add(f)))
+    DESTINATIONS.forEach(d => [d.hero, ...d.gallery.map(g => g.file), ...d.foods.flatMap(f => [].concat(f.file || []))].filter(Boolean).forEach(f => used.add(f)))
     const notLocal = [...used].filter(f => !site.LOCAL_IMAGES[f])
     if (notLocal.length) console.log(`  ⚠️  ${notLocal.length} ảnh chưa tải về repo (workflow sẽ tải sau khi merge): ${notLocal.join(', ')}`)
 })

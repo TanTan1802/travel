@@ -189,8 +189,8 @@ const DESTINATIONS = [
             { file: 'Tam Coc, Ninh Binh ,Vietnam.jpg', caption: 'Ruộng lúa Tam Cốc' },
         ],
         foods: [
-            { name: 'Cơm cháy Ninh Bình', desc: 'Cơm cháy giòn rụm chan nước sốt tim cật, đặc sản cố đô.', price: '80.000đ', file: null },
-            { name: 'Thịt dê núi', desc: 'Dê chạy núi đá thịt săn chắc, chế biến tái chanh, nướng, hấp.', price: '200.000đ', file: null },
+            { name: 'Cơm cháy Ninh Bình', desc: 'Cơm cháy giòn rụm chan nước sốt tim cật, đặc sản cố đô.', price: '80.000đ', file: ['Cơm cháy kho quẹt.jpg', 'Cơm rang.JPG'] },
+            { name: 'Thịt dê núi', desc: 'Dê chạy núi đá thịt săn chắc, chế biến tái chanh, nướng, hấp.', price: '200.000đ', file: 'Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg', illustrative: 'Thịt nướng than hoa' },
             { name: 'Bánh mì', desc: 'Ổ bánh mì giòn rụm tiện lợi cho những chuyến đi trong ngày.', price: '25.000đ', file: 'Hai ổ bánh mì.jpg' },
         ],
         activities: [
@@ -259,9 +259,9 @@ const DESTINATIONS = [
             { file: 'Ban Gioc - Detian Falls2.jpg', caption: 'Dòng Quây Sơn' },
         ],
         foods: [
-            { name: 'Vịt quay 7 vị', desc: 'Vịt quay lá mắc mật thơm nức, da giòn óng – niềm tự hào Cao Bằng.', price: '250.000đ/con', file: null },
+            { name: 'Vịt quay 7 vị', desc: 'Vịt quay lá mắc mật thơm nức, da giòn óng – niềm tự hào Cao Bằng.', price: '250.000đ/con', file: 'Roasted Beijing Duck sliced.jpg', illustrative: 'Vịt quay' },
             { name: 'Bánh cuốn Cao Bằng', desc: 'Bánh mỏng, ăn cùng nước canh xương nóng thay vì nước mắm.', price: '30.000đ', file: 'Banh cuon.jpg' },
-            { name: 'Phở chua', desc: 'Món phở trộn chua ngọt với thịt quay, lạc rang, rau thơm.', price: '40.000đ', file: null },
+            { name: 'Phở chua', desc: 'Món phở trộn chua ngọt với thịt quay, lạc rang, rau thơm.', price: '40.000đ', file: 'Phở bò (39425047901).jpg', illustrative: 'Bát phở' },
         ],
         activities: [
             { icon: 'ri-sailboat-line', title: 'Đi bè tre', desc: 'Ngồi bè tiến sát chân thác, cảm nhận hơi nước mát lạnh.' },
@@ -293,9 +293,9 @@ const DESTINATIONS = [
             { file: 'Beach in Cat Ba.JPG', caption: 'Bãi tắm Cát Bà' },
         ],
         foods: [
-            { name: 'Hải sản Cát Bà', desc: 'Tu hài, bề bề, ốc hương tươi rói chế biến ngay tại bè nổi.', price: 'Theo thời giá', file: null },
+            { name: 'Hải sản Cát Bà', desc: 'Tu hài, bề bề, ốc hương tươi rói chế biến ngay tại bè nổi.', price: 'Theo thời giá', file: 'Cat Ba island fishing village.jpg', illustrative: 'Làng chài Cát Bà – nơi bán hải sản' },
             { name: 'Bánh đa cua Hải Phòng', desc: 'Sợi bánh đa đỏ, nước dùng riêu cua đậm đà – món quà sáng đất Cảng.', price: '40.000đ', file: 'Bánh đa cua Hải Phòng (27.2 (1).jpg' },
-            { name: 'Nem cua bể', desc: 'Nem vuông nhân cua bể chiên giòn, chấm nước mắm chua ngọt.', price: '15.000đ/chiếc', file: null },
+            { name: 'Nem cua bể', desc: 'Nem vuông nhân cua bể chiên giòn, chấm nước mắm chua ngọt.', price: '15.000đ/chiếc', file: ['Cha gio.jpg', 'East-asian-food-spring-rolls-3.jpg'], illustrative: 'Nem rán (chả giò)' },
         ],
         activities: [
             { icon: 'ri-sailboat-line', title: 'Chèo kayak Lan Hạ', desc: 'Luồn qua hang Sáng – Tối, tắm ở bãi Ba Trái Đào.' },
@@ -327,8 +327,8 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Cơm lam', desc: 'Gạo nếp nương thơm dẻo nướng trong ống tre.', price: '20.000đ/ống', file: 'Khao lam87.jpg' },
-            { name: 'Thịt trâu gác bếp', desc: 'Thịt trâu tẩm mắc khén, hun khói trên gác bếp, dai ngọt đậm vị núi rừng.', price: '900.000đ/kg', file: null },
-            { name: 'Xôi ngũ sắc', desc: 'Xôi năm màu nhuộm từ lá rừng – món ăn ngày hội của người Thái, H\'Mông.', price: '30.000đ', file: null },
+            { name: 'Thịt trâu gác bếp', desc: 'Thịt trâu tẩm mắc khén, hun khói trên gác bếp, dai ngọt đậm vị núi rừng.', price: '900.000đ/kg', file: ['Thịt trâu gác bếp Tả Phìn Hồ.jpg', 'Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg'] },
+            { name: 'Xôi ngũ sắc', desc: 'Xôi năm màu nhuộm từ lá rừng – món ăn ngày hội của người Thái, H\'Mông.', price: '30.000đ', file: 'Xôi ngũ sắc.JPG' },
         ],
         activities: [
             { icon: 'ri-flight-takeoff-line', title: 'Bay dù lượn Khau Phạ', desc: 'Ngắm ruộng bậc thang từ trên cao (mùa lúa chín).' },
@@ -402,7 +402,7 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Bánh bột lọc Quảng Bình', desc: 'Vỏ bột trong veo, nhân tôm đất rim đậm đà, chấm nước mắm ớt.', price: '30.000đ', file: 'Banh Bot Loc in Danang, Vietnam.jpg' },
-            { name: 'Gà nướng Phong Nha', desc: 'Gà ta thả vườn nướng than, chấm muối tiêu chanh.', price: '250.000đ/con', file: null },
+            { name: 'Gà nướng Phong Nha', desc: 'Gà ta thả vườn nướng than, chấm muối tiêu chanh.', price: '250.000đ/con', file: 'Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg', illustrative: 'Đồ nướng vỉ than' },
             { name: 'Bánh xèo', desc: 'Bánh xèo giòn rụm nhân tôm thịt, cuốn rau rừng chấm nước mắm.', price: '30.000đ', file: 'Bánh xèo with nước mắm.jpg' },
         ],
         activities: [
@@ -510,8 +510,8 @@ const DESTINATIONS = [
             { file: 'Beach at Nha Trang, Vietnam.jpg', caption: 'Biển xanh cát trắng' },
         ],
         foods: [
-            { name: 'Bún chả cá', desc: 'Chả cá thu, cá chuồn chiên và hấp trong nước dùng ngọt thanh.', price: '35.000đ', file: null },
-            { name: 'Nem nướng Ninh Hòa', desc: 'Nem nướng than cuốn bánh tráng, rau sống, chấm tương đặc biệt.', price: '50.000đ', file: null },
+            { name: 'Bún chả cá', desc: 'Chả cá thu, cá chuồn chiên và hấp trong nước dùng ngọt thanh.', price: '35.000đ', file: ['Bún chả cá, tháng 8 năm 2018.JPG', 'Chả cá Thát Lát chiên.JPG'] },
+            { name: 'Nem nướng Ninh Hòa', desc: 'Nem nướng than cuốn bánh tráng, rau sống, chấm tương đặc biệt.', price: '50.000đ', file: 'Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg', illustrative: 'Thịt nướng than hoa' },
             { name: 'Bánh căn', desc: 'Bánh đổ khuôn đất nung, nhân trứng, mực, tôm, chấm nước mắm.', price: '30.000đ', file: 'Bánh căn in phan rang, vietnam.jpg' },
         ],
         activities: [
@@ -580,7 +580,7 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Bánh căn Phan Thiết', desc: 'Bánh căn giòn rìa, chấm nước mắm cá kho đặc trưng.', price: '25.000đ', file: 'Bánh căn in phan rang, vietnam.jpg' },
-            { name: 'Gỏi cá mai', desc: 'Cá mai tái chanh trộn thính, cuốn bánh tráng rau rừng.', price: '120.000đ', file: null },
+            { name: 'Gỏi cá mai', desc: 'Cá mai tái chanh trộn thính, cuốn bánh tráng rau rừng.', price: '120.000đ', file: 'Fishing Boats, Mui Ne.jpg', illustrative: 'Thuyền cá Mũi Né' },
             { name: 'Bánh xèo', desc: 'Bánh xèo mực tươi giòn rụm bên bờ biển.', price: '30.000đ', file: 'Bánh xèo with nước mắm.jpg' },
         ],
         activities: [
@@ -617,7 +617,7 @@ const DESTINATIONS = [
         foods: [
             { name: 'Bánh xèo tôm nhảy', desc: 'Bánh xèo nhỏ với tôm đất tươi nhảy tanh tách, cuốn bánh tráng rau sống.', price: '40.000đ', file: 'Bánh xèo with nước mắm.jpg' },
             { name: 'Bánh hỏi cháo lòng', desc: 'Bánh hỏi mềm mịn ăn cùng cháo lòng nóng – bữa sáng đặc trưng Bình Định.', price: '35.000đ', file: 'Bánh hỏi thịt quay.JPG', illustrative: 'Bánh hỏi' },
-            { name: 'Bún chả cá Quy Nhơn', desc: 'Chả cá thu, cá mối chiên vàng trong nước dùng ngọt thanh.', price: '35.000đ', file: null },
+            { name: 'Bún chả cá Quy Nhơn', desc: 'Chả cá thu, cá mối chiên vàng trong nước dùng ngọt thanh.', price: '35.000đ', file: ['Bún chả cá, tháng 8 năm 2018.JPG', 'Chả cá Thát Lát chiên.JPG'] },
         ],
         activities: [
             { icon: 'ri-sailboat-line', title: 'Cano ra Kỳ Co', desc: 'Bãi biển được ví như "Maldives của Việt Nam".' },
@@ -650,9 +650,9 @@ const DESTINATIONS = [
             { file: 'Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg', caption: 'Gành Đá Đĩa nhìn từ trên cao' },
         ],
         foods: [
-            { name: 'Mắt cá ngừ đại dương', desc: 'Mắt cá ngừ hầm thuốc bắc bổ dưỡng – đặc sản trứ danh Tuy Hòa.', price: '60.000đ', file: null },
-            { name: 'Bánh canh hẹ', desc: 'Sợi bánh canh, chả cá và thật nhiều lá hẹ xanh mướt.', price: '25.000đ', file: null },
-            { name: 'Sò huyết đầm Ô Loan', desc: 'Sò huyết nướng mỡ hành, béo ngọt đặc trưng đầm nước lợ.', price: '120.000đ', file: null },
+            { name: 'Mắt cá ngừ đại dương', desc: 'Mắt cá ngừ hầm thuốc bắc bổ dưỡng – đặc sản trứ danh Tuy Hòa.', price: '60.000đ', file: 'Cá kho tộ, cá hú.jpg', illustrative: 'Món cá kho' },
+            { name: 'Bánh canh hẹ', desc: 'Sợi bánh canh, chả cá và thật nhiều lá hẹ xanh mướt.', price: '25.000đ', file: 'Bánh Canh Nam Phổ, Da Nang, Vietnam.jpg', illustrative: 'Bánh canh' },
+            { name: 'Sò huyết đầm Ô Loan', desc: 'Sò huyết nướng mỡ hành, béo ngọt đặc trưng đầm nước lợ.', price: '120.000đ', file: 'Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg', illustrative: 'Hải sản vỏ nướng' },
         ],
         activities: [
             { icon: 'ri-sun-foggy-line', title: 'Đón bình minh Mũi Điện', desc: 'Nơi đón ánh mặt trời đầu tiên trên đất liền Việt Nam.' },
@@ -794,8 +794,8 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Bánh khọt', desc: 'Bánh khọt giòn rụm với tôm tươi, cuốn rau cải, chấm nước mắm chua ngọt.', price: '50.000đ', file: 'Banh khot aka Banh can - Thanh Ha AUD8 (4171696432).jpg' },
-            { name: 'Lẩu cá đuối', desc: 'Nồi lẩu chua cay với cá đuối sụn giòn, măng chua.', price: '250.000đ', file: null },
-            { name: 'Bánh bông lan trứng muối', desc: 'Món bánh nổi tiếng làm quà khi về từ Vũng Tàu.', price: '50.000đ/hộp', file: null },
+            { name: 'Lẩu cá đuối', desc: 'Nồi lẩu chua cay với cá đuối sụn giòn, măng chua.', price: '250.000đ', file: 'Homemade Hotpot.jpg', illustrative: 'Nồi lẩu nóng' },
+            { name: 'Bánh bông lan trứng muối', desc: 'Món bánh nổi tiếng làm quà khi về từ Vũng Tàu.', price: '50.000đ/hộp', file: 'Bánh nướng thập cẩm trứng muối.JPG', illustrative: 'Bánh nướng trứng muối' },
         ],
         activities: [
             { icon: 'ri-walk-line', title: 'Leo tượng Chúa Kitô', desc: 'Hơn 800 bậc lên đỉnh núi Nhỏ ngắm toàn thành phố.' },
@@ -827,8 +827,8 @@ const DESTINATIONS = [
             { file: 'Chùa Tam Bửu ở Ba Chúc.jpg', caption: 'Chùa Tam Bửu' },
         ],
         foods: [
-            { name: 'Lẩu mắm', desc: 'Nồi lẩu mắm cá linh, cá sặc thơm nồng, ăn với rau đồng mùa nước nổi.', price: '250.000đ', file: null },
-            { name: 'Bún cá Châu Đốc', desc: 'Nước lèo vàng nghệ, cá lóc đồng, ăn kèm bông điên điển.', price: '30.000đ', file: null },
+            { name: 'Lẩu mắm', desc: 'Nồi lẩu mắm cá linh, cá sặc thơm nồng, ăn với rau đồng mùa nước nổi.', price: '250.000đ', file: ['Mắm cá lóc.JPG', 'Homemade Hotpot.jpg'], illustrative: 'Mắm cá lóc – nguyên liệu nấu lẩu mắm' },
+            { name: 'Bún cá Châu Đốc', desc: 'Nước lèo vàng nghệ, cá lóc đồng, ăn kèm bông điên điển.', price: '30.000đ', file: 'Bun nuoc leo.jpg', illustrative: 'Bún nước lèo miền Tây' },
             { name: 'Bánh bò thốt nốt', desc: 'Bánh bò vàng ươm, ngọt thanh vị đường thốt nốt Bảy Núi.', price: '20.000đ', file: 'Banh Bo Nuong.jpg', illustrative: 'Bánh bò' },
         ],
         activities: [
@@ -860,8 +860,8 @@ const DESTINATIONS = [
             { file: 'Con Dao Tiger Käfige.jpg', caption: 'Chuồng cọp Côn Đảo' },
         ],
         foods: [
-            { name: 'Hải sản Côn Đảo', desc: 'Mực, ốc vú nàng, cua đá tươi rói từ biển.', price: 'Theo thời giá', file: null },
-            { name: 'Hạt bàng', desc: 'Đặc sản dân dã, hạt bàng rang hoặc làm kẹo, thơm bùi.', price: '400.000đ/kg', file: null },
+            { name: 'Hải sản Côn Đảo', desc: 'Mực, ốc vú nàng, cua đá tươi rói từ biển.', price: 'Theo thời giá', file: 'Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg', illustrative: 'Hải sản nướng' },
+            { name: 'Hạt bàng', desc: 'Đặc sản dân dã, hạt bàng rang hoặc làm kẹo, thơm bùi.', price: '400.000đ/kg', file: 'Terminalia catappa 1.jpg', illustrative: 'Cây bàng biển' },
             { name: 'Bánh xèo', desc: 'Bánh xèo hải sản nóng giòn bên bờ biển.', price: '35.000đ', file: 'Bánh xèo with nước mắm.jpg' },
         ],
         activities: [
@@ -894,10 +894,10 @@ const DESTINATIONS = [
             { file: 'Quảng trường huyện Mộc Châu.jpg', caption: 'Quảng trường Mộc Châu' },
         ],
         foods: [
-            { name: 'Bê chao Mộc Châu', desc: 'Thịt bê non luộc rồi chao giòn, chấm chẩm chéo cay nồng.', price: '200.000đ/đĩa', file: null },
-            { name: 'Cá suối nướng', desc: 'Cá suối nhỏ kẹp tre nướng than hoa, thơm mùi mắc khén.', price: '150.000đ', file: null },
-            { name: 'Sữa và bánh sữa Mộc Châu', desc: 'Sữa tươi, sữa chua, bánh sữa từ các trang trại bò trên cao nguyên.', price: '30.000đ', file: null },
-            { name: 'Xôi nếp nương', desc: 'Xôi nếp nương dẻo thơm ăn cùng muối vừng, thịt trâu gác bếp.', price: '30.000đ', file: null },
+            { name: 'Bê chao Mộc Châu', desc: 'Thịt bê non luộc rồi chao giòn, chấm chẩm chéo cay nồng.', price: '200.000đ/đĩa', file: 'Lợn mán mẹt.jpg', illustrative: 'Món thịt đặc sản vùng cao' },
+            { name: 'Cá suối nướng', desc: 'Cá suối nhỏ kẹp tre nướng than hoa, thơm mùi mắc khén.', price: '150.000đ', file: 'Cá lóc nướng trui.JPG', illustrative: 'Cá nướng' },
+            { name: 'Sữa và bánh sữa Mộc Châu', desc: 'Sữa tươi, sữa chua, bánh sữa từ các trang trại bò trên cao nguyên.', price: '30.000đ', file: 'Holstein dairy cows.jpg', illustrative: 'Bò sữa – giống bò nuôi ở Mộc Châu' },
+            { name: 'Xôi nếp nương', desc: 'Xôi nếp nương dẻo thơm ăn cùng muối vừng, thịt trâu gác bếp.', price: '30.000đ', file: ['Xôi xéo.jpg', 'Xôi ngũ sắc.JPG'], illustrative: 'Xôi nếp' },
         ],
         activities: [
             { icon: 'ri-leaf-line', title: 'Dạo đồi chè trái tim', desc: 'Chụp ảnh giữa những luống chè xanh uốn lượn buổi sáng sớm.' },
@@ -927,10 +927,10 @@ const DESTINATIONS = [
             { file: 'Pu Luong National Reserve (15179778663).jpg', caption: 'Khu bảo tồn thiên nhiên Pù Luông' },
         ],
         foods: [
-            { name: 'Vịt Cổ Lũng', desc: 'Vịt chạy đồng nuôi thả, thịt săn chắc, luộc hoặc nướng mắc khén.', price: '250.000đ/con nhỏ', file: null },
-            { name: 'Cơm lam', desc: 'Gạo nếp nương nướng trong ống nứa, ăn cùng muối vừng.', price: '20.000đ/ống', file: null },
-            { name: 'Cá suối nướng', desc: 'Cá bống, cá chạch suối nướng giòn trên bếp củi.', price: '100.000đ', file: null },
-            { name: 'Măng rừng xào', desc: 'Măng đắng, măng nứa xào tỏi – đặc sản núi rừng.', price: '60.000đ', file: null },
+            { name: 'Vịt Cổ Lũng', desc: 'Vịt chạy đồng nuôi thả, thịt săn chắc, luộc hoặc nướng mắc khén.', price: '250.000đ/con nhỏ', file: 'Roasted Beijing Duck sliced.jpg', illustrative: 'Vịt quay' },
+            { name: 'Cơm lam', desc: 'Gạo nếp nương nướng trong ống nứa, ăn cùng muối vừng.', price: '20.000đ/ống', file: 'Khao lam87.jpg' },
+            { name: 'Cá suối nướng', desc: 'Cá bống, cá chạch suối nướng giòn trên bếp củi.', price: '100.000đ', file: 'Cá lóc nướng trui.JPG', illustrative: 'Cá nướng' },
+            { name: 'Măng rừng xào', desc: 'Măng đắng, măng nứa xào tỏi – đặc sản núi rừng.', price: '60.000đ', file: 'Măng chua ngâm quả móc mật.jpg', illustrative: 'Măng rừng' },
         ],
         activities: [
             { icon: 'ri-walk-line', title: 'Trekking bản Đôn – bản Kho Mường', desc: 'Đi bộ qua ruộng bậc thang, rừng tre và hang Bàng.' },
@@ -962,10 +962,10 @@ const DESTINATIONS = [
             { file: 'Cổng chào trên Huyện Đảo Lý Sơn - Quảng Ngãi.jpg', caption: 'Cổng chào huyện đảo Lý Sơn' },
         ],
         foods: [
-            { name: 'Gỏi tỏi Lý Sơn', desc: 'Lá tỏi non trộn tôm, thịt ba chỉ và đậu phộng – món chỉ có trên đảo.', price: '80.000đ', file: null },
-            { name: 'Ốc cừ, ốc đá', desc: 'Ốc bắt trên rạn đá núi lửa, luộc sả hoặc nướng mỡ hành.', price: '100.000đ/đĩa', file: null },
-            { name: 'Rong biển Lý Sơn', desc: 'Rong mứt trộn gỏi hoặc nấu chè mát lành.', price: '30.000đ', file: null },
-            { name: 'Cháo nhum', desc: 'Nhum (cầu gai) tươi nấu cháo ngọt béo.', price: '50.000đ', file: null },
+            { name: 'Gỏi tỏi Lý Sơn', desc: 'Lá tỏi non trộn tôm, thịt ba chỉ và đậu phộng – món chỉ có trên đảo.', price: '80.000đ', file: 'Single clove garlic.jpg', illustrative: 'Tỏi cô đơn (tỏi một nhánh)' },
+            { name: 'Ốc cừ, ốc đá', desc: 'Ốc bắt trên rạn đá núi lửa, luộc sả hoặc nướng mỡ hành.', price: '100.000đ/đĩa', file: 'Cooked snails.JPG', illustrative: 'Ốc luộc' },
+            { name: 'Rong biển Lý Sơn', desc: 'Rong mứt trộn gỏi hoặc nấu chè mát lành.', price: '30.000đ', file: 'Seaweed M0010165.jpg', illustrative: 'Rong biển' },
+            { name: 'Cháo nhum', desc: 'Nhum (cầu gai) tươi nấu cháo ngọt béo.', price: '50.000đ', file: 'Sea urchin 01.jpg', illustrative: 'Nhum biển (cầu gai)' },
         ],
         activities: [
             { icon: 'ri-camera-line', title: 'Hoàng hôn ở Cổng Tò Vò', desc: 'Vòm đá tự nhiên in bóng mặt trời lặn xuống biển.' },
@@ -997,10 +997,10 @@ const DESTINATIONS = [
             { file: 'Thác Dray Sap-Dak Nông - panoramio.jpg', caption: 'Thác Dray Sáp (cách thành phố ~25 km)' },
         ],
         foods: [
-            { name: 'Cà phê Ban Mê', desc: 'Cà phê robusta rang xay đậm đà, uống phin hoặc cà phê muối.', price: '20.000đ', file: null },
-            { name: 'Bún đỏ', desc: 'Sợi bún đỏ với chả cá, trứng cút, cua đồng – món sáng đặc trưng.', price: '30.000đ', file: null },
-            { name: 'Gà nướng cơm lam', desc: 'Gà thả vườn nướng than, ăn kèm cơm lam và muối lá é.', price: '250.000đ', file: null },
-            { name: 'Bơ và sầu riêng Tây Nguyên', desc: 'Trái cây vùng đất đỏ, ngon nhất mùa tháng 5 – 8.', price: 'Theo mùa', file: null },
+            { name: 'Cà phê Ban Mê', desc: 'Cà phê robusta rang xay đậm đà, uống phin hoặc cà phê muối.', price: '20.000đ', file: ['Vietnam distilled coffee (3861948911).jpg', 'Ca Phe Sua Da.jpg'] },
+            { name: 'Bún đỏ', desc: 'Sợi bún đỏ với chả cá, trứng cút, cua đồng – món sáng đặc trưng.', price: '30.000đ', file: 'Bún riêu cua nước.jpg', illustrative: 'Tô bún nước đỏ' },
+            { name: 'Gà nướng cơm lam', desc: 'Gà thả vườn nướng than, ăn kèm cơm lam và muối lá é.', price: '250.000đ', file: 'Khao lam87.jpg', illustrative: 'Cơm lam' },
+            { name: 'Bơ và sầu riêng Tây Nguyên', desc: 'Trái cây vùng đất đỏ, ngon nhất mùa tháng 5 – 8.', price: 'Theo mùa', file: 'Buah durian.jpg' },
         ],
         activities: [
             { icon: 'ri-cup-line', title: 'Bảo tàng Thế giới Cà phê', desc: 'Kiến trúc nhà dài Ê Đê, bộ sưu tập cà phê từ khắp thế giới.' },
@@ -1032,9 +1032,9 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Bánh canh ghẹ', desc: 'Ghẹ Hà Tiên ngọt thịt, nước dùng đậm đà.', price: '60.000đ', file: 'Bánh canh cua (Vietnamese thick noodle with crab soup).jpg' },
-            { name: 'Xôi xiêm', desc: 'Xôi nếp nước cốt dừa và đường thốt nốt, món ngọt người Hoa – Khmer.', price: '20.000đ', file: null },
-            { name: 'Bún kèn', desc: 'Bún nước cốt dừa với cá xay, nghệ – đặc sản Kiên Giang.', price: '30.000đ', file: null },
-            { name: 'Hải sản Mũi Nai', desc: 'Ghẹ, mực, ốc nướng bên bãi biển lúc hoàng hôn.', price: 'Theo thời giá', file: null },
+            { name: 'Xôi xiêm', desc: 'Xôi nếp nước cốt dừa và đường thốt nốt, món ngọt người Hoa – Khmer.', price: '20.000đ', file: 'Xôi xéo.jpg', illustrative: 'Xôi' },
+            { name: 'Bún kèn', desc: 'Bún nước cốt dừa với cá xay, nghệ – đặc sản Kiên Giang.', price: '30.000đ', file: 'Bun nuoc leo.jpg', illustrative: 'Bún nước miền Tây' },
+            { name: 'Hải sản Mũi Nai', desc: 'Ghẹ, mực, ốc nướng bên bãi biển lúc hoàng hôn.', price: 'Theo thời giá', file: 'Ham Ninh market, Phu Quoc- Kien Giang, Vietnam - panoramio.jpg', illustrative: 'Chợ hải sản ven biển' },
         ],
         activities: [
             { icon: 'ri-sun-line', title: 'Hoàng hôn Mũi Nai', desc: 'Tắm biển, ăn hải sản, ngắm mặt trời lặn trên vịnh Thái Lan.' },
