@@ -17,6 +17,26 @@ Toàn bộ nội dung nằm trong `assets/js/data/destinations.js`. Thêm một 
 Ảnh chỉ cần khai báo **tên file trên Wikimedia Commons**; trang sẽ tự tải bản độ phân giải cao
 qua `Special:FilePath`, và mỗi ảnh trong lightbox có liên kết về trang bản quyền gốc.
 
+## Tìm kiếm
+- Gõ **không dấu** (`pho`) để tìm rộng, gõ **có dấu** (`phở`) để tìm chính xác.
+- Tìm theo tên, tỉnh thành, điểm nhấn, món ăn, hoạt động; kết quả xếp theo độ liên quan
+  và hiển thị lý do khớp (ví dụ *Món ăn: Phở Hà Nội*).
+
+## Ảnh dự phòng
+- Ảnh bìa lỗi → tự động thử lần lượt các ảnh trong gallery.
+- Ảnh gallery lỗi → tự ẩn khỏi lưới và lightbox.
+- Món ăn chưa có ảnh hoặc ảnh lỗi → hiện thẻ chữ kiểu thực đơn. Món dùng ảnh liên quan
+  (chợ, nồi lẩu...) được gắn nhãn *Ảnh minh họa*.
+
+## Kiểm tra ảnh
+Chạy trên máy có Internet (Node.js 18+):
+
+```bash
+node tools/check-images.js
+```
+
+Script liệt kê ảnh không tồn tại trên Wikimedia Commons và ảnh có độ phân giải thấp.
+
 ## Nguồn ảnh
 Ảnh các địa danh và món ăn lấy từ [Wikimedia Commons](https://commons.wikimedia.org/) theo giấy phép
 Creative Commons (CC BY / CC BY-SA); thông tin tác giả xem tại trang của từng file.

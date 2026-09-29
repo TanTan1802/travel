@@ -52,8 +52,8 @@ const DESTINATIONS = [
             { file: 'Ha Long Bay - Bahía de Ha Long.JPG', caption: 'Thuyền buồm truyền thống' },
         ],
         foods: [
-            { name: 'Chả mực Hạ Long', desc: 'Mực giã tay dai giòn, chiên vàng thơm lừng – đặc sản số một đất mỏ.', price: '350.000đ/kg', file: null },
-            { name: 'Bún chả cá', desc: 'Nước dùng ngọt thanh từ xương cá, chả cá dai, ăn kèm rau sống.', price: '40.000đ', file: null },
+            { name: 'Chả mực Hạ Long', desc: 'Mực giã tay dai giòn, chiên vàng thơm lừng – đặc sản số một đất mỏ.', price: '350.000đ/kg', file: 'Chả mực Hạ Long, Quảng Ninh, Việt Nam.jpg' },
+            { name: 'Bánh cuốn chả mực', desc: 'Bánh cuốn mỏng mềm ăn cùng chả mực giòn thơm – bữa sáng kiểu Quảng Ninh.', price: '45.000đ', file: 'Banh cuon.jpg' },
             { name: 'Phở', desc: 'Món ăn quốc hồn quốc túy, bát phở nóng hổi cho buổi sáng trên vịnh.', price: '45.000đ', file: 'Phở bò (39425047901).jpg' },
         ],
         activities: [
@@ -84,9 +84,9 @@ const DESTINATIONS = [
             { file: 'Stairs to the Fansipan.jpg', caption: 'Bậc đá lên đỉnh Fansipan' },
         ],
         foods: [
-            { name: 'Thắng cố', desc: 'Món ăn truyền thống của người H\'Mông, nấu từ thịt và nội tạng ngựa cùng thảo quả.', price: '100.000đ', file: null },
+            { name: 'Thắng cố', desc: 'Món ăn truyền thống của người H\'Mông, nấu từ thịt và nội tạng ngựa cùng thảo quả.', price: '100.000đ', file: 'Indigenous Girl in Sunday Market - Bac Ha - Lao Cai Province - Vietnam - 01 (48218346821).jpg', illustrative: 'Chợ phiên Bắc Hà – nơi bán thắng cố' },
             { name: 'Cơm lam', desc: 'Gạo nếp nương nướng trong ống tre, dẻo thơm mùi khói bếp.', price: '20.000đ/ống', file: 'Khao lam87.jpg' },
-            { name: 'Lẩu cá hồi', desc: 'Cá hồi nuôi bằng nước suối lạnh Sa Pa, thịt chắc ngọt.', price: '300.000đ', file: null },
+            { name: 'Lẩu cá hồi', desc: 'Cá hồi nuôi bằng nước suối lạnh Sa Pa, thịt chắc ngọt.', price: '300.000đ', file: 'Homemade Hotpot.jpg', illustrative: 'Nồi lẩu nóng' },
         ],
         activities: [
             { icon: 'ri-riding-line', title: 'Cáp treo Fansipan', desc: 'Chinh phục đỉnh 3.143m chỉ trong 15 phút.' },
@@ -120,7 +120,7 @@ const DESTINATIONS = [
             { name: 'Phở Hà Nội', desc: 'Nước dùng trong, ngọt từ xương bò hầm hàng giờ, bánh phở mềm.', price: '50.000đ', file: 'Phở bát đá.jpg' },
             { name: 'Bún chả', desc: 'Chả nướng than hoa thơm lừng, chấm nước mắm chua ngọt.', price: '45.000đ', file: 'Bun-cha-hanoi.jpg' },
             { name: 'Chả cá Lã Vọng', desc: 'Cá lăng ướp nghệ, rán trên chảo mỡ cùng thì là và hành.', price: '150.000đ', file: 'Chả cá Lã Vọng.jpg' },
-            { name: 'Cà phê trứng', desc: 'Lớp kem trứng béo ngậy phủ trên cà phê đậm đà – phát minh của Hà Nội.', price: '35.000đ', file: null },
+            { name: 'Cà phê trứng', desc: 'Lớp kem trứng béo ngậy phủ trên cà phê đậm đà – phát minh của Hà Nội.', price: '35.000đ', file: 'Cà phê trứng.jpg' },
         ],
         activities: [
             { icon: 'ri-walk-line', title: 'Dạo phố đi bộ', desc: 'Phố đi bộ Hồ Gươm sôi động mỗi tối cuối tuần.' },
@@ -184,8 +184,8 @@ const DESTINATIONS = [
             { file: 'Ha Giang rizieres bis.jpg', caption: 'Ruộng bậc thang Hoàng Su Phì' },
         ],
         foods: [
-            { name: 'Cháo ấu tẩu', desc: 'Cháo nấu từ củ ấu tẩu đắng nhẹ, bùi béo, ấm lòng đêm lạnh.', price: '30.000đ', file: null },
-            { name: 'Bánh cuốn trứng', desc: 'Bánh cuốn kẹp trứng chan nước xương hầm – bữa sáng kiểu Hà Giang.', price: '25.000đ', file: null },
+            { name: 'Cháo ấu tẩu', desc: 'Cháo nấu từ củ ấu tẩu đắng nhẹ, bùi béo, ấm lòng đêm lạnh.', price: '30.000đ', file: 'Quyết Tiến market, Hà Giang, Vietnam - 2.jpg', illustrative: 'Chợ phiên Hà Giang' },
+            { name: 'Bánh cuốn trứng', desc: 'Bánh cuốn kẹp trứng chan nước xương hầm – bữa sáng kiểu Hà Giang.', price: '25.000đ', file: 'Banh cuon.jpg' },
             { name: 'Cơm lam', desc: 'Gạo nương nướng ống tre, chấm muối vừng hoặc thịt nướng.', price: '20.000đ/ống', file: 'Khao lam87.jpg' },
         ],
         activities: [
@@ -216,7 +216,7 @@ const DESTINATIONS = [
         ],
         foods: [
             { name: 'Vịt quay 7 vị', desc: 'Vịt quay lá mắc mật thơm nức, da giòn óng – niềm tự hào Cao Bằng.', price: '250.000đ/con', file: null },
-            { name: 'Bánh cuốn Cao Bằng', desc: 'Bánh mỏng, ăn cùng nước canh xương nóng thay vì nước mắm.', price: '30.000đ', file: null },
+            { name: 'Bánh cuốn Cao Bằng', desc: 'Bánh mỏng, ăn cùng nước canh xương nóng thay vì nước mắm.', price: '30.000đ', file: 'Banh cuon.jpg' },
             { name: 'Phở chua', desc: 'Món phở trộn chua ngọt với thịt quay, lạc rang, rau thơm.', price: '40.000đ', file: null },
         ],
         activities: [
@@ -283,7 +283,7 @@ const DESTINATIONS = [
             { file: 'Son Doong Cave by Daniel Burka.jpg', caption: 'Sơn Đoòng – hang lớn nhất thế giới' },
         ],
         foods: [
-            { name: 'Cháo canh Quảng Bình', desc: 'Sợi bánh canh dai mềm, nước dùng cá lóc ngọt thanh.', price: '25.000đ', file: null },
+            { name: 'Bánh bột lọc Quảng Bình', desc: 'Vỏ bột trong veo, nhân tôm đất rim đậm đà, chấm nước mắm ớt.', price: '30.000đ', file: 'Banh Bot Loc in Danang, Vietnam.jpg' },
             { name: 'Gà nướng Phong Nha', desc: 'Gà ta thả vườn nướng than, chấm muối tiêu chanh.', price: '250.000đ/con', file: null },
             { name: 'Bánh xèo', desc: 'Bánh xèo giòn rụm nhân tôm thịt, cuốn rau rừng chấm nước mắm.', price: '30.000đ', file: 'Bánh xèo with nước mắm.jpg' },
         ],
@@ -416,9 +416,9 @@ const DESTINATIONS = [
             { file: 'Da Lat - Viet Nam.jpg', caption: 'Thành phố giữa rừng thông' },
         ],
         foods: [
-            { name: 'Bánh tráng nướng', desc: '"Pizza Việt Nam" – bánh tráng nướng than với trứng, hành, xúc xích.', price: '20.000đ', file: null },
+            { name: 'Bánh tráng nướng', desc: '"Pizza Việt Nam" – bánh tráng nướng than với trứng, hành, xúc xích.', price: '20.000đ', file: 'Bánh tráng nướng TP. Hồ Chí Minh - street food in Ho Chi Minh City, Vietnam.jpg' },
             { name: 'Bánh căn', desc: 'Bánh căn nóng hổi chấm xíu mại – món ăn sáng của người Đà Lạt.', price: '30.000đ', file: 'Bánh căn in phan rang, vietnam.jpg' },
-            { name: 'Lẩu gà lá é', desc: 'Gà ta nấu cùng lá é thơm nồng, ấm bụng giữa tiết trời se lạnh.', price: '300.000đ', file: null },
+            { name: 'Lẩu gà lá é', desc: 'Gà ta nấu cùng lá é thơm nồng, ấm bụng giữa tiết trời se lạnh.', price: '300.000đ', file: 'Homemade Hotpot.jpg', illustrative: 'Nồi lẩu nóng' },
             { name: 'Cà phê Đà Lạt', desc: 'Nhâm nhi cà phê nhìn đồi thông trong làn sương sớm.', price: '30.000đ', file: 'Ca Phe Sua Da.jpg' },
         ],
         activities: [
@@ -548,8 +548,8 @@ const DESTINATIONS = [
             { file: 'Bai-sao-phu-quoc-tuonglamphotos.jpg', caption: 'Bãi Sao cát trắng' },
         ],
         foods: [
-            { name: 'Gỏi cá trích', desc: 'Cá trích tươi trộn dừa nạo, hành tây, cuốn bánh tráng rau rừng.', price: '120.000đ', file: null },
-            { name: 'Bún quậy', desc: 'Tô bún tự "quậy" với chả tôm chả cá tươi, nêm theo khẩu vị.', price: '45.000đ', file: null },
+            { name: 'Gỏi cá trích', desc: 'Cá trích tươi trộn dừa nạo, hành tây, cuốn bánh tráng rau rừng.', price: '120.000đ', file: 'Ham Ninh market, Phu Quoc- Kien Giang, Vietnam - panoramio.jpg', illustrative: 'Chợ hải sản Hàm Ninh' },
+            { name: 'Nước mắm Phú Quốc', desc: 'Nước mắm cá cơm ủ chượp trong thùng gỗ hàng năm trời – đặc sản trứ danh của đảo.', price: '150.000đ/lít', file: 'Vats at a Fish Sauce Factory on Phu Quoc Island in Vietnam 01.jpg', illustrative: 'Nhà thùng ủ nước mắm' },
             { name: 'Bánh canh ghẹ', desc: 'Bánh canh sánh sệt với ghẹ Hàm Ninh chắc thịt, ngọt lịm.', price: '60.000đ', file: 'Bánh canh cua (Vietnamese thick noodle with crab soup).jpg' },
         ],
         activities: [
@@ -597,18 +597,39 @@ function getDestination(id) {
     return DESTINATIONS.find(d => d.id === id)
 }
 
-/*=============== ẢNH DỰ PHÒNG KHI LỖI TẢI ===============*/
-function markImgFallback(img) {
-    img.onerror = null
-    img.classList.add('img--hidden')
-    if (img.parentElement) img.parentElement.classList.add('img-fallback')
+/*=============== ẢNH NHIỀU TẦNG DỰ PHÒNG ===============*/
+/* Ảnh đại diện của điểm đến: nếu ảnh bìa lỗi sẽ lần lượt thử các ảnh trong gallery */
+function heroCandidates(dest) {
+    return [dest.hero, ...dest.gallery.map(g => g.file)]
 }
 
-/* Gán src cho các <img data-wiki="Tên file.jpg" data-width="1280"> */
+/* Chuỗi dùng cho thuộc tính data-wiki (các ảnh dự phòng ngăn cách bởi "|") */
+function wikiAttr(files) {
+    return (Array.isArray(files) ? files : [files]).join('|').replace(/"/g, '&quot;')
+}
+
+function markImgFallback(img) {
+    img.classList.add('img--hidden')
+    if (img.parentElement) img.parentElement.classList.add('img-fallback')
+    img.dispatchEvent(new CustomEvent('wiki:failed', { bubbles: true }))
+}
+
+/*
+ * Gán src cho các <img data-wiki="a.jpg|b.jpg" data-width="1280">.
+ * Khi một ảnh lỗi, tự động chuyển sang ảnh kế tiếp; hết ảnh thì hiện khung thay thế.
+ */
 function hydrateWikiImages(root = document) {
     root.querySelectorAll('img[data-wiki]:not([data-hydrated])').forEach(img => {
+        const files = img.dataset.wiki.split('|').filter(Boolean)
+        const width = Number(img.dataset.width) || 1280
+        let index = 0
+
         img.dataset.hydrated = ''
-        img.addEventListener('error', () => markImgFallback(img), { once: true })
-        img.src = wikiImg(img.dataset.wiki, Number(img.dataset.width) || 1280)
+        img.addEventListener('error', () => {
+            index++
+            if (index < files.length) img.src = wikiImg(files[index], width)
+            else markImgFallback(img)
+        })
+        img.src = wikiImg(files[0], width)
     })
 }

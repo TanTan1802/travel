@@ -7,7 +7,7 @@ const dest = getDestination(destId)
 function heroSection(d) {
     return `
         <section class="dest-hero" id="top">
-            <img data-wiki="${d.hero}" data-width="1920" alt="${d.name}" class="dest-hero__img">
+            <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="1920" alt="${d.name}" class="dest-hero__img">
             <div class="dest-hero__overlay"></div>
 
             <div class="dest-hero__content container">
@@ -55,6 +55,7 @@ function fact(icon, label, value) {
 
 function overviewSection(d) {
     const side = d.gallery[0]
+    const sideFiles = d.gallery.slice(0, 3).map(g => g.file)
     return `
         <section class="overview section" id="overview">
             <div class="overview__container container grid">
@@ -75,7 +76,7 @@ function overviewSection(d) {
 
                 ${side ? `
                 <div class="overview__img">
-                    <img data-wiki="${side.file}" data-width="960" alt="${side.caption}" loading="lazy">
+                    <img data-wiki="${wikiAttr(sideFiles)}" data-width="960" alt="${side.caption}" loading="lazy">
                 </div>` : ''}
             </div>
         </section>
@@ -91,8 +92,8 @@ function gallerySection(d) {
 
             <div class="gallery__grid container">
                 ${photos.map((p, i) => `
-                    <button type="button" class="gallery__item" data-index="${i}" aria-label="Xem ảnh: ${p.caption}">
-                        <img data-wiki="${p.file}" data-width="960" alt="${p.caption}" class="gallery__img" loading="lazy">
+                    <button type="button" class="gallery__item${i === 0 ? ' is-featured' : ''}" data-index="${i}" aria-label="Xem ảnh: ${p.caption}">
+                        <img data-wiki="${wikiAttr(p.file)}" data-width="960" alt="${p.caption}" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> ${p.caption}</span>
                     </button>
                 `).join('')}
@@ -108,20 +109,28 @@ function foodSection(d) {
             <h2 class="section__title">Món ngon phải thử</h2>
 
             <div class="food__grid container">
-                ${d.foods.map(f => `
-                    <article class="food-card">
-                        <div class="food-card__media${f.file ? '' : ' img-fallback'}">
-                            ${f.file ? `<img data-wiki="${f.file}" data-width="960" alt="${f.name}" class="food-card__img" loading="lazy">` : ''}
-                            <span class="food-card__price">${f.price}</span>
-                        </div>
-                        <div class="food-card__body">
-                            <h3 class="food-card__title">${f.name}</h3>
-                            <p class="food-card__desc">${f.desc}</p>
-                        </div>
-                    </article>
-                `).join('')}
+                ${d.foods.map(foodCard).join('')}
             </div>
         </section>
+    `
+}
+
+function foodCard(f) {
+    /* Thẻ chữ kiểu thực đơn nằm dưới ảnh: hiện ra khi món chưa có ảnh hoặc ảnh tải lỗi */
+    return `
+        <article class="food-card">
+            <div class="food-card__media">
+                <span class="food-card__menu"><small>Đặc sản</small>${f.name}</span>
+                ${f.file ? `<img data-wiki="${wikiAttr(f.file)}" data-width="960" alt="${f.name}" class="food-card__img" loading="lazy">` : ''}
+                ${f.illustrative ? `<span class="food-card__badge" title="${f.illustrative}">Ảnh minh họa</span>` : ''}
+                <span class="food-card__price">${f.price}</span>
+            </div>
+            <div class="food-card__body">
+                <h3 class="food-card__title">${f.name}</h3>
+                <p class="food-card__desc">${f.desc}</p>
+                ${f.illustrative ? `<span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: ${f.illustrative}</span>` : ''}
+            </div>
+        </article>
     `
 }
 
@@ -192,8 +201,15 @@ function initLightbox(photos) {
           credit = document.getElementById('lightbox-credit')
     let current = 0
 
-    function show(index) {
+    const items = [...document.querySelectorAll('.gallery__item')]
+    const isBroken = i => items[i] && items[i].classList.contains('is-broken')
+
+    function show(index, step = 1) {
         current = (index + photos.length) % photos.length
+        /* Bỏ qua ảnh đã tải lỗi trong gallery */
+        for (let tries = 0; isBroken(current) && tries < photos.length; tries++) {
+            current = (current + step + photos.length) % photos.length
+        }
         const photo = photos[current]
         img.src = wikiImg(photo.file, 1920)
         img.alt = photo.caption
@@ -212,18 +228,30 @@ function initLightbox(photos) {
         document.body.classList.remove('no-scroll')
     }
 
-    document.querySelectorAll('.gallery__item').forEach(item => {
+    items.forEach(item => {
         item.addEventListener('click', () => open(Number(item.dataset.index)))
+        /* Ảnh gallery lỗi: ẩn khỏi lưới thay vì hiện khung trống */
+        item.addEventListener('wiki:failed', () => {
+            item.classList.add('is-broken')
+            if (item.classList.contains('is-featured')) {
+                item.classList.remove('is-featured')
+                const next = items.find(x => !x.classList.contains('is-broken'))
+                if (next) next.classList.add('is-featured')
+            }
+        })
+    })
+    img.addEventListener('error', () => {
+        if (!box.hidden) caption.textContent = 'Không tải được ảnh này.'
     })
     document.getElementById('lightbox-close').addEventListener('click', close)
-    document.getElementById('lightbox-prev').addEventListener('click', () => show(current - 1))
+    document.getElementById('lightbox-prev').addEventListener('click', () => show(current - 1, -1))
     document.getElementById('lightbox-next').addEventListener('click', () => show(current + 1))
     box.addEventListener('click', e => { if (e.target === box) close() })
 
     document.addEventListener('keydown', e => {
         if (box.hidden) return
         if (e.key === 'Escape') close()
-        if (e.key === 'ArrowLeft') show(current - 1)
+        if (e.key === 'ArrowLeft') show(current - 1, -1)
         if (e.key === 'ArrowRight') show(current + 1)
     })
 }
