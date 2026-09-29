@@ -2,7 +2,7 @@
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '658cb6b8f6'
+const VERSION = '32c40317d4'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'

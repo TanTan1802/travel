@@ -276,6 +276,10 @@ const LOCAL_IMAGES = {
         "sm": "assets/img/wiki/hoan-kiem-lake-hanoi-39513889222-c50995-960.jpg",
         "lg": "assets/img/wiki/hoan-kiem-lake-hanoi-39513889222-c50995-1920.jpg"
     },
+    "Hoi An, Japanese covered bridge (6223785067).jpg": {
+        "sm": "assets/img/wiki/hoi-an-japanese-covered-bridge-6223785067-def738-960.jpg",
+        "lg": "assets/img/wiki/hoi-an-japanese-covered-bridge-6223785067-def738-1920.jpg"
+    },
     "Homemade Hotpot.jpg": {
         "sm": "assets/img/wiki/homemade-hotpot-22e27f-960.jpg",
         "lg": "assets/img/wiki/homemade-hotpot-22e27f-1920.jpg"
