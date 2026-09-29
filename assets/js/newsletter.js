@@ -15,19 +15,19 @@ function initNewsletter(form) {
         const email = input.value.trim()
 
         if (!input.checkValidity() || !email) {
-            show('Vui lòng nhập địa chỉ email hợp lệ.', 'error')
+            show(t('Vui lòng nhập địa chỉ email hợp lệ.'), 'error')
             input.focus()
             return
         }
 
         const endpoint = typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.newsletterEndpoint
         if (!endpoint) {
-            show('Tính năng nhận tin sắp ra mắt. Cảm ơn bạn đã quan tâm!', 'info')
+            show(t('Tính năng nhận tin sắp ra mắt. Cảm ơn bạn đã quan tâm!'), 'info')
             return
         }
 
         button.disabled = true
-        show('Đang gửi...', 'info')
+        show(t('Đang gửi...'), 'info')
         try {
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -36,9 +36,9 @@ function initNewsletter(form) {
             })
             if (!res.ok) throw new Error(`HTTP ${res.status}`)
             form.reset()
-            show('Đăng ký thành công! Hãy kiểm tra hộp thư của bạn.', 'success')
+            show(t('Đăng ký thành công! Hãy kiểm tra hộp thư của bạn.'), 'success')
         } catch {
-            show('Chưa gửi được, vui lòng thử lại sau.', 'error')
+            show(t('Chưa gửi được, vui lòng thử lại sau.'), 'error')
         } finally {
             button.disabled = false
         }

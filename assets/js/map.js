@@ -3,7 +3,7 @@ const VIETNAM_CENTER = [16.2, 106.5]
 
 /* Nhãn chủ quyền biển đảo Việt Nam hiển thị trên mọi bản đồ */
 const SOVEREIGNTY_LABELS = [
-    { name: 'Quần đảo Hoàng Sa (Việt Nam)', lat: 16.5, lng: 112.0 },
+    { name: 'Quần đảo Hoàng Sa (Việt Nam)', lat: 16.5, lng: 112.0 }, // tên được dịch khi hiển thị
     { name: 'Quần đảo Trường Sa (Việt Nam)', lat: 10.2, lng: 114.3 },
 ]
 
@@ -21,7 +21,7 @@ function createMap(el, { center = VIETNAM_CENTER, zoom = 5, scrollWheelZoom = fa
         L.marker([label.lat, label.lng], {
             interactive: false,
             keyboard: false,
-            icon: L.divIcon({ className: 'map-label', html: `<span>${label.name}</span>`, iconSize: null }),
+            icon: L.divIcon({ className: 'map-label', html: `<span>${t(label.name)}</span>`, iconSize: null }),
         }).addTo(map)
     })
 
@@ -52,7 +52,7 @@ function destinationPopup(d, extra = '') {
             <span class="map-popup__body">
                 <strong>${d.name}</strong>
                 <small>${d.province} · ${REGIONS[d.region]}${extra}</small>
-                <em>Xem chi tiết <i class="ri-arrow-right-line"></i></em>
+                <em>${t('Xem chi tiết')} <i class="ri-arrow-right-line"></i></em>
             </span>
         </a>
     `
@@ -79,5 +79,5 @@ function whenVisible(el, callback) {
 
 function showMapUnavailable(el) {
     el.classList.add('map--unavailable')
-    el.innerHTML = '<p><i class="ri-map-2-line"></i> Không tải được bản đồ. Vui lòng kiểm tra kết nối mạng.</p>'
+    el.innerHTML = `<p><i class="ri-map-2-line"></i> ${t('Không tải được bản đồ. Vui lòng kiểm tra kết nối mạng.')}</p>`
 }

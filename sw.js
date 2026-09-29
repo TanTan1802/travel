@@ -2,7 +2,7 @@
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '32640d30b2'
+const VERSION = '9f10e86be2'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -18,6 +18,8 @@ const CORE_ASSETS = [
     './assets/css/vietnam.css',
     './assets/css/swiper-bundle.min.css',
     './assets/js/data/local-images.js',
+    './assets/js/i18n.js',
+    './assets/js/data/en.js',
     './assets/js/data/destinations.js',
     './assets/js/data/itineraries.js',
     './assets/js/favorites.js',
@@ -83,7 +85,7 @@ async function staleWhileRevalidate(request, cacheName, limit) {
             if (limit) trimCache(cacheName, limit)
         }
         return response
-    }).catch(() => cached)
+    }).catch(() => cached || Response.error())
     return cached || network
 }
 

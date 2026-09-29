@@ -25,11 +25,11 @@ function splitWords(text) {
 function searchFields(d) {
     return [
         { text: d.name, weight: 10 },
-        { text: d.province, weight: 6, label: 'Tỉnh/thành' },
-        { text: REGIONS[d.region], weight: 2, label: 'Vùng' },
-        ...d.highlights.map(h => ({ text: h, weight: 4, label: 'Điểm nhấn' })),
-        ...d.foods.map(f => ({ text: f.name, weight: 3, label: 'Món ăn' })),
-        ...d.activities.map(a => ({ text: a.title, weight: 2, label: 'Trải nghiệm' })),
+        { text: d.province, weight: 6, label: t('Tỉnh/thành') },
+        { text: REGIONS[d.region], weight: 2, label: t('Vùng') },
+        ...d.highlights.map(h => ({ text: h, weight: 4, label: t('Điểm nhấn') })),
+        ...d.foods.map(f => ({ text: f.name, weight: 3, label: t('Món ăn') })),
+        ...d.activities.map(a => ({ text: a.title, weight: 2, label: t('Trải nghiệm') })),
         { text: d.tagline, weight: 1 },
     ].map(field => ({ ...field, words: splitWords(field.text) }))
 }
@@ -177,13 +177,13 @@ function renderGrid() {
 
     document.getElementById('explore-empty').hidden = results.length > 0
     document.getElementById('explore-empty-text').textContent = exploreState.favoritesOnly && !Favorites.count()
-        ? 'Bạn chưa lưu điểm đến nào. Nhấn biểu tượng ♥ trên thẻ để lưu lại nhé!'
-        : 'Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!'
+        ? t('Bạn chưa lưu điểm đến nào. Nhấn biểu tượng ♥ trên thẻ để lưu lại nhé!')
+        : t('Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!')
     document.getElementById('explore-result').textContent =
-        `Hiển thị ${results.length} / ${DESTINATIONS.length} điểm đến`
+        t('Hiển thị {count} / {total} điểm đến', { count: results.length, total: DESTINATIONS.length })
 
     const tip = document.getElementById('explore-tip')
-    const looseSearch = tokens.some(t => !hasDiacritics(t)) && results.length > 4
+    const looseSearch = LANG === 'vi' && tokens.some(token => !hasDiacritics(token)) && results.length > 4
     tip.hidden = !looseSearch
     if (looseSearch) {
         tip.textContent = `Mẹo: gõ có dấu (ví dụ "phở" thay vì "pho") để kết quả chính xác hơn.`
@@ -214,8 +214,8 @@ function initExplore() {
     const params = new URLSearchParams(location.search)
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
 
-    renderChips('region-filters', { all: 'Tất cả', ...REGIONS }, 'region')
-    renderChips('category-filters', { all: 'Mọi loại hình', ...CATEGORIES }, 'category')
+    renderChips('region-filters', { all: t('Tất cả'), ...REGIONS }, 'region')
+    renderChips('category-filters', { all: t('Mọi loại hình'), ...CATEGORIES }, 'category')
 
     const search = document.getElementById('explore-search')
     if (search) {

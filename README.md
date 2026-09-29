@@ -13,13 +13,14 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 - **Bản đồ** (Leaflet + OpenStreetMap) với điểm lân cận và khoảng cách.
 - **Thời tiết hiện tại** (Open-Meteo) và thanh 12 tháng tô màu mùa đẹp.
 - **Yêu thích**: lưu điểm đến ngay trên trình duyệt, không cần đăng nhập.
+- **Song ngữ Việt – Anh**: bản tiếng Anh ở `/en/`, nút chuyển ngôn ngữ trên thanh menu.
 
 ## Cấu trúc & quy trình
 | Đường dẫn | Vai trò |
 |---|---|
 | `assets/js/data/destinations.js` | Toàn bộ dữ liệu điểm đến |
 | `destination.html` | Mẫu giao diện trang chi tiết (cũng chạy động với `?id=`) |
-| `diem-den/<id>/index.html` | Trang tĩnh sinh tự động – **không sửa tay** |
+| `diem-den/<id>/index.html`, `en/` | Trang tĩnh sinh tự động (vi + en) – **không sửa tay** |
 | `tools/` | Script build, tải ảnh, kiểm tra ảnh |
 
 Sau khi sửa dữ liệu hoặc `destination.html`:
@@ -37,6 +38,12 @@ npm run build
 
 Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi chia sẻ Facebook/Zalo),
 dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
+
+## Song ngữ
+- Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
+  (`ui`, `html`, `destinations`, `itineraries`).
+- Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
+  (các trường chưa dịch sẽ hiển thị tiếng Việt).
 
 ## Cài như ứng dụng (PWA)
 Website có thể cài lên màn hình chính điện thoại/máy tính và xem lại các trang đã mở khi mất mạng

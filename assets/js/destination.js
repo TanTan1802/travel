@@ -111,7 +111,7 @@ function initLightbox(photos) {
         })
     })
     img.addEventListener('error', () => {
-        if (!box.hidden) caption.textContent = 'Không tải được ảnh này.'
+        if (!box.hidden) caption.textContent = t('Không tải được ảnh này.')
     })
     document.getElementById('lightbox-close').addEventListener('click', close)
     document.getElementById('lightbox-prev').addEventListener('click', () => show(current - 1, -1))
@@ -183,6 +183,10 @@ if (dest) {
         canonical.rel = 'canonical'
         canonical.href = new URL(destinationUrl(dest.id).replace('index.html', ''), location.href).href
         document.head.appendChild(canonical)
+
+        /* Nút chuyển ngôn ngữ trỏ tới trang tiếng Anh tương ứng */
+        const langSwitch = document.querySelector('.nav__lang')
+        if (langSwitch) langSwitch.href = `${SITE_ROOT}en/diem-den/${dest.id}/index.html`
     }
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()
@@ -193,7 +197,7 @@ if (dest) {
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
     markCurrentMonth(destRoot)
 } else {
-    document.title = 'Không tìm thấy điểm đến – Việt Travel'
+    document.title = `${t('Không tìm thấy điểm đến')} – Việt Travel`
     destRoot.innerHTML = notFoundSection()
     document.getElementById('header').classList.add('header--solid')
 }

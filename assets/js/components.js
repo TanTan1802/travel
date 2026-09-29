@@ -1,13 +1,18 @@
 /*==================== THÀNH PHẦN DÙNG CHUNG ====================*/
 /* Trang tĩnh của điểm đến (sinh bởi `npm run build`) */
-const destinationUrl = id => `${SITE_ROOT}diem-den/${encodeURIComponent(id)}/index.html`
+const destinationUrl = id => `${SITE_ROOT}${LANG_PREFIX}diem-den/${encodeURIComponent(id)}/index.html`
+
+/* Trang chủ của ngôn ngữ hiện tại */
+const homeUrl = (suffix = '') => `${SITE_ROOT}${LANG_PREFIX}index.html${suffix}`
+
+applyTranslations()
 
 /* Thẻ điểm đến – dùng ở trang chủ và mục "Điểm đến cùng vùng" */
 function favoriteButton(id, { withLabel = false } = {}) {
     return `
-        <button type="button" class="fav-btn${withLabel ? ' fav-btn--labeled' : ''}" data-favorite="${id}" aria-pressed="false" title="Lưu vào yêu thích">
+        <button type="button" class="fav-btn${withLabel ? ' fav-btn--labeled' : ''}" data-favorite="${id}" aria-pressed="false" title="${t('Lưu vào yêu thích')}">
             <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
-            ${withLabel ? '<span class="fav-btn__label">Lưu yêu thích</span>' : ''}
+            ${withLabel ? `<span class="fav-btn__label">${t('Lưu yêu thích')}</span>` : ''}
         </button>
     `
 }

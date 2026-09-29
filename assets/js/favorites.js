@@ -41,8 +41,8 @@ function syncFavoriteButtons(root = document) {
         btn.classList.toggle('fav-btn--active', active)
         btn.setAttribute('aria-pressed', active)
         const label = btn.querySelector('.fav-btn__label')
-        if (label) label.textContent = active ? 'Đã lưu' : 'Lưu yêu thích'
-        btn.title = active ? 'Bỏ khỏi yêu thích' : 'Lưu vào yêu thích'
+        if (label) label.textContent = active ? t('Đã lưu') : t('Lưu yêu thích')
+        btn.title = active ? t('Bỏ khỏi yêu thích') : t('Lưu vào yêu thích')
     })
 }
 
@@ -54,7 +54,7 @@ document.addEventListener('click', e => {
     const added = Favorites.toggle(btn.dataset.favorite)
     btn.classList.add('fav-btn--pop')
     setTimeout(() => btn.classList.remove('fav-btn--pop'), 400)
-    showToast(added ? 'Đã lưu vào yêu thích' : 'Đã bỏ khỏi yêu thích')
+    showToast(added ? t('Đã lưu vào yêu thích') : t('Đã bỏ khỏi yêu thích'))
 })
 
 window.addEventListener('favorites:change', () => syncFavoriteButtons())

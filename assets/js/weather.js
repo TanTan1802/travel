@@ -12,10 +12,13 @@ const WEATHER_CODES = [
 ]
 
 function describeWeather(code) {
-    return WEATHER_CODES.find(w => w.codes.includes(code)) || { text: 'Không rõ', icon: 'ri-question-line' }
+    const w = WEATHER_CODES.find(x => x.codes.includes(code)) || { text: 'Không rõ', icon: 'ri-question-line' }
+    return { ...w, text: t(w.text) }
 }
 
-const WEEKDAYS = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
+const WEEKDAYS = LANG === 'en'
+    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    : ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
 const WEATHER_CACHE_MINUTES = 30
 
 async function fetchWeather(lat, lng) {
@@ -63,8 +66,8 @@ function renderWeather(el, data) {
             </div>
         </div>
         <div class="weather__meta">
-            <span><i class="ri-drop-line"></i> Độ ẩm ${now.relative_humidity_2m}%</span>
-            <span><i class="ri-windy-line"></i> Gió ${Math.round(now.wind_speed_10m)} km/h</span>
+            <span><i class="ri-drop-line"></i> ${t('Độ ẩm')} ${now.relative_humidity_2m}%</span>
+            <span><i class="ri-windy-line"></i> ${t('Gió')} ${Math.round(now.wind_speed_10m)} km/h</span>
         </div>
         <ul class="weather__forecast">
             ${days.map(day => {
@@ -79,7 +82,7 @@ function renderWeather(el, data) {
                 `
             }).join('')}
         </ul>
-        <p class="weather__source">Nguồn: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></p>
+        <p class="weather__source">${t('Nguồn')}: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></p>
     `
 }
 
@@ -91,7 +94,7 @@ function initWeather(el, lat, lng) {
             el.classList.remove('weather--loading')
         } catch {
             el.classList.remove('weather--loading')
-            el.innerHTML = '<p class="weather__error"><i class="ri-cloud-off-line"></i> Chưa lấy được thời tiết lúc này.</p>'
+            el.innerHTML = `<p class="weather__error"><i class="ri-cloud-off-line"></i> ${t('Chưa lấy được thời tiết lúc này.')}</p>`
         }
     })
 }
@@ -106,8 +109,8 @@ function markCurrentMonth(root = document) {
     root.querySelectorAll('[data-season-status]').forEach(el => {
         const best = el.dataset.seasonStatus.split(',').map(Number)
         el.textContent = best.includes(month)
-            ? `Tháng ${month} là thời điểm đẹp để đi!`
-            : `Tháng ${month} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.`
+            ? t('Tháng {m} là thời điểm đẹp để đi!', { m: monthLabel(month) })
+            : t('Tháng {m} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.', { m: monthLabel(month) })
         el.classList.toggle('season__status--good', best.includes(month))
     })
 }

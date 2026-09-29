@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="assets/css/vietnam.css">
 
         <link rel="canonical" href="https://tantan1802.github.io/travel/">
+        <!-- build:alternate -->
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/">
+        <!-- /build:alternate -->
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Việt Travel">
         <meta property="og:locale" content="vi_VN">
@@ -46,6 +51,8 @@
                             <a href="#place" class="nav__link">Điểm đến</a>
                         </li>
                     </ul>
+
+                    <a class="nav__lang" id="lang-switch" href="en/index.html" hreflang="en" lang="en" title="English">EN</a>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -931,6 +938,7 @@
         <!--=============== DATA + PAGE JS ===============-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="assets/js/data/local-images.js"></script>
+        <script src="assets/js/i18n.js"></script>
         <script src="assets/js/data/destinations.js"></script>
         <script src="assets/js/favorites.js"></script>
         <script src="assets/js/components.js"></script>

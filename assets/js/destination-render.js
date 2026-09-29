@@ -11,9 +11,9 @@ function heroSection(d) {
 
             <div class="dest-hero__content container">
                 <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="${SITE_ROOT}index.html">Trang chủ</a>
+                    <a href="${homeUrl()}">${t('Trang chủ')}</a>
                     <i class="ri-arrow-right-s-line"></i>
-                    <a href="${SITE_ROOT}index.html?region=${d.region}#place">${REGIONS[d.region]}</a>
+                    <a href="${homeUrl(`?region=${d.region}#place`)}">${REGIONS[d.region]}</a>
                     <i class="ri-arrow-right-s-line"></i>
                     <span>${d.name}</span>
                 </nav>
@@ -23,8 +23,8 @@ function heroSection(d) {
                 <p class="dest-hero__tagline">${d.tagline}</p>
 
                 <div class="dest-hero__actions">
-                    <a href="#gallery" class="button button--flex">Xem hình ảnh <i class="ri-image-line"></i></a>
-                    <a href="#food" class="button button--flex button--ghost">Ẩm thực <i class="ri-restaurant-line"></i></a>
+                    <a href="#gallery" class="button button--flex">${t('Xem hình ảnh')} <i class="ri-image-line"></i></a>
+                    <a href="#food" class="button button--flex button--ghost">${t('Ẩm thực')} <i class="ri-restaurant-line"></i></a>
                     ${favoriteButton(d.id, { withLabel: true })}
                 </div>
             </div>
@@ -32,10 +32,10 @@ function heroSection(d) {
 
         <div class="container">
             <div class="dest-facts">
-                ${fact('ri-star-fill', 'Đánh giá', `${d.rating.toFixed(1)} / 5`)}
-                ${fact('ri-calendar-event-line', 'Thời điểm đẹp', d.bestTime)}
-                ${fact('ri-time-line', 'Thời gian gợi ý', d.duration)}
-                ${fact('ri-compass-3-line', 'Vùng miền', REGIONS[d.region])}
+                ${fact('ri-star-fill', t('Đánh giá'), `${d.rating.toFixed(1)} / 5`)}
+                ${fact('ri-calendar-event-line', t('Thời điểm đẹp'), d.bestTime)}
+                ${fact('ri-time-line', t('Thời gian gợi ý'), d.duration)}
+                ${fact('ri-compass-3-line', t('Vùng miền'), REGIONS[d.region])}
             </div>
         </div>
     `
@@ -60,11 +60,11 @@ function overviewSection(d) {
         <section class="overview section" id="overview">
             <div class="overview__container container grid">
                 <div class="overview__data">
-                    <span class="section__subtitle">Tổng quan</span>
-                    <h2 class="section__title overview__title">Vì sao nên đến ${d.name}?</h2>
+                    <span class="section__subtitle">${t('Tổng quan')}</span>
+                    <h2 class="section__title overview__title">${t('Vì sao nên đến {name}?', { name: d.name })}</h2>
                     <p class="overview__description">${d.description}</p>
 
-                    <h3 class="overview__highlights-title">Điểm nhấn không thể bỏ lỡ</h3>
+                    <h3 class="overview__highlights-title">${t('Điểm nhấn không thể bỏ lỡ')}</h3>
                     <ul class="overview__highlights">
                         ${d.highlights.map(h => `<li><i class="ri-checkbox-circle-fill"></i> ${h}</li>`).join('')}
                     </ul>
@@ -87,26 +87,26 @@ function climateSection(d) {
     const months = Array.from({ length: 12 }, (_, i) => i + 1)
     return `
         <section class="climate section" id="climate">
-            <span class="section__subtitle">Thời tiết</span>
-            <h2 class="section__title">Thời tiết & mùa đẹp</h2>
+            <span class="section__subtitle">${t('Thời tiết')}</span>
+            <h2 class="section__title">${t('Thời tiết & mùa đẹp')}</h2>
 
             <div class="climate__container container">
                 <div class="climate__card weather weather--loading" id="weather" aria-live="polite">
-                    <p class="weather__loading"><i class="ri-loader-4-line"></i> Đang tải thời tiết...</p>
+                    <p class="weather__loading"><i class="ri-loader-4-line"></i> ${t('Đang tải thời tiết...')}</p>
                 </div>
 
                 <div class="climate__card season">
-                    <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: ${d.bestTime}</h3>
-                    <ol class="season__months" aria-label="Các tháng trong năm">
+                    <h3 class="season__title"><i class="ri-calendar-event-line"></i> ${t('Thời điểm đẹp')}: ${d.bestTime}</h3>
+                    <ol class="season__months" aria-label="${t('Các tháng trong năm')}">
                         ${months.map(m => {
                             const best = d.bestMonths.includes(m)
                             return `<li class="season__month${best ? ' season__month--best' : ''}" data-month="${m}"
-                                        title="Tháng ${m}${best ? ' – mùa đẹp' : ''}">T${m}</li>`
+                                        title="${t('Tháng {m}', { m: monthLabel(m) })}${best ? ` – ${t('mùa đẹp')}` : ''}">${monthShort(m)}</li>`
                         }).join('')}
                     </ol>
                     <div class="season__legend">
-                        <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
-                        <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                        <span><i class="season__dot season__dot--best"></i> ${t('Mùa đẹp')}</span>
+                        <span><i class="season__dot season__dot--current"></i> ${t('Tháng hiện tại')}</span>
                     </div>
                     <p class="season__status" data-season-status="${d.bestMonths.join(',')}"></p>
                 </div>
@@ -119,12 +119,12 @@ function gallerySection(d) {
     const photos = [{ file: d.hero, caption: d.name }, ...d.gallery]
     return `
         <section class="gallery section" id="gallery">
-            <span class="section__subtitle">Hình ảnh</span>
-            <h2 class="section__title">Vẻ đẹp ${d.name}</h2>
+            <span class="section__subtitle">${t('Hình ảnh')}</span>
+            <h2 class="section__title">${t('Vẻ đẹp {name}', { name: d.name })}</h2>
 
             <div class="gallery__grid container">
                 ${photos.map((p, i) => `
-                    <button type="button" class="gallery__item${i === 0 ? ' is-featured' : ''}" data-index="${i}" aria-label="Xem ảnh: ${p.caption}">
+                    <button type="button" class="gallery__item${i === 0 ? ' is-featured' : ''}" data-index="${i}" aria-label="${t('Xem ảnh')}: ${p.caption}">
                         <img data-wiki="${wikiAttr(p.file)}" data-width="960" alt="${p.caption}" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> ${p.caption}</span>
                     </button>
@@ -137,8 +137,8 @@ function gallerySection(d) {
 function foodSection(d) {
     return `
         <section class="food section" id="food">
-            <span class="section__subtitle">Ẩm thực</span>
-            <h2 class="section__title">Món ngon phải thử</h2>
+            <span class="section__subtitle">${t('Ẩm thực')}</span>
+            <h2 class="section__title">${t('Món ngon phải thử')}</h2>
 
             <div class="food__grid container">
                 ${d.foods.map(foodCard).join('')}
@@ -152,15 +152,15 @@ function foodCard(f) {
     return `
         <article class="food-card">
             <div class="food-card__media">
-                <span class="food-card__menu"><small>Đặc sản</small>${f.name}</span>
+                <span class="food-card__menu"><small>${t('Đặc sản')}</small>${f.name}</span>
                 ${f.file ? `<img data-wiki="${wikiAttr(f.file)}" data-width="960" alt="${f.name}" class="food-card__img" loading="lazy">` : ''}
-                ${f.illustrative ? `<span class="food-card__badge" title="${f.illustrative}">Ảnh minh họa</span>` : ''}
+                ${f.illustrative ? `<span class="food-card__badge" title="${f.illustrative}">${t('Ảnh minh họa')}</span>` : ''}
                 <span class="food-card__price">${f.price}</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">${f.name}</h3>
                 <p class="food-card__desc">${f.desc}</p>
-                ${f.illustrative ? `<span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: ${f.illustrative}</span>` : ''}
+                ${f.illustrative ? `<span class="food-card__note"><i class="ri-information-line"></i> ${t('Ảnh minh họa')}: ${f.illustrative}</span>` : ''}
             </div>
         </article>
     `
@@ -169,8 +169,8 @@ function foodCard(f) {
 function activitiesSection(d) {
     return `
         <section class="activities section" id="activities">
-            <span class="section__subtitle">Vui chơi</span>
-            <h2 class="section__title">Trải nghiệm đáng nhớ</h2>
+            <span class="section__subtitle">${t('Vui chơi')}</span>
+            <h2 class="section__title">${t('Trải nghiệm đáng nhớ')}</h2>
 
             <div class="activities__grid container">
                 ${d.activities.map(a => `
@@ -184,7 +184,7 @@ function activitiesSection(d) {
 
             ${d.tips.length ? `
             <div class="tips container">
-                <h3 class="tips__title"><i class="ri-lightbulb-flash-line"></i> Kinh nghiệm du lịch</h3>
+                <h3 class="tips__title"><i class="ri-lightbulb-flash-line"></i> ${t('Kinh nghiệm du lịch')}</h3>
                 <ul class="tips__list">
                     ${d.tips.map(t => `<li class="tip-item">${t}</li>`).join('')}
                 </ul>
@@ -194,9 +194,9 @@ function activitiesSection(d) {
 }
 
 const DAY_SLOTS = [
-    { key: 'morning', label: 'Sáng', icon: 'ri-sun-foggy-line' },
-    { key: 'afternoon', label: 'Chiều', icon: 'ri-sun-line' },
-    { key: 'evening', label: 'Tối', icon: 'ri-moon-clear-line' },
+    { key: 'morning', label: () => t('Sáng'), icon: 'ri-sun-foggy-line' },
+    { key: 'afternoon', label: () => t('Chiều'), icon: 'ri-sun-line' },
+    { key: 'evening', label: () => t('Tối'), icon: 'ri-moon-clear-line' },
 ]
 
 function itinerarySection(d) {
@@ -204,15 +204,15 @@ function itinerarySection(d) {
     if (!plan) return ''
     return `
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Lịch trình</span>
-            <h2 class="section__title">Gợi ý ${plan.days.length} ngày tại ${d.name}</h2>
+            <span class="section__subtitle">${t('Lịch trình')}</span>
+            <h2 class="section__title">${t('Gợi ý {days} ngày tại {name}', { days: plan.days.length, name: d.name })}</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                <div class="itinerary__tabs" role="tablist" aria-label="${t('Chọn ngày')}">
                     ${plan.days.map((day, i) => `
                         <button type="button" class="itinerary__tab${i === 0 ? ' itinerary__tab--active' : ''}" role="tab"
                                 id="day-tab-${i}" aria-controls="day-panel-${i}" aria-selected="${i === 0}" data-day="${i}">
-                            <span>Ngày ${i + 1}</span>
+                            <span>${t('Ngày {n}', { n: i + 1 })}</span>
                             <small>${day.title}</small>
                         </button>
                     `).join('')}
@@ -225,7 +225,7 @@ function itinerarySection(d) {
                                 <li class="timeline__item">
                                     <span class="timeline__icon"><i class="${slot.icon}"></i></span>
                                     <div>
-                                        <h3 class="timeline__label">${slot.label}</h3>
+                                        <h3 class="timeline__label">${slot.label()}</h3>
                                         <p>${day[slot.key]}</p>
                                     </div>
                                 </li>
@@ -235,20 +235,20 @@ function itinerarySection(d) {
                 `).join('')}
 
                 <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
+                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')}</h3>
                     <div class="budget__options">
                         <div class="budget__option">
-                            <span>Tiết kiệm</span>
+                            <span>${t('Tiết kiệm')}</span>
                             <strong>${plan.budget.saving}</strong>
-                            <small>Homestay, ăn quán địa phương</small>
+                            <small>${t('Homestay, ăn quán địa phương')}</small>
                         </div>
                         <div class="budget__option budget__option--comfort">
-                            <span>Thoải mái</span>
+                            <span>${t('Thoải mái')}</span>
                             <strong>${plan.budget.comfort}</strong>
-                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                            <small>${t('Khách sạn 3–4 sao, tour trọn gói')}</small>
                         </div>
                     </div>
-                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới ${d.name}. Giá tham khảo, thay đổi theo mùa.</p>
+                    <p class="budget__note">${t('Chưa gồm vé máy bay/tàu xe tới {name}. Giá tham khảo, thay đổi theo mùa.', { name: d.name })}</p>
                 </div>
             </div>
         </section>
@@ -259,14 +259,14 @@ function locationSection(d) {
     const nearby = nearestDestinations(d, 3)
     return `
         <section class="location section" id="location">
-            <span class="section__subtitle">Vị trí</span>
-            <h2 class="section__title">Bản đồ & điểm lân cận</h2>
+            <span class="section__subtitle">${t('Vị trí')}</span>
+            <h2 class="section__title">${t('Bản đồ & điểm lân cận')}</h2>
 
             <div class="location__container container">
-                <div class="location__map" id="dest-map" role="region" aria-label="Bản đồ ${d.name}"></div>
+                <div class="location__map" id="dest-map" role="region" aria-label="${t('Bản đồ')} ${d.name}"></div>
 
                 <div class="location__side">
-                    <h3 class="location__title">Gần ${d.name}</h3>
+                    <h3 class="location__title">${t('Gần {name}', { name: d.name })}</h3>
                     <ul class="location__nearby">
                         ${nearby.map(({ d: n, km }) => `
                             <li>
@@ -284,7 +284,7 @@ function locationSection(d) {
                         `).join('')}
                     </ul>
                     <a href="https://www.google.com/maps/dir/?api=1&amp;destination=${d.lat},${d.lng}" target="_blank" rel="noopener" class="button button--flex location__directions">
-                        <i class="ri-direction-line"></i> Chỉ đường Google Maps
+                        <i class="ri-direction-line"></i> ${t('Chỉ đường Google Maps')}
                     </a>
                 </div>
             </div>
@@ -301,15 +301,15 @@ function relatedSection(d) {
     if (!related.length) return ''
     return `
         <section class="related section" id="related">
-            <span class="section__subtitle">Gợi ý</span>
-            <h2 class="section__title">Điểm đến khác ở ${REGIONS[d.region]}</h2>
+            <span class="section__subtitle">${t('Gợi ý')}</span>
+            <h2 class="section__title">${t('Điểm đến khác ở {region}', { region: REGIONS[d.region] })}</h2>
 
             <div class="dest__grid container">
                 ${related.map(x => destinationCard(x)).join('')}
             </div>
 
             <div class="related__more">
-                <a href="${SITE_ROOT}index.html#place" class="button button--flex">Xem tất cả điểm đến <i class="ri-arrow-right-line"></i></a>
+                <a href="${homeUrl('#place')}" class="button button--flex">${t('Xem tất cả điểm đến')} <i class="ri-arrow-right-line"></i></a>
             </div>
         </section>
     `
@@ -320,9 +320,9 @@ function notFoundSection() {
         <section class="dest-notfound section">
             <div class="container">
                 <i class="ri-map-pin-line dest-notfound__icon"></i>
-                <h1 class="section__title">Không tìm thấy điểm đến</h1>
-                <p>Điểm đến bạn tìm không tồn tại hoặc đã bị đổi tên.</p>
-                <a href="${SITE_ROOT}index.html#place" class="button">Quay lại danh sách điểm đến</a>
+                <h1 class="section__title">${t('Không tìm thấy điểm đến')}</h1>
+                <p>${t('Điểm đến bạn tìm không tồn tại hoặc đã bị đổi tên.')}</p>
+                <a href="${homeUrl('#place')}" class="button">${t('Quay lại danh sách điểm đến')}</a>
             </div>
         </section>
     `
