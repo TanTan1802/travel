@@ -17,11 +17,11 @@ const TRANSPORT_COST = {
 
 const SUGGESTED_ROUTES = [
     { title: 'Miền Bắc kinh điển', icon: 'ri-landscape-line', stops: [['ha-noi', 2], ['ninh-binh', 2], ['vinh-ha-long', 2], ['sa-pa', 3]] },
-    { title: 'Mộc Châu – Pù Luông – Ninh Bình', icon: 'ri-leaf-line', stops: [['ha-noi', 1], ['moc-chau', 2], ['pu-luong', 2], ['ninh-binh', 2]] },
     { title: 'Con đường di sản miền Trung', icon: 'ri-ancient-pavilion-line', stops: [['phong-nha', 2], ['hue', 2], ['da-nang', 2], ['hoi-an', 2]] },
     { title: 'Biển xanh & cao nguyên', icon: 'ri-sun-line', stops: [['nha-trang', 3], ['da-lat', 3], ['mui-ne', 2]] },
     { title: 'Sài Gòn – miền Tây – đảo ngọc', icon: 'ri-ship-line', stops: [['sai-gon', 2], ['can-tho', 2], ['chau-doc', 2], ['phu-quoc', 3]] },
     { title: 'Xuyên Việt 2 tuần', icon: 'ri-flight-takeoff-line', stops: [['ha-noi', 2], ['vinh-ha-long', 2], ['hue', 2], ['hoi-an', 2], ['da-lat', 2], ['sai-gon', 2]] },
+    { title: 'Mộc Châu – Pù Luông – Ninh Bình', icon: 'ri-leaf-line', stops: [['ha-noi', 1], ['moc-chau', 2], ['pu-luong', 2], ['ninh-binh', 2]] },
 ]
 
 const planner = {
