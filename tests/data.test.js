@@ -9,8 +9,8 @@ const { loadBrowserScripts } = require('../tools/lib')
 const { ROOT, builtPages } = require('./helpers')
 
 const site = loadBrowserScripts(
-    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js'],
-    ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS'],
+    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js'],
+    ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS', 'PLACES', 'STAY_TYPES'],
 )
 const { DESTINATIONS, ITINERARIES, TRANSLATION_EN: EN, REGIONS, CATEGORIES } = site
 
@@ -44,6 +44,31 @@ test('lịch trình: mỗi điểm đến có 5 ngày và chi phí cho tour 3/4/
             assert.ok(b[0] < b[1] && b[1] < b[2], `${d.id}: budget.${tier} phải tăng dần theo số ngày`)
         }
         plan.budget.saving.forEach((v, i) => assert.ok(v < plan.budget.comfort[i], `${d.id}: mức tiết kiệm phải rẻ hơn thoải mái`))
+    }
+})
+
+test('quán ăn, lưu trú, đi lại: đủ cho mọi điểm đến và có cả hai ngôn ngữ', () => {
+    const { PLACES, STAY_TYPES } = site
+    const pair = (v, where) => assert.ok(Array.isArray(v) && v.length === 2 && v[0] && v[1], `${where}: cần [tiếng Việt, English]`)
+    const range = (v, where) => assert.ok(Array.isArray(v) && v[0] > 0 && v[0] < v[1], `${where}: giá phải là [thấp, cao]`)
+    assert.deepEqual(Object.keys(PLACES).sort(), [...DESTINATIONS.map(d => d.id)].sort(), 'PLACES phải khớp danh sách điểm đến')
+    for (const [id, p] of Object.entries(PLACES)) {
+        assert.ok(p.city, `${id}: thiếu city`)
+        assert.match(p.airport, /^[A-Z]{3}$/, `${id}: mã sân bay không hợp lệ`)
+        pair(p.getThere, `${id}.getThere`)
+        assert.ok(p.eats.length >= 3, `${id}: cần ít nhất 3 quán`)
+        p.eats.forEach((e, i) => {
+            assert.ok(e.name && e.address, `${id}.eats[${i}]: thiếu tên/địa chỉ`)
+            pair(e.dish, `${id}.eats[${i}].dish`)
+            range(e.price, `${id}.eats[${i}].price`)
+        })
+        assert.ok(p.stays.length >= 2, `${id}: cần ít nhất 2 khu lưu trú`)
+        p.stays.forEach((st, i) => {
+            assert.ok(STAY_TYPES[st.type], `${id}.stays[${i}]: loại "${st.type}" không hợp lệ`)
+            pair(st.area, `${id}.stays[${i}].area`)
+            pair(st.note, `${id}.stays[${i}].note`)
+            range(st.price, `${id}.stays[${i}].price`)
+        })
     }
 })
 

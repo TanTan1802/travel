@@ -85,6 +85,9 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     const visiblePanels = () => page.$$eval('.tour:not([hidden]) .itinerary__panel', a => a.map(p => (p.hidden ? 0 : 1)).join(''))
 
     assert.equal(await page.$$eval('.tour-picker__btn', a => a.length), 3, 'cần 3 lựa chọn tour')
+    assert.ok(await page.$$eval('.eat', a => a.length) >= 3, 'cần danh sách quán nên ghé')
+    assert.equal(await page.$$eval('#stay .stay-card', a => a.length), 3, 'cần 3 gợi ý khu lưu trú')
+    assert.match(await page.getAttribute('#stay .book-link', 'href'), /booking\.com.*Hoi\+An/)
     assert.equal(await visiblePanels(), '100')
 
     await page.click('.tour-picker__btn[data-tour="5"]')
@@ -148,9 +151,20 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     assert.deepEqual(await stops(), ['Sa Pa', 'Hà Nội', 'Cố đô Huế', 'Phố cổ Hội An'])
     assert.ok(await page.$$eval('.stop__warn', a => a.length) > 0, 'phải cảnh báo điểm đến ngoài mùa đẹp')
 
+    /* Ngày khởi hành: lịch có ngày, bữa ăn cụ thể, link đặt phòng điền sẵn ngày, checklist đặt chỗ */
+    await page.fill('#planner-start', '2026-11-10')
+    assert.match(page.url(), /d=2026-11-10/)
+    assert.equal(await page.textContent('.plan-day__date'), '10/11/2026')
+    assert.ok(await page.$$eval('.plan-day__meals', a => a.length) >= 8, 'mỗi ngày phải có gợi ý quán ăn')
+    const bookingUrl = await page.getAttribute('.booking a[href*="booking.com"]', 'href')
+    assert.match(bookingUrl, /checkin=2026-11-10&checkout=2026-11-12/)
+    await page.check('[data-booking="stay:sa-pa"]')
+    assert.match(await page.textContent('.bookings__progress'), /Đã đặt 1\//)
+
     /* Kế hoạch được lưu lại khi mở lại trang không có tham số */
     await page.goto(page.url().split('?')[0])
     assert.equal((await stops()).length, 4)
+    assert.ok(await page.isChecked('[data-booking="stay:sa-pa"]'), 'phải nhớ mục đã đặt')
 
     /* Thêm từ trang điểm đến */
     await page.goto(page.url().replace('ke-hoach/index.html', 'diem-den/da-lat/index.html'))
@@ -209,7 +223,7 @@ test('bản tiếng Anh và nút chuyển ngôn ngữ', async () => {
 })
 
 test('giao diện điện thoại không bị tràn ngang', async () => {
-    for (const rel of ['index.html', 'diem-den/ha-giang/index.html', 'en/diem-den/phu-quoc/index.html']) {
+    for (const rel of ['index.html', 'diem-den/ha-giang/index.html', 'en/diem-den/phu-quoc/index.html', 'ke-hoach/index.html?p=hue.2,hoi-an.2,da-lat.2&d=2026-11-10']) {
         const { page, close } = await openPage(rel, { viewport: { width: 375, height: 800 } })
         const width = await page.evaluate(() => document.documentElement.scrollWidth)
         assert.ok(width <= 375, `${rel}: rộng ${width}px trên màn hình 375px`)

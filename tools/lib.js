@@ -7,7 +7,7 @@ const ROOT = path.join(__dirname, '..')
 
 /* Nạp các file JS của trình duyệt vào một sandbox và lấy ra các biến toàn cục cần dùng */
 function loadBrowserScripts(files, exportNames, globals = {}) {
-    const context = { window: { ...globals }, ...globals }
+    const context = { window: { ...globals }, URLSearchParams, URL, ...globals }
     const code = files.map(f => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n;\n')
     const exportCode = exportNames.map(n => `this.${n} = typeof ${n} !== 'undefined' ? ${n} : undefined`).join(';')
     vm.runInNewContext(`${code}\n;${exportCode}`, context)

@@ -83,6 +83,13 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
 
+## Quán ăn, lưu trú & đặt chỗ (`assets/js/data/places.js`)
+
+- Mỗi điểm đến có: 4 quán cụ thể (tên, món, địa chỉ, giá/người), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.
+- Trang điểm đến: mục **Quán nên ghé** (bấm địa chỉ mở Google Maps) và mục **Lưu trú & đi lại** với nút Booking.com / Airbnb / Google Maps, vé máy bay (Google Flights), vé tàu (dsvn.vn), vé xe (Vexere).
+- Trang kế hoạch: chọn **ngày khởi hành** → mỗi ngày có ngày cụ thể, bữa trưa/tối ở quán cụ thể, chỗ nghỉ gợi ý theo mức chi tiêu; mục **Cần đặt trước** liệt kê vé từng chặng + phòng từng điểm với link đã điền sẵn ngày nhận/trả phòng, có ô đánh dấu "đã đặt" (lưu trên trình duyệt).
+- Dữ liệu mang tính tham khảo – nên cập nhật khi quán đổi địa chỉ/giá. Không dùng link tiếp thị liên kết.
+
 ## In / lưu PDF & chia sẻ
 
 - CSS `@media print` ở cuối `vietnam.css`: bỏ menu, bản đồ, nút bấm; luôn nền sáng; mỗi ngày/điểm dừng không bị cắt ngang trang; ghi kèm địa chỉ trang (`.print-url`).

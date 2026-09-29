@@ -146,6 +146,75 @@ function foodSection(d) {
             <div class="food__grid container">
                 ${d.foods.map(foodCard).join('')}
             </div>
+            ${eatsBlock(d)}
+        </section>
+    `
+}
+
+/* Quán cụ thể nên ghé (dữ liệu PLACES) */
+function eatCard(e, d) {
+    return `
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">${e.name}</h4>
+                <span class="eat__price">${priceRange(e.price)}</span>
+            </div>
+            <p class="eat__dish">${pickLang(e.dish)}</p>
+            <a href="${mapsSearchUrl(`${e.name}, ${e.address}`)}" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> ${e.address}
+            </a>
+        </li>
+    `
+}
+
+function eatsBlock(d) {
+    const places = placesOf(d.id)
+    if (!places) return ''
+    return `
+        <div class="eats container">
+            <h3 class="eats__title"><i class="ri-restaurant-2-line"></i> ${t('Quán nên ghé ở {name}', { name: d.name })}</h3>
+            <ul class="eats__list">${places.eats.map(e => eatCard(e, d)).join('')}</ul>
+            <p class="budget__note">${t('Giá tham khảo mỗi người. Bấm địa chỉ để mở Google Maps xem giờ mở cửa và đánh giá mới nhất.')}</p>
+        </div>
+    `
+}
+
+/* Nên ở khu nào + đặt phòng + cách đi tới */
+function stayCard(s, city) {
+    return `
+        <article class="stay-card">
+            <span class="stay-card__type stay-card__type--${s.type}">${pickLang(STAY_TYPES[s.type])}</span>
+            <h4 class="stay-card__area">${pickLang(s.area)}</h4>
+            <p class="stay-card__price">${priceRange(s.price)} <small>/ ${t('đêm')}</small></p>
+            <p class="stay-card__note">${pickLang(s.note)}</p>
+            <div class="book-links">${linkButtons(stayLinks(city, pickLang(s.area)))}</div>
+        </article>
+    `
+}
+
+function staySection(d) {
+    const places = placesOf(d.id)
+    if (!places) return ''
+    const travel = [
+        places.airport ? { label: t('Vé máy bay tới {code}', { code: places.airport }), icon: 'ri-plane-line', url: `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights to ${places.airport}`)}` } : null,
+        places.rail ? { label: t('Vé tàu (ga {station})', { station: places.rail }), icon: 'ri-train-line', url: 'https://dsvn.vn/' } : null,
+        { label: t('Vé xe khách / limousine'), icon: 'ri-bus-2-line', url: 'https://vexere.com/' },
+    ].filter(Boolean)
+    return `
+        <section class="stay section" id="stay">
+            <span class="section__subtitle">${t('Lưu trú & đi lại')}</span>
+            <h2 class="section__title">${t('Ở đâu khi đến {name}', { name: d.name })}</h2>
+
+            <div class="stay__container container">
+                <div class="stay__grid">${places.stays.map(s => stayCard(s, places.city)).join('')}</div>
+
+                <div class="getthere">
+                    <h3 class="getthere__title"><i class="ri-map-2-line"></i> ${t('Cách đi tới {name}', { name: d.name })}</h3>
+                    <p>${pickLang(places.getThere)}</p>
+                    <div class="book-links">${linkButtons(travel)}</div>
+                </div>
+                <p class="budget__note">${t('Giá phòng tham khảo cho 2 người/đêm, cao hơn vào lễ Tết và cuối tuần. Việt Travel không nhận hoa hồng từ các trang đặt chỗ.')}</p>
+            </div>
         </section>
     `
 }
@@ -404,6 +473,7 @@ function renderDestinationPage(d) {
         gallerySection(d),
         foodSection(d),
         activitiesSection(d),
+        staySection(d),
         itinerarySection(d),
         locationSection(d),
         commentsSection(d),

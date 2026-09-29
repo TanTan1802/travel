@@ -92,16 +92,46 @@ function optimizeStops(stops) {
 }
 
 /* Gộp lịch trình từng ngày của các điểm dừng */
+/* Chỗ nghỉ gợi ý theo mức chi tiêu: tiết kiệm → rẻ nhất, thoải mái → cao cấp nhất */
+function suggestedStay(id, tier) {
+    const places = placesOf(id)
+    if (!places) return null
+    const sorted = [...places.stays].sort((a, b) => a.price[0] - b.price[0])
+    return tier === 'comfort' ? sorted[sorted.length - 1] : sorted[0]
+}
+
+/* Lịch nghỉ từng điểm dừng: ngày nhận phòng (nếu đã chọn ngày khởi hành) và số đêm */
+function planStays(plan) {
+    let offset = 0
+    return plan.stops.map((stop, i) => {
+        const last = i === plan.stops.length - 1
+        const item = {
+            id: stop.id,
+            dayIndex: offset,
+            checkin: plan.start ? addDays(plan.start, offset) : '',
+            nights: last ? Math.max(1, stop.days - 1) : stop.days,
+            stay: suggestedStay(stop.id, plan.tier),
+        }
+        offset += stop.days
+        return item
+    })
+}
+
 function planDays(plan, totals) {
     const out = []
+    const stays = planStays(plan)
     plan.stops.forEach((stop, si) => {
         const d = totals.dests[si]
         const source = (ITINERARIES[d.id] || { days: [] }).days
+        const eats = (placesOf(d.id) || {}).eats || []
         for (let i = 0; i < stop.days; i++) {
             out.push({
                 dest: d,
                 stopIndex: si,
+                date: plan.start ? addDays(plan.start, stays[si].dayIndex + i) : '',
                 day: source[i] || null,
+                meals: eats.length ? { lunch: eats[(2 * i) % eats.length], dinner: eats[(2 * i + 1) % eats.length] } : null,
+                checkin: i === 0 ? stays[si] : null,
                 arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] } : null,
                 departure: i === stop.days - 1 && si === plan.stops.length - 1,
             })
@@ -114,7 +144,8 @@ function planDays(plan, totals) {
 function planToQuery(plan) {
     const params = new URLSearchParams()
     params.set('p', plan.stops.map(s => `${s.id}.${s.days}`).join(','))
-    if (plan.month) params.set('m', plan.month)
+    if (plan.start) params.set('d', plan.start)
+    else if (plan.month) params.set('m', plan.month)
     if (plan.tier === 'comfort') params.set('b', 'c')
     return `?${params.toString().replace(/%2C/g, ',')}`
 }
@@ -129,8 +160,9 @@ function planFromQuery(search) {
             stops.push({ id, days: Math.min(PLAN_MAX_DAYS, Math.max(1, parseInt(n, 10) || 2)) })
         }
     })
-    const month = parseInt(params.get('m'), 10)
-    return { stops, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving' }
+    const start = /^\d{4}-\d{2}-\d{2}$/.test(params.get('d') || '') ? params.get('d') : ''
+    const month = start ? Number(start.slice(5, 7)) : parseInt(params.get('m'), 10)
+    return { stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {} }
 }
 
 /*---------- Giao diện ----------*/
@@ -244,6 +276,11 @@ function renderStops(plan, totals) {
 function renderSettings(plan) {
     return `
         <div class="planner__setting">
+            <label class="planner__label" for="planner-start">${t('Ngày khởi hành')}</label>
+            <input type="date" id="planner-start" class="planner__select" value="${plan.start || ''}">
+            <small class="planner__hint">${t('Chọn ngày để link đặt phòng, vé tự điền sẵn ngày.')}</small>
+        </div>
+        <div class="planner__setting"${plan.start ? ' hidden' : ''}>
             <label class="planner__label" for="planner-month">${t('Tháng khởi hành')}</label>
             <select id="planner-month" class="planner__select">
                 <option value="0">${t('Chưa chọn')}</option>
@@ -295,6 +332,7 @@ function renderDays(plan, totals) {
                 <li class="plan-day${item.arrival ? ' plan-day--travel' : ''}">
                     <div class="plan-day__head">
                         <span class="plan-day__number">${t('Ngày {n}', { n: i + 1 })}</span>
+                        ${item.date ? `<span class="plan-day__date">${formatDate(item.date)}</span>` : ''}
                         <h3 class="plan-day__title">${item.dest.name}${item.day ? ` – ${item.day.title}` : ''}</h3>
                     </div>
                     ${item.arrival ? `
@@ -309,10 +347,84 @@ function renderDays(plan, totals) {
                             `).join('')}
                         </ul>
                     ` : `<p class="plan-day__free"><i class="ri-cup-line"></i> ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}</p>`}
+                    ${item.meals ? `
+                        <ul class="plan-day__meals">
+                            ${[['lunch', t('Ăn trưa'), 'ri-restaurant-line'], ['dinner', t('Ăn tối'), 'ri-restaurant-2-line']].map(([key, label, icon]) => `
+                                <li>
+                                    <span><i class="${icon}"></i> ${label}</span>
+                                    <p><a href="${mapsSearchUrl(`${item.meals[key].name}, ${item.meals[key].address}`)}" target="_blank" rel="noopener"><strong>${item.meals[key].name}</strong></a> – ${pickLang(item.meals[key].dish)} <small>(${item.meals[key].address} · ${priceRange(item.meals[key].price)})</small></p>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    ` : ''}
+                    ${item.checkin && item.checkin.stay ? `
+                        <div class="plan-day__stay">
+                            <p><i class="ri-hotel-bed-line"></i> <strong>${t('Nghỉ đêm')}:</strong> ${pickLang(item.checkin.stay.area)} · ${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')} · ${t('{n} đêm', { n: item.checkin.nights })}</p>
+                            <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights))}</div>
+                        </div>
+                    ` : ''}
                     ${item.departure ? `<p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> ${t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.')}</p>` : ''}
                 </li>
             `).join('')}
         </ol>
+    `
+}
+
+/* Những thứ cần đặt trước: vé từng chặng + phòng từng điểm, có ô đánh dấu đã đặt */
+function bookingItems(plan, totals) {
+    const stays = planStays(plan)
+    const items = []
+    stays.forEach((s, i) => {
+        const d = totals.dests[i]
+        if (i > 0) {
+            const leg = totals.legs[i - 1]
+            const from = totals.dests[i - 1]
+            items.push({
+                key: `leg:${from.id}>${d.id}`,
+                icon: leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line',
+                title: `${from.name} → ${d.name}`,
+                detail: `${legMode(leg)}${s.checkin ? ` · ${formatDate(s.checkin)}` : ''}`,
+                links: transportLinks(from, d, leg.mode, s.checkin),
+            })
+        }
+        const places = placesOf(d.id)
+        if (places && s.stay) {
+            items.push({
+                key: `stay:${d.id}`,
+                icon: 'ri-hotel-bed-line',
+                title: t('Phòng tại {name}', { name: d.name }),
+                detail: `${pickLang(s.stay.area)} · ${t('{n} đêm', { n: s.nights })}${s.checkin ? ` · ${formatDate(s.checkin)} → ${formatDate(addDays(s.checkin, s.nights))}` : ''}`,
+                links: stayLinks(places.city, pickLang(s.stay.area), s.checkin, s.nights),
+            })
+        }
+    })
+    return items
+}
+
+function renderBookings(plan, totals) {
+    if (!plan.stops.length) return ''
+    const items = bookingItems(plan, totals)
+    const booked = plan.booked || {}
+    const done = items.filter(item => booked[item.key]).length
+    return `
+        <div class="bookings__head">
+            <h2 class="bookings__title"><i class="ri-checkbox-multiple-line"></i> ${t('Cần đặt trước')}</h2>
+            <span class="bookings__progress">${t('Đã đặt {done}/{total}', { done, total: items.length })}</span>
+        </div>
+        ${plan.start ? '' : `<p class="bookings__hint"><i class="ri-calendar-event-line"></i> ${t('Chọn ngày khởi hành để các link đặt phòng, vé tự điền ngày tương ứng.')}</p>`}
+        <ul class="bookings__list">
+            ${items.map(item => `
+                <li class="booking${booked[item.key] ? ' booking--done' : ''}">
+                    <label class="booking__check">
+                        <input type="checkbox" data-booking="${item.key}"${booked[item.key] ? ' checked' : ''}>
+                        <span class="booking__icon"><i class="${item.icon}"></i></span>
+                        <span class="booking__text"><strong>${item.title}</strong><small>${item.detail}</small></span>
+                    </label>
+                    <div class="book-links">${linkButtons(item.links)}</div>
+                </li>
+            `).join('')}
+        </ul>
+        <p class="budget__note">${t('Các link mở trang tìm kiếm của Booking.com, Airbnb, Google Flights, Vexere, Đường sắt Việt Nam – bạn so sánh giá và đặt trực tiếp trên đó.')}</p>
     `
 }
 
@@ -349,6 +461,7 @@ function renderPlanner() {
     document.getElementById('planner-stops').innerHTML = renderStops(plan, totals)
     document.getElementById('planner-settings').innerHTML = renderSettings(plan)
     document.getElementById('planner-summary').innerHTML = renderSummary(plan, totals)
+    document.getElementById('planner-bookings').innerHTML = renderBookings(plan, totals)
     document.getElementById('planner-days').innerHTML = renderDays(plan, totals)
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
@@ -394,7 +507,15 @@ function planAsText(plan) {
         if (item.arrival) {
             lines.push(`  ${t('Di chuyển')}: ${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})`)
         }
+        if (item.date) lines[lines.length - 1] += ` (${formatDate(item.date)})`
         if (item.day) DAY_SLOTS.forEach(slot => lines.push(`  ${slot.label()}: ${item.day[slot.key]}`))
+        if (item.meals) {
+            lines.push(`  ${t('Ăn trưa')}: ${item.meals.lunch.name} – ${item.meals.lunch.address}`)
+            lines.push(`  ${t('Ăn tối')}: ${item.meals.dinner.name} – ${item.meals.dinner.address}`)
+        }
+        if (item.checkin && item.checkin.stay) {
+            lines.push(`  ${t('Nghỉ đêm')}: ${pickLang(item.checkin.stay.area)} (${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')}, ${t('{n} đêm', { n: item.checkin.nights })})`)
+        }
         else lines.push(`  ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}`)
     })
     lines.push('', `${t('Xem kế hoạch')}: ${planShareUrl(plan)}`)
@@ -449,7 +570,11 @@ function initPlanner() {
     if (!root) return
 
     /* Liên kết chia sẻ được ưu tiên hơn kế hoạch đã lưu */
-    planner.plan = planFromQuery(location.search) || TripPlan.get()
+    const saved = TripPlan.get()
+    const fromUrl = planFromQuery(location.search)
+    const sameStops = fromUrl && fromUrl.stops.map(x => `${x.id}.${x.days}`).join() === saved.stops.map(x => `${x.id}.${x.days}`).join()
+    /* Mở lại chính kế hoạch của mình: giữ các mục đã đánh dấu "đã đặt" */
+    planner.plan = fromUrl ? { ...fromUrl, booked: sameStops ? saved.booked || {} : {} } : saved
     if (location.search && planner.plan.stops.length) TripPlan.save(planner.plan)
 
     root.addEventListener('click', handlePlannerClick)
@@ -461,6 +586,14 @@ function initPlanner() {
     })
     root.addEventListener('change', e => {
         if (e.target.id === 'planner-month') commit({ ...planner.plan, month: Number(e.target.value) })
+        if (e.target.id === 'planner-start') {
+            const start = e.target.value
+            commit({ ...planner.plan, start, month: start ? Number(start.slice(5, 7)) : planner.plan.month })
+        }
+        if (e.target.dataset.booking) {
+            const booked = { ...(planner.plan.booked || {}), [e.target.dataset.booking]: e.target.checked }
+            commit({ ...planner.plan, booked })
+        }
     })
     renderPlanner()
 }
