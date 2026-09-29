@@ -83,6 +83,38 @@ function overviewSection(d) {
     `
 }
 
+function climateSection(d) {
+    const months = Array.from({ length: 12 }, (_, i) => i + 1)
+    return `
+        <section class="climate section" id="climate">
+            <span class="section__subtitle">Thời tiết</span>
+            <h2 class="section__title">Thời tiết & mùa đẹp</h2>
+
+            <div class="climate__container container">
+                <div class="climate__card weather weather--loading" id="weather" aria-live="polite">
+                    <p class="weather__loading"><i class="ri-loader-4-line"></i> Đang tải thời tiết...</p>
+                </div>
+
+                <div class="climate__card season">
+                    <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: ${d.bestTime}</h3>
+                    <ol class="season__months" aria-label="Các tháng trong năm">
+                        ${months.map(m => {
+                            const best = d.bestMonths.includes(m)
+                            return `<li class="season__month${best ? ' season__month--best' : ''}" data-month="${m}"
+                                        title="Tháng ${m}${best ? ' – mùa đẹp' : ''}">T${m}</li>`
+                        }).join('')}
+                    </ol>
+                    <div class="season__legend">
+                        <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
+                        <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                    </div>
+                    <p class="season__status" data-season-status="${d.bestMonths.join(',')}"></p>
+                </div>
+            </div>
+        </section>
+    `
+}
+
 function gallerySection(d) {
     const photos = [{ file: d.hero, caption: d.name }, ...d.gallery]
     return `
@@ -301,6 +333,7 @@ function renderDestinationPage(d) {
     return [
         heroSection(d),
         overviewSection(d),
+        climateSection(d),
         gallerySection(d),
         foodSection(d),
         activitiesSection(d),

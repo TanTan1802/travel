@@ -159,6 +159,41 @@
             </div>
         </section>
     
+        <section class="climate section" id="climate">
+            <span class="section__subtitle">Thời tiết</span>
+            <h2 class="section__title">Thời tiết & mùa đẹp</h2>
+
+            <div class="climate__container container">
+                <div class="climate__card weather weather--loading" id="weather" aria-live="polite">
+                    <p class="weather__loading"><i class="ri-loader-4-line"></i> Đang tải thời tiết...</p>
+                </div>
+
+                <div class="climate__card season">
+                    <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: Tháng 11 – 4</h3>
+                    <ol class="season__months" aria-label="Các tháng trong năm">
+                        <li class="season__month season__month--best" data-month="1"
+                                        title="Tháng 1 – mùa đẹp">T1</li><li class="season__month season__month--best" data-month="2"
+                                        title="Tháng 2 – mùa đẹp">T2</li><li class="season__month season__month--best" data-month="3"
+                                        title="Tháng 3 – mùa đẹp">T3</li><li class="season__month season__month--best" data-month="4"
+                                        title="Tháng 4 – mùa đẹp">T4</li><li class="season__month" data-month="5"
+                                        title="Tháng 5">T5</li><li class="season__month" data-month="6"
+                                        title="Tháng 6">T6</li><li class="season__month" data-month="7"
+                                        title="Tháng 7">T7</li><li class="season__month" data-month="8"
+                                        title="Tháng 8">T8</li><li class="season__month" data-month="9"
+                                        title="Tháng 9">T9</li><li class="season__month" data-month="10"
+                                        title="Tháng 10">T10</li><li class="season__month season__month--best" data-month="11"
+                                        title="Tháng 11 – mùa đẹp">T11</li><li class="season__month season__month--best" data-month="12"
+                                        title="Tháng 12 – mùa đẹp">T12</li>
+                    </ol>
+                    <div class="season__legend">
+                        <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
+                        <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                    </div>
+                    <p class="season__status" data-season-status="1,2,3,4,11,12"></p>
+                </div>
+            </div>
+        </section>
+    
         <section class="gallery section" id="gallery">
             <span class="section__subtitle">Hình ảnh</span>
             <h2 class="section__title">Vẻ đẹp Mũi Né</h2>
@@ -626,6 +661,7 @@
         <script src="../../assets/js/favorites.js"></script>
         <script src="../../assets/js/components.js"></script>
         <script src="../../assets/js/map.js"></script>
+        <script src="../../assets/js/weather.js"></script>
         <script src="../../assets/js/destination-render.js"></script>
         <script src="../../assets/js/destination.js"></script>
 

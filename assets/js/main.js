@@ -36,6 +36,7 @@ function scrollHeader(){
     if(this.scrollY >= 100) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
 }
 window.addEventListener('scroll', scrollHeader)
+scrollHeader.call(window) // cập nhật ngay khi tải lại trang ở vị trí đã cuộn
 
 /*==================== SWIPER DISCOVER ====================*/
 if(document.querySelector('.discover__container')){

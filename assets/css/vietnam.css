@@ -1518,3 +1518,197 @@ body.dark-theme .nearby-item__distance {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+/*=============== THỜI TIẾT & MÙA ĐẸP ===============*/
+.climate__container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.climate__card {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+}
+
+.weather {
+  background: linear-gradient(135deg, hsl(200, 70%, 45%), hsl(215, 65%, 32%));
+  color: var(--white-color);
+}
+
+.weather a { color: inherit; text-decoration: underline; }
+
+.weather__loading,
+.weather__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: .5rem;
+  min-height: 160px;
+}
+
+.weather--loading .ri-loader-4-line {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.weather__now {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  margin-bottom: var(--mb-0-75);
+}
+
+.weather__icon {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.weather__temp {
+  display: block;
+  font-family: var(--title-font);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.weather__text {
+  opacity: .9;
+}
+
+.weather__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-1);
+  opacity: .9;
+}
+
+.weather__forecast {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .6rem;
+}
+
+.weather__forecast li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: .15rem;
+  padding: .6rem .25rem;
+  border-radius: .6rem;
+  background-color: hsla(0, 0%, 100%, .14);
+  font-size: var(--small-font-size);
+}
+
+.weather__forecast i {
+  font-size: 1.4rem;
+}
+
+.weather__forecast small {
+  font-size: var(--smaller-font-size);
+  opacity: .85;
+}
+
+.weather__source {
+  margin-top: var(--mb-0-75);
+  font-size: var(--smaller-font-size);
+  opacity: .75;
+}
+
+.season__title {
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.season__title i { color: var(--accent-color); }
+
+.season__months {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: .4rem;
+  list-style: none;
+  margin-bottom: var(--mb-1);
+}
+
+.season__month {
+  position: relative;
+  padding: .65rem 0;
+  border-radius: .5rem;
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  background-color: var(--input-color);
+  color: var(--text-color-light);
+}
+
+.season__month--best {
+  background: linear-gradient(135deg, var(--accent-color), hsl(24, 85%, 52%));
+  color: hsl(24, 70%, 14%);
+}
+
+.season__month--current {
+  outline: 3px solid var(--first-color);
+  outline-offset: 2px;
+}
+
+body.dark-theme .season__month--current {
+  outline-color: var(--white-color);
+}
+
+.season__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  font-size: var(--smaller-font-size);
+  margin-bottom: var(--mb-0-75);
+}
+
+.season__legend span {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .35rem;
+}
+
+.season__dot {
+  display: inline-block;
+  width: .8rem;
+  height: .8rem;
+  border-radius: .2rem;
+}
+
+.season__dot--best { background-color: var(--accent-color); }
+.season__dot--current { outline: 2px solid var(--first-color); }
+
+.season__status {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color);
+}
+
+.season__status--good {
+  color: hsl(150, 55%, 32%);
+}
+
+body.dark-theme .season__status--good {
+  color: hsl(150, 55%, 60%);
+}
+
+@media screen and (min-width: 768px) {
+  .climate__container {
+    grid-template-columns: 1fr 1.3fr;
+    align-items: stretch;
+  }
+
+  .season__months {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}

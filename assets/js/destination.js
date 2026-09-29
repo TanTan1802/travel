@@ -183,6 +183,8 @@ if (dest) {
     syncFavoriteButtons()
     initItineraryTabs()
     initLocationMap(dest)
+    initWeather(document.getElementById('weather'), dest.lat, dest.lng)
+    markCurrentMonth(destRoot)
 } else {
     document.title = 'Không tìm thấy điểm đến – Việt Travel'
     destRoot.innerHTML = notFoundSection()
