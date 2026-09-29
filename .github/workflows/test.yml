@@ -1,0 +1,40 @@
+# Kiểm tra tự động cho mỗi pull request và mỗi lần đẩy lên main:
+# dữ liệu hợp lệ, trang tĩnh đã build mới nhất, và giao diện chạy đúng trên Chromium.
+name: Kiểm tra
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cài thư viện
+        run: npm install --no-audit --no-fund
+
+      - name: Cài trình duyệt Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Trang tĩnh phải khớp dữ liệu (đã chạy npm run build)
+        run: |
+          npm run build
+          git diff --exit-code -- diem-den en index.html sitemap.xml robots.txt sw.js \
+            || (echo "::error::Trang tĩnh chưa được build lại – chạy npm run build rồi commit." && exit 1)
+
+      - name: Test dữ liệu
+        run: npm run test:data
+
+      - name: Test giao diện (Playwright)
+        run: npm run test:e2e

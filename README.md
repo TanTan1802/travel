@@ -74,6 +74,18 @@ dùng chung một luồng):
 
 Khi chưa cấu hình, mục bình luận được ẩn.
 
+## Test tự động
+
+```bash
+npm install
+npx playwright install chromium   # lần đầu
+npm test                          # = npm run test:data && npm run test:e2e
+```
+
+- `tests/data.test.js`: dữ liệu điểm đến, lịch trình 3/4/5 ngày, bản dịch tiếng Anh, manifest ảnh, trang tĩnh & sitemap, liên kết nội bộ.
+- `tests/e2e.test.js` (Playwright + Chromium): mọi trang không lỗi JS, tìm kiếm/lọc/yêu thích, chọn tour & ngày, chọn tháng, lightbox, chuyển ngôn ngữ, giao diện điện thoại. Tài nguyên ngoài (Wikimedia, Open-Meteo, bản đồ, giscus) được giả lập nên test chạy ổn định.
+- Workflow `.github/workflows/test.yml` chạy toàn bộ cho mỗi pull request và mỗi lần đẩy lên `main`, đồng thời báo lỗi nếu quên `npm run build` sau khi sửa dữ liệu.
+
 ## Thêm điểm đến mới
 Thêm một object vào mảng `DESTINATIONS` (mã `id`, tên, vùng, mô tả, ảnh, món ăn, hoạt động...)
 rồi chạy `npm run build`.
