@@ -16,7 +16,21 @@ const FILEPATH_BASE = process.env.WIKI_FILEPATH_BASE || 'https://commons.wikimed
 const OUT_DIR = 'assets/img/wiki'
 const MANIFEST = 'assets/js/data/local-images.js'
 const SIZES = { sm: 960, lg: 1920 }
-const CONCURRENCY = 4
+const CONCURRENCY = 3
+const USER_AGENT = 'VietTravelImageDownloader/1.0 (https://github.com/TanTan1802/travel)'
+const MAX_RETRIES = 4
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+/* Wikimedia có thể trả 429/5xx khi tải nhiều: chờ rồi thử lại */
+async function fetchWithRetry(url) {
+    for (let attempt = 0; ; attempt++) {
+        const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
+        if (res.ok || attempt >= MAX_RETRIES || (res.status !== 429 && res.status < 500)) return res
+        const wait = Number(res.headers.get('retry-after')) * 1000 || 2000 * 2 ** attempt
+        await sleep(wait)
+    }
+}
 
 const EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif' }
 
@@ -38,7 +52,7 @@ async function download(file, width) {
     if (existing) return existing
 
     const url = `${FILEPATH_BASE}${encodeURIComponent(file)}?width=${width}`
-    const res = await fetch(url, { headers: { 'User-Agent': 'viet-travel-image-download/1.0' } })
+    const res = await fetchWithRetry(url)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
     const type = (res.headers.get('content-type') || '').split(';')[0]

@@ -16,7 +16,7 @@ async function checkBatch(names) {
         iiprop: 'size',
         titles: names.map(n => `File:${n}`).join('|'),
     })
-    const res = await fetch(url, { headers: { 'User-Agent': 'viet-travel-image-check/1.0' } })
+    const res = await fetch(url, { headers: { 'User-Agent': 'VietTravelImageCheck/1.0 (https://github.com/TanTan1802/travel)' } })
     const json = await res.json()
 
     // API có thể chuẩn hóa tên (vd: "_" -> " ") nên cần ánh xạ ngược
