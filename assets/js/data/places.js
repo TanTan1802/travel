@@ -476,4 +476,99 @@ const PLACES = {
             { area: ['Quần đảo Hải Tặc', 'Hai Tac islands'], type: 'homestay', price: [300000, 700000], note: ['Homestay đơn giản trên đảo, điện nước có giờ.', 'Simple island homestays, limited power and water hours.'] },
         ],
     },
+    'ninh-thuan': {
+        city: 'Phan Rang',
+        airport: 'CXR',
+        rail: 'Tháp Chàm',
+        getThere: ['Bay tới Cam Ranh (CXR) rồi đi xe ~1 giờ (60 km) về Phan Rang; tàu Thống Nhất dừng ga Tháp Chàm; xe khách Sài Gòn – Phan Rang ~6 giờ.', 'Fly to Cam Ranh (CXR), then ~1 h (60 km) by road to Phan Rang; Reunification Express trains stop at Thap Cham; buses from Saigon take ~6 h.'],
+        eats: [
+            { name: 'Quán bánh căn chợ Phan Rang', dish: ['Bánh căn, bánh xèo mực', 'Bánh căn rice cakes, squid pancakes'], address: 'Chợ Phan Rang, TP. Phan Rang – Tháp Chàm', price: [20000, 60000] },
+            { name: 'Quán dê nướng Phan Rang', dish: ['Dê nướng, dê hấp tía tô, lẩu dê', 'Grilled goat, steamed goat, goat hotpot'], address: 'Đường 16 Tháng 4, TP. Phan Rang – Tháp Chàm', price: [120000, 300000] },
+            { name: 'Bè hải sản vịnh Vĩnh Hy', dish: ['Tôm hùm, cá mú, ốc nướng', 'Lobster, grouper, grilled snails'], address: 'Bến thuyền Vĩnh Hy, xã Vĩnh Hải', price: [200000, 500000] },
+            { name: 'Vườn nho Thái An', dish: ['Nho tươi, rượu nho, mật nho', 'Fresh grapes, grape wine, grape syrup'], address: 'Thôn Thái An, xã Vĩnh Hải', price: [30000, 150000] },
+        ],
+        stays: [
+            { area: ['Biển Ninh Chữ', 'Ninh Chu beach'], type: 'hotel', price: [400000, 1200000], note: ['Gần trung tâm Phan Rang, nhiều quán ăn.', 'Close to Phan Rang centre and plenty of eateries.'] },
+            { area: ['Làng chài Vĩnh Hy', 'Vinh Hy fishing village'], type: 'homestay', price: [300000, 800000], note: ['Ngay vịnh, tiện đi thuyền và Hang Rái.', 'Right on the bay, handy for boats and Hang Rai.'] },
+            { area: ['Bãi Bình Tiên – Núi Chúa', 'Binh Tien beach – Nui Chua'], type: 'resort', price: [2000000, 8000000], note: ['Resort biển riêng giữa núi rừng.', 'Private-beach resorts between mountains and sea.'] },
+        ],
+    },
+    'tay-ninh': {
+        city: 'Tay Ninh',
+        airport: 'SGN',
+        getThere: ['Xe khách/limousine từ Sài Gòn ~2,5 giờ (100 km) theo QL22, nhiều chuyến từ bến xe An Sương, Miền Tây.', 'Bus or limousine from Saigon ~2.5 h (100 km) via Highway 22, frequent departures from An Suong and Mien Tay stations.'],
+        eats: [
+            { name: 'Quán bánh canh Trảng Bàng', dish: ['Bánh canh giò heo, bánh tráng phơi sương', 'Pork-knuckle noodle soup, dew-dried rice paper'], address: 'QL22, thị xã Trảng Bàng', price: [40000, 150000] },
+            { name: 'Chợ Long Hoa', dish: ['Muối tôm, bánh tráng, mãng cầu', 'Shrimp salt, rice paper, custard apples'], address: 'Chợ Long Hoa, thị xã Hòa Thành', price: [20000, 100000] },
+            { name: 'Nhà hàng chay chân núi Bà', dish: ['Cơm chay, lẩu nấm', 'Vegetarian rice dishes, mushroom hotpot'], address: 'Khu du lịch núi Bà Đen, TP. Tây Ninh', price: [50000, 150000] },
+            { name: 'Quán cá lóc nướng hồ Dầu Tiếng', dish: ['Cá lóc nướng trui, gà nướng', 'Straw-grilled snakehead fish, grilled chicken'], address: 'Ven hồ Dầu Tiếng, huyện Dương Minh Châu', price: [100000, 250000] },
+        ],
+        stays: [
+            { area: ['Trung tâm TP. Tây Ninh', 'Tay Ninh city centre'], type: 'hotel', price: [350000, 1000000], note: ['Gần chợ, tiện đi núi Bà và Tòa Thánh.', 'Near the market, handy for the mountain and Holy See.'] },
+            { area: ['Hòa Thành – gần Tòa Thánh', 'Hoa Thanh – near the Holy See'], type: 'hotel', price: [300000, 800000], note: ['Đi bộ dự lễ Cao Đài.', 'Walk to the Cao Dai ceremonies.'] },
+            { area: ['Ven hồ Dầu Tiếng', 'Dau Tieng lakeside'], type: 'homestay', price: [300000, 900000], note: ['Yên tĩnh, ngắm hoàng hôn trên hồ.', 'Quiet, with sunsets over the lake.'] },
+        ],
+    },
+    'co-to': {
+        city: 'Co To',
+        airport: 'VDO',
+        getThere: ['Từ Hà Nội đi limousine ~3,5 giờ tới cảng Cái Rồng (Vân Đồn), tàu cao tốc ~1,5 giờ ra Cô Tô; hoặc bay tới sân bay Vân Đồn (VDO).', 'From Hanoi, a ~3.5 h limousine to Cai Rong port (Van Don), then a ~1.5 h fast boat to Co To; or fly to Van Don airport (VDO).'],
+        eats: [
+            { name: 'Chợ Cô Tô', dish: ['Hải sản tươi chế biến tại chỗ', 'Fresh seafood cooked on the spot'], address: 'Thị trấn Cô Tô', price: [50000, 300000] },
+            { name: 'Nhà hàng hải sản ven biển thị trấn', dish: ['Sá sùng xào, mực nướng, cù kỳ hấp', 'Stir-fried peanut worms, grilled squid, steamed crab'], address: 'Đường ven biển, thị trấn Cô Tô', price: [150000, 400000] },
+            { name: 'Quán bánh cuốn chả mực', dish: ['Bánh cuốn chả mực, bún hải sản', 'Rice rolls with squid cake, seafood noodles'], address: 'Thị trấn Cô Tô', price: [30000, 70000] },
+        ],
+        stays: [
+            { area: ['Thị trấn Cô Tô', 'Co To town'], type: 'hotel', price: [400000, 1200000], note: ['Gần cảng, chợ và quán ăn.', 'Near the port, market and restaurants.'] },
+            { area: ['Bãi Hồng Vàn', 'Hong Van beach'], type: 'homestay', price: [300000, 800000], note: ['Yên tĩnh, sát biển.', 'Quiet and right by the sea.'] },
+            { area: ['Gần bãi Vàn Chảy', 'Near Van Chay beach'], type: 'resort', price: [900000, 2500000], note: ['Bungalow giữa rừng phi lao.', 'Bungalows among casuarina trees.'] },
+        ],
+    },
+    'mang-den': {
+        city: 'Mang Den',
+        airport: 'PXU',
+        getThere: ['Bay tới Pleiku (PXU), đi xe ~3 giờ qua TP. Kon Tum; xe giường nằm từ Đà Nẵng, Quảng Ngãi tới Kon Tum rồi đi tiếp ~1,5 giờ.', 'Fly to Pleiku (PXU) and drive ~3 h via Kon Tum city; or take a sleeper bus from Da Nang or Quang Ngai to Kon Tum, then ~1.5 h more.'],
+        eats: [
+            { name: 'Quán gỏi lá Kon Tum', dish: ['Gỏi lá, heo tộc nướng', 'Leaf salad rolls, grilled local pork'], address: 'Trung tâm TP. Kon Tum', price: [100000, 250000] },
+            { name: 'Quán gà nướng cơm lam Măng Đen', dish: ['Gà nướng, cơm lam, rượu ghè', 'Grilled chicken, bamboo rice, jar wine'], address: 'Thị trấn Măng Đen', price: [100000, 250000] },
+            { name: 'Nhà hàng cá tầm Măng Đen', dish: ['Lẩu cá tầm, gỏi cá tầm', 'Sturgeon hotpot, sturgeon salad'], address: 'Thị trấn Măng Đen', price: [200000, 450000] },
+            { name: 'Chợ Măng Đen', dish: ['Bánh căn, bún, sâm dây, măng rừng', 'Rice cakes, noodles, local ginseng, wild bamboo shoots'], address: 'Trung tâm thị trấn Măng Đen', price: [20000, 80000] },
+        ],
+        stays: [
+            { area: ['Trung tâm thị trấn', 'Town centre'], type: 'hotel', price: [400000, 1000000], note: ['Gần chợ và quán ăn.', 'Near the market and restaurants.'] },
+            { area: ['Đồi thông quanh hồ', 'Pine hills around the lakes'], type: 'homestay', price: [300000, 900000], note: ['Nhà gỗ view rừng thông, có lò sưởi.', 'Wooden cabins with pine views and fireplaces.'] },
+            { area: ['Ven hồ Đak Ke', 'Dak Ke lakeside'], type: 'resort', price: [800000, 2500000], note: ['Bungalow ven hồ, yên tĩnh.', 'Quiet lakeside bungalows.'] },
+        ],
+    },
+    'mai-chau': {
+        city: 'Mai Chau',
+        airport: 'HAN',
+        getThere: ['Xe khách/limousine từ Hà Nội ~3,5 giờ (140 km) qua đại lộ Thăng Long – Hòa Bình, nhiều chuyến từ bến xe Mỹ Đình.', 'Bus or limousine from Hanoi ~3.5 h (140 km) via the Thang Long boulevard and Hoa Binh, frequent departures from My Dinh station.'],
+        eats: [
+            { name: 'Bếp nhà sàn bản Lác', dish: ['Cơm lam, cá suối, rau rừng', 'Bamboo rice, stream fish, wild greens'], address: 'Bản Lác, Mai Châu', price: [100000, 200000] },
+            { name: 'Quán gà đồi Pom Coọng', dish: ['Gà đồi nướng, lợn bản', 'Grilled hill chicken, local pork'], address: 'Bản Pom Coọng, Mai Châu', price: [100000, 250000] },
+            { name: 'Chợ Mai Châu', dish: ['Xôi, bánh, đặc sản thổ cẩm', 'Sticky rice, snacks and brocade'], address: 'Thị trấn Mai Châu', price: [20000, 80000] },
+        ],
+        stays: [
+            { area: ['Bản Lác – Pom Coọng', 'Lac – Pom Coong villages'], type: 'homestay', price: [200000, 600000], note: ['Nhà sàn người Thái giữa đồng lúa.', 'Thai stilt houses among the rice fields.'] },
+            { area: ['Thị trấn Mai Châu', 'Mai Chau town'], type: 'hotel', price: [350000, 900000], note: ['Tiện xe khách và chợ.', 'Handy for buses and the market.'] },
+            { area: ['Resort ven thung lũng', 'Valley-edge resorts'], type: 'resort', price: [1500000, 4000000], note: ['Hồ bơi view đồng lúa và núi.', 'Pools overlooking paddies and mountains.'] },
+        ],
+    },
+    'ca-mau': {
+        city: 'Ca Mau',
+        airport: 'CAH',
+        getThere: ['Bay tới Cà Mau (CAH) hoặc Cần Thơ (VCA); xe khách Sài Gòn – Cà Mau ~8 giờ. Từ TP. Cà Mau ra Đất Mũi đi ô tô hoặc cano.', 'Fly to Ca Mau (CAH) or Can Tho (VCA); buses from Saigon take ~8 h. From Ca Mau city to Dat Mui by car or speedboat.'],
+        eats: [
+            { name: 'Quán lẩu mắm U Minh', dish: ['Lẩu mắm, cá kèo nướng', 'Fermented fish hotpot, grilled mudskipper'], address: 'TP. Cà Mau', price: [100000, 250000] },
+            { name: 'Nhà hàng hải sản Năm Căn', dish: ['Cua hấp, tôm nướng, ba khía', 'Steamed crab, grilled prawns, salted crab'], address: 'Thị trấn Năm Căn', price: [150000, 400000] },
+            { name: 'Nhà hàng khu du lịch Đất Mũi', dish: ['Cá, tôm, sò huyết nướng', 'Grilled fish, prawns and blood cockles'], address: 'Khu du lịch Mũi Cà Mau', price: [100000, 300000] },
+            { name: 'Chợ Cà Mau', dish: ['Bánh canh, hủ tiếu, tôm khô', 'Noodle soups and dried shrimp'], address: 'Chợ Phường 2, TP. Cà Mau', price: [25000, 80000] },
+        ],
+        stays: [
+            { area: ['TP. Cà Mau', 'Ca Mau city'], type: 'hotel', price: [400000, 1200000], note: ['Nhiều lựa chọn, tiện đi các nơi.', 'Plenty of choice and a good base.'] },
+            { area: ['Đất Mũi', 'Dat Mui'], type: 'homestay', price: [250000, 600000], note: ['Ngủ gần mũi đất để đón bình minh.', 'Stay near the cape for sunrise.'] },
+            { area: ['Năm Căn', 'Nam Can'], type: 'hotel', price: [300000, 700000], note: ['Điểm dừng giữa đường ra Đất Mũi.', 'A stop halfway to Dat Mui.'] },
+        ],
+    },
 }

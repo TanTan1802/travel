@@ -291,4 +291,64 @@ const ITINERARIES = {
         ],
         budget: { saving: [2000000, 2700000, 3400000], comfort: [4800000, 6400000, 8000000] },
     },
+    'ninh-thuan': {
+        days: [
+            { title: 'Phan Rang và tháp Chăm', morning: 'Bay tới Cam Ranh, đi xe ~1 giờ về Phan Rang, ăn sáng bánh căn.', afternoon: 'Tháp Po Klong Garai trên đồi Trầu, làng gốm Bàu Trúc xem nặn gốm bằng tay.', evening: 'Dạo biển Ninh Chữ, ăn tối dê nướng, gỏi cá mai.' },
+            { title: 'Vịnh Vĩnh Hy', morning: 'Theo cung đường ven biển qua Vườn quốc gia Núi Chúa tới vịnh Vĩnh Hy.', afternoon: 'Đi thuyền đáy kính ngắm san hô, lặn ống thở, ăn hải sản trên bè.', evening: 'Ghé vườn nho Thái An, nếm rượu nho, mật nho.' },
+            { title: 'Hang Rái và đồi cát', morning: 'Đón bình minh ở bãi đá Hang Rái lúc thủy triều rút.', afternoon: 'Đồi cát Nam Cương giữa làng Chăm, cưỡi xe địa hình trên cát.', evening: 'Ngắm hoàng hôn ở đầm Nại, ăn ốc, cá nướng ven đầm.' },
+            { title: 'Mũi Dinh và cánh đồng cừu', morning: 'Đồi cát và hải đăng Mũi Dinh, đồng cừu thả rông.', afternoon: 'Làng dệt thổ cẩm Mỹ Nghiệp của người Chăm.', evening: 'Hải sản Ninh Chữ, dạo quảng trường 16 Tháng 4.' },
+            { title: 'Đèo Ngoạn Mục – về', morning: 'Chợ Phan Rang mua nho, táo, tỏi làm quà.', afternoon: 'Theo đèo Ngoạn Mục lên Đà Lạt hoặc ra sân bay Cam Ranh.', evening: 'Kết thúc hành trình.' },
+        ],
+        budget: { saving: [2200000, 2900000, 3600000], comfort: [5000000, 6700000, 8400000] },
+    },
+    'tay-ninh': {
+        days: [
+            { title: 'Lên đỉnh núi Bà Đen', morning: 'Từ Sài Gòn đi xe ~2,5 giờ tới Tây Ninh, ăn sáng bánh canh Trảng Bàng.', afternoon: 'Cáp treo lên đỉnh núi Bà Đen, viếng tượng Phật Bà Tây Bổ Đà Sơn, săn mây.', evening: 'Ăn bánh tráng phơi sương cuốn thịt luộc, rau rừng.' },
+            { title: 'Tòa Thánh Cao Đài', morning: 'Viếng chùa Bà và động Ông Hổ trên lưng chừng núi.', afternoon: 'Dự lễ giờ Ngọ ở Tòa Thánh Cao Đài, dạo khuôn viên Nội ô.', evening: 'Chợ Long Hoa, mua muối tôm, bánh tráng làm quà.' },
+            { title: 'Hồ Dầu Tiếng', morning: 'Đi xe tới hồ Dầu Tiếng, ngắm mặt hồ mênh mông.', afternoon: 'Đi thuyền trên hồ, ăn cá lóc nướng trui.', evening: 'Hoàng hôn trên đập hồ Dầu Tiếng.' },
+            { title: 'Ma Thiên Lãnh và rừng Chàng Riệc', morning: 'Khám phá thung lũng Ma Thiên Lãnh sau núi Bà.', afternoon: 'Di tích Trung ương Cục miền Nam giữa rừng Chàng Riệc.', evening: 'Nghỉ ngơi, thưởng thức mãng cầu Bà Đen.' },
+            { title: 'Địa đạo Củ Chi – về Sài Gòn', morning: 'Làng nghề bánh tráng Trảng Bàng.', afternoon: 'Ghé địa đạo Củ Chi trên đường về.', evening: 'Về tới Sài Gòn.' },
+        ],
+        budget: { saving: [1500000, 2000000, 2500000], comfort: [3800000, 5000000, 6300000] },
+    },
+    'co-to': {
+        days: [
+            { title: 'Ra đảo', morning: 'Từ Hà Nội đi limousine ~3,5 giờ tới cảng Cái Rồng (Vân Đồn).', afternoon: 'Tàu cao tốc ~1,5 giờ ra Cô Tô, nhận phòng, thuê xe đạp hoặc xe điện.', evening: 'Dạo thị trấn, ăn tối hải sản ven biển.' },
+            { title: 'Hồng Vàn và hải đăng', morning: 'Đón bình minh ở bãi đá Cầu Mỵ.', afternoon: 'Tắm biển Hồng Vàn, đạp xe con đường ven biển qua rừng phi lao.', evening: 'Lên hải đăng Cô Tô ngắm hoàng hôn toàn đảo.' },
+            { title: 'Cô Tô Con', morning: 'Đi bộ theo dải cát ra đảo Cô Tô Con khi thủy triều rút.', afternoon: 'Tắm biển hoang sơ, câu cá, cắm trại.', evening: 'Nướng mực, sá sùng bên lửa trại.' },
+            { title: 'Vàn Chảy – Bắc Vàn', morning: 'Tắm biển Vàn Chảy cát trắng mịn.', afternoon: 'Bãi Bắc Vàn và cột cờ Tổ quốc.', evening: 'Mua mực khô, sá sùng khô làm quà.' },
+            { title: 'Về đất liền', morning: 'Ăn sáng bánh cuốn chả mực, lên tàu về Cái Rồng.', afternoon: 'Ghé đảo Quan Lạn hoặc về Hà Nội.', evening: 'Về tới Hà Nội.' },
+        ],
+        budget: { saving: [2500000, 3200000, 3900000], comfort: [5500000, 7200000, 8900000] },
+    },
+    'mang-den': {
+        days: [
+            { title: 'Kon Tum – lên Măng Đen', morning: 'Bay tới Pleiku, đi xe về Kon Tum thăm nhà thờ gỗ, nhà rông Kon Klor.', afternoon: 'Vượt đèo lên Măng Đen (~1,5 giờ), nhận phòng giữa rừng thông.', evening: 'Ăn gà nướng cơm lam, uống rượu ghè.' },
+            { title: 'Hồ và thác', morning: 'Săn sương sớm, chèo SUP trên hồ Đak Ke.', afternoon: 'Thác Pa Sỹ với cầu treo và đường mòn ven suối.', evening: 'Lẩu cá tầm giữa trời se lạnh.' },
+            { title: 'Làng Kon Pring và Đức Mẹ Măng Đen', morning: 'Viếng tượng Đức Mẹ Măng Đen trên đồi thông.', afternoon: 'Làng văn hóa Kon Pring của người Mơ Nâm, xem đan lát.', evening: 'Chợ Măng Đen, cà phê bên lò sưởi.' },
+            { title: 'Thác Đak Ke và hồ Toong Zơ Ri', morning: 'Thác Đak Ke giữa rừng nguyên sinh.', afternoon: 'Hồ Toong Zơ Ri, dạo rừng thông, chụp ảnh.', evening: 'Nướng BBQ tại homestay.' },
+            { title: 'Về Pleiku', morning: 'Mua sâm dây, măng rừng khô làm quà.', afternoon: 'Xuống đèo về Kon Tum ăn gỏi lá, ra sân bay Pleiku.', evening: 'Kết thúc hành trình.' },
+        ],
+        budget: { saving: [2000000, 2600000, 3200000], comfort: [4600000, 6100000, 7600000] },
+    },
+    'mai-chau': {
+        days: [
+            { title: 'Về bản Lác', morning: 'Từ Hà Nội đi xe ~3,5 giờ, dừng đèo Thung Khe ngắm thung lũng.', afternoon: 'Nhận phòng nhà sàn bản Lác, dạo đồng lúa, xem dệt thổ cẩm.', evening: 'Cơm lam, cá suối nướng, xem múa xòe bên lửa trại.' },
+            { title: 'Đạp xe Pom Coọng', morning: 'Đạp xe qua đồng lúa tới bản Pom Coọng.', afternoon: 'Leo bậc đá lên hang Chiều ngắm cánh đồng Mai Châu.', evening: 'Uống rượu cần, nghe hát then.' },
+            { title: 'Bản Văn – bản Nhót', morning: 'Đạp xe tới bản Văn, bản Nhót vắng khách.', afternoon: 'Tắm suối, ăn trưa cùng gia đình người Thái.', evening: 'Gà đồi nướng mật ong.' },
+            { title: 'Trekking bản Hang Kia', morning: 'Đi xe lên bản Hang Kia – Pà Cò của người H\'Mông.', afternoon: 'Trekking đồi mận, săn mây ở Pà Cò.', evening: 'Về lại bản Lác nghỉ đêm.' },
+            { title: 'Hồ Hòa Bình – về Hà Nội', morning: 'Đi thuyền trên hồ Hòa Bình, viếng đền Thác Bờ.', afternoon: 'Ăn trưa cá hồ rồi về Hà Nội.', evening: 'Về tới Hà Nội.' },
+        ],
+        budget: { saving: [1500000, 2000000, 2500000], comfort: [3800000, 5000000, 6300000] },
+    },
+    'ca-mau': {
+        days: [
+            { title: 'Thành phố Cà Mau', morning: 'Bay tới Cà Mau hoặc đi xe từ Cần Thơ, ăn sáng bánh canh, hủ tiếu.', afternoon: 'Chợ nổi Cà Mau, công viên Hùng Vương, quảng trường Bông Súng.', evening: 'Lẩu mắm U Minh, cua rang me.' },
+            { title: 'Về Đất Mũi', morning: 'Đi ô tô hoặc cano ra Đất Mũi qua Năm Căn.', afternoon: 'Cột mốc GPS 0001, biểu tượng con tàu, tháp vọng hải đài.', evening: 'Ngắm hoàng hôn trên biển, ngủ homestay Đất Mũi.' },
+            { title: 'Rừng đước', morning: 'Đi xuồng xuyên rừng đước, xem nghề câu ba khía.', afternoon: 'Hòn Đá Bạc hoặc cồn Ông Trang ven biển.', evening: 'Về Năm Căn ăn hải sản.' },
+            { title: 'Rừng tràm U Minh Hạ', morning: 'Đi xuồng giữa rừng tràm U Minh Hạ.', afternoon: 'Tìm hiểu nghề ăn ong lấy mật, câu cá đồng.', evening: 'Về TP. Cà Mau, dạo chợ đêm.' },
+            { title: 'Bạc Liêu – về', morning: 'Đi xe tới Bạc Liêu, nhà Công tử Bạc Liêu.', afternoon: 'Cánh đồng điện gió ven biển, rồi về Cần Thơ hoặc Sài Gòn.', evening: 'Kết thúc hành trình.' },
+        ],
+        budget: { saving: [2000000, 2700000, 3400000], comfort: [4500000, 6000000, 7500000] },
+    },
 }
