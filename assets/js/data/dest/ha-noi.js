@@ -1,0 +1,562 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "ha-noi": {
+  "city": "Hanoi",
+  "airport": "HAN",
+  "rail": "Hà Nội",
+  "getThere": [
+   "Sân bay Nội Bài (HAN) cách phố cổ ~30 km: xe bus 86 (~45 phút) hoặc taxi/Grab ~250–350k. Ga Hà Nội nằm ở trung tâm.",
+   "Noi Bai Airport (HAN) is ~30 km from the Old Quarter: bus 86 (~45 min) or taxi/Grab ~250–350k VND. Hanoi Station is central."
+  ],
+  "eats": [
+   {
+    "name": "Phở Bát Đàn",
+    "dish": [
+     "Phở bò tái nạm, xếp hàng tự bưng",
+     "Beef pho – queue and self-serve"
+    ],
+    "address": "49 Bát Đàn, Hoàn Kiếm",
+    "price": [
+     50000,
+     70000
+    ]
+   },
+   {
+    "name": "Bún chả Hương Liên",
+    "dish": [
+     "Bún chả, nem cua bể (\"combo Obama\")",
+     "Bun cha and crab spring rolls (the \"Obama combo\")"
+    ],
+    "address": "24 Lê Văn Hưu, Hai Bà Trưng",
+    "price": [
+     50000,
+     100000
+    ]
+   },
+   {
+    "name": "Chả cá Thăng Long",
+    "dish": [
+     "Chả cá Lã Vọng rán tại bàn với thì là",
+     "Turmeric fish sizzled at the table with dill"
+    ],
+    "address": "21 Đường Thành, Hoàn Kiếm",
+    "price": [
+     150000,
+     200000
+    ]
+   },
+   {
+    "name": "Cà phê Giảng",
+    "dish": [
+     "Cà phê trứng nguyên bản",
+     "The original egg coffee"
+    ],
+    "address": "39 Nguyễn Hữu Huân, Hoàn Kiếm",
+    "price": [
+     30000,
+     50000
+    ]
+   },
+   {
+    "name": "Bánh cuốn Bà Hoành",
+    "dish": [
+     "Bánh cuốn nóng, chả quế",
+     "Steamed rice rolls with cinnamon pork"
+    ],
+    "address": "66 Tô Hiến Thành, Hai Bà Trưng",
+    "price": [
+     40000,
+     60000
+    ]
+   },
+   {
+    "name": "Bún thang Cầu Gỗ",
+    "dish": [
+     "Bún thang Hà Nội thanh nhẹ",
+     "Delicate Hanoi bun thang"
+    ],
+    "address": "Phố Cầu Gỗ, Hoàn Kiếm",
+    "price": [
+     40000,
+     60000
+    ]
+   },
+   {
+    "name": "Bún đậu mắm tôm ngõ Gia Ngư",
+    "dish": [
+     "Bún đậu mắm tôm, chả cốm",
+     "Tofu noodles with shrimp paste, green-rice cakes"
+    ],
+    "address": "Ngõ Gia Ngư, Hoàn Kiếm",
+    "price": [
+     40000,
+     80000
+    ]
+   },
+   {
+    "name": "Phố ẩm thực Tống Duy Tân",
+    "dish": [
+     "Lẩu, nướng, món Hà Nội về đêm",
+     "Hotpot, grills and late-night Hanoi dishes"
+    ],
+    "address": "Phố Tống Duy Tân, Hoàn Kiếm",
+    "price": [
+     100000,
+     250000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cộng Cà Phê Hồ Gươm",
+    "drink": [
+     "Cà phê cốt dừa, sữa chua cà phê",
+     "Coconut coffee, coffee yogurt"
+    ],
+    "address": "Phố Lê Thái Tổ, Hoàn Kiếm",
+    "price": [
+     40000,
+     65000
+    ]
+   },
+   {
+    "name": "Trà chanh Nhà Thờ",
+    "drink": [
+     "Trà chanh, hướng dương ngồi vỉa hè",
+     "Street-side lime tea and sunflower seeds"
+    ],
+    "address": "Phố Nhà Chung – Nhà Thờ, Hoàn Kiếm",
+    "price": [
+     15000,
+     30000
+    ]
+   },
+   {
+    "name": "Cà phê Đinh (view hồ)",
+    "drink": [
+     "Cà phê trứng, cacao trứng trên gác",
+     "Egg coffee and egg cocoa upstairs"
+    ],
+    "address": "13 Đinh Tiên Hoàng, Hoàn Kiếm",
+    "price": [
+     25000,
+     45000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Phố cổ Hoàn Kiếm",
+     "Old Quarter (Hoan Kiem)"
+    ],
+    "type": "hotel",
+    "price": [
+     500000,
+     1500000
+    ],
+    "note": [
+     "Đi bộ tới hồ Gươm, phố đi bộ, chợ đêm.",
+     "Walk to Hoan Kiem Lake, the walking street and night market."
+    ]
+   },
+   {
+    "area": [
+     "Tây Hồ",
+     "Tay Ho (West Lake)"
+    ],
+    "type": "homestay",
+    "price": [
+     400000,
+     1000000
+    ],
+    "note": [
+     "Yên tĩnh, nhiều cà phê view hồ.",
+     "Quieter, lots of lakeside cafés."
+    ]
+   },
+   {
+    "area": [
+     "Ba Đình – quanh Lăng Bác",
+     "Ba Dinh"
+    ],
+    "type": "hotel",
+    "price": [
+     700000,
+     2000000
+    ],
+    "note": [
+     "Gần Lăng Bác, Văn Miếu, khách sạn lớn.",
+     "Near the Mausoleum, Temple of Literature and larger hotels."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "ha-noi": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Lăng Chủ tịch Hồ Chí Minh",
+     "Ho Chi Minh Mausoleum"
+    ],
+    "price": 0,
+    "note": [
+     "Trang phục lịch sự, không mang máy ảnh vào",
+     "Dress modestly; no cameras inside"
+    ],
+    "hours": [
+     "07:30–10:30, nghỉ thứ Hai & thứ Sáu",
+     "7:30–10:30am, closed Mon & Fri"
+    ],
+    "address": "Số 2 Hùng Vương, Ba Đình"
+   },
+   {
+    "at": "m",
+    "name": [
+     "Chùa Một Cột",
+     "One Pillar Pagoda"
+    ],
+    "price": 0,
+    "hours": "07:00–18:00",
+    "address": "Phố Chùa Một Cột, Ba Đình"
+   },
+   {
+    "at": "m",
+    "name": [
+     "Văn Miếu – Quốc Tử Giám",
+     "Temple of Literature"
+    ],
+    "price": 70000,
+    "hours": "08:00–17:00",
+    "address": "58 Quốc Tử Giám, Đống Đa",
+    "cafe": {
+     "name": "Cà phê cốt dừa phố Văn Miếu",
+     "drink": [
+      "Cà phê cốt dừa, sữa chua đánh đá",
+      "Coconut coffee, iced yogurt"
+     ],
+     "price": [
+      30000,
+      55000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Hồ Hoàn Kiếm – cầu Thê Húc",
+     "Hoan Kiem Lake – The Huc bridge"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Phố Đinh Tiên Hoàng, Hoàn Kiếm"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Đền Ngọc Sơn",
+     "Ngoc Son Temple"
+    ],
+    "price": 50000,
+    "hours": "08:00–18:00",
+    "address": "Hồ Hoàn Kiếm, Hoàn Kiếm",
+    "cafe": {
+     "name": "Cafe Giảng",
+     "drink": [
+      "Cà phê trứng \"gốc\" từ 1946",
+      "The original egg coffee since 1946"
+     ],
+     "price": [
+      35000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Nhà hát Múa rối nước Thăng Long",
+     "Thang Long Water Puppet Theatre"
+    ],
+    "price": [
+     150000,
+     200000
+    ],
+    "hours": [
+     "Suất 15:00 – 20:00 mỗi ngày",
+     "Shows 3pm – 8pm daily"
+    ],
+    "address": "57B Đinh Tiên Hoàng, Hoàn Kiếm"
+   },
+   {
+    "at": "e",
+    "name": [
+     "Phố Tạ Hiện",
+     "Ta Hien beer street"
+    ],
+    "price": 0,
+    "hours": "17:00–24:00",
+    "address": "Phố Tạ Hiện, Hoàn Kiếm"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Xích lô 36 phố phường",
+     "Cyclo ride around the Old Quarter"
+    ],
+    "price": [
+     150000,
+     250000
+    ],
+    "note": [
+     "Mỗi xe ~1 giờ, thỏa thuận trước",
+     "Per cyclo ~1 h, agree the price first"
+    ],
+    "hours": "08:00–22:00",
+    "address": "Xuất phát quanh hồ Hoàn Kiếm"
+   },
+   {
+    "at": "m",
+    "name": [
+     "Chợ Đồng Xuân",
+     "Dong Xuan Market"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "Phố Đồng Xuân, Hoàn Kiếm",
+    "cafe": {
+     "name": "Cafe Lâm (Nguyễn Hữu Huân)",
+     "drink": [
+      "Cà phê đen, cà phê sữa kiểu cũ",
+      "Old-style black or milk coffee"
+     ],
+     "price": [
+      25000,
+      45000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Nhà tù Hỏa Lò",
+     "Hoa Lo Prison"
+    ],
+    "price": 50000,
+    "hours": "08:00–17:00",
+    "address": "1 Hỏa Lò, Hoàn Kiếm"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Phố đường tàu",
+     "Train Street"
+    ],
+    "price": 0,
+    "note": [
+     "Chỉ vào qua các quán cà phê cho phép",
+     "Enter only via the permitted cafés"
+    ],
+    "hours": "all",
+    "address": "Ngõ 224 Lê Duẩn, Đống Đa",
+    "cafe": {
+     "name": "Cà phê phố đường tàu",
+     "drink": [
+      "Cà phê muối, bia chai chờ tàu qua",
+      "Salted coffee or beer while waiting for the train"
+     ],
+     "price": [
+      40000,
+      70000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Nhà hát Lớn Hà Nội",
+     "Hanoi Opera House"
+    ],
+    "price": 0,
+    "note": [
+     "Ngắm bên ngoài; tour bên trong ~400.000đ",
+     "Free outside; guided tour inside ~400,000đ"
+    ],
+    "hours": "all",
+    "address": "1 Tràng Tiền, Hoàn Kiếm"
+   },
+   {
+    "at": "e",
+    "name": [
+     "Hồ Tây – phủ Tây Hồ",
+     "West Lake – Tay Ho temple"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Đường Thanh Niên – Đặng Thai Mai, Tây Hồ"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Làng gốm Bát Tràng – nặn gốm",
+     "Bat Trang pottery village – pottery class"
+    ],
+    "price": [
+     50000,
+     100000
+    ],
+    "note": [
+     "Tự nặn và vẽ gốm",
+     "Throw and paint your own piece"
+    ],
+    "hours": "08:00–17:30",
+    "address": "Xã Bát Tràng, Gia Lâm",
+    "cafe": {
+     "name": "Cà phê chợ gốm Bát Tràng",
+     "drink": [
+      "Cà phê, trà sen trong cốc gốm",
+      "Coffee and lotus tea in ceramic cups"
+     ],
+     "price": [
+      25000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Bảo tàng Dân tộc học Việt Nam",
+     "Vietnam Museum of Ethnology"
+    ],
+    "price": 40000,
+    "hours": [
+     "08:30–17:30, nghỉ thứ Hai",
+     "8:30am–5:30pm, closed Mon"
+    ],
+    "address": "Nguyễn Văn Huyên, Cầu Giấy",
+    "cafe": {
+     "name": "Cà phê sân vườn Bảo tàng Dân tộc học",
+     "drink": [
+      "Cà phê, nước chanh giữa khu nhà sàn",
+      "Coffee and lemonade among the stilt houses"
+     ],
+     "price": [
+      25000,
+      50000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Chùa Hương – đò suối Yến",
+     "Perfume Pagoda – Yen stream boat"
+    ],
+    "price": [
+     180000,
+     200000
+    ],
+    "note": [
+     "Vé thắng cảnh + đò khứ hồi",
+     "Entry + return boat"
+    ],
+    "hours": "06:00–18:00",
+    "address": "Bến Đục, Hương Sơn, Mỹ Đức",
+    "cafe": {
+     "name": "Quán nước bến Đục",
+     "drink": [
+      "Trà đá, nước mía, mơ Hương Tích",
+      "Iced tea, sugarcane juice, Huong Tich apricots"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Cáp treo động Hương Tích",
+     "Huong Tich cave cable car"
+    ],
+    "price": [
+     180000,
+     250000
+    ],
+    "note": [
+     "Một chiều / khứ hồi",
+     "One way / return"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Chùa Thiên Trù, Hương Sơn",
+    "cafe": {
+     "name": "Quán nước chân động Hương Tích",
+     "drink": [
+      "Nước sắn dây, trà nóng",
+      "Arrowroot drink, hot tea"
+     ],
+     "price": [
+      15000,
+      30000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Làng cổ Đường Lâm",
+     "Duong Lam ancient village"
+    ],
+    "price": 20000,
+    "hours": "07:00–18:00",
+    "address": "Đường Lâm, Sơn Tây",
+    "cafe": {
+     "name": "Cà phê nhà cổ Đường Lâm",
+     "drink": [
+      "Chè kho, trà xanh, cà phê trong nhà đá ong",
+      "Mung-bean sweets, green tea, coffee in a laterite house"
+     ],
+     "price": [
+      20000,
+      45000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Vườn quốc gia Ba Vì – đền Thượng",
+     "Ba Vi National Park – Upper Temple"
+    ],
+    "price": 60000,
+    "hours": "07:00–18:00",
+    "address": "Tản Lĩnh, Ba Vì",
+    "cafe": {
+     "name": "Quán nước rừng thông Ba Vì",
+     "drink": [
+      "Sữa chua Ba Vì, trà nóng",
+      "Ba Vi yogurt, hot tea"
+     ],
+     "price": [
+      15000,
+      40000
+     ]
+    }
+   }
+  ]
+ ]
+}

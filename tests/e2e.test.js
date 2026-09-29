@@ -51,9 +51,21 @@ test('mọi trang tải không có lỗi JS và không thiếu tài nguyên nộ
 
 test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', async () => {
     const { page, errors, close } = await openPage('index.html')
-    const count = async () => page.$$eval('#dest-grid .dest-card', a => a.length)
+    /* Số kết quả sau lọc (lưới chỉ hiện từng trang 8 thẻ để trang không quá dài) */
+    const count = async () => Number(await page.$eval('#dest-grid', g => g.dataset.results))
+    const cards = async () => page.$$eval('#dest-grid .dest-card', a => a.length)
     const total = await count()
-    assert.ok(total >= 20, `chỉ có ${total} thẻ điểm đến`)
+    assert.ok(total >= 20, `chỉ có ${total} điểm đến`)
+    assert.equal(await cards(), 8, 'ban đầu chỉ hiện 8 thẻ')
+    await page.click('#explore-more')
+    assert.equal(await cards(), 16, 'bấm xem thêm phải hiện thêm 8 thẻ')
+    await page.click('#explore-all')
+    assert.equal(await cards(), total, 'xem tất cả phải hiện đủ')
+    assert.ok(await page.isHidden('#explore-more-wrap'), 'hết thẻ thì ẩn nút xem thêm')
+
+    /* Điểm đến nổi bật: thanh cuộn ngang thay Swiper */
+    assert.equal(await page.evaluate(() => typeof Swiper), 'undefined', 'không còn tải Swiper')
+    assert.ok(await page.$$eval('#discover-list .discover__card', a => a.length) >= 5)
 
     /* Đi đâu tháng này: thẻ điểm đến đúng mùa, bấm "xem tất cả" thì lọc theo tháng hiện tại */
     assert.equal(await page.$('video'), null, 'trang chủ không còn video mẫu')
@@ -83,7 +95,9 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     assert.ok(oct > 0 && oct < total, 'lọc tháng 10 phải thu hẹp kết quả')
     await page.selectOption('#month-filter', '0')
 
+    await page.fill('#explore-search', 'Hội An')
     await page.click('#dest-grid .fav-btn[data-favorite="hoi-an"]')
+    await page.fill('#explore-search', '')
     assert.equal(await page.textContent('#fav-count'), '1')
     await page.click('#fav-filter')
     assert.equal(await count(), 1, 'bộ lọc yêu thích phải chỉ còn 1 thẻ')

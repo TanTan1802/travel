@@ -4143,3 +4143,181 @@ body.dark-theme .sight__price--free {
   justify-content: center;
   gap: .75rem;
 }
+
+/*=============== THANH CUỘN NGANG (thay Swiper) ===============*/
+.hscroll-wrap {
+  position: relative;
+}
+
+.hscroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: none;
+  padding: .25rem 0 .75rem;
+}
+
+.hscroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hscroll > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.hscroll__btn {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--container-color);
+  color: var(--title-color);
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, .18);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.hscroll__btn--prev { left: -.5rem; }
+.hscroll__btn--next { right: -.5rem; }
+
+.hscroll__btn:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Điểm đến nổi bật: bỏ khung hẹp của Swiper cũ, thẻ trượt tràn hết chiều ngang */
+.discover__container {
+  width: auto;
+  max-width: 1024px;
+}
+
+.discover__card {
+  border-radius: .75rem;
+}
+
+@media (hover: none) {
+  .hscroll__btn {
+    display: none;
+  }
+}
+
+/*=============== DANH SÁCH ĐIỂM ĐẾN: XEM THÊM ===============*/
+.explore__more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  margin-top: 2rem;
+}
+
+.explore__more[hidden] {
+  display: none;
+}
+
+/*=============== ĐI ĐÂU THÁNG NÀY: VUỐT NGANG TRÊN ĐIỆN THOẠI ===============*/
+@media screen and (max-width: 576px) {
+  .season__grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -1rem;
+    padding: .25rem 1rem .75rem;
+  }
+
+  .season__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .season__grid > .dest-card-wrap {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+  }
+
+  .season__grid .dest-card__tagline,
+  .season__grid .dest-card__tags {
+    display: none;
+  }
+
+  .season__actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/*=============== TRANG ĐIỂM ĐẾN: GỌN HƠN ===============*/
+.eats__more {
+  margin-top: 1rem;
+}
+
+.eats__more summary {
+  width: fit-content;
+  margin: 0 auto;
+  list-style: none;
+  cursor: pointer;
+}
+
+.eats__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.eats__more[open] summary {
+  display: none;
+}
+
+/* Điện thoại: món ăn, trải nghiệm, điểm đến lân cận vuốt ngang thay vì xếp chồng dài */
+@media screen and (max-width: 576px) {
+  .food__grid,
+  .activities__grid,
+  .related .dest__grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: .75rem;
+  }
+
+  .food__grid::-webkit-scrollbar,
+  .activities__grid::-webkit-scrollbar,
+  .related .dest__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .food__grid > *,
+  .related .dest__grid > * {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+  }
+
+  .activities__grid > * {
+    flex: 0 0 70%;
+    scroll-snap-align: center;
+  }
+
+  .related .dest-card__tagline,
+  .related .dest-card__tags {
+    display: none;
+  }
+}
+
+@media print {
+  .food__grid,
+  .activities__grid,
+  .related .dest__grid {
+    display: grid !important;
+    overflow: visible !important;
+  }
+}

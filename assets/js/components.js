@@ -529,6 +529,8 @@ async function shareLink({ title, text = '', url }) {
 /* Bản in ghi kèm địa chỉ trang để mở lại bản online */
 if (typeof window.addEventListener === 'function') {
     window.addEventListener('beforeprint', () => {
+        /* Bản in cần đủ nội dung: mở các phần đang thu gọn (vd. "Xem thêm quán") */
+        document.querySelectorAll('details.eats__more').forEach(el => { el.open = true })
         document.querySelectorAll('.print-url').forEach(el => { el.textContent = location.href.split('#')[0] })
     })
 }

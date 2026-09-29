@@ -1,0 +1,463 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "sa-pa": {
+  "city": "Sa Pa",
+  "airport": "HAN",
+  "rail": "Lào Cai",
+  "getThere": [
+   "Xe giường nằm/limousine từ Hà Nội ~5,5 giờ (cao tốc Nội Bài – Lào Cai), hoặc tàu đêm tới ga Lào Cai rồi đi xe 35 km lên Sa Pa.",
+   "Sleeper bus or limousine from Hanoi ~5.5 h via the expressway, or the night train to Lao Cai then 35 km by road."
+  ],
+  "eats": [
+   {
+    "name": "Chợ đêm Sa Pa",
+    "dish": [
+     "Đồ nướng: thịt xiên, trứng nướng, cơm lam",
+     "Grilled skewers, eggs and bamboo-tube rice"
+    ],
+    "address": "Khu quảng trường – nhà thờ đá Sa Pa",
+    "price": [
+     50000,
+     150000
+    ]
+   },
+   {
+    "name": "Lẩu cá hồi phố Xuân Viên",
+    "dish": [
+     "Lẩu cá hồi, cá tầm nuôi nước lạnh",
+     "Salmon and sturgeon hotpot"
+    ],
+    "address": "Phố Xuân Viên, Sa Pa",
+    "price": [
+     200000,
+     400000
+    ]
+   },
+   {
+    "name": "Nhà hàng Little Sapa",
+    "dish": [
+     "Thắng cố, lợn cắp nách, rau rừng",
+     "Thang co stew, free-range pork, wild greens"
+    ],
+    "address": "Đường Cầu Mây, Sa Pa",
+    "price": [
+     150000,
+     300000
+    ]
+   },
+   {
+    "name": "Quán Thắng Cố chợ Sa Pa",
+    "dish": [
+     "Thắng cố, mèn mén, rượu ngô",
+     "Thang co, corn cake and corn wine"
+    ],
+    "address": "Chợ trung tâm Sa Pa",
+    "price": [
+     60000,
+     150000
+    ]
+   },
+   {
+    "name": "Phở gà đen chợ Sa Pa",
+    "dish": [
+     "Phở gà đen, cháo gà",
+     "Black-chicken pho and congee"
+    ],
+    "address": "Chợ trung tâm Sa Pa",
+    "price": [
+     40000,
+     70000
+    ]
+   },
+   {
+    "name": "Quán cơm Tây Bắc phố Cầu Mây",
+    "dish": [
+     "Cơm lam, gà đồi, rau cải mèo",
+     "Bamboo rice, hill chicken, mustard greens"
+    ],
+    "address": "Phố Cầu Mây, Sa Pa",
+    "price": [
+     120000,
+     250000
+    ]
+   },
+   {
+    "name": "Nướng xiên nhà thờ đá",
+    "dish": [
+     "Thịt xiên, nấm nướng, khoai nướng",
+     "Grilled skewers, mushrooms, sweet potatoes"
+    ],
+    "address": "Quanh nhà thờ đá Sa Pa",
+    "price": [
+     50000,
+     120000
+    ]
+   },
+   {
+    "name": "Bếp homestay Tả Van",
+    "dish": [
+     "Cơm nhà người Dao: gà, rau rừng, rượu ngô",
+     "Dao family meal: chicken, wild greens, corn wine"
+    ],
+    "address": "Bản Tả Van",
+    "price": [
+     100000,
+     200000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê view thung lũng Mường Hoa",
+    "drink": [
+     "Cà phê nóng, trà gừng mật ong",
+     "Hot coffee, ginger-honey tea"
+    ],
+    "address": "Đường Fansipan, Sa Pa",
+    "price": [
+     35000,
+     80000
+    ]
+   },
+   {
+    "name": "Quầy rượu táo mèo – trà nóng chợ đêm",
+    "drink": [
+     "Trà nóng, sữa ngô, rượu táo mèo",
+     "Hot tea, corn milk, wild apple wine"
+    ],
+    "address": "Khu chợ đêm Sa Pa",
+    "price": [
+     15000,
+     50000
+    ]
+   },
+   {
+    "name": "Quán cà phê nhà gỗ Tả Van",
+    "drink": [
+     "Cà phê, trà thảo mộc giữa ruộng bậc thang",
+     "Coffee and herbal tea among the terraces"
+    ],
+    "address": "Bản Tả Van, Sa Pa",
+    "price": [
+     25000,
+     60000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Trung tâm thị xã (Cầu Mây, Xuân Viên)",
+     "Town centre (Cau May, Xuan Vien)"
+    ],
+    "type": "hotel",
+    "price": [
+     400000,
+     1200000
+    ],
+    "note": [
+     "Đi bộ tới chợ đêm, nhà thờ đá, dễ đặt xe.",
+     "Walk to the night market and stone church, easy transport."
+    ]
+   },
+   {
+    "area": [
+     "Bản Tả Van – Lao Chải",
+     "Ta Van – Lao Chai villages"
+    ],
+    "type": "homestay",
+    "price": [
+     250000,
+     700000
+    ],
+    "note": [
+     "Ngủ giữa ruộng bậc thang, có bữa tối cùng chủ nhà.",
+     "Sleep among the rice terraces with family dinners."
+    ]
+   },
+   {
+    "area": [
+     "Đồi Mường Hoa",
+     "Muong Hoa valley"
+    ],
+    "type": "resort",
+    "price": [
+     1500000,
+     4000000
+    ],
+    "note": [
+     "View thung lũng, hồ bơi – hợp nghỉ dưỡng.",
+     "Valley views and pools – great for a relaxing stay."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "sa-pa": [
+  [
+   {
+    "at": "a",
+    "name": [
+     "Bản Cát Cát – thác Tiên Sa",
+     "Cat Cat village – Tien Sa falls"
+    ],
+    "price": 150000,
+    "hours": "06:00–18:00",
+    "address": "Bản Cát Cát, Sa Pa",
+    "cafe": {
+     "name": "Quán nước bên thác Tiên Sa",
+     "drink": [
+      "Trà gừng, sữa ngô, khoai nướng",
+      "Ginger tea, corn milk, roast potatoes"
+     ],
+     "price": [
+      20000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Nhà thờ đá Sa Pa",
+     "Sa Pa Stone Church"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Quảng trường trung tâm Sa Pa"
+   },
+   {
+    "at": "e",
+    "name": [
+     "Chợ đêm Sa Pa",
+     "Sa Pa night market"
+    ],
+    "price": 0,
+    "hours": "18:00–23:00",
+    "address": "Phố Thạch Sơn, Sa Pa"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Cáp treo Fansipan",
+     "Fansipan cable car"
+    ],
+    "price": [
+     800000,
+     950000
+    ],
+    "note": [
+     "Khứ hồi, chưa gồm tàu leo núi Mường Hoa",
+     "Return; Muong Hoa funicular not included"
+    ],
+    "hours": "07:30–17:30",
+    "address": "Ga Hoàng Liên, đường Nguyễn Chí Thanh, Sa Pa",
+    "cafe": {
+     "name": "Cà phê ga cáp treo Fansipan",
+     "drink": [
+      "Cà phê nóng, sô-cô-la nóng trên mây",
+      "Hot coffee and hot chocolate above the clouds"
+     ],
+     "price": [
+      50000,
+      100000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Thác Bạc",
+     "Silver Waterfall"
+    ],
+    "price": 20000,
+    "hours": "07:00–18:00",
+    "address": "QL4D, cách Sa Pa 12 km",
+    "cafe": {
+     "name": "Quán trà nóng chân thác Bạc",
+     "drink": [
+      "Trà nóng, trứng nướng, ngô nướng",
+      "Hot tea, grilled eggs and corn"
+     ],
+     "price": [
+      15000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Đèo Ô Quy Hồ – Cổng Trời",
+     "O Quy Ho pass – Heaven's Gate"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "QL4D, Sa Pa – Lai Châu"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Trekking Lao Chải – Tả Van",
+     "Lao Chai – Ta Van trek"
+    ],
+    "price": 75000,
+    "note": [
+     "Phí tham quan bản",
+     "Village entry fee"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Thung lũng Mường Hoa, Sa Pa",
+    "cafe": {
+     "name": "Cà phê view ruộng bậc thang Lao Chải",
+     "drink": [
+      "Cà phê, nước chanh leo giữa đường trek",
+      "Coffee and passion-fruit juice on the trail"
+     ],
+     "price": [
+      25000,
+      60000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Khu thổ cẩm bản Tả Van",
+     "Ta Van brocade stalls"
+    ],
+    "price": 0,
+    "hours": "08:00–18:00",
+    "address": "Bản Tả Van, Sa Pa",
+    "cafe": {
+     "name": "Quán nước cầu treo Tả Van",
+     "drink": [
+      "Trà nóng, nước mía, chuối nướng",
+      "Hot tea, sugarcane juice, grilled bananas"
+     ],
+     "price": [
+      15000,
+      40000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Bản Tả Phìn – hang Tả Phìn",
+     "Ta Phin village & cave"
+    ],
+    "price": 70000,
+    "hours": "07:00–17:30",
+    "address": "Xã Tả Phìn, Sa Pa",
+    "cafe": {
+     "name": "Quán nước cổng hang Tả Phìn",
+     "drink": [
+      "Trà gừng mật ong, nước ngô",
+      "Ginger-honey tea, corn drink"
+     ],
+     "price": [
+      20000,
+      40000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Tắm lá thuốc người Dao đỏ",
+     "Red Dao herbal bath"
+    ],
+    "price": [
+     150000,
+     250000
+    ],
+    "hours": "09:00–22:00",
+    "address": "Bản Tả Phìn, Sa Pa",
+    "cafe": {
+     "name": "Trà thảo mộc nhà Dao Tả Phìn",
+     "drink": [
+      "Trà thảo mộc, rượu táo mèo",
+      "Herbal tea, wild apple wine"
+     ],
+     "price": [
+      20000,
+      50000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Chợ phiên Bắc Hà",
+     "Bac Ha Sunday market"
+    ],
+    "price": 0,
+    "hours": [
+     "Sáng Chủ nhật 06:00–13:00",
+     "Sunday 6am–1pm"
+    ],
+    "address": "Thị trấn Bắc Hà, Lào Cai",
+    "cafe": {
+     "name": "Quán nước chợ Bắc Hà",
+     "drink": [
+      "Trà nóng, sữa ngô, bánh ngô",
+      "Hot tea, corn milk, corn cakes"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Dinh Hoàng A Tưởng",
+     "Hoang A Tuong mansion"
+    ],
+    "price": 20000,
+    "hours": "07:30–17:00",
+    "address": "Thị trấn Bắc Hà, Lào Cai"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Vườn mận Bắc Hà",
+     "Bac Ha plum orchards"
+    ],
+    "price": [
+     20000,
+     50000
+    ],
+    "note": [
+     "Mùa hoa tháng 2, quả tháng 5 – 6",
+     "Blossom in Feb, fruit May – Jun"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Xã Bản Phố, Bắc Hà",
+    "cafe": {
+     "name": "Cà phê vườn mận Bản Phố",
+     "drink": [
+      "Nước mận, trà shan",
+      "Plum juice, shan tea"
+     ],
+     "price": [
+      20000,
+      50000
+     ]
+    }
+   }
+  ]
+ ]
+}

@@ -1,0 +1,483 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "vinh-ha-long": {
+  "city": "Ha Long",
+  "airport": "VDO",
+  "getThere": [
+   "Từ Hà Nội đi xe limousine/xe khách cao tốc ~2,5 giờ (180 km); hoặc bay tới sân bay Vân Đồn (VDO) rồi đi xe ~1 giờ.",
+   "From Hanoi take a limousine van or express bus, ~2.5 h (180 km); or fly to Van Don (VDO) then drive ~1 h."
+  ],
+  "eats": [
+   {
+    "name": "Chợ Hạ Long 1",
+    "dish": [
+     "Chả mực giã tay, hải sản tươi chọn tại chợ",
+     "Hand-pounded squid cakes, fresh seafood picked at the market"
+    ],
+    "address": "Đường Cột Đồng Hồ, Bạch Đằng, Hạ Long",
+    "price": [
+     80000,
+     300000
+    ]
+   },
+   {
+    "name": "Nhà hàng Hồng Hạnh",
+    "dish": [
+     "Hải sản: tu hài, sam, ghẹ hấp",
+     "Seafood: geoduck, horseshoe crab, steamed crab"
+    ],
+    "address": "Bãi Cháy, Hạ Long",
+    "price": [
+     300000,
+     700000
+    ]
+   },
+   {
+    "name": "Bánh cuốn chả mực Bãi Cháy",
+    "dish": [
+     "Bánh cuốn nóng ăn kèm chả mực",
+     "Steamed rice rolls with squid cake"
+    ],
+    "address": "Khu chợ Bãi Cháy, Hạ Long",
+    "price": [
+     40000,
+     70000
+    ]
+   },
+   {
+    "name": "Phố ăn đêm Sun Carnival",
+    "dish": [
+     "Nướng, ăn vặt, xem show ven biển",
+     "Grills, street snacks and seaside shows"
+    ],
+    "address": "Sun World Hạ Long, Bãi Cháy",
+    "price": [
+     80000,
+     250000
+    ]
+   },
+   {
+    "name": "Quán sá sùng xào chợ Hạ Long 2",
+    "dish": [
+     "Sá sùng xào, ngán hấp",
+     "Stir-fried peanut worms, steamed clams"
+    ],
+    "address": "Chợ Hạ Long 2, Hòn Gai",
+    "price": [
+     120000,
+     250000
+    ]
+   },
+   {
+    "name": "Bún bề bề Bãi Cháy",
+    "dish": [
+     "Bún bề bề, bún hải sản",
+     "Mantis-shrimp noodle soup"
+    ],
+    "address": "Đường Hậu Cần, Bãi Cháy",
+    "price": [
+     40000,
+     70000
+    ]
+   },
+   {
+    "name": "Phở Hòn Gai ven chợ",
+    "dish": [
+     "Phở bò, phở mực buổi sáng",
+     "Beef or squid pho for breakfast"
+    ],
+    "address": "Khu chợ Hạ Long 1, Hòn Gai",
+    "price": [
+     40000,
+     60000
+    ]
+   },
+   {
+    "name": "Nhà hàng hải sản Cột 5",
+    "dish": [
+     "Tôm hùm, cù kỳ, ghẹ Hạ Long",
+     "Lobster, Ha Long crab and blue crab"
+    ],
+    "address": "Khu Cột 5, Hạ Long",
+    "price": [
+     300000,
+     700000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê view vịnh Bãi Cháy",
+    "drink": [
+     "Cà phê sữa đá, nước dừa ngắm vịnh",
+     "Iced milk coffee and coconut water over the bay"
+    ],
+    "address": "Đường Hạ Long, Bãi Cháy",
+    "price": [
+     30000,
+     70000
+    ]
+   },
+   {
+    "name": "Quán nước mía, trà chanh phố Vườn Đào",
+    "drink": [
+     "Nước mía, trà chanh, hướng dương",
+     "Sugarcane juice, lime tea, sunflower seeds"
+    ],
+    "address": "Phố Vườn Đào, Bãi Cháy",
+    "price": [
+     15000,
+     30000
+    ]
+   },
+   {
+    "name": "Cà phê đồi Ba Đèo",
+    "drink": [
+     "Cà phê, sinh tố ngắm toàn cảnh vịnh",
+     "Coffee and smoothies with a panoramic bay view"
+    ],
+    "address": "Khu đồi Ba Đèo, Bãi Cháy",
+    "price": [
+     40000,
+     90000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Bãi Cháy",
+     "Bai Chay"
+    ],
+    "type": "hotel",
+    "price": [
+     500000,
+     1500000
+    ],
+    "note": [
+     "Gần bến tàu Tuần Châu, Sun World, nhiều nhà hàng.",
+     "Close to Tuan Chau pier, Sun World and plenty of restaurants."
+    ]
+   },
+   {
+    "area": [
+     "Du thuyền ngủ đêm trên vịnh",
+     "Overnight cruise on the bay"
+    ],
+    "type": "boat",
+    "price": [
+     2500000,
+     6000000
+    ],
+    "note": [
+     "Trọn gói ăn uống, chèo kayak – nên đặt trước 1–2 tuần.",
+     "Meals and kayaking included – book 1–2 weeks ahead."
+    ]
+   },
+   {
+    "area": [
+     "Đảo Tuần Châu",
+     "Tuan Chau Island"
+    ],
+    "type": "resort",
+    "price": [
+     1200000,
+     3000000
+    ],
+    "note": [
+     "Yên tĩnh, ngay bến du thuyền.",
+     "Quiet, right next to the cruise port."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "vinh-ha-long": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Vé tham quan vịnh Hạ Long (tuyến 1–2)",
+     "Ha Long Bay entrance ticket (routes 1–2)"
+    ],
+    "price": 290000,
+    "note": [
+     "Thường đã gồm trong giá du thuyền",
+     "Usually included in cruise prices"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Cảng tàu khách quốc tế Tuần Châu, Hạ Long",
+    "cafe": {
+     "name": "Cà phê sảnh cảng Tuần Châu",
+     "drink": [
+      "Cà phê, nước ép chờ lên tàu",
+      "Coffee and juice while waiting to board"
+     ],
+     "price": [
+      35000,
+      70000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Hang Sửng Sốt",
+     "Sung Sot Cave"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong vé vịnh",
+     "Included in the bay ticket"
+    ],
+    "hours": "07:30–17:00",
+    "address": "Đảo Bồ Hòn, vịnh Hạ Long"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Chèo kayak hang Luồn",
+     "Kayaking at Luon Cave"
+    ],
+    "price": [
+     100000,
+     150000
+    ],
+    "note": [
+     "Mỗi người, ~45 phút",
+     "Per person, ~45 min"
+    ],
+    "hours": "08:00–16:30",
+    "address": "Hang Luồn, vịnh Hạ Long",
+    "cafe": {
+     "name": "Quán nước dừa bè nổi hang Luồn",
+     "drink": [
+      "Nước dừa, nước ngọt trên bè",
+      "Coconut water and soft drinks on the raft"
+     ],
+     "price": [
+      20000,
+      50000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Đảo Ti Tốp",
+     "Ti Top Island"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong vé vịnh tuyến 2",
+     "Included in the route 2 bay ticket"
+    ],
+    "hours": "07:30–17:00",
+    "address": "Đảo Ti Tốp, vịnh Hạ Long",
+    "cafe": {
+     "name": "Quán nước bãi tắm Ti Tốp",
+     "drink": [
+      "Nước dừa, bia lạnh, kem",
+      "Coconut water, cold beer, ice cream"
+     ],
+     "price": [
+      25000,
+      60000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Làng chài Cửa Vạn",
+     "Cua Van fishing village"
+    ],
+    "price": 0,
+    "note": [
+     "Chèo đò ~100.000đ/người",
+     "Rowing boat ~100,000đ per person"
+    ],
+    "hours": "08:00–16:30",
+    "address": "Vịnh Hạ Long (tuyến 2)"
+   },
+   {
+    "at": "e",
+    "name": [
+     "Sun World Hạ Long – vòng quay Mặt Trời",
+     "Sun World Ha Long – Sun Wheel"
+    ],
+    "price": 200000,
+    "hours": "14:00–22:00",
+    "address": "Công viên Sun World, Bãi Cháy",
+    "cafe": {
+     "name": "Quán trà sữa – kem cổng Sun World",
+     "drink": [
+      "Trà sữa, kem, nước ép",
+      "Bubble tea, ice cream, juice"
+     ],
+     "price": [
+      25000,
+      60000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Bảo tàng Quảng Ninh",
+     "Quang Ninh Museum"
+    ],
+    "price": 40000,
+    "hours": "08:00–17:00",
+    "address": "Trần Quốc Nghiễn, Hồng Gai, Hạ Long",
+    "cafe": {
+     "name": "Cà phê quảng trường 30/10",
+     "drink": [
+      "Cà phê, trà chanh ngắm vịnh Cửa Lục",
+      "Coffee and lime tea by Cua Luc bay"
+     ],
+     "price": [
+      25000,
+      55000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Cáp treo Nữ Hoàng – đồi Ba Đèo",
+     "Queen Cable Car – Ba Deo hill"
+    ],
+    "price": 350000,
+    "note": [
+     "Khứ hồi, người lớn",
+     "Return, adult"
+    ],
+    "hours": "09:00–22:00",
+    "address": "Ga Hạ Long Park, Bãi Cháy",
+    "cafe": {
+     "name": "Quầy nước ga cáp treo Mặt Trời",
+     "drink": [
+      "Cà phê, sinh tố nhìn toàn vịnh",
+      "Coffee and smoothies over the bay"
+     ],
+     "price": [
+      40000,
+      90000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Chợ Hạ Long 1",
+     "Ha Long 1 Market"
+    ],
+    "price": 0,
+    "hours": "05:00–19:00",
+    "address": "Đường Cột Đồng Hồ, Bạch Đằng, Hạ Long"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Tour thuyền vịnh Lan Hạ + kayak",
+     "Lan Ha Bay boat tour + kayak"
+    ],
+    "price": [
+     450000,
+     800000
+    ],
+    "note": [
+     "Gồm phí vịnh, ăn trưa",
+     "Includes bay fee and lunch"
+    ],
+    "hours": "08:00–16:00",
+    "address": "Bến Bèo, thị trấn Cát Bà"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Bãi Ba Trái Đào",
+     "Ba Trai Dao beach"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong tour",
+     "Included in the tour"
+    ],
+    "hours": "09:00–16:00",
+    "address": "Vịnh Lan Hạ, Cát Bà",
+    "cafe": {
+     "name": "Quán nước làng chài Cái Bèo",
+     "drink": [
+      "Nước dừa, trà đá, mực nướng",
+      "Coconut water, iced tea, grilled squid"
+     ],
+     "price": [
+      20000,
+      60000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Yên Tử – vé thắng cảnh + cáp treo",
+     "Yen Tu – entry + cable car"
+    ],
+    "price": [
+     400000,
+     550000
+    ],
+    "note": [
+     "Vé 40.000đ + cáp treo khứ hồi 2 chặng",
+     "40,000đ entry + return cable car (2 legs)"
+    ],
+    "hours": "06:00–17:00",
+    "address": "Thượng Yên Công, Uông Bí",
+    "cafe": {
+     "name": "Quán nước chùa Hoa Yên",
+     "drink": [
+      "Trà nóng, nước mía, măng luộc",
+      "Hot tea, sugarcane juice, boiled bamboo shoots"
+     ],
+     "price": [
+      15000,
+      40000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Thiền viện Trúc Lâm Yên Tử",
+     "Truc Lam Yen Tu Zen Monastery"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "Khu Lân, Thượng Yên Công, Uông Bí",
+    "cafe": {
+     "name": "Cà phê Làng Nủ",
+     "drink": [
+      "Trà, cà phê giữa làng Nủ",
+      "Tea and coffee in Nu village"
+     ],
+     "price": [
+      30000,
+      70000
+     ]
+    }
+   }
+  ]
+ ]
+}

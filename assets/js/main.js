@@ -38,22 +38,24 @@ function scrollHeader(){
 window.addEventListener('scroll', scrollHeader)
 scrollHeader.call(window) // cập nhật ngay khi tải lại trang ở vị trí đã cuộn
 
-/*==================== SWIPER DISCOVER ====================*/
-if(document.querySelector('.discover__container')){
-    let swiper = new Swiper(".discover__container", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        loop: true,
-        spaceBetween: 32,
-        coverflowEffect: {
-            rotate: 0,
-        },
-    })
-    // Thẻ trượt là liên kết <a>: bỏ role="group" do Swiper tự gán (không hợp lệ với <a>)
-    swiper.slides.removeAttr('role')
-}
+/*==================== THANH CUỘN NGANG (thay Swiper) ====================*/
+/* Vuốt bằng CSS scroll-snap; nút mũi tên cho chuột, tự ẩn khi đã tới đầu/cuối */
+document.querySelectorAll('.hscroll-wrap').forEach(wrap => {
+    const track = wrap.querySelector('.hscroll')
+    const prev = wrap.querySelector('.hscroll__btn--prev')
+    const next = wrap.querySelector('.hscroll__btn--next')
+    if (!track || !prev || !next) return
+    const step = dir => track.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: 'smooth' })
+    const update = () => {
+        prev.disabled = track.scrollLeft <= 4
+        next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4
+    }
+    prev.addEventListener('click', () => step(-1))
+    next.addEventListener('click', () => step(1))
+    track.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    update()
+})
 
 /*==================== SHOW SCROLL UP ====================*/
 function scrollUp(){

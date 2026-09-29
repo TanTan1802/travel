@@ -1,0 +1,504 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "can-tho": {
+  "city": "Can Tho",
+  "airport": "VCA",
+  "getThere": [
+   "Sân bay Cần Thơ (VCA) cách trung tâm ~10 km. Từ Sài Gòn xe khách/limousine ~3,5 giờ (170 km).",
+   "Can Tho Airport (VCA) is ~10 km from the centre. ~3.5 h by bus or limousine from Saigon (170 km)."
+  ],
+  "eats": [
+   {
+    "name": "Chợ nổi Cái Răng",
+    "dish": [
+     "Hủ tiếu, cà phê bán trên ghe lúc bình minh",
+     "Noodle soup and coffee served from boats at dawn"
+    ],
+    "address": "Chợ nổi Cái Răng (đi thuyền từ bến Ninh Kiều)",
+    "price": [
+     30000,
+     60000
+    ]
+   },
+   {
+    "name": "Lẩu mắm Dạ Lý",
+    "dish": [
+     "Lẩu mắm miền Tây đủ loại rau",
+     "Mekong fermented-fish hotpot with many greens"
+    ],
+    "address": "89 Đường 3/2, Ninh Kiều",
+    "price": [
+     150000,
+     300000
+    ]
+   },
+   {
+    "name": "Bánh cống Cô Út",
+    "dish": [
+     "Bánh cống tôm, bánh xèo",
+     "Shrimp fritters, banh xeo"
+    ],
+    "address": "Ninh Kiều, Cần Thơ",
+    "price": [
+     40000,
+     80000
+    ]
+   },
+   {
+    "name": "Chợ đêm Ninh Kiều",
+    "dish": [
+     "Ăn vặt, trái cây miền Tây ven sông",
+     "Street snacks and Mekong fruit by the river"
+    ],
+    "address": "Bến Ninh Kiều, Cần Thơ",
+    "price": [
+     30000,
+     100000
+    ]
+   },
+   {
+    "name": "Hủ tiếu Sa Đéc – Ninh Kiều",
+    "dish": [
+     "Hủ tiếu, bánh canh buổi sáng",
+     "Hu tieu or banh canh for breakfast"
+    ],
+    "address": "Bến Ninh Kiều, Cần Thơ",
+    "price": [
+     30000,
+     50000
+    ]
+   },
+   {
+    "name": "Bánh xèo Ninh Kiều",
+    "dish": [
+     "Bánh xèo miền Tây cuốn cải bẹ xanh",
+     "Mekong banh xeo with mustard greens"
+    ],
+    "address": "Đường Ngô Văn Sở, Ninh Kiều",
+    "price": [
+     40000,
+     80000
+    ]
+   },
+   {
+    "name": "Nhà hàng cá lóc nướng trui",
+    "dish": [
+     "Cá lóc nướng trui, lẩu mắm",
+     "Straw-grilled snakehead, fish-sauce hotpot"
+    ],
+    "address": "Cồn Sơn, Cần Thơ",
+    "price": [
+     150000,
+     300000
+    ]
+   },
+   {
+    "name": "Vườn trái cây Mỹ Khánh",
+    "dish": [
+     "Trái cây tại vườn, bánh dân gian",
+     "Orchard fruit and folk cakes"
+    ],
+    "address": "Xã Mỹ Khánh, Phong Điền",
+    "price": [
+     50000,
+     100000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê view bến Ninh Kiều",
+    "drink": [
+     "Cà phê sữa đá ngắm sông Hậu",
+     "Iced milk coffee over the Hau river"
+    ],
+    "address": "Bến Ninh Kiều, Cần Thơ",
+    "price": [
+     20000,
+     45000
+    ]
+   },
+   {
+    "name": "Quán nước mía – sinh tố chợ đêm",
+    "drink": [
+     "Nước mía, sinh tố trái cây miệt vườn",
+     "Sugarcane juice and orchard-fruit smoothies"
+    ],
+    "address": "Chợ đêm Ninh Kiều",
+    "price": [
+     15000,
+     35000
+    ]
+   },
+   {
+    "name": "Cà phê vườn Mỹ Khánh",
+    "drink": [
+     "Cà phê, nước dừa giữa vườn trái cây",
+     "Coffee and coconut water in a fruit orchard"
+    ],
+    "address": "Xã Mỹ Khánh, Phong Điền",
+    "price": [
+     20000,
+     40000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Bến Ninh Kiều",
+     "Ninh Kieu riverfront"
+    ],
+    "type": "hotel",
+    "price": [
+     400000,
+     1500000
+    ],
+    "note": [
+     "Gần bến thuyền đi chợ nổi sáng sớm.",
+     "Near the boats for the dawn floating market."
+    ]
+   },
+   {
+    "area": [
+     "Cồn Sơn – Mỹ Khánh",
+     "Con Son islet – My Khanh"
+    ],
+    "type": "homestay",
+    "price": [
+     300000,
+     800000
+    ],
+    "note": [
+     "Nhà vườn giữa vườn trái cây.",
+     "Garden homestays among fruit orchards."
+    ]
+   },
+   {
+    "area": [
+     "Cồn Ấu – ven sông Hậu",
+     "Con Au – Hau river"
+    ],
+    "type": "resort",
+    "price": [
+     1500000,
+     3500000
+    ],
+    "note": [
+     "Resort sinh thái trên cù lao.",
+     "Eco-resorts on river islets."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "can-tho": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Nhà cổ Bình Thủy",
+     "Binh Thuy ancient house"
+    ],
+    "price": 20000,
+    "hours": "08:00–17:00",
+    "address": "144 Bùi Hữu Nghĩa, Bình Thủy",
+    "cafe": {
+     "name": "Cà phê sân vườn Bình Thủy",
+     "drink": [
+      "Cà phê sữa đá, trà đá",
+      "Iced milk coffee, iced tea"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "m",
+    "name": [
+     "Chùa Ông (Quảng Triệu hội quán)",
+     "Ong Pagoda"
+    ],
+    "price": 0,
+    "hours": "07:00–18:00",
+    "address": "32 Hai Bà Trưng, Ninh Kiều"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Vườn trái cây Phong Điền",
+     "Phong Dien fruit orchards"
+    ],
+    "price": [
+     30000,
+     60000
+    ],
+    "note": [
+     "Ăn tại vườn thoải mái",
+     "Eat as much as you like in the orchard"
+    ],
+    "hours": "07:00–18:00",
+    "address": "Phong Điền, Cần Thơ",
+    "cafe": {
+     "name": "Quán nước dừa miệt vườn Phong Điền",
+     "drink": [
+      "Nước dừa, nước ép trái cây vườn",
+      "Coconut water, orchard fruit juice"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Bến Ninh Kiều – du thuyền",
+     "Ninh Kieu wharf – river cruise"
+    ],
+    "price": [
+     100000,
+     200000
+    ],
+    "hours": "19:00–21:00",
+    "address": "Hai Bà Trưng, Ninh Kiều"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Chợ nổi Cái Răng",
+     "Cai Rang floating market"
+    ],
+    "price": [
+     150000,
+     250000
+    ],
+    "note": [
+     "Thuyền mỗi người, đi 5:00",
+     "Boat per person, leaves 5am"
+    ],
+    "hours": [
+     "05:00–09:00",
+     "5–9am"
+    ],
+    "address": "Bến Ninh Kiều / cầu Cái Răng",
+    "cafe": {
+     "name": "Cà phê trên ghe chợ nổi",
+     "drink": [
+      "Cà phê sữa đá bán trên ghe",
+      "Iced milk coffee sold from a boat"
+     ],
+     "price": [
+      15000,
+      25000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Lò hủ tiếu Sáu Hoài",
+     "Sau Hoai noodle workshop"
+    ],
+    "price": 0,
+    "hours": "07:00–17:00",
+    "address": "Hẻm 18 Lộ Vòng Cung, Cái Răng"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Làng du lịch Mỹ Khánh",
+     "My Khanh tourist village"
+    ],
+    "price": 50000,
+    "hours": "07:00–18:00",
+    "address": "Mỹ Khánh, Phong Điền",
+    "cafe": {
+     "name": "Quán nước lò hủ tiếu Sáu Hoài",
+     "drink": [
+      "Nước dừa, trà đá, bánh tráng",
+      "Coconut water, iced tea, rice crackers"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Chợ đêm Tây Đô",
+     "Tay Do night market"
+    ],
+    "price": 0,
+    "hours": "17:00–23:00",
+    "address": "Hai Bà Trưng, Ninh Kiều"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Cồn Sơn",
+     "Con Son islet"
+    ],
+    "price": [
+     50000,
+     150000
+    ],
+    "note": [
+     "Xem cá lóc bay, làm bánh dân gian",
+     "Flying snakehead show, folk cake making"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Cồn Sơn, Bình Thủy",
+    "cafe": {
+     "name": "Quán nước cồn Sơn",
+     "drink": [
+      "Nước dừa, trà mãng cầu",
+      "Coconut water, soursop tea"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Vườn cò Bằng Lăng",
+     "Bang Lang stork garden"
+    ],
+    "price": 20000,
+    "note": [
+     "Cò về tổ 17:00–18:00",
+     "Storks return 5–6pm"
+    ],
+    "hours": "07:00–18:30",
+    "address": "Thới Thuận, Thốt Nốt",
+    "cafe": {
+     "name": "Quán nước tháp ngắm vườn cò",
+     "drink": [
+      "Nước dừa, trà đá chờ cò về",
+      "Coconut water, iced tea while the storks return"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Chùa Dơi",
+     "Bat Pagoda"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "Văn Ngọc Chính, Sóc Trăng",
+    "cafe": {
+     "name": "Quán nước chùa Dơi Sóc Trăng",
+     "drink": [
+      "Nước mía, nước thốt nốt",
+      "Sugarcane juice, palm-sugar juice"
+     ],
+     "price": [
+      10000,
+      25000
+     ]
+    }
+   },
+   {
+    "at": "m",
+    "name": [
+     "Chùa Chén Kiểu",
+     "Chen Kieu Pagoda"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "QL1A, Sóc Trăng"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Chùa Đất Sét",
+     "Clay Pagoda"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "286 Tôn Đức Thắng, Sóc Trăng",
+    "cafe": {
+     "name": "Quán bánh pía – trà Sóc Trăng",
+     "drink": [
+      "Trà nóng, bánh pía nóng",
+      "Hot tea, warm pia cakes"
+     ],
+     "price": [
+      15000,
+      40000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Rừng tràm Trà Sư",
+     "Tra Su cajuput forest"
+    ],
+    "price": 150000,
+    "note": [
+     "Gồm vé, xuồng máy, xuồng chèo",
+     "Includes entry and boats"
+    ],
+    "hours": "06:30–17:00",
+    "address": "Văn Giáo, Tịnh Biên, An Giang",
+    "cafe": {
+     "name": "Quán nước bến xuồng Trà Sư",
+     "drink": [
+      "Nước thốt nốt, nước dừa",
+      "Palm-sugar juice, coconut water"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Miếu Bà Chúa Xứ – núi Sam",
+     "Ba Chua Xu temple – Sam mountain"
+    ],
+    "price": 0,
+    "hours": "05:00–22:00",
+    "address": "Núi Sam, Châu Đốc",
+    "cafe": {
+     "name": "Quán nước thốt nốt chân núi Sam",
+     "drink": [
+      "Nước thốt nốt, bánh bò",
+      "Palm-sugar juice, palm cakes"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   }
+  ]
+ ]
+}

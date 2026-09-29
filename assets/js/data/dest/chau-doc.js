@@ -1,0 +1,478 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "chau-doc": {
+  "city": "Chau Doc",
+  "airport": "VCA",
+  "getThere": [
+   "Từ Sài Gòn xe khách ~6 giờ; từ Cần Thơ ~3 giờ. Có thể đi tàu cao tốc Châu Đốc – Phnom Penh.",
+   "~6 h by bus from Saigon, ~3 h from Can Tho. Fast boats also run Chau Doc – Phnom Penh."
+  ],
+  "eats": [
+   {
+    "name": "Bún cá Châu Đốc – chợ Châu Đốc",
+    "dish": [
+     "Bún cá lóc nghệ, bông điên điển",
+     "Turmeric snakehead noodle soup"
+    ],
+    "address": "Chợ Châu Đốc",
+    "price": [
+     30000,
+     50000
+    ]
+   },
+   {
+    "name": "Lẩu mắm Châu Đốc",
+    "dish": [
+     "Lẩu mắm với mắm cá linh, cá sặc",
+     "Hotpot made with local fermented fish"
+    ],
+    "address": "Đường Trưng Nữ Vương, Châu Đốc",
+    "price": [
+     150000,
+     300000
+    ]
+   },
+   {
+    "name": "Dãy mắm chợ Châu Đốc",
+    "dish": [
+     "Mắm thái, mắm cá linh mang về",
+     "Pickled fish pastes to take home"
+    ],
+    "address": "Chợ Châu Đốc",
+    "price": [
+     50000,
+     200000
+    ]
+   },
+   {
+    "name": "Bò bảy món Núi Sam",
+    "dish": [
+     "Bò nướng lá lốt, bò bảy món",
+     "Beef seven ways, betel-leaf beef"
+    ],
+    "address": "Chân Núi Sam",
+    "price": [
+     150000,
+     300000
+    ]
+   },
+   {
+    "name": "Bánh canh Châu Đốc",
+    "dish": [
+     "Bánh canh bột xắt buổi sáng",
+     "Hand-cut noodle soup for breakfast"
+    ],
+    "address": "Chợ Châu Đốc",
+    "price": [
+     25000,
+     40000
+    ]
+   },
+   {
+    "name": "Gà đốt lá chúc Ô Thum",
+    "dish": [
+     "Gà đốt lá chúc (lá chanh Thái)",
+     "Chicken roasted with kaffir-lime leaves"
+    ],
+    "address": "Ô Thum, Tri Tôn",
+    "price": [
+     200000,
+     350000
+    ]
+   },
+   {
+    "name": "Nhà hàng cá làng bè",
+    "dish": [
+     "Cá linh, cá basa trên làng bè",
+     "Fish dishes on the floating village"
+    ],
+    "address": "Làng bè Châu Đốc",
+    "price": [
+     120000,
+     250000
+    ]
+   },
+   {
+    "name": "Chợ đêm Châu Đốc",
+    "dish": [
+     "Ăn vặt, bánh xèo, chè",
+     "Snacks, banh xeo, sweet soups"
+    ],
+    "address": "Trung tâm Châu Đốc",
+    "price": [
+     30000,
+     100000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê ven sông Hậu",
+    "drink": [
+     "Cà phê sữa đá nhìn làng bè",
+     "Iced milk coffee over the floating village"
+    ],
+    "address": "Đường Lê Lợi, Châu Đốc",
+    "price": [
+     15000,
+     35000
+    ]
+   },
+   {
+    "name": "Quán nước thốt nốt Núi Sam",
+    "drink": [
+     "Nước thốt nốt, bánh bò thốt nốt",
+     "Palm-sugar juice and palm-sugar cakes"
+    ],
+    "address": "Chân Núi Sam",
+    "price": [
+     10000,
+     30000
+    ]
+   },
+   {
+    "name": "Cà phê đỉnh Núi Sam",
+    "drink": [
+     "Cà phê ngắm cánh đồng biên giới",
+     "Coffee over the border rice plains"
+    ],
+    "address": "Đỉnh Núi Sam",
+    "price": [
+     20000,
+     45000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Trung tâm – ven sông Hậu",
+     "Centre – Hau riverside"
+    ],
+    "type": "hotel",
+    "price": [
+     350000,
+     1000000
+    ],
+    "note": [
+     "Gần chợ, bến thuyền làng bè.",
+     "Near the market and floating-village boats."
+    ]
+   },
+   {
+    "area": [
+     "Chân Núi Sam",
+     "Foot of Sam Mountain"
+    ],
+    "type": "hotel",
+    "price": [
+     400000,
+     1500000
+    ],
+    "note": [
+     "Gần miếu Bà Chúa Xứ, ngắm hoàng hôn.",
+     "Near Ba Chua Xu temple, sunset views."
+    ]
+   },
+   {
+    "area": [
+     "Rừng tràm Trà Sư",
+     "Tra Su forest area"
+    ],
+    "type": "homestay",
+    "price": [
+     300000,
+     700000
+    ],
+    "note": [
+     "Mùa nước nổi (tháng 9–11) rất đẹp.",
+     "Lovely in the flood season (Sep–Nov)."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "chau-doc": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Miếu Bà Chúa Xứ núi Sam",
+     "Ba Chua Xu temple"
+    ],
+    "price": 0,
+    "hours": "05:00–22:00",
+    "address": "Núi Sam, Châu Đốc"
+   },
+   {
+    "at": "m",
+    "name": [
+     "Lăng Thoại Ngọc Hầu",
+     "Thoai Ngoc Hau tomb"
+    ],
+    "price": 0,
+    "hours": "06:00–18:00",
+    "address": "Núi Sam, Châu Đốc",
+    "cafe": {
+     "name": "Quán nước chân núi Sam (Miếu Bà)",
+     "drink": [
+      "Nước thốt nốt, nước mía",
+      "Palm-sugar juice, sugarcane juice"
+     ],
+     "price": [
+      10000,
+      25000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Núi Sam – chùa Tây An",
+     "Sam mountain – Tay An Pagoda"
+    ],
+    "price": 0,
+    "note": [
+     "Cáp treo núi Sam ~150.000đ khứ hồi",
+     "Sam cable car ~150,000đ return"
+    ],
+    "hours": "06:00–18:00",
+    "address": "Núi Sam, Châu Đốc",
+    "cafe": {
+     "name": "Quán nước thốt nốt chùa Tây An",
+     "drink": [
+      "Nước thốt nốt, bánh bò",
+      "Palm-sugar juice, palm cakes"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Chợ Châu Đốc",
+     "Chau Doc market"
+    ],
+    "price": 0,
+    "hours": "05:00–20:00",
+    "address": "Bạch Đằng, Châu Đốc"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Rừng tràm Trà Sư",
+     "Tra Su cajuput forest"
+    ],
+    "price": 150000,
+    "note": [
+     "Gồm vé, xuồng máy, xuồng chèo",
+     "Includes entry and boats"
+    ],
+    "hours": "06:30–17:00",
+    "address": "Văn Giáo, Tịnh Biên",
+    "cafe": {
+     "name": "Quán nước bến xuồng Trà Sư",
+     "drink": [
+      "Nước thốt nốt, nước dừa",
+      "Palm-sugar juice, coconut water"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Cáp treo núi Cấm – tượng Phật Di Lặc",
+     "Cam mountain cable car – Maitreya Buddha"
+    ],
+    "price": [
+     200000,
+     250000
+    ],
+    "note": [
+     "Khứ hồi",
+     "Return"
+    ],
+    "hours": "06:00–18:00",
+    "address": "An Hảo, Tịnh Biên",
+    "cafe": {
+     "name": "Quán nước chân tượng Phật Di Lặc",
+     "drink": [
+      "Trà nóng, nước ép",
+      "Hot tea, juice"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Làng Chăm Châu Giang – thánh đường Mubarak",
+     "Chau Giang Cham village – Mubarak mosque"
+    ],
+    "price": 0,
+    "note": [
+     "Trang phục kín đáo, bỏ giày khi vào",
+     "Modest dress, shoes off inside"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Châu Phong, Tân Châu",
+    "cafe": {
+     "name": "Quán nước làng Chăm Châu Giang",
+     "drink": [
+      "Trà sữa kiểu Chăm, bánh bò",
+      "Cham-style milk tea, palm cakes"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Làng bè cá Châu Đốc",
+     "Chau Doc floating fish farms"
+    ],
+    "price": [
+     50000,
+     100000
+    ],
+    "note": [
+     "Đò ghé bè",
+     "Boat to the rafts"
+    ],
+    "hours": "07:00–17:00",
+    "address": "Bến đò Châu Giang, Châu Đốc",
+    "cafe": {
+     "name": "Quán nước bến đò làng bè",
+     "drink": [
+      "Nước mía, trà đá",
+      "Sugarcane juice, iced tea"
+     ],
+     "price": [
+      10000,
+      25000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Hồ Tà Pạ",
+     "Ta Pa lake"
+    ],
+    "price": [
+     0,
+     20000
+    ],
+    "hours": "06:00–18:00",
+    "address": "Núi Tô, Tri Tôn",
+    "cafe": {
+     "name": "Quán nước hồ Tà Pạ",
+     "drink": [
+      "Nước thốt nốt, nước dừa",
+      "Palm-sugar juice, coconut water"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Cánh đồng thốt nốt – chùa Xà Tón",
+     "Palmyra fields – Xa Ton Pagoda"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Tri Tôn, An Giang",
+    "cafe": {
+     "name": "Quán nước thốt nốt Tri Tôn",
+     "drink": [
+      "Nước thốt nốt tươi, cơm thốt nốt",
+      "Fresh palm juice, palm fruit"
+     ],
+     "price": [
+      10000,
+      25000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Chợ nổi Long Xuyên",
+     "Long Xuyen floating market"
+    ],
+    "price": [
+     150000,
+     200000
+    ],
+    "note": [
+     "Thuyền, đi sớm 5:30–8:00",
+     "Boat, go early 5:30–8am"
+    ],
+    "hours": [
+     "05:30–09:00",
+     "5:30–9am"
+    ],
+    "address": "Bến Trần Hưng Đạo, Long Xuyên",
+    "cafe": {
+     "name": "Cà phê bờ sông Long Xuyên",
+     "drink": [
+      "Cà phê sữa đá ven sông Hậu",
+      "Iced milk coffee by the Hau river"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Cù lao Ông Hổ – nhà lưu niệm Bác Tôn",
+     "Ong Ho islet – Ton Duc Thang memorial"
+    ],
+    "price": 0,
+    "hours": "07:00–17:00",
+    "address": "Mỹ Hòa Hưng, Long Xuyên",
+    "cafe": {
+     "name": "Quán nước cù lao Ông Hổ",
+     "drink": [
+      "Nước dừa, trà đá",
+      "Coconut water, iced tea"
+     ],
+     "price": [
+      10000,
+      25000
+     ]
+    }
+   }
+  ]
+ ]
+}

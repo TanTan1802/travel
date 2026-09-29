@@ -2,7 +2,7 @@
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '15996e616c'
+const VERSION = '604aecd6da'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -16,7 +16,6 @@ const CORE_ASSETS = [
     './manifest.webmanifest',
     './assets/css/styles.css',
     './assets/css/vietnam.css',
-    './assets/css/swiper-bundle.min.css',
     './assets/js/data/local-images.js',
     './assets/js/i18n.js',
     './assets/js/data/en.js',
@@ -37,7 +36,6 @@ const CORE_ASSETS = [
     './assets/js/newsletter.js',
     './assets/js/main.js',
     './assets/js/scrollreveal.min.js',
-    './assets/js/swiper-bundle.min.js',
     './assets/img/favicon.png',
     './assets/img/icons/icon-192.png',
 ]
