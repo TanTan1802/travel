@@ -25,6 +25,7 @@ function heroSection(d) {
                 <div class="dest-hero__actions">
                     <a href="#gallery" class="button button--flex">Xem hình ảnh <i class="ri-image-line"></i></a>
                     <a href="#food" class="button button--flex button--ghost">Ẩm thực <i class="ri-restaurant-line"></i></a>
+                    ${favoriteButton(d.id, { withLabel: true })}
                 </div>
             </div>
         </section>

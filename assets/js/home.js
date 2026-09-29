@@ -93,6 +93,7 @@ const exploreState = {
     category: 'all',
     query: '',
     view: 'grid',
+    favoritesOnly: false,
 }
 
 /*==================== EXPLORE: BẢN ĐỒ ====================*/
@@ -163,16 +164,21 @@ function renderGrid() {
     const results = DESTINATIONS
         .filter(d =>
             (exploreState.region === 'all' || d.region === exploreState.region) &&
-            (exploreState.category === 'all' || d.categories.includes(exploreState.category)))
+            (exploreState.category === 'all' || d.categories.includes(exploreState.category)) &&
+            (!exploreState.favoritesOnly || Favorites.has(d.id)))
         .map(d => ({ d, match: tokens.length ? scoreDestination(d, tokens) : { score: 0, hint: '' } }))
         .filter(r => r.match)
         .sort((a, b) => b.match.score - a.match.score)
 
     grid.innerHTML = results.map(r => destinationCard(r.d, r.match.hint)).join('')
     hydrateWikiImages(grid)
+    syncFavoriteButtons(grid)
     updateExploreMap(results)
 
     document.getElementById('explore-empty').hidden = results.length > 0
+    document.getElementById('explore-empty-text').textContent = exploreState.favoritesOnly && !Favorites.count()
+        ? 'Bạn chưa lưu điểm đến nào. Nhấn biểu tượng ♥ trên thẻ để lưu lại nhé!'
+        : 'Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!'
     document.getElementById('explore-result').textContent =
         `Hiển thị ${results.length} / ${DESTINATIONS.length} điểm đến`
 
@@ -182,6 +188,26 @@ function renderGrid() {
     if (looseSearch) {
         tip.textContent = `Mẹo: gõ có dấu (ví dụ "phở" thay vì "pho") để kết quả chính xác hơn.`
     }
+}
+
+function initFavoriteFilter() {
+    const btn = document.getElementById('fav-filter')
+    const counter = document.getElementById('fav-count')
+    if (!btn) return
+
+    const update = () => { counter.textContent = Favorites.count() }
+    btn.addEventListener('click', () => {
+        exploreState.favoritesOnly = !exploreState.favoritesOnly
+        btn.classList.toggle('chip--active', exploreState.favoritesOnly)
+        btn.setAttribute('aria-pressed', exploreState.favoritesOnly)
+        renderGrid()
+    })
+    window.addEventListener('favorites:change', () => {
+        update()
+        if (exploreState.favoritesOnly) renderGrid()
+    })
+    if (new URLSearchParams(location.search).get('favorites') === '1') btn.click()
+    update()
 }
 
 function initExplore() {
@@ -202,6 +228,8 @@ function initExplore() {
     document.querySelectorAll('.view-toggle__btn').forEach(btn =>
         btn.addEventListener('click', () => setView(btn.dataset.view)))
     if (params.get('view') === 'map') setView('map')
+
+    initFavoriteFilter()
 
     const count = document.getElementById('dest-count')
     if (count) count.textContent = DESTINATIONS.length

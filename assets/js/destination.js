@@ -180,6 +180,7 @@ if (dest) {
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()
     window.addEventListener('resize', balanceGallery)
+    syncFavoriteButtons()
     initItineraryTabs()
     initLocationMap(dest)
 } else {

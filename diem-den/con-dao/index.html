@@ -84,6 +84,12 @@
                 <div class="dest-hero__actions">
                     <a href="#gallery" class="button button--flex">Xem hình ảnh <i class="ri-image-line"></i></a>
                     <a href="#food" class="button button--flex button--ghost">Ẩm thực <i class="ri-restaurant-line"></i></a>
+                    
+        <button type="button" class="fav-btn fav-btn--labeled" data-favorite="con-dao" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            <span class="fav-btn__label">Lưu yêu thích</span>
+        </button>
+    
                 </div>
             </div>
         </section>
@@ -440,23 +446,31 @@
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/phu-quoc/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Amazing beach on Phu Quoc island Vietnam (38647607275).jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Sunset on Phu Quoc island.jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Bai-sao-phu-quoc-tuonglamphotos.jpg" data-width="960" alt="Phú Quốc" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Nam</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Phú Quốc</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Kiên Giang</span>
-                
-                <p class="dest-card__tagline">Đảo ngọc với hoàng hôn đẹp nhất Việt Nam</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Biển đảo</span>
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/phu-quoc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Amazing beach on Phu Quoc island Vietnam (38647607275).jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Sunset on Phu Quoc island.jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Bai-sao-phu-quoc-tuonglamphotos.jpg" data-width="960" alt="Phú Quốc" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
                 </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Phú Quốc</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Kiên Giang</span>
+                    
+                    <p class="dest-card__tagline">Đảo ngọc với hoàng hôn đẹp nhất Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-quoc" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
     
             </div>
 
@@ -557,6 +571,7 @@
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/data/itineraries.js"></script>
+        <script src="../../assets/js/favorites.js"></script>
         <script src="../../assets/js/components.js"></script>
         <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>

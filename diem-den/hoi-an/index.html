@@ -84,6 +84,12 @@
                 <div class="dest-hero__actions">
                     <a href="#gallery" class="button button--flex">Xem hình ảnh <i class="ri-image-line"></i></a>
                     <a href="#food" class="button button--flex button--ghost">Ẩm thực <i class="ri-restaurant-line"></i></a>
+                    
+        <button type="button" class="fav-btn fav-btn--labeled" data-favorite="hoi-an" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            <span class="fav-btn__label">Lưu yêu thích</span>
+        </button>
+    
                 </div>
             </div>
         </section>
@@ -450,59 +456,83 @@
 
             <div class="dest__grid container">
                 
-        <a href="../../diem-den/nha-trang/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Trung</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Nha Trang</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Khánh Hòa</span>
-                
-                <p class="dest-card__tagline">Hòn ngọc của biển Đông</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/nha-trang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" alt="Nha Trang" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
                 </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Nha Trang</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Khánh Hòa</span>
+                    
+                    <p class="dest-card__tagline">Hòn ngọc của biển Đông</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="nha-trang" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
     
-        <a href="../../diem-den/da-lat/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="960" alt="Đà Lạt" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Trung</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Đà Lạt</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lâm Đồng</span>
-                
-                <p class="dest-card__tagline">Thành phố ngàn hoa trên cao nguyên Lâm Viên</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Núi rừng</span><span class="tag">Thành phố</span>
-                </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
+        </div>
     
-        <a href="../../diem-den/mui-ne/index.html" class="dest-card">
-            <div class="dest-card__media">
-                <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mũi Né" class="dest-card__img" loading="lazy">
-                <span class="dest-card__region">Miền Trung</span>
-                <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
-            </div>
-            <div class="dest-card__body">
-                <h3 class="dest-card__title">Mũi Né</h3>
-                <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Thuận</span>
-                
-                <p class="dest-card__tagline">"Tiểu sa mạc Sahara" của Việt Nam</p>
-                <div class="dest-card__tags">
-                    <span class="tag">Biển đảo</span>
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/da-lat/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="960" alt="Đà Lạt" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
                 </div>
-            </div>
-            <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
-        </a>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Đà Lạt</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Lâm Đồng</span>
+                    
+                    <p class="dest-card__tagline">Thành phố ngàn hoa trên cao nguyên Lâm Viên</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Núi rừng</span><span class="tag">Thành phố</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-lat" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/mui-ne/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Mui Ne sand dunes voyage.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" alt="Mũi Né" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Trung</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Mũi Né</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> Bình Thuận</span>
+                    
+                    <p class="dest-card__tagline">"Tiểu sa mạc Sahara" của Việt Nam</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Biển đảo</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mui-ne" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
     
             </div>
 
@@ -603,6 +633,7 @@
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
         <script src="../../assets/js/data/itineraries.js"></script>
+        <script src="../../assets/js/favorites.js"></script>
         <script src="../../assets/js/components.js"></script>
         <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>

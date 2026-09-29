@@ -1381,3 +1381,140 @@ body.dark-theme .nearby-item__distance {
   color: var(--text-color-light);
   font-style: italic;
 }
+
+/*=============== YÊU THÍCH ===============*/
+.dest-card-wrap {
+  position: relative;
+  display: flex;
+}
+
+.dest-card-wrap > .dest-card {
+  flex: 1;
+}
+
+.dest-card__rating {
+  right: 3.4rem;
+}
+
+.fav-btn {
+  position: absolute;
+  top: .55rem;
+  right: .6rem;
+  z-index: 2;
+  display: inline-grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background-color: hsla(0, 0%, 100%, .92);
+  color: hsl(350, 75%, 52%);
+  font-size: 1.15rem;
+  box-shadow: 0 2px 8px hsla(0, 0%, 0%, .2);
+  transition: transform .2s, background-color .2s;
+}
+
+.fav-btn:hover {
+  transform: scale(1.08);
+}
+
+.fav-btn__on,
+.fav-btn--active .fav-btn__off {
+  display: none;
+}
+
+.fav-btn--active .fav-btn__on {
+  display: inline;
+}
+
+.fav-btn--pop {
+  animation: fav-pop .4s ease;
+}
+
+@keyframes fav-pop {
+  40% { transform: scale(1.3); }
+}
+
+/* Nút có chữ ở ảnh bìa trang chi tiết */
+.fav-btn--labeled {
+  position: static;
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  column-gap: .4rem;
+  padding: 1rem 1.5rem;
+  border-radius: .5rem;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.fav-btn--labeled i {
+  font-size: 1.15rem;
+}
+
+.fav-btn--labeled.fav-btn--active {
+  background-color: hsl(350, 75%, 52%);
+  color: var(--white-color);
+}
+
+/* Bộ lọc yêu thích */
+.explore__toolbar-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+}
+
+.chip--fav {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .35rem;
+}
+
+.chip--fav i {
+  color: hsl(350, 75%, 52%);
+}
+
+.chip--fav.chip--active {
+  background-color: hsl(350, 75%, 52%);
+}
+
+.chip--fav.chip--active i {
+  color: var(--white-color);
+}
+
+.chip__count {
+  min-width: 1.4rem;
+  padding: 0 .35rem;
+  border-radius: 1rem;
+  background-color: hsla(0, 0%, 0%, .08);
+  font-size: var(--smaller-font-size);
+  text-align: center;
+}
+
+.chip--active .chip__count {
+  background-color: hsla(0, 0%, 100%, .25);
+}
+
+/* Thông báo */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: calc(var(--z-fixed) + 20);
+  padding: .75rem 1.25rem;
+  border-radius: 2rem;
+  background-color: hsl(var(--hue-color), 40%, 12%);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, .3);
+  opacity: 0;
+  transform: translate(-50%, 1rem);
+  transition: .3s;
+  pointer-events: none;
+}
+
+.toast--show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
