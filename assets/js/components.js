@@ -220,6 +220,8 @@ function costBreakdownHtml(cost) {
  *   nên tour 3 ngày chính là 3 ngày đầu của tour 5 ngày.
  * - Hết quán có tên → dùng món đặc sản (tìm quán trên Google Maps) → gợi ý chung.
  * - Nếu lịch tham quan đã có bữa ăn (vd. buổi tối "ăn cao lầu") thì không chèn thêm bữa đó.
+ * - Mỗi buổi tham quan kèm điểm cụ thể trong SIGHTS (giá vé, giờ mở cửa, địa chỉ); quán nước
+ *   ưu tiên quán ngay cạnh điểm tham quan của chính ngày đó.
  */
 const NIGHT_SPOT = /chợ đêm|night|ăn đêm|nướng|bè|bbq|carnival/i
 const BIG_MEAL = /nhà hàng|hải sản|lẩu|dê|vịt|gà|bò bảy/i
@@ -289,6 +291,37 @@ const GENERIC_MEALS = {
 }
 const genericMeal = (meal, day) => GENERIC_MEALS[meal][day % GENERIC_MEALS[meal].length]()
 
+/* Điểm tham quan của một buổi trong ngày: at = 'm' sáng, 'a' chiều, 'e' tối */
+function sightsOf(id, dayIndex, at) {
+    const days = typeof SIGHTS !== 'undefined' && SIGHTS[id]
+    const list = (days && days[dayIndex]) || []
+    return at ? list.filter(s => s.at === at) : list
+}
+
+/* Quán nước cạnh các điểm tham quan của ngày, theo thứ tự các buổi truyền vào */
+function sightCafes(id, dayIndex, ats) {
+    const city = placesOf(id)?.city || getDestination(id)?.name || ''
+    return ats.flatMap(at => sightsOf(id, dayIndex, at))
+        .filter(s => s.cafe)
+        .map(s => ({
+            ...s.cafe,
+            address: t('Gần {place}', { place: pickLang(s.name) }),
+            search: `${s.cafe.name} ${city}`,
+            nearAt: s.at,
+        }))
+}
+
+/* Giá vé một điểm: 0 → miễn phí, số → giá, [thấp, cao] → khoảng */
+function sightPriceText(price) {
+    if (price == null) return ''
+    if (!Array.isArray(price)) return price ? formatVnd(price) : t('Miễn phí')
+    const [low, high] = price
+    if (!high) return t('Miễn phí')
+    return low ? `${formatVnd(low)} – ${formatVnd(high)}` : t('Miễn phí – {max}', { max: formatVnd(high) })
+}
+const priceBounds = price => (Array.isArray(price) ? price : [price || 0, price || 0])
+const sightHours = hours => (hours === 'all' ? t('Mở cả ngày') : pickLang(hours))
+
 const mealPlanCache = {}
 
 /* Phân bổ quán ăn / cà phê / đồ uống cho các ngày 0..count-1, không lặp trong cả chuyến */
@@ -343,8 +376,9 @@ function mealPlan(id, count) {
         if (!entry.dinnerInEvening) {
             entry.dinner = take(eats.filter(e => NIGHT_SPOT.test(e.name) || BIG_MEAL.test(e.name)), eats, specials)
         }
-        entry.cafe = take(cafes)
-        entry.snack = take(snacks)
+        /* 13:00 – quán cạnh điểm buổi sáng; 16:30 – quán cạnh điểm buổi chiều / tối */
+        entry.cafe = take(sightCafes(id, k, ['m']), sightCafes(id, k, ['a']), cafes)
+        entry.snack = take(sightCafes(id, k, ['a', 'e']), snacks, cafes)
         entry.drink = drinks[k % drinks.length]
         plan.push(entry)
     }
@@ -359,9 +393,10 @@ function mealPlan(id, count) {
 function dayTimeline(id, dayIndex, day, { arrival = null, last = false } = {}) {
     const meals = mealPlan(id, dayIndex + 1)[dayIndex]
     const entries = []
-    const add = (time, icon, kind, title, text, place = null) => {
-        if (text || place) entries.push({ time, icon, kind, title, text, place })
+    const add = (time, icon, kind, title, text, place = null, sights = []) => {
+        if (text || place) entries.push({ time, icon, kind, title, text, place, sights })
     }
+    const sights = at => (day ? sightsOf(id, dayIndex, at) : [])
     /* Ngày có lịch riêng dùng phân bổ bữa đã tính; ngày tự do / ngày di chuyển luôn cần đủ bữa */
     const ownDay = Boolean(day) && !arrival
     const breakfast = 'breakfast' in meals || !ownDay
@@ -370,15 +405,17 @@ function dayTimeline(id, dayIndex, day, { arrival = null, last = false } = {}) {
 
     if (breakfast) add('06:30', 'ri-sun-foggy-line', 'meal', t('Ăn sáng'), meals.breakfast ? '' : genericMeal('breakfast', dayIndex), meals.breakfast)
     if (arrival) add('07:30', 'ri-route-line', 'travel', t('Di chuyển'), arrival.text)
-    else if (day) add('07:30', 'ri-map-pin-line', 'visit', t('Tham quan buổi sáng'), day.morning)
+    else if (day) add('07:30', 'ri-map-pin-line', 'visit', t('Tham quan buổi sáng'), day.morning, null, sights('m'))
     if (lunch) add('11:30', 'ri-restaurant-line', 'meal', t('Ăn trưa'), meals.lunch ? '' : genericMeal('lunch', dayIndex), meals.lunch)
-    if (meals.cafe) add('13:00', 'ri-cup-line', 'cafe', t('Cà phê & nghỉ trưa'), '', meals.cafe)
+    /* Ngày di chuyển không tham quan buổi sáng nên bỏ quán cạnh điểm buổi sáng */
+    const cafe = arrival && meals.cafe?.nearAt === 'm' ? null : meals.cafe
+    if (cafe) add('13:00', 'ri-cup-line', 'cafe', t('Cà phê & nghỉ trưa'), '', cafe)
     else add('13:00', 'ri-hotel-bed-line', 'rest', t('Nghỉ trưa'), t('Về nơi ở nghỉ ngơi, tránh nắng giữa trưa'))
-    if (day) add('14:30', 'ri-camera-line', 'visit', t('Tham quan buổi chiều'), day.afternoon)
+    if (day) add('14:30', 'ri-camera-line', 'visit', t('Tham quan buổi chiều'), day.afternoon, null, sights('a'))
     else add('14:30', 'ri-compass-3-line', 'visit', t('Buổi chiều tự do'), t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.'))
     add('16:30', 'ri-goblet-line', 'drink', t('Quán nước, ăn vặt'), meals.snack ? '' : pickLang(meals.drink), meals.snack)
     if (!dinnerInEvening) add('18:00', 'ri-restaurant-2-line', 'meal', t('Ăn tối'), meals.dinner ? '' : genericMeal('dinner', dayIndex), meals.dinner)
-    if (day) add(dinnerInEvening ? '18:00' : '19:30', 'ri-moon-clear-line', 'visit', dinnerInEvening ? t('Ăn tối & buổi tối') : t('Buổi tối'), day.evening)
+    if (day) add(dinnerInEvening ? '18:00' : '19:30', 'ri-moon-clear-line', 'visit', dinnerInEvening ? t('Ăn tối & buổi tối') : t('Buổi tối'), day.evening, null, sights('e'))
     if (last) add('21:00', 'ri-luggage-cart-line', 'rest', t('Kết thúc tour'), t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.'))
     else add('21:30', 'ri-hotel-bed-line', 'rest', t('Về nghỉ'), t('Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi'))
     return entries
@@ -395,16 +432,59 @@ function timelinePlaceHtml(place) {
     `
 }
 
-/* Buổi tham quan liệt kê nhiều điểm ("A, B, C") → hiện thành từng dòng cho dễ theo dõi */
+/* Buổi tham quan liệt kê nhiều điểm ("A, B, C") → hiện thành từng dòng cho dễ theo dõi.
+   Đã có thẻ chi tiết từng điểm thì giữ một đoạn ngắn để khỏi lặp tên hai lần. */
 function activityTextHtml(e) {
-    const parts = e.kind === 'visit' ? e.text.split(/,\s+/).map(x => x.trim()).filter(Boolean) : []
+    const parts = e.kind === 'visit' && !e.sights?.length ? e.text.split(/,\s+/).map(x => x.trim()).filter(Boolean) : []
     if (parts.length < 2) return `<p class="day-tl__text">${e.text}</p>`
     const cap = x => x.charAt(0).toLocaleUpperCase(LANG) + x.slice(1)
     return `<ul class="day-tl__list">${parts.map(x => `<li>${cap(x.replace(/\.$/, ''))}</li>`).join('')}</ul>`
 }
 
+/* Thẻ chi tiết một điểm tham quan: tên (mở Google Maps), giá vé, giờ mở cửa, địa chỉ */
+function sightHtml(s) {
+    const name = pickLang(s.name)
+    const free = !Array.isArray(s.price) ? s.price === 0 : !s.price[1]
+    return `
+        <li class="sight">
+            <div class="sight__head">
+                <a href="${mapsSearchUrl(`${s.name[0]}, ${s.address}`)}" target="_blank" rel="noopener" class="sight__name">${name}</a>
+                <span class="sight__price${free ? ' sight__price--free' : ''}"><i class="ri-ticket-2-line"></i> ${sightPriceText(s.price)}</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> ${sightHours(s.hours)}</span>
+                <span><i class="ri-map-pin-2-line"></i> ${s.address}</span>
+            </small>
+            ${s.note ? `<small class="sight__note"><i class="ri-information-line"></i> ${pickLang(s.note)}</small>` : ''}
+        </li>
+    `
+}
+
+/* Chi phí ước tính mỗi người trong ngày: vé tham quan + ăn uống, cà phê (quán có giá) */
+function dayCost(entries) {
+    const sum = list => list.reduce(([lo, hi], [a, b]) => [lo + a, hi + b], [0, 0])
+    return {
+        tickets: sum(entries.flatMap(e => e.sights || []).map(s => priceBounds(s.price))),
+        food: sum(entries.filter(e => e.place && Array.isArray(e.place.price)).map(e => e.place.price)),
+    }
+}
+
+function dayCostHtml(entries) {
+    const { tickets, food } = dayCost(entries)
+    const range = ([lo, hi]) => (hi ? (lo === hi ? formatVnd(lo) : `${formatVnd(lo)} – ${formatVnd(hi)}`) : t('Miễn phí'))
+    if (!tickets[1] && !food[1] && !entries.some(e => e.sights?.length)) return ''
+    return `
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> ${t('Ước tính mỗi người hôm nay')}</span>
+            <span class="day-cost__item">${t('Vé tham quan')}: <strong>${range(tickets)}</strong></span>
+            ${food[1] ? `<span class="day-cost__item">${t('Ăn uống, cà phê')}: <strong>${range(food)}</strong></span>` : ''}
+        </div>
+    `
+}
+
 function dayTimelineHtml(entries) {
     return `
+        ${dayCostHtml(entries)}
         <ol class="day-tl">
             ${entries.map(e => `
                 <li class="day-tl__item day-tl__item--${e.kind}">
@@ -413,6 +493,7 @@ function dayTimelineHtml(entries) {
                     <div class="day-tl__body">
                         <h4 class="day-tl__title">${e.title}</h4>
                         ${e.text ? activityTextHtml(e) : ''}
+                        ${e.sights?.length ? `<ul class="day-tl__sights">${e.sights.map(sightHtml).join('')}</ul>` : ''}
                         ${e.place ? timelinePlaceHtml(e.place) : ''}
                     </div>
                 </li>

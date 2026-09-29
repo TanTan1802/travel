@@ -500,6 +500,9 @@ function planAsText(plan) {
         dayTimeline(item.dest.id, item.dayOfStop, item.day, { arrival, last: item.departure }).forEach(e => {
             const detail = e.place ? `${e.place.name} – ${e.place.address}` : e.text
             lines.push(`  ${e.time} ${e.title}: ${detail}`)
+            ;(e.sights || []).forEach(s => {
+                lines.push(`      • ${pickLang(s.name)} – ${sightPriceText(s.price)} – ${sightHours(s.hours)}`)
+            })
         })
         if (item.checkin && item.checkin.stay) {
             lines.push(`  ${t('Nghỉ đêm')}: ${pickLang(item.checkin.stay.area)} (${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')}, ${t('{n} đêm', { n: item.checkin.nights })})`)

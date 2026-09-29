@@ -9,8 +9,8 @@ const { loadBrowserScripts } = require('../tools/lib')
 const { ROOT, builtPages } = require('./helpers')
 
 const site = loadBrowserScripts(
-    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js'],
-    ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS', 'PLACES', 'STAY_TYPES'],
+    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js', 'assets/js/data/sights.js'],
+    ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS', 'PLACES', 'STAY_TYPES', 'SIGHTS'],
 )
 const { DESTINATIONS, ITINERARIES, TRANSLATION_EN: EN, REGIONS, CATEGORIES } = site
 
@@ -46,7 +46,7 @@ test('lịch trình: mỗi điểm đến có 5 ngày và phí tham quan cho 2 m
 test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộng đúng các khoản', () => {
     const app = loadBrowserScripts(
         ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
-            'assets/js/data/places.js', 'assets/js/components.js'],
+            'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
         ['DESTINATIONS', 'tripCost'],
     )
     for (const d of app.DESTINATIONS) {
@@ -63,7 +63,7 @@ test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộn
 test('timeline 5 ngày: không lặp quán / món, không chèn bữa trùng với lịch tham quan', () => {
     const app = loadBrowserScripts(
         ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
-            'assets/js/data/places.js', 'assets/js/components.js'],
+            'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
         ['DESTINATIONS', 'ITINERARIES', 'dayTimeline'],
     )
     for (const d of app.DESTINATIONS) {
@@ -108,6 +108,56 @@ test('quán ăn, lưu trú, đi lại: đủ cho mọi điểm đến và có c�
             pair(st.area, `${id}.stays[${i}].area`)
             pair(st.note, `${id}.stays[${i}].note`)
             range(st.price, `${id}.stays[${i}].price`)
+        })
+    }
+})
+
+test('điểm tham quan: đủ 5 ngày, có giá vé, giờ mở cửa, địa chỉ và quán nước gần điểm', () => {
+    const { SIGHTS } = site
+    const pair = (v, where) => assert.ok(Array.isArray(v) && v.length === 2 && v[0] && v[1], `${where}: cần [tiếng Việt, English]`)
+    assert.deepEqual(Object.keys(SIGHTS).sort(), [...DESTINATIONS.map(d => d.id)].sort(), 'SIGHTS phải khớp danh sách điểm đến')
+    for (const [id, days] of Object.entries(SIGHTS)) {
+        assert.equal(days.length, 5, `${id}: cần điểm tham quan cho 5 ngày`)
+        let cafes = 0
+        days.forEach((list, i) => {
+            const where = `${id} ngày ${i + 1}`
+            assert.ok(list.length >= 1, `${where}: chưa có điểm tham quan`)
+            list.forEach((s, j) => {
+                assert.ok(['m', 'a', 'e'].includes(s.at), `${where}[${j}]: at phải là m / a / e`)
+                pair(s.name, `${where}[${j}].name`)
+                const ok = typeof s.price === 'number' ? s.price >= 0
+                    : Array.isArray(s.price) && s.price[0] >= 0 && s.price[0] < s.price[1]
+                assert.ok(ok, `${where}: giá "${s.name[0]}" phải là số ≥ 0 hoặc [thấp, cao]`)
+                assert.ok(s.hours === 'all' || typeof s.hours === 'string' || (Array.isArray(s.hours) && s.hours.length === 2), `${where}: "${s.name[0]}" thiếu giờ mở cửa`)
+                assert.ok(s.address, `${where}: "${s.name[0]}" thiếu địa chỉ`)
+                if (s.note) pair(s.note, `${where}: ghi chú "${s.name[0]}"`)
+                if (s.cafe) {
+                    cafes++
+                    assert.ok(s.cafe.name, `${where}: quán cạnh "${s.name[0]}" thiếu tên`)
+                    pair(s.cafe.drink, `${where}: đồ uống quán "${s.cafe.name}"`)
+                    assert.ok(Array.isArray(s.cafe.price) && s.cafe.price[0] > 0 && s.cafe.price[0] < s.cafe.price[1], `${where}: giá quán "${s.cafe.name}"`)
+                }
+            })
+        })
+        assert.ok(cafes >= 6, `${id}: cần ít nhất 6 quán nước gần điểm tham quan (có ${cafes})`)
+    }
+})
+
+test('timeline: mỗi ngày có quán nước có tên và ước tính chi phí', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+            'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
+        ['DESTINATIONS', 'ITINERARIES', 'dayTimeline', 'dayCost'],
+    )
+    for (const d of app.DESTINATIONS) {
+        app.ITINERARIES[d.id].days.forEach((day, i) => {
+            const entries = app.dayTimeline(d.id, i, day, { last: i === 4 })
+            const where = `${d.id} ngày ${i + 1}`
+            assert.ok(entries.some(e => e.sights.length), `${where}: buổi tham quan chưa có điểm cụ thể`)
+            assert.ok(entries.find(e => e.kind === 'cafe')?.place, `${where}: khung 13:00 cần quán cà phê có tên`)
+            assert.ok(entries.find(e => e.kind === 'drink')?.place, `${where}: khung 16:30 cần quán nước có tên`)
+            const cost = app.dayCost(entries)
+            assert.ok(cost.tickets[0] <= cost.tickets[1] && cost.food[1] > 0, `${where}: chi phí ước tính không hợp lệ`)
         })
     }
 })

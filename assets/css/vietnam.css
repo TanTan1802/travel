@@ -3996,3 +3996,127 @@ body.dark-theme .day-tl__place {
     break-inside: avoid;
   }
 }
+
+/*=============== CHI TIẾT ĐIỂM THAM QUAN TRONG TIMELINE ===============*/
+.day-cost {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem 1rem;
+  margin-bottom: .75rem;
+  padding: .6rem .9rem;
+  border-radius: .75rem;
+  background-color: hsla(160, 45%, 35%, .08);
+  font-size: var(--small-font-size);
+}
+
+.day-cost__label {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.day-cost__item strong {
+  color: var(--first-color);
+}
+
+body.dark-theme .day-cost__item strong {
+  color: var(--accent-color);
+}
+
+.day-tl__sights {
+  display: grid;
+  gap: .5rem;
+  margin-top: .4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sight {
+  display: grid;
+  gap: .2rem;
+  padding: .55rem .75rem;
+  border: 1px solid var(--input-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: .6rem;
+  background-color: var(--container-color, transparent);
+}
+
+.sight__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .25rem .75rem;
+}
+
+.sight__name {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.sight__name:hover {
+  color: var(--first-color);
+  text-decoration: underline;
+}
+
+.sight__price {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  padding: .1rem .5rem;
+  border-radius: 1rem;
+  background-color: hsla(24, 85%, 52%, .12);
+  color: hsl(24, 80%, 40%);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  white-space: nowrap;
+}
+
+.sight__price--free {
+  background-color: hsla(150, 50%, 40%, .12);
+  color: hsl(150, 55%, 30%);
+}
+
+body.dark-theme .sight__price {
+  color: hsl(28, 90%, 65%);
+}
+
+body.dark-theme .sight__price--free {
+  color: hsl(150, 50%, 60%);
+}
+
+.sight__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .15rem .9rem;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.sight__meta span,
+.sight__note {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .25rem;
+}
+
+.sight__note {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  font-style: italic;
+}
+
+@media print {
+  .sight {
+    break-inside: avoid;
+    border-left-width: 1px;
+  }
+
+  .day-cost {
+    border: 1px solid var(--input-color);
+  }
+}
