@@ -7,6 +7,16 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        'Ăn sáng': 'Breakfast',
+        'Ăn sáng món địa phương gần nơi ở': 'Local breakfast near your stay',
+        'Tham quan buổi sáng': 'Morning sightseeing',
+        'Cà phê & nghỉ trưa': 'Coffee & midday break',
+        'Tham quan buổi chiều': 'Afternoon sightseeing',
+        'Buổi chiều tự do': 'Free afternoon',
+        'Quán nước, ăn vặt': 'Drinks & snacks',
+        'Buổi tối': 'Evening',
+        'Kết thúc tour': 'End of tour',
+        'Cà phê đêm & về nghỉ': 'Late-night drink & back to your stay',
         'Lưu trú': 'Accommodation',
         'Khách sạn 3–4 sao, phòng đôi chia 2 người': '3–4 star hotel, double room shared by 2',
         '{type} {area} ({price}/phòng), chia 2 người': '{type} in {area} ({price}/room), shared by 2',
@@ -242,6 +252,9 @@ const TRANSLATION_EN = {
     },
 
     html: {
+        'Vùng miền': 'Region',
+        'Loại hình': 'Type',
+        'Xóa bộ lọc': 'Clear filters',
         'Cẩm nang': 'Travel guide',
         'Cẩm nang du lịch – Việt Travel': 'Travel guide – Việt Travel',
         'Cẩm nang du lịch Việt Nam: thời điểm đẹp, di chuyển, chi phí, ẩm thực, giấy tờ và an toàn.': 'Vietnam travel guide: best seasons, transport, costs, food, documents and safety.',

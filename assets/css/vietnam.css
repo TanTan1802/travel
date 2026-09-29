@@ -3595,3 +3595,404 @@ body.dark-theme .guide-card__more {
     display: none !important;
   }
 }
+
+/*=============== BỘ LỌC ĐIỂM ĐẾN (KHUNG GỌN) ===============*/
+.filter-panel {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  border-radius: calc(var(--radius) + .25rem);
+  background-color: var(--container-color);
+  box-shadow: 0 10px 30px hsla(190, 40%, 20%, .08);
+  border: 1px solid var(--input-color);
+}
+
+.filter-panel .explore__search {
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid transparent;
+  border-radius: .9rem;
+  transition: border-color .2s, background-color .2s;
+}
+
+.filter-panel .explore__search:focus-within {
+  border-color: var(--first-color);
+  background-color: var(--container-color);
+}
+
+.filter-panel__groups {
+  display: grid;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: grid;
+  gap: .5rem;
+  min-width: 0;
+}
+
+.filter-group__label {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-color-light);
+}
+
+.filter-group__label i {
+  color: var(--accent-color);
+  font-size: 1rem;
+}
+
+.filter-group--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+/* Thanh chọn vùng miền liền khối */
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .25rem;
+  padding: .3rem;
+  border-radius: 1rem;
+  background-color: var(--input-color);
+}
+
+.segmented .chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  padding: .55rem .25rem;
+  border-radius: .75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.segmented .chip:hover {
+  background-color: var(--container-color);
+}
+
+.segmented .chip.chip--active {
+  background-color: var(--first-color);
+  color: var(--white-color);
+  box-shadow: 0 4px 12px hsla(190, 60%, 20%, .25);
+}
+
+.segmented .chip__count {
+  background: none;
+  padding: 0;
+  font-weight: normal;
+  opacity: .75;
+}
+
+/* Hàng chip loại hình: vuốt ngang trên điện thoại */
+.chip-row {
+  display: flex;
+  gap: .5rem;
+  overflow-x: auto;
+  padding-bottom: .25rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-row .chip,
+.filter-group--inline .chip,
+.filter-panel .month-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  flex-shrink: 0;
+  padding: .5rem .9rem;
+  border-radius: 2rem;
+  border: 1px solid var(--input-color);
+  background-color: var(--container-color);
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.chip-row .chip i {
+  font-size: 1.05rem;
+  color: var(--first-color);
+}
+
+body.dark-theme .chip-row .chip i {
+  color: var(--accent-color);
+}
+
+.chip-row .chip:hover,
+.filter-group--inline .chip:hover,
+.filter-panel .month-filter:hover {
+  border-color: var(--first-color);
+}
+
+.chip-row .chip.chip--active {
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.chip-row .chip.chip--active i {
+  color: var(--white-color);
+}
+
+.filter-panel .month-filter {
+  padding: 0 .5rem 0 .9rem;
+}
+
+.filter-panel .month-filter--active {
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.filter-group--inline .chip--fav.chip--active {
+  background-color: hsl(350, 75%, 52%);
+  border-color: hsl(350, 75%, 52%);
+  color: var(--white-color);
+}
+
+.filter-panel__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--input-color);
+}
+
+.filter-panel__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+}
+
+.filter-panel .explore__result {
+  margin: 0;
+  text-align: left;
+  font-weight: var(--font-semi-bold);
+}
+
+.filter-reset[hidden] {
+  display: none;
+}
+
+.filter-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .35rem .8rem;
+  border-radius: 2rem;
+  background-color: hsla(350, 75%, 52%, .1);
+  color: hsl(350, 65%, 42%);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+}
+
+body.dark-theme .filter-reset {
+  color: hsl(350, 80%, 75%);
+}
+
+@media screen and (max-width: 767px) {
+  .segmented .chip span {
+    font-size: var(--smaller-font-size);
+    white-space: nowrap;
+  }
+
+  .filter-group--inline > * {
+    flex: 1 1 auto;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filter-panel {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .filter-panel__groups {
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    grid-template-areas:
+      "region inline"
+      "type type";
+    align-items: end;
+    column-gap: 1.5rem;
+  }
+
+  .filter-panel__groups > .filter-group:nth-child(1) { grid-area: region; }
+  .filter-panel__groups > .filter-group:nth-child(2) { grid-area: type; }
+  .filter-panel__groups > .filter-group:nth-child(3) { grid-area: inline; justify-content: flex-end; }
+
+  .chip-row {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+/*=============== TIMELINE THEO GIỜ ===============*/
+.day-tl {
+  position: relative;
+  display: grid;
+  gap: .25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.day-tl::before {
+  content: '';
+  position: absolute;
+  top: .75rem;
+  bottom: .75rem;
+  left: calc(3.25rem + 17px);
+  border-left: 2px dashed var(--input-color);
+}
+
+.day-tl__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.25rem 36px 1fr;
+  align-items: start;
+  gap: .75rem;
+  padding: .5rem 0;
+}
+
+.day-tl__time {
+  padding-top: .45rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-color-light);
+  text-align: right;
+}
+
+.day-tl__icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-color), hsl(24, 85%, 52%));
+  color: var(--white-color);
+  font-size: 1.05rem;
+}
+
+.day-tl__item--meal .day-tl__icon {
+  background: linear-gradient(135deg, hsl(12, 80%, 58%), hsl(350, 70%, 52%));
+}
+
+.day-tl__item--cafe .day-tl__icon,
+.day-tl__item--drink .day-tl__icon {
+  background: linear-gradient(135deg, hsl(28, 45%, 45%), hsl(20, 40%, 32%));
+}
+
+.day-tl__item--rest .day-tl__icon,
+.day-tl__item--travel .day-tl__icon {
+  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+}
+
+.day-tl__body {
+  display: grid;
+  gap: .15rem;
+  padding: .35rem 0 .25rem;
+  min-width: 0;
+}
+
+.day-tl__title {
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+}
+
+.day-tl__text {
+  font-size: var(--small-font-size);
+}
+
+.day-tl__list {
+  display: grid;
+  gap: .2rem;
+  padding-left: 1.1rem;
+  list-style: disc;
+  font-size: var(--small-font-size);
+}
+
+.day-tl__list li::marker {
+  color: var(--accent-color);
+}
+
+.day-tl__place {
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .day-tl__place {
+  color: var(--accent-color);
+}
+
+.day-tl__place:hover {
+  text-decoration: underline;
+}
+
+.day-tl__what {
+  font-size: var(--small-font-size);
+}
+
+.day-tl__meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .2rem;
+  align-items: center;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.day-tl__item--cafe .day-tl__body,
+.day-tl__item--drink .day-tl__body {
+  padding: .5rem .75rem;
+  border-radius: .75rem;
+  background-color: hsla(28, 45%, 45%, .08);
+}
+
+@media screen and (max-width: 420px) {
+  .day-tl::before {
+    left: calc(2.75rem + 17px);
+  }
+
+  .day-tl__item {
+    grid-template-columns: 2.75rem 36px 1fr;
+    gap: .5rem;
+  }
+}
+
+@media print {
+  .day-tl__icon {
+    background: none !important;
+    color: var(--title-color) !important;
+    border: 1px solid var(--title-color);
+  }
+
+  .day-tl__item {
+    break-inside: avoid;
+  }
+}

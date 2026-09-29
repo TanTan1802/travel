@@ -219,32 +219,45 @@
                 <h2 class="section__title">Khám phá mọi <br> danh lam thắng cảnh</h2>
 
                 <div class="container explore">
-                    <div class="explore__search">
-                        <i class="ri-search-line"></i>
-                        <input type="search" id="explore-search" class="explore__input" placeholder="Tìm điểm đến, tỉnh thành, món ăn...">
-                    </div>
-
-                    <div class="explore__filters" id="region-filters" role="group" aria-label="Lọc theo vùng miền"></div>
-                    <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Lọc theo loại hình"></div>
-
-                    <div class="explore__toolbar">
-                        <div class="explore__toolbar-left">
-                            <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
-                                <i class="ri-heart-3-fill"></i> Yêu thích <span class="chip__count" id="fav-count">0</span>
-                            </button>
-                            <label class="month-filter">
-                                <i class="ri-calendar-event-line"></i>
-                                <select id="month-filter" aria-label="Lọc theo tháng đi"></select>
-                            </label>
-                            <p class="explore__result" id="explore-result"></p>
+                    <div class="filter-panel">
+                        <div class="explore__search">
+                            <i class="ri-search-line"></i>
+                            <input type="search" id="explore-search" class="explore__input" placeholder="Tìm điểm đến, tỉnh thành, món ăn...">
                         </div>
-                        <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
-                            <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
-                                <i class="ri-layout-grid-line"></i> Danh sách
-                            </button>
-                            <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
-                                <i class="ri-map-2-line"></i> Bản đồ
-                            </button>
+
+                        <div class="filter-panel__groups">
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-map-pin-2-line"></i> Vùng miền</span>
+                                <div class="segmented" id="region-filters" role="group" aria-label="Lọc theo vùng miền"></div>
+                            </div>
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-compass-3-line"></i> Loại hình</span>
+                                <div class="chip-row" id="category-filters" role="group" aria-label="Lọc theo loại hình"></div>
+                            </div>
+                            <div class="filter-group filter-group--inline">
+                                <label class="month-filter">
+                                    <i class="ri-calendar-event-line"></i>
+                                    <select id="month-filter" aria-label="Lọc theo tháng đi"></select>
+                                </label>
+                                <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
+                                    <i class="ri-heart-3-fill"></i> Yêu thích <span class="chip__count" id="fav-count">0</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="filter-panel__footer">
+                            <div class="filter-panel__status">
+                                <p class="explore__result" id="explore-result"></p>
+                                <button type="button" class="filter-reset" id="filter-reset" hidden><i class="ri-refresh-line"></i> Xóa bộ lọc</button>
+                            </div>
+                            <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
+                                <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
+                                    <i class="ri-layout-grid-line"></i> Danh sách
+                                </button>
+                                <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
+                                    <i class="ri-map-2-line"></i> Bản đồ
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <p class="explore__tip" id="explore-tip" hidden></p>

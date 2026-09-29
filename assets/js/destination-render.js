@@ -283,18 +283,7 @@ function tourDaysHtml(d, plan, n) {
         ${days.map((day, i) => `
             <div class="itinerary__panel" role="tabpanel" id="tour${n}-panel-${i}" aria-labelledby="tour${n}-tab-${i}"${i === 0 ? '' : ' hidden'}>
                 <h3 class="itinerary__day-title">${t('Ngày {n}', { n: i + 1 })}: ${day.title}</h3>
-                <ol class="timeline">
-                    ${DAY_SLOTS.map(slot => `
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="${slot.icon}"></i></span>
-                            <div>
-                                <h4 class="timeline__label">${slot.label()}</h4>
-                                <p>${day[slot.key]}</p>
-                            </div>
-                        </li>
-                    `).join('')}
-                </ol>
-                ${i === n - 1 ? `<p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> ${t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.')}</p>` : ''}
+                ${dayTimelineHtml(dayTimeline(d.id, i, day, { last: i === n - 1 }))}
             </div>
         `).join('')}
     `

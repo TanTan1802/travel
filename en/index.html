@@ -215,32 +215,45 @@
                 <h2 class="section__title">Explore every <br> scenic wonder</h2>
 
                 <div class="container explore">
-                    <div class="explore__search">
-                        <i class="ri-search-line"></i>
-                        <input type="search" id="explore-search" class="explore__input" placeholder="Search destinations, provinces, dishes...">
-                    </div>
-
-                    <div class="explore__filters" id="region-filters" role="group" aria-label="Filter by region"></div>
-                    <div class="explore__filters explore__filters--small" id="category-filters" aria-label="Filter by type"></div>
-
-                    <div class="explore__toolbar">
-                        <div class="explore__toolbar-left">
-                            <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
-                                <i class="ri-heart-3-fill"></i> Favorites <span class="chip__count" id="fav-count">0</span>
-                            </button>
-                            <label class="month-filter">
-                                <i class="ri-calendar-event-line"></i>
-                                <select id="month-filter" aria-label="Filter by travel month"></select>
-                            </label>
-                            <p class="explore__result" id="explore-result"></p>
+                    <div class="filter-panel">
+                        <div class="explore__search">
+                            <i class="ri-search-line"></i>
+                            <input type="search" id="explore-search" class="explore__input" placeholder="Search destinations, provinces, dishes...">
                         </div>
-                        <div class="view-toggle" role="group" aria-label="View mode">
-                            <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
-                                <i class="ri-layout-grid-line"></i> List
-                            </button>
-                            <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
-                                <i class="ri-map-2-line"></i> Map
-                            </button>
+
+                        <div class="filter-panel__groups">
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-map-pin-2-line"></i> Region</span>
+                                <div class="segmented" id="region-filters" role="group" aria-label="Filter by region"></div>
+                            </div>
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-compass-3-line"></i> Type</span>
+                                <div class="chip-row" id="category-filters" role="group" aria-label="Filter by type"></div>
+                            </div>
+                            <div class="filter-group filter-group--inline">
+                                <label class="month-filter">
+                                    <i class="ri-calendar-event-line"></i>
+                                    <select id="month-filter" aria-label="Filter by travel month"></select>
+                                </label>
+                                <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
+                                    <i class="ri-heart-3-fill"></i> Favorites <span class="chip__count" id="fav-count">0</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="filter-panel__footer">
+                            <div class="filter-panel__status">
+                                <p class="explore__result" id="explore-result"></p>
+                                <button type="button" class="filter-reset" id="filter-reset" hidden><i class="ri-refresh-line"></i> Clear filters</button>
+                            </div>
+                            <div class="view-toggle" role="group" aria-label="View mode">
+                                <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
+                                    <i class="ri-layout-grid-line"></i> List
+                                </button>
+                                <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
+                                    <i class="ri-map-2-line"></i> Map
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <p class="explore__tip" id="explore-tip" hidden></p>

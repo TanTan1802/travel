@@ -1,6 +1,6 @@
 /*=============== QUÁN ĂN, LƯU TRÚ & ĐI LẠI THEO ĐIỂM ĐẾN ===============*/
 /*
- * Dữ liệu cụ thể cho lịch trình: quán nên ghé, khu nên ở và cách di chuyển tới.
+ * Dữ liệu cụ thể cho lịch trình: quán nên ghé, quán cà phê/quán nước, khu nên ở và cách di chuyển tới.
  * - Chuỗi hai ngôn ngữ viết dạng [tiếng Việt, English].
  * - price: [thấp, cao] tính bằng VND (quán: mỗi người; lưu trú: mỗi đêm/phòng).
  * - city: tên dùng để tìm trên Booking.com / Airbnb / Google Maps.
@@ -25,6 +25,11 @@ const PLACES = {
             { name: 'Bánh cuốn chả mực Bãi Cháy', dish: ['Bánh cuốn nóng ăn kèm chả mực', 'Steamed rice rolls with squid cake'], address: 'Khu chợ Bãi Cháy, Hạ Long', price: [40000, 70000] },
             { name: 'Phố ăn đêm Sun Carnival', dish: ['Nướng, ăn vặt, xem show ven biển', 'Grills, street snacks and seaside shows'], address: 'Sun World Hạ Long, Bãi Cháy', price: [80000, 250000] },
         ],
+        cafes: [
+            { name: 'Cà phê view vịnh Bãi Cháy', drink: ['Cà phê sữa đá, nước dừa ngắm vịnh', 'Iced milk coffee and coconut water over the bay'], address: 'Đường Hạ Long, Bãi Cháy', price: [30000, 70000] },
+            { name: 'Quán nước mía, trà chanh phố Vườn Đào', drink: ['Nước mía, trà chanh, hướng dương', 'Sugarcane juice, lime tea, sunflower seeds'], address: 'Phố Vườn Đào, Bãi Cháy', price: [15000, 30000] },
+            { name: 'Cà phê đồi Ba Đèo', drink: ['Cà phê, sinh tố ngắm toàn cảnh vịnh', 'Coffee and smoothies with a panoramic bay view'], address: 'Khu đồi Ba Đèo, Bãi Cháy', price: [40000, 90000] },
+        ],
         stays: [
             { area: ['Bãi Cháy', 'Bai Chay'], type: 'hotel', price: [500000, 1500000], note: ['Gần bến tàu Tuần Châu, Sun World, nhiều nhà hàng.', 'Close to Tuan Chau pier, Sun World and plenty of restaurants.'] },
             { area: ['Du thuyền ngủ đêm trên vịnh', 'Overnight cruise on the bay'], type: 'boat', price: [2500000, 6000000], note: ['Trọn gói ăn uống, chèo kayak – nên đặt trước 1–2 tuần.', 'Meals and kayaking included – book 1–2 weeks ahead.'] },
@@ -41,6 +46,11 @@ const PLACES = {
             { name: 'Lẩu cá hồi phố Xuân Viên', dish: ['Lẩu cá hồi, cá tầm nuôi nước lạnh', 'Salmon and sturgeon hotpot'], address: 'Phố Xuân Viên, Sa Pa', price: [200000, 400000] },
             { name: 'Nhà hàng Little Sapa', dish: ['Thắng cố, lợn cắp nách, rau rừng', 'Thang co stew, free-range pork, wild greens'], address: 'Đường Cầu Mây, Sa Pa', price: [150000, 300000] },
             { name: 'Quán Thắng Cố chợ Sa Pa', dish: ['Thắng cố, mèn mén, rượu ngô', 'Thang co, corn cake and corn wine'], address: 'Chợ trung tâm Sa Pa', price: [60000, 150000] },
+        ],
+        cafes: [
+            { name: 'Cà phê view thung lũng Mường Hoa', drink: ['Cà phê nóng, trà gừng mật ong', 'Hot coffee, ginger-honey tea'], address: 'Đường Fansipan, Sa Pa', price: [35000, 80000] },
+            { name: 'Quầy rượu táo mèo – trà nóng chợ đêm', drink: ['Trà nóng, sữa ngô, rượu táo mèo', 'Hot tea, corn milk, wild apple wine'], address: 'Khu chợ đêm Sa Pa', price: [15000, 50000] },
+            { name: 'Quán cà phê nhà gỗ Tả Van', drink: ['Cà phê, trà thảo mộc giữa ruộng bậc thang', 'Coffee and herbal tea among the terraces'], address: 'Bản Tả Van, Sa Pa', price: [25000, 60000] },
         ],
         stays: [
             { area: ['Trung tâm thị xã (Cầu Mây, Xuân Viên)', 'Town centre (Cau May, Xuan Vien)'], type: 'hotel', price: [400000, 1200000], note: ['Đi bộ tới chợ đêm, nhà thờ đá, dễ đặt xe.', 'Walk to the night market and stone church, easy transport.'] },
@@ -59,6 +69,11 @@ const PLACES = {
             { name: 'Chả cá Thăng Long', dish: ['Chả cá Lã Vọng rán tại bàn với thì là', 'Turmeric fish sizzled at the table with dill'], address: '21 Đường Thành, Hoàn Kiếm', price: [150000, 200000] },
             { name: 'Cà phê Giảng', dish: ['Cà phê trứng nguyên bản', 'The original egg coffee'], address: '39 Nguyễn Hữu Huân, Hoàn Kiếm', price: [30000, 50000] },
         ],
+        cafes: [
+            { name: 'Cộng Cà Phê Hồ Gươm', drink: ['Cà phê cốt dừa, sữa chua cà phê', 'Coconut coffee, coffee yogurt'], address: 'Phố Lê Thái Tổ, Hoàn Kiếm', price: [40000, 65000] },
+            { name: 'Trà chanh Nhà Thờ', drink: ['Trà chanh, hướng dương ngồi vỉa hè', 'Street-side lime tea and sunflower seeds'], address: 'Phố Nhà Chung – Nhà Thờ, Hoàn Kiếm', price: [15000, 30000] },
+            { name: 'Cà phê Đinh (view hồ)', drink: ['Cà phê trứng, cacao trứng trên gác', 'Egg coffee and egg cocoa upstairs'], address: '13 Đinh Tiên Hoàng, Hoàn Kiếm', price: [25000, 45000] },
+        ],
         stays: [
             { area: ['Phố cổ Hoàn Kiếm', 'Old Quarter (Hoan Kiem)'], type: 'hotel', price: [500000, 1500000], note: ['Đi bộ tới hồ Gươm, phố đi bộ, chợ đêm.', 'Walk to Hoan Kiem Lake, the walking street and night market.'] },
             { area: ['Tây Hồ', 'Tay Ho (West Lake)'], type: 'homestay', price: [400000, 1000000], note: ['Yên tĩnh, nhiều cà phê view hồ.', 'Quieter, lots of lakeside cafés.'] },
@@ -76,6 +91,11 @@ const PLACES = {
             { name: 'Bún mọc – miến lươn chợ Rồng', dish: ['Miến lươn, bún mọc bữa sáng', 'Eel glass noodles and pork-ball noodle soup'], address: 'Chợ Rồng, TP Ninh Bình', price: [35000, 60000] },
             { name: 'Nhà hàng Hang Múa', dish: ['Cơm quê view núi, gà đồi', 'Country meals with mountain views'], address: 'Khu Hang Múa, Hoa Lư', price: [120000, 250000] },
         ],
+        cafes: [
+            { name: 'Cà phê view núi Tam Cốc', drink: ['Cà phê, nước ép giữa đồng lúa', 'Coffee and juices among the rice fields'], address: 'Phố Tam Cốc, Hoa Lư', price: [25000, 60000] },
+            { name: 'Quán nước dừa chân Hang Múa', drink: ['Nước dừa, sữa chua nếp cẩm', 'Coconut water, black sticky-rice yogurt'], address: 'Khu Hang Múa, Hoa Lư', price: [20000, 40000] },
+            { name: 'Cà phê phố cổ Hoa Lư', drink: ['Cà phê, trà sen ngắm phố cổ lên đèn', 'Coffee and lotus tea as the old town lights up'], address: 'Phố cổ Hoa Lư, TP Ninh Bình', price: [30000, 70000] },
+        ],
         stays: [
             { area: ['Tam Cốc', 'Tam Coc'], type: 'homestay', price: [300000, 900000], note: ['Giữa đồng lúa, gần Hang Múa, bến thuyền Tam Cốc.', 'Among rice fields, near Mua Cave and the Tam Coc boats.'] },
             { area: ['Tràng An – Bái Đính', 'Trang An – Bai Dinh'], type: 'resort', price: [1200000, 3500000], note: ['Resort ven núi đá vôi, yên tĩnh.', 'Resorts set among karsts, very quiet.'] },
@@ -91,6 +111,11 @@ const PLACES = {
             { name: 'Phố cổ Đồng Văn', dish: ['Bánh cuốn trứng canh xương, thắng cố', 'Rice rolls in bone broth, thang co'], address: 'Phố cổ Đồng Văn', price: [30000, 100000] },
             { name: 'Chợ phiên Đồng Văn (Chủ nhật)', dish: ['Thắng cố, rượu ngô, bánh tam giác mạch', 'Thang co, corn wine, buckwheat cakes'], address: 'Chợ Đồng Văn', price: [30000, 100000] },
             { name: 'Quán thịt trâu gác bếp Yên Minh', dish: ['Thịt trâu gác bếp, lạp xưởng hun khói', 'Smoked buffalo, smoked sausages'], address: 'Thị trấn Yên Minh', price: [100000, 250000] },
+        ],
+        cafes: [
+            { name: 'Cà phê Phố Cáo – Đồng Văn', drink: ['Cà phê, trà shan tuyết trong nhà trình tường', 'Coffee and shan tuyet tea in a rammed-earth house'], address: 'Phố cổ Đồng Văn', price: [25000, 50000] },
+            { name: 'Quán nước đỉnh Mã Pì Lèng', drink: ['Trà nóng, nước ngô, bánh tam giác mạch', 'Hot tea, corn drink, buckwheat cake'], address: 'Đèo Mã Pì Lèng', price: [15000, 40000] },
+            { name: 'Cà phê bờ sông Lô', drink: ['Cà phê, sinh tố ven sông', 'Coffee and smoothies by the Lo river'], address: 'TP Hà Giang', price: [25000, 50000] },
         ],
         stays: [
             { area: ['TP Hà Giang (đêm đầu)', 'Ha Giang city (first night)'], type: 'hotel', price: [300000, 700000], note: ['Nghỉ sau chuyến xe đêm, thuê xe máy.', 'Rest after the night bus and rent your scooter.'] },
@@ -108,6 +133,11 @@ const PLACES = {
             { name: 'Quán ăn Trùng Khánh', dish: ['Hạt dẻ Trùng Khánh, cá suối nướng', 'Trung Khanh chestnuts, grilled stream fish'], address: 'Thị trấn Trùng Khánh', price: [80000, 200000] },
             { name: 'Bánh cuốn canh Hải Ghi', dish: ['Bánh cuốn canh xương, trứng', 'Rice rolls in bone broth with egg'], address: 'TP Cao Bằng', price: [30000, 50000] },
         ],
+        cafes: [
+            { name: 'Quán nước chân thác Bản Giốc', drink: ['Nước mía, hạt dẻ nướng, trà nóng', 'Sugarcane juice, roasted chestnuts, hot tea'], address: 'Khu thác Bản Giốc', price: [15000, 40000] },
+            { name: 'Cà phê view ruộng lúa Trùng Khánh', drink: ['Cà phê, trà gừng ngắm đồng lúa', 'Coffee and ginger tea over the paddies'], address: 'Thị trấn Trùng Khánh', price: [25000, 50000] },
+            { name: 'Cà phê bờ sông Bằng', drink: ['Cà phê, trà sữa ven sông', 'Coffee and milk tea by the Bang river'], address: 'TP Cao Bằng', price: [25000, 50000] },
+        ],
         stays: [
             { area: ['Gần thác Bản Giốc', 'Near Ban Gioc falls'], type: 'homestay', price: [300000, 800000], note: ['Ngắm thác sáng sớm khi vắng khách.', 'See the falls early before the crowds.'] },
             { area: ['Thị trấn Trùng Khánh', 'Trung Khanh town'], type: 'hotel', price: [300000, 600000], note: ['Tiện đi thác, động Ngườm Ngao.', 'Handy for the falls and Nguom Ngao cave.'] },
@@ -124,6 +154,11 @@ const PLACES = {
             { name: 'Bánh đa cua Cát Bà', dish: ['Bánh đa cua đỏ kiểu Hải Phòng', 'Hai Phong-style red crab noodle soup'], address: 'Thị trấn Cát Bà', price: [35000, 60000] },
             { name: 'Nhà bè Lan Hạ', dish: ['Hải sản trên bè nổi vịnh Lan Hạ', 'Seafood on floating rafts in Lan Ha Bay'], address: 'Vịnh Lan Hạ (đi tàu)', price: [300000, 700000] },
         ],
+        cafes: [
+            { name: 'Cà phê view vịnh Cát Bà', drink: ['Cà phê, nước dừa nhìn ra bến tàu', 'Coffee and coconut water over the harbour'], address: 'Đường 1/4, thị trấn Cát Bà', price: [30000, 70000] },
+            { name: 'Quán nước bãi Cát Cò', drink: ['Nước dừa, sinh tố, bia lạnh trên bãi', 'Coconut water, smoothies, cold beer on the beach'], address: 'Bãi Cát Cò 1 – 2', price: [25000, 60000] },
+            { name: 'Quầy trà chanh bờ kè', drink: ['Trà chanh, ốc luộc ăn vặt', 'Lime tea and boiled snails'], address: 'Bờ kè thị trấn Cát Bà', price: [15000, 40000] },
+        ],
         stays: [
             { area: ['Thị trấn Cát Bà', 'Cat Ba town'], type: 'hotel', price: [400000, 1200000], note: ['Gần bến tàu đi vịnh Lan Hạ, phố ăn uống.', 'Near Lan Ha Bay boats and restaurants.'] },
             { area: ['Bãi Cát Cò', 'Cat Co beaches'], type: 'resort', price: [1500000, 3500000], note: ['Sát bãi tắm đẹp nhất đảo.', 'Right on the island\'s best beaches.'] },
@@ -139,6 +174,11 @@ const PLACES = {
             { name: 'Quán thịt trâu gác bếp', dish: ['Thịt trâu gác bếp, lợn bản nướng', 'Smoked buffalo, grilled local pork'], address: 'Thị trấn Mù Cang Chải', price: [120000, 250000] },
             { name: 'Cá suối nướng La Pán Tẩn', dish: ['Cá suối nướng, rau rừng xào', 'Grilled stream fish, stir-fried wild greens'], address: 'Xã La Pán Tẩn', price: [100000, 200000] },
             { name: 'Xôi Tú Lệ', dish: ['Xôi nếp Tú Lệ nổi tiếng, cốm mới', 'Famous Tu Le sticky rice, young green rice'], address: 'Thung lũng Tú Lệ (trên đường đi)', price: [30000, 60000] },
+        ],
+        cafes: [
+            { name: 'Quán nước đèo Khau Phạ', drink: ['Trà nóng, ngô nướng, trứng nướng', 'Hot tea, grilled corn and eggs'], address: 'Đèo Khau Phạ', price: [10000, 30000] },
+            { name: 'Cà phê view đồi Mâm Xôi', drink: ['Cà phê, trà gừng ngắm ruộng bậc thang', 'Coffee and ginger tea over the terraces'], address: 'Xã La Pán Tẩn', price: [25000, 50000] },
+            { name: 'Quán nước chợ Mù Cang Chải', drink: ['Trà, sữa đậu nành nóng', 'Tea and hot soy milk'], address: 'Thị trấn Mù Cang Chải', price: [10000, 25000] },
         ],
         stays: [
             { area: ['Bản Lìm Mông – Cao Phạ', 'Lim Mong – Cao Pha'], type: 'homestay', price: [250000, 600000], note: ['Ngay giữa ruộng bậc thang.', 'Right in the middle of the terraces.'] },
@@ -157,6 +197,11 @@ const PLACES = {
             { name: 'Bánh khoái Lạc Thiện', dish: ['Bánh khoái giòn, nem lụi', 'Crispy banh khoai, lemongrass pork skewers'], address: '6 Đinh Tiên Hoàng, TP Huế', price: [50000, 100000] },
             { name: 'Chè Hẻm', dish: ['Chè Huế đủ loại', 'Every kind of Hue sweet soup'], address: '1 kiệt 29 Hùng Vương, TP Huế', price: [15000, 30000] },
         ],
+        cafes: [
+            { name: 'Cà phê muối Huế', drink: ['Cà phê muối – đặc sản cà phê của Huế', 'Salted coffee – Hue\'s signature'], address: 'Nguyễn Lương Bằng, TP Huế', price: [20000, 35000] },
+            { name: 'Quán chè – trà ven sông Hương', drink: ['Chè bột lọc, trà cung đình', 'Tapioca sweet soup, royal tea'], address: 'Đường Lê Lợi, TP Huế', price: [15000, 40000] },
+            { name: 'Cà phê nhà vườn Kim Long', drink: ['Cà phê, trà sen trong nhà rường', 'Coffee and lotus tea in a garden house'], address: 'Phường Kim Long, TP Huế', price: [30000, 60000] },
+        ],
         stays: [
             { area: ['Bờ Nam sông Hương (Lê Lợi, Phạm Ngũ Lão)', 'South bank (Le Loi, Pham Ngu Lao)'], type: 'hotel', price: [400000, 1500000], note: ['Đi bộ ra sông Hương, phố Tây, chợ đêm.', 'Walk to the Perfume River, backpacker street and night market.'] },
             { area: ['Nhà vườn Kim Long – Vỹ Dạ', 'Garden houses in Kim Long / Vy Da'], type: 'homestay', price: [500000, 1500000], note: ['Nhà rường cổ, yên tĩnh, đậm chất Huế.', 'Traditional wooden houses – calm and very Hue.'] },
@@ -173,6 +218,11 @@ const PLACES = {
             { name: 'Quán gà nướng bên sông Son', dish: ['Gà nướng, cá sông Son', 'Grilled chicken, Son river fish'], address: 'Bờ sông Son, thị trấn Phong Nha', price: [100000, 250000] },
             { name: 'Bánh bột lọc Quảng Bình', dish: ['Bánh bột lọc tôm, cháo canh', 'Tapioca shrimp dumplings, chao canh noodle soup'], address: 'Chợ Phong Nha', price: [30000, 60000] },
             { name: 'The Pub with Cold Beer', dish: ['Gà ta tự nướng giữa vườn, bia lạnh', 'DIY grilled farm chicken in a garden, cold beer'], address: 'Thôn Cù Lạc, Phong Nha', price: [150000, 300000] },
+        ],
+        cafes: [
+            { name: 'Cà phê ven sông Son', drink: ['Cà phê, nước ép nhìn ra sông', 'Coffee and juices by the Son river'], address: 'Thị trấn Phong Nha', price: [25000, 50000] },
+            { name: 'Quán nước dừa bến thuyền Phong Nha', drink: ['Nước dừa, nước mía chờ thuyền', 'Coconut water and sugarcane juice at the boat pier'], address: 'Bến thuyền Phong Nha', price: [15000, 35000] },
+            { name: 'Cà phê farmstay Bồng Lai', drink: ['Cà phê, trà giữa thung lũng', 'Coffee and tea in the valley'], address: 'Thung lũng Bồng Lai', price: [30000, 60000] },
         ],
         stays: [
             { area: ['Thị trấn Phong Nha', 'Phong Nha town'], type: 'hotel', price: [300000, 900000], note: ['Gần bến thuyền vào động Phong Nha, nhiều quán ăn.', 'Near the Phong Nha Cave boats and eateries.'] },
@@ -191,6 +241,11 @@ const PLACES = {
             { name: 'Hải sản Bé Mặn', dish: ['Hải sản ven biển Mỹ Khê', 'Seafood by My Khe beach'], address: 'Võ Nguyên Giáp, Sơn Trà', price: [250000, 500000] },
             { name: 'Bún chả cá Bà Lữ', dish: ['Bún chả cá Đà Nẵng', 'Da Nang fish-cake noodle soup'], address: '319 Hùng Vương, Hải Châu', price: [30000, 50000] },
         ],
+        cafes: [
+            { name: 'Cộng Cà Phê Bạch Đằng', drink: ['Cà phê cốt dừa view sông Hàn', 'Coconut coffee over the Han River'], address: 'Đường Bạch Đằng, Hải Châu', price: [40000, 65000] },
+            { name: 'Quán sinh tố – nước dừa Mỹ Khê', drink: ['Sinh tố, nước dừa sau khi tắm biển', 'Smoothies and coconut water after a swim'], address: 'Võ Nguyên Giáp, Sơn Trà', price: [20000, 45000] },
+            { name: 'Cà phê muối Đà Nẵng', drink: ['Cà phê muối, bạc xỉu', 'Salted coffee, bac xiu'], address: 'Quận Hải Châu', price: [20000, 35000] },
+        ],
         stays: [
             { area: ['Biển Mỹ Khê (Võ Nguyên Giáp)', 'My Khe beach'], type: 'hotel', price: [500000, 1800000], note: ['View biển, gần quán hải sản.', 'Sea views, close to seafood spots.'] },
             { area: ['Trung tâm sông Hàn', 'Han River centre'], type: 'hotel', price: [400000, 1500000], note: ['Xem cầu Rồng phun lửa, gần chợ Hàn, chợ Cồn.', 'See the Dragon Bridge, near Han and Con markets.'] },
@@ -207,6 +262,11 @@ const PLACES = {
             { name: 'Cơm gà Bà Buội', dish: ['Cơm gà xé Hội An', 'Hoi An shredded chicken rice'], address: '22 Phan Châu Trinh, Hội An', price: [40000, 60000] },
             { name: 'Cao lầu Thanh', dish: ['Cao lầu sợi dai, thịt xá xíu', 'Chewy cao lau noodles with char siu'], address: '26 Thái Phiên, Hội An', price: [35000, 50000] },
             { name: 'Morning Glory', dish: ['Món Hội An trong nhà cổ: hoành thánh, bánh xèo', 'Hoi An classics in an old house: wontons, banh xeo'], address: '106 Nguyễn Thái Học, Hội An', price: [100000, 250000] },
+        ],
+        cafes: [
+            { name: 'Reaching Out Tea House', drink: ['Trà, cà phê trong không gian yên lặng', 'Tea and coffee in a silent tea house'], address: '131 Trần Phú, Hội An', price: [50000, 120000] },
+            { name: 'Faifo Coffee (sân thượng)', drink: ['Cà phê, sinh tố ngắm mái ngói phố cổ', 'Coffee and smoothies over the old-town rooftops'], address: '130 Trần Phú, Hội An', price: [40000, 80000] },
+            { name: 'Nước mót Hội An', drink: ['Nước mót thảo mộc, chè', 'Herbal "nuoc mot" drink and sweet soups'], address: 'Phan Châu Trinh, Hội An', price: [15000, 30000] },
         ],
         stays: [
             { area: ['Quanh phố cổ (Trần Hưng Đạo, Bà Triệu)', 'Around the Old Town'], type: 'homestay', price: [400000, 1200000], note: ['Đi bộ 5–10 phút vào phố cổ.', '5–10 minutes\' walk to the Old Town.'] },
@@ -225,6 +285,11 @@ const PLACES = {
             { name: 'Bánh căn 51 Tô Hiến Thành', dish: ['Bánh căn trứng, mực, chấm mắm nêm', 'Mini rice pancakes with egg or squid'], address: '51 Tô Hiến Thành, Nha Trang', price: [40000, 80000] },
             { name: 'Chợ Đầm', dish: ['Hải sản khô, ăn vặt, mua quà', 'Dried seafood, snacks and souvenirs'], address: 'Chợ Đầm, Nha Trang', price: [30000, 150000] },
         ],
+        cafes: [
+            { name: 'Cà phê view biển Trần Phú', drink: ['Cà phê, nước ép ngắm biển', 'Coffee and juices facing the sea'], address: 'Đường Trần Phú, Nha Trang', price: [30000, 70000] },
+            { name: 'Quán nước dừa – mía Tháp Bà', drink: ['Nước dừa, nước mía sau khi tắm bùn', 'Coconut water and sugarcane juice after a mud bath'], address: 'Khu Tháp Bà Ponagar', price: [15000, 35000] },
+            { name: 'Cà phê cảng cá Hòn Rớ', drink: ['Cà phê sáng nhìn thuyền cá về bến', 'Morning coffee watching fishing boats return'], address: 'Cảng Hòn Rớ, Nha Trang', price: [20000, 40000] },
+        ],
         stays: [
             { area: ['Đường Trần Phú (ven biển)', 'Tran Phu beachfront'], type: 'hotel', price: [500000, 2000000], note: ['Ngay bãi biển trung tâm, phố đi bộ.', 'On the main beach and promenade.'] },
             { area: ['Bãi Dài – Cam Ranh', 'Bai Dai – Cam Ranh'], type: 'resort', price: [2000000, 7000000], note: ['Resort biển gần sân bay.', 'Beach resorts near the airport.'] },
@@ -240,6 +305,11 @@ const PLACES = {
             { name: 'Lẩu gà lá é Tao Ngộ', dish: ['Lẩu gà lá é đặc sản', 'Chicken hotpot with e basil leaves'], address: '5 Ba Tháng Tư, Đà Lạt', price: [250000, 400000] },
             { name: 'Bánh mì xíu mại Hoàng Diệu', dish: ['Bánh mì chấm xíu mại buổi sáng', 'Banh mi with meatball soup for breakfast'], address: '26 Hoàng Diệu, Đà Lạt', price: [25000, 40000] },
             { name: 'Chợ đêm Đà Lạt', dish: ['Bánh tráng nướng, sữa đậu nành nóng', 'Grilled rice paper "pizza", hot soy milk'], address: 'Đường Nguyễn Thị Minh Khai, Đà Lạt', price: [20000, 80000] },
+        ],
+        cafes: [
+            { name: 'An Cafe', drink: ['Cà phê, bánh ngọt giữa khu vườn trên cây', 'Coffee and cakes in a treehouse-style garden'], address: '63 Bis Ba Tháng Hai, Đà Lạt', price: [40000, 80000] },
+            { name: 'Cà phê Tùng', drink: ['Cà phê đen, không gian xưa từ thập niên 60', 'Black coffee in a café unchanged since the 1960s'], address: '6 Khu Hòa Bình, Đà Lạt', price: [25000, 45000] },
+            { name: 'Quán sữa đậu nành – chè chợ đêm', drink: ['Sữa đậu nành nóng, chè bà cốt', 'Hot soy milk, ginger sticky-rice sweet soup'], address: 'Chợ đêm Đà Lạt', price: [10000, 25000] },
         ],
         stays: [
             { area: ['Trung tâm – hồ Xuân Hương', 'Centre – Xuan Huong Lake'], type: 'hotel', price: [400000, 1500000], note: ['Đi bộ ra chợ đêm, quảng trường.', 'Walk to the night market and square.'] },
@@ -258,6 +328,11 @@ const PLACES = {
             { name: 'Bánh căn Phan Thiết', dish: ['Bánh căn, bánh xèo mực', 'Mini rice pancakes, squid banh xeo'], address: 'TP Phan Thiết', price: [30000, 60000] },
             { name: 'Lẩu thả Phan Thiết', dish: ['Lẩu thả cá mai đặc sản', 'Lau tha – anchovy "hotpot" salad'], address: 'Phan Thiết – Mũi Né', price: [150000, 300000] },
         ],
+        cafes: [
+            { name: 'Cà phê view biển Hàm Tiến', drink: ['Cà phê, sinh tố bên bờ biển', 'Coffee and smoothies on the beach'], address: 'Nguyễn Đình Chiểu, Hàm Tiến', price: [30000, 70000] },
+            { name: 'Quán nước dừa đồi cát', drink: ['Nước dừa, nước mía sau khi trượt cát', 'Coconut water and sugarcane juice after sand-sledding'], address: 'Khu Đồi Cát Bay', price: [15000, 35000] },
+            { name: 'Cà phê làng chài Mũi Né', drink: ['Cà phê sáng ngắm chợ cá', 'Morning coffee over the fish market'], address: 'Làng chài Mũi Né', price: [20000, 40000] },
+        ],
         stays: [
             { area: ['Hàm Tiến – Nguyễn Đình Chiểu', 'Ham Tien strip'], type: 'resort', price: [700000, 2500000], note: ['Dãy resort ven biển, gần phố ăn uống.', 'Beachfront resorts near the food strip.'] },
             { area: ['Gần Đồi Cát Bay', 'Near the Red Sand Dunes'], type: 'homestay', price: [300000, 700000], note: ['Giá mềm, tiện ngắm bình minh đồi cát.', 'Budget-friendly, handy for dune sunrises.'] },
@@ -274,6 +349,11 @@ const PLACES = {
             { name: 'Bún chả cá Quy Nhơn', dish: ['Bún chả cá nước trong', 'Clear-broth fish-cake noodle soup'], address: 'Đường Phan Bội Châu, Quy Nhơn', price: [30000, 50000] },
             { name: 'Phố ăn vặt Ngô Văn Sở', dish: ['Bánh hỏi cháo lòng, nem chợ Huyện', 'Banh hoi with offal congee, Cho Huyen nem'], address: 'Ngô Văn Sở, Quy Nhơn', price: [30000, 80000] },
             { name: 'Hải sản Eo Gió – Nhơn Lý', dish: ['Hải sản làng chài, gỏi cá mai', 'Village seafood, raw anchovy salad'], address: 'Xã Nhơn Lý', price: [200000, 450000] },
+        ],
+        cafes: [
+            { name: 'Cà phê view biển Xuân Diệu', drink: ['Cà phê, nước ép ngắm biển', 'Coffee and juices facing the beach'], address: 'Đường Xuân Diệu, Quy Nhơn', price: [25000, 60000] },
+            { name: 'Quán nước Eo Gió', drink: ['Nước dừa, sinh tố ở điểm ngắm cảnh', 'Coconut water and smoothies at the viewpoint'], address: 'Eo Gió, Nhơn Lý', price: [20000, 45000] },
+            { name: 'Quán chè – trà sữa Ngô Văn Sở', drink: ['Chè, trà sữa phố ăn vặt', 'Sweet soups and milk tea on the snack street'], address: 'Ngô Văn Sở, Quy Nhơn', price: [15000, 35000] },
         ],
         stays: [
             { area: ['Ven biển Xuân Diệu – An Dương Vương', 'City beachfront'], type: 'hotel', price: [500000, 1500000], note: ['Biển ngay trung tâm, nhiều quán ăn.', 'Beach in the city centre, lots of food.'] },
@@ -292,6 +372,11 @@ const PLACES = {
             { name: 'Bánh canh hẹ Tuy Hòa', dish: ['Bánh canh hẹ chả cá', 'Chive noodle soup with fish cake'], address: 'TP Tuy Hòa', price: [25000, 45000] },
             { name: 'Bánh xèo – bánh căn Phú Yên', dish: ['Bánh xèo nhỏ, bánh căn chấm mắm', 'Mini banh xeo and banh can'], address: 'Chợ Tuy Hòa', price: [30000, 60000] },
         ],
+        cafes: [
+            { name: 'Cà phê view tháp Nhạn', drink: ['Cà phê, trà ngắm sông Đà Rằng', 'Coffee and tea over the Da Rang river'], address: 'Khu tháp Nhạn, TP Tuy Hòa', price: [20000, 45000] },
+            { name: 'Quán nước dừa Gành Đá Đĩa', drink: ['Nước dừa, nước mía cạnh gành đá', 'Coconut water and sugarcane juice by the basalt columns'], address: 'Gành Đá Đĩa, Tuy An', price: [15000, 35000] },
+            { name: 'Cà phê ven biển Tuy Hòa', drink: ['Cà phê sáng nhìn ra biển', 'Morning coffee by the sea'], address: 'Đường Độc Lập, TP Tuy Hòa', price: [20000, 40000] },
+        ],
         stays: [
             { area: ['TP Tuy Hòa ven biển', 'Tuy Hoa beachfront'], type: 'hotel', price: [400000, 1200000], note: ['Gần tháp Nhạn, chợ, quán ăn.', 'Near Nhan tower, the market and eateries.'] },
             { area: ['Gành Đá Đĩa – An Ninh Đông', 'Ganh Da Dia area'], type: 'homestay', price: [250000, 600000], note: ['Ngắm bình minh gành đá sớm.', 'Catch sunrise at the basalt columns.'] },
@@ -309,6 +394,11 @@ const PLACES = {
             { name: 'Phở Hòa Pasteur', dish: ['Phở bò kiểu Nam, nhiều rau', 'Southern-style beef pho with herbs'], address: '260C Pasteur, Quận 3', price: [80000, 110000] },
             { name: 'Bánh xèo 46A Đinh Công Tráng', dish: ['Bánh xèo miền Tây cỡ lớn', 'Giant Mekong-style banh xeo'], address: '46A Đinh Công Tráng, Quận 1', price: [80000, 150000] },
         ],
+        cafes: [
+            { name: 'Cà phê chung cư 42 Nguyễn Huệ', drink: ['Cà phê, trà ngắm phố đi bộ', 'Coffee and tea over the walking street'], address: '42 Nguyễn Huệ, Quận 1', price: [40000, 80000] },
+            { name: 'Cà phê bệt công viên Bến Thành', drink: ['Cà phê sữa đá kiểu Sài Gòn vỉa hè', 'Street-style iced milk coffee'], address: 'Khu công viên quanh Nhà thờ Đức Bà, Quận 1', price: [15000, 30000] },
+            { name: 'The Workshop Coffee', drink: ['Cà phê pha thủ công, cold brew', 'Specialty pour-over and cold brew'], address: '27 Ngô Đức Kế, Quận 1', price: [60000, 100000] },
+        ],
         stays: [
             { area: ['Quận 1 (Bến Thành – Nguyễn Huệ)', 'District 1 (Ben Thanh – Nguyen Hue)'], type: 'hotel', price: [600000, 2500000], note: ['Đi bộ tới chợ Bến Thành, phố đi bộ.', 'Walk to Ben Thanh market and the walking street.'] },
             { area: ['Quận 3', 'District 3'], type: 'homestay', price: [400000, 1200000], note: ['Yên tĩnh hơn, nhiều quán ăn địa phương.', 'Quieter, full of local eateries.'] },
@@ -324,6 +414,11 @@ const PLACES = {
             { name: 'Lẩu mắm Dạ Lý', dish: ['Lẩu mắm miền Tây đủ loại rau', 'Mekong fermented-fish hotpot with many greens'], address: '89 Đường 3/2, Ninh Kiều', price: [150000, 300000] },
             { name: 'Bánh cống Cô Út', dish: ['Bánh cống tôm, bánh xèo', 'Shrimp fritters, banh xeo'], address: 'Ninh Kiều, Cần Thơ', price: [40000, 80000] },
             { name: 'Chợ đêm Ninh Kiều', dish: ['Ăn vặt, trái cây miền Tây ven sông', 'Street snacks and Mekong fruit by the river'], address: 'Bến Ninh Kiều, Cần Thơ', price: [30000, 100000] },
+        ],
+        cafes: [
+            { name: 'Cà phê view bến Ninh Kiều', drink: ['Cà phê sữa đá ngắm sông Hậu', 'Iced milk coffee over the Hau river'], address: 'Bến Ninh Kiều, Cần Thơ', price: [20000, 45000] },
+            { name: 'Quán nước mía – sinh tố chợ đêm', drink: ['Nước mía, sinh tố trái cây miệt vườn', 'Sugarcane juice and orchard-fruit smoothies'], address: 'Chợ đêm Ninh Kiều', price: [15000, 35000] },
+            { name: 'Cà phê vườn Mỹ Khánh', drink: ['Cà phê, nước dừa giữa vườn trái cây', 'Coffee and coconut water in a fruit orchard'], address: 'Xã Mỹ Khánh, Phong Điền', price: [20000, 40000] },
         ],
         stays: [
             { area: ['Bến Ninh Kiều', 'Ninh Kieu riverfront'], type: 'hotel', price: [400000, 1500000], note: ['Gần bến thuyền đi chợ nổi sáng sớm.', 'Near the boats for the dawn floating market.'] },
@@ -341,6 +436,11 @@ const PLACES = {
             { name: 'Làng chài Hàm Ninh', dish: ['Ghẹ Hàm Ninh luộc, nhum nướng', 'Boiled Ham Ninh crab, grilled sea urchin'], address: 'Làng chài Hàm Ninh', price: [200000, 500000] },
             { name: 'Gỏi cá trích Nam Đảo', dish: ['Gỏi cá trích cuốn bánh tráng', 'Raw herring salad rolls'], address: 'An Thới – Nam đảo', price: [120000, 250000] },
         ],
+        cafes: [
+            { name: 'Cà phê hoàng hôn Bãi Trường', drink: ['Cocktail, nước dừa ngắm hoàng hôn', 'Cocktails and coconut water at sunset'], address: 'Bãi Trường, Dương Đông', price: [50000, 150000] },
+            { name: 'Quán nước chợ đêm Phú Quốc', drink: ['Sinh tố, kem cuộn, nước mía', 'Smoothies, rolled ice cream, sugarcane juice'], address: 'Chợ đêm Bạch Đằng, Dương Đông', price: [20000, 50000] },
+            { name: 'Cà phê view biển Bãi Sao', drink: ['Cà phê, nước ép trên bãi cát trắng', 'Coffee and juices on the white sand'], address: 'Bãi Sao, An Thới', price: [40000, 90000] },
+        ],
         stays: [
             { area: ['Dương Đông – Bãi Trường', 'Duong Dong – Long Beach'], type: 'hotel', price: [500000, 2500000], note: ['Gần chợ đêm, hoàng hôn Bãi Trường.', 'Near the night market and Long Beach sunsets.'] },
             { area: ['Bãi Sao – An Thới (Nam đảo)', 'Sao Beach – An Thoi (south)'], type: 'resort', price: [1500000, 5000000], note: ['Gần cáp treo Hòn Thơm, lặn ngắm san hô.', 'Near the Hon Thom cable car and snorkelling.'] },
@@ -356,6 +456,11 @@ const PLACES = {
             { name: 'Lẩu cá đuối Hoàng Hoa Thám', dish: ['Lẩu cá đuối chua cay', 'Sour-spicy stingray hotpot'], address: 'Đường Hoàng Hoa Thám, Vũng Tàu', price: [150000, 300000] },
             { name: 'Hải sản Gành Hào', dish: ['Hải sản view biển Bãi Dâu', 'Seafood with sea views at Bai Dau'], address: '3 Trần Phú, Vũng Tàu', price: [300000, 600000] },
             { name: 'Bánh bông lan trứng muối Vũng Tàu', dish: ['Quà mang về đặc trưng', 'The classic salted-egg sponge cake to take home'], address: 'Đường Thùy Vân, Vũng Tàu', price: [80000, 150000] },
+        ],
+        cafes: [
+            { name: 'Cà phê view biển Bãi Trước', drink: ['Cà phê, sinh tố ngắm tàu thuyền', 'Coffee and smoothies watching the boats'], address: 'Đường Quang Trung, Bãi Trước', price: [25000, 60000] },
+            { name: 'Cà phê Hải Đăng', drink: ['Cà phê trên đồi ngọn hải đăng', 'Coffee on the lighthouse hill'], address: 'Đồi Hải Đăng, Vũng Tàu', price: [30000, 70000] },
+            { name: 'Quán nước dừa Bãi Sau', drink: ['Nước dừa, nước mía sau khi tắm biển', 'Coconut water and sugarcane juice after a swim'], address: 'Đường Thùy Vân, Bãi Sau', price: [15000, 35000] },
         ],
         stays: [
             { area: ['Bãi Sau (Thùy Vân)', 'Back Beach (Thuy Van)'], type: 'hotel', price: [500000, 1800000], note: ['Biển tắm đẹp nhất, nhiều quán hải sản.', 'The best swimming beach with seafood spots.'] },
@@ -373,6 +478,11 @@ const PLACES = {
             { name: 'Dãy mắm chợ Châu Đốc', dish: ['Mắm thái, mắm cá linh mang về', 'Pickled fish pastes to take home'], address: 'Chợ Châu Đốc', price: [50000, 200000] },
             { name: 'Bò bảy món Núi Sam', dish: ['Bò nướng lá lốt, bò bảy món', 'Beef seven ways, betel-leaf beef'], address: 'Chân Núi Sam', price: [150000, 300000] },
         ],
+        cafes: [
+            { name: 'Cà phê ven sông Hậu', drink: ['Cà phê sữa đá nhìn làng bè', 'Iced milk coffee over the floating village'], address: 'Đường Lê Lợi, Châu Đốc', price: [15000, 35000] },
+            { name: 'Quán nước thốt nốt Núi Sam', drink: ['Nước thốt nốt, bánh bò thốt nốt', 'Palm-sugar juice and palm-sugar cakes'], address: 'Chân Núi Sam', price: [10000, 30000] },
+            { name: 'Cà phê đỉnh Núi Sam', drink: ['Cà phê ngắm cánh đồng biên giới', 'Coffee over the border rice plains'], address: 'Đỉnh Núi Sam', price: [20000, 45000] },
+        ],
         stays: [
             { area: ['Trung tâm – ven sông Hậu', 'Centre – Hau riverside'], type: 'hotel', price: [350000, 1000000], note: ['Gần chợ, bến thuyền làng bè.', 'Near the market and floating-village boats.'] },
             { area: ['Chân Núi Sam', 'Foot of Sam Mountain'], type: 'hotel', price: [400000, 1500000], note: ['Gần miếu Bà Chúa Xứ, ngắm hoàng hôn.', 'Near Ba Chua Xu temple, sunset views.'] },
@@ -388,6 +498,11 @@ const PLACES = {
             { name: 'Quán Thu Ba', dish: ['Hải sản, cá mú hấp, mực một nắng', 'Seafood, steamed grouper, sun-dried squid'], address: 'Đường Võ Văn Kiệt, Côn Sơn', price: [200000, 450000] },
             { name: 'Bánh canh chả cá Côn Đảo', dish: ['Bánh canh chả cá bữa sáng', 'Fish-cake noodle soup for breakfast'], address: 'Chợ Côn Đảo', price: [30000, 50000] },
             { name: 'Hạt bàng Côn Đảo', dish: ['Kẹo hạt bàng – quà đặc sản', 'Tropical almond candy – a local gift'], address: 'Chợ Côn Đảo', price: [100000, 250000] },
+        ],
+        cafes: [
+            { name: 'Cà phê bờ kè Côn Sơn', drink: ['Cà phê, nước dừa ngắm vịnh', 'Coffee and coconut water over the bay'], address: 'Đường Tôn Đức Thắng, Côn Sơn', price: [30000, 60000] },
+            { name: 'Quán nước bãi An Hải', drink: ['Nước dừa, sinh tố trên bãi', 'Coconut water and smoothies on the beach'], address: 'Bãi An Hải, Côn Sơn', price: [25000, 50000] },
+            { name: 'Quán chè chợ đêm Côn Đảo', drink: ['Chè, sữa đậu nành', 'Sweet soups and soy milk'], address: 'Chợ đêm Côn Đảo', price: [15000, 30000] },
         ],
         stays: [
             { area: ['Thị trấn Côn Sơn', 'Con Son town'], type: 'hotel', price: [500000, 1500000], note: ['Gần chợ, di tích nhà tù, nghĩa trang Hàng Dương.', 'Near the market, prisons and Hang Duong cemetery.'] },
@@ -405,6 +520,11 @@ const PLACES = {
             { name: 'Lẩu cá hồi Mộc Châu', dish: ['Lẩu cá hồi, cá tầm nuôi suối lạnh', 'Salmon and sturgeon hotpot'], address: 'Tiểu khu 19/5, thị trấn Mộc Châu', price: [200000, 400000] },
             { name: 'Chợ Mộc Châu', dish: ['Xôi nếp nương, thịt trâu gác bếp, mận', 'Upland sticky rice, smoked buffalo, plums'], address: 'Chợ trung tâm thị trấn Mộc Châu', price: [30000, 100000] },
         ],
+        cafes: [
+            { name: 'Cà phê view đồi chè', drink: ['Cà phê, trà shan tuyết giữa đồi chè', 'Coffee and shan tuyet tea on the tea hill'], address: 'Đồi chè trái tim, Mộc Châu', price: [25000, 60000] },
+            { name: 'Quán sữa chua – sữa tươi nông trường', drink: ['Sữa chua, sữa tươi, trà sữa bò', 'Yogurt, fresh milk and dairy milk tea'], address: 'QL6, thị trấn Nông Trường', price: [15000, 40000] },
+            { name: 'Cà phê rừng thông bản Áng', drink: ['Cà phê, nước ép ven hồ thông', 'Coffee and juices by the pine lake'], address: 'Bản Áng, Đông Sang', price: [25000, 50000] },
+        ],
         stays: [
             { area: ['Thị trấn Nông Trường', 'Nong Truong town'], type: 'hotel', price: [400000, 1000000], note: ['Gần đồi chè, quán bê chao, tiện di chuyển.', 'Near the tea hills and veal restaurants, easy to get around.'] },
             { area: ['Bản Áng – Đông Sang', 'Ang village – Dong Sang'], type: 'homestay', price: [250000, 700000], note: ['Nhà sàn người Thái cạnh rừng thông.', 'Thai stilt houses by the pine forest.'] },
@@ -420,6 +540,11 @@ const PLACES = {
             { name: 'Quán ăn Phố Đoàn', dish: ['Cá suối nướng, măng đắng xào', 'Grilled stream fish, bitter bamboo shoots'], address: 'Phố Đoàn, xã Lũng Niêm, Bá Thước', price: [80000, 180000] },
             { name: 'Chợ phiên Phố Đoàn (thứ Bảy)', dish: ['Xôi, bánh chưng đen, rượu cần', 'Sticky rice, black banh chung, rice wine'], address: 'Chợ Phố Đoàn, Bá Thước', price: [20000, 80000] },
             { name: 'Nhà hàng vịt Cổ Lũng thị trấn Cành Nàng', dish: ['Vịt Cổ Lũng luộc, nướng mắc khén', 'Co Lung duck boiled or grilled with mac khen'], address: 'Thị trấn Cành Nàng, Bá Thước', price: [150000, 300000] },
+        ],
+        cafes: [
+            { name: 'Quán nước bên guồng nước bản Hiêu', drink: ['Trà nóng, nước lá rừng', 'Hot tea and forest-leaf drinks'], address: 'Bản Hiêu, Cổ Lũng', price: [10000, 30000] },
+            { name: 'Cà phê view ruộng bậc thang bản Đôn', drink: ['Cà phê, sinh tố từ homestay', 'Coffee and smoothies from a homestay deck'], address: 'Bản Đôn, Thành Lâm', price: [25000, 50000] },
+            { name: 'Quán nước chợ Phố Đoàn', drink: ['Nước mía, chè, trà đá', 'Sugarcane juice, sweet soup, iced tea'], address: 'Phố Đoàn, Lũng Niêm', price: [10000, 25000] },
         ],
         stays: [
             { area: ['Bản Đôn – bản Hiêu', 'Don – Hieu villages'], type: 'homestay', price: [250000, 700000], note: ['Nhà sàn giữa ruộng bậc thang, gần guồng nước.', 'Stilt houses among terraces, near the water wheels.'] },
@@ -438,6 +563,11 @@ const PLACES = {
             { name: 'Quán ốc Đảo Bé', dish: ['Ốc, rong biển, cá nướng trên Đảo Bé', 'Snails, seaweed and grilled fish on Little Island'], address: 'Đảo Bé (xã An Bình)', price: [100000, 250000] },
             { name: 'Chè rong biển Lý Sơn', dish: ['Chè rong biển mát lạnh', 'Chilled seaweed sweet soup'], address: 'Xã An Hải, Lý Sơn', price: [15000, 30000] },
         ],
+        cafes: [
+            { name: 'Cà phê view biển An Vĩnh', drink: ['Cà phê, nước dừa nhìn ra cảng', 'Coffee and coconut water facing the port'], address: 'Bờ kè An Vĩnh, Lý Sơn', price: [20000, 45000] },
+            { name: 'Quán nước cổng Tò Vò', drink: ['Nước dừa, nước mía chờ hoàng hôn', 'Coconut water and sugarcane juice at sunset'], address: 'Cổng Tò Vò, An Hải', price: [15000, 35000] },
+            { name: 'Quán chè rong biển Lý Sơn', drink: ['Chè rong biển, nước sâm', 'Seaweed sweet soup, herbal drinks'], address: 'Xã An Hải, Lý Sơn', price: [15000, 30000] },
+        ],
         stays: [
             { area: ['Xã An Vĩnh (gần cảng)', 'An Vinh (near the port)'], type: 'hotel', price: [400000, 1000000], note: ['Gần cảng tàu, chợ đêm, chùa Hang.', 'Near the port, night market and Hang pagoda.'] },
             { area: ['Xã An Hải', 'An Hai'], type: 'homestay', price: [300000, 700000], note: ['Yên tĩnh, gần cánh đồng tỏi và hang Câu.', 'Quiet, near the garlic fields and Hang Cau.'] },
@@ -454,6 +584,11 @@ const PLACES = {
             { name: 'Gà nướng cơm lam Ban Mê', dish: ['Gà nướng, cơm lam, muối lá é', 'Grilled chicken, bamboo rice, e-leaf salt'], address: 'Đường Y Wang, TP Buôn Ma Thuột', price: [150000, 300000] },
             { name: 'Chợ Buôn Ma Thuột', dish: ['Bánh căn, bơ, cà phê, tiêu mang về', 'Banh can, avocados, coffee and pepper to take home'], address: 'Chợ trung tâm Buôn Ma Thuột', price: [20000, 200000] },
         ],
+        cafes: [
+            { name: 'Cà phê Ban Mê phin nhôm', drink: ['Cà phê phin robusta đậm đặc', 'Strong robusta drip coffee'], address: 'Đường Lê Duẩn, TP Buôn Ma Thuột', price: [20000, 40000] },
+            { name: 'Cà phê muối Ban Mê', drink: ['Cà phê muối, cacao Đắk Lắk', 'Salted coffee and Dak Lak cocoa'], address: 'Trung tâm TP Buôn Ma Thuột', price: [20000, 40000] },
+            { name: 'Quán nước bơ – sinh tố chợ', drink: ['Sinh tố bơ, nước ép chanh dây', 'Avocado smoothies and passion-fruit juice'], address: 'Chợ Buôn Ma Thuột', price: [15000, 35000] },
+        ],
         stays: [
             { area: ['Trung tâm (Ngã 6 Ban Mê)', 'City centre (Ban Me six-way junction)'], type: 'hotel', price: [400000, 1200000], note: ['Gần quảng trường, quán cà phê, chợ.', 'Near the square, cafés and market.'] },
             { area: ['Buôn Kô Siêr – buôn Akô Dhông', 'Ko Sier – Ako Dhong villages'], type: 'homestay', price: [300000, 700000], note: ['Nhà dài Ê Đê ngay trong thành phố.', 'Ede longhouses right inside the city.'] },
@@ -469,6 +604,11 @@ const PLACES = {
             { name: 'Quán bánh canh ghẹ chợ Hà Tiên', dish: ['Bánh canh ghẹ, bún kèn', 'Crab noodle soup, bún kèn'], address: 'Chợ Hà Tiên', price: [40000, 80000] },
             { name: 'Nhà hàng hải sản Mũi Nai', dish: ['Ghẹ hấp, mực nướng, ốc len xào dừa', 'Steamed crab, grilled squid, coconut snails'], address: 'Bãi Mũi Nai, Hà Tiên', price: [200000, 450000] },
             { name: 'Cà phê ven đầm Đông Hồ', dish: ['Cà phê, nước dừa ngắm hoàng hôn', 'Coffee and coconut water at sunset'], address: 'Đường Trần Hầu, Hà Tiên', price: [25000, 60000] },
+        ],
+        cafes: [
+            { name: 'Cà phê ven đầm Đông Hồ', drink: ['Cà phê, nước dừa ngắm hoàng hôn', 'Coffee and coconut water at sunset'], address: 'Đường Trần Hầu, Hà Tiên', price: [20000, 45000] },
+            { name: 'Quán nước thốt nốt Mũi Nai', drink: ['Nước thốt nốt, nước dừa trên bãi', 'Palm-sugar juice and coconut water on the beach'], address: 'Bãi Mũi Nai, Hà Tiên', price: [15000, 35000] },
+            { name: 'Quán chè chợ đêm Hà Tiên', drink: ['Chè, xôi xiêm, sữa đậu nành', 'Sweet soups, xôi xiêm, soy milk'], address: 'Chợ đêm Hà Tiên', price: [10000, 30000] },
         ],
         stays: [
             { area: ['Trung tâm – ven đầm Đông Hồ', 'Centre – Dong Ho lagoon'], type: 'hotel', price: [350000, 1000000], note: ['Gần chợ đêm, bến tàu đi Phú Quốc.', 'Near the night market and Phu Quoc ferry pier.'] },
