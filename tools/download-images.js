@@ -90,6 +90,12 @@ async function main() {
         }
     })
 
+    /* Xóa ảnh không còn được dùng (điểm đến/ảnh đã bị bỏ khỏi dữ liệu) */
+    const keep = new Set(Object.values(manifest).flatMap(e => Object.values(e).map(p => path.basename(p))))
+    const removed = fs.readdirSync(path.join(ROOT, OUT_DIR)).filter(f => !keep.has(f))
+    removed.forEach(f => fs.unlinkSync(path.join(ROOT, OUT_DIR, f)))
+    if (removed.length) console.log(`\nĐã xóa ${removed.length} file ảnh không còn dùng.`)
+
     const sorted = Object.fromEntries(Object.keys(manifest).sort().map(k => [k, manifest[k]]))
     fs.writeFileSync(path.join(ROOT, MANIFEST),
         '/* File này được sinh tự động bởi `npm run images` (tools/download-images.js). Không sửa tay. */\n' +

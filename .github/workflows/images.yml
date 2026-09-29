@@ -36,6 +36,10 @@ jobs:
         run: npm run check-images
         continue-on-error: true
 
+      # Build trước để danh sách ảnh trong index.html khớp dữ liệu mới nhất
+      - name: Build trước khi tải ảnh
+        run: npm run build
+
       - name: Tải ảnh về repo
         run: npm run images
 

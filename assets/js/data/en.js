@@ -301,7 +301,7 @@ const TRANSLATION_EN = {
             bestTime: 'May – June (golden rice)',
             duration: '1 – 2 days',
             gallery: [
-                { caption: 'Rowing boats in Trang An' },
+                { caption: 'Trang An\'s green mountains' },
                 { caption: 'A river between karst peaks' },
                 { caption: 'Trang An limestone peaks' },
                 { caption: 'Tam Coc – Bich Dong' },
@@ -385,7 +385,6 @@ const TRANSLATION_EN = {
                 { caption: 'Lan Ha Bay' },
                 { caption: 'A floating fishing village' },
                 { caption: 'A Cat Ba beach' },
-                { caption: 'Cat Ba town' },
             ],
             foods: [
                 { name: 'Cat Ba seafood', desc: 'Geoduck, mantis shrimp and sweet snails cooked fresh on floating rafts.', price: 'Market price' },
@@ -465,11 +464,11 @@ const TRANSLATION_EN = {
             bestTime: 'March – August',
             duration: '2 – 3 days',
             gallery: [
-                { caption: 'Paradise Cave' },
                 { caption: 'Phong Nha Cave' },
                 { caption: 'Magical stalactites' },
                 { caption: 'En Cave' },
                 { caption: 'Son Doong – the world\'s largest cave' },
+                { caption: 'Inside Son Doong cave' },
             ],
             foods: [
                 { name: 'Quang Binh bánh bột lọc', desc: 'Translucent dumplings with braised river shrimp, dipped in chilli fish sauce.', price: '30,000 VND' },
@@ -578,11 +577,10 @@ const TRANSLATION_EN = {
             bestTime: 'November – March (flower season)',
             duration: '3 days',
             gallery: [
-                { caption: 'Da Lat panorama' },
                 { caption: 'Xuan Huong Lake' },
                 { caption: 'Xuan Huong Lake at night' },
                 { caption: 'Da Lat railway station' },
-                { caption: 'A city among pine forests' },
+                { caption: 'Xuan Huong Lake in the morning' },
             ],
             foods: [
                 { name: 'Grilled rice paper', desc: '"Vietnamese pizza" – rice paper grilled over charcoal with egg, spring onion and sausage.', price: '20,000 VND' },
@@ -607,7 +605,6 @@ const TRANSLATION_EN = {
             bestTime: 'November – April',
             duration: '2 days',
             gallery: [
-                { caption: 'Endless sand dunes' },
                 { caption: 'Mui Ne sand dunes' },
                 { caption: 'Mui Ne fishing village' },
             ],
@@ -634,7 +631,7 @@ const TRANSLATION_EN = {
             duration: '2 – 3 days',
             gallery: [
                 { caption: 'Quy Nhon city' },
-                { caption: 'Quy Nhon in the morning' },
+                { caption: 'A Binh Dinh countryside road' },
                 { caption: 'The Twin Towers' },
                 { caption: 'Xuan Dieu seafront road' },
             ],
@@ -661,9 +658,9 @@ const TRANSLATION_EN = {
             duration: '2 days',
             gallery: [
                 { caption: 'Hexagonal basalt columns' },
-                { caption: 'Ganh Da Dia' },
                 { caption: 'Xuan Dai Bay' },
                 { caption: 'Nhan Tower' },
+                { caption: 'Ganh Da Dia from above' },
             ],
             foods: [
                 { name: 'Tuna eyes', desc: 'Ocean tuna eyes stewed with herbal medicine – Tuy Hoa\'s famous delicacy.', price: '60,000 VND' },
@@ -696,7 +693,7 @@ const TRANSLATION_EN = {
                 { caption: 'Bustling Ben Thanh' },
             ],
             foods: [
-                { name: 'Cơm tấm (broken rice)', desc: 'Honey-grilled pork chop, shredded pork skin and egg meatloaf on fragrant broken rice.', price: '45,000 VND' },
+                { name: 'Cơm tấm (broken rice)', desc: 'Honey-grilled pork chop, shredded pork skin and egg meatloaf on fragrant broken rice.', price: '45,000 VND', illustrative: 'A Saigon broken-rice eatery' },
                 { name: 'Saigon bánh mì', desc: 'A baguette packed with pâté, pork roll, cold cuts and pickles.', price: '25,000 VND' },
                 { name: 'Fresh spring rolls (gỏi cuốn)', desc: 'Shrimp, pork, noodles and herbs in rice paper, dipped in peanut-hoisin sauce.', price: '10,000 VND/roll' },
                 { name: 'Hủ tiếu', desc: 'Chewy rice noodles in a sweet pork-bone broth with shrimp, liver and minced pork.', price: '45,000 VND' },
@@ -746,9 +743,8 @@ const TRANSLATION_EN = {
             duration: '3 – 4 days',
             gallery: [
                 { caption: 'An unspoilt beach' },
-                { caption: 'Phu Quoc sunset' },
                 { caption: 'Rach Vem – starfish beach' },
-                { caption: 'White sand at Sao Beach' },
+                { caption: 'Crystal-clear water' },
             ],
             foods: [
                 { name: 'Herring salad (gỏi cá trích)', desc: 'Fresh herring with grated coconut and onion, wrapped in rice paper with wild herbs.', price: '120,000 VND', illustrative: 'Ham Ninh seafood market' },
@@ -774,7 +770,7 @@ const TRANSLATION_EN = {
             gallery: [
                 { caption: 'Christ the King statue' },
                 { caption: 'Hon Ba shrine' },
-                { caption: 'Vung Tau panorama' },
+                { caption: 'Back Beach near Hon Ba' },
                 { caption: 'The sea from the White Palace' },
             ],
             foods: [
@@ -826,7 +822,6 @@ const TRANSLATION_EN = {
             duration: '2 – 3 days',
             gallery: [
                 { caption: 'Con Dao National Park' },
-                { caption: 'Con Dao prison relic' },
                 { caption: 'The "tiger cages"' },
             ],
             foods: [
