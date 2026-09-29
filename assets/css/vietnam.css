@@ -1352,12 +1352,22 @@ body.dark-theme .nearby-item__distance {
   row-gap: .25rem;
   padding: 1.25rem 1.5rem;
   border-radius: var(--radius);
+  border: 2px solid transparent;
   background-color: var(--input-color);
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.budget__option:hover {
+  border-color: var(--first-color);
 }
 
 .budget__option span {
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
+  color: var(--title-color);
 }
 
 .budget__option strong {
@@ -1371,14 +1381,117 @@ body.dark-theme .nearby-item__distance {
   color: var(--text-color-light);
 }
 
-.budget__option--comfort {
+.budget__more {
+  display: inline-flex;
+  align-items: center;
+  gap: .15rem;
+  margin-top: .35rem;
+  font-style: normal;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+/* Mức đang chọn */
+.budget__option--active {
   background: linear-gradient(135deg, var(--first-color), hsl(160, 50%, 30%));
 }
 
-.budget__option--comfort span,
-.budget__option--comfort strong,
-.budget__option--comfort small {
+.budget__option--active span,
+.budget__option--active strong,
+.budget__option--active small,
+.budget__option--active .budget__more {
   color: var(--white-color);
+}
+
+.budget__option--active .budget__more i {
+  transform: rotate(180deg);
+}
+
+.budget__detail {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+}
+
+.budget__detail-title {
+  margin-bottom: .5rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+/* Bảng chi tiết chi phí */
+.cost-list {
+  display: grid;
+  list-style: none;
+  padding: 0;
+}
+
+.cost-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem 0;
+  border-bottom: 1px dashed var(--input-color);
+}
+
+.cost-item:last-child {
+  border-bottom: none;
+}
+
+.cost-item__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--input-color);
+  color: var(--first-color);
+}
+
+body.dark-theme .cost-item__icon,
+body.dark-theme .budget__more {
+  color: var(--accent-color);
+}
+
+.cost-item__text,
+.cost-item__amount {
+  display: grid;
+  gap: .1rem;
+}
+
+.cost-item__text strong,
+.cost-item__amount strong {
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+}
+
+.cost-item__text small,
+.cost-item__amount small {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.cost-item__amount {
+  text-align: right;
+}
+
+.cost-details {
+  margin-top: .75rem;
+}
+
+.cost-details summary {
+  cursor: pointer;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .cost-details summary {
+  color: var(--accent-color);
 }
 
 .budget__note {
@@ -2773,7 +2886,7 @@ body.dark-theme .planner__stat i {
   }
 
   .budget__option,
-  .budget__option--comfort,
+  .budget__option--active,
   .planner__cost {
     background: none !important;
     color: var(--title-color) !important;
@@ -3238,7 +3351,8 @@ body.dark-theme .booking__icon {
 }
 
 @media print {
-  .book-links {
+  .book-links,
+  .budget__more {
     display: none !important;
   }
 

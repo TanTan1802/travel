@@ -30,7 +30,7 @@ test('mã điểm đến không trùng và đủ trường bắt buộc', () => 
     }
 })
 
-test('lịch trình: mỗi điểm đến có 5 ngày và chi phí cho tour 3/4/5 ngày', () => {
+test('lịch trình: mỗi điểm đến có 5 ngày và phí tham quan cho 2 mức chi tiêu', () => {
     for (const d of DESTINATIONS) {
         const plan = ITINERARIES[d.id]
         assert.ok(plan, `${d.id} chưa có lịch trình`)
@@ -38,12 +38,25 @@ test('lịch trình: mỗi điểm đến có 5 ngày và chi phí cho tour 3/4/
         plan.days.forEach((day, i) => {
             for (const key of ['title', 'morning', 'afternoon', 'evening']) assert.ok(day[key], `${d.id} ngày ${i + 1} thiếu ${key}`)
         })
-        for (const tier of ['saving', 'comfort']) {
-            const b = plan.budget[tier]
-            assert.equal(b.length, 3, `${d.id}: budget.${tier} cần 3 mức`)
-            assert.ok(b[0] < b[1] && b[1] < b[2], `${d.id}: budget.${tier} phải tăng dần theo số ngày`)
-        }
-        plan.budget.saving.forEach((v, i) => assert.ok(v < plan.budget.comfort[i], `${d.id}: mức tiết kiệm phải rẻ hơn thoải mái`))
+        assert.ok(Array.isArray(plan.fees) && plan.fees.length === 2, `${d.id}: fees cần [tiết kiệm, thoải mái]`)
+        assert.ok(plan.fees[0] > 0 && plan.fees[0] <= plan.fees[1], `${d.id}: phí tiết kiệm phải > 0 và ≤ thoải mái`)
+    }
+})
+
+test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộng đúng các khoản', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+            'assets/js/data/places.js', 'assets/js/components.js'],
+        ['DESTINATIONS', 'tripCost'],
+    )
+    for (const d of app.DESTINATIONS) {
+        const [s3, s4, s5] = [3, 4, 5].map(n => app.tripCost(d.id, n, 'saving'))
+        const c3 = app.tripCost(d.id, 3, 'comfort')
+        assert.ok(s3.total < s4.total && s4.total < s5.total, `${d.id}: chi phí phải tăng theo số ngày`)
+        const ratio = c3.total / s3.total
+        assert.ok(ratio >= 1.3 && ratio <= 2.3, `${d.id}: mức thoải mái gấp ${ratio.toFixed(2)} lần tiết kiệm (nên 1,3–2,3)`)
+        assert.equal(s3.items.reduce((sum, i) => sum + i.amount, 0), s3.total, `${d.id}: tổng phải bằng tổng các khoản`)
+        assert.deepEqual([...s3.items.map(i => i.key)], ['stay', 'food', 'transport', 'fees'])
     }
 })
 

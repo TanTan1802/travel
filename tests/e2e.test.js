@@ -88,6 +88,14 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.ok(await page.$$eval('.eat', a => a.length) >= 3, 'cần danh sách quán nên ghé')
     assert.equal(await page.$$eval('#stay .stay-card', a => a.length), 3, 'cần 3 gợi ý khu lưu trú')
     assert.match(await page.getAttribute('#stay .book-link', 'href'), /booking\.com.*Hoi\+An/)
+
+    /* Chi phí: mặc định hiện chi tiết mức tiết kiệm, bấm để xem mức thoải mái */
+    const budget = '.tour:not([hidden]) .budget'
+    assert.ok(await page.isVisible(`${budget} [data-budget-detail="saving"]`), 'phải xem được chi tiết mức tiết kiệm')
+    assert.equal(await page.$$eval(`${budget} [data-budget-detail="saving"] .cost-item`, a => a.length), 4)
+    await page.click(`${budget} [data-budget-tier="comfort"]`)
+    assert.ok(await page.isVisible(`${budget} [data-budget-detail="comfort"]`))
+    assert.ok(await page.isHidden(`${budget} [data-budget-detail="saving"]`))
     assert.equal(await visiblePanels(), '100')
 
     await page.click('.tour-picker__btn[data-tour="5"]')
@@ -158,6 +166,8 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     assert.ok(await page.$$eval('.plan-day__meals', a => a.length) >= 8, 'mỗi ngày phải có gợi ý quán ăn')
     const bookingUrl = await page.getAttribute('.booking a[href*="booking.com"]', 'href')
     assert.match(bookingUrl, /checkin=2026-11-10&checkout=2026-11-12/)
+    await page.click('.cost-details summary')
+    assert.ok(await page.$$eval('.cost-details .cost-item', a => a.length) >= 5, 'chi tiết chi phí phải có các khoản + di chuyển giữa các điểm')
     await page.check('[data-booking="stay:sa-pa"]')
     assert.match(await page.textContent('.bookings__progress'), /Đã đặt 1\//)
 

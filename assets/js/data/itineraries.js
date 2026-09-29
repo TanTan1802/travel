@@ -5,8 +5,8 @@
  *   - Tour 4 ngày 3 đêm = ngày 1 → 4
  *   - Tour 5 ngày 4 đêm = ngày 1 → 5
  * Ngày cuối của mỗi tour tự động có ghi chú trả phòng / di chuyển về.
- * budget: chi phí ước tính cho 1 người (VND) theo thứ tự [3 ngày, 4 ngày, 5 ngày],
- * chưa gồm vé máy bay/tàu xe tới điểm đến.
+ * fees: vé tham quan & trải nghiệm trung bình mỗi ngày cho 1 người (VND) [tiết kiệm, thoải mái].
+ *   Các khoản còn lại (lưu trú, ăn uống, đi lại) tính từ dữ liệu places.js – xem tripCost() trong components.js.
  */
 const TOUR_LENGTHS = [3, 4, 5]
 
@@ -19,7 +19,7 @@ const ITINERARIES = {
             { title: 'Vịnh Lan Hạ – Cát Bà', morning: 'Đi tàu sang đảo Cát Bà, chèo kayak vịnh Lan Hạ.', afternoon: 'Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.', evening: 'Ngủ thị trấn Cát Bà, ăn hải sản bè nổi.' },
             { title: 'Yên Tử linh thiêng', morning: 'Về Uông Bí, đi cáp treo lên chùa Đồng – đỉnh Yên Tử.', afternoon: 'Thăm Thiền viện Trúc Lâm Yên Tử, làng Nủ.', evening: 'Thưởng thức bánh gio, măng mai Yên Tử.' },
         ],
-        budget: { saving: [2400000, 3200000, 4000000], comfort: [6000000, 8000000, 10000000] },
+        fees: [280000, 390000],
     },
     'sa-pa': {
         days: [
@@ -29,7 +29,7 @@ const ITINERARIES = {
             { title: 'Bản Tả Phìn', morning: 'Thăm bản Tả Phìn của người Dao đỏ, hang Tả Phìn.', afternoon: 'Tìm hiểu nghề thêu thổ cẩm, tắm lá thuốc.', evening: 'Về thị trấn, cà phê ngắm Sa Pa lên đèn.' },
             { title: 'Chợ phiên Bắc Hà', morning: 'Đi chợ phiên Bắc Hà (sáng Chủ nhật) – chợ vùng cao sặc sỡ nhất Tây Bắc.', afternoon: 'Thăm dinh Hoàng A Tưởng, vườn mận Bắc Hà.', evening: 'Thử thắng cố, rượu ngô Bản Phố.' },
         ],
-        budget: { saving: [2000000, 2700000, 3400000], comfort: [5000000, 6700000, 8400000] },
+        fees: [250000, 350000],
     },
     'ha-noi': {
         days: [
@@ -39,7 +39,7 @@ const ITINERARIES = {
             { title: 'Chùa Hương', morning: 'Đi thuyền suối Yến giữa núi non, tới chùa Thiên Trù.', afternoon: 'Đi cáp treo lên động Hương Tích – "Nam thiên đệ nhất động".', evening: 'Về Hà Nội, ăn bún chả Hàng Mành.' },
             { title: 'Đường Lâm – Ba Vì', morning: 'Làng cổ Đường Lâm với cổng làng, nhà đá ong trăm năm.', afternoon: 'Vườn quốc gia Ba Vì, đền Thượng, rừng thông.', evening: 'Thưởng thức gà đồi, sữa chua Ba Vì.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [5200000, 7000000, 8700000] },
+        fees: [230000, 320000],
     },
     'ninh-binh': {
         days: [
@@ -49,7 +49,7 @@ const ITINERARIES = {
             { title: 'Nhà thờ Phát Diệm', morning: 'Nhà thờ đá Phát Diệm – kiến trúc Á Đông độc đáo.', afternoon: 'Tắm biển Kim Sơn hoặc thăm làng cói Kim Sơn.', evening: 'Về Tam Cốc, dạo phố đêm Tam Cốc.' },
             { title: 'Rừng Cúc Phương', morning: 'Vườn quốc gia Cúc Phương – trung tâm cứu hộ linh trưởng, cây chò nghìn năm.', afternoon: 'Động Người Xưa, hang Con Moong.', evening: 'Thưởng thức gỏi cá nhệch, cơm cháy chà bông.' },
         ],
-        budget: { saving: [2000000, 2700000, 3300000], comfort: [4800000, 6400000, 8000000] },
+        fees: [270000, 380000],
     },
     'ha-giang': {
         days: [
@@ -59,7 +59,7 @@ const ITINERARIES = {
             { title: 'Mèo Vạc – Du Già', morning: 'Đi cung Mèo Vạc – Du Già qua những con dốc hùng vĩ.', afternoon: 'Tắm suối Du Già, ăn trưa homestay.', evening: 'Ngủ homestay Du Già, đốt lửa trại cùng người Tày.' },
             { title: 'Hoàng Su Phì', morning: 'Sang Hoàng Su Phì ngắm ruộng bậc thang di sản quốc gia.', afternoon: 'Thăm bản Nậm Hồng, đồi chè shan tuyết cổ thụ.', evening: 'Về thành phố Hà Giang, ăn bánh cuốn trứng.' },
         ],
-        budget: { saving: [2400000, 3000000, 3700000], comfort: [5000000, 6500000, 8000000] },
+        fees: [500000, 700000],
     },
     'ban-gioc': {
         days: [
@@ -69,7 +69,7 @@ const ITINERARIES = {
             { title: 'Núi Mắt Thần – Bảo Lạc', morning: 'Núi Mắt Thần (núi thủng) ở Quảng Uyên.', afternoon: 'Vượt đèo Mã Phục, sang Bảo Lạc với sông Gâm uốn lượn.', evening: 'Nghỉ Bảo Lạc, thưởng thức bánh áp chao.' },
             { title: 'Hồ Ba Bể', morning: 'Di chuyển sang Bắc Kạn, đi thuyền hồ Ba Bể.', afternoon: 'Động Puông, ao Tiên, đảo Bà Góa.', evening: 'Ngủ homestay bản Pác Ngòi, ăn cá nướng hồ Ba Bể.' },
         ],
-        budget: { saving: [2200000, 2900000, 3600000], comfort: [4800000, 6400000, 8000000] },
+        fees: [420000, 590000],
     },
     'cat-ba': {
         days: [
@@ -79,7 +79,7 @@ const ITINERARIES = {
             { title: 'Đảo Khỉ – Việt Hải', morning: 'Đi cano ra đảo Khỉ, tắm biển cát trắng.', afternoon: 'Đạp xe vào làng Việt Hải giữa lòng vườn quốc gia.', evening: 'BBQ hải sản bên biển.' },
             { title: 'Hải Phòng thành phố hoa phượng', morning: 'Về Hải Phòng, Nhà hát Lớn, phố cổ Tam Bạc.', afternoon: 'Tháp Tường Long, bãi biển Đồ Sơn.', evening: 'Food tour Hải Phòng: bánh mì que, nem cua bể, bánh đa cua.' },
         ],
-        budget: { saving: [2000000, 2700000, 3400000], comfort: [5000000, 6700000, 8400000] },
+        fees: [210000, 290000],
     },
     'mu-cang-chai': {
         days: [
@@ -89,7 +89,7 @@ const ITINERARIES = {
             { title: 'Thác Mơ – Púng Luông', morning: 'Thác Mơ và rừng pơ mu Púng Luông.', afternoon: 'Tắm suối, ăn trưa picnic giữa ruộng bậc thang.', evening: 'Về Tú Lệ, ngủ nhà sàn.' },
             { title: 'Mường Lò – Nghĩa Lộ', morning: 'Cánh đồng Mường Lò – vựa lúa thứ hai Tây Bắc.', afternoon: 'Xem múa xòe Thái, mua cốm Tú Lệ làm quà.', evening: 'Lên xe về Hà Nội.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [4000000, 5300000, 6600000] },
+        fees: [270000, 380000],
     },
     'hue': {
         days: [
@@ -99,7 +99,7 @@ const ITINERARIES = {
             { title: 'Bạch Mã – Lăng Cô', morning: 'Vườn quốc gia Bạch Mã, thác Đỗ Quyên.', afternoon: 'Vịnh Lăng Cô – một trong những vịnh đẹp nhất thế giới.', evening: 'Ăn hải sản đầm Lập An.' },
             { title: 'Vượt Hải Vân sang Đà Nẵng', morning: 'Chạy xe đèo Hải Vân, ghé Hải Vân Quan.', afternoon: 'Tắm biển Mỹ Khê, chùa Linh Ứng Sơn Trà.', evening: 'Ngắm Cầu Rồng về đêm ở Đà Nẵng.' },
         ],
-        budget: { saving: [2000000, 2600000, 3300000], comfort: [5200000, 7000000, 8700000] },
+        fees: [320000, 450000],
     },
     'phong-nha': {
         days: [
@@ -109,7 +109,7 @@ const ITINERARIES = {
             { title: 'Đồng Hới – biển Nhật Lệ', morning: 'Về Đồng Hới, thành cổ Đồng Hới, nhà thờ Tam Tòa.', afternoon: 'Tắm biển Nhật Lệ, đồi cát Quang Phú.', evening: 'Ăn hải sản chợ đêm Đồng Hới.' },
             { title: 'Vũng Chùa – Đảo Yến', morning: 'Viếng mộ Đại tướng Võ Nguyên Giáp tại Vũng Chùa – Đảo Yến.', afternoon: 'Tắm biển Đá Nhảy, mua khoai deo làm quà.', evening: 'Dạo quảng trường sông Nhật Lệ.' },
         ],
-        budget: { saving: [2400000, 3200000, 4000000], comfort: [5500000, 7300000, 9100000] },
+        fees: [430000, 600000],
     },
     'da-nang': {
         days: [
@@ -119,7 +119,7 @@ const ITINERARIES = {
             { title: 'Phố cổ Hội An', morning: 'Sang Hội An, làng rau Trà Quế, rừng dừa Bảy Mẫu.', afternoon: 'Chùa Cầu, hội quán Phúc Kiến, nhà cổ Tấn Ký.', evening: 'Thả hoa đăng sông Hoài, ăn cao lầu.' },
             { title: 'Cù Lao Chàm', morning: 'Đi cano ra Cù Lao Chàm, lặn ngắm san hô.', afternoon: 'Tắm biển bãi Chồng, thăm làng chài Bãi Làng.', evening: 'Về Đà Nẵng, mua chả bò, mực rim làm quà.' },
         ],
-        budget: { saving: [2200000, 2900000, 3700000], comfort: [6000000, 8000000, 10000000] },
+        fees: [290000, 410000],
     },
     'hoi-an': {
         days: [
@@ -129,7 +129,7 @@ const ITINERARIES = {
             { title: 'Cù Lao Chàm', morning: 'Đi cano ra Cù Lao Chàm, lặn ngắm san hô.', afternoon: 'Tắm biển bãi Chồng, chùa Hải Tạng.', evening: 'Về Hội An, cà phê view sông Thu Bồn.' },
             { title: 'Bà Nà Hills', morning: 'Đi cáp treo Bà Nà, check-in Cầu Vàng.', afternoon: 'Làng Pháp, vườn hoa Le Jardin.', evening: 'Ngắm Cầu Rồng về đêm ở Đà Nẵng.' },
         ],
-        budget: { saving: [2100000, 2800000, 3500000], comfort: [6000000, 8000000, 10000000] },
+        fees: [390000, 550000],
     },
     'nha-trang': {
         days: [
@@ -139,7 +139,7 @@ const ITINERARIES = {
             { title: 'Đảo Bình Ba – Bình Hưng', morning: 'Ra đảo Bình Ba – "đảo tôm hùm", tắm bãi Nồm.', afternoon: 'Lặn ngắm san hô, ăn tôm hùm, ốc hương tại bè.', evening: 'Về Nha Trang, dạo chợ đêm.' },
             { title: 'Dốc Lết – Ninh Vân', morning: 'Tắm biển Dốc Lết cát trắng mịn.', afternoon: 'Suối khoáng nóng Trăm Trứng, mua yến sào làm quà.', evening: 'Bar trên tầng thượng ngắm vịnh Nha Trang.' },
         ],
-        budget: { saving: [2200000, 2900000, 3700000], comfort: [6000000, 8000000, 10000000] },
+        fees: [360000, 500000],
     },
     'da-lat': {
         days: [
@@ -149,7 +149,7 @@ const ITINERARIES = {
             { title: 'Langbiang – làng Cù Lần', morning: 'Chinh phục đỉnh Langbiang bằng xe jeep.', afternoon: 'Làng Cù Lần – chèo kayak, cưỡi ngựa giữa rừng thông.', evening: 'Giao lưu cồng chiêng Tây Nguyên, uống rượu cần.' },
             { title: 'Biệt thự Pháp – Dinh Bảo Đại', morning: 'Dinh III Bảo Đại, nhà thờ Con Gà, biệt thự Hằng Nga (Nhà điên).', afternoon: 'Làng hoa Vạn Thành, vườn hồng Đà Lạt.', evening: 'Cà phê Tùng, ăn nem nướng Bà Hùng.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+        fees: [210000, 290000],
     },
     'mui-ne': {
         days: [
@@ -159,7 +159,7 @@ const ITINERARIES = {
             { title: 'Hòn Rơm – làng nước mắm', morning: 'Tắm biển Hòn Rơm, chèo SUP buổi sáng.', afternoon: 'Làng nước mắm Phan Thiết, mua đặc sản.', evening: 'Hải sản nướng ở bãi Đồi Dương.' },
             { title: 'Núi Tà Cú', morning: 'Đi cáp treo lên núi Tà Cú, tượng Phật nằm lớn nhất Đông Nam Á.', afternoon: 'Biển Kê Gà, đồi cát Hồng.', evening: 'Về lại TP.HCM hoặc nghỉ thêm ở resort.' },
         ],
-        budget: { saving: [1900000, 2500000, 3200000], comfort: [5000000, 6700000, 8400000] },
+        fees: [190000, 270000],
     },
     'quy-nhon': {
         days: [
@@ -169,7 +169,7 @@ const ITINERARIES = {
             { title: 'Cù Lao Xanh', morning: 'Đi tàu ra Cù Lao Xanh, hải đăng trên đảo.', afternoon: 'Tắm biển, lặn ngắm san hô, ăn hải sản đảo.', evening: 'Về đất liền, cà phê view biển.' },
             { title: 'Hòn Khô – Nhơn Lý', morning: 'Làng chài Nhơn Lý, đi thuyền thúng ra Hòn Khô.', afternoon: 'Lặn ngắm san hô, tắm biển Hòn Khô.', evening: 'Mua chả cá, nem chợ Huyện làm quà.' },
         ],
-        budget: { saving: [2000000, 2700000, 3400000], comfort: [5500000, 7300000, 9100000] },
+        fees: [320000, 450000],
     },
     'phu-yen': {
         days: [
@@ -179,7 +179,7 @@ const ITINERARIES = {
             { title: 'Cù Lao Mái Nhà', morning: 'Đi thuyền ra Cù Lao Mái Nhà, tắm biển trong vắt.', afternoon: 'Lặn ngắm san hô, ăn trưa hải sản trên đảo.', evening: 'Nghỉ ngơi, dạo biển Tuy Hòa.' },
             { title: 'Đập Đồng Cam – ga Hòa Đa', morning: 'Đập Đồng Cam trăm tuổi, cánh đồng lúa Tuy An.', afternoon: 'Ga Hòa Đa, núi Chóp Chài.', evening: 'Mua bánh tráng Hòa Đa làm quà.' },
         ],
-        budget: { saving: [1900000, 2500000, 3200000], comfort: [5000000, 6700000, 8400000] },
+        fees: [330000, 460000],
     },
     'sai-gon': {
         days: [
@@ -189,7 +189,7 @@ const ITINERARIES = {
             { title: 'Mỹ Tho – Bến Tre', morning: 'Đi Mỹ Tho, thuyền trên sông Tiền, cồn Thới Sơn.', afternoon: 'Xuồng ba lá rạch dừa Bến Tre, nghe đờn ca tài tử.', evening: 'Về Sài Gòn, dạo phố Bùi Viện.' },
             { title: 'Tây Ninh – núi Bà Đen', morning: 'Tòa Thánh Cao Đài Tây Ninh.', afternoon: 'Cáp treo lên đỉnh núi Bà Đen – "nóc nhà Nam Bộ".', evening: 'Về Sài Gòn, ăn bánh tráng phơi sương Trảng Bàng.' },
         ],
-        budget: { saving: [1900000, 2600000, 3200000], comfort: [6000000, 8000000, 10000000] },
+        fees: [290000, 410000],
     },
     'can-tho': {
         days: [
@@ -199,7 +199,7 @@ const ITINERARIES = {
             { title: 'Sóc Trăng – chùa Khmer', morning: 'Sang Sóc Trăng, chùa Dơi, chùa Chén Kiểu.', afternoon: 'Chùa Đất Sét, ăn bún nước lèo, bánh pía.', evening: 'Về Cần Thơ.' },
             { title: 'Châu Đốc – rừng tràm Trà Sư', morning: 'Đi An Giang, xuồng rừng tràm Trà Sư.', afternoon: 'Miếu Bà Chúa Xứ, núi Sam.', evening: 'Ăn bún cá Châu Đốc, mua mắm làm quà.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+        fees: [270000, 380000],
     },
     'phu-quoc': {
         days: [
@@ -209,7 +209,7 @@ const ITINERARIES = {
             { title: 'Làng chài Hàm Ninh – suối Tranh', morning: 'Làng chài Hàm Ninh, ăn ghẹ luộc trên cầu cảng.', afternoon: 'Suối Tranh, trại nuôi ngọc trai.', evening: 'Dinh Cậu ngắm hoàng hôn, thử bún quậy.' },
             { title: 'Mũi Gành Dầu – rừng nguyên sinh', morning: 'Trekking vườn quốc gia Phú Quốc, mũi Gành Dầu.', afternoon: 'Tắm biển Gành Dầu, chùa Hộ Quốc.', evening: 'Mua nước mắm, tiêu, ngọc trai làm quà.' },
         ],
-        budget: { saving: [3000000, 4000000, 5000000], comfort: [8000000, 10700000, 13300000] },
+        fees: [500000, 700000],
     },
     'vung-tau': {
         days: [
@@ -219,7 +219,7 @@ const ITINERARIES = {
             { title: 'Rừng Bình Châu – Phước Bửu', morning: 'Khu bảo tồn Bình Châu – Phước Bửu, trekking rừng.', afternoon: 'Luộc trứng suối nóng, ngâm bùn khoáng.', evening: 'Về Vũng Tàu, mua bánh bông lan trứng muối.' },
             { title: 'Cần Giờ – rừng ngập mặn', morning: 'Đi phà sang Cần Giờ, rừng Sác, đảo Khỉ.', afternoon: 'Ăn hải sản Cần Giờ, tắm biển 30/4.', evening: 'Về lại TP.HCM.' },
         ],
-        budget: { saving: [1500000, 2000000, 2500000], comfort: [4500000, 6000000, 7500000] },
+        fees: [50000, 70000],
     },
     'chau-doc': {
         days: [
@@ -229,7 +229,7 @@ const ITINERARIES = {
             { title: 'Hồ Tà Pạ – rừng Tân Tuyến', morning: 'Hồ Tà Pạ – "Tiểu Thụy Sĩ" giữa núi đá.', afternoon: 'Cánh đồng thốt nốt Tri Tôn, chùa Xà Tón.', evening: 'Thưởng thức gà đốt lá chúc Ô Thum.' },
             { title: 'Long Xuyên – cù lao Ông Hổ', morning: 'Chợ nổi Long Xuyên.', afternoon: 'Cù lao Ông Hổ, nhà lưu niệm Chủ tịch Tôn Đức Thắng.', evening: 'Mua mắm, khô cá làm quà, về TP.HCM.' },
         ],
-        budget: { saving: [1900000, 2500000, 3100000], comfort: [4800000, 6400000, 8000000] },
+        fees: [240000, 340000],
     },
     'con-dao': {
         days: [
@@ -239,7 +239,7 @@ const ITINERARIES = {
             { title: 'Hòn Bảy Cạnh – rùa biển', morning: 'Đi cano ra Hòn Bảy Cạnh, tham quan trạm bảo tồn rùa.', afternoon: 'Tắm biển, lặn ngắm san hô bãi Đầm Tre.', evening: 'Xem rùa đẻ trứng (tháng 5 – 9, cần đăng ký).' },
             { title: 'Mũi Cá Mập – bãi Nhát', morning: 'Ngắm bình minh ở mũi Cá Mập, bãi Nhát khi thủy triều rút.', afternoon: 'Tắm biển An Hải, mua hạt bàng làm quà.', evening: 'Ăn tối hải sản chia tay Côn Đảo.' },
         ],
-        budget: { saving: [3500000, 4700000, 5800000], comfort: [8000000, 10700000, 13300000] },
+        fees: [700000, 980000],
     },
     'moc-chau': {
         days: [
@@ -249,7 +249,7 @@ const ITINERARIES = {
             { title: 'Bản Hua Tạt', morning: 'Đi bộ vào bản Hua Tạt của người H\'Mông giữa rừng núi.', afternoon: 'Thác Chiềng Khoa và hang Dơi.', evening: 'Nướng BBQ, lẩu gà đen tại homestay.' },
             { title: 'Mai Châu trên đường về', morning: 'Rẽ qua Mai Châu (Hòa Bình), đạp xe bản Lác, bản Pom Coọng.', afternoon: 'Ăn cơm lam, gà nướng Mai Châu rồi về Hà Nội.', evening: 'Về tới Hà Nội khoảng 20h.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+        fees: [210000, 290000],
     },
     'pu-luong': {
         days: [
@@ -259,7 +259,7 @@ const ITINERARIES = {
             { title: 'Chèo bè suối Mã', morning: 'Chèo bè tre trên sông Mã, ngắm vách núi hai bờ.', afternoon: 'Nghỉ ngơi ở homestay có hồ bơi view ruộng lúa.', evening: 'BBQ gà đồi, cá suối.' },
             { title: 'Mai Châu – về Hà Nội', morning: 'Săn mây sớm trên đỉnh Pù Luông.', afternoon: 'Dừng Mai Châu ăn trưa, mua thổ cẩm.', evening: 'Về Hà Nội.' },
         ],
-        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+        fees: [230000, 320000],
     },
     'ly-son': {
         days: [
@@ -269,7 +269,7 @@ const ITINERARIES = {
             { title: 'Hang Câu và vách đá', morning: 'Hang Câu với vách đá núi lửa nhiều lớp.', afternoon: 'Cột cờ Tổ quốc, mua tỏi cô đơn làm quà.', evening: 'Nướng hải sản bên bờ kè.' },
             { title: 'Về đất liền', morning: 'Ngắm bình minh trên cầu cảng, lên tàu về Sa Kỳ.', afternoon: 'Thăm khu chứng tích Sơn Mỹ, ăn cá bống sông Trà.', evening: 'Về Quảng Ngãi hoặc Đà Nẵng.' },
         ],
-        budget: { saving: [2200000, 2900000, 3600000], comfort: [5000000, 6700000, 8400000] },
+        fees: [370000, 520000],
     },
     'buon-ma-thuot': {
         days: [
@@ -279,7 +279,7 @@ const ITINERARIES = {
             { title: 'Buôn Đôn', morning: 'Cầu treo Buôn Đôn, nhà sàn cổ.', afternoon: 'Tham quan khu bảo tồn voi (chọn tour đi bộ cùng voi).', evening: 'Về thành phố, ăn lẩu cá lăng.' },
             { title: 'Chợ và quà Tây Nguyên', morning: 'Chợ Buôn Ma Thuột – mua cà phê, tiêu, mắc ca.', afternoon: 'Nhà đày Buôn Ma Thuột, chùa Sắc tứ Khải Đoan.', evening: 'Ra sân bay hoặc đi tiếp Đà Lạt, Nha Trang.' },
         ],
-        budget: { saving: [2000000, 2700000, 3400000], comfort: [5000000, 6700000, 8400000] },
+        fees: [350000, 490000],
     },
     'ha-tien': {
         days: [
@@ -289,6 +289,6 @@ const ITINERARIES = {
             { title: 'Đảo và về đất liền', morning: 'Đi cano quanh đảo Hòn Đước, Hòn Tre Nhỏ.', afternoon: 'Về Hà Tiên, cà phê view đầm Đông Hồ.', evening: 'Ăn bún kèn, xôi xiêm.' },
             { title: 'Đi tiếp Phú Quốc', morning: 'Tàu cao tốc Hà Tiên – Phú Quốc (~1,5 giờ) hoặc về Rạch Giá.', afternoon: 'Nhận phòng, bắt đầu hành trình đảo ngọc.', evening: 'Chợ đêm Phú Quốc.' },
         ],
-        budget: { saving: [2000000, 2700000, 3400000], comfort: [4800000, 6400000, 8000000] },
+        fees: [320000, 450000],
     },
 }

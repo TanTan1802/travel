@@ -300,6 +300,37 @@ function tourDaysHtml(d, plan, n) {
     `
 }
 
+/* Chi phí tour: hai mức chọn được, mỗi mức có bảng chi tiết từng khoản */
+const BUDGET_TIERS = [
+    { tier: 'saving', label: () => t('Tiết kiệm'), desc: () => t('Homestay, ăn quán địa phương, xe máy') },
+    { tier: 'comfort', label: () => t('Thoải mái'), desc: () => t('Khách sạn 3–4 sao, nhà hàng, Grab') },
+]
+
+function budgetBlock(d, n) {
+    const costs = Object.fromEntries(BUDGET_TIERS.map(({ tier }) => [tier, tripCost(d.id, n, tier)]))
+    return `
+        <div class="budget">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')} – ${tourLabel(n)}</h3>
+            <div class="budget__options" role="group" aria-label="${t('Mức chi tiêu')}">
+                ${BUDGET_TIERS.map(({ tier, label, desc }, i) => `
+                    <button type="button" class="budget__option${i === 0 ? ' budget__option--active' : ''}" data-budget-tier="${tier}" aria-pressed="${i === 0}">
+                        <span>${label()}</span>
+                        <strong>${formatVnd(costs[tier].total)}</strong>
+                        <small>${desc()}</small>
+                        <em class="budget__more">${t('Xem chi tiết')} <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                `).join('')}
+            </div>
+            ${BUDGET_TIERS.map(({ tier, label }, i) => `
+                <div class="budget__detail" data-budget-detail="${tier}"${i === 0 ? '' : ' hidden'}>
+                    <p class="budget__detail-title">${t('Chi tiết mức {tier}', { tier: label().toLowerCase() })}</p>
+                    ${costBreakdownHtml(costs[tier])}
+                </div>
+            `).join('')}
+        </div>
+    `
+}
+
 function itinerarySection(d) {
     const plan = typeof ITINERARIES !== 'undefined' && ITINERARIES[d.id]
     if (!plan) return ''
@@ -322,7 +353,7 @@ function itinerarySection(d) {
                         <button type="button" class="tour-picker__btn${i === 0 ? ' tour-picker__btn--active' : ''}" role="tab"
                                 aria-selected="${i === 0}" aria-controls="tour-${n}" data-tour="${n}">
                             <strong>${tourLabel(n)}</strong>
-                            <small>${t('từ {price}', { price: formatVnd(plan.budget.saving[i]) })}</small>
+                            <small>${t('từ {price}', { price: formatVnd(tripCost(d.id, n, 'saving').total) })}</small>
                         </button>
                     `).join('')}
                 </div>
@@ -346,21 +377,7 @@ function itinerarySection(d) {
 
                         ${tourDaysHtml(d, plan, n)}
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')} – ${tourLabel(n)}</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>${t('Tiết kiệm')}</span>
-                                    <strong>${formatVnd(plan.budget.saving[i])}</strong>
-                                    <small>${t('Homestay, ăn quán địa phương')}</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>${t('Thoải mái')}</span>
-                                    <strong>${formatVnd(plan.budget.comfort[i])}</strong>
-                                    <small>${t('Khách sạn 3–4 sao, tour trọn gói')}</small>
-                                </div>
-                            </div>
-                        </div>
+                        ${budgetBlock(d, n)}
                     </div>
                 `).join('')}
 

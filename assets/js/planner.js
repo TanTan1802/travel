@@ -41,25 +41,27 @@ function legInfo(a, b, tier) {
     return { km, mode: 'road', hours, cost: Math.max(TRANSPORT_COST.road.min, Math.round(km * TRANSPORT_COST.road[tier] / 10000) * 10000) }
 }
 
-/* Chi phí lưu trú + ăn uống + vé tham quan tại một điểm cho n ngày (nội suy từ mức 3/4/5 ngày) */
-function stopCost(id, days, tier) {
-    const plan = ITINERARIES[id]
-    if (!plan) return 0
-    const [b3, b4, b5] = plan.budget[tier]
-    const perDay = Math.max((b5 - b3) / 2, b3 / 5)
-    if (days >= 3 && days <= 5) return [b3, b4, b5][days - 3]
-    if (days < 3) return Math.max(perDay, b3 - (3 - days) * perDay)
-    return b5 + (days - 5) * perDay
-}
-
 function planTotals(plan) {
     const dests = plan.stops.map(s => getDestination(s.id))
     const legs = dests.slice(1).map((d, i) => legInfo(dests[i], d, plan.tier))
     const days = plan.stops.reduce((sum, s) => sum + s.days, 0)
-    const stay = plan.stops.reduce((sum, s) => sum + stopCost(s.id, s.days, plan.tier), 0)
+    /* Chi phí từng điểm dừng (lưu trú, ăn uống, đi lại, vé tham quan) – xem tripCost() trong components.js */
+    const nights = planStays(plan).map(s => s.nights)
+    const stopCosts = plan.stops.map((s, i) => tripCost(s.id, s.days, plan.tier, nights[i]))
+    const stay = stopCosts.reduce((sum, c) => sum + c.total, 0)
     const transport = legs.reduce((sum, l) => sum + l.cost, 0)
     const km = legs.reduce((sum, l) => sum + l.km, 0)
-    return { dests, legs, days, km, stay, transport, total: stay + transport }
+
+    /* Gộp các khoản của mọi điểm dừng để hiển thị chi tiết */
+    const byKey = {}
+    stopCosts.forEach(c => c.items.forEach(item => {
+        const acc = byKey[item.key] || (byKey[item.key] = { ...item, amount: 0, count: 0 })
+        acc.amount += item.amount
+        acc.count += item.count
+    }))
+    const breakdown = Object.values(byKey)
+    if (legs.length) breakdown.push({ key: 'legs', icon: 'ri-route-line', label: t('Di chuyển giữa các điểm'), amount: transport, count: legs.length, unit: t('chặng') })
+    return { dests, legs, days, km, stay, transport, stopCosts, breakdown, total: stay + transport }
 }
 
 /* Tuyến ngắn nhất (giữ điểm xuất phát): láng giềng gần nhất rồi cải thiện bằng 2-opt */
@@ -93,14 +95,6 @@ function optimizeStops(stops) {
 }
 
 /* Gộp lịch trình từng ngày của các điểm dừng */
-/* Chỗ nghỉ gợi ý theo mức chi tiêu: tiết kiệm → rẻ nhất, thoải mái → cao cấp nhất */
-function suggestedStay(id, tier) {
-    const places = placesOf(id)
-    if (!places) return null
-    const sorted = [...places.stays].sort((a, b) => a.price[0] - b.price[0])
-    return tier === 'comfort' ? sorted[sorted.length - 1] : sorted[0]
-}
-
 /* Lịch nghỉ từng điểm dừng: ngày nhận phòng (nếu đã chọn ngày khởi hành) và số đêm */
 function planStays(plan) {
     let offset = 0
@@ -111,7 +105,7 @@ function planStays(plan) {
             dayIndex: offset,
             checkin: plan.start ? addDays(plan.start, offset) : '',
             nights: last ? Math.max(1, stop.days - 1) : stop.days,
-            stay: suggestedStay(stop.id, plan.tier),
+            stay: tierStay(stop.id, plan.tier),
         }
         offset += stop.days
         return item
@@ -248,7 +242,7 @@ function renderStops(plan, totals) {
                         <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="500" data-sizes="96px" alt="" class="stop__img">
                         <div class="stop__info">
                             <a href="${destinationUrl(d.id)}" class="stop__name">${d.name}</a>
-                            <span class="stop__meta">${d.province} · ${formatVnd(stopCost(d.id, stop.days, plan.tier))}</span>
+                            <span class="stop__meta">${d.province} · ${formatVnd(totals.stopCosts[i].total)}</span>
                             ${offSeason ? `<span class="stop__warn"><i class="ri-error-warning-line"></i> ${t('Tháng {m} không phải mùa đẹp nhất', { m: monthLabel(plan.month) })}</span>` : ''}
                         </div>
                         <div class="stop__days" role="group" aria-label="${t('Số ngày tại {name}', { name: d.name })}">
@@ -312,8 +306,23 @@ function renderSummary(plan, totals) {
         <div class="planner__cost">
             <span>${t('Chi phí ước tính / người')}</span>
             <strong>${formatVnd(totals.total)}</strong>
-            <small>${t('Lưu trú & ăn chơi {stay} · Di chuyển giữa các điểm {move}', { stay: formatVnd(totals.stay), move: formatVnd(totals.transport) })}</small>
+            <small>${plan.tier === 'comfort' ? t('Khách sạn 3–4 sao, nhà hàng, Grab') : t('Homestay, ăn quán địa phương, xe máy')}</small>
         </div>
+        <details class="cost-details"${planner.costOpen ? ' open' : ''}>
+            <summary>${t('Xem chi tiết chi phí')}</summary>
+            <ul class="cost-list">
+                ${totals.breakdown.map(item => `
+                    <li class="cost-item">
+                        <span class="cost-item__icon"><i class="${item.icon}"></i></span>
+                        <div class="cost-item__text">
+                            <strong>${item.label}</strong>
+                            <small>${item.count} ${item.unit}</small>
+                        </div>
+                        <div class="cost-item__amount"><strong>${formatVnd(item.amount)}</strong></div>
+                    </li>
+                `).join('')}
+            </ul>
+        </details>
         <p class="budget__note">${t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
         <div class="planner__share">
             <button type="button" class="button button--flex" data-action="share"><i class="ri-share-line"></i> ${t('Chia sẻ kế hoạch')}</button>
@@ -579,6 +588,9 @@ function initPlanner() {
     if (location.search && planner.plan.stops.length) TripPlan.save(planner.plan)
 
     root.addEventListener('click', handlePlannerClick)
+    root.addEventListener('toggle', e => {
+        if (e.target.classList && e.target.classList.contains('cost-details')) planner.costOpen = e.target.open
+    }, true)
     root.addEventListener('submit', e => {
         if (e.target.id !== 'planner-add') return
         e.preventDefault()
