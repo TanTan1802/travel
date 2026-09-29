@@ -10,6 +10,7 @@
  */
 const fs = require('fs')
 const path = require('path')
+const crypto = require('crypto')
 const { ROOT, loadBrowserScripts } = require('./lib')
 
 const SITE_URL = 'https://tantan1802.github.io/travel/'
@@ -116,6 +117,14 @@ ${urls.map(u => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${today}</lastmod></u
 `
 }
 
+/* Đổi VERSION của service worker theo nội dung tài nguyên để trình duyệt tải bản mới */
+function updateServiceWorkerVersion(sw) {
+    const assets = [...sw.matchAll(/'\.\/([^']+\.(?:css|js|html|webmanifest))'/g)].map(m => m[1])
+    const hash = crypto.createHash('md5')
+    assets.forEach(file => hash.update(read(file)))
+    return sw.replace(/const VERSION = '[^']*'/, `const VERSION = '${hash.digest('hex').slice(0, 10)}'`)
+}
+
 function main() {
     const template = read('destination.html')
     const pageSite = loadBrowserScripts(SCRIPTS, EXPORTS, { SITE_ROOT: PAGE_ROOT })
@@ -132,6 +141,7 @@ function main() {
     write('index.html', buildHomeGrid(home, homeSite))
 
     write('sitemap.xml', buildSitemap(pageSite))
+    write('sw.js', updateServiceWorkerVersion(read('sw.js')))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
     console.log(`✅ Đã tạo ${pageSite.DESTINATIONS.length} trang trong ${PAGE_DIR}/, cập nhật index.html, sitemap.xml, robots.txt`)

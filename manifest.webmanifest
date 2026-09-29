@@ -1,0 +1,20 @@
+{
+  "name": "Việt Travel – Khám phá danh lam thắng cảnh Việt Nam",
+  "short_name": "Việt Travel",
+  "description": "Hình ảnh, ẩm thực, lịch trình và bản đồ các danh lam thắng cảnh Việt Nam.",
+  "lang": "vi",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfefe",
+  "theme_color": "#135059",
+  "icons": [
+    { "src": "assets/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/img/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Bản đồ điểm đến", "url": "./index.html?view=map#place" },
+    { "name": "Điểm đến yêu thích", "url": "./index.html?favorites=1#place" }
+  ]
+}

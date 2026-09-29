@@ -175,3 +175,11 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== PWA: SERVICE WORKER ====================*/
+/* Chỉ đăng ký trên HTTPS hoặc localhost (yêu cầu của trình duyệt) */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register(`${window.SITE_ROOT || ''}sw.js`).catch(() => { /* bỏ qua */ })
+    })
+}

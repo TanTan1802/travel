@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Sài Gòn là đô thị lớn nhất Việt Nam với nhịp sống sôi động suốt ngày đêm. Từ Nhà thờ Đức Bà, Bưu điện Thành phố mang dấu ấn Pháp đến những tòa cao ốc chọc…">
         <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="../../manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
         <link rel="stylesheet" href="../../assets/css/styles.css">
@@ -453,6 +456,19 @@
                     <ul class="location__nearby">
                         
                             <li>
+                                <a href="../../diem-den/vung-tau/index.html" class="nearby-item">
+                                    <span class="nearby-item__media">
+                                        <img data-wiki="Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg|Statue of Jesus in Vung Tau.jpg|Vung Tau Hon Ba.JPG|Một phần Vũng Tàu 2.JPG|Cửa sổ Bạch Dinh nhìn ra biển.JPG" data-width="500" alt="Vũng Tàu" loading="lazy">
+                                    </span>
+                                    <span class="nearby-item__body">
+                                        <strong>Vũng Tàu</strong>
+                                        <small>Bà Rịa – Vũng Tàu</small>
+                                    </span>
+                                    <span class="nearby-item__distance">~64 km</span>
+                                </a>
+                            </li>
+                        
+                            <li>
                                 <a href="../../diem-den/can-tho/index.html" class="nearby-item">
                                     <span class="nearby-item__media">
                                         <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="500" alt="Cần Thơ – Miền Tây" loading="lazy">
@@ -475,19 +491,6 @@
                                         <small>Bình Thuận</small>
                                     </span>
                                     <span class="nearby-item__distance">~174 km</span>
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="../../diem-den/da-lat/index.html" class="nearby-item">
-                                    <span class="nearby-item__media">
-                                        <img data-wiki="Xuan Huong Lake (31404267520).jpg|Da Lat Panorama.JPG|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Da Lat - Viet Nam.jpg" data-width="500" alt="Đà Lạt" loading="lazy">
-                                    </span>
-                                    <span class="nearby-item__body">
-                                        <strong>Đà Lạt</strong>
-                                        <small>Lâm Đồng</small>
-                                    </span>
-                                    <span class="nearby-item__distance">~231 km</span>
                                 </a>
                             </li>
                         
@@ -525,6 +528,32 @@
             </a>
             
         <button type="button" class="fav-btn" data-favorite="phu-quoc" aria-pressed="false" title="Lưu vào yêu thích">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../../diem-den/chau-doc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Temple in Chau Doc 2.jpg|Miếu Bà Chúa Xứ Núi Sam.jpg|Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg|Chùa Tam Bửu ở Ba Chúc.jpg" data-width="960" alt="Châu Đốc – Núi Sam" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">Miền Nam</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">Châu Đốc – Núi Sam</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> An Giang</span>
+                    
+                    <p class="dest-card__tagline">Miền tâm linh và rừng tràm mùa nước nổi</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">Di sản</span><span class="tag">Núi rừng</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="chau-doc" aria-pressed="false" title="Lưu vào yêu thích">
             <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
             
         </button>
