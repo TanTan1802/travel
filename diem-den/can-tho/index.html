@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: Tháng 9 – 11 (mùa nước nổi)</h3>
-                    <ol class="season__months" aria-label="Các tháng trong năm">
-                        <li class="season__month" data-month="1"
-                                        title="Tháng 1">T1</li><li class="season__month" data-month="2"
-                                        title="Tháng 2">T2</li><li class="season__month" data-month="3"
-                                        title="Tháng 3">T3</li><li class="season__month" data-month="4"
-                                        title="Tháng 4">T4</li><li class="season__month" data-month="5"
-                                        title="Tháng 5">T5</li><li class="season__month" data-month="6"
-                                        title="Tháng 6">T6</li><li class="season__month" data-month="7"
-                                        title="Tháng 7">T7</li><li class="season__month" data-month="8"
-                                        title="Tháng 8">T8</li><li class="season__month season__month--best" data-month="9"
-                                        title="Tháng 9 – mùa đẹp">T9</li><li class="season__month season__month--best" data-month="10"
-                                        title="Tháng 10 – mùa đẹp">T10</li><li class="season__month season__month--best" data-month="11"
-                                        title="Tháng 11 – mùa đẹp">T11</li><li class="season__month" data-month="12"
-                                        title="Tháng 12">T12</li>
-                    </ol>
+                    <p class="season__hint">Bấm vào một tháng để xem có nên đi không</p>
+                    <div class="season__months" role="group" aria-label="Các tháng trong năm">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="Tháng 1">T1</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="Tháng 2">T2</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="Tháng 3">T3</button><button type="button" class="season__month" data-month="4" aria-pressed="false"
+                                        title="Tháng 4">T4</button><button type="button" class="season__month" data-month="5" aria-pressed="false"
+                                        title="Tháng 5">T5</button><button type="button" class="season__month" data-month="6" aria-pressed="false"
+                                        title="Tháng 6">T6</button><button type="button" class="season__month" data-month="7" aria-pressed="false"
+                                        title="Tháng 7">T7</button><button type="button" class="season__month" data-month="8" aria-pressed="false"
+                                        title="Tháng 8">T8</button><button type="button" class="season__month season__month--best" data-month="9" aria-pressed="false"
+                                        title="Tháng 9 – mùa đẹp">T9</button><button type="button" class="season__month season__month--best" data-month="10" aria-pressed="false"
+                                        title="Tháng 10 – mùa đẹp">T10</button><button type="button" class="season__month season__month--best" data-month="11" aria-pressed="false"
+                                        title="Tháng 11 – mùa đẹp">T11</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="Tháng 12">T12</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
                         <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                        <span><i class="season__dot season__dot--selected"></i> Tháng đang xem</span>
                     </div>
-                    <p class="season__status" data-season-status="9,10,11"></p>
+                    <p class="season__status" data-season-status="9,10,11" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -338,104 +341,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Lịch trình</span>
-            <h2 class="section__title">Gợi ý 2 ngày tại Cần Thơ – Miền Tây</h2>
+            <span class="section__subtitle">Lịch trình tour</span>
+            <h2 class="section__title">Lịch trình tour Cần Thơ – Miền Tây</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Ngày 1</span>
-                            <small>Bến Ninh Kiều – nhà cổ</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 ngày 2 đêm</strong>
+                            <small>từ 1.800.000đ</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Ngày 2</span>
-                            <small>Chợ nổi Cái Răng</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 ngày 3 đêm</strong>
+                            <small>từ 2.400.000đ</small>
+                        </button>
+                    
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 ngày 4 đêm</strong>
+                            <small>từ 3.000.000đ</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Sáng</h3>
-                                        <p>Đến Cần Thơ, nhà cổ Bình Thủy, chùa Ông.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Chiều</h3>
-                                        <p>Vườn trái cây Phong Điền, ăn bánh xèo miền Tây.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Tối</h3>
-                                        <p>Dạo bến Ninh Kiều, du thuyền nghe đờn ca tài tử.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 ngày 2 đêm · Bến Ninh Kiều – nhà cổ → Chợ nổi Cái Răng → Cồn Sơn – vườn cò Bằng Lăng</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Bến Ninh Kiều – nhà cổ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Chợ nổi Cái Răng</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Cồn Sơn – vườn cò Bằng Lăng</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đến Cần Thơ, nhà cổ Bình Thủy, chùa Ông.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn trái cây Phong Điền, ăn bánh xèo miền Tây.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo bến Ninh Kiều, du thuyền nghe đờn ca tài tử.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>5h sáng đi thuyền ra chợ nổi Cái Răng, ăn hủ tiếu trên ghe.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Lò hủ tiếu truyền thống, làng du lịch Mỹ Khánh.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Chợ đêm Tây Đô, ăn lẩu mắm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Cồn Sơn – xem cá lóc bay, làm bánh dân gian.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn cò Bằng Lăng với hàng nghìn cò về tổ.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Nghỉ homestay miệt vườn.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>1.800.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>4.500.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Sáng</h3>
-                                        <p>5h sáng đi thuyền ra chợ nổi Cái Răng, ăn hủ tiếu trên ghe.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Chiều</h3>
-                                        <p>Lò hủ tiếu truyền thống, làng du lịch Mỹ Khánh.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Tối</h3>
-                                        <p>Mua bánh pía, về lại TP.HCM.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 ngày 3 đêm · Bến Ninh Kiều – nhà cổ → Chợ nổi Cái Răng → Cồn Sơn – vườn cò Bằng Lăng → Sóc Trăng – chùa Khmer</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Bến Ninh Kiều – nhà cổ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Chợ nổi Cái Răng</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Cồn Sơn – vườn cò Bằng Lăng</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Ngày 4</span>
+                    <small>Sóc Trăng – chùa Khmer</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đến Cần Thơ, nhà cổ Bình Thủy, chùa Ông.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn trái cây Phong Điền, ăn bánh xèo miền Tây.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo bến Ninh Kiều, du thuyền nghe đờn ca tài tử.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>5h sáng đi thuyền ra chợ nổi Cái Răng, ăn hủ tiếu trên ghe.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Lò hủ tiếu truyền thống, làng du lịch Mỹ Khánh.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Chợ đêm Tây Đô, ăn lẩu mắm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Cồn Sơn – xem cá lóc bay, làm bánh dân gian.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn cò Bằng Lăng với hàng nghìn cò về tổ.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Nghỉ homestay miệt vườn.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Ngày 4: Sóc Trăng – chùa Khmer</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Sang Sóc Trăng, chùa Dơi, chùa Chén Kiểu.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Chùa Đất Sét, ăn bún nước lèo, bánh pía.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Về Cần Thơ.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>2.400.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>6.000.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 ngày 4 đêm · Bến Ninh Kiều – nhà cổ → Chợ nổi Cái Răng → Cồn Sơn – vườn cò Bằng Lăng → Sóc Trăng – chùa Khmer → Châu Đốc – rừng tràm Trà Sư</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Bến Ninh Kiều – nhà cổ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Chợ nổi Cái Răng</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Cồn Sơn – vườn cò Bằng Lăng</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Ngày 4</span>
+                    <small>Sóc Trăng – chùa Khmer</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Ngày 5</span>
+                    <small>Châu Đốc – rừng tràm Trà Sư</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đến Cần Thơ, nhà cổ Bình Thủy, chùa Ông.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn trái cây Phong Điền, ăn bánh xèo miền Tây.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo bến Ninh Kiều, du thuyền nghe đờn ca tài tử.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>5h sáng đi thuyền ra chợ nổi Cái Răng, ăn hủ tiếu trên ghe.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Lò hủ tiếu truyền thống, làng du lịch Mỹ Khánh.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Chợ đêm Tây Đô, ăn lẩu mắm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Cồn Sơn – xem cá lóc bay, làm bánh dân gian.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Vườn cò Bằng Lăng với hàng nghìn cò về tổ.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Nghỉ homestay miệt vườn.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Ngày 4: Sóc Trăng – chùa Khmer</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Sang Sóc Trăng, chùa Dơi, chùa Chén Kiểu.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Chùa Đất Sét, ăn bún nước lèo, bánh pía.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Về Cần Thơ.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Ngày 5: Châu Đốc – rừng tràm Trà Sư</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đi An Giang, xuồng rừng tràm Trà Sư.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Miếu Bà Chúa Xứ, núi Sam.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ăn bún cá Châu Đốc, mua mắm làm quà.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>3.000.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>7.500.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Tiết kiệm</span>
-                            <strong>1.200.000đ</strong>
-                            <small>Homestay, ăn quán địa phương</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Thoải mái</span>
-                            <strong>3.000.000đ</strong>
-                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Cần Thơ – Miền Tây. Giá tham khảo, thay đổi theo mùa.</p>
-                </div>
+                <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Cần Thơ – Miền Tây. Giá tham khảo, thay đổi theo mùa.</p>
             </div>
         </section>
     

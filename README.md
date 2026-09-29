@@ -9,7 +9,10 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
   ẩm thực, hoạt động vui chơi, kinh nghiệm du lịch và gợi ý điểm đến cùng vùng.
-- **Lịch trình gợi ý** theo ngày (sáng / chiều / tối) kèm chi phí ước tính.
+- **Tour 3 ngày 2 đêm / 4 ngày 3 đêm / 5 ngày 4 đêm** cho mỗi điểm đến: lịch trình từng ngày
+  (sáng / chiều / tối), chi phí ước tính theo từng tour, xem từng ngày hoặc tất cả các ngày.
+- **Lịch 12 tháng bấm được**: chọn tháng để biết có nên đi không và gợi ý điểm đến đẹp vào tháng đó;
+  trang chủ lọc được điểm đến theo tháng muốn đi.
 - **Bản đồ** (Leaflet + OpenStreetMap) với điểm lân cận và khoảng cách.
 - **Thời tiết hiện tại** (Open-Meteo) và thanh 12 tháng tô màu mùa đẹp.
 - **Yêu thích**: lưu điểm đến ngay trên trình duyệt, không cần đăng nhập.
@@ -42,6 +45,8 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
 ## Song ngữ
 - Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
   (`ui`, `html`, `destinations`, `itineraries`).
+- Lịch trình nằm trong `assets/js/data/itineraries.js`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
+  lấy lần lượt 3/4/5 ngày đầu; `budget` là chi phí cho [3, 4, 5] ngày.
 - Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
 

@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Best time: October – November (buckwheat flowers)</h3>
-                    <ol class="season__months" aria-label="Months of the year">
-                        <li class="season__month" data-month="1"
-                                        title="January">Jan</li><li class="season__month" data-month="2"
-                                        title="February">Feb</li><li class="season__month" data-month="3"
-                                        title="March">Mar</li><li class="season__month" data-month="4"
-                                        title="April">Apr</li><li class="season__month" data-month="5"
-                                        title="May">May</li><li class="season__month" data-month="6"
-                                        title="June">Jun</li><li class="season__month" data-month="7"
-                                        title="July">Jul</li><li class="season__month" data-month="8"
-                                        title="August">Aug</li><li class="season__month" data-month="9"
-                                        title="September">Sep</li><li class="season__month season__month--best" data-month="10"
-                                        title="October – best season">Oct</li><li class="season__month season__month--best" data-month="11"
-                                        title="November – best season">Nov</li><li class="season__month" data-month="12"
-                                        title="December">Dec</li>
-                    </ol>
+                    <p class="season__hint">Tap a month to see if it's a good time to go</p>
+                    <div class="season__months" role="group" aria-label="Months of the year">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="January">Jan</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="February">Feb</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="March">Mar</button><button type="button" class="season__month" data-month="4" aria-pressed="false"
+                                        title="April">Apr</button><button type="button" class="season__month" data-month="5" aria-pressed="false"
+                                        title="May">May</button><button type="button" class="season__month" data-month="6" aria-pressed="false"
+                                        title="June">Jun</button><button type="button" class="season__month" data-month="7" aria-pressed="false"
+                                        title="July">Jul</button><button type="button" class="season__month" data-month="8" aria-pressed="false"
+                                        title="August">Aug</button><button type="button" class="season__month" data-month="9" aria-pressed="false"
+                                        title="September">Sep</button><button type="button" class="season__month season__month--best" data-month="10" aria-pressed="false"
+                                        title="October – best season">Oct</button><button type="button" class="season__month season__month--best" data-month="11" aria-pressed="false"
+                                        title="November – best season">Nov</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="December">Dec</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Best season</span>
                         <span><i class="season__dot season__dot--current"></i> Current month</span>
+                        <span><i class="season__dot season__dot--selected"></i> Selected month</span>
                     </div>
-                    <p class="season__status" data-season-status="10,11"></p>
+                    <p class="season__status" data-season-status="10,11" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -334,176 +337,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Itinerary</span>
-            <h2 class="section__title">4-day itinerary for Ha Giang</h2>
+            <span class="section__subtitle">Tour itineraries</span>
+            <h2 class="section__title">Ha Giang tour itineraries</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+                <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Day 1</span>
-                            <small>Ha Giang – Quan Ba – Yen Minh</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 days 2 nights</strong>
+                            <small>from 2,400,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Day 2</span>
-                            <small>Dong Van – Lung Cu</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 days 3 nights</strong>
+                            <small>from 3,000,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-2" aria-controls="day-panel-2" aria-selected="false" data-day="2">
-                            <span>Day 3</span>
-                            <small>Ma Pi Leng – Nho Que</small>
-                        </button>
-                    
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-3" aria-controls="day-panel-3" aria-selected="false" data-day="3">
-                            <span>Day 4</span>
-                            <small>Back to Ha Giang</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 days 4 nights</strong>
+                            <small>from 3,700,000 VND</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Stay in Yen Minh, try thắng cố or black chicken hotpot.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Ha Giang – Quan Ba – Yen Minh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Dong Van – Lung Cu</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Ma Pi Leng – Nho Que</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Yen Minh, try thắng cố or black chicken hotpot.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>The Vuong family mansion and Tham Ma slope.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Wander Dong Van old quarter and its cafés.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Pi Leng pass and admire Tu San canyon.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Take a boat on the Nho Que river, then head to Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Join the love market (if in season) and stay in Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,400,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>5,000,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>The Vuong family mansion and Tham Ma slope.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Wander Dong Van old quarter and its cafés.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Ha Giang – Quan Ba – Yen Minh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Dong Van – Lung Cu</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Ma Pi Leng – Nho Que</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Meo Vac – Du Gia</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Yen Minh, try thắng cố or black chicken hotpot.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>The Vuong family mansion and Tham Ma slope.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Wander Dong Van old quarter and its cafés.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Pi Leng pass and admire Tu San canyon.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Take a boat on the Nho Que river, then head to Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Join the love market (if in season) and stay in Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Meo Vac – Du Gia</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Ride the Meo Vac – Du Gia route over majestic slopes.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Swim in Du Gia stream, lunch at a homestay.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Du Gia with a Tay family around the campfire.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>3,000,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>6,500,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-2" aria-labelledby="day-tab-2" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Cross Ma Pi Leng pass and admire Tu San canyon.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Take a boat on the Nho Que river, then head to Meo Vac.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Join the love market (if in season) and stay in Meo Vac.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
-                    </div>
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia → Hoang Su Phi</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Ha Giang – Quan Ba – Yen Minh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Dong Van – Lung Cu</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Ma Pi Leng – Nho Que</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Meo Vac – Du Gia</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Day 5</span>
+                    <small>Hoang Su Phi</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Yen Minh, try thắng cố or black chicken hotpot.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-3" aria-labelledby="day-tab-3" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Ride the Meo Vac – Du Gia route over majestic slopes.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Swim in Du Gia stream, lunch at a homestay.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Return to Ha Giang city and take the bus to Hanoi.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>The Vuong family mansion and Tham Ma slope.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Wander Dong Van old quarter and its cafés.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Pi Leng pass and admire Tu San canyon.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Take a boat on the Nho Que river, then head to Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Join the love market (if in season) and stay in Meo Vac.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Meo Vac – Du Gia</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Ride the Meo Vac – Du Gia route over majestic slopes.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Swim in Du Gia stream, lunch at a homestay.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Du Gia with a Tay family around the campfire.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Day 5: Hoang Su Phi</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Continue to Hoang Su Phi and its nationally listed rice terraces.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit Nam Hong village and ancient shan tuyết tea hills.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Back in Ha Giang city for egg rice rolls.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>3,700,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>8,000,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Budget</span>
-                            <strong>3,000,000 VND</strong>
-                            <small>Homestays, local eateries</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Comfort</span>
-                            <strong>6,500,000 VND</strong>
-                            <small>3–4 star hotels, guided tours</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Excludes flights/transport to Ha Giang. Prices are indicative and vary by season.</p>
-                </div>
+                <p class="budget__note">Excludes flights/transport to Ha Giang. Prices are indicative and vary by season.</p>
             </div>
         </section>
     

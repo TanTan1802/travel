@@ -100,6 +100,19 @@ const TRANSLATION_EN = {
         'Tuyết': 'Snow',
         'Dông': 'Thunderstorm',
         'Không rõ': 'Unknown',
+        'Lịch trình tour': 'Tour itineraries',
+        'Lịch trình tour {name}': '{name} tour itineraries',
+        'Chọn tour': 'Choose a tour',
+        '{n} ngày {m} đêm': '{n} days {m} nights',
+        'từ {price}': 'from {price}',
+        'Xem tất cả các ngày': 'Show all days',
+        'Xem từng ngày': 'Show day by day',
+        'Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.': 'End of tour: check out, shop for local specialties and head home.',
+        'Bấm vào một tháng để xem có nên đi không': 'Tap a month to see if it\'s a good time to go',
+        'Tháng đang xem': 'Selected month',
+        'Điểm đến đẹp vào tháng {m}:': 'Great destinations in {m}:',
+        'Mọi tháng': 'Any month',
+        'Đi vào tháng {m}': 'Travel in {m}',
         'Cộng đồng': 'Community',
         'Chia sẻ trải nghiệm của bạn': 'Share your experience',
         'Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!': 'Been to {name}? Leave your impressions, tips or questions for other travellers!',
@@ -190,6 +203,7 @@ const TRANSLATION_EN = {
         'Tìm điểm đến, tỉnh thành, món ăn...': 'Search destinations, provinces, dishes...',
         'Lọc theo vùng miền': 'Filter by region',
         'Lọc theo loại hình': 'Filter by type',
+        'Lọc theo tháng đi': 'Filter by travel month',
         'Kiểu hiển thị': 'View mode',
         'Nhập email của bạn': 'Enter your email',
         'Lên đầu trang': 'Back to top',
@@ -840,177 +854,166 @@ const TRANSLATION_EN = {
     },
 
     itineraries: {
-        'vinh-ha-long': {
-            days: [
-                { title: 'Board the cruise, explore the bay', morning: 'Drive from Hanoi on the expressway (about 2.5 hours) and board your cruise at Tuan Chau harbour.', afternoon: 'Visit Sung Sot Cave and kayak around Luon Cave.', evening: 'Watch the sunset from the deck, enjoy a seafood dinner and night squid fishing.' },
-                { title: 'Ti Top and the fishing village', morning: 'Tai chi at sunrise, then climb Ti Top peak for a panoramic view.', afternoon: 'Visit Cua Van fishing village, check out and return to the harbour.', evening: 'Stroll around Sun World Ha Long and ride the Sun Wheel, or head back to Hanoi.' },
-            ],
-            budget: { saving: '1,800,000 VND', comfort: '4,500,000 VND' },
-        },
-        'sa-pa': {
-            days: [
-                { title: 'A town in the mist', morning: 'Arrive in Sa Pa by sleeper bus, check in and have chicken phở for breakfast.', afternoon: 'Walk down to Cat Cat village, see Tien Sa waterfall and H\'Mong houses.', evening: 'Visit the Stone Church and night market, enjoy grilled snacks and apple wine.' },
-                { title: 'Conquer Fansipan', morning: 'Take the cable car to the 3,143 m Fansipan summit, hunt clouds and visit the spiritual complex.', afternoon: 'See O Quy Ho pass, Silver Waterfall and Heaven\'s Gate.', evening: 'Try salmon hotpot and a Red Dao herbal bath.' },
-                { title: 'Trek Muong Hoa', morning: 'Trek Lao Chai – Ta Van through the rice terraces.', afternoon: 'Lunch at a homestay, buy brocade and return to town.', evening: 'Take the bus back to Hanoi.' },
-            ],
-            budget: { saving: '2,000,000 VND', comfort: '5,000,000 VND' },
-        },
-        'ha-noi': {
-            days: [
-                { title: 'Thousand-year Hanoi', morning: 'Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.', afternoon: 'Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.', evening: 'Watch water puppetry and join a food tour on Ta Hien street.' },
-                { title: 'Old Quarter and West Lake', morning: 'Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.', afternoon: 'Hoa Lo Prison, Train Street and the Opera House.', evening: 'Sunset at West Lake, shrimp cakes and the weekend walking street.' },
-            ],
-            budget: { saving: '1,200,000 VND', comfort: '3,500,000 VND' },
-        },
-        'ninh-binh': {
-            days: [
-                { title: 'Trang An – Bai Dinh', morning: 'Take the Trang An boat trip through water caves (2–3 hours).', afternoon: 'Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.', evening: 'Stay at a homestay in Tam Coc among the rice fields.' },
-                { title: 'Tam Coc – Mua Cave', morning: 'Cycle the countryside and take the Tam Coc – Bich Dong boat.', afternoon: 'Visit the ancient capital of Hoa Lu.', evening: 'Climb 500 steps of Mua Cave for sunset, then return to Hanoi.' },
-            ],
-            budget: { saving: '1,300,000 VND', comfort: '3,200,000 VND' },
-        },
-        'ha-giang': {
-            days: [
-                { title: 'Ha Giang – Quan Ba – Yen Minh', morning: 'Rent a motorbike or hire an easy rider, check in at the Km0 marker.', afternoon: 'Quan Ba Heaven\'s Gate, the Fairy Twin Mountains and Yen Minh pine forest.', evening: 'Stay in Yen Minh, try thắng cố or black chicken hotpot.' },
-                { title: 'Dong Van – Lung Cu', morning: 'The Vuong family mansion and Tham Ma slope.', afternoon: 'Climb Lung Cu flag tower – Vietnam\'s northernmost point.', evening: 'Wander Dong Van old quarter and its cafés.' },
-                { title: 'Ma Pi Leng – Nho Que', morning: 'Cross Ma Pi Leng pass and admire Tu San canyon.', afternoon: 'Take a boat on the Nho Que river, then head to Meo Vac.', evening: 'Join the love market (if in season) and stay in Meo Vac.' },
-                { title: 'Back to Ha Giang', morning: 'Ride the Meo Vac – Du Gia route over majestic slopes.', afternoon: 'Swim in Du Gia stream, lunch at a homestay.', evening: 'Return to Ha Giang city and take the bus to Hanoi.' },
-            ],
-            budget: { saving: '3,000,000 VND', comfort: '6,500,000 VND' },
-        },
-        'ban-gioc': {
-            days: [
-                { title: 'Cao Bang city – Pac Bo', morning: 'Arrive in Cao Bang, breakfast on rice rolls with broth.', afternoon: 'Pac Bo historic site, Lenin stream and Coc Bo cave.', evening: 'Enjoy seven-flavour roast duck and stay in the city.' },
-                { title: 'Ban Gioc Waterfall', morning: 'Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.', afternoon: 'Truc Lam Buddhist pagoda and Nguom Ngao cave.', evening: 'Stay at a homestay in Trung Khanh.' },
-                { title: 'Thang Hen lake – heading back', morning: 'See Thang Hen lake and Khau Coc Cha pass.', afternoon: 'Buy Trung Khanh chestnuts and take the bus back to Hanoi.', evening: 'End of the trip.' },
-            ],
-            budget: { saving: '2,200,000 VND', comfort: '4,800,000 VND' },
-        },
-        'cat-ba': {
-            days: [
-                { title: 'Cat Ba island', morning: 'Travel Hanoi – Hai Phong, take the speedboat to the island and check in.', afternoon: 'Swim at Cat Co 1, 2 and 3 and walk the cliffside path.', evening: 'Sunset at Cannon Fort and seafood at the fishing pier.' },
-                { title: 'Lan Ha Bay', morning: 'Sail to Lan Ha Bay and kayak through the Light and Dark caves.', afternoon: 'Swim at Ba Trai Dao beach and visit Cai Beo fishing village.', evening: 'Stroll the town\'s walking street and try crab noodle soup.' },
-                { title: 'National park', morning: 'Trek in Cat Ba National Park and climb Ngu Lam peak.', afternoon: 'Visit Hospital Cave and take the boat back to the mainland.', evening: 'Return to Hanoi.' },
-            ],
-            budget: { saving: '2,000,000 VND', comfort: '5,000,000 VND' },
-        },
-        'mu-cang-chai': {
-            days: [
-                { title: 'Nghia Lo – Tu Le', morning: 'Night bus from Hanoi, breakfast on Tu Le sticky rice.', afternoon: 'Soak in Tu Le hot springs and admire the rice fields.', evening: 'Stay at a Thai homestay with bamboo rice and hill chicken.' },
-                { title: 'Khau Pha pass – Mam Xoi', morning: 'Cross Khau Pha pass and watch paragliders (harvest season).', afternoon: 'Photograph Mam Xoi hill and the La Pan Tan terraces.', evening: 'Stay at an H\'Mong homestay and taste smoked buffalo.' },
-                { title: 'Che Cu Nha – heading back', morning: 'Chase clouds and admire the Che Cu Nha terraces.', afternoon: 'Buy honey and black cardamom as gifts.', evening: 'Take the bus back to Hanoi.' },
-            ],
-            budget: { saving: '1,800,000 VND', comfort: '4,000,000 VND' },
-        },
-        'hue': {
-            days: [
-                { title: 'Hue Imperial City', morning: 'Bún bò Huế for breakfast, then the Imperial City – Ngo Mon Gate – Forbidden Purple City.', afternoon: 'Thien Mu Pagoda and Minh Mang Tomb.', evening: 'Listen to Hue folk songs on a dragon boat and release lanterns on the Perfume River.' },
-                { title: 'Royal tombs and food', morning: 'Khai Dinh Tomb and Tu Duc Tomb.', afternoon: 'Thuy Xuan incense village and Dong Ba market.', evening: 'Food tour of bánh bèo, bánh nậm and Hue sweet soups on Han Thuyen street.' },
-            ],
-            budget: { saving: '1,300,000 VND', comfort: '3,500,000 VND' },
-        },
-        'phong-nha': {
-            days: [
-                { title: 'Phong Nha Cave', morning: 'Arrive in Phong Nha and take a boat along the Son river into Phong Nha and Tien Son caves.', afternoon: 'Cycle through Bong Lai valley.', evening: 'Phong Nha grilled chicken and a riverside homestay.' },
-                { title: 'Paradise Cave – Dark Cave', morning: 'Explore Paradise Cave and its magnificent stalactites.', afternoon: 'Zipline, mud bath at Dark Cave and swim in the Chay river.', evening: 'Seafood in Dong Hoi and a walk on Nhat Le beach.' },
-            ],
-            budget: { saving: '1,800,000 VND', comfort: '4,000,000 VND' },
-        },
-        'da-nang': {
-            days: [
-                { title: 'Ba Na Hills – Golden Bridge', morning: 'Take the cable car up Ba Na and visit the Golden Bridge early.', afternoon: 'French Village, Le Jardin flower garden and Fantasy Park.', evening: 'Back down for mì Quảng and seaside seafood.' },
-                { title: 'Son Tra – Marble Mountains', morning: 'Swim at My Khe and visit Linh Ung Pagoda on Son Tra.', afternoon: 'Marble Mountains and Non Nuoc stone village.', evening: 'Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.' },
-                { title: 'Hai Van pass', morning: 'Ride the Hai Van pass by motorbike and stop in Lang Co.', afternoon: 'Pork rolled in rice paper and coffee overlooking the Han river.', evening: 'Han river cruise as the city lights up.' },
-            ],
-            budget: { saving: '2,200,000 VND', comfort: '6,000,000 VND' },
-        },
-        'hoi-an': {
-            days: [
-                { title: 'Old town by day', morning: 'Buy a ticket and visit the Covered Bridge, Fujian Assembly Hall and Tan Ky house.', afternoon: 'Cycle to Bay Mau coconut forest for a basket boat ride.', evening: 'Release lanterns on the Hoai river, eat cao lầu and browse the night market.' },
-                { title: 'Craft villages and the beach', morning: 'Cooking class and Tra Que vegetable village.', afternoon: 'Swim at An Bang beach and get an áo dài tailored.', evening: 'Bánh mì Phượng and the "Hoi An Memories" show.' },
-            ],
-            budget: { saving: '1,400,000 VND', comfort: '4,000,000 VND' },
-        },
-        'nha-trang': {
-            days: [
-                { title: 'The beach city', morning: 'Po Nagar towers and Long Son Pagoda.', afternoon: 'Relax in a hot mineral mud bath.', evening: 'Stroll Tran Phu beach and eat seafood at Xom Moi market.' },
-                { title: 'Four-island tour', morning: 'Snorkel the Hon Mun coral reef.', afternoon: 'Hon Tam, Bai Tranh and a floating party at sea.', evening: 'Fish cake noodle soup and Ninh Hoa grilled pork rolls.' },
-                { title: 'VinWonders', morning: 'Take the sea-crossing cable car to Hon Tre.', afternoon: 'Water park and rides at VinWonders.', evening: 'Watch the Tata musical fountain show, then return to the mainland.' },
-            ],
-            budget: { saving: '2,200,000 VND', comfort: '6,000,000 VND' },
-        },
-        'da-lat': {
-            days: [
-                { title: 'Central Da Lat', morning: 'Walk around Xuan Huong Lake, eat bánh căn and visit Lam Vien square.', afternoon: 'Da Lat station, the Trai Mat train and Linh Phuoc Pagoda.', evening: 'Da Lat night market with grilled rice paper and soy milk.' },
-                { title: 'Clouds and tea hills', morning: 'Wake early to chase clouds at Cau Dat tea hills.', afternoon: 'Strawberry farms and hydrangea gardens.', evening: 'Chicken hotpot with lá é and an acoustic café.' },
-                { title: 'Pine forests and waterfalls', morning: 'The pine hills of the Valley of Love and Tuyen Lam Lake.', afternoon: 'Datanla Falls (alpine coaster) and Truc Lam Zen Monastery by cable car.', evening: 'Buy candied fruit and artichoke tea as gifts.' },
-            ],
-            budget: { saving: '1,800,000 VND', comfort: '4,500,000 VND' },
-        },
-        'mui-ne': {
-            days: [
-                { title: 'Sand dunes – Fairy Stream', morning: 'Jeep to watch sunrise over the White Dunes.', afternoon: 'Walk the Fairy Stream and visit Mui Ne fishing village.', evening: 'Sunset at the Flying Dunes and seaside seafood.' },
-                { title: 'Beach and sports', morning: 'Learn kitesurfing or swim at your resort.', afternoon: 'Poshanu Cham towers and the wine castle.', evening: 'Bánh căn and mackerel salad, then back to Saigon.' },
-            ],
-            budget: { saving: '1,500,000 VND', comfort: '4,000,000 VND' },
-        },
-        'quy-nhon': {
-            days: [
-                { title: 'Ky Co – Eo Gio', morning: 'Speedboat to Ky Co, swim and snorkel at Bai Dua.', afternoon: 'Eo Gio – sea views from the cliff-top walkway.', evening: 'Jumping-shrimp bánh xèo and a walk along Xuan Dieu seafront.' },
-                { title: 'Quy Nhon city', morning: 'Ghenh Rang Tien Sa and the tomb of poet Han Mac Tu.', afternoon: 'The Twin Towers and Long Khanh Pagoda.', evening: 'Seafood at Quy Nhon night market.' },
-                { title: 'Tay Son – land of martial arts', morning: 'Quang Trung Museum and a traditional martial arts show.', afternoon: 'Banh It towers and bánh hỏi with pork offal porridge.', evening: 'End the trip or continue to Phu Yen.' },
-            ],
-            budget: { saving: '2,000,000 VND', comfort: '5,500,000 VND' },
-        },
-        'phu-yen': {
-            days: [
-                { title: 'Mui Dien – Bai Mon', morning: 'Catch the earliest mainland sunrise at Mui Dien and climb Dai Lanh lighthouse.', afternoon: 'Swim at Bai Mon and visit O Loan lagoon.', evening: 'Tuna eyes and Nhan Tower by night.' },
-                { title: 'Ganh Da Dia – Xuan Dai', morning: 'Explore Ganh Da Dia and Mang Lang church.', afternoon: 'Boat on Xuan Dai Bay and Do Do village (from the film "Mat Biec").', evening: 'Blood cockles from O Loan lagoon, then back to Tuy Hoa.' },
-            ],
-            budget: { saving: '1,500,000 VND', comfort: '4,000,000 VND' },
-        },
-        'sai-gon': {
-            days: [
-                { title: 'Heritage Saigon', morning: 'Independence Palace, Notre-Dame Cathedral and the Central Post Office.', afternoon: 'War Remnants Museum and Ben Thanh Market.', evening: 'Nguyen Hue walking street and city views from Landmark 81 or Bitexco.' },
-                { title: 'Tunnels and food', morning: 'Cu Chi Tunnels (half day).', afternoon: 'Cho Lon and Thien Hau Temple in District 5.', evening: 'Motorbike food tour in District 4: snails, broken rice and bánh mì.' },
-            ],
-            budget: { saving: '1,300,000 VND', comfort: '4,000,000 VND' },
-        },
-        'can-tho': {
-            days: [
-                { title: 'Ninh Kieu – ancient house', morning: 'Arrive in Can Tho, visit Binh Thuy ancient house and Ong Pagoda.', afternoon: 'Phong Dien fruit orchards and Mekong bánh xèo.', evening: 'Stroll Ninh Kieu wharf and take a cruise with đờn ca tài tử music.' },
-                { title: 'Cai Rang floating market', morning: 'Boat to Cai Rang floating market at 5 am and eat hủ tiếu on a boat.', afternoon: 'A traditional noodle workshop and My Khanh tourist village.', evening: 'Buy bánh pía cakes and return to Saigon.' },
-            ],
-            budget: { saving: '1,200,000 VND', comfort: '3,000,000 VND' },
-        },
-        'phu-quoc': {
-            days: [
-                { title: 'South island', morning: 'Hon Thom cable car and Aquatopia water park.', afternoon: 'Swim at Sao Beach and visit Phu Quoc Prison.', evening: 'Sunset at Sunset Town and the "Kiss of the Sea" show.' },
-                { title: 'Four-island tour', morning: 'Snorkel in the An Thoi archipelago.', afternoon: 'May Rut and Mong Tay islands.', evening: 'Dinh Cau night market with herring salad and Ham Ninh crab.' },
-                { title: 'North island', morning: 'Grand World, VinWonders and Vinpearl Safari.', afternoon: 'Starfish at Rach Vem, a fish sauce factory and pepper farms.', evening: 'Sunset at Long Beach and shopping for local specialties.' },
-            ],
-            budget: { saving: '3,000,000 VND', comfort: '8,000,000 VND' },
-        },
-        'vung-tau': {
-            days: [
-                { title: 'Small Mountain – Back Beach', morning: 'Leave Saigon and climb to the Christ the King statue on Small Mountain.', afternoon: 'Swim at Back Beach and walk to Hon Ba at low tide.', evening: 'Bánh khọt, stingray hotpot and a stroll along Front Beach.' },
-                { title: 'Lighthouse – White Palace', morning: 'Sunrise at Vung Tau lighthouse.', afternoon: 'Visit the White Palace and the Ho May cable car.', evening: 'Buy salted egg sponge cake and return to Saigon.' },
-            ],
-            budget: { saving: '1,000,000 VND', comfort: '3,000,000 VND' },
-        },
-        'chau-doc': {
-            days: [
-                { title: 'Sam Mountain – Chau Doc', morning: 'Arrive in Chau Doc, visit Ba Chua Xu temple and Thoai Ngoc Hau tomb.', afternoon: 'Climb Sam Mountain for border views and visit Tay An Pagoda.', evening: 'Fermented fish hotpot and Chau Doc market for fish sauce gifts.' },
-                { title: 'Tra Su – Cam Mountain', morning: 'Boat through Tra Su cajuput forest amid duckweed and birds.', afternoon: 'Cam Mountain cable car and the Maitreya statue.', evening: 'Try palm sugar sponge cake, then back to Saigon or Can Tho.' },
-            ],
-            budget: { saving: '1,300,000 VND', comfort: '3,200,000 VND' },
-        },
-        'con-dao': {
-            days: [
-                { title: 'Historic sites', morning: 'Con Dao prison, Phu Hai camp and the tiger cages.', afternoon: 'Con Dao Museum and Pier 914.', evening: 'Visit Hang Duong cemetery and the grave of Vo Thi Sau (around 11 pm – midnight).' },
-                { title: 'Unspoilt islands', morning: 'Swim at Dam Trau beach – watch planes land right overhead.', afternoon: 'Snorkel the coral reefs at Bay Canh (or Cau) island.', evening: 'Seafood at Con Dao night market.' },
-            ],
-            budget: { saving: '3,500,000 VND', comfort: '8,000,000 VND' },
-        },
+        'vinh-ha-long': { days: [
+            { title: 'Board the cruise, explore the bay', morning: 'Drive from Hanoi on the expressway (about 2.5 hours) and board your cruise at Tuan Chau harbour.', afternoon: 'Visit Sung Sot Cave and kayak around Luon Cave.', evening: 'Watch the sunset from the deck, enjoy a seafood dinner and night squid fishing.' },
+            { title: 'Ti Top and the fishing village', morning: 'Tai chi at sunrise, then climb Ti Top peak for a panoramic view.', afternoon: 'Visit Cua Van fishing village, check out of the cruise and return to the harbour.', evening: 'Stroll Sun World Ha Long, ride the Sun Wheel and stay in Bai Chay.' },
+            { title: 'Museum and seafood market', morning: 'Quang Ninh Museum with its striking "black box" architecture.', afternoon: 'Take the Queen cable car up Ba Deo hill for bird\'s-eye bay views.', evening: 'Shop for squid cakes and sea worms at Ha Long 1 market.' },
+            { title: 'Lan Ha Bay – Cat Ba', morning: 'Take the boat to Cat Ba island and kayak Lan Ha Bay.', afternoon: 'Swim at Ba Trai Dao beach and visit Cai Beo fishing village.', evening: 'Stay in Cat Ba town and eat seafood on a floating raft.' },
+            { title: 'Sacred Yen Tu mountain', morning: 'Head to Uong Bi and ride the cable car to the Bronze Pagoda on Yen Tu peak.', afternoon: 'Visit Truc Lam Yen Tu Zen Monastery and Nu village.', evening: 'Try bánh gio rice cakes and Yen Tu bamboo shoots.' },
+        ] },
+        'sa-pa': { days: [
+            { title: 'A town in the mist', morning: 'Arrive in Sa Pa by sleeper bus, check in and have chicken phở for breakfast.', afternoon: 'Walk down to Cat Cat village, see Tien Sa waterfall and H\'Mong houses.', evening: 'Visit the Stone Church and night market, enjoy grilled snacks and apple wine.' },
+            { title: 'Conquer Fansipan', morning: 'Take the cable car to the 3,143 m Fansipan summit, hunt clouds and visit the spiritual complex.', afternoon: 'See O Quy Ho pass, Silver Waterfall and Heaven\'s Gate.', evening: 'Try salmon hotpot and a Red Dao herbal bath.' },
+            { title: 'Trek Muong Hoa', morning: 'Trek Lao Chai – Ta Van through the rice terraces.', afternoon: 'Lunch at a homestay and shop for brocade in Ta Van.', evening: 'Stay with a Dao family, enjoy bamboo rice and local pork.' },
+            { title: 'Ta Phin village', morning: 'Visit the Red Dao village of Ta Phin and Ta Phin cave.', afternoon: 'Learn about brocade embroidery and take a herbal bath.', evening: 'Back in town, coffee overlooking Sa Pa at night.' },
+            { title: 'Bac Ha market', morning: 'Bac Ha Sunday market – the most colourful highland market in the Northwest.', afternoon: 'Visit Hoang A Tuong mansion and Bac Ha plum orchards.', evening: 'Try thắng cố and Ban Pho corn wine.' },
+        ] },
+        'ha-noi': { days: [
+            { title: 'Thousand-year Hanoi', morning: 'Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.', afternoon: 'Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.', evening: 'Watch water puppetry and join a food tour on Ta Hien street.' },
+            { title: 'Old Quarter and West Lake', morning: 'Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.', afternoon: 'Hoa Lo Prison, Train Street and the Opera House.', evening: 'Sunset at West Lake, shrimp cakes and the weekend walking street.' },
+            { title: 'Craft villages', morning: 'Bat Trang ceramic village – make your own pottery.', afternoon: 'Vietnam Museum of Ethnology with stilt houses of many ethnic groups.', evening: 'Chả cá Lã Vọng and live music at an Old Quarter café.' },
+            { title: 'Perfume Pagoda', morning: 'Boat along Yen stream among the mountains to Thien Tru pagoda.', afternoon: 'Cable car to Huong Tich cave – "the most beautiful cave in the South".', evening: 'Back in Hanoi, bún chả on Hang Manh street.' },
+            { title: 'Duong Lam – Ba Vi', morning: 'Duong Lam ancient village with its gates and century-old laterite houses.', afternoon: 'Ba Vi National Park, Upper Temple and pine forest.', evening: 'Try hill chicken and Ba Vi yoghurt.' },
+        ] },
+        'ninh-binh': { days: [
+            { title: 'Trang An – Bai Dinh', morning: 'Take the Trang An boat trip through water caves (2–3 hours).', afternoon: 'Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.', evening: 'Stay at a homestay in Tam Coc among the rice fields.' },
+            { title: 'Tam Coc – Mua Cave', morning: 'Cycle the countryside and take the Tam Coc – Bich Dong boat.', afternoon: 'Visit the ancient capital of Hoa Lu and the temples of kings Dinh and Le.', evening: 'Climb 500 steps of Mua Cave for sunset.' },
+            { title: 'Van Long – bird park', morning: 'Boat through Van Long reserve to spot Delacour\'s langurs.', afternoon: 'Thung Nham bird park, where thousands of egrets return at dusk.', evening: 'Try mountain snails and sắng greens.' },
+            { title: 'Phat Diem Cathedral', morning: 'Phat Diem stone cathedral – a unique blend of Vietnamese and European architecture.', afternoon: 'Kim Son beach or the sedge-weaving village.', evening: 'Back to Tam Coc and its evening streets.' },
+            { title: 'Cuc Phuong forest', morning: 'Cuc Phuong National Park – primate rescue centre and a thousand-year-old tree.', afternoon: 'Cave of Prehistoric Man and Con Moong cave.', evening: 'Try raw fish salad and crispy rice with pork floss.' },
+        ] },
+        'ha-giang': { days: [
+            { title: 'Ha Giang – Quan Ba – Yen Minh', morning: 'Rent a motorbike or hire an easy rider, check in at the Km0 marker.', afternoon: 'Quan Ba Heaven\'s Gate, the Fairy Twin Mountains and Yen Minh pine forest.', evening: 'Stay in Yen Minh, try thắng cố or black chicken hotpot.' },
+            { title: 'Dong Van – Lung Cu', morning: 'The Vuong family mansion and Tham Ma slope.', afternoon: 'Climb Lung Cu flag tower – Vietnam\'s northernmost point.', evening: 'Wander Dong Van old quarter and its cafés.' },
+            { title: 'Ma Pi Leng – Nho Que', morning: 'Cross Ma Pi Leng pass and admire Tu San canyon.', afternoon: 'Take a boat on the Nho Que river, then head to Meo Vac.', evening: 'Join the love market (if in season) and stay in Meo Vac.' },
+            { title: 'Meo Vac – Du Gia', morning: 'Ride the Meo Vac – Du Gia route over majestic slopes.', afternoon: 'Swim in Du Gia stream, lunch at a homestay.', evening: 'Stay in Du Gia with a Tay family around the campfire.' },
+            { title: 'Hoang Su Phi', morning: 'Continue to Hoang Su Phi and its nationally listed rice terraces.', afternoon: 'Visit Nam Hong village and ancient shan tuyết tea hills.', evening: 'Back in Ha Giang city for egg rice rolls.' },
+        ] },
+        'ban-gioc': { days: [
+            { title: 'Cao Bang city – Pac Bo', morning: 'Arrive in Cao Bang, breakfast on rice rolls with broth.', afternoon: 'Pac Bo historic site, Lenin stream and Coc Bo cave.', evening: 'Enjoy seven-flavour roast duck and stay in the city.' },
+            { title: 'Ban Gioc Waterfall', morning: 'Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.', afternoon: 'Truc Lam Buddhist pagoda and Nguom Ngao cave.', evening: 'Stay at a homestay in Trung Khanh.' },
+            { title: 'Thang Hen lake – Khau Coc Cha', morning: 'See Thang Hen lake and the "14-tier" Khau Coc Cha pass.', afternoon: 'Phuc Sen blacksmith village and Phja Thap incense village.', evening: 'Buy Trung Khanh chestnuts and try sour phở.' },
+            { title: 'Eye of God mountain – Bao Lac', morning: 'The Eye of God (pierced mountain) in Quang Uyen.', afternoon: 'Cross Ma Phuc pass to Bao Lac and the winding Gam river.', evening: 'Stay in Bao Lac and try bánh áp chao pastries.' },
+            { title: 'Ba Be lake', morning: 'Transfer to Bac Kan and boat across Ba Be lake.', afternoon: 'Puong cave, Fairy pond and Widow island.', evening: 'Homestay in Pac Ngoi village with grilled lake fish.' },
+        ] },
+        'cat-ba': { days: [
+            { title: 'Cat Ba island', morning: 'Travel Hanoi – Hai Phong, take the speedboat to the island and check in.', afternoon: 'Swim at Cat Co 1, 2 and 3 and walk the cliffside path.', evening: 'Sunset at Cannon Fort and seafood at the fishing pier.' },
+            { title: 'Lan Ha Bay', morning: 'Sail to Lan Ha Bay and kayak through the Light and Dark caves.', afternoon: 'Swim at Ba Trai Dao beach and visit Cai Beo fishing village.', evening: 'Stroll the town\'s walking street and try crab noodle soup.' },
+            { title: 'National park', morning: 'Trek in Cat Ba National Park and climb Ngu Lam peak.', afternoon: 'Visit Hospital Cave and Trung Trang cave.', evening: 'Dinner on a floating raft with night views of the bay.' },
+            { title: 'Monkey Island – Viet Hai', morning: 'Speedboat to Monkey Island and its white-sand beach.', afternoon: 'Cycle to Viet Hai village deep inside the national park.', evening: 'Seafood BBQ by the beach.' },
+            { title: 'Hai Phong, city of flame trees', morning: 'Back to Hai Phong: the Opera House and Tam Bac old quarter.', afternoon: 'Tuong Long tower and Do Son beach.', evening: 'Hai Phong food tour: stick bánh mì, crab spring rolls, crab noodle soup.' },
+        ] },
+        'mu-cang-chai': { days: [
+            { title: 'Nghia Lo – Tu Le', morning: 'Night bus from Hanoi, breakfast on Tu Le sticky rice.', afternoon: 'Soak in Tu Le hot springs and admire the rice fields.', evening: 'Stay at a Thai homestay with bamboo rice and hill chicken.' },
+            { title: 'Khau Pha pass – Mam Xoi', morning: 'Cross Khau Pha pass and watch paragliders (harvest season).', afternoon: 'Photograph Mam Xoi hill and the La Pan Tan terraces.', evening: 'Stay at an H\'Mong homestay and taste smoked buffalo.' },
+            { title: 'Che Cu Nha – De Xu Phinh', morning: 'Chase clouds and admire the Che Cu Nha terraces.', afternoon: 'De Xu Phinh village and its horseshoe-shaped terraces.', evening: 'Folk music and corn wine with the H\'Mong.' },
+            { title: 'Mo waterfall – Pung Luong', morning: 'Mo waterfall and the pơ mu forest of Pung Luong.', afternoon: 'Stream swimming and a picnic lunch among the terraces.', evening: 'Back to Tu Le and a night in a stilt house.' },
+            { title: 'Muong Lo – Nghia Lo', morning: 'Muong Lo fields – the second-largest rice bowl of the Northwest.', afternoon: 'Watch Thai xòe dance and buy Tu Le young rice flakes.', evening: 'Bus back to Hanoi.' },
+        ] },
+        'hue': { days: [
+            { title: 'Hue Imperial City', morning: 'Bún bò Huế for breakfast, then the Imperial City – Ngo Mon Gate – Forbidden Purple City.', afternoon: 'Thien Mu Pagoda and Minh Mang Tomb.', evening: 'Listen to Hue folk songs on a dragon boat and release lanterns on the Perfume River.' },
+            { title: 'Royal tombs and food', morning: 'Khai Dinh Tomb and Tu Duc Tomb.', afternoon: 'Thuy Xuan incense village and Dong Ba market.', evening: 'Food tour of bánh bèo, bánh nậm and Hue sweet soups on Han Thuyen street.' },
+            { title: 'Tam Giang lagoon – Thuan An beach', morning: 'Chuon lagoon on Tam Giang, with lagoon seafood.', afternoon: 'Phuoc Tich ancient village and Thuan An beach.', evening: 'Sunset over Tam Giang lagoon.' },
+            { title: 'Bach Ma – Lang Co', morning: 'Bach Ma National Park and Do Quyen waterfall.', afternoon: 'Lang Co bay – one of the world\'s most beautiful bays.', evening: 'Seafood at Lap An lagoon.' },
+            { title: 'Over Hai Van pass to Da Nang', morning: 'Ride the Hai Van pass and stop at Hai Van Gate.', afternoon: 'Swim at My Khe and visit Linh Ung Pagoda on Son Tra.', evening: 'See the Dragon Bridge lit up in Da Nang.' },
+        ] },
+        'phong-nha': { days: [
+            { title: 'Phong Nha Cave', morning: 'Arrive in Phong Nha and take a boat along the Son river into Phong Nha and Tien Son caves.', afternoon: 'Cycle through Bong Lai valley.', evening: 'Phong Nha grilled chicken and a riverside homestay.' },
+            { title: 'Paradise Cave – Dark Cave', morning: 'Explore Paradise Cave and its magnificent stalactites.', afternoon: 'Zipline, mud bath at Dark Cave and swim in the Chay river.', evening: 'Try Quang Binh bánh bột lọc and noodle porridge.' },
+            { title: 'Nuoc Mooc stream – Trang Nguyen', morning: 'Nuoc Mooc stream – swimming and kayaking in the jungle.', afternoon: 'Tam Co cave and the legendary Ho Chi Minh Trail.', evening: 'BBQ at the homestay and stories from cave explorers.' },
+            { title: 'Dong Hoi – Nhat Le beach', morning: 'Back to Dong Hoi: the old citadel and Tam Toa church.', afternoon: 'Swim at Nhat Le and visit Quang Phu sand dunes.', evening: 'Seafood at Dong Hoi night market.' },
+            { title: 'Vung Chua – Yen Island', morning: 'Visit General Vo Nguyen Giap\'s grave at Vung Chua – Yen Island.', afternoon: 'Swim at Da Nhay beach and buy sweet potato candy.', evening: 'Stroll the Nhat Le riverside square.' },
+        ] },
+        'da-nang': { days: [
+            { title: 'Ba Na Hills – Golden Bridge', morning: 'Take the cable car up Ba Na and visit the Golden Bridge early.', afternoon: 'French Village, Le Jardin flower garden and Fantasy Park.', evening: 'Back down for mì Quảng and seaside seafood.' },
+            { title: 'Son Tra – Marble Mountains', morning: 'Swim at My Khe and visit Linh Ung Pagoda on Son Tra.', afternoon: 'Marble Mountains and Non Nuoc stone village.', evening: 'Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.' },
+            { title: 'Hai Van pass', morning: 'Ride the Hai Van pass by motorbike and stop in Lang Co.', afternoon: 'Pork rolled in rice paper and coffee overlooking the Han river.', evening: 'Han river cruise as the city lights up.' },
+            { title: 'Hoi An Ancient Town', morning: 'Head to Hoi An: Tra Que vegetable village and Bay Mau coconut forest.', afternoon: 'The Covered Bridge, Fujian Assembly Hall and Tan Ky house.', evening: 'Release lanterns on the Hoai river and eat cao lầu.' },
+            { title: 'Cu Lao Cham islands', morning: 'Speedboat to Cu Lao Cham for snorkelling.', afternoon: 'Swim at Chong beach and visit Bai Lang fishing village.', evening: 'Back in Da Nang, buy beef sausage and dried squid as gifts.' },
+        ] },
+        'hoi-an': { days: [
+            { title: 'Old town by day', morning: 'Buy a ticket and visit the Covered Bridge, Fujian Assembly Hall and Tan Ky house.', afternoon: 'Cycle to Bay Mau coconut forest for a basket boat ride.', evening: 'Release lanterns on the Hoai river, eat cao lầu and browse the night market.' },
+            { title: 'Craft villages and the beach', morning: 'Cooking class and Tra Que vegetable village.', afternoon: 'Swim at An Bang beach and get an áo dài tailored.', evening: 'Bánh mì Phượng and the "Hoi An Memories" show.' },
+            { title: 'My Son Sanctuary', morning: 'The My Son Cham temple complex – a UNESCO site.', afternoon: 'Thanh Ha pottery village and Kim Bong carpentry village.', evening: 'Mì Quảng and bánh xèo near Ba Le well.' },
+            { title: 'Cu Lao Cham islands', morning: 'Speedboat to Cu Lao Cham for snorkelling.', afternoon: 'Swim at Chong beach and visit Hai Tang pagoda.', evening: 'Back in Hoi An, coffee overlooking the Thu Bon river.' },
+            { title: 'Ba Na Hills', morning: 'Ba Na cable car and the Golden Bridge.', afternoon: 'French Village and Le Jardin flower garden.', evening: 'See the Dragon Bridge at night in Da Nang.' },
+        ] },
+        'nha-trang': { days: [
+            { title: 'The beach city', morning: 'Po Nagar towers and Long Son Pagoda.', afternoon: 'Relax in a hot mineral mud bath.', evening: 'Stroll Tran Phu beach and eat seafood at Xom Moi market.' },
+            { title: 'Four-island tour', morning: 'Snorkel the Hon Mun coral reef.', afternoon: 'Hon Tam, Bai Tranh and a floating party at sea.', evening: 'Fish cake noodle soup and Ninh Hoa grilled pork rolls.' },
+            { title: 'VinWonders', morning: 'Take the sea-crossing cable car to Hon Tre.', afternoon: 'Water park and rides at VinWonders.', evening: 'Watch the Tata musical fountain show.' },
+            { title: 'Binh Ba – Binh Hung islands', morning: 'Visit Binh Ba, "lobster island", and swim at Nom beach.', afternoon: 'Snorkel and feast on lobster and sweet snails on a raft.', evening: 'Back in Nha Trang for the night market.' },
+            { title: 'Doc Let – Ninh Van', morning: 'Swim at Doc Let\'s fine white-sand beach.', afternoon: 'Tram Trung hot springs and bird\'s nest shopping.', evening: 'Rooftop bar overlooking Nha Trang Bay.' },
+        ] },
+        'da-lat': { days: [
+            { title: 'Central Da Lat', morning: 'Walk around Xuan Huong Lake, eat bánh căn and visit Lam Vien square.', afternoon: 'Da Lat station, the Trai Mat train and Linh Phuoc Pagoda.', evening: 'Da Lat night market with grilled rice paper and soy milk.' },
+            { title: 'Clouds and tea hills', morning: 'Wake early to chase clouds at Cau Dat tea hills.', afternoon: 'Strawberry farms and hydrangea gardens.', evening: 'Chicken hotpot with lá é and an acoustic café.' },
+            { title: 'Pine forests and waterfalls', morning: 'The pine hills of the Valley of Love and Tuyen Lam Lake.', afternoon: 'Datanla Falls (alpine coaster) and Truc Lam Zen Monastery by cable car.', evening: 'Buy candied fruit and artichoke tea as gifts.' },
+            { title: 'Langbiang – Cu Lan village', morning: 'Reach the top of Langbiang by jeep.', afternoon: 'Cu Lan village – kayaking and horse riding among the pines.', evening: 'Central Highlands gong music and rice wine.' },
+            { title: 'French villas – Bao Dai\'s palace', morning: 'Bao Dai\'s Summer Palace, the Rooster Church and Hang Nga "Crazy House".', afternoon: 'Van Thanh flower village and Da Lat rose gardens.', evening: 'Coffee at Tung café and Ba Hung grilled pork rolls.' },
+        ] },
+        'mui-ne': { days: [
+            { title: 'Sand dunes – Fairy Stream', morning: 'Jeep to watch sunrise over the White Dunes.', afternoon: 'Walk the Fairy Stream and visit Mui Ne fishing village.', evening: 'Sunset at the Flying Dunes and seaside seafood.' },
+            { title: 'Beach and sports', morning: 'Learn kitesurfing or swim at your resort.', afternoon: 'Poshanu Cham towers and the wine castle.', evening: 'Bánh căn and mackerel salad.' },
+            { title: 'Ke Ga cape', morning: 'Ke Ga lighthouse – one of Vietnam\'s oldest lighthouses.', afternoon: 'Swim at Tien Thanh beach and explore Ong Dia rocks.', evening: 'Back in Phan Thiet for lẩu thả hotpot.' },
+            { title: 'Hon Rom – fish sauce village', morning: 'Swim at Hon Rom and paddleboard in the morning.', afternoon: 'Phan Thiet fish sauce village and local specialties.', evening: 'Grilled seafood at Doi Duong beach.' },
+            { title: 'Ta Cu mountain', morning: 'Cable car up Ta Cu mountain to Southeast Asia\'s largest reclining Buddha.', afternoon: 'Ke Ga beach and the Pink Dunes.', evening: 'Return to Saigon or stay another night at the resort.' },
+        ] },
+        'quy-nhon': { days: [
+            { title: 'Ky Co – Eo Gio', morning: 'Speedboat to Ky Co, swim and snorkel at Bai Dua.', afternoon: 'Eo Gio – sea views from the cliff-top walkway.', evening: 'Jumping-shrimp bánh xèo and a walk along Xuan Dieu seafront.' },
+            { title: 'Quy Nhon city', morning: 'Ghenh Rang Tien Sa and the tomb of poet Han Mac Tu.', afternoon: 'The Twin Towers and Long Khanh Pagoda.', evening: 'Seafood at Quy Nhon night market.' },
+            { title: 'Tay Son – land of martial arts', morning: 'Quang Trung Museum and a traditional martial arts show.', afternoon: 'Banh It towers and bánh hỏi with pork offal porridge.', evening: 'Stroll Nguyen Tat Thanh square.' },
+            { title: 'Cu Lao Xanh island', morning: 'Boat to Cu Lao Xanh and its lighthouse.', afternoon: 'Swim, snorkel and eat island seafood.', evening: 'Back on the mainland for coffee with a sea view.' },
+            { title: 'Hon Kho – Nhon Ly', morning: 'Nhon Ly fishing village and a basket boat to Hon Kho.', afternoon: 'Snorkel and swim at Hon Kho.', evening: 'Buy fish cakes and Cho Huyen fermented pork as gifts.' },
+        ] },
+        'phu-yen': { days: [
+            { title: 'Mui Dien – Bai Mon', morning: 'Catch the earliest mainland sunrise at Mui Dien and climb Dai Lanh lighthouse.', afternoon: 'Swim at Bai Mon and visit O Loan lagoon.', evening: 'Tuna eyes and Nhan Tower by night.' },
+            { title: 'Ganh Da Dia – Xuan Dai', morning: 'Explore Ganh Da Dia and Mang Lang church.', afternoon: 'Boat on Xuan Dai Bay and Do Do village (from the film "Mat Biec").', evening: 'Blood cockles from O Loan lagoon.' },
+            { title: 'Hon Yen – Ganh Ong', morning: 'Hon Yen – coral reefs revealed at low tide.', afternoon: 'Ganh Ong and Bai Xep – locations of "Yellow Flowers on the Green Grass".', evening: 'Back to Tuy Hoa for chive noodle soup.' },
+            { title: 'Cu Lao Mai Nha island', morning: 'Boat to Cu Lao Mai Nha and its crystal-clear water.', afternoon: 'Snorkel and have a seafood lunch on the island.', evening: 'Relax and stroll Tuy Hoa beach.' },
+            { title: 'Dong Cam dam – Hoa Da station', morning: 'The century-old Dong Cam dam and Tuy An rice fields.', afternoon: 'Hoa Da station and Chop Chai mountain.', evening: 'Buy Hoa Da rice paper as gifts.' },
+        ] },
+        'sai-gon': { days: [
+            { title: 'Heritage Saigon', morning: 'Independence Palace, Notre-Dame Cathedral and the Central Post Office.', afternoon: 'War Remnants Museum and Ben Thanh Market.', evening: 'Nguyen Hue walking street and city views from Landmark 81 or Bitexco.' },
+            { title: 'Tunnels and food', morning: 'Cu Chi Tunnels (half day).', afternoon: 'Cho Lon and Thien Hau Temple in District 5.', evening: 'Motorbike food tour in District 4: snails, broken rice and bánh mì.' },
+            { title: 'Can Gio mangroves', morning: 'Can Gio mangrove forest and Monkey Island.', afternoon: 'Swim at 30/4 beach and eat Can Gio seafood.', evening: 'Saigon River dinner cruise.' },
+            { title: 'My Tho – Ben Tre', morning: 'My Tho, a boat on the Tien river and Thoi Son islet.', afternoon: 'Rowing boats through Ben Tre\'s coconut canals and traditional music.', evening: 'Back in Saigon, stroll Bui Vien street.' },
+            { title: 'Tay Ninh – Ba Den mountain', morning: 'The Cao Dai Holy See in Tay Ninh.', afternoon: 'Cable car to Ba Den mountain – "the roof of Southern Vietnam".', evening: 'Back to Saigon for Trang Bang dew-dried rice paper rolls.' },
+        ] },
+        'can-tho': { days: [
+            { title: 'Ninh Kieu – ancient house', morning: 'Arrive in Can Tho, visit Binh Thuy ancient house and Ong Pagoda.', afternoon: 'Phong Dien fruit orchards and Mekong bánh xèo.', evening: 'Stroll Ninh Kieu wharf and take a cruise with đờn ca tài tử music.' },
+            { title: 'Cai Rang floating market', morning: 'Boat to Cai Rang floating market at 5 am and eat hủ tiếu on a boat.', afternoon: 'A traditional noodle workshop and My Khanh tourist village.', evening: 'Tay Do night market and fermented fish hotpot.' },
+            { title: 'Son islet – Bang Lang stork garden', morning: 'Son islet – "flying" snakehead fish and folk cake making.', afternoon: 'Bang Lang stork garden with thousands of storks returning home.', evening: 'Orchard homestay.' },
+            { title: 'Soc Trang – Khmer pagodas', morning: 'Soc Trang: Bat Pagoda and Chen Kieu Pagoda.', afternoon: 'Clay Pagoda, bún nước lèo and bánh pía cakes.', evening: 'Back to Can Tho.' },
+            { title: 'Chau Doc – Tra Su forest', morning: 'Head to An Giang for a boat ride in Tra Su cajuput forest.', afternoon: 'Ba Chua Xu temple and Sam Mountain.', evening: 'Chau Doc fish noodle soup and fermented fish gifts.' },
+        ] },
+        'phu-quoc': { days: [
+            { title: 'South island', morning: 'Hon Thom cable car and Aquatopia water park.', afternoon: 'Swim at Sao Beach and visit Phu Quoc Prison.', evening: 'Sunset at Sunset Town and the "Kiss of the Sea" show.' },
+            { title: 'Four-island tour', morning: 'Snorkel in the An Thoi archipelago.', afternoon: 'May Rut and Mong Tay islands.', evening: 'Dinh Cau night market with herring salad and Ham Ninh crab.' },
+            { title: 'North island', morning: 'Grand World, VinWonders and Vinpearl Safari.', afternoon: 'Starfish at Rach Vem, a fish sauce factory and pepper farms.', evening: 'Sunset at Long Beach.' },
+            { title: 'Ham Ninh village – Tranh stream', morning: 'Ham Ninh fishing village and boiled crab on the pier.', afternoon: 'Tranh stream and a pearl farm.', evening: 'Sunset at Dinh Cau and a bowl of bún quậy.' },
+            { title: 'Ganh Dau cape – primeval forest', morning: 'Trek in Phu Quoc National Park to Ganh Dau cape.', afternoon: 'Swim at Ganh Dau and visit Ho Quoc Pagoda.', evening: 'Buy fish sauce, pepper and pearls as gifts.' },
+        ] },
+        'vung-tau': { days: [
+            { title: 'Small Mountain – Back Beach', morning: 'Leave Saigon and climb to the Christ the King statue on Small Mountain.', afternoon: 'Swim at Back Beach and walk to Hon Ba at low tide.', evening: 'Bánh khọt, stingray hotpot and a stroll along Front Beach.' },
+            { title: 'Lighthouse – White Palace', morning: 'Sunrise at Vung Tau lighthouse.', afternoon: 'Visit the White Palace and the Ho May cable car.', evening: 'Seafood at Xom Luoi market.' },
+            { title: 'Long Hai – Ho Tram', morning: 'Dinh Co temple and Long Hai beach.', afternoon: 'Swim at Ho Tram and soak in Binh Chau hot springs.', evening: 'Stay at a Ho Tram resort.' },
+            { title: 'Binh Chau – Phuoc Buu forest', morning: 'Trek in the Binh Chau – Phuoc Buu nature reserve.', afternoon: 'Boil eggs in the hot springs and take a mineral mud bath.', evening: 'Back to Vung Tau and buy salted egg sponge cake.' },
+            { title: 'Can Gio mangroves', morning: 'Ferry to Can Gio: mangrove forest and Monkey Island.', afternoon: 'Can Gio seafood and a swim at 30/4 beach.', evening: 'Return to Saigon.' },
+        ] },
+        'chau-doc': { days: [
+            { title: 'Sam Mountain – Chau Doc', morning: 'Arrive in Chau Doc, visit Ba Chua Xu temple and Thoai Ngoc Hau tomb.', afternoon: 'Climb Sam Mountain for border views and visit Tay An Pagoda.', evening: 'Fermented fish hotpot and a stroll through Chau Doc market.' },
+            { title: 'Tra Su – Cam Mountain', morning: 'Boat through Tra Su cajuput forest amid duckweed and birds.', afternoon: 'Cam Mountain cable car and the Maitreya statue.', evening: 'Palm sugar sponge cake and a night in Tinh Bien.' },
+            { title: 'Cham village – raft houses', morning: 'Chau Giang Cham village and Mubarak mosque.', afternoon: 'Chau Doc fish-raft village and catfish farming.', evening: 'Chau Doc fish noodle soup.' },
+            { title: 'Ta Pa lake – Tan Tuyen forest', morning: 'Ta Pa lake – "little Switzerland" among the rocks.', afternoon: 'Tri Ton palm fields and Xa Ton pagoda.', evening: 'Try O Thum chicken roasted with lá chúc leaves.' },
+            { title: 'Long Xuyen – Ong Ho islet', morning: 'Long Xuyen floating market.', afternoon: 'Ong Ho islet and the President Ton Duc Thang memorial.', evening: 'Buy fermented and dried fish, then return to Saigon.' },
+        ] },
+        'con-dao': { days: [
+            { title: 'Historic sites', morning: 'Con Dao prison, Phu Hai camp and the tiger cages.', afternoon: 'Con Dao Museum and Pier 914.', evening: 'Visit Hang Duong cemetery and the grave of Vo Thi Sau (around 11 pm – midnight).' },
+            { title: 'Unspoilt islands', morning: 'Swim at Dam Trau beach – watch planes land right overhead.', afternoon: 'Snorkel the coral reefs at Bay Canh (or Cau) island.', evening: 'Seafood at Con Dao night market.' },
+            { title: 'Primeval forest', morning: 'Trek the Ong Dung trail to a wild beach.', afternoon: 'Lady Phi Yen temple and Van Son pagoda.', evening: 'Stroll Con Son town and its seafront cafés.' },
+            { title: 'Bay Canh – sea turtles', morning: 'Speedboat to Bay Canh island and its turtle conservation station.', afternoon: 'Swim and snorkel at Dam Tre beach.', evening: 'Watch turtles nesting (May – September, registration required).' },
+            { title: 'Shark cape – Nhat beach', morning: 'Sunrise at Shark cape and Nhat beach at low tide.', afternoon: 'Swim at An Hai beach and buy tropical almonds as gifts.', evening: 'A farewell seafood dinner.' },
+        ] },
     },
 }

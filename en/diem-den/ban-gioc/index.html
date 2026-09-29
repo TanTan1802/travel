@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Best time: August – October (high water, ripe rice)</h3>
-                    <ol class="season__months" aria-label="Months of the year">
-                        <li class="season__month" data-month="1"
-                                        title="January">Jan</li><li class="season__month" data-month="2"
-                                        title="February">Feb</li><li class="season__month" data-month="3"
-                                        title="March">Mar</li><li class="season__month" data-month="4"
-                                        title="April">Apr</li><li class="season__month" data-month="5"
-                                        title="May">May</li><li class="season__month" data-month="6"
-                                        title="June">Jun</li><li class="season__month" data-month="7"
-                                        title="July">Jul</li><li class="season__month season__month--best" data-month="8"
-                                        title="August – best season">Aug</li><li class="season__month season__month--best" data-month="9"
-                                        title="September – best season">Sep</li><li class="season__month season__month--best" data-month="10"
-                                        title="October – best season">Oct</li><li class="season__month" data-month="11"
-                                        title="November">Nov</li><li class="season__month" data-month="12"
-                                        title="December">Dec</li>
-                    </ol>
+                    <p class="season__hint">Tap a month to see if it's a good time to go</p>
+                    <div class="season__months" role="group" aria-label="Months of the year">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="January">Jan</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="February">Feb</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="March">Mar</button><button type="button" class="season__month" data-month="4" aria-pressed="false"
+                                        title="April">Apr</button><button type="button" class="season__month" data-month="5" aria-pressed="false"
+                                        title="May">May</button><button type="button" class="season__month" data-month="6" aria-pressed="false"
+                                        title="June">Jun</button><button type="button" class="season__month" data-month="7" aria-pressed="false"
+                                        title="July">Jul</button><button type="button" class="season__month season__month--best" data-month="8" aria-pressed="false"
+                                        title="August – best season">Aug</button><button type="button" class="season__month season__month--best" data-month="9" aria-pressed="false"
+                                        title="September – best season">Sep</button><button type="button" class="season__month season__month--best" data-month="10" aria-pressed="false"
+                                        title="October – best season">Oct</button><button type="button" class="season__month" data-month="11" aria-pressed="false"
+                                        title="November">Nov</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="December">Dec</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Best season</span>
                         <span><i class="season__dot season__dot--current"></i> Current month</span>
+                        <span><i class="season__dot season__dot--selected"></i> Selected month</span>
                     </div>
-                    <p class="season__status" data-season-status="8,9,10"></p>
+                    <p class="season__status" data-season-status="8,9,10" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -318,140 +321,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Itinerary</span>
-            <h2 class="section__title">3-day itinerary for Ban Gioc Waterfall</h2>
+            <span class="section__subtitle">Tour itineraries</span>
+            <h2 class="section__title">Ban Gioc Waterfall tour itineraries</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+                <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Day 1</span>
-                            <small>Cao Bang city – Pac Bo</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 days 2 nights</strong>
+                            <small>from 2,200,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Day 2</span>
-                            <small>Ban Gioc Waterfall</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 days 3 nights</strong>
+                            <small>from 2,900,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-2" aria-controls="day-panel-2" aria-selected="false" data-day="2">
-                            <span>Day 3</span>
-                            <small>Thang Hen lake – heading back</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 days 4 nights</strong>
+                            <small>from 3,600,000 VND</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Arrive in Cao Bang, breakfast on rice rolls with broth.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Enjoy seven-flavour roast duck and stay in the city.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Cao Bang city – Pac Bo</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Ban Gioc Waterfall</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Thang Hen lake – Khau Coc Cha</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Arrive in Cao Bang, breakfast on rice rolls with broth.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Enjoy seven-flavour roast duck and stay in the city.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Trung Khanh.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>See Thang Hen lake and the "14-tier" Khau Coc Cha pass.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Phuc Sen blacksmith village and Phja Thap incense village.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Buy Trung Khanh chestnuts and try sour phở.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,200,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>4,800,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Stay at a homestay in Trung Khanh.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Cao Bang city – Pac Bo</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Ban Gioc Waterfall</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Thang Hen lake – Khau Coc Cha</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Eye of God mountain – Bao Lac</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Arrive in Cao Bang, breakfast on rice rolls with broth.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Enjoy seven-flavour roast duck and stay in the city.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Trung Khanh.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>See Thang Hen lake and the "14-tier" Khau Coc Cha pass.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Phuc Sen blacksmith village and Phja Thap incense village.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Buy Trung Khanh chestnuts and try sour phở.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Eye of God mountain – Bao Lac</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>The Eye of God (pierced mountain) in Quang Uyen.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Cross Ma Phuc pass to Bao Lac and the winding Gam river.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Bao Lac and try bánh áp chao pastries.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,900,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>6,400,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-2" aria-labelledby="day-tab-2" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>See Thang Hen lake and Khau Coc Cha pass.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Buy Trung Khanh chestnuts and take the bus back to Hanoi.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>End of the trip.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac → Ba Be lake</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Cao Bang city – Pac Bo</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Ban Gioc Waterfall</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Thang Hen lake – Khau Coc Cha</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Eye of God mountain – Bao Lac</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Day 5</span>
+                    <small>Ba Be lake</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Arrive in Cao Bang, breakfast on rice rolls with broth.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Enjoy seven-flavour roast duck and stay in the city.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Trung Khanh.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>See Thang Hen lake and the "14-tier" Khau Coc Cha pass.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Phuc Sen blacksmith village and Phja Thap incense village.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Buy Trung Khanh chestnuts and try sour phở.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Eye of God mountain – Bao Lac</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>The Eye of God (pierced mountain) in Quang Uyen.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Cross Ma Phuc pass to Bao Lac and the winding Gam river.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay in Bao Lac and try bánh áp chao pastries.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Day 5: Ba Be lake</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Transfer to Bac Kan and boat across Ba Be lake.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Puong cave, Fairy pond and Widow island.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Homestay in Pac Ngoi village with grilled lake fish.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>3,600,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>8,000,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Budget</span>
-                            <strong>2,200,000 VND</strong>
-                            <small>Homestays, local eateries</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Comfort</span>
-                            <strong>4,800,000 VND</strong>
-                            <small>3–4 star hotels, guided tours</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Excludes flights/transport to Ban Gioc Waterfall. Prices are indicative and vary by season.</p>
-                </div>
+                <p class="budget__note">Excludes flights/transport to Ban Gioc Waterfall. Prices are indicative and vary by season.</p>
             </div>
         </section>
     
