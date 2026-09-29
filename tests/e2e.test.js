@@ -109,6 +109,9 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.match(await page.textContent(`${lastDay} .day-tl__item:last-child`), /Kết thúc tour/, 'ngày cuối phải có mục kết thúc tour')
     assert.ok(await page.$$eval(`${lastDay} .day-tl__item`, a => a.length) >= 8, 'mỗi ngày cần timeline chi tiết')
     assert.ok(await page.$$eval(`${lastDay} .day-tl__item--cafe, ${lastDay} .day-tl__item--drink`, a => a.length) >= 1, 'timeline cần quán cà phê / quán nước')
+    assert.ok(await page.$$eval(`${lastDay} .sight`, a => a.length) >= 1, 'buổi tham quan cần thẻ điểm cụ thể')
+    assert.match(await page.textContent(`${lastDay} .sight__price`), /\d|Miễn phí/, 'điểm tham quan cần giá vé')
+    assert.ok(await page.$(`${lastDay} .day-cost`), 'mỗi ngày cần ước tính chi phí')
 
     await page.click('.tour:not([hidden]) .tour__expand')
     assert.equal(await visiblePanels(), '11111')
