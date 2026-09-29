@@ -840,13 +840,15 @@
                             đặc biệt giảm đến 30%.
                         </p>
 
-                        <form action="" class="subscribe__form">
-                            <input type="email" placeholder="Nhập email của bạn" class="subscribe__input">
+                        <form action="" class="subscribe__form" novalidate>
+                            <label for="subscribe-email" class="visually-hidden">Email</label>
+                            <input type="email" id="subscribe-email" name="email" placeholder="Nhập email của bạn" class="subscribe__input" required autocomplete="email">
 
                             <button class="button">
                                 Đăng ký
                             </button>
                         </form>
+                        <p class="subscribe__message" id="subscribe-message" role="status" aria-live="polite"></p>
                     </div>
                 </div>
             </section>
@@ -934,6 +936,8 @@
         <script src="assets/js/components.js"></script>
         <script src="assets/js/map.js"></script>
         <script src="assets/js/home.js"></script>
+        <script src="assets/js/config.js"></script>
+        <script src="assets/js/newsletter.js"></script>
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>

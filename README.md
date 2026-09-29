@@ -38,6 +38,19 @@ npm run build
 Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi chia sẻ Facebook/Zalo),
 dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
 
+## Cài như ứng dụng (PWA)
+Website có thể cài lên màn hình chính điện thoại/máy tính và xem lại các trang đã mở khi mất mạng
+(hữu ích khi lên vùng cao). Service worker (`sw.js`) được `npm run build` tự cập nhật phiên bản.
+
+## Form đăng ký nhận tin
+Tạo form miễn phí tại [Formspree](https://formspree.io), rồi dán URL vào `assets/js/config.js`:
+
+```js
+newsletterEndpoint: 'https://formspree.io/f/xxxxxxx',
+```
+
+Khi để trống, form hiển thị thông báo "sắp ra mắt" thay vì gửi đi.
+
 ## Thêm điểm đến mới
 Thêm một object vào mảng `DESTINATIONS` (mã `id`, tên, vùng, mô tả, ảnh, món ăn, hoạt động...)
 rồi chạy `npm run build`.

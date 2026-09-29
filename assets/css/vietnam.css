@@ -1712,3 +1712,30 @@ body.dark-theme .season__status--good {
     grid-template-columns: repeat(12, 1fr);
   }
 }
+
+/*=============== ĐĂNG KÝ NHẬN TIN ===============*/
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.subscribe__message {
+  min-height: 1.5em;
+  margin-top: var(--mb-1);
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--white-color);
+}
+
+.subscribe__message--error { color: hsl(0, 90%, 80%); }
+.subscribe__message--success { color: hsl(150, 70%, 75%); }
+
+.subscribe__form button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
