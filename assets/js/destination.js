@@ -193,6 +193,52 @@ function notFoundSection() {
     `
 }
 
+/*==================== GALLERY: LẤP ĐẦY HÀNG CUỐI ====================*/
+/*
+ * Ảnh nổi bật chiếm 2x2 ô. Vùng bên cạnh nó rộng (số cột - 2) và cao 2 hàng;
+ * phần còn lại xếp thành các hàng đầy đủ. Nới rộng vài ảnh cuối để không còn ô trống.
+ */
+function balanceGallery() {
+    const grid = document.querySelector('.gallery__grid')
+    if (!grid) return
+
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length
+    const items = [...grid.querySelectorAll('.gallery__item:not(.is-broken)')]
+    items.forEach(item => {
+        item.classList.remove('is-wide', 'is-full')
+        item.style.gridColumn = item.style.gridRow = ''
+    })
+
+    const rest = items.filter(item => !item.classList.contains('is-featured'))
+    const sideCols = Math.max(cols - 2, 0)
+    const sideSlots = sideCols * 2
+
+    if (rest.length === 1 && sideCols > 0) {
+        /* Chỉ còn 1 ảnh phụ: cho nó lấp trọn vùng bên cạnh ảnh nổi bật */
+        rest[0].style.gridColumn = `span ${sideCols}`
+        rest[0].style.gridRow = 'span 2'
+        return
+    }
+
+    if (rest.length < sideSlots) {
+        /* Không đủ ảnh lấp vùng bên cạnh: chỉ nới được khi vùng này rộng 2 cột */
+        if (sideCols === 2) {
+            const extra = sideSlots - rest.length
+            rest.slice(-extra).forEach(item => item.classList.add('is-wide'))
+        }
+        return
+    }
+
+    const tail = rest.slice(sideSlots)
+    const lastRow = tail.length % cols
+    if (lastRow === 0) return
+    if (lastRow === 1) {
+        tail[tail.length - 1].classList.add('is-full')
+    } else {
+        tail.slice(-(cols - lastRow)).forEach(item => item.classList.add('is-wide'))
+    }
+}
+
 /*==================== LIGHTBOX ====================*/
 function initLightbox(photos) {
     const box = document.getElementById('lightbox'),
@@ -238,6 +284,7 @@ function initLightbox(photos) {
                 const next = items.find(x => !x.classList.contains('is-broken'))
                 if (next) next.classList.add('is-featured')
             }
+            balanceGallery()
         })
     })
     img.addEventListener('error', () => {
@@ -268,6 +315,8 @@ if (dest) {
         relatedSection(dest),
     ].join('')
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
+    balanceGallery()
+    window.addEventListener('resize', balanceGallery)
 } else {
     document.title = 'Không tìm thấy điểm đến – Việt Travel'
     destRoot.innerHTML = notFoundSection()

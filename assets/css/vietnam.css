@@ -548,6 +548,15 @@ body.dark-theme .overview__highlights i {
   background: none;
 }
 
+/* Ô rộng do JS gán để hàng cuối luôn lấp đầy */
+.gallery__item.is-wide {
+  grid-column: span 2;
+}
+
+.gallery__item.is-full {
+  grid-column: 1 / -1;
+}
+
 .gallery__item.is-broken {
   display: none;
 }
@@ -919,9 +928,6 @@ body.dark-theme .overview__highlights i {
     grid-auto-rows: 200px;
   }
 
-  .gallery__item:nth-child(4) {
-    grid-column: span 2;
-  }
 
   .header--solid .nav__link,
   .header--solid .change-theme {
