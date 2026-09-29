@@ -960,7 +960,7 @@ const TRANSLATION_EN = {
             bestTime: 'October – March',
             duration: '2 – 3 days',
             gallery: [
-                { caption: 'A Thai stilt house in Moc Chau' },
+                { caption: 'The market street of Moc Chau town' },
                 { caption: 'Highway 6 through Moc Chau town' },
                 { caption: 'Moc Chau square' },
             ],
@@ -1067,7 +1067,7 @@ const TRANSLATION_EN = {
             duration: '2 – 3 days',
             gallery: [
                 { caption: 'Thuan Yen beach, Ha Tien' },
-                { caption: 'The Rach Gia – Ha Tien canal' },
+                { caption: 'Old-world details in a Ha Tien temple' },
             ],
             foods: [
                 { name: 'Crab thick noodle soup', desc: 'Sweet Ha Tien blue crab in a rich broth.', price: '60,000 VND' },
