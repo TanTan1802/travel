@@ -119,6 +119,29 @@ function initLightbox(photos) {
     })
 }
 
+/*==================== LỊCH TRÌNH: CHUYỂN NGÀY ====================*/
+function initItineraryTabs() {
+    const tabs = [...document.querySelectorAll('.itinerary__tab')]
+    const select = tab => {
+        tabs.forEach(t => {
+            const active = t === tab
+            t.classList.toggle('itinerary__tab--active', active)
+            t.setAttribute('aria-selected', active)
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !active
+        })
+    }
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab))
+        tab.addEventListener('keydown', e => {
+            const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0
+            if (!step) return
+            const next = tabs[(i + step + tabs.length) % tabs.length]
+            next.focus()
+            select(next)
+        })
+    })
+}
+
 /*==================== BẢN ĐỒ VỊ TRÍ ====================*/
 function initLocationMap(d) {
     const el = document.getElementById('dest-map')
@@ -157,6 +180,7 @@ if (dest) {
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()
     window.addEventListener('resize', balanceGallery)
+    initItineraryTabs()
     initLocationMap(dest)
 } else {
     document.title = 'Không tìm thấy điểm đến – Việt Travel'

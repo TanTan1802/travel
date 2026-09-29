@@ -19,6 +19,7 @@ const PAGE_ROOT = '../../' // từ diem-den/<id>/ về gốc site
 const SCRIPTS = [
     'assets/js/data/local-images.js',
     'assets/js/data/destinations.js',
+    'assets/js/data/itineraries.js',
     'assets/js/components.js',
     'assets/js/destination-render.js',
 ]

@@ -284,6 +284,108 @@
             </div>
         </section>
     
+        <section class="itinerary section" id="itinerary">
+            <span class="section__subtitle">Lịch trình</span>
+            <h2 class="section__title">Gợi ý 2 ngày tại Vịnh Hạ Long</h2>
+
+            <div class="itinerary__container container">
+                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                    
+                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
+                            <span>Ngày 1</span>
+                            <small>Lên du thuyền, khám phá vịnh</small>
+                        </button>
+                    
+                        <button type="button" class="itinerary__tab" role="tab"
+                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
+                            <span>Ngày 2</span>
+                            <small>Ti Tốp và làng chài</small>
+                        </button>
+                    
+                </div>
+
+                
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
+                        <ol class="timeline">
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Sáng</h3>
+                                        <p>Di chuyển từ Hà Nội theo cao tốc (khoảng 2,5 giờ), lên du thuyền tại cảng Tuần Châu.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Chiều</h3>
+                                        <p>Thăm hang Sửng Sốt, chèo kayak quanh hang Luồn.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Tối</h3>
+                                        <p>Ngắm hoàng hôn trên boong, ăn tối hải sản và câu mực đêm.</p>
+                                    </div>
+                                </li>
+                            
+                        </ol>
+                    </div>
+                
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
+                        <ol class="timeline">
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Sáng</h3>
+                                        <p>Tập thái cực quyền đón bình minh, leo đỉnh Ti Tốp ngắm toàn cảnh.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Chiều</h3>
+                                        <p>Thăm làng chài Cửa Vạn, trả phòng và về lại cảng.</p>
+                                    </div>
+                                </li>
+                            
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">Tối</h3>
+                                        <p>Dạo Sun World Hạ Long, đi vòng quay Mặt Trời hoặc quay về Hà Nội.</p>
+                                    </div>
+                                </li>
+                            
+                        </ol>
+                    </div>
+                
+
+                <div class="budget">
+                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
+                    <div class="budget__options">
+                        <div class="budget__option">
+                            <span>Tiết kiệm</span>
+                            <strong>1.800.000đ</strong>
+                            <small>Homestay, ăn quán địa phương</small>
+                        </div>
+                        <div class="budget__option budget__option--comfort">
+                            <span>Thoải mái</span>
+                            <strong>4.500.000đ</strong>
+                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                        </div>
+                    </div>
+                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Vịnh Hạ Long. Giá tham khảo, thay đổi theo mùa.</p>
+                </div>
+            </div>
+        </section>
+    
         <section class="location section" id="location">
             <span class="section__subtitle">Vị trí</span>
             <h2 class="section__title">Bản đồ & điểm lân cận</h2>
@@ -482,6 +584,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
         <script src="../../assets/js/data/local-images.js"></script>
         <script src="../../assets/js/data/destinations.js"></script>
+        <script src="../../assets/js/data/itineraries.js"></script>
         <script src="../../assets/js/components.js"></script>
         <script src="../../assets/js/map.js"></script>
         <script src="../../assets/js/destination-render.js"></script>

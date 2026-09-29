@@ -160,6 +160,68 @@ function activitiesSection(d) {
     `
 }
 
+const DAY_SLOTS = [
+    { key: 'morning', label: 'Sáng', icon: 'ri-sun-foggy-line' },
+    { key: 'afternoon', label: 'Chiều', icon: 'ri-sun-line' },
+    { key: 'evening', label: 'Tối', icon: 'ri-moon-clear-line' },
+]
+
+function itinerarySection(d) {
+    const plan = typeof ITINERARIES !== 'undefined' && ITINERARIES[d.id]
+    if (!plan) return ''
+    return `
+        <section class="itinerary section" id="itinerary">
+            <span class="section__subtitle">Lịch trình</span>
+            <h2 class="section__title">Gợi ý ${plan.days.length} ngày tại ${d.name}</h2>
+
+            <div class="itinerary__container container">
+                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                    ${plan.days.map((day, i) => `
+                        <button type="button" class="itinerary__tab${i === 0 ? ' itinerary__tab--active' : ''}" role="tab"
+                                id="day-tab-${i}" aria-controls="day-panel-${i}" aria-selected="${i === 0}" data-day="${i}">
+                            <span>Ngày ${i + 1}</span>
+                            <small>${day.title}</small>
+                        </button>
+                    `).join('')}
+                </div>
+
+                ${plan.days.map((day, i) => `
+                    <div class="itinerary__panel" role="tabpanel" id="day-panel-${i}" aria-labelledby="day-tab-${i}"${i === 0 ? '' : ' hidden'}>
+                        <ol class="timeline">
+                            ${DAY_SLOTS.map(slot => `
+                                <li class="timeline__item">
+                                    <span class="timeline__icon"><i class="${slot.icon}"></i></span>
+                                    <div>
+                                        <h3 class="timeline__label">${slot.label}</h3>
+                                        <p>${day[slot.key]}</p>
+                                    </div>
+                                </li>
+                            `).join('')}
+                        </ol>
+                    </div>
+                `).join('')}
+
+                <div class="budget">
+                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
+                    <div class="budget__options">
+                        <div class="budget__option">
+                            <span>Tiết kiệm</span>
+                            <strong>${plan.budget.saving}</strong>
+                            <small>Homestay, ăn quán địa phương</small>
+                        </div>
+                        <div class="budget__option budget__option--comfort">
+                            <span>Thoải mái</span>
+                            <strong>${plan.budget.comfort}</strong>
+                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                        </div>
+                    </div>
+                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới ${d.name}. Giá tham khảo, thay đổi theo mùa.</p>
+                </div>
+            </div>
+        </section>
+    `
+}
+
 function locationSection(d) {
     const nearby = nearestDestinations(d, 3)
     return `
@@ -241,6 +303,7 @@ function renderDestinationPage(d) {
         gallerySection(d),
         foodSection(d),
         activitiesSection(d),
+        itinerarySection(d),
         locationSection(d),
         relatedSection(d),
     ].join('')
