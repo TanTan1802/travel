@@ -241,4 +241,54 @@ const ITINERARIES = {
         ],
         budget: { saving: [3500000, 4700000, 5800000], comfort: [8000000, 10700000, 13300000] },
     },
+    'moc-chau': {
+        days: [
+            { title: 'Đồi chè và thác Dải Yếm', morning: 'Từ Hà Nội theo QL6 (~4 giờ), dừng đèo Thung Khe ngắm thung lũng Mai Châu.', afternoon: 'Dạo đồi chè trái tim, thưởng trà shan tuyết, thăm thác Dải Yếm.', evening: 'Ăn bê chao, cá suối nướng ở thị trấn Nông Trường.' },
+            { title: 'Rừng thông và cầu kính', morning: 'Săn bình minh rừng thông bản Áng, chèo thuyền hồ.', afternoon: 'Đi cầu kính Bạch Long, ngắm vực sâu giữa núi.', evening: 'Uống sữa tươi, mua bánh sữa, mận khô làm quà.' },
+            { title: 'Thung lũng Nà Ka', morning: 'Thung lũng mận Nà Ka (hoa trắng tháng 1 – 2, quả chín tháng 5 – 6).', afternoon: 'Đồi cải trắng Chiềng Đi (tháng 11 – 12), trang trại bò sữa.', evening: 'Giao lưu văn nghệ, ăn cơm lam tại homestay bản Thái.' },
+            { title: 'Bản Hua Tạt', morning: 'Đi bộ vào bản Hua Tạt của người H\'Mông giữa rừng núi.', afternoon: 'Thác Chiềng Khoa và hang Dơi.', evening: 'Nướng BBQ, lẩu gà đen tại homestay.' },
+            { title: 'Mai Châu trên đường về', morning: 'Rẽ qua Mai Châu (Hòa Bình), đạp xe bản Lác, bản Pom Coọng.', afternoon: 'Ăn cơm lam, gà nướng Mai Châu rồi về Hà Nội.', evening: 'Về tới Hà Nội khoảng 20h.' },
+        ],
+        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+    },
+    'pu-luong': {
+        days: [
+            { title: 'Vào bản giữa ruộng bậc thang', morning: 'Từ Hà Nội đi xe ~4 giờ qua Mai Châu tới Pù Luông, nhận phòng homestay.', afternoon: 'Dạo ruộng bậc thang bản Đôn, xem guồng nước quay.', evening: 'Ăn vịt Cổ Lũng, cơm lam bên nhà sàn.' },
+            { title: 'Trekking Kho Mường', morning: 'Trekking qua rừng tre tới bản Kho Mường của người Thái.', afternoon: 'Khám phá hang Bàng, tắm suối trong vắt.', evening: 'Nghe tiếng guồng nước, ngắm sao giữa thung lũng.' },
+            { title: 'Thác Hiêu và bản Hiêu', morning: 'Đạp xe đến thác Hiêu nhiều tầng, tắm thác.', afternoon: 'Thăm bản Hiêu, xem dệt thổ cẩm, chợ phiên Phố Đoàn (thứ Bảy).', evening: 'Uống rượu cần, xem múa sạp.' },
+            { title: 'Chèo bè suối Mã', morning: 'Chèo bè tre trên sông Mã, ngắm vách núi hai bờ.', afternoon: 'Nghỉ ngơi ở homestay có hồ bơi view ruộng lúa.', evening: 'BBQ gà đồi, cá suối.' },
+            { title: 'Mai Châu – về Hà Nội', morning: 'Săn mây sớm trên đỉnh Pù Luông.', afternoon: 'Dừng Mai Châu ăn trưa, mua thổ cẩm.', evening: 'Về Hà Nội.' },
+        ],
+        budget: { saving: [1800000, 2400000, 3000000], comfort: [4500000, 6000000, 7500000] },
+    },
+    'ly-son': {
+        days: [
+            { title: 'Ra đảo lớn', morning: 'Tàu cao tốc từ cảng Sa Kỳ (~30 phút), nhận phòng, thuê xe máy.', afternoon: 'Chùa Hang, cổng Tò Vò – chờ hoàng hôn.', evening: 'Ăn gỏi tỏi, ốc cừ ở chợ đêm Lý Sơn.' },
+            { title: 'Đỉnh Thới Lới', morning: 'Leo đỉnh Thới Lới ngắm bình minh và miệng núi lửa.', afternoon: 'Âm Linh Tự, Nhà trưng bày Hải đội Hoàng Sa kiêm quản Bắc Hải.', evening: 'Hải sản tươi và cháo nhum.' },
+            { title: 'Đảo Bé', morning: 'Đi cano ra Đảo Bé, tắm biển bãi Hang.', afternoon: 'Lặn ngắm san hô, đi bộ vòng đảo nhỏ.', evening: 'Về đảo lớn, dạo cánh đồng tỏi lúc chiều muộn.' },
+            { title: 'Hang Câu và vách đá', morning: 'Hang Câu với vách đá núi lửa nhiều lớp.', afternoon: 'Cột cờ Tổ quốc, mua tỏi cô đơn làm quà.', evening: 'Nướng hải sản bên bờ kè.' },
+            { title: 'Về đất liền', morning: 'Ngắm bình minh trên cầu cảng, lên tàu về Sa Kỳ.', afternoon: 'Thăm khu chứng tích Sơn Mỹ, ăn cá bống sông Trà.', evening: 'Về Quảng Ngãi hoặc Đà Nẵng.' },
+        ],
+        budget: { saving: [2200000, 2900000, 3600000], comfort: [5000000, 6700000, 8400000] },
+    },
+    'buon-ma-thuot': {
+        days: [
+            { title: 'Thủ phủ cà phê', morning: 'Ăn sáng bún đỏ, uống cà phê Ban Mê.', afternoon: 'Bảo tàng Thế giới Cà phê, làng cà phê Trung Nguyên.', evening: 'Dạo quảng trường, ăn gà nướng cơm lam.' },
+            { title: 'Thác Dray Nur – Dray Sáp', morning: 'Đi xe ~30 phút tới thác Dray Nur, Dray Sáp.', afternoon: 'Tham quan vườn cà phê, xem quy trình rang xay.', evening: 'Nghe cồng chiêng, uống rượu cần ở buôn Kô Siêr.' },
+            { title: 'Hồ Lắk', morning: 'Tới hồ Lắk (~1 giờ), chèo thuyền độc mộc.', afternoon: 'Thăm buôn Jun của người M\'Nông, biệt điện Bảo Đại.', evening: 'Ngủ nhà dài, ăn cá lăng nướng.' },
+            { title: 'Buôn Đôn', morning: 'Cầu treo Buôn Đôn, nhà sàn cổ.', afternoon: 'Tham quan khu bảo tồn voi (chọn tour đi bộ cùng voi).', evening: 'Về thành phố, ăn lẩu cá lăng.' },
+            { title: 'Chợ và quà Tây Nguyên', morning: 'Chợ Buôn Ma Thuột – mua cà phê, tiêu, mắc ca.', afternoon: 'Nhà đày Buôn Ma Thuột, chùa Sắc tứ Khải Đoan.', evening: 'Ra sân bay hoặc đi tiếp Đà Lạt, Nha Trang.' },
+        ],
+        budget: { saving: [2000000, 2700000, 3400000], comfort: [5000000, 6700000, 8400000] },
+    },
+    'ha-tien': {
+        days: [
+            { title: 'Hà Tiên thập cảnh', morning: 'Tới Hà Tiên, ăn sáng bánh canh ghẹ, dạo đầm Đông Hồ.', afternoon: 'Lăng Mạc Cửu, chùa Phù Dung, núi Tô Châu.', evening: 'Chợ đêm Hà Tiên ven sông.' },
+            { title: 'Mũi Nai – Thạch Động', morning: 'Thạch Động – ngôi chùa trong hang núi đá.', afternoon: 'Tắm biển Mũi Nai, lên hải đăng ngắm vịnh.', evening: 'Hải sản nướng, ngắm hoàng hôn Mũi Nai.' },
+            { title: 'Quần đảo Hải Tặc', morning: 'Tàu cao tốc ra quần đảo Hải Tặc (~1,5 giờ).', afternoon: 'Tắm biển Bãi Nam, lặn ngắm san hô, câu cá.', evening: 'Ngủ homestay trên đảo, ăn cá mú nướng.' },
+            { title: 'Đảo và về đất liền', morning: 'Đi cano quanh đảo Hòn Đước, Hòn Tre Nhỏ.', afternoon: 'Về Hà Tiên, cà phê view đầm Đông Hồ.', evening: 'Ăn bún kèn, xôi xiêm.' },
+            { title: 'Đi tiếp Phú Quốc', morning: 'Tàu cao tốc Hà Tiên – Phú Quốc (~1,5 giờ) hoặc về Rạch Giá.', afternoon: 'Nhận phòng, bắt đầu hành trình đảo ngọc.', evening: 'Chợ đêm Phú Quốc.' },
+        ],
+        budget: { saving: [2000000, 2700000, 3400000], comfort: [4800000, 6400000, 8000000] },
+    },
 }

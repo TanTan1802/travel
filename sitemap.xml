@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://tantan1802.github.io/travel/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/ke-hoach/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/thoi-diem-du-lich/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/di-chuyen/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/chi-phi-tien-te/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/am-thuc/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/giay-to-visa/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/cam-nang/an-toan-lien-lac/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/diem-den/vinh-ha-long/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/diem-den/sa-pa/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/diem-den/ha-noi/</loc><lastmod>2026-09-29</lastmod></url>
@@ -25,8 +32,20 @@
   <url><loc>https://tantan1802.github.io/travel/diem-den/vung-tau/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/diem-den/chau-doc/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/diem-den/con-dao/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/diem-den/moc-chau/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/diem-den/pu-luong/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/diem-den/ly-son/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/diem-den/buon-ma-thuot/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/diem-den/ha-tien/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/ke-hoach/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/thoi-diem-du-lich/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/di-chuyen/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/chi-phi-tien-te/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/am-thuc/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/giay-to-visa/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/cam-nang/an-toan-lien-lac/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/vinh-ha-long/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/sa-pa/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/ha-noi/</loc><lastmod>2026-09-29</lastmod></url>
@@ -50,4 +69,9 @@
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/vung-tau/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/chau-doc/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://tantan1802.github.io/travel/en/diem-den/con-dao/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/diem-den/moc-chau/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/diem-den/pu-luong/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/diem-den/ly-son/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/diem-den/buon-ma-thuot/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://tantan1802.github.io/travel/en/diem-den/ha-tien/</loc><lastmod>2026-09-29</lastmod></url>
 </urlset>

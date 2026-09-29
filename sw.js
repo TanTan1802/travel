@@ -2,7 +2,7 @@
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '4d9a23c8b7'
+const VERSION = 'c5d078c059'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -31,6 +31,7 @@ const CORE_ASSETS = [
     './assets/js/destination-render.js',
     './assets/js/destination.js',
     './assets/js/planner.js',
+    './assets/js/guide.js',
     './assets/js/config.js',
     './assets/js/newsletter.js',
     './assets/js/main.js',

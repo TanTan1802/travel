@@ -207,6 +207,28 @@ test('in & chia sẻ: in lịch trình, chia sẻ liên kết, sao chép kế ho
     await close()
 })
 
+test('cẩm nang: trang chủ, danh sách, bài viết, bảng tháng', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.equal(await page.$$eval('#guides .guide-card', a => a.length), 3, 'trang chủ cần 3 thẻ cẩm nang')
+    await page.click('#guides .guides-home__more a')
+    await page.waitForURL(/cam-nang\/index\.html$/)
+    assert.ok(await page.$$eval('.guide-card', a => a.length) >= 6)
+
+    await page.click('.guide-card[href*="thoi-diem-du-lich"]')
+    await page.waitForURL(/thoi-diem-du-lich/)
+    assert.equal(await page.$$eval('.months-table__row', a => a.length), 12, 'bảng phải đủ 12 tháng')
+    assert.ok(await page.$$eval('.months-table__row:nth-child(10) a', a => a.map(x => x.textContent)).then(n => n.includes('Hà Giang')), 'tháng 10 phải gợi ý Hà Giang')
+    assert.ok(await page.$$eval('.guide__toc a', a => a.length) >= 3, 'cần mục lục')
+    assert.ok(await page.$$eval('#guide-page .dest-card', a => a.length) >= 1, 'cần điểm đến liên quan')
+
+    await page.click('#lang-switch')
+    await page.waitForURL(/en\/cam-nang\/thoi-diem-du-lich/)
+    assert.match(await page.textContent('h1'), /When is the best time/)
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('bản tiếng Anh và nút chuyển ngôn ngữ', async () => {
     const { page, errors, close } = await openPage('en/diem-den/hue/index.html')
     assert.equal(await page.$eval('html', h => h.lang), 'en')

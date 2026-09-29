@@ -13,6 +13,9 @@ on:
       - 'index.html'
       - 'destination.html'
       - 'planner.html'
+      - 'guide.html'
+      - 'assets/js/data/places.js'
+      - 'assets/js/data/guides.js'
       - 'tools/**'
       - '.github/workflows/images.yml'
 
@@ -54,7 +57,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/img/wiki assets/img/og assets/js/data/local-images.js diem-den ke-hoach en index.html sitemap.xml robots.txt sw.js
+          git add -A assets/img/wiki assets/img/og assets/js/data/local-images.js diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có thay đổi."
           else
