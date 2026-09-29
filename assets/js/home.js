@@ -94,6 +94,7 @@ const exploreState = {
     query: '',
     view: 'grid',
     favoritesOnly: false,
+    month: 0,
 }
 
 /*==================== EXPLORE: BẢN ĐỒ ====================*/
@@ -165,7 +166,8 @@ function renderGrid() {
         .filter(d =>
             (exploreState.region === 'all' || d.region === exploreState.region) &&
             (exploreState.category === 'all' || d.categories.includes(exploreState.category)) &&
-            (!exploreState.favoritesOnly || Favorites.has(d.id)))
+            (!exploreState.favoritesOnly || Favorites.has(d.id)) &&
+            (!exploreState.month || d.bestMonths.includes(exploreState.month)))
         .map(d => ({ d, match: tokens.length ? scoreDestination(d, tokens) : { score: 0, hint: '' } }))
         .filter(r => r.match)
         .sort((a, b) => b.match.score - a.match.score)
@@ -210,6 +212,19 @@ function initFavoriteFilter() {
     update()
 }
 
+/* Lọc điểm đến theo tháng muốn đi (dựa trên mùa đẹp) */
+function initMonthFilter() {
+    const select = document.getElementById('month-filter')
+    if (!select) return
+    select.innerHTML = [`<option value="0">${t('Mọi tháng')}</option>`,
+        ...Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}">${t('Đi vào tháng {m}', { m: monthLabel(i + 1) })}</option>`)].join('')
+    select.addEventListener('change', () => {
+        exploreState.month = Number(select.value)
+        select.parentElement.classList.toggle('month-filter--active', exploreState.month > 0)
+        renderGrid()
+    })
+}
+
 function initExplore() {
     const params = new URLSearchParams(location.search)
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
@@ -230,6 +245,7 @@ function initExplore() {
     if (params.get('view') === 'map') setView('map')
 
     initFavoriteFilter()
+    initMonthFilter()
 
     const count = document.getElementById('dest-count')
     if (count) count.textContent = DESTINATIONS.length

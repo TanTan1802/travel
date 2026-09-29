@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Best time: September – November (autumn)</h3>
-                    <ol class="season__months" aria-label="Months of the year">
-                        <li class="season__month" data-month="1"
-                                        title="January">Jan</li><li class="season__month" data-month="2"
-                                        title="February">Feb</li><li class="season__month" data-month="3"
-                                        title="March">Mar</li><li class="season__month" data-month="4"
-                                        title="April">Apr</li><li class="season__month" data-month="5"
-                                        title="May">May</li><li class="season__month" data-month="6"
-                                        title="June">Jun</li><li class="season__month" data-month="7"
-                                        title="July">Jul</li><li class="season__month" data-month="8"
-                                        title="August">Aug</li><li class="season__month season__month--best" data-month="9"
-                                        title="September – best season">Sep</li><li class="season__month season__month--best" data-month="10"
-                                        title="October – best season">Oct</li><li class="season__month season__month--best" data-month="11"
-                                        title="November – best season">Nov</li><li class="season__month" data-month="12"
-                                        title="December">Dec</li>
-                    </ol>
+                    <p class="season__hint">Tap a month to see if it's a good time to go</p>
+                    <div class="season__months" role="group" aria-label="Months of the year">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="January">Jan</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="February">Feb</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="March">Mar</button><button type="button" class="season__month" data-month="4" aria-pressed="false"
+                                        title="April">Apr</button><button type="button" class="season__month" data-month="5" aria-pressed="false"
+                                        title="May">May</button><button type="button" class="season__month" data-month="6" aria-pressed="false"
+                                        title="June">Jun</button><button type="button" class="season__month" data-month="7" aria-pressed="false"
+                                        title="July">Jul</button><button type="button" class="season__month" data-month="8" aria-pressed="false"
+                                        title="August">Aug</button><button type="button" class="season__month season__month--best" data-month="9" aria-pressed="false"
+                                        title="September – best season">Sep</button><button type="button" class="season__month season__month--best" data-month="10" aria-pressed="false"
+                                        title="October – best season">Oct</button><button type="button" class="season__month season__month--best" data-month="11" aria-pressed="false"
+                                        title="November – best season">Nov</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="December">Dec</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Best season</span>
                         <span><i class="season__dot season__dot--current"></i> Current month</span>
+                        <span><i class="season__dot season__dot--selected"></i> Selected month</span>
                     </div>
-                    <p class="season__status" data-season-status="9,10,11"></p>
+                    <p class="season__status" data-season-status="9,10,11" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -348,104 +351,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Itinerary</span>
-            <h2 class="section__title">2-day itinerary for Hanoi</h2>
+            <span class="section__subtitle">Tour itineraries</span>
+            <h2 class="section__title">Hanoi tour itineraries</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+                <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Day 1</span>
-                            <small>Thousand-year Hanoi</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 days 2 nights</strong>
+                            <small>from 1,800,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Day 2</span>
-                            <small>Old Quarter and West Lake</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 days 3 nights</strong>
+                            <small>from 2,400,000 VND</small>
+                        </button>
+                    
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 days 4 nights</strong>
+                            <small>from 3,000,000 VND</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Watch water puppetry and join a food tour on Ta Hien street.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Thousand-year Hanoi → Old Quarter and West Lake → Craft villages</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Thousand-year Hanoi</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Old Quarter and West Lake</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Craft villages</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Thousand-year Hanoi</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Watch water puppetry and join a food tour on Ta Hien street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Old Quarter and West Lake</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Hoa Lo Prison, Train Street and the Opera House.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Sunset at West Lake, shrimp cakes and the weekend walking street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Craft villages</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Bat Trang ceramic village – make your own pottery.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Vietnam Museum of Ethnology with stilt houses of many ethnic groups.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Chả cá Lã Vọng and live music at an Old Quarter café.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>1,800,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>5,200,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Hoa Lo Prison, Train Street and the Opera House.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Sunset at West Lake, shrimp cakes and the weekend walking street.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Thousand-year Hanoi → Old Quarter and West Lake → Craft villages → Perfume Pagoda</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Thousand-year Hanoi</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Old Quarter and West Lake</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Craft villages</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Perfume Pagoda</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Thousand-year Hanoi</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Watch water puppetry and join a food tour on Ta Hien street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Old Quarter and West Lake</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Hoa Lo Prison, Train Street and the Opera House.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Sunset at West Lake, shrimp cakes and the weekend walking street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Craft villages</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Bat Trang ceramic village – make your own pottery.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Vietnam Museum of Ethnology with stilt houses of many ethnic groups.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Chả cá Lã Vọng and live music at an Old Quarter café.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Perfume Pagoda</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Boat along Yen stream among the mountains to Thien Tru pagoda.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Cable car to Huong Tich cave – "the most beautiful cave in the South".</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Back in Hanoi, bún chả on Hang Manh street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,400,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>7,000,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Thousand-year Hanoi → Old Quarter and West Lake → Craft villages → Perfume Pagoda → Duong Lam – Ba Vi</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Thousand-year Hanoi</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Old Quarter and West Lake</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Craft villages</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Perfume Pagoda</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Day 5</span>
+                    <small>Duong Lam – Ba Vi</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Thousand-year Hanoi</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Visit Ho Chi Minh Mausoleum, the One Pillar Pagoda and the Temple of Literature.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Walk around Hoan Kiem Lake and Ngoc Son Temple, sip egg coffee with a lake view.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Watch water puppetry and join a food tour on Ta Hien street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Old Quarter and West Lake</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Heritage phở, a cyclo ride through the 36 streets and Dong Xuan market.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Hoa Lo Prison, Train Street and the Opera House.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Sunset at West Lake, shrimp cakes and the weekend walking street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Craft villages</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Bat Trang ceramic village – make your own pottery.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Vietnam Museum of Ethnology with stilt houses of many ethnic groups.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Chả cá Lã Vọng and live music at an Old Quarter café.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Perfume Pagoda</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Boat along Yen stream among the mountains to Thien Tru pagoda.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Cable car to Huong Tich cave – "the most beautiful cave in the South".</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Back in Hanoi, bún chả on Hang Manh street.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Day 5: Duong Lam – Ba Vi</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Duong Lam ancient village with its gates and century-old laterite houses.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Ba Vi National Park, Upper Temple and pine forest.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Try hill chicken and Ba Vi yoghurt.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>3,000,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>8,700,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Budget</span>
-                            <strong>1,200,000 VND</strong>
-                            <small>Homestays, local eateries</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Comfort</span>
-                            <strong>3,500,000 VND</strong>
-                            <small>3–4 star hotels, guided tours</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Excludes flights/transport to Hanoi. Prices are indicative and vary by season.</p>
-                </div>
+                <p class="budget__note">Excludes flights/transport to Hanoi. Prices are indicative and vary by season.</p>
             </div>
         </section>
     

@@ -126,9 +126,9 @@ function initLightbox(photos) {
     })
 }
 
-/*==================== LỊCH TRÌNH: CHUYỂN NGÀY ====================*/
-function initItineraryTabs() {
-    const tabs = [...document.querySelectorAll('.itinerary__tab')]
+/*==================== LỊCH TRÌNH: CHỌN TOUR + CHUYỂN NGÀY ====================*/
+function initDayTabs(tour) {
+    const tabs = [...tour.querySelectorAll('.itinerary__tab')]
     const select = tab => {
         tabs.forEach(t => {
             const active = t === tab
@@ -138,15 +138,80 @@ function initItineraryTabs() {
         })
     }
     tabs.forEach((tab, i) => {
-        tab.addEventListener('click', () => select(tab))
+        tab.addEventListener('click', () => {
+            tour.classList.remove('tour--expanded')
+            select(tab)
+        })
         tab.addEventListener('keydown', e => {
             const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0
             if (!step) return
             const next = tabs[(i + step + tabs.length) % tabs.length]
             next.focus()
-            select(next)
+            next.click()
         })
     })
+
+    /* Xem tất cả các ngày một lúc (tiện đọc/in) */
+    const expand = tour.querySelector('.tour__expand')
+    if (expand) {
+        expand.addEventListener('click', () => {
+            const expanded = !tour.classList.contains('tour--expanded')
+            tour.classList.toggle('tour--expanded', expanded)
+            expand.dataset.expanded = expanded
+            expand.querySelector('span').textContent = expanded ? t('Xem từng ngày') : t('Xem tất cả các ngày')
+            tour.querySelectorAll('.itinerary__panel').forEach((panel, i) => {
+                panel.hidden = expanded ? false : !tabs[i].classList.contains('itinerary__tab--active')
+            })
+        })
+    }
+}
+
+function initItineraryTabs() {
+    const tours = [...document.querySelectorAll('.tour')]
+    const buttons = [...document.querySelectorAll('.tour-picker__btn')]
+    tours.forEach(initDayTabs)
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => {
+                const active = b === btn
+                b.classList.toggle('tour-picker__btn--active', active)
+                b.setAttribute('aria-selected', active)
+            })
+            tours.forEach(tour => { tour.hidden = tour.dataset.tour !== btn.dataset.tour })
+        })
+    })
+}
+
+/*==================== THANH 12 THÁNG: BẤM CHỌN THÁNG ====================*/
+function initSeasonPicker(d) {
+    const months = [...document.querySelectorAll('.season__month')]
+    const status = document.querySelector('.season__status')
+    const others = document.getElementById('season-others')
+    if (!months.length || !status) return
+
+    const select = month => {
+        months.forEach(btn => {
+            const active = Number(btn.dataset.month) === month
+            btn.classList.toggle('season__month--selected', active)
+            btn.setAttribute('aria-pressed', active)
+        })
+        const good = d.bestMonths.includes(month)
+        status.textContent = good
+            ? t('Tháng {m} là thời điểm đẹp để đi!', { m: monthLabel(month) })
+            : t('Tháng {m} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.', { m: monthLabel(month) })
+        status.classList.toggle('season__status--good', good)
+
+        /* Gợi ý các điểm đến khác đẹp vào tháng này */
+        const picks = DESTINATIONS.filter(x => x.id !== d.id && x.bestMonths.includes(month)).slice(0, 6)
+        others.innerHTML = picks.length ? `
+            <span class="season__others-title">${t('Điểm đến đẹp vào tháng {m}:', { m: monthLabel(month) })}</span>
+            ${picks.map(x => `<a href="${destinationUrl(x.id)}" class="tag">${x.name}</a>`).join('')}
+        ` : ''
+    }
+
+    months.forEach(btn => btn.addEventListener('click', () => select(Number(btn.dataset.month))))
+    select(new Date().getMonth() + 1)
 }
 
 /*==================== BẢN ĐỒ VỊ TRÍ ====================*/
@@ -244,6 +309,7 @@ if (dest) {
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
     initComments()
     markCurrentMonth(destRoot)
+    initSeasonPicker(dest)
 } else {
     document.title = `${t('Không tìm thấy điểm đến')} – Việt Travel`
     destRoot.innerHTML = notFoundSection()

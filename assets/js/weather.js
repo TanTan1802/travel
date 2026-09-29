@@ -106,11 +106,5 @@ function markCurrentMonth(root = document) {
         el.classList.add('season__month--current')
         el.setAttribute('aria-current', 'date')
     })
-    root.querySelectorAll('[data-season-status]').forEach(el => {
-        const best = el.dataset.seasonStatus.split(',').map(Number)
-        el.textContent = best.includes(month)
-            ? t('Tháng {m} là thời điểm đẹp để đi!', { m: monthLabel(month) })
-            : t('Tháng {m} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.', { m: monthLabel(month) })
-        el.classList.toggle('season__status--good', best.includes(month))
-    })
+    /* Nhận xét theo tháng do initSeasonPicker() (destination.js) hiển thị */
 }

@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Best time: May – June (golden rice)</h3>
-                    <ol class="season__months" aria-label="Months of the year">
-                        <li class="season__month" data-month="1"
-                                        title="January">Jan</li><li class="season__month" data-month="2"
-                                        title="February">Feb</li><li class="season__month" data-month="3"
-                                        title="March">Mar</li><li class="season__month" data-month="4"
-                                        title="April">Apr</li><li class="season__month season__month--best" data-month="5"
-                                        title="May – best season">May</li><li class="season__month season__month--best" data-month="6"
-                                        title="June – best season">Jun</li><li class="season__month" data-month="7"
-                                        title="July">Jul</li><li class="season__month" data-month="8"
-                                        title="August">Aug</li><li class="season__month" data-month="9"
-                                        title="September">Sep</li><li class="season__month" data-month="10"
-                                        title="October">Oct</li><li class="season__month" data-month="11"
-                                        title="November">Nov</li><li class="season__month" data-month="12"
-                                        title="December">Dec</li>
-                    </ol>
+                    <p class="season__hint">Tap a month to see if it's a good time to go</p>
+                    <div class="season__months" role="group" aria-label="Months of the year">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="January">Jan</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="February">Feb</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="March">Mar</button><button type="button" class="season__month" data-month="4" aria-pressed="false"
+                                        title="April">Apr</button><button type="button" class="season__month season__month--best" data-month="5" aria-pressed="false"
+                                        title="May – best season">May</button><button type="button" class="season__month season__month--best" data-month="6" aria-pressed="false"
+                                        title="June – best season">Jun</button><button type="button" class="season__month" data-month="7" aria-pressed="false"
+                                        title="July">Jul</button><button type="button" class="season__month" data-month="8" aria-pressed="false"
+                                        title="August">Aug</button><button type="button" class="season__month" data-month="9" aria-pressed="false"
+                                        title="September">Sep</button><button type="button" class="season__month" data-month="10" aria-pressed="false"
+                                        title="October">Oct</button><button type="button" class="season__month" data-month="11" aria-pressed="false"
+                                        title="November">Nov</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="December">Dec</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Best season</span>
                         <span><i class="season__dot season__dot--current"></i> Current month</span>
+                        <span><i class="season__dot season__dot--selected"></i> Selected month</span>
                     </div>
-                    <p class="season__status" data-season-status="5,6"></p>
+                    <p class="season__status" data-season-status="5,6" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -334,104 +337,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Itinerary</span>
-            <h2 class="section__title">2-day itinerary for Trang An – Ninh Binh</h2>
+            <span class="section__subtitle">Tour itineraries</span>
+            <h2 class="section__title">Trang An – Ninh Binh tour itineraries</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+                <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Day 1</span>
-                            <small>Trang An – Bai Dinh</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 days 2 nights</strong>
+                            <small>from 2,000,000 VND</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Day 2</span>
-                            <small>Tam Coc – Mua Cave</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 days 3 nights</strong>
+                            <small>from 2,700,000 VND</small>
+                        </button>
+                    
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 days 4 nights</strong>
+                            <small>from 3,300,000 VND</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Take the Trang An boat trip through water caves (2–3 hours).</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Stay at a homestay in Tam Coc among the rice fields.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Trang An – Bai Dinh → Tam Coc – Mua Cave → Van Long – bird park</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Trang An – Bai Dinh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Tam Coc – Mua Cave</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Van Long – bird park</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Trang An – Bai Dinh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Take the Trang An boat trip through water caves (2–3 hours).</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Tam Coc among the rice fields.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Tam Coc – Mua Cave</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cycle the countryside and take the Tam Coc – Bich Dong boat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit the ancient capital of Hoa Lu and the temples of kings Dinh and Le.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Climb 500 steps of Mua Cave for sunset.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Van Long – bird park</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Boat through Van Long reserve to spot Delacour's langurs.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Thung Nham bird park, where thousands of egrets return at dusk.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Try mountain snails and sắng greens.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,000,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>4,800,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Morning</h3>
-                                        <p>Cycle the countryside and take the Tam Coc – Bich Dong boat.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Afternoon</h3>
-                                        <p>Visit the ancient capital of Hoa Lu.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Evening</h3>
-                                        <p>Climb 500 steps of Mua Cave for sunset, then return to Hanoi.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Trang An – Bai Dinh → Tam Coc – Mua Cave → Van Long – bird park → Phat Diem Cathedral</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Trang An – Bai Dinh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Tam Coc – Mua Cave</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Van Long – bird park</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Phat Diem Cathedral</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Trang An – Bai Dinh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Take the Trang An boat trip through water caves (2–3 hours).</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Tam Coc among the rice fields.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Tam Coc – Mua Cave</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cycle the countryside and take the Tam Coc – Bich Dong boat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit the ancient capital of Hoa Lu and the temples of kings Dinh and Le.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Climb 500 steps of Mua Cave for sunset.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Van Long – bird park</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Boat through Van Long reserve to spot Delacour's langurs.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Thung Nham bird park, where thousands of egrets return at dusk.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Try mountain snails and sắng greens.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Phat Diem Cathedral</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Phat Diem stone cathedral – a unique blend of Vietnamese and European architecture.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Kim Son beach or the sedge-weaving village.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Back to Tam Coc and its evening streets.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>2,700,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>6,400,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Trang An – Bai Dinh → Tam Coc – Mua Cave → Van Long – bird park → Phat Diem Cathedral → Cuc Phuong forest</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Day 1</span>
+                    <small>Trang An – Bai Dinh</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Day 2</span>
+                    <small>Tam Coc – Mua Cave</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Day 3</span>
+                    <small>Van Long – bird park</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Day 4</span>
+                    <small>Phat Diem Cathedral</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Day 5</span>
+                    <small>Cuc Phuong forest</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Day 1: Trang An – Bai Dinh</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Take the Trang An boat trip through water caves (2–3 hours).</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit Bai Dinh Pagoda, lunch on crispy rice and mountain goat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Stay at a homestay in Tam Coc among the rice fields.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Day 2: Tam Coc – Mua Cave</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cycle the countryside and take the Tam Coc – Bich Dong boat.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Visit the ancient capital of Hoa Lu and the temples of kings Dinh and Le.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Climb 500 steps of Mua Cave for sunset.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Day 3: Van Long – bird park</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Boat through Van Long reserve to spot Delacour's langurs.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Thung Nham bird park, where thousands of egrets return at dusk.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Try mountain snails and sắng greens.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Day 4: Phat Diem Cathedral</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Phat Diem stone cathedral – a unique blend of Vietnamese and European architecture.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Kim Son beach or the sedge-weaving village.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Back to Tam Coc and its evening streets.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Day 5: Cuc Phuong forest</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Morning</h4>
+                                <p>Cuc Phuong National Park – primate rescue centre and a thousand-year-old tree.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Afternoon</h4>
+                                <p>Cave of Prehistoric Man and Con Moong cave.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Evening</h4>
+                                <p>Try raw fish salad and crispy rice with pork floss.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Budget</span>
+                                    <strong>3,300,000 VND</strong>
+                                    <small>Homestays, local eateries</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Comfort</span>
+                                    <strong>8,000,000 VND</strong>
+                                    <small>3–4 star hotels, guided tours</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Budget</span>
-                            <strong>1,300,000 VND</strong>
-                            <small>Homestays, local eateries</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Comfort</span>
-                            <strong>3,200,000 VND</strong>
-                            <small>3–4 star hotels, guided tours</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Excludes flights/transport to Trang An – Ninh Binh. Prices are indicative and vary by season.</p>
-                </div>
+                <p class="budget__note">Excludes flights/transport to Trang An – Ninh Binh. Prices are indicative and vary by season.</p>
             </div>
         </section>
     

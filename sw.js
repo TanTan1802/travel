@@ -2,7 +2,7 @@
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '32c40317d4'
+const VERSION = '9156291296'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -62,8 +62,8 @@ async function trimCache(name, limit) {
 }
 
 /* Trang HTML: ưu tiên mạng để luôn mới nhất, mất mạng thì dùng bản đã lưu */
-async function networkFirst(request) {
-    const cache = await caches.open(PAGE_CACHE)
+async function networkFirst(request, cacheName = PAGE_CACHE) {
+    const cache = await caches.open(cacheName)
     try {
         const response = await fetch(request)
         if (response.ok) cache.put(request, response.clone())
@@ -71,7 +71,7 @@ async function networkFirst(request) {
     } catch {
         return (await cache.match(request, { ignoreSearch: false }))
             || (await caches.match(request))
-            || caches.match('./offline.html')
+            || (request.mode === 'navigate' ? caches.match('./offline.html') : Response.error())
     }
 }
 
@@ -96,6 +96,9 @@ self.addEventListener('fetch', event => {
 
     if (request.mode === 'navigate') {
         event.respondWith(networkFirst(request))
+    } else if (url.origin === self.location.origin && /\.(?:js|css|webmanifest)$/.test(url.pathname)) {
+        /* Mã nguồn: luôn lấy bản mới nhất để khớp với HTML vừa deploy, mất mạng mới dùng bản lưu */
+        event.respondWith(networkFirst(request, CORE_CACHE))
     } else if (url.origin === self.location.origin) {
         event.respondWith(staleWhileRevalidate(request, CORE_CACHE))
     } else if (CDN_HOSTS.includes(url.hostname)) {

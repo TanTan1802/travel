@@ -178,26 +178,29 @@
 
                 <div class="climate__card season">
                     <h3 class="season__title"><i class="ri-calendar-event-line"></i> Thời điểm đẹp: Tháng 4 – 9</h3>
-                    <ol class="season__months" aria-label="Các tháng trong năm">
-                        <li class="season__month" data-month="1"
-                                        title="Tháng 1">T1</li><li class="season__month" data-month="2"
-                                        title="Tháng 2">T2</li><li class="season__month" data-month="3"
-                                        title="Tháng 3">T3</li><li class="season__month season__month--best" data-month="4"
-                                        title="Tháng 4 – mùa đẹp">T4</li><li class="season__month season__month--best" data-month="5"
-                                        title="Tháng 5 – mùa đẹp">T5</li><li class="season__month season__month--best" data-month="6"
-                                        title="Tháng 6 – mùa đẹp">T6</li><li class="season__month season__month--best" data-month="7"
-                                        title="Tháng 7 – mùa đẹp">T7</li><li class="season__month season__month--best" data-month="8"
-                                        title="Tháng 8 – mùa đẹp">T8</li><li class="season__month season__month--best" data-month="9"
-                                        title="Tháng 9 – mùa đẹp">T9</li><li class="season__month" data-month="10"
-                                        title="Tháng 10">T10</li><li class="season__month" data-month="11"
-                                        title="Tháng 11">T11</li><li class="season__month" data-month="12"
-                                        title="Tháng 12">T12</li>
-                    </ol>
+                    <p class="season__hint">Bấm vào một tháng để xem có nên đi không</p>
+                    <div class="season__months" role="group" aria-label="Các tháng trong năm">
+                        <button type="button" class="season__month" data-month="1" aria-pressed="false"
+                                        title="Tháng 1">T1</button><button type="button" class="season__month" data-month="2" aria-pressed="false"
+                                        title="Tháng 2">T2</button><button type="button" class="season__month" data-month="3" aria-pressed="false"
+                                        title="Tháng 3">T3</button><button type="button" class="season__month season__month--best" data-month="4" aria-pressed="false"
+                                        title="Tháng 4 – mùa đẹp">T4</button><button type="button" class="season__month season__month--best" data-month="5" aria-pressed="false"
+                                        title="Tháng 5 – mùa đẹp">T5</button><button type="button" class="season__month season__month--best" data-month="6" aria-pressed="false"
+                                        title="Tháng 6 – mùa đẹp">T6</button><button type="button" class="season__month season__month--best" data-month="7" aria-pressed="false"
+                                        title="Tháng 7 – mùa đẹp">T7</button><button type="button" class="season__month season__month--best" data-month="8" aria-pressed="false"
+                                        title="Tháng 8 – mùa đẹp">T8</button><button type="button" class="season__month season__month--best" data-month="9" aria-pressed="false"
+                                        title="Tháng 9 – mùa đẹp">T9</button><button type="button" class="season__month" data-month="10" aria-pressed="false"
+                                        title="Tháng 10">T10</button><button type="button" class="season__month" data-month="11" aria-pressed="false"
+                                        title="Tháng 11">T11</button><button type="button" class="season__month" data-month="12" aria-pressed="false"
+                                        title="Tháng 12">T12</button>
+                    </div>
                     <div class="season__legend">
                         <span><i class="season__dot season__dot--best"></i> Mùa đẹp</span>
                         <span><i class="season__dot season__dot--current"></i> Tháng hiện tại</span>
+                        <span><i class="season__dot season__dot--selected"></i> Tháng đang xem</span>
                     </div>
-                    <p class="season__status" data-season-status="4,5,6,7,8,9"></p>
+                    <p class="season__status" data-season-status="4,5,6,7,8,9" aria-live="polite"></p>
+                    <div class="season__others" id="season-others"></div>
                 </div>
             </div>
         </section>
@@ -324,140 +327,590 @@
         </section>
     
         <section class="itinerary section" id="itinerary">
-            <span class="section__subtitle">Lịch trình</span>
-            <h2 class="section__title">Gợi ý 3 ngày tại Cát Bà – Vịnh Lan Hạ</h2>
+            <span class="section__subtitle">Lịch trình tour</span>
+            <h2 class="section__title">Lịch trình tour Cát Bà – Vịnh Lan Hạ</h2>
 
             <div class="itinerary__container container">
-                <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+                <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
-                        <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                                id="day-tab-0" aria-controls="day-panel-0" aria-selected="true" data-day="0">
-                            <span>Ngày 1</span>
-                            <small>Đảo ngọc Cát Bà</small>
+                        <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
+                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                            <strong>3 ngày 2 đêm</strong>
+                            <small>từ 2.000.000đ</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-1" aria-controls="day-panel-1" aria-selected="false" data-day="1">
-                            <span>Ngày 2</span>
-                            <small>Vịnh Lan Hạ</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                            <strong>4 ngày 3 đêm</strong>
+                            <small>từ 2.700.000đ</small>
                         </button>
                     
-                        <button type="button" class="itinerary__tab" role="tab"
-                                id="day-tab-2" aria-controls="day-panel-2" aria-selected="false" data-day="2">
-                            <span>Ngày 3</span>
-                            <small>Rừng quốc gia</small>
+                        <button type="button" class="tour-picker__btn" role="tab"
+                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                            <strong>5 ngày 4 đêm</strong>
+                            <small>từ 3.400.000đ</small>
                         </button>
                     
                 </div>
 
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-0" aria-labelledby="day-tab-0">
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Sáng</h3>
-                                        <p>Di chuyển Hà Nội – Hải Phòng, đi tàu cao tốc ra đảo, nhận phòng.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Chiều</h3>
-                                        <p>Tắm biển Cát Cò 1, 2, 3, đi bộ đường ven vách đá.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Tối</h3>
-                                        <p>Ngắm hoàng hôn pháo đài Thần Công, ăn hải sản tại bến cá.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-3" data-tour="3">
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 3 ngày 2 đêm · Đảo ngọc Cát Bà → Vịnh Lan Hạ → Rừng quốc gia</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Đảo ngọc Cát Bà</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Vịnh Lan Hạ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Rừng quốc gia</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Đảo ngọc Cát Bà</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Di chuyển Hà Nội – Hải Phòng, đi tàu cao tốc ra đảo, nhận phòng.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển Cát Cò 1, 2, 3, đi bộ đường ven vách đá.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ngắm hoàng hôn pháo đài Thần Công, ăn hải sản tại bến cá.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Vịnh Lan Hạ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Lên thuyền ra vịnh Lan Hạ, chèo kayak qua hang Sáng – Tối.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo phố đi bộ thị trấn, thưởng thức bánh đa cua.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Rừng quốc gia</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Trekking vườn quốc gia Cát Bà, leo đỉnh Ngự Lâm.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tham quan hang Quân Y, hang Trung Trang.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ăn tối trên bè nổi, ngắm vịnh về đêm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>2.000.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>5.000.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-1" aria-labelledby="day-tab-1" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Sáng</h3>
-                                        <p>Lên thuyền ra vịnh Lan Hạ, chèo kayak qua hang Sáng – Tối.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Chiều</h3>
-                                        <p>Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Tối</h3>
-                                        <p>Dạo phố đi bộ thị trấn, thưởng thức bánh đa cua.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-4" data-tour="4" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 4 ngày 3 đêm · Đảo ngọc Cát Bà → Vịnh Lan Hạ → Rừng quốc gia → Đảo Khỉ – Việt Hải</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Đảo ngọc Cát Bà</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Vịnh Lan Hạ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Rừng quốc gia</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
+                    <span>Ngày 4</span>
+                    <small>Đảo Khỉ – Việt Hải</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Đảo ngọc Cát Bà</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Di chuyển Hà Nội – Hải Phòng, đi tàu cao tốc ra đảo, nhận phòng.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển Cát Cò 1, 2, 3, đi bộ đường ven vách đá.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ngắm hoàng hôn pháo đài Thần Công, ăn hải sản tại bến cá.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Vịnh Lan Hạ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Lên thuyền ra vịnh Lan Hạ, chèo kayak qua hang Sáng – Tối.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo phố đi bộ thị trấn, thưởng thức bánh đa cua.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Rừng quốc gia</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Trekking vườn quốc gia Cát Bà, leo đỉnh Ngự Lâm.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tham quan hang Quân Y, hang Trung Trang.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ăn tối trên bè nổi, ngắm vịnh về đêm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
+                <h3 class="itinerary__day-title">Ngày 4: Đảo Khỉ – Việt Hải</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đi cano ra đảo Khỉ, tắm biển cát trắng.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Đạp xe vào làng Việt Hải giữa lòng vườn quốc gia.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>BBQ hải sản bên biển.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>2.700.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>6.700.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
-                    <div class="itinerary__panel" role="tabpanel" id="day-panel-2" aria-labelledby="day-tab-2" hidden>
-                        <ol class="timeline">
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Sáng</h3>
-                                        <p>Trekking vườn quốc gia Cát Bà, leo đỉnh Ngự Lâm.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Chiều</h3>
-                                        <p>Tham quan hang Quân Y, lên tàu về đất liền.</p>
-                                    </div>
-                                </li>
-                            
-                                <li class="timeline__item">
-                                    <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                                    <div>
-                                        <h3 class="timeline__label">Tối</h3>
-                                        <p>Về lại Hà Nội.</p>
-                                    </div>
-                                </li>
-                            
-                        </ol>
+                    <div class="tour" id="tour-5" data-tour="5" hidden>
+                        <div class="tour__toolbar">
+                            <p class="tour__summary"><i class="ri-route-line"></i> 5 ngày 4 đêm · Đảo ngọc Cát Bà → Vịnh Lan Hạ → Rừng quốc gia → Đảo Khỉ – Việt Hải → Hải Phòng thành phố hoa phượng</p>
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                        </div>
+
+                        
+        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
+            
+                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
+                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
+                    <span>Ngày 1</span>
+                    <small>Đảo ngọc Cát Bà</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
+                    <span>Ngày 2</span>
+                    <small>Vịnh Lan Hạ</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
+                    <span>Ngày 3</span>
+                    <small>Rừng quốc gia</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                    <span>Ngày 4</span>
+                    <small>Đảo Khỉ – Việt Hải</small>
+                </button>
+            
+                <button type="button" class="itinerary__tab" role="tab"
+                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                    <span>Ngày 5</span>
+                    <small>Hải Phòng thành phố hoa phượng</small>
+                </button>
+            
+        </div>
+
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+                <h3 class="itinerary__day-title">Ngày 1: Đảo ngọc Cát Bà</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Di chuyển Hà Nội – Hải Phòng, đi tàu cao tốc ra đảo, nhận phòng.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển Cát Cò 1, 2, 3, đi bộ đường ven vách đá.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ngắm hoàng hôn pháo đài Thần Công, ăn hải sản tại bến cá.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+                <h3 class="itinerary__day-title">Ngày 2: Vịnh Lan Hạ</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Lên thuyền ra vịnh Lan Hạ, chèo kayak qua hang Sáng – Tối.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tắm biển bãi Ba Trái Đào, thăm làng chài Cái Bèo.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Dạo phố đi bộ thị trấn, thưởng thức bánh đa cua.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+                <h3 class="itinerary__day-title">Ngày 3: Rừng quốc gia</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Trekking vườn quốc gia Cát Bà, leo đỉnh Ngự Lâm.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tham quan hang Quân Y, hang Trung Trang.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Ăn tối trên bè nổi, ngắm vịnh về đêm.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+                <h3 class="itinerary__day-title">Ngày 4: Đảo Khỉ – Việt Hải</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Đi cano ra đảo Khỉ, tắm biển cát trắng.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Đạp xe vào làng Việt Hải giữa lòng vườn quốc gia.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>BBQ hải sản bên biển.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                
+            </div>
+        
+            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+                <h3 class="itinerary__day-title">Ngày 5: Hải Phòng thành phố hoa phượng</h3>
+                <ol class="timeline">
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Sáng</h4>
+                                <p>Về Hải Phòng, Nhà hát Lớn, phố cổ Tam Bạc.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Chiều</h4>
+                                <p>Tháp Tường Long, bãi biển Đồ Sơn.</p>
+                            </div>
+                        </li>
+                    
+                        <li class="timeline__item">
+                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
+                            <div>
+                                <h4 class="timeline__label">Tối</h4>
+                                <p>Food tour Hải Phòng: bánh mì que, nem cua bể, bánh đa cua.</p>
+                            </div>
+                        </li>
+                    
+                </ol>
+                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+            </div>
+        
+    
+
+                        <div class="budget">
+                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
+                            <div class="budget__options">
+                                <div class="budget__option">
+                                    <span>Tiết kiệm</span>
+                                    <strong>3.400.000đ</strong>
+                                    <small>Homestay, ăn quán địa phương</small>
+                                </div>
+                                <div class="budget__option budget__option--comfort">
+                                    <span>Thoải mái</span>
+                                    <strong>8.400.000đ</strong>
+                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 
 
-                <div class="budget">
-                    <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người</h3>
-                    <div class="budget__options">
-                        <div class="budget__option">
-                            <span>Tiết kiệm</span>
-                            <strong>2.000.000đ</strong>
-                            <small>Homestay, ăn quán địa phương</small>
-                        </div>
-                        <div class="budget__option budget__option--comfort">
-                            <span>Thoải mái</span>
-                            <strong>5.000.000đ</strong>
-                            <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                        </div>
-                    </div>
-                    <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Cát Bà – Vịnh Lan Hạ. Giá tham khảo, thay đổi theo mùa.</p>
-                </div>
+                <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Cát Bà – Vịnh Lan Hạ. Giá tham khảo, thay đổi theo mùa.</p>
             </div>
         </section>
     
