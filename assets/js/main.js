@@ -55,37 +55,6 @@ if(document.querySelector('.discover__container')){
     swiper.slides.removeAttr('role')
 }
 
-/*==================== VIDEO ====================*/
-const videoFile = document.getElementById('video-file'),
-      videoButton = document.getElementById('video-button'),
-      videoIcon = document.getElementById('video-icon')
-
-function playPause(){
-    if (videoFile.paused){
-        videoFile.play()
-        videoIcon.classList.add('ri-pause-line')
-        videoIcon.classList.remove('ri-play-line')
-    }
-    else {
-        // Pause video
-        videoFile.pause();
-        videoIcon.classList.remove('ri-pause-line')
-        videoIcon.classList.add('ri-play-line')
-
-    }
-}
-
-function finalVideo(){
-    videoIcon.classList.remove('ri-pause-line')
-    videoIcon.classList.add('ri-play-line')
-}
-
-if(videoFile && videoButton){
-    videoButton.addEventListener('click', playPause)
-    videoFile.addEventListener('ended', finalVideo)
-}
-
-
 /*==================== SHOW SCROLL UP ====================*/
 function scrollUp(){
     const scrollUp = document.getElementById('scroll-up');
@@ -134,14 +103,13 @@ sr.reveal(`.home__data, .home__social-link, .home__info,
 })
 
 sr.reveal(`.about__data,
-           .video__description,
+           .season__description,
            .subscribe__description,
            .overview__data`,{
     origin: 'left',
 })
 
 sr.reveal(`.about__img-overlay,
-           .video__content,
            .subscribe__form,
            .overview__img`,{
     origin: 'right',

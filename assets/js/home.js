@@ -307,6 +307,38 @@ function initExplore() {
     renderGrid()
 }
 
+/*==================== ĐI ĐÂU THÁNG NÀY ====================*/
+/* Chọn theo tháng trên máy người xem (không render sẵn khi build để luôn đúng tháng) */
+const SEASON_COUNT = 4
+
+function renderSeason() {
+    const list = document.getElementById('season-list')
+    if (!list) return
+    const month = new Date().getMonth() + 1
+    const picks = DESTINATIONS.filter(d => d.bestMonths.includes(month))
+    const lead = document.getElementById('season-lead')
+    if (lead) {
+        lead.textContent = t('Tháng {m} có {n} điểm đến đang vào mùa đẹp nhất – thời tiết thuận lợi, cảnh sắc rực rỡ.', { m: monthLabel(month), n: picks.length })
+    }
+    /* Ưu tiên điểm đánh giá cao, mỗi vùng một điểm trước rồi mới lấp đủ – gợi ý đa dạng hơn */
+    const byRating = [...picks].sort((a, b) => b.rating - a.rating)
+    const chosen = byRating.filter((d, i) => byRating.findIndex(x => x.region === d.region) === i)
+    byRating.forEach(d => { if (!chosen.includes(d)) chosen.push(d) })
+    chosen.length = Math.min(chosen.length, SEASON_COUNT)
+    list.innerHTML = chosen.map(d => destinationCard(d)).join('')
+    syncFavoriteButtons(list)
+
+    document.getElementById('season-more')?.addEventListener('click', () => {
+        const select = document.getElementById('month-filter')
+        if (select) {
+            select.value = String(month)
+            select.dispatchEvent(new Event('change', { bubbles: true }))
+        }
+        document.getElementById('place')?.scrollIntoView({ behavior: 'smooth' })
+    })
+}
+
 renderDiscover()
+renderSeason()
 initExplore()
 hydrateWikiImages()

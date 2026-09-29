@@ -4120,3 +4120,26 @@ body.dark-theme .sight__price--free {
     border: 1px solid var(--input-color);
   }
 }
+
+/*=============== ĐI ĐÂU THÁNG NÀY (trang chủ) ===============*/
+.season__container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.season__description {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.season__grid:empty {
+  display: none;
+}
+
+.season__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+}

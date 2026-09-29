@@ -193,23 +193,20 @@
                 </div>
             </section>
 
-            <!--==================== VIDEO ====================-->
-            <section class="video section">
-                <h2 class="section__title">Video Du Lịch</h2>
+            <!--==================== ĐI ĐÂU THÁNG NÀY ====================-->
+            <section class="season section" id="season">
+                <h2 class="section__title">Đi đâu <br> tháng này?</h2>
 
-                <div class="video__container container">
-                    <p class="video__description">Cùng xem những thước phim về những vùng biển tuyệt đẹp
-                        dành cho bạn và gia đình.
-                    </p>
+                <div class="season__container container">
+                    <p class="season__description" id="season-lead">Những điểm đến đang vào mùa đẹp nhất – thời tiết thuận lợi, cảnh sắc rực rỡ.</p>
 
-                    <div class="video__content">
-                        <video id="video-file">
-                            <source src="assets/video/video.mp4" type="video/mp4">
-                        </video>
+                    <!-- Các thẻ được chọn theo tháng hiện tại trên máy người xem (assets/js/home.js) -->
+                    <div class="dest__grid season__grid" id="season-list"></div>
 
-                        <button class="button button--flex video__button" id="video-button" aria-label="Phát video">
-                            <i class="ri-play-line video__button-icon" id="video-icon"></i>
-                        </button>
+                    <div class="season__actions">
+                        <button type="button" class="button button--flex" id="season-more">Xem tất cả điểm đẹp tháng này <i class="ri-arrow-down-line"></i></button>
+                        <a href="cam-nang/thoi-diem-du-lich/index.html" class="button button--ghost button--flex">Tháng nào đi đâu? <i class="ri-calendar-2-line"></i></a>
+                        <a href="ke-hoach/index.html" class="button button--ghost button--flex">Lên kế hoạch chuyến đi <i class="ri-route-line"></i></a>
                     </div>
                 </div>
             </section>
