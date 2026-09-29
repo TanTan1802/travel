@@ -60,6 +60,27 @@ test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộn
     }
 })
 
+test('timeline 5 ngày: không lặp quán / món, không chèn bữa trùng với lịch tham quan', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+            'assets/js/data/places.js', 'assets/js/components.js'],
+        ['DESTINATIONS', 'ITINERARIES', 'dayTimeline'],
+    )
+    for (const d of app.DESTINATIONS) {
+        const seen = new Map()
+        app.ITINERARIES[d.id].days.forEach((day, i) => {
+            const entries = app.dayTimeline(d.id, i, day, { last: i === 4 })
+            assert.ok(entries.length >= 7, `${d.id} ngày ${i + 1}: timeline quá ít mục (${entries.length})`)
+            const meals = entries.filter(e => e.kind === 'meal').map(e => e.title)
+            assert.equal(new Set(meals).size, meals.length, `${d.id} ngày ${i + 1}: một bữa xuất hiện 2 lần`)
+            for (const e of entries.filter(x => x.place)) {
+                assert.ok(!seen.has(e.place.name), `${d.id}: "${e.place.name}" lặp lại (ngày ${seen.get(e.place.name)} và ${i + 1})`)
+                seen.set(e.place.name, i + 1)
+            }
+        })
+    }
+})
+
 test('quán ăn, lưu trú, đi lại: đủ cho mọi điểm đến và có cả hai ngôn ngữ', () => {
     const { PLACES, STAY_TYPES } = site
     const pair = (v, where) => assert.ok(Array.isArray(v) && v.length === 2 && v[0] && v[1], `${where}: cần [tiếng Việt, English]`)

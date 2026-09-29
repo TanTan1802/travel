@@ -77,7 +77,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 ## Timeline theo giờ
 
-- `dayTimeline()` (components.js) ghép buổi sáng/chiều/tối của `ITINERARIES` với quán ăn và quán cà phê/quán nước trong `places.js` thành lịch theo giờ: 06:30 ăn sáng → 07:30 tham quan → 11:30 ăn trưa → 13:00 cà phê → 14:30 tham quan → 16:30 quán nước/ăn vặt → 18:00 ăn tối → 19:30 buổi tối → 21:30 cà phê đêm. Quán xoay vòng theo ngày để không lặp.
+- `dayTimeline()` (components.js) ghép buổi sáng/chiều/tối của `ITINERARIES` với quán ăn và quán cà phê/quán nước trong `places.js` thành lịch theo giờ: 06:30 ăn sáng → 07:30 tham quan → 11:30 ăn trưa → 13:00 cà phê → 14:30 tham quan → 16:30 quán nước/ăn vặt → 18:00 ăn tối → 19:30 buổi tối → 21:30 cà phê đêm. Mỗi quán/món chỉ dùng một lần trong cả chuyến (phân bổ lần lượt từ ngày đầu, nên tour 3 ngày là 3 ngày đầu của tour 5 ngày); bỏ qua món đã nhắc trong phần tham quan và không chèn bữa khi lịch tham quan đã có bữa đó. Hết quán có tên → món đặc sản → gợi ý chung luân phiên.
 - Dùng chung cho trang điểm đến (từng tab ngày), trang kế hoạch (kể cả ngày di chuyển) và bản "Sao chép dạng chữ".
 
 ## Lập kế hoạch chuyến đi (`ke-hoach/`)
@@ -98,7 +98,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 ## Quán ăn, lưu trú & đặt chỗ (`assets/js/data/places.js`)
 
-- Mỗi điểm đến có: 4 quán cụ thể (tên, món, địa chỉ, giá/người), 3 quán cà phê/quán nước (`cafes`), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.
+- Mỗi điểm đến có: 8 quán cụ thể (tên, món, địa chỉ, giá/người), 3 quán cà phê/quán nước (`cafes`), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.
 - Trang điểm đến: mục **Quán nên ghé** (bấm địa chỉ mở Google Maps) và mục **Lưu trú & đi lại** với nút Booking.com / Airbnb / Google Maps, vé máy bay (Google Flights), vé tàu (dsvn.vn), vé xe (Vexere).
 - Trang kế hoạch: chọn **ngày khởi hành** → mỗi ngày có ngày cụ thể, bữa trưa/tối ở quán cụ thể, chỗ nghỉ gợi ý theo mức chi tiêu; mục **Cần đặt trước** liệt kê vé từng chặng + phòng từng điểm với link đã điền sẵn ngày nhận/trả phòng, có ô đánh dấu "đã đặt" (lưu trên trình duyệt).
 - Dữ liệu mang tính tham khảo – nên cập nhật khi quán đổi địa chỉ/giá. Không dùng link tiếp thị liên kết.
