@@ -55,6 +55,15 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     const total = await count()
     assert.ok(total >= 20, `chỉ có ${total} thẻ điểm đến`)
 
+    /* Đi đâu tháng này: thẻ điểm đến đúng mùa, bấm "xem tất cả" thì lọc theo tháng hiện tại */
+    assert.equal(await page.$('video'), null, 'trang chủ không còn video mẫu')
+    const month = new Date().getMonth() + 1
+    assert.ok(await page.$$eval('#season-list .dest-card', a => a.length) >= 1, 'cần gợi ý điểm đến theo tháng')
+    await page.click('#season-more')
+    assert.equal(await page.$eval('#month-filter', s => s.value), String(month))
+    assert.ok((await count()) < total, 'bấm xem tất cả phải lọc theo tháng')
+    await page.selectOption('#month-filter', '0')
+
     await page.fill('#explore-search', 'phở')
     assert.ok((await count()) >= 1 && (await count()) < total, 'tìm "phở" phải thu hẹp kết quả')
     await page.fill('#explore-search', 'xyzkhongtontai')
