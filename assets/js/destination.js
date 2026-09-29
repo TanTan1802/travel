@@ -304,6 +304,7 @@ if (dest) {
     balanceGallery()
     window.addEventListener('resize', balanceGallery)
     syncFavoriteButtons()
+    syncPlanButtons()
     initItineraryTabs()
     initLocationMap(dest)
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)

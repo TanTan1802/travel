@@ -120,6 +120,45 @@ test('bản đồ: Leaflet chỉ tải khi cần, hiện đủ điểm đến', 
     await detail.close()
 })
 
+test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nhất, lưu và chia sẻ', async () => {
+    const { page, errors, close } = await openPage('ke-hoach/index.html')
+    const stops = () => page.$$eval('.stop__name', a => a.map(x => x.textContent.trim()))
+
+    await page.click('.planner__route[data-route="1"]')
+    assert.equal((await stops()).length, 4)
+    assert.match(page.url(), /\?p=phong-nha\.2,hue\.2,da-nang\.2,hoi-an\.2/)
+    assert.equal(await page.$$eval('.plan-day', a => a.length), 8, 'lịch trình phải có 8 ngày')
+
+    await page.click('.stop[data-index="0"] [data-action="days"][data-delta="1"]')
+    assert.match(page.url(), /phong-nha\.3/)
+    assert.equal(await page.$$eval('.plan-day', a => a.length), 9)
+
+    await page.click('.stop[data-index="3"] [data-action="remove"]')
+    assert.equal((await stops()).length, 3)
+
+    /* Tuyến lộn xộn → sắp xếp lại theo địa lý */
+    await page.goto(page.url().split('?')[0] + '?p=sa-pa.2,hoi-an.2,ha-noi.2,hue.2&m=7')
+    assert.equal(await page.$eval('#planner-month', s => s.value), '7')
+    await page.click('[data-action="optimize"]')
+    assert.deepEqual(await stops(), ['Sa Pa', 'Hà Nội', 'Cố đô Huế', 'Phố cổ Hội An'])
+    assert.ok(await page.$$eval('.stop__warn', a => a.length) > 0, 'phải cảnh báo điểm đến ngoài mùa đẹp')
+
+    /* Kế hoạch được lưu lại khi mở lại trang không có tham số */
+    await page.goto(page.url().split('?')[0])
+    assert.equal((await stops()).length, 4)
+
+    /* Thêm từ trang điểm đến */
+    await page.goto(page.url().replace('ke-hoach/index.html', 'diem-den/da-lat/index.html'))
+    await page.click('[data-plan-add="da-lat"]')
+    assert.match(await page.textContent('.plan-btn__label'), /Xem kế hoạch/)
+    await page.click('[data-plan-add="da-lat"]')
+    await page.waitForURL(/ke-hoach/)
+    assert.ok((await stops()).includes('Đà Lạt'))
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('bản tiếng Anh và nút chuyển ngôn ngữ', async () => {
     const { page, errors, close } = await openPage('en/diem-den/hue/index.html')
     assert.equal(await page.$eval('html', h => h.lang), 'en')

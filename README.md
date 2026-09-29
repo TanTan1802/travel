@@ -74,6 +74,15 @@ dùng chung một luồng):
 
 Khi chưa cấu hình, mục bình luận được ẩn.
 
+## Lập kế hoạch chuyến đi (`ke-hoach/`)
+
+- Mẫu `planner.html` → build ra `ke-hoach/index.html` và `en/ke-hoach/index.html`; logic ở `assets/js/planner.js`.
+- Ghép tối đa 10 điểm đến, mỗi nơi 1–7 ngày; nút "Sắp xếp tuyến ngắn nhất" (láng giềng gần nhất + 2-opt, giữ điểm xuất phát).
+- Ước tính quãng đường (đường chim bay × 1,3), phương tiện (xe khách/ô tô hoặc máy bay khi xa trên 450 km hay ra đảo) và chi phí/người (nội suy từ ngân sách tour 3/4/5 ngày + di chuyển). Hằng số ở đầu `planner.js`.
+- Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
+- Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
+- Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
+
 ## Hiệu năng (Lighthouse)
 
 - Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.

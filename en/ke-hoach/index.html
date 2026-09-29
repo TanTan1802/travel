@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Plan a multi-destination trip around Vietnam: choose days per stop, get the shortest route, estimated costs and a day-by-day itinerary.">
+        <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="../../manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <!-- Font & icon tải không chặn hiển thị -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+        </noscript>
+        <link rel="stylesheet" href="../../assets/css/styles.css">
+        <link rel="stylesheet" href="../../assets/css/vietnam.css">
+
+        <title>Trip planner – Việt Travel</title>
+    
+        <link rel="canonical" href="https://tantan1802.github.io/travel/en/ke-hoach/">
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/ke-hoach/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/ke-hoach/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/ke-hoach/">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:title" content="Trip planner – Việt Travel">
+        <meta property="og:description" content="Plan a multi-destination trip around Vietnam: choose days per stop, get the shortest route, estimated costs and a day-by-day itinerary.">
+        <meta property="og:url" content="https://tantan1802.github.io/travel/en/ke-hoach/">
+        <meta property="og:image" content="https://tantan1802.github.io/travel/assets/img/og/hoi-an.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+    </head>
+    <body class="page-detail">
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="../../en/index.html" class="nav__logo">Việt Travel</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="../../en/index.html" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../../en/index.html#place" class="nav__link">Destinations</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../../en/ke-hoach/index.html" class="nav__link active-link">Trip planner</a>
+                        </li>
+                    </ul>
+
+                    <a class="nav__lang" id="lang-switch" href="../../ke-hoach/index.html" hreflang="vi" lang="vi" title="Tiếng Việt">VI</a>
+
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">Dark mode</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
+
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main planner-page" id="planner-page">
+            <section class="planner-hero">
+                <div class="container">
+                    <span class="section__subtitle">Your journey</span>
+                    <h1 class="planner-hero__title">Plan your trip</h1>
+                    <p class="planner-hero__text">Combine several destinations into one journey: choose how many days to spend in each, find the shortest route, and see estimated costs and a day-by-day itinerary.</p>
+                </div>
+            </section>
+
+            <section class="planner section container">
+                <div class="planner__grid">
+                    <div class="planner__main">
+                        <div class="planner__controls" id="planner-controls"></div>
+                        <div id="planner-stops"></div>
+                    </div>
+                    <aside class="planner__side">
+                        <div class="planner__card">
+                            <div class="planner__settings" id="planner-settings"></div>
+                            <div id="planner-summary"></div>
+                        </div>
+                        <div class="planner__map" id="planner-map" hidden></div>
+                    </aside>
+                </div>
+                <div class="planner__days" id="planner-days"></div>
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">You choose the destination, <br> we bring you <br>
+                            the full experience.
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Northern Vietnam</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../en/diem-den/vinh-ha-long/index.html" class="footer__link">Ha Long Bay</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/ha-giang/index.html" class="footer__link">Ha Giang</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Central Vietnam</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../en/diem-den/hoi-an/index.html" class="footer__link">Hoi An</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/da-nang/index.html" class="footer__link">Da Nang</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/da-lat/index.html" class="footer__link">Da Lat</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Southern Vietnam</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../en/diem-den/sai-gon/index.html" class="footer__link">Ho Chi Minh City</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/can-tho/index.html" class="footer__link">Can Tho</a></li>
+                            <li class="footer__item"><a href="../../en/diem-den/phu-quoc/index.html" class="footer__link">Phu Quoc</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Photos: Wikimedia Commons (CC BY / CC BY-SA).</p>
+                    <div class="footer__terms">
+                        <a href="#" class="footer__terms-link">Terms</a>
+                        <a href="#" class="footer__terms-link">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up" aria-label="Back to top">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'en'</script>
+        <script defer src="../../assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script defer src="../../assets/js/data/en.js"></script>
+        <script defer src="../../assets/js/data/local-images.js"></script>
+        <script defer src="../../assets/js/i18n.js"></script>
+        <script defer src="../../assets/js/data/destinations.js"></script>
+        <script defer src="../../assets/js/data/itineraries.js"></script>
+        <script defer src="../../assets/js/favorites.js"></script>
+        <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/map.js"></script>
+        <script defer src="../../assets/js/planner.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script defer src="../../assets/js/main.js"></script>
+    </body>
+</html>

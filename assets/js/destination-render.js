@@ -196,18 +196,6 @@ function activitiesSection(d) {
     `
 }
 
-const DAY_SLOTS = [
-    { key: 'morning', label: () => t('Sáng'), icon: 'ri-sun-foggy-line' },
-    { key: 'afternoon', label: () => t('Chiều'), icon: 'ri-sun-line' },
-    { key: 'evening', label: () => t('Tối'), icon: 'ri-moon-clear-line' },
-]
-
-/* Định dạng tiền VND theo ngôn ngữ: 2.400.000đ / 2,400,000 VND */
-function formatVnd(amount) {
-    const grouped = String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'en' ? ',' : '.')
-    return LANG === 'en' ? `${grouped} VND` : `${grouped}đ`
-}
-
 const tourLabel = n => t('{n} ngày {m} đêm', { n, m: n - 1 })
 
 function tourDaysHtml(d, plan, n) {
@@ -295,6 +283,13 @@ function itinerarySection(d) {
                 `).join('')}
 
                 <p class="budget__note">${t('Chưa gồm vé máy bay/tàu xe tới {name}. Giá tham khảo, thay đổi theo mùa.', { name: d.name })}</p>
+
+                <div class="plan-cta">
+                    <p><i class="ri-route-line"></i> ${t('Muốn đi nhiều nơi trong một chuyến? Ghép {name} với các điểm đến khác.', { name: d.name })}</p>
+                    <button type="button" class="button button--flex plan-btn" data-plan-add="${d.id}">
+                        <i class="ri-add-circle-line"></i> <span class="plan-btn__label">${t('Thêm vào kế hoạch chuyến đi')}</span>
+                    </button>
+                </div>
             </div>
         </section>
     `

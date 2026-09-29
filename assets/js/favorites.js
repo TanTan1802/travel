@@ -74,3 +74,72 @@ function showToast(message) {
     clearTimeout(showToast.timer)
     showToast.timer = setTimeout(() => toast.classList.remove('toast--show'), 1800)
 }
+
+/*==================== KẾ HOẠCH CHUYẾN ĐI (NHIỀU ĐIỂM ĐẾN) ====================*/
+const PLAN_MAX_STOPS = 10
+const PLAN_MAX_DAYS = 7
+
+/* Số ngày gợi ý cho một điểm dừng: lấy số lớn nhất trong "2 – 3 ngày", tối đa 3 */
+function planDefaultDays(d) {
+    const nums = String(d.duration || '').match(/\d+/g) || ['2']
+    return Math.min(3, Math.max(1, ...nums.map(Number)))
+}
+
+const TripPlan = (() => {
+    const KEY = 'viet-travel:plan'
+    const empty = () => ({ stops: [], month: 0, tier: 'saving' })
+
+    function read() {
+        try {
+            const plan = JSON.parse(localStorage.getItem(KEY) || 'null')
+            return plan && Array.isArray(plan.stops) ? { ...empty(), ...plan } : empty()
+        } catch {
+            return empty()
+        }
+    }
+
+    let memory = read()
+
+    return {
+        get: () => JSON.parse(JSON.stringify(memory)),
+        save(plan) {
+            memory = plan
+            try {
+                localStorage.setItem(KEY, JSON.stringify(plan))
+            } catch {
+                /* Không lưu được – vẫn dùng trong phiên hiện tại */
+            }
+        },
+        has: id => memory.stops.some(s => s.id === id),
+        add(id) {
+            const d = getDestination(id)
+            if (!d || this.has(id) || memory.stops.length >= PLAN_MAX_STOPS) return false
+            this.save({ ...memory, stops: [...memory.stops, { id, days: planDefaultDays(d) }] })
+            return true
+        },
+    }
+})()
+
+/* Nút "Thêm vào kế hoạch": lần đầu thêm, lần sau mở trang kế hoạch */
+function syncPlanButtons(root = document) {
+    root.querySelectorAll('[data-plan-add]').forEach(btn => {
+        const added = TripPlan.has(btn.dataset.planAdd)
+        btn.classList.toggle('plan-btn--added', added)
+        const label = btn.querySelector('.plan-btn__label')
+        if (label) label.textContent = added ? t('Xem kế hoạch chuyến đi') : t('Thêm vào kế hoạch chuyến đi')
+    })
+}
+
+document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-plan-add]')
+    if (!btn) return
+    e.preventDefault()
+    const id = btn.dataset.planAdd
+    if (TripPlan.has(id)) {
+        location.href = plannerUrl()
+        return
+    }
+    if (TripPlan.add(id)) showToast(t('Đã thêm {name} vào kế hoạch', { name: getDestination(id).name }))
+    else showToast(t('Kế hoạch tối đa {n} điểm đến', { n: PLAN_MAX_STOPS }))
+    syncPlanButtons()
+})

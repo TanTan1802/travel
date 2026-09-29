@@ -72,7 +72,7 @@ async function setupRoutes(context) {
 
 /* Danh sách mọi trang HTML đã build (tương đối với gốc repo) */
 function builtPages() {
-    const pages = ['index.html', 'en/index.html']
+    const pages = ['index.html', 'en/index.html', 'ke-hoach/index.html', 'en/ke-hoach/index.html']
     for (const dir of ['diem-den', 'en/diem-den']) {
         for (const id of fs.readdirSync(path.join(ROOT, dir))) pages.push(`${dir}/${id}/index.html`)
     }

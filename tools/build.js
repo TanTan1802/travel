@@ -17,6 +17,7 @@ const { ROOT, loadBrowserScripts } = require('./lib')
 
 const SITE_URL = 'https://tantan1802.github.io/travel/'
 const PAGE_DIR = 'diem-den'
+const PLANNER_DIR = 'ke-hoach'
 
 const LANGS = {
     vi: { prefix: '', locale: 'vi_VN', switchLabel: 'EN' },
@@ -56,6 +57,7 @@ function loadSite(lang, siteRoot) {
 
 const homePath = lang => `${LANGS[lang].prefix}index.html`
 const destPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/index.html`
+const plannerPath = lang => `${LANGS[lang].prefix}${PLANNER_DIR}/index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -78,7 +80,7 @@ function absoluteImage(site, file) {
  */
 function prefixPaths(html, siteRoot, langRoot) {
     return html.replace(/(href|src)="(?!https?:|#|mailto:|data:|\/)([^"]+)"/g, (m, attr, url) => {
-        const isPage = url.startsWith('index.html') || url.startsWith(`${PAGE_DIR}/`)
+        const isPage = url.startsWith('index.html') || url.startsWith(`${PAGE_DIR}/`) || url.startsWith(`${PLANNER_DIR}/`)
         return `${attr}="${isPage ? langRoot : siteRoot}${url}"`
     })
 }
@@ -219,10 +221,34 @@ function buildHome(template, lang, site) {
     return html
 }
 
+/* Trang lập kế hoạch chuyến đi: nội dung do planner.js tạo trên trình duyệt */
+function buildPlanner(template, lang, site) {
+    const rel = plannerPath(lang)
+    const other = lang === 'vi' ? 'en' : 'vi'
+    let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
+    const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1]
+    const description = (html.match(/<meta name="description" content="([^"]*)">/) || [])[1]
+    const head = `
+        <link rel="canonical" href="${pageUrl(rel)}">${alternateLinks(plannerPath('vi'), plannerPath('en'))}
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="${LANGS[lang].locale}">
+        <meta property="og:title" content="${title}">
+        <meta property="og:description" content="${description}">
+        <meta property="og:url" content="${pageUrl(rel)}">
+        <meta property="og:image" content="${SITE_URL}assets/img/og/hoi-an.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+    `
+    return setLangSwitch(html, lang, siteRoot, plannerPath(other))
+        .replace('</head>', `${head}</head>`)
+        .replace(/(\s*)<script defer src="/,
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
+}
+
 function buildSitemap(site) {
     const today = new Date().toISOString().slice(0, 10)
     const rels = Object.keys(LANGS).flatMap(lang =>
-        [homePath(lang), ...site.DESTINATIONS.map(d => destPath(lang, d.id))])
+        [homePath(lang), plannerPath(lang), ...site.DESTINATIONS.map(d => destPath(lang, d.id))])
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${rels.map(rel => `  <url><loc>${pageUrl(rel)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
@@ -241,6 +267,7 @@ function updateServiceWorkerVersion(sw) {
 function main() {
     const destTemplate = read('destination.html')
     const homeTemplate = read('index.html')
+    const plannerTemplate = read('planner.html')
     for (const marker of ['<!-- build:grid -->', '<!-- build:alternate -->', 'class="nav__lang"']) {
         if (!homeTemplate.includes(marker)) throw new Error(`index.html thiếu ${marker}`)
     }
@@ -248,6 +275,7 @@ function main() {
     // Xóa trang cũ (điểm đến đã bị đổi tên/xóa)
     fs.rmSync(path.join(ROOT, PAGE_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, 'en'), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, PLANNER_DIR), { recursive: true, force: true })
 
     let count = 0
     for (const lang of Object.keys(LANGS)) {
@@ -257,13 +285,14 @@ function main() {
             count++
         }
         write(homePath(lang), buildHome(homeTemplate, lang, loadSite(lang, rootFor(homePath(lang)))))
+        write(plannerPath(lang), buildPlanner(plannerTemplate, lang, loadSite(lang, rootFor(plannerPath(lang)))))
     }
 
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
     write('sw.js', updateServiceWorkerVersion(read('sw.js')))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
-    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, sitemap.xml, robots.txt`)
+    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, sitemap.xml, robots.txt`)
 }
 
 main()

@@ -2,10 +2,25 @@
 /* Trang tĩnh của điểm đến (sinh bởi `npm run build`) */
 const destinationUrl = id => `${SITE_ROOT}${LANG_PREFIX}diem-den/${encodeURIComponent(id)}/index.html`
 
+/* Trang lập kế hoạch chuyến đi (tham số tùy chọn, ví dụ '?p=hue.2') */
+const plannerUrl = (suffix = '') => `${SITE_ROOT}${LANG_PREFIX}ke-hoach/index.html${suffix}`
+
 /* Trang chủ của ngôn ngữ hiện tại */
 const homeUrl = (suffix = '') => `${SITE_ROOT}${LANG_PREFIX}index.html${suffix}`
 
 applyTranslations()
+
+const DAY_SLOTS = [
+    { key: 'morning', label: () => t('Sáng'), icon: 'ri-sun-foggy-line' },
+    { key: 'afternoon', label: () => t('Chiều'), icon: 'ri-sun-line' },
+    { key: 'evening', label: () => t('Tối'), icon: 'ri-moon-clear-line' },
+]
+
+/* Định dạng tiền VND theo ngôn ngữ: 2.400.000đ / 2,400,000 VND */
+function formatVnd(amount) {
+    const grouped = String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'en' ? ',' : '.')
+    return LANG === 'en' ? `${grouped} VND` : `${grouped}đ`
+}
 
 /* Thẻ điểm đến – dùng ở trang chủ và mục "Điểm đến cùng vùng" */
 function favoriteButton(id, { withLabel = false } = {}) {
