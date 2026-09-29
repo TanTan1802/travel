@@ -38,7 +38,7 @@ const SCRIPTS = [
     'assets/js/destination-render.js',
     'assets/js/guide-render.js',
 ]
-const EXPORTS = ['DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
+const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
     'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang']
 
@@ -186,8 +186,25 @@ function headTags(site, d, lang) {
     `
 }
 
+/*
+ * Dữ liệu quán ăn / lưu trú / điểm tham quan chỉ của một điểm đến (~8 KB) để trang điểm đến
+ * khỏi tải cả places.js + sights.js (~215 KB). Trình lập kế hoạch vẫn dùng file đầy đủ.
+ */
+const DEST_DATA_DIR = 'assets/js/data/dest'
+const DEST_DATA_SCRIPTS = /(\s*)<script defer src="assets\/js\/data\/places\.js"><\/script>\s*<script defer src="assets\/js\/data\/sights\.js"><\/script>/
+
+function destDataFile(d, site) {
+    const pick = (obj, key) => JSON.stringify(obj[key] ? { [key]: obj[key] } : {}, null, 1)
+    return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */\n' +
+        `const STAY_TYPES = ${JSON.stringify(site.STAY_TYPES)}\n` +
+        `const PLACES = ${pick(site.PLACES, d.id)}\n` +
+        `const SIGHTS = ${pick(site.SIGHTS, d.id)}\n`
+}
+
 function buildDestinationPage(template, lang, d, site) {
     const rel = destPath(lang, d.id)
+    if (!DEST_DATA_SCRIPTS.test(template)) throw new Error('destination.html thiếu thẻ script places.js + sights.js')
+    template = template.replace(DEST_DATA_SCRIPTS, `$1<script defer src="${DEST_DATA_DIR}/${d.id}.js"></script>`)
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const other = lang === 'vi' ? 'en' : 'vi'
 
@@ -318,12 +335,14 @@ function main() {
     fs.rmSync(path.join(ROOT, 'en'), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, PLANNER_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
 
     let count = 0
     for (const lang of Object.keys(LANGS)) {
         const pageSite = loadSite(lang, rootFor(destPath(lang, 'x')))
         for (const d of pageSite.DESTINATIONS) {
             write(destPath(lang, d.id), buildDestinationPage(destTemplate, lang, d, pageSite))
+            if (lang === 'vi') write(`${DEST_DATA_DIR}/${d.id}.js`, destDataFile(d, pageSite))
             count++
         }
         write(homePath(lang), buildHome(homeTemplate, lang, loadSite(lang, rootFor(homePath(lang)))))

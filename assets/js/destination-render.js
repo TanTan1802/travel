@@ -167,13 +167,22 @@ function eatCard(e, d) {
     `
 }
 
+/* Hiện trước 4 quán, phần còn lại mở khi cần để trang không quá dài */
+const EATS_VISIBLE = 4
+
 function eatsBlock(d) {
     const places = placesOf(d.id)
     if (!places) return ''
     return `
         <div class="eats container">
             <h3 class="eats__title"><i class="ri-restaurant-2-line"></i> ${t('Quán nên ghé ở {name}', { name: d.name })}</h3>
-            <ul class="eats__list">${places.eats.map(e => eatCard(e, d)).join('')}</ul>
+            <ul class="eats__list">${places.eats.slice(0, EATS_VISIBLE).map(e => eatCard(e, d)).join('')}</ul>
+            ${places.eats.length > EATS_VISIBLE ? `
+                <details class="eats__more">
+                    <summary class="button button--ghost button--flex">${t('Xem thêm {n} quán', { n: places.eats.length - EATS_VISIBLE })} <i class="ri-arrow-down-s-line"></i></summary>
+                    <ul class="eats__list">${places.eats.slice(EATS_VISIBLE).map(e => eatCard(e, d)).join('')}</ul>
+                </details>
+            ` : ''}
             <p class="budget__note">${t('Giá tham khảo mỗi người. Bấm địa chỉ để mở Google Maps xem giờ mở cửa và đánh giá mới nhất.')}</p>
         </div>
     `

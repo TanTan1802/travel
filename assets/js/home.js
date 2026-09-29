@@ -77,7 +77,7 @@ function renderDiscover() {
     if (!list) return
 
     list.innerHTML = FEATURED_IDS.map(getDestination).filter(Boolean).map(d => `
-        <a href="${destinationUrl(d.id)}" class="discover__card swiper-slide">
+        <a href="${destinationUrl(d.id)}" class="discover__card">
             <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" data-sizes="(max-width: 1024px) 200px, 237px" alt="${d.name}" class="discover__img">
             <div class="discover__data">
                 <h2 class="discover__title">${d.name}</h2>
@@ -89,6 +89,7 @@ function renderDiscover() {
 
 /*==================== EXPLORE: TÌM KIẾM + LỌC ====================*/
 const exploreState = {
+    visible: 0,
     region: 'all',
     category: 'all',
     query: '',
@@ -207,9 +208,13 @@ function resetFilters() {
     renderGrid()
 }
 
-function renderGrid() {
+/* Danh sách hiện theo trang để trang chủ không quá dài (nhất là trên điện thoại) */
+const GRID_PAGE = 8
+
+function renderGrid({ more = false } = {}) {
     const grid = document.getElementById('dest-grid')
     if (!grid) return
+    exploreState.visible = more ? exploreState.visible + GRID_PAGE : GRID_PAGE
 
     const tokens = splitWords(exploreState.query)
     const results = DESTINATIONS
@@ -222,7 +227,15 @@ function renderGrid() {
         .filter(r => r.match)
         .sort((a, b) => b.match.score - a.match.score)
 
-    grid.innerHTML = results.map(r => destinationCard(r.d, r.match.hint)).join('')
+    const shown = results.slice(0, exploreState.visible)
+    grid.innerHTML = shown.map(r => destinationCard(r.d, r.match.hint)).join('')
+    grid.dataset.results = results.length
+    const rest = results.length - shown.length
+    document.getElementById('explore-more-wrap').hidden = rest <= 0
+    if (rest > 0) {
+        document.getElementById('explore-more').innerHTML =
+            `${t('Xem thêm {n} điểm đến', { n: Math.min(GRID_PAGE, rest) })} <i class="ri-arrow-down-s-line"></i>`
+    }
     hydrateWikiImages(grid)
     syncFavoriteButtons(grid)
     updateExploreMap(results)
@@ -305,6 +318,12 @@ function initExplore() {
     if (count) count.textContent = DESTINATIONS.length
 
     renderGrid()
+
+    document.getElementById('explore-more')?.addEventListener('click', () => renderGrid({ more: true }))
+    document.getElementById('explore-all')?.addEventListener('click', () => {
+        exploreState.visible = DESTINATIONS.length - GRID_PAGE
+        renderGrid({ more: true })
+    })
 }
 
 /*==================== ĐI ĐÂU THÁNG NÀY ====================*/

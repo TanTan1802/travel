@@ -1,0 +1,500 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "hue": {
+  "city": "Hue",
+  "airport": "HUI",
+  "rail": "Huế",
+  "getThere": [
+   "Bay tới sân bay Phú Bài (HUI, cách trung tâm ~15 km) hoặc tàu hỏa tới ga Huế. Từ Đà Nẵng/Hội An đi xe qua hầm Hải Vân ~2–2,5 giờ.",
+   "Fly to Phu Bai (HUI, ~15 km from the centre) or take the train to Hue Station. From Da Nang/Hoi An it is ~2–2.5 h by road via the Hai Van tunnel."
+  ],
+  "eats": [
+   {
+    "name": "Bún bò Mệ Kéo",
+    "dish": [
+     "Bún bò Huế giò heo, chả cua",
+     "Hue beef noodle soup with pork knuckle and crab cake"
+    ],
+    "address": "20 Bạch Đằng, TP Huế",
+    "price": [
+     40000,
+     60000
+    ]
+   },
+   {
+    "name": "Quán Hạnh",
+    "dish": [
+     "Bánh bèo, nậm, lọc, ram ít",
+     "Steamed rice cakes, banh nam, banh loc, ram it"
+    ],
+    "address": "11 Phó Đức Chính, TP Huế",
+    "price": [
+     60000,
+     120000
+    ]
+   },
+   {
+    "name": "Bánh khoái Lạc Thiện",
+    "dish": [
+     "Bánh khoái giòn, nem lụi",
+     "Crispy banh khoai, lemongrass pork skewers"
+    ],
+    "address": "6 Đinh Tiên Hoàng, TP Huế",
+    "price": [
+     50000,
+     100000
+    ]
+   },
+   {
+    "name": "Chè Hẻm",
+    "dish": [
+     "Chè Huế đủ loại",
+     "Every kind of Hue sweet soup"
+    ],
+    "address": "1 kiệt 29 Hùng Vương, TP Huế",
+    "price": [
+     15000,
+     30000
+    ]
+   },
+   {
+    "name": "Cơm hến Hoa Đông",
+    "dish": [
+     "Cơm hến, bún hến",
+     "Clam rice and clam noodles"
+    ],
+    "address": "Kiệt 66 Trương Định, TP Huế",
+    "price": [
+     20000,
+     35000
+    ]
+   },
+   {
+    "name": "Nhà hàng Ancient Hue",
+    "dish": [
+     "Cơm cung đình trong nhà rường",
+     "Royal-style set menu in a garden house"
+    ],
+    "address": "Kim Long, TP Huế",
+    "price": [
+     250000,
+     600000
+    ]
+   },
+   {
+    "name": "Bánh canh Nam Phổ chợ Đông Ba",
+    "dish": [
+     "Bánh canh Nam Phổ, bánh ướt thịt nướng",
+     "Nam Pho noodle soup, rice sheets with grilled pork"
+    ],
+    "address": "Chợ Đông Ba, TP Huế",
+    "price": [
+     25000,
+     45000
+    ]
+   },
+   {
+    "name": "Phố ẩm thực Phạm Ngũ Lão",
+    "dish": [
+     "Nem lụi, bún thịt nướng về đêm",
+     "Lemongrass skewers and grilled-pork noodles at night"
+    ],
+    "address": "Phạm Ngũ Lão, TP Huế",
+    "price": [
+     50000,
+     150000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê muối Huế",
+    "drink": [
+     "Cà phê muối – đặc sản cà phê của Huế",
+     "Salted coffee – Hue's signature"
+    ],
+    "address": "Nguyễn Lương Bằng, TP Huế",
+    "price": [
+     20000,
+     35000
+    ]
+   },
+   {
+    "name": "Quán chè – trà ven sông Hương",
+    "drink": [
+     "Chè bột lọc, trà cung đình",
+     "Tapioca sweet soup, royal tea"
+    ],
+    "address": "Đường Lê Lợi, TP Huế",
+    "price": [
+     15000,
+     40000
+    ]
+   },
+   {
+    "name": "Cà phê nhà vườn Kim Long",
+    "drink": [
+     "Cà phê, trà sen trong nhà rường",
+     "Coffee and lotus tea in a garden house"
+    ],
+    "address": "Phường Kim Long, TP Huế",
+    "price": [
+     30000,
+     60000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Bờ Nam sông Hương (Lê Lợi, Phạm Ngũ Lão)",
+     "South bank (Le Loi, Pham Ngu Lao)"
+    ],
+    "type": "hotel",
+    "price": [
+     400000,
+     1500000
+    ],
+    "note": [
+     "Đi bộ ra sông Hương, phố Tây, chợ đêm.",
+     "Walk to the Perfume River, backpacker street and night market."
+    ]
+   },
+   {
+    "area": [
+     "Nhà vườn Kim Long – Vỹ Dạ",
+     "Garden houses in Kim Long / Vy Da"
+    ],
+    "type": "homestay",
+    "price": [
+     500000,
+     1500000
+    ],
+    "note": [
+     "Nhà rường cổ, yên tĩnh, đậm chất Huế.",
+     "Traditional wooden houses – calm and very Hue."
+    ]
+   },
+   {
+    "area": [
+     "Ven sông ngoại ô",
+     "Riverside outskirts"
+    ],
+    "type": "resort",
+    "price": [
+     1500000,
+     4000000
+    ],
+    "note": [
+     "Resort sinh thái, gần lăng tẩm.",
+     "Eco-resorts near the royal tombs."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "hue": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Đại Nội Huế – Ngọ Môn, Tử Cấm Thành",
+     "Hue Imperial City – Noon Gate, Forbidden City"
+    ],
+    "price": 200000,
+    "hours": "07:00–17:30",
+    "address": "23 Tháng 8, Thuận Hòa, Huế",
+    "cafe": {
+     "name": "Quán trà cung đình trong Đại Nội",
+     "drink": [
+      "Trà cung đình, bánh cung đình",
+      "Royal tea and royal cakes"
+     ],
+     "price": [
+      40000,
+      90000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Chùa Thiên Mụ",
+     "Thien Mu Pagoda"
+    ],
+    "price": 0,
+    "hours": "07:00–18:00",
+    "address": "Kim Long, Huế"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Lăng Minh Mạng",
+     "Minh Mang Tomb"
+    ],
+    "price": 150000,
+    "hours": "07:00–17:30",
+    "address": "Hương Thọ, Hương Trà",
+    "cafe": {
+     "name": "Quán nước cổng lăng Minh Mạng",
+     "drink": [
+      "Nước dừa, nước sâm, chè",
+      "Coconut water, herbal drink, sweet soup"
+     ],
+     "price": [
+      10000,
+      30000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Ca Huế trên thuyền rồng",
+     "Hue folk music on a dragon boat"
+    ],
+    "price": [
+     100000,
+     150000
+    ],
+    "hours": "19:00–21:00",
+    "address": "Bến Tòa Khâm, Lê Lợi, Huế"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Lăng Khải Định",
+     "Khai Dinh Tomb"
+    ],
+    "price": 150000,
+    "hours": "07:00–17:30",
+    "address": "Thủy Bằng, Hương Thủy"
+   },
+   {
+    "at": "m",
+    "name": [
+     "Lăng Tự Đức",
+     "Tu Duc Tomb"
+    ],
+    "price": 150000,
+    "hours": "07:00–17:30",
+    "address": "Thủy Xuân, Huế",
+    "cafe": {
+     "name": "Cà phê nhà vườn gần lăng Tự Đức",
+     "drink": [
+      "Cà phê muối, trà gừng trong nhà vườn",
+      "Salted coffee, ginger tea in a garden house"
+     ],
+     "price": [
+      25000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Làng hương Thủy Xuân",
+     "Thuy Xuan incense village"
+    ],
+    "price": 0,
+    "hours": "07:00–18:00",
+    "address": "Thủy Xuân, Huế"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Chợ Đông Ba",
+     "Dong Ba Market"
+    ],
+    "price": 0,
+    "hours": "06:00–19:00",
+    "address": "2 Trần Hưng Đạo, Huế",
+    "cafe": {
+     "name": "Chè Hẻm (Hùng Vương)",
+     "drink": [
+      "Chè bột lọc, chè bắp, chè thập cẩm",
+      "Tapioca, corn and mixed sweet soups"
+     ],
+     "price": [
+      15000,
+      30000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Đầm Chuồn – phá Tam Giang",
+     "Chuon lagoon – Tam Giang"
+    ],
+    "price": 0,
+    "note": [
+     "Đò ngắm đầm ~100.000đ/người",
+     "Lagoon boat ~100,000đ per person"
+    ],
+    "hours": "all",
+    "address": "Phú An, Phú Vang",
+    "cafe": {
+     "name": "Quán nước chòi đầm Chuồn",
+     "drink": [
+      "Nước dừa, trà đá trên chòi",
+      "Coconut water and iced tea in a stilt hut"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Làng cổ Phước Tích",
+     "Phuoc Tich ancient village"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Phong Hòa, Phong Điền"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Biển Thuận An",
+     "Thuan An beach"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Thuận An, Huế",
+    "cafe": {
+     "name": "Quán nước dừa biển Thuận An",
+     "drink": [
+      "Nước dừa, bia lạnh dưới dù",
+      "Coconut water and cold beer under beach umbrellas"
+     ],
+     "price": [
+      20000,
+      45000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Vườn quốc gia Bạch Mã – thác Đỗ Quyên",
+     "Bach Ma National Park – Do Quyen falls"
+    ],
+    "price": 60000,
+    "hours": "07:00–17:00",
+    "address": "Thị trấn Phú Lộc, Huế",
+    "cafe": {
+     "name": "Quán nước cổng VQG Bạch Mã",
+     "drink": [
+      "Trà nóng, nước chanh",
+      "Hot tea, lemonade"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Vịnh Lăng Cô",
+     "Lang Co bay"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Lăng Cô, Phú Lộc",
+    "cafe": {
+     "name": "Cà phê view vịnh Lăng Cô",
+     "drink": [
+      "Cà phê, nước dừa nhìn vịnh",
+      "Coffee and coconut water over the bay"
+     ],
+     "price": [
+      25000,
+      55000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Đèo Hải Vân – Hải Vân Quan",
+     "Hai Van pass – Hai Van Gate"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Đỉnh đèo Hải Vân",
+    "cafe": {
+     "name": "Quán nước đỉnh Hải Vân Quan",
+     "drink": [
+      "Cà phê, nước dừa, bắp nướng",
+      "Coffee, coconut water, grilled corn"
+     ],
+     "price": [
+      20000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Biển Mỹ Khê",
+     "My Khe beach"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Võ Nguyên Giáp, Đà Nẵng"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Chùa Linh Ứng Sơn Trà",
+     "Linh Ung Pagoda, Son Tra"
+    ],
+    "price": 0,
+    "hours": "06:00–21:30",
+    "address": "Bãi Bụt, Sơn Trà, Đà Nẵng",
+    "cafe": {
+     "name": "Quán nước chân chùa Linh Ứng",
+     "drink": [
+      "Nước mía, nước dừa",
+      "Sugarcane juice, coconut water"
+     ],
+     "price": [
+      15000,
+      35000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Cầu Rồng",
+     "Dragon Bridge"
+    ],
+    "price": 0,
+    "hours": [
+     "Phun lửa 21:00 thứ Bảy, Chủ nhật",
+     "Fire show 9pm Sat & Sun"
+    ],
+    "address": "Nguyễn Văn Linh, Đà Nẵng"
+   }
+  ]
+ ]
+}

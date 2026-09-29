@@ -1,0 +1,494 @@
+/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */
+const STAY_TYPES = {"homestay":["Homestay","Homestay"],"hotel":["Khách sạn","Hotel"],"resort":["Resort","Resort"],"boat":["Du thuyền ngủ đêm","Overnight cruise"]}
+const PLACES = {
+ "nha-trang": {
+  "city": "Nha Trang",
+  "airport": "CXR",
+  "rail": "Nha Trang",
+  "getThere": [
+   "Sân bay Cam Ranh (CXR) cách trung tâm ~35 km: xe bus/taxi ~40 phút. Ga Nha Trang nằm ngay trung tâm.",
+   "Cam Ranh Airport (CXR) is ~35 km from town: shuttle bus or taxi ~40 min. Nha Trang Station is right in the centre."
+  ],
+  "eats": [
+   {
+    "name": "Bún chả cá Nguyên Loan",
+    "dish": [
+     "Bún chả cá, bún sứa Nha Trang",
+     "Fish-cake and jellyfish noodle soup"
+    ],
+    "address": "123 Ngô Gia Tự, Nha Trang",
+    "price": [
+     35000,
+     60000
+    ]
+   },
+   {
+    "name": "Nem nướng Đặng Văn Quyên",
+    "dish": [
+     "Nem nướng Ninh Hòa cuốn bánh tráng",
+     "Ninh Hoa grilled pork rolls"
+    ],
+    "address": "16A Lãn Ông, Nha Trang",
+    "price": [
+     50000,
+     100000
+    ]
+   },
+   {
+    "name": "Bánh căn 51 Tô Hiến Thành",
+    "dish": [
+     "Bánh căn trứng, mực, chấm mắm nêm",
+     "Mini rice pancakes with egg or squid"
+    ],
+    "address": "51 Tô Hiến Thành, Nha Trang",
+    "price": [
+     40000,
+     80000
+    ]
+   },
+   {
+    "name": "Chợ Đầm",
+    "dish": [
+     "Hải sản khô, ăn vặt, mua quà",
+     "Dried seafood, snacks and souvenirs"
+    ],
+    "address": "Chợ Đầm, Nha Trang",
+    "price": [
+     30000,
+     150000
+    ]
+   },
+   {
+    "name": "Bánh canh chả cá Ngô Thời Nhiệm",
+    "dish": [
+     "Bánh canh chả cá thu",
+     "Mackerel fish-cake noodle soup"
+    ],
+    "address": "Ngô Thời Nhiệm, Nha Trang",
+    "price": [
+     35000,
+     55000
+    ]
+   },
+   {
+    "name": "Bún sứa Nha Trang",
+    "dish": [
+     "Bún sứa, bún cá dầm",
+     "Jellyfish noodle soup"
+    ],
+    "address": "Chợ Xóm Mới, Nha Trang",
+    "price": [
+     35000,
+     60000
+    ]
+   },
+   {
+    "name": "Hải sản làng chài Vĩnh Lương",
+    "dish": [
+     "Tôm hùm, ốc, cá nướng",
+     "Lobster, snails, grilled fish"
+    ],
+    "address": "Vĩnh Lương, Nha Trang",
+    "price": [
+     250000,
+     600000
+    ]
+   },
+   {
+    "name": "Chợ đêm Nha Trang",
+    "dish": [
+     "Nướng, ăn vặt ven biển",
+     "Grills and snacks by the sea"
+    ],
+    "address": "Trần Phú, Nha Trang",
+    "price": [
+     60000,
+     150000
+    ]
+   }
+  ],
+  "cafes": [
+   {
+    "name": "Cà phê view biển Trần Phú",
+    "drink": [
+     "Cà phê, nước ép ngắm biển",
+     "Coffee and juices facing the sea"
+    ],
+    "address": "Đường Trần Phú, Nha Trang",
+    "price": [
+     30000,
+     70000
+    ]
+   },
+   {
+    "name": "Quán nước dừa – mía Tháp Bà",
+    "drink": [
+     "Nước dừa, nước mía sau khi tắm bùn",
+     "Coconut water and sugarcane juice after a mud bath"
+    ],
+    "address": "Khu Tháp Bà Ponagar",
+    "price": [
+     15000,
+     35000
+    ]
+   },
+   {
+    "name": "Cà phê cảng cá Hòn Rớ",
+    "drink": [
+     "Cà phê sáng nhìn thuyền cá về bến",
+     "Morning coffee watching fishing boats return"
+    ],
+    "address": "Cảng Hòn Rớ, Nha Trang",
+    "price": [
+     20000,
+     40000
+    ]
+   }
+  ],
+  "stays": [
+   {
+    "area": [
+     "Đường Trần Phú (ven biển)",
+     "Tran Phu beachfront"
+    ],
+    "type": "hotel",
+    "price": [
+     500000,
+     2000000
+    ],
+    "note": [
+     "Ngay bãi biển trung tâm, phố đi bộ.",
+     "On the main beach and promenade."
+    ]
+   },
+   {
+    "area": [
+     "Bãi Dài – Cam Ranh",
+     "Bai Dai – Cam Ranh"
+    ],
+    "type": "resort",
+    "price": [
+     2000000,
+     7000000
+    ],
+    "note": [
+     "Resort biển gần sân bay.",
+     "Beach resorts near the airport."
+    ]
+   },
+   {
+    "area": [
+     "Hòn Tre (VinWonders)",
+     "Hon Tre island"
+    ],
+    "type": "resort",
+    "price": [
+     2500000,
+     6000000
+    ],
+    "note": [
+     "Hợp gia đình đi công viên giải trí.",
+     "Great for families visiting the theme park."
+    ]
+   }
+  ]
+ }
+}
+const SIGHTS = {
+ "nha-trang": [
+  [
+   {
+    "at": "m",
+    "name": [
+     "Tháp Bà Po Nagar",
+     "Po Nagar Cham Towers"
+    ],
+    "price": 30000,
+    "hours": "06:00–17:30",
+    "address": "2 Tháng 4, Vĩnh Phước",
+    "cafe": {
+     "name": "Cà phê cầu Xóm Bóng",
+     "drink": [
+      "Cà phê, nước dừa nhìn sông Cái",
+      "Coffee and coconut water over the Cai river"
+     ],
+     "price": [
+      20000,
+      45000
+     ]
+    }
+   },
+   {
+    "at": "m",
+    "name": [
+     "Chùa Long Sơn",
+     "Long Son Pagoda"
+    ],
+    "price": 0,
+    "hours": "07:00–17:00",
+    "address": "22 Tháng 10, Phương Sơn"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Tắm bùn khoáng I-Resort",
+     "I-Resort mud bath"
+    ],
+    "price": [
+     300000,
+     450000
+    ],
+    "hours": "07:00–19:00",
+    "address": "Tổ 19, Vĩnh Ngọc",
+    "cafe": {
+     "name": "Quầy nước I-Resort",
+     "drink": [
+      "Nước dừa, sinh tố bên hồ khoáng",
+      "Coconut water and smoothies by the mineral pools"
+     ],
+     "price": [
+      30000,
+      70000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Biển Trần Phú",
+     "Tran Phu beach"
+    ],
+    "price": 0,
+    "hours": "all",
+    "address": "Đường Trần Phú, Nha Trang"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Tour đảo Hòn Mun – lặn san hô",
+     "Hon Mun island tour – snorkelling"
+    ],
+    "price": [
+     250000,
+     450000
+    ],
+    "note": [
+     "Gồm tàu, phí khu bảo tồn, đồ lặn",
+     "Includes boat, marine park fee, snorkel gear"
+    ],
+    "hours": "08:00–16:00",
+    "address": "Cảng Cầu Đá, Nha Trang"
+   },
+   {
+    "at": "a",
+    "name": [
+     "Hòn Tằm – Bãi Tranh",
+     "Hon Tam – Bai Tranh"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong tour",
+     "Included in the tour"
+    ],
+    "hours": "09:00–16:00",
+    "address": "Vịnh Nha Trang",
+    "cafe": {
+     "name": "Quán nước bãi Tranh",
+     "drink": [
+      "Nước dừa, bia lạnh trên bãi",
+      "Coconut water and cold beer on the beach"
+     ],
+     "price": [
+      30000,
+      60000
+     ]
+    }
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Cáp treo + VinWonders Nha Trang",
+     "Cable car + VinWonders Nha Trang"
+    ],
+    "price": [
+     800000,
+     950000
+    ],
+    "note": [
+     "Vé gồm cáp treo vượt biển, công viên nước, show Tata",
+     "Includes sea cable car, water park and Tata show"
+    ],
+    "hours": "08:30–20:00",
+    "address": "Ga cáp treo Vĩnh Nguyên, Nha Trang",
+    "cafe": {
+     "name": "Quán nước ga cáp treo Vĩnh Nguyên",
+     "drink": [
+      "Cà phê, nước ép trước khi qua đảo",
+      "Coffee and juice before crossing"
+     ],
+     "price": [
+      30000,
+      60000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Công viên nước VinWonders",
+     "VinWonders water park"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong vé",
+     "Included in the ticket"
+    ],
+    "hours": "09:00–18:00",
+    "address": "Đảo Hòn Tre",
+    "cafe": {
+     "name": "Quầy trà sữa – kem VinWonders",
+     "drink": [
+      "Trà sữa, kem, nước ngọt",
+      "Bubble tea, ice cream, soft drinks"
+     ],
+     "price": [
+      30000,
+      70000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Show nhạc nước Tata",
+     "Tata water music show"
+    ],
+    "price": 0,
+    "note": [
+     "Gồm trong vé",
+     "Included in the ticket"
+    ],
+    "hours": [
+     "~19:00",
+     "~7pm"
+    ],
+    "address": "VinWonders, đảo Hòn Tre"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Đảo Bình Ba – bãi Nồm",
+     "Binh Ba island – Nom beach"
+    ],
+    "price": [
+     100000,
+     150000
+    ],
+    "note": [
+     "Tàu từ Cam Ranh",
+     "Boat from Cam Ranh"
+    ],
+    "hours": "07:00–16:00",
+    "address": "Cảng Ba Ngòi, Cam Ranh",
+    "cafe": {
+     "name": "Quán nước bãi Nồm Bình Ba",
+     "drink": [
+      "Nước dừa, trà đá",
+      "Coconut water, iced tea"
+     ],
+     "price": [
+      15000,
+      40000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Chợ đêm Nha Trang",
+     "Nha Trang night market"
+    ],
+    "price": 0,
+    "hours": "17:00–23:00",
+    "address": "Trần Phú – Lý Tự Trọng, Nha Trang"
+   }
+  ],
+  [
+   {
+    "at": "m",
+    "name": [
+     "Bãi biển Dốc Lết",
+     "Doc Let beach"
+    ],
+    "price": [
+     0,
+     30000
+    ],
+    "note": [
+     "Phí khu du lịch tùy bãi",
+     "Resort entry varies"
+    ],
+    "hours": "all",
+    "address": "Ninh Hải, Ninh Hòa",
+    "cafe": {
+     "name": "Quán nước dừa bãi Dốc Lết",
+     "drink": [
+      "Nước dừa, bia lạnh dưới dù",
+      "Coconut water and cold beer under umbrellas"
+     ],
+     "price": [
+      20000,
+      45000
+     ]
+    }
+   },
+   {
+    "at": "a",
+    "name": [
+     "Suối khoáng nóng Trăm Trứng",
+     "Tram Trung hot springs"
+    ],
+    "price": [
+     250000,
+     400000
+    ],
+    "hours": "07:00–18:00",
+    "address": "Ninh Phụng, Ninh Hòa",
+    "cafe": {
+     "name": "Quầy nước suối Trăm Trứng",
+     "drink": [
+      "Nước dừa, nước ép",
+      "Coconut water, juice"
+     ],
+     "price": [
+      25000,
+      50000
+     ]
+    }
+   },
+   {
+    "at": "e",
+    "name": [
+     "Skylight rooftop bar",
+     "Skylight rooftop bar"
+    ],
+    "price": [
+     150000,
+     300000
+    ],
+    "note": [
+     "Vé vào kèm 1 đồ uống",
+     "Entry with one drink"
+    ],
+    "hours": "17:00–24:00",
+    "address": "38 Trần Phú, Nha Trang"
+   }
+  ]
+ ]
+}

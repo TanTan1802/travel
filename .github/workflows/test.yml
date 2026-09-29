@@ -15,11 +15,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Cài thư viện
         run: npm install --no-audit --no-fund
@@ -30,7 +30,7 @@ jobs:
       - name: Trang tĩnh phải khớp dữ liệu (đã chạy npm run build)
         run: |
           npm run build
-          git diff --exit-code -- diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js \
+          git diff --exit-code -- diem-den assets/js/data/dest ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js \
             || (echo "::error::Trang tĩnh chưa được build lại – chạy npm run build rồi commit." && exit 1)
 
       - name: Test dữ liệu
