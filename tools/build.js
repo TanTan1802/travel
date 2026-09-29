@@ -29,6 +29,7 @@ const SCRIPTS = [
     'assets/js/i18n.js',
     'assets/js/data/destinations.js',
     'assets/js/data/itineraries.js',
+    'assets/js/data/places.js',
     'assets/js/components.js',
     'assets/js/config.js',
     'assets/js/destination-render.js',

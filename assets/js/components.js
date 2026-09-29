@@ -57,6 +57,73 @@ function destinationCard(d, hint = '') {
     `
 }
 
+/*==================== QUÁN ĂN, LƯU TRÚ & ĐẶT CHỖ ====================*/
+/* Chọn chuỗi theo ngôn ngữ từ cặp [vi, en] (chuỗi thường giữ nguyên) */
+const pickLang = pair => (Array.isArray(pair) ? pair[LANG === 'en' ? 1 : 0] || pair[0] : pair)
+
+const placesOf = id => (typeof PLACES !== 'undefined' && PLACES[id]) || null
+
+/* 45000 → 45k · 1200000 → 1,2tr (vi) / 1.2M (en) */
+function shortVnd(n) {
+    if (n >= 1000000) {
+        const m = String(Math.round(n / 100000) / 10)
+        return LANG === 'en' ? `${m}M` : `${m.replace('.', ',')}tr`
+    }
+    return `${Math.round(n / 1000)}k`
+}
+const priceRange = ([low, high]) => `${shortVnd(low)}–${shortVnd(high)}`
+
+const mapsSearchUrl = query => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+const mapsDirectionsUrl = (a, b) => `https://www.google.com/maps/dir/?api=1&origin=${a.lat},${a.lng}&destination=${b.lat},${b.lng}&travelmode=driving`
+
+/* Ngày dạng YYYY-MM-DD (theo giờ địa phương), cộng thêm n ngày */
+function addDays(iso, n) {
+    const [y, m, d] = iso.split('-').map(Number)
+    const date = new Date(y, m - 1, d + n)
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
+function formatDate(iso) {
+    const [y, m, d] = iso.split('-').map(Number)
+    return LANG === 'en' ? `${MONTHS_EN[m - 1].slice(0, 3)} ${d}, ${y}` : `${d}/${m}/${y}`
+}
+
+/* Link tìm phòng đã điền sẵn nơi ở + ngày (nếu có) */
+function stayLinks(city, area = '', checkin = '', nights = 0) {
+    const checkout = checkin && nights ? addDays(checkin, nights) : ''
+    const booking = new URLSearchParams({ ss: `${city}, Vietnam`, group_adults: 2, no_rooms: 1 })
+    const airbnb = new URLSearchParams({ adults: 2 })
+    if (checkin) {
+        booking.set('checkin', checkin); booking.set('checkout', checkout)
+        airbnb.set('checkin', checkin); airbnb.set('checkout', checkout)
+    }
+    return [
+        { label: 'Booking.com', icon: 'ri-hotel-line', url: `https://www.booking.com/searchresults.html?${booking}` },
+        { label: 'Airbnb', icon: 'ri-home-heart-line', url: `https://www.airbnb.com/s/${encodeURIComponent(`${city}, Vietnam`)}/homes?${airbnb}` },
+        { label: 'Google Maps', icon: 'ri-map-pin-line', url: mapsSearchUrl(`${area ? `${area} ` : ''}hotel ${city}`) },
+    ]
+}
+
+/* Link tìm vé giữa hai điểm đến theo phương tiện gợi ý */
+function transportLinks(a, b, mode, date = '') {
+    const pa = placesOf(a.id) || {}
+    const pb = placesOf(b.id) || {}
+    const links = []
+    if (mode === 'flight' && pa.airport && pb.airport && pa.airport !== pb.airport) {
+        links.push({ label: t('Vé máy bay'), icon: 'ri-plane-line', url: `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights from ${pa.airport} to ${pb.airport}${date ? ` on ${date}` : ''}`)}` })
+    }
+    if (pa.rail && pb.rail && pa.rail !== pb.rail) {
+        links.push({ label: t('Vé tàu {from} – {to}', { from: pa.rail, to: pb.rail }), icon: 'ri-train-line', url: 'https://dsvn.vn/' })
+    }
+    links.push({ label: t('Vé xe khách / limousine'), icon: 'ri-bus-2-line', url: 'https://vexere.com/' })
+    links.push({ label: t('Chỉ đường'), icon: 'ri-route-line', url: mapsDirectionsUrl(a, b) })
+    return links
+}
+
+const linkButtons = links => links.map(l => `
+    <a href="${l.url}" target="_blank" rel="noopener" class="book-link"><i class="${l.icon}"></i> ${l.label}</a>
+`).join('')
+
 /*==================== CHIA SẺ & IN ====================*/
 /* Sao chép chữ vào bộ nhớ tạm; trình duyệt chặn thì hiện hộp để người dùng tự chép */
 async function copyText(text, message) {

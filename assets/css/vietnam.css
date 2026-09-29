@@ -2847,3 +2847,409 @@ body.dark-theme .planner__stat i {
     font-size: 14pt;
   }
 }
+
+/*=============== QUÁN NÊN GHÉ ===============*/
+.eats {
+  margin-top: 2.5rem;
+}
+
+.eats__title,
+.getthere__title,
+.bookings__title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-1);
+}
+
+.eats__title i,
+.getthere__title i,
+.bookings__title i {
+  color: var(--accent-color);
+}
+
+.eats__list {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.eat {
+  display: grid;
+  gap: .35rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--accent-color);
+}
+
+.eat__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .75rem;
+}
+
+.eat__name {
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+}
+
+.eat__price {
+  flex-shrink: 0;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .eat__price {
+  color: var(--accent-color);
+}
+
+.eat__dish {
+  font-size: var(--small-font-size);
+}
+
+.eat__address {
+  display: inline-flex;
+  gap: .25rem;
+  align-items: flex-start;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.eat__address:hover {
+  color: var(--first-color);
+  text-decoration: underline;
+}
+
+/*=============== LƯU TRÚ & ĐI LẠI ===============*/
+.stay__container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.stay__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.stay-card {
+  display: grid;
+  align-content: start;
+  gap: .4rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+}
+
+.stay-card__type {
+  justify-self: start;
+  padding: .15rem .65rem;
+  border-radius: 2rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  background-color: var(--input-color);
+  color: var(--title-color);
+}
+
+.stay-card__type--resort,
+.stay-card__type--boat {
+  background-color: hsl(38, 92%, 90%);
+  color: hsl(28, 80%, 25%);
+}
+
+.stay-card__area {
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+}
+
+.stay-card__price {
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .stay-card__price {
+  color: var(--accent-color);
+}
+
+.stay-card__price small {
+  font-weight: normal;
+  color: var(--text-color-light);
+}
+
+.stay-card__note {
+  font-size: var(--small-font-size);
+  margin-bottom: .35rem;
+}
+
+.getthere {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--input-color);
+}
+
+.getthere p {
+  margin-bottom: .75rem;
+}
+
+/* Nút mở trang đặt chỗ */
+.book-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.book-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .35rem .75rem;
+  border-radius: 2rem;
+  border: 1px solid var(--first-color);
+  color: var(--first-color);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  transition: .2s;
+}
+
+.book-link:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+body.dark-theme .book-link {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+body.dark-theme .book-link:hover {
+  background-color: var(--accent-color);
+  color: hsl(24, 70%, 14%);
+}
+
+/*=============== KẾ HOẠCH: NGÀY, BỮA ĂN, CHỖ NGHỈ, ĐẶT CHỖ ===============*/
+.planner__hint {
+  display: block;
+  margin-top: .35rem;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.plan-day__date {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color-light);
+}
+
+.plan-day__meals {
+  display: grid;
+  gap: .5rem;
+  margin-top: .85rem;
+  padding: .75rem 0 0;
+  border-top: 1px dashed var(--input-color);
+  list-style: none;
+}
+
+.plan-day__meals li {
+  display: grid;
+  gap: .15rem;
+}
+
+.plan-day__meals span {
+  display: flex;
+  gap: .35rem;
+  align-items: flex-start;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+}
+
+.plan-day__meals i {
+  color: var(--accent-color);
+}
+
+.plan-day__meals p {
+  font-size: var(--small-font-size);
+}
+
+.plan-day__meals a {
+  color: var(--title-color);
+}
+
+.plan-day__meals a:hover {
+  text-decoration: underline;
+}
+
+.plan-day__meals small {
+  color: var(--text-color-light);
+}
+
+.plan-day__stay {
+  display: grid;
+  gap: .5rem;
+  margin-top: .85rem;
+  padding: .75rem .9rem;
+  border-radius: .5rem;
+  background-color: var(--input-color);
+  font-size: var(--small-font-size);
+}
+
+.plan-day__stay i {
+  color: var(--first-color);
+}
+
+body.dark-theme .plan-day__stay i {
+  color: var(--accent-color);
+}
+
+.planner__bookings {
+  margin-top: 3rem;
+}
+
+.planner__bookings:empty {
+  display: none;
+}
+
+.bookings__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem 1rem;
+  margin-bottom: var(--mb-1);
+}
+
+.bookings__head .bookings__title {
+  margin-bottom: 0;
+}
+
+.bookings__progress {
+  padding: .25rem .8rem;
+  border-radius: 2rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.bookings__hint {
+  display: flex;
+  gap: .4rem;
+  align-items: center;
+  margin-bottom: var(--mb-1);
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.bookings__list {
+  display: grid;
+  gap: .75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.booking {
+  display: grid;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+  transition: opacity .2s;
+}
+
+.booking--done {
+  opacity: .65;
+}
+
+.booking--done .booking__text strong {
+  text-decoration: line-through;
+}
+
+.booking__check {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: .75rem;
+  cursor: pointer;
+}
+
+.booking__check input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--first-color);
+  cursor: pointer;
+}
+
+.booking__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--input-color);
+  color: var(--first-color);
+}
+
+body.dark-theme .booking__icon {
+  color: var(--accent-color);
+}
+
+.booking__text {
+  display: grid;
+  gap: .1rem;
+}
+
+.booking__text strong {
+  color: var(--title-color);
+}
+
+.booking__text small {
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+@media screen and (min-width: 768px) {
+  .eats__list,
+  .stay__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .booking {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .plan-day__meals li {
+    grid-template-columns: 6.5rem 1fr;
+    gap: .75rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .stay__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media print {
+  .book-links {
+    display: none !important;
+  }
+
+  .booking {
+    padding: .4rem 0;
+    border-bottom: 1px solid hsl(190, 15%, 85%);
+    border-radius: 0;
+    opacity: 1;
+  }
+
+  .booking__icon {
+    display: none;
+  }
+}
