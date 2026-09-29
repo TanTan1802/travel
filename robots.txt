@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tantan1802.github.io/travel/sitemap.xml

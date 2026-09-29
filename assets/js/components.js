@@ -1,5 +1,6 @@
 /*==================== THÀNH PHẦN DÙNG CHUNG ====================*/
-const destinationUrl = id => `destination.html?id=${encodeURIComponent(id)}`
+/* Trang tĩnh của điểm đến (sinh bởi `npm run build`) */
+const destinationUrl = id => `${SITE_ROOT}diem-den/${encodeURIComponent(id)}/index.html`
 
 /* Thẻ điểm đến – dùng ở trang chủ và mục "Điểm đến cùng vùng" */
 function destinationCard(d, hint = '') {
