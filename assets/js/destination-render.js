@@ -6,7 +6,7 @@
 function heroSection(d) {
     return `
         <section class="dest-hero" id="top">
-            <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="1920" alt="${d.name}" class="dest-hero__img">
+            <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="1920" data-priority alt="${d.name}" class="dest-hero__img">
             <div class="dest-hero__overlay"></div>
 
             <div class="dest-hero__content container">
@@ -128,7 +128,7 @@ function gallerySection(d) {
             <div class="gallery__grid container">
                 ${photos.map((p, i) => `
                     <button type="button" class="gallery__item${i === 0 ? ' is-featured' : ''}" data-index="${i}" aria-label="${t('Xem ảnh')}: ${p.caption}">
-                        <img data-wiki="${wikiAttr(p.file)}" data-width="960" alt="${p.caption}" class="gallery__img" loading="lazy">
+                        <img data-wiki="${wikiAttr(p.file)}" data-width="960" alt="" class="gallery__img" loading="lazy">
                         <span class="gallery__caption"><i class="ri-zoom-in-line"></i> ${p.caption}</span>
                     </button>
                 `).join('')}

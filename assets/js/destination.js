@@ -219,8 +219,8 @@ function initLocationMap(d) {
     const el = document.getElementById('dest-map')
     if (!el) return
 
-    whenVisible(el, () => {
-        if (!mapAvailable()) return showMapUnavailable(el)
+    whenVisible(el, async () => {
+        if (!(await loadLeaflet())) return showMapUnavailable(el)
 
         const map = createMap(el, { center: [d.lat, d.lng], zoom: 8 })
         L.marker([d.lat, d.lng], { icon: pinIcon(d.region, { active: true }), title: d.name, zIndexOffset: 1000 })

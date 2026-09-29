@@ -7,7 +7,31 @@ const SOVEREIGNTY_LABELS = [
     { name: 'Quần đảo Trường Sa (Việt Nam)', lat: 10.2, lng: 114.3 },
 ]
 
-const mapAvailable = () => typeof L !== 'undefined'
+const LEAFLET_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/'
+let leafletPromise = null
+
+/* Chỉ tải Leaflet (~150 KB) khi thật sự cần hiện bản đồ; trả về true nếu tải được */
+function loadLeaflet() {
+    if (typeof L !== 'undefined') return Promise.resolve(true)
+    if (!leafletPromise) {
+        leafletPromise = new Promise(resolve => {
+            const css = document.createElement('link')
+            css.rel = 'stylesheet'
+            css.href = LEAFLET_CDN + 'leaflet.min.css'
+            document.head.appendChild(css)
+
+            const script = document.createElement('script')
+            script.src = LEAFLET_CDN + 'leaflet.min.js'
+            script.onload = () => resolve(typeof L !== 'undefined')
+            script.onerror = () => {
+                leafletPromise = null // cho phép thử lại khi có mạng
+                resolve(false)
+            }
+            document.head.appendChild(script)
+        })
+    }
+    return leafletPromise
+}
 
 function createMap(el, { center = VIETNAM_CENTER, zoom = 5, scrollWheelZoom = false } = {}) {
     const map = L.map(el, { center, zoom, scrollWheelZoom, minZoom: 4 })
