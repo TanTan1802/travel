@@ -136,6 +136,23 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.match(await page.textContent(`${lastDay} .sight__price`), /\d|Miễn phí/, 'điểm tham quan cần giá vé')
     assert.ok(await page.$(`${lastDay} .day-cost`), 'mỗi ngày cần ước tính chi phí')
 
+    /* Mỗi ngày có lộ trình Google Maps; chọn ngày khởi hành → ngày, dự báo, Google Calendar, file .ics */
+    assert.match(await page.getAttribute(`${lastDay} .day-tools__link[href*="google.com/maps"]`, 'href'), /maps\/(dir|search)\//)
+    await page.fill('#tour-start', await page.evaluate(() => addDays(todayIso(), 2)))
+    await page.waitForSelector(`${lastDay} .forecast-chip strong`)
+    assert.match(await page.textContent(`${lastDay} .day-tools__date`), /\d+\/\d+\/\d{4}/)
+    const gcal = new URL(await page.getAttribute(`${lastDay} [data-gcal]`, 'href'))
+    assert.equal(gcal.hostname, 'calendar.google.com')
+    assert.match(gcal.searchParams.get('dates'), /^\d{8}\/\d{8}$/)
+    const [download] = await Promise.all([
+        page.waitForEvent('download'),
+        page.click('.tour:not([hidden]) [data-tour-action="ics"]'),
+    ])
+    assert.match(download.suggestedFilename(), /^pho-co-hoi-an-5-ngay-4-dem-\d{4}-\d{2}-\d{2}\.ics$/)
+    const ics = require('fs').readFileSync(await download.path(), 'utf8')
+    assert.ok(ics.startsWith('BEGIN:VCALENDAR') && ics.includes('BEGIN:VEVENT') && ics.trim().endsWith('END:VCALENDAR'))
+    assert.ok(ics.split('BEGIN:VEVENT').length - 1 >= 5 * 7, 'tour 5 ngày phải có đủ các mốc timeline')
+
     await page.click('.tour:not([hidden]) .tour__expand')
     assert.equal(await visiblePanels(), '11111')
 
@@ -205,6 +222,21 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     assert.ok(await page.$$eval('.cost-details .cost-item', a => a.length) >= 5, 'chi tiết chi phí phải có các khoản + di chuyển giữa các điểm')
     await page.check('[data-booking="stay:sa-pa"]')
     assert.match(await page.textContent('.bookings__progress'), /Đã đặt 1\//)
+
+    /* Ngày khởi hành quá xa để dự báo: báo ngày sẽ có dự báo; xuất lịch cả kế hoạch và tuyến trên Google Maps */
+    assert.match(await page.textContent('.plan-day .forecast-chip--later'), /Có dự báo từ/)
+    const tripRoute = new URL(await page.getAttribute('.planner__export a[href*="google.com/maps/dir"]', 'href'))
+    assert.equal(tripRoute.searchParams.get('waypoints').split('|').length, 2, '4 điểm đến → 2 điểm dừng giữa')
+    const [planDownload] = await Promise.all([page.waitForEvent('download'), page.click('[data-action="ics"]')])
+    const planIcs = require('fs').readFileSync(await planDownload.path(), 'utf8')
+    const starts = [...planIcs.matchAll(/^DTSTART;TZID=Asia\/Ho_Chi_Minh:(\d{8})T\d{6}\r$/gm)].map(m => m[1])
+    assert.equal(starts[0], '20261110', 'sự kiện đầu tiên vào ngày khởi hành 10/11/2026')
+    assert.equal(new Set(starts).size, await page.$$eval('.plan-day', a => a.length), 'mỗi ngày của kế hoạch đều có sự kiện')
+    assert.ok(await page.$('.plan-day a[href*="calendar.google.com"]'), 'mỗi ngày có link Google Calendar')
+
+    /* Ngày khởi hành gần: hiện dự báo thật từ Open-Meteo (giả lập) */
+    await page.fill('#planner-start', await page.evaluate(() => addDays(todayIso(), 1)))
+    await page.waitForSelector('.plan-day .forecast-chip strong')
 
     /* Kế hoạch được lưu lại khi mở lại trang không có tham số */
     await page.goto(page.url().split('?')[0])

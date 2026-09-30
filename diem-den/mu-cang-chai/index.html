@@ -507,6 +507,12 @@
                     <p>Việt Travel · Yên Bái · Thời điểm đẹp: Tháng 9 – 10 (lúa chín), tháng 5 – 6 (mùa nước đổ)</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -540,6 +546,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -572,6 +581,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nghĩa Lộ – Tú Lệ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i%20kho%C3%A1ng%20n%C3%B3ng%20T%C3%BA%20L%E1%BB%87%2C%20X%C3%A3%20T%C3%BA%20L%E1%BB%87%2C%20V%C4%83n%20Ch%E1%BA%A5n%2C%20Y%C3%AAn%20B%C3%A1i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -689,6 +708,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Đèo Khau Phạ – Mâm Xôi</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+Khau+Ph%E1%BA%A1%2C+QL32%2C+T%C3%BA+L%E1%BB%87+%E2%80%93+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=%C4%90%E1%BB%93i+M%C3%A2m+X%C3%B4i+%E2%80%93+La+P%C3%A1n+T%E1%BA%A9n%2C+La+P%C3%A1n+T%E1%BA%A9n%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -833,6 +862,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Chế Cu Nha – Dế Xu Phình</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ru%E1%BB%99ng+b%E1%BA%ADc+thang+Ch%E1%BA%BF+Cu+Nha%2C+Ch%E1%BA%BF+Cu+Nha%2C+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=B%E1%BA%A3n+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1137,6 +1176,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 4 ngày 3 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1175,6 +1217,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nghĩa Lộ – Tú Lệ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i%20kho%C3%A1ng%20n%C3%B3ng%20T%C3%BA%20L%E1%BB%87%2C%20X%C3%A3%20T%C3%BA%20L%E1%BB%87%2C%20V%C4%83n%20Ch%E1%BA%A5n%2C%20Y%C3%AAn%20B%C3%A1i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1292,6 +1344,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Đèo Khau Phạ – Mâm Xôi</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+Khau+Ph%E1%BA%A1%2C+QL32%2C+T%C3%BA+L%E1%BB%87+%E2%80%93+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=%C4%90%E1%BB%93i+M%C3%A2m+X%C3%B4i+%E2%80%93+La+P%C3%A1n+T%E1%BA%A9n%2C+La+P%C3%A1n+T%E1%BA%A9n%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1436,6 +1498,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Chế Cu Nha – Dế Xu Phình</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ru%E1%BB%99ng+b%E1%BA%ADc+thang+Ch%E1%BA%BF+Cu+Nha%2C+Ch%E1%BA%BF+Cu+Nha%2C+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=B%E1%BA%A3n+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1591,6 +1663,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Thác Mơ – Púng Luông</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20M%C6%A1%20%E2%80%93%20r%E1%BB%ABng%20p%C6%A1%20mu%20P%C3%BAng%20Lu%C3%B4ng%2C%20P%C3%BAng%20Lu%C3%B4ng%2C%20M%C3%B9%20Cang%20Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1868,6 +1950,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 5 ngày 4 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1912,6 +1997,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nghĩa Lộ – Tú Lệ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Su%E1%BB%91i%20kho%C3%A1ng%20n%C3%B3ng%20T%C3%BA%20L%E1%BB%87%2C%20X%C3%A3%20T%C3%BA%20L%E1%BB%87%2C%20V%C4%83n%20Ch%E1%BA%A5n%2C%20Y%C3%AAn%20B%C3%A1i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2029,6 +2124,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Đèo Khau Phạ – Mâm Xôi</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+Khau+Ph%E1%BA%A1%2C+QL32%2C+T%C3%BA+L%E1%BB%87+%E2%80%93+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=%C4%90%E1%BB%93i+M%C3%A2m+X%C3%B4i+%E2%80%93+La+P%C3%A1n+T%E1%BA%A9n%2C+La+P%C3%A1n+T%E1%BA%A9n%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2173,6 +2278,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Chế Cu Nha – Dế Xu Phình</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ru%E1%BB%99ng+b%E1%BA%ADc+thang+Ch%E1%BA%BF+Cu+Nha%2C+Ch%E1%BA%BF+Cu+Nha%2C+M%C3%B9+Cang+Ch%E1%BA%A3i&destination=B%E1%BA%A3n+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+D%E1%BA%BF+Xu+Ph%C3%ACnh%2C+M%C3%B9+Cang+Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2329,6 +2444,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Thác Mơ – Púng Luông</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20M%C6%A1%20%E2%80%93%20r%E1%BB%ABng%20p%C6%A1%20mu%20P%C3%BAng%20Lu%C3%B4ng%2C%20P%C3%BAng%20Lu%C3%B4ng%2C%20M%C3%B9%20Cang%20Ch%E1%BA%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2456,6 +2581,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Mường Lò – Nghĩa Lộ</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="mu-cang-chai"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%C3%A1nh+%C4%91%E1%BB%93ng+M%C6%B0%E1%BB%9Dng+L%C3%B2%2C+Ngh%C4%A9a+L%E1%BB%99%2C+Y%C3%AAn+B%C3%A1i&destination=M%C3%BAa+x%C3%B2e+Th%C3%A1i+Ngh%C4%A9a+L%E1%BB%99%2C+B%E1%BA%A3n+S%C3%A0+R%C3%A8n%2C+Ngh%C4%A9a+L%E1%BB%99" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3004,6 +3139,7 @@
         <script defer src="../../assets/js/data/dest/mu-cang-chai.js"></script>
         <script defer src="../../assets/js/favorites.js"></script>
         <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/trip-export.js"></script>
         <script defer src="../../assets/js/config.js"></script>
         <script defer src="../../assets/js/map.js"></script>
         <script defer src="../../assets/js/weather.js"></script>

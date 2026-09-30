@@ -34,6 +34,7 @@ const SCRIPTS = [
     'assets/js/data/sights.js',
     'assets/js/data/guides.js',
     'assets/js/components.js',
+    'assets/js/trip-export.js',
     'assets/js/config.js',
     'assets/js/destination-render.js',
     'assets/js/guide-render.js',

@@ -526,6 +526,12 @@
                     <p>Việt Travel · Cần Thơ · Thời điểm đẹp: Tháng 9 – 11 (mùa nước nổi)</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -559,6 +565,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -591,6 +600,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Nh%C3%A0+c%E1%BB%95+B%C3%ACnh+Th%E1%BB%A7y%2C+144+B%C3%B9i+H%E1%BB%AFu+Ngh%C4%A9a%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%E2%80%93+du+thuy%E1%BB%81n%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=Ch%C3%B9a+%C3%94ng+%28Qu%E1%BA%A3ng+Tri%E1%BB%87u+h%E1%BB%99i+qu%C3%A1n%29%2C+32+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u%7CV%C6%B0%E1%BB%9Dn+tr%C3%A1i+c%C3%A2y+Phong+%C4%90i%E1%BB%81n%2C+Phong+%C4%90i%E1%BB%81n%2C+C%E1%BA%A7n+Th%C6%A1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -775,6 +794,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%E1%BB%A3+n%E1%BB%95i+C%C3%A1i+R%C4%83ng%2C+B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%2F+c%E1%BA%A7u+C%C3%A1i+R%C4%83ng&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+T%C3%A2y+%C4%90%C3%B4%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=L%C3%B2+h%E1%BB%A7+ti%E1%BA%BFu+S%C3%A1u+Ho%C3%A0i%2C+H%E1%BA%BBm+18+L%E1%BB%99+V%C3%B2ng+Cung%2C+C%C3%A1i+R%C4%83ng%7CL%C3%A0ng+du+l%E1%BB%8Bch+M%E1%BB%B9+Kh%C3%A1nh%2C+M%E1%BB%B9+Kh%C3%A1nh%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -942,6 +971,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%E1%BB%93n+S%C6%A1n%2C+C%E1%BB%93n+S%C6%A1n%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=V%C6%B0%E1%BB%9Dn+c%C3%B2+B%E1%BA%B1ng+L%C4%83ng%2C+Th%E1%BB%9Bi+Thu%E1%BA%ADn%2C+Th%E1%BB%91t+N%E1%BB%91t" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1250,6 +1289,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 4 ngày 3 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1288,6 +1330,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Nh%C3%A0+c%E1%BB%95+B%C3%ACnh+Th%E1%BB%A7y%2C+144+B%C3%B9i+H%E1%BB%AFu+Ngh%C4%A9a%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%E2%80%93+du+thuy%E1%BB%81n%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=Ch%C3%B9a+%C3%94ng+%28Qu%E1%BA%A3ng+Tri%E1%BB%87u+h%E1%BB%99i+qu%C3%A1n%29%2C+32+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u%7CV%C6%B0%E1%BB%9Dn+tr%C3%A1i+c%C3%A2y+Phong+%C4%90i%E1%BB%81n%2C+Phong+%C4%90i%E1%BB%81n%2C+C%E1%BA%A7n+Th%C6%A1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1472,6 +1524,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%E1%BB%A3+n%E1%BB%95i+C%C3%A1i+R%C4%83ng%2C+B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%2F+c%E1%BA%A7u+C%C3%A1i+R%C4%83ng&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+T%C3%A2y+%C4%90%C3%B4%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=L%C3%B2+h%E1%BB%A7+ti%E1%BA%BFu+S%C3%A1u+Ho%C3%A0i%2C+H%E1%BA%BBm+18+L%E1%BB%99+V%C3%B2ng+Cung%2C+C%C3%A1i+R%C4%83ng%7CL%C3%A0ng+du+l%E1%BB%8Bch+M%E1%BB%B9+Kh%C3%A1nh%2C+M%E1%BB%B9+Kh%C3%A1nh%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1640,6 +1702,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%E1%BB%93n+S%C6%A1n%2C+C%E1%BB%93n+S%C6%A1n%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=V%C6%B0%E1%BB%9Dn+c%C3%B2+B%E1%BA%B1ng+L%C4%83ng%2C+Th%E1%BB%9Bi+Thu%E1%BA%ADn%2C+Th%E1%BB%91t+N%E1%BB%91t" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1798,6 +1870,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Sóc Trăng – chùa Khmer</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%B9a+D%C6%A1i%2C+V%C4%83n+Ng%E1%BB%8Dc+Ch%C3%ADnh%2C+S%C3%B3c+Tr%C4%83ng&destination=Ch%C3%B9a+%C4%90%E1%BA%A5t+S%C3%A9t%2C+286+T%C3%B4n+%C4%90%E1%BB%A9c+Th%E1%BA%AFng%2C+S%C3%B3c+Tr%C4%83ng&waypoints=Ch%C3%B9a+Ch%C3%A9n+Ki%E1%BB%83u%2C+QL1A%2C+S%C3%B3c+Tr%C4%83ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2106,6 +2188,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 5 ngày 4 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -2150,6 +2235,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Bến Ninh Kiều – nhà cổ</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Nh%C3%A0+c%E1%BB%95+B%C3%ACnh+Th%E1%BB%A7y%2C+144+B%C3%B9i+H%E1%BB%AFu+Ngh%C4%A9a%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%E2%80%93+du+thuy%E1%BB%81n%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=Ch%C3%B9a+%C3%94ng+%28Qu%E1%BA%A3ng+Tri%E1%BB%87u+h%E1%BB%99i+qu%C3%A1n%29%2C+32+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u%7CV%C6%B0%E1%BB%9Dn+tr%C3%A1i+c%C3%A2y+Phong+%C4%90i%E1%BB%81n%2C+Phong+%C4%90i%E1%BB%81n%2C+C%E1%BA%A7n+Th%C6%A1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2334,6 +2429,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Chợ nổi Cái Răng</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%E1%BB%A3+n%E1%BB%95i+C%C3%A1i+R%C4%83ng%2C+B%E1%BA%BFn+Ninh+Ki%E1%BB%81u+%2F+c%E1%BA%A7u+C%C3%A1i+R%C4%83ng&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+T%C3%A2y+%C4%90%C3%B4%2C+Hai+B%C3%A0+Tr%C6%B0ng%2C+Ninh+Ki%E1%BB%81u&waypoints=L%C3%B2+h%E1%BB%A7+ti%E1%BA%BFu+S%C3%A1u+Ho%C3%A0i%2C+H%E1%BA%BBm+18+L%E1%BB%99+V%C3%B2ng+Cung%2C+C%C3%A1i+R%C4%83ng%7CL%C3%A0ng+du+l%E1%BB%8Bch+M%E1%BB%B9+Kh%C3%A1nh%2C+M%E1%BB%B9+Kh%C3%A1nh%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2502,6 +2607,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cồn Sơn – vườn cò Bằng Lăng</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%E1%BB%93n+S%C6%A1n%2C+C%E1%BB%93n+S%C6%A1n%2C+B%C3%ACnh+Th%E1%BB%A7y&destination=V%C6%B0%E1%BB%9Dn+c%C3%B2+B%E1%BA%B1ng+L%C4%83ng%2C+Th%E1%BB%9Bi+Thu%E1%BA%ADn%2C+Th%E1%BB%91t+N%E1%BB%91t" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2661,6 +2776,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Sóc Trăng – chùa Khmer</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%B9a+D%C6%A1i%2C+V%C4%83n+Ng%E1%BB%8Dc+Ch%C3%ADnh%2C+S%C3%B3c+Tr%C4%83ng&destination=Ch%C3%B9a+%C4%90%E1%BA%A5t+S%C3%A9t%2C+286+T%C3%B4n+%C4%90%E1%BB%A9c+Th%E1%BA%AFng%2C+S%C3%B3c+Tr%C4%83ng&waypoints=Ch%C3%B9a+Ch%C3%A9n+Ki%E1%BB%83u%2C+QL1A%2C+S%C3%B3c+Tr%C4%83ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2819,6 +2944,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Châu Đốc – rừng tràm Trà Sư</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="can-tho"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=R%E1%BB%ABng+tr%C3%A0m+Tr%C3%A0+S%C6%B0%2C+V%C4%83n+Gi%C3%A1o%2C+T%E1%BB%8Bnh+Bi%C3%AAn%2C+An+Giang&destination=Mi%E1%BA%BFu+B%C3%A0+Ch%C3%BAa+X%E1%BB%A9+%E2%80%93+n%C3%BAi+Sam%2C+N%C3%BAi+Sam%2C+Ch%C3%A2u+%C4%90%E1%BB%91c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3352,6 +3487,7 @@
         <script defer src="../../assets/js/data/dest/can-tho.js"></script>
         <script defer src="../../assets/js/favorites.js"></script>
         <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/trip-export.js"></script>
         <script defer src="../../assets/js/config.js"></script>
         <script defer src="../../assets/js/map.js"></script>
         <script defer src="../../assets/js/weather.js"></script>

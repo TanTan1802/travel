@@ -328,7 +328,60 @@ function renderSummary(plan, totals) {
             <button type="button" class="button button--flex button--ghost" data-action="copy-text"><i class="ri-file-copy-line"></i> ${t('Sao chép dạng chữ')}</button>
             <button type="button" class="button button--flex button--ghost" data-action="print"><i class="ri-printer-line"></i> ${t('In / lưu PDF')}</button>
         </div>
+        <div class="planner__share planner__export">
+            <button type="button" class="button button--flex button--ghost" data-action="ics"><i class="ri-calendar-2-line"></i> ${t('Thêm vào lịch (.ics)')}</button>
+            ${totals.dests.length > 1 ? `<a href="${tripRouteUrl(totals.dests)}" target="_blank" rel="noopener" class="button button--flex button--ghost"><i class="ri-route-line"></i> ${t('Cả tuyến trên Google Maps')}</a>` : ''}
+        </div>
+        ${plan.start ? '' : `<p class="budget__note">${t('Chọn ngày khởi hành để thêm lịch trình vào lịch và xem dự báo thời tiết từng ngày.')}</p>`}
     `
+}
+
+/* Chi tiết một ngày trong kế hoạch dùng cho timeline, lịch và Google Calendar */
+function planDayTimeline(item) {
+    return dayTimeline(item.dest.id, item.dayOfStop, item.day, {
+        arrival: item.arrival ? { text: `${legMode(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}` } : null,
+        last: item.departure,
+    })
+}
+
+const planDayLabel = (item, i) => `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}`
+
+function planDayToolsHtml(item, i, entries) {
+    const route = item.day ? dayRouteUrl(item.dest.id, item.dayOfStop, { skipMorning: Boolean(item.arrival) }) : ''
+    const gcal = item.date ? googleCalendarDayUrl({
+        title: planDayLabel(item, i),
+        date: item.date,
+        details: `${dayDetailsText(entries)}\n\n${planShareUrl(planner.plan)}`,
+        location: `${item.dest.name}, ${item.dest.province}`,
+    }) : ''
+    if (!route && !gcal && !item.date) return ''
+    return `
+        <div class="day-tools">
+            ${item.date ? `<span class="day-tools__forecast" data-forecast-dest="${item.dest.id}" data-forecast-date="${item.date}"></span>` : ''}
+            <span class="day-tools__links">
+                ${route ? `<a href="${route}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> ${t('Lộ trình trên Google Maps')}</a>` : ''}
+                ${gcal ? `<a href="${gcal}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-calendar-event-line"></i> ${t('Thêm ngày này vào Google Calendar')}</a>` : ''}
+            </span>
+        </div>
+    `
+}
+
+/* File .ics cho cả kế hoạch – cần ngày khởi hành */
+function exportPlanIcs(plan) {
+    if (!plan.start) {
+        const input = document.getElementById('planner-start')
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        input.focus()
+        showToast(t('Chọn ngày khởi hành trước để thêm vào lịch'))
+        return
+    }
+    const totals = planTotals(plan)
+    const events = planDays(plan, totals).flatMap((item, i) => timelineToEvents(planDayTimeline(item), {
+        date: item.date, destName: item.dest.name, dayLabel: planDayLabel(item, i),
+    }))
+    const name = t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) })
+    downloadTextFile(`${safeFileName(planRoute(plan))}-${plan.start}.ics`, buildIcs({ name, events }))
+    showToast(t('Đã tải file lịch – mở file để thêm vào Google Calendar, Apple Calendar hoặc Outlook'))
 }
 
 function renderDays(plan, totals) {
@@ -344,10 +397,7 @@ function renderDays(plan, totals) {
                         ${item.date ? `<span class="plan-day__date">${formatDate(item.date)}</span>` : ''}
                         <h3 class="plan-day__title">${item.dest.name}${item.day ? ` – ${item.day.title}` : ''}</h3>
                     </div>
-                    ${dayTimelineHtml(dayTimeline(item.dest.id, item.dayOfStop, item.day, {
-                        arrival: item.arrival ? { text: `${legMode(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}` } : null,
-                        last: item.departure,
-                    }))}
+                    ${(entries => `${planDayToolsHtml(item, i, entries)}${dayTimelineHtml(entries)}`)(planDayTimeline(item))}
                     ${item.checkin && item.checkin.stay ? `
                         <div class="plan-day__stay">
                             <p><i class="ri-hotel-bed-line"></i> <strong>${t('Nghỉ đêm')}:</strong> ${pickLang(item.checkin.stay.area)} · ${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')} · ${t('{n} đêm', { n: item.checkin.nights })}</p>
@@ -456,6 +506,7 @@ function renderPlanner() {
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
     updatePlannerMap(plan, totals)
+    if (plan.start) fillForecasts(document.getElementById('planner-days'))
 }
 
 function commit(plan, { scroll = false } = {}) {
@@ -552,6 +603,8 @@ function handlePlannerClick(e) {
             return copyText(planAsText(plan), t('Đã sao chép lịch trình dạng chữ'))
         case 'print':
             return window.print()
+        case 'ics':
+            return exportPlanIcs(plan)
     }
 }
 
