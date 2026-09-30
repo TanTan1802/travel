@@ -396,7 +396,8 @@ function dayTimeline(id, dayIndex, day, { arrival = null, last = false } = {}) {
     const add = (time, icon, kind, title, text, place = null, sights = []) => {
         if (text || place) entries.push({ time, icon, kind, title, text, place, sights })
     }
-    const sights = at => (day ? sightsOf(id, dayIndex, at) : [])
+    const destName = getDestination(id)?.name || ''
+    const sights = at => (day ? sightsOf(id, dayIndex, at).map(s => ({ ...s, dest: destName })) : [])
     /* Ngày có lịch riêng dùng phân bổ bữa đã tính; ngày tự do / ngày di chuyển luôn cần đủ bữa */
     const ownDay = Boolean(day) && !arrival
     const breakfast = 'breakfast' in meals || !ownDay
@@ -456,6 +457,7 @@ function sightHtml(s) {
                 <span><i class="ri-map-pin-2-line"></i> ${s.address}</span>
             </small>
             ${s.note ? `<small class="sight__note"><i class="ri-information-line"></i> ${pickLang(s.note)}</small>` : ''}
+            ${s.dest ? reportLinkHtml({ dest: s.dest, item: s.name[0], details: `${sightPriceText(s.price)} · ${sightHours(s.hours)} · ${s.address}` }) : ''}
         </li>
     `
 }
@@ -500,6 +502,107 @@ function dayTimelineHtml(entries) {
             `).join('')}
         </ol>
     `
+}
+
+/*==================== LỄ HỘI & SỰ KIỆN ====================*/
+/* Nhãn tháng của sự kiện: "Tháng 9 – 10" hoặc "05/09 – 15/10" */
+function eventWhenText(e) {
+    if (e.dates) {
+        const fmt = md => `${md.slice(3)}/${md.slice(0, 2)}`
+        return `${fmt(e.dates[0])} – ${fmt(e.dates[1])}`
+    }
+    if (e.months.length === 12) return t('Hằng tháng')
+    const months = e.months
+    const label = months.length === 1 ? monthLabel(months[0]) : `${monthLabel(months[0])} – ${monthLabel(months[months.length - 1])}`
+    return t('Tháng {m}', { m: label })
+}
+
+function eventCardHtml(e, { destName = '' } = {}) {
+    const type = EVENT_TYPES[e.type]
+    return `
+        <li class="event event--${e.type}" data-event-months="${eventMonths(e).join(',')}">
+            <span class="event__icon" title="${pickLang(type.label)}"><i class="${type.icon}"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">${pickLang(e.name)}${destName ? ` <small>· ${destName}</small>` : ''}</strong>
+                    <span class="event__when">${eventWhenText(e)}${e.lunar ? ` · ${t('âm lịch')}` : ''}</span>
+                </div>
+                <p class="event__desc">${pickLang(e.desc)}</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> ${pickLang(e.tip)}</p>
+            </div>
+        </li>
+    `
+}
+
+/*==================== DANH SÁCH ĐỒ CẦN MANG ====================*/
+const PACKING_STORE = 'viet-travel:packing'
+
+function packingState(key) {
+    try { return JSON.parse(localStorage.getItem(`${PACKING_STORE}:${key}`) || '{}') } catch { return {} }
+}
+
+/* groups từ packingList(); key để ghi nhớ các món đã chuẩn bị (theo điểm đến / kế hoạch) */
+function packingHtml(groups, key) {
+    const done = packingState(key)
+    const total = groups.reduce((n, g) => n + g.items.length, 0)
+    const checked = groups.reduce((n, g) => n + g.items.filter(item => done[item.id]).length, 0)
+    return `
+        <div class="packing" data-packing-key="${key}">
+            <p class="packing__progress"><span data-packing-count>${checked}</span>/${total} ${t('món đã chuẩn bị')}</p>
+            <div class="packing__groups">
+                ${groups.map(g => `
+                    <div class="packing__group">
+                        <h4 class="packing__title"><i class="${PACKING_GROUPS[g.group].icon}"></i> ${pickLang(PACKING_GROUPS[g.group].label)}</h4>
+                        <ul class="packing__list">
+                            ${g.items.map(item => `
+                                <li><label class="packing__item">
+                                    <input type="checkbox" data-pack-item="${item.id}"${done[item.id] ? ' checked' : ''}>
+                                    <span>${pickLang(item.name)}</span>
+                                </label></li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `
+}
+
+/* Ghi nhớ ô đã đánh dấu cho mọi danh sách đồ trên trang */
+if (typeof document !== 'undefined' && typeof document.addEventListener === 'function') {
+    document.addEventListener('change', e => {
+        const box = e.target.closest && e.target.closest('[data-pack-item]')
+        if (!box) return
+        const root = box.closest('[data-packing-key]')
+        const key = root.dataset.packingKey
+        const state = packingState(key)
+        if (box.checked) state[box.dataset.packItem] = true
+        else delete state[box.dataset.packItem]
+        try { localStorage.setItem(`${PACKING_STORE}:${key}`, JSON.stringify(state)) } catch { /* bỏ qua */ }
+        root.querySelector('[data-packing-count]').textContent = root.querySelectorAll('[data-pack-item]:checked').length
+    })
+}
+
+/*==================== BÁO SAI THÔNG TIN ====================*/
+/* Mở GitHub Issue điền sẵn nội dung – ai cũng góp ý được, không cần server */
+const ISSUES_URL = 'https://github.com/TanTan1802/travel/issues/new'
+
+function reportUrl({ dest = '', item = '', details = '' } = {}) {
+    const title = `[Sửa thông tin] ${[dest, item].filter(Boolean).join(' – ')}`
+    const body = [
+        `**Điểm đến:** ${dest || '-'}`,
+        `**Mục cần sửa:** ${item || '-'}`,
+        ...(details ? [`**Thông tin hiện tại:** ${details}`] : []),
+        '',
+        '**Thông tin đúng / góp ý:**',
+        '',
+        '**Nguồn (link, ảnh chụp bảng giá...):**',
+    ].join('\n')
+    return `${ISSUES_URL}?${new URLSearchParams({ title, body, labels: 'sua-thong-tin' })}`
+}
+
+function reportLinkHtml(opts, { label = true } = {}) {
+    return `<a href="${reportUrl(opts)}" target="_blank" rel="noopener" class="report-link" title="${t('Báo sai thông tin')}"><i class="ri-flag-line"></i>${label ? ` ${t('Báo sai')}` : ''}</a>`
 }
 
 /*==================== CHIA SẺ & IN ====================*/

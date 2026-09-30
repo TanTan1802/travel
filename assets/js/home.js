@@ -345,6 +345,7 @@ function renderSeason() {
     byRating.forEach(d => { if (!chosen.includes(d)) chosen.push(d) })
     chosen.length = Math.min(chosen.length, SEASON_COUNT)
     list.innerHTML = chosen.map(d => destinationCard(d)).join('')
+    renderSeasonEvents(month)
     syncFavoriteButtons(list)
 
     document.getElementById('season-more')?.addEventListener('click', () => {
@@ -355,6 +356,23 @@ function renderSeason() {
         }
         document.getElementById('place')?.scrollIntoView({ behavior: 'smooth' })
     })
+}
+
+/* Lễ hội & mùa đặc sắc trong tháng: mỗi sự kiện dẫn tới điểm đến tiêu biểu */
+function renderSeasonEvents(month) {
+    const box = document.getElementById('season-events')
+    if (!box || typeof EVENTS === 'undefined') return
+    const events = EVENTS.filter(e => e.where !== 'all' && e.months?.length !== 12 && eventInMonth(e, month))
+    box.hidden = !events.length
+    box.innerHTML = events.length ? `
+        <span class="season__events-title"><i class="ri-flag-2-line"></i> ${t('Lễ hội & mùa đặc sắc tháng {m}:', { m: monthLabel(month) })}</span>
+        ${events.slice(0, 8).map(e => {
+            const d = getDestination(e.where[0])
+            return `<a href="${destinationUrl(d.id)}#climate" class="tag event-tag event-tag--${e.type}" title="${pickLang(e.desc)}">
+                <i class="${EVENT_TYPES[e.type].icon}"></i> ${pickLang(e.name)} · ${d.name}
+            </a>`
+        }).join('')}
+    ` : ''
 }
 
 renderDiscover()

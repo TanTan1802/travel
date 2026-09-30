@@ -71,6 +71,7 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     assert.equal(await page.$('video'), null, 'trang chủ không còn video mẫu')
     const month = new Date().getMonth() + 1
     assert.ok(await page.$$eval('#season-list .dest-card', a => a.length) >= 1, 'cần gợi ý điểm đến theo tháng')
+    assert.equal(await page.isVisible('#season-events'), await page.evaluate(() => EVENTS.some(e => e.where !== 'all' && e.months?.length !== 12 && eventInMonth(e, new Date().getMonth() + 1))))
     await page.click('#season-more')
     assert.equal(await page.$eval('#month-filter', s => s.value), String(month))
     assert.ok((await count()) < total, 'bấm xem tất cả phải lọc theo tháng')
@@ -158,6 +159,22 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
 
     await page.click('.season__month[data-month="3"]')
     assert.match(await page.textContent('.season__status'), /Tháng 3/)
+
+    /* Lễ hội & mùa đặc sắc: bấm tháng làm nổi sự kiện của tháng đó */
+    assert.ok(await page.$$eval('#dest-events .event', a => a.length) >= 2, 'Hội An cần danh sách lễ hội / mùa đặc sắc')
+    await page.click('.season__month[data-month="10"]')
+    assert.ok(await page.$$eval('#dest-events .event--active', a => a.length) >= 1, 'tháng 10 phải có sự kiện nổi bật')
+
+    /* Danh sách đồ cần mang: đánh dấu được ghi nhớ khi tải lại trang */
+    assert.ok(await page.$$eval('#packing [data-pack-item]', a => a.length) >= 10)
+    await page.check('#packing [data-pack-item="cccd"]')
+    assert.match(await page.textContent('#packing .packing__progress'), /^1\//)
+    await page.reload()
+    assert.ok(await page.isChecked('#packing [data-pack-item="cccd"]'), 'phải nhớ món đã chuẩn bị')
+
+    /* Báo sai thông tin trên thẻ điểm tham quan và quán */
+    assert.match(await page.getAttribute('.sight .report-link', 'href'), /^https:\/\/github\.com\/TanTan1802\/travel\/issues\/new\?title=/)
+    assert.ok(await page.$('.eat .report-link'))
     assert.ok(await page.$$eval('#season-others a', a => a.length) > 0, 'phải gợi ý điểm đến theo tháng')
 
     await page.click('.gallery__item[data-index="1"]')
@@ -222,6 +239,11 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     assert.ok(await page.$$eval('.cost-details .cost-item', a => a.length) >= 5, 'chi tiết chi phí phải có các khoản + di chuyển giữa các điểm')
     await page.check('[data-booking="stay:sa-pa"]')
     assert.match(await page.textContent('.bookings__progress'), /Đã đặt 1\//)
+
+    /* Lưu ý theo ngày đi (tháng 11: mưa bão miền Trung ở Huế, Hội An) + danh sách đồ gộp cả chuyến */
+    assert.match(await page.textContent('#planner-notes'), /Mùa mưa bão miền Trung/)
+    assert.ok(await page.$$eval('#planner-packing [data-pack-item]', a => a.length) >= 12)
+    assert.ok(await page.$('#planner-packing [data-pack-item="down"]'), 'Sa Pa tháng 11 cần áo ấm')
 
     /* Ngày khởi hành quá xa để dự báo: báo ngày sẽ có dự báo; xuất lịch cả kế hoạch và tuyến trên Google Maps */
     assert.match(await page.textContent('.plan-day .forecast-chip--later'), /Có dự báo từ/)

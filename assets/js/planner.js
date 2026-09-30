@@ -410,6 +410,51 @@ function renderDays(plan, totals) {
     `
 }
 
+/* Ngày (ISO) của từng điểm dừng khi đã chọn ngày khởi hành */
+function stopDates(plan) {
+    return planStays(plan).map((s, i) => (plan.start
+        ? Array.from({ length: plan.stops[i].days }, (_, k) => addDays(plan.start, s.dayIndex + k))
+        : []))
+}
+
+/* Lễ hội, nghỉ lễ, thời tiết cần lưu ý trùng ngày (hoặc tháng) đi của từng điểm dừng */
+function renderNotes(plan, totals) {
+    if (!plan.stops.length || (!plan.start && !plan.month)) return ''
+    const dates = stopDates(plan)
+    const seen = new Set()
+    const notes = []
+    totals.dests.forEach((d, i) => {
+        eventsForTrip(d.id, { dates: dates[i], month: plan.month }).forEach(e => {
+            const key = e.where === 'all' ? e.id : `${e.id}:${d.id}`
+            if (seen.has(key)) return
+            seen.add(key)
+            notes.push({ e, destName: e.where === 'all' ? '' : d.name })
+        })
+    })
+    if (!notes.length) return ''
+    return `
+        <section class="planner__block">
+            <h2 class="planner__block-title"><i class="ri-alarm-warning-line"></i> ${t('Lưu ý theo ngày đi')}</h2>
+            <p class="budget__note">${plan.start ? t('Lễ hội, nghỉ lễ và thời tiết trùng những ngày bạn có mặt ở từng nơi.') : t('Theo tháng khởi hành – chọn ngày cụ thể để lọc chính xác hơn.')}</p>
+            <ul class="events__list">${notes.map(n => eventCardHtml(n.e, { destName: n.destName })).join('')}</ul>
+        </section>
+    `
+}
+
+/* Danh sách đồ gộp cho cả chuyến theo điểm đến và tháng đi */
+function renderPackingBlock(plan, totals) {
+    if (!plan.stops.length) return ''
+    const dates = stopDates(plan)
+    const months = totals.dests.map((_, i) => (dates[i].length ? Number(dates[i][0].slice(5, 7)) : plan.month || 0))
+    return `
+        <section class="planner__block">
+            <h2 class="planner__block-title"><i class="ri-luggage-cart-line"></i> ${t('Chuẩn bị hành lý')}</h2>
+            ${months.some(Boolean) ? '' : `<p class="budget__note">${t('Chọn tháng hoặc ngày khởi hành để thêm đồ theo thời tiết (áo ấm, áo mưa...).')}</p>`}
+            ${packingHtml(packingList(totals.dests, months), 'plan')}
+        </section>
+    `
+}
+
 /* Những thứ cần đặt trước: vé từng chặng + phòng từng điểm, có ô đánh dấu đã đặt */
 function bookingItems(plan, totals) {
     const stays = planStays(plan)
@@ -502,6 +547,8 @@ function renderPlanner() {
     document.getElementById('planner-settings').innerHTML = renderSettings(plan)
     document.getElementById('planner-summary').innerHTML = renderSummary(plan, totals)
     document.getElementById('planner-bookings').innerHTML = renderBookings(plan, totals)
+    document.getElementById('planner-notes').innerHTML = renderNotes(plan, totals)
+    document.getElementById('planner-packing').innerHTML = renderPackingBlock(plan, totals)
     document.getElementById('planner-days').innerHTML = renderDays(plan, totals)
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
