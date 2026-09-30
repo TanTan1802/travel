@@ -3,7 +3,7 @@
  * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '83de22dd00'
+const VERSION = 'f4e32377c8'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -26,9 +26,11 @@ const CORE_ASSETS = [
     './assets/js/data/sights.js',
     './assets/js/data/events.js',
     './assets/js/data/packing.js',
+    './assets/js/data/profiles.js',
     './assets/js/favorites.js',
     './assets/js/components.js',
     './assets/js/today.js',
+    './assets/js/quiz.js',
     './assets/js/trip-export.js',
     './assets/js/map.js',
     './assets/js/weather.js',

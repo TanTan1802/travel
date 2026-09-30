@@ -4896,3 +4896,264 @@ body.dark-theme .offline-status {
     display: none !important;
   }
 }
+
+/*=============== HỒ SƠ CHUYẾN ĐI (trang lập kế hoạch) ===============*/
+.planner__setting--row {
+  display: grid;
+  grid-template-columns: 1fr 7rem;
+  gap: .75rem;
+}
+
+.planner__styles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.planner__styles .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .4rem .8rem;
+  font-size: var(--smaller-font-size);
+}
+
+.planner__styles .chip--active {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.planner__group {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .5rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.style-tips summary {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.style-tips__list {
+  display: grid;
+  gap: .35rem;
+  margin-top: .5rem;
+  padding-left: 1.1rem;
+  font-size: var(--small-font-size);
+}
+
+/*=============== TRẮC NGHIỆM "ĐI ĐÂU HỢP VỚI BẠN?" ===============*/
+.home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.button--light {
+  background-color: hsla(0, 0%, 100%, .9);
+  color: var(--title-color);
+}
+
+.button--light:hover {
+  background-color: var(--white-color);
+}
+
+.quiz {
+  width: min(560px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  box-shadow: 0 20px 60px hsla(0, 0%, 0%, .3);
+}
+
+.quiz::backdrop {
+  background-color: hsla(0, 0%, 0%, .5);
+}
+
+.quiz__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--input-color);
+}
+
+.quiz__header strong {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--title-color);
+}
+
+.quiz__close {
+  border: none;
+  background: none;
+  color: var(--text-color-light);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.quiz__body {
+  display: grid;
+  gap: .75rem;
+  padding: 1.25rem;
+}
+
+.quiz__progress {
+  height: 6px;
+  border-radius: 3px;
+  background-color: var(--input-color);
+  overflow: hidden;
+}
+
+.quiz__progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--first-color), var(--accent-color));
+  transition: width .3s;
+}
+
+.quiz__count {
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-color-light);
+}
+
+.quiz__question {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+}
+
+.quiz__hint {
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.quiz__options {
+  display: grid;
+  gap: .5rem;
+}
+
+.quiz__options--grid {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+.quiz__option {
+  padding: .75rem 1rem;
+  border: 1px solid var(--input-color);
+  border-radius: .75rem;
+  background-color: var(--container-color);
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+}
+
+.quiz__option:hover {
+  border-color: var(--first-color);
+}
+
+.quiz__option--active {
+  border-color: var(--first-color);
+  background-color: hsla(160, 45%, 35%, .1);
+}
+
+.quiz__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
+.quiz__result {
+  display: grid;
+  gap: .75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.quiz__pick {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: .75rem;
+  align-items: center;
+}
+
+.quiz__pick-img {
+  width: 72px;
+  height: 72px;
+  border-radius: .75rem;
+  object-fit: cover;
+}
+
+.quiz__pick-name {
+  display: block;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.quiz__pick small {
+  display: block;
+  font-size: var(--smaller-font-size);
+}
+
+.quiz__reason {
+  color: var(--first-color);
+}
+
+.quiz__alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  font-size: var(--small-font-size);
+}
+
+/*=============== NÚT VIỀN TRÊN NỀN SÁNG ===============*/
+/* .button--ghost mặc định dành cho nền tối (ảnh bìa); trên nền sáng dùng chữ + viền màu chính */
+.season__actions .button--ghost,
+.explore__more .button--ghost,
+.eats__more .button--ghost,
+.quiz .button--ghost {
+  color: var(--first-color);
+  border-color: var(--first-color);
+}
+
+.season__actions .button--ghost:hover,
+.explore__more .button--ghost:hover,
+.eats__more .button--ghost:hover,
+.quiz .button--ghost:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+body.dark-theme .season__actions .button--ghost,
+body.dark-theme .explore__more .button--ghost,
+body.dark-theme .eats__more .button--ghost,
+body.dark-theme .quiz .button--ghost {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.quiz .button--ghost:disabled {
+  opacity: .4;
+  pointer-events: none;
+}
+
+.planner__cost .planner__group {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  opacity: .95;
+}

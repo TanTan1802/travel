@@ -61,7 +61,24 @@ function planTotals(plan) {
     }))
     const breakdown = Object.values(byKey)
     if (legs.length) breakdown.push({ key: 'legs', icon: 'ri-route-line', label: t('Di chuyển giữa các điểm'), amount: transport, count: legs.length, unit: t('chặng') })
-    return { dests, legs, days, km, stay, transport, stopCosts, breakdown, total: stay + transport }
+
+    /* Điểm xuất phát: thêm chặng đi và chặng về (bỏ qua nếu trùng điểm đầu / cuối) */
+    const origin = plan.origin && getDestination(plan.origin)
+    const outbound = origin && dests.length && origin.id !== dests[0].id ? legInfo(origin, dests[0], plan.tier) : null
+    const inbound = origin && dests.length && origin.id !== dests[dests.length - 1].id ? legInfo(dests[dests.length - 1], origin, plan.tier) : null
+    const originCost = (outbound ? outbound.cost : 0) + (inbound ? inbound.cost : 0)
+    if (originCost) {
+        breakdown.push({ key: 'origin', icon: 'ri-flight-takeoff-line', label: t('Đi và về {name}', { name: origin.name }), amount: originCost, count: [outbound, inbound].filter(Boolean).length, unit: t('chặng') })
+    }
+    const total = stay + transport + originCost
+    const stayPerPerson = byKey.stay ? byKey.stay.amount : 0
+    const people = plan.people || 2
+    return {
+        dests, legs, days, stay, stopCosts, breakdown, total, origin, outbound, inbound, people,
+        km: km + (outbound ? outbound.km : 0) + (inbound ? inbound.km : 0),
+        transport: transport + originCost,
+        groupTotal: groupCost(total, stayPerPerson, people),
+    }
 }
 
 /* Tuyến ngắn nhất (giữ điểm xuất phát): láng giềng gần nhất rồi cải thiện bằng 2-opt */
@@ -126,7 +143,8 @@ function planDays(plan, totals) {
                 day: source[i] || null,
                 dayOfStop: i,
                 checkin: i === 0 ? stays[si] : null,
-                arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] } : null,
+                arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] }
+                    : i === 0 && si === 0 && totals.outbound ? { from: totals.origin, leg: totals.outbound } : null,
                 departure: i === stop.days - 1 && si === plan.stops.length - 1,
             })
         }
@@ -141,6 +159,9 @@ function planToQuery(plan) {
     if (plan.start) params.set('d', plan.start)
     else if (plan.month) params.set('m', plan.month)
     if (plan.tier === 'comfort') params.set('b', 'c')
+    if (plan.origin) params.set('o', plan.origin)
+    if (plan.people && plan.people !== 2) params.set('n', plan.people)
+    if (plan.style) params.set('s', plan.style)
     return `?${params.toString().replace(/%2C/g, ',')}`
 }
 
@@ -156,7 +177,13 @@ function planFromQuery(search) {
     })
     const start = /^\d{4}-\d{2}-\d{2}$/.test(params.get('d') || '') ? params.get('d') : ''
     const month = start ? Number(start.slice(5, 7)) : parseInt(params.get('m'), 10)
-    return { stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {} }
+    const people = parseInt(params.get('n'), 10)
+    return {
+        stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {},
+        origin: ORIGIN_IDS.includes(params.get('o')) ? params.get('o') : '',
+        people: people >= 1 && people <= PEOPLE_MAX ? people : 2,
+        style: TRAVEL_STYLES[params.get('s')] ? params.get('s') : '',
+    }
 }
 
 /*---------- Giao diện ----------*/
@@ -243,6 +270,7 @@ function renderStops(plan, totals) {
                             <a href="${destinationUrl(d.id)}" class="stop__name">${d.name}</a>
                             <span class="stop__meta">${d.province} · ${formatVnd(totals.stopCosts[i].total)}</span>
                             ${offSeason ? `<span class="stop__warn"><i class="ri-error-warning-line"></i> ${t('Tháng {m} không phải mùa đẹp nhất', { m: monthLabel(plan.month) })}</span>` : ''}
+                            ${plan.style && TRAVEL_STYLES[plan.style].caution.includes(d.id) ? `<span class="stop__warn"><i class="ri-alert-line"></i> ${t('Nhiều đường đèo, leo dốc hoặc đi tàu xa – cân nhắc với {style}', { style: pickLang(TRAVEL_STYLES[plan.style].label).toLowerCase() })}</span>` : ''}
                         </div>
                         <div class="stop__days" role="group" aria-label="${t('Số ngày tại {name}', { name: d.name })}">
                             <button type="button" data-action="days" data-delta="-1" aria-label="${t('Bớt một ngày')}"${stop.days <= 1 ? ' disabled' : ''}><i class="ri-subtract-line"></i></button>
@@ -281,6 +309,29 @@ function renderSettings(plan) {
                 ${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}"${plan.month === i + 1 ? ' selected' : ''}>${t('Tháng {m}', { m: monthLabel(i + 1) })}</option>`).join('')}
             </select>
         </div>
+        <div class="planner__setting planner__setting--row">
+            <div>
+                <label class="planner__label" for="planner-origin">${t('Xuất phát từ')}</label>
+                <select id="planner-origin" class="planner__select">
+                    <option value="">${t('Không tính chặng đi/về')}</option>
+                    ${ORIGIN_IDS.map(id => `<option value="${id}"${plan.origin === id ? ' selected' : ''}>${getDestination(id).name}</option>`).join('')}
+                </select>
+            </div>
+            <div>
+                <label class="planner__label" for="planner-people">${t('Số người')}</label>
+                <input type="number" id="planner-people" class="planner__select" min="1" max="${PEOPLE_MAX}" value="${plan.people || 2}">
+            </div>
+        </div>
+        <div class="planner__setting">
+            <span class="planner__label" id="planner-style-label">${t('Phong cách chuyến đi')}</span>
+            <div class="chip-row planner__styles" role="group" aria-labelledby="planner-style-label">
+                ${Object.entries(TRAVEL_STYLES).map(([id, st]) => `
+                    <button type="button" class="chip${plan.style === id ? ' chip--active' : ''}" data-action="style" data-style="${id}" aria-pressed="${plan.style === id}">
+                        <i class="${st.icon}"></i> ${pickLang(st.label)}
+                    </button>
+                `).join('')}
+            </div>
+        </div>
         <div class="planner__setting">
             <span class="planner__label" id="planner-tier-label">${t('Mức chi tiêu')}</span>
             <div class="view-toggle" role="group" aria-labelledby="planner-tier-label">
@@ -306,7 +357,14 @@ function renderSummary(plan, totals) {
             <span>${t('Chi phí ước tính / người')}</span>
             <strong>${formatVnd(totals.total)}</strong>
             <small>${plan.tier === 'comfort' ? t('Khách sạn 3–4 sao, nhà hàng, Grab') : t('Homestay, ăn quán địa phương, xe máy')}</small>
+            <p class="planner__group" id="planner-group"><i class="ri-group-line"></i> ${t('Cả nhóm {n} người: {total}', { n: totals.people, total: formatVnd(totals.groupTotal) })}${totals.people === 1 ? ` · ${t('ở một mình trả trọn giá phòng')}` : totals.people % 2 ? ` · ${t('lẻ người nên tính thêm 1 phòng')}` : ''}</p>
         </div>
+        ${plan.style ? `
+            <details class="cost-details style-tips" open>
+                <summary><i class="${TRAVEL_STYLES[plan.style].icon}"></i> ${t('Gợi ý cho {style}', { style: pickLang(TRAVEL_STYLES[plan.style].label).toLowerCase() })}</summary>
+                <ul class="style-tips__list">${TRAVEL_STYLES[plan.style].tips.map(tip => `<li>${pickLang(tip)}</li>`).join('')}</ul>
+            </details>
+        ` : ''}
         <details class="cost-details"${planner.costOpen ? ' open' : ''}>
             <summary>${t('Xem chi tiết chi phí')}</summary>
             <ul class="cost-list">
@@ -322,7 +380,7 @@ function renderSummary(plan, totals) {
                 `).join('')}
             </ul>
         </details>
-        <p class="budget__note">${t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
+        <p class="budget__note">${totals.origin ? t('Đã gồm chặng đi và về {name}. Giá tham khảo, thay đổi theo mùa.', { name: totals.origin.name }) : t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
         <div class="planner__share">
             <button type="button" class="button button--flex" data-action="share"><i class="ri-share-line"></i> ${t('Chia sẻ kế hoạch')}</button>
             <button type="button" class="button button--flex button--ghost" data-action="copy-text"><i class="ri-file-copy-line"></i> ${t('Sao chép dạng chữ')}</button>
@@ -543,7 +601,7 @@ function renderPackingBlock(plan, totals) {
         <section class="planner__block">
             <h2 class="planner__block-title"><i class="ri-luggage-cart-line"></i> ${t('Chuẩn bị hành lý')}</h2>
             ${months.some(Boolean) ? '' : `<p class="budget__note">${t('Chọn tháng hoặc ngày khởi hành để thêm đồ theo thời tiết (áo ấm, áo mưa...).')}</p>`}
-            ${packingHtml(packingList(totals.dests, months), 'plan')}
+            ${packingHtml(packingList(totals.dests, months, { style: plan.style }), 'plan')}
         </section>
     `
 }
@@ -552,6 +610,14 @@ function renderPackingBlock(plan, totals) {
 function bookingItems(plan, totals) {
     const stays = planStays(plan)
     const items = []
+    const originItem = (from, to, leg, date, key) => ({
+        key,
+        icon: leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line',
+        title: `${from.name} → ${to.name}`,
+        detail: `${legMode(leg)}${date ? ` · ${formatDate(date)}` : ''}`,
+        links: transportLinks(from, to, leg.mode, date),
+    })
+    if (totals.outbound) items.push(originItem(totals.origin, totals.dests[0], totals.outbound, plan.start, `go:${totals.origin.id}>${totals.dests[0].id}`))
     stays.forEach((s, i) => {
         const d = totals.dests[i]
         if (i > 0) {
@@ -576,6 +642,11 @@ function bookingItems(plan, totals) {
             })
         }
     })
+    if (totals.inbound) {
+        const last = totals.dests[totals.dests.length - 1]
+        const end = plan.start ? addDays(plan.start, totals.days - 1) : ''
+        items.push(originItem(last, totals.origin, totals.inbound, end, `back:${last.id}>${totals.origin.id}`))
+    }
     return items
 }
 
@@ -685,7 +756,9 @@ function planAsText(plan) {
     const lines = [
         t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) }),
         `${t('{n} ngày', { n: totals.days })} · ~${totals.km} km · ${t('Chi phí ước tính / người')}: ${formatVnd(totals.total)} (${plan.tier === 'comfort' ? t('Thoải mái') : t('Tiết kiệm')})`,
+        t('Cả nhóm {n} người: {total}', { n: totals.people, total: formatVnd(totals.groupTotal) }),
     ]
+    if (totals.origin) lines.push(`${t('Xuất phát từ')}: ${totals.origin.name}`)
     if (plan.month) lines.push(`${t('Tháng khởi hành')}: ${t('Tháng {m}', { m: monthLabel(plan.month) })}`)
     planDays(plan, totals).forEach((item, i) => {
         lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}${item.date ? ` (${formatDate(item.date)})` : ''}`)
@@ -741,6 +814,12 @@ function handlePlannerClick(e) {
             return commit({ ...plan, stops: plan.stops.filter((_, i) => i !== index) })
         case 'tier':
             return commit({ ...plan, tier: btn.dataset.tier })
+        case 'style': {
+            const style = plan.style === btn.dataset.style ? '' : btn.dataset.style
+            const suggested = style && TRAVEL_STYLES[style].tier
+            if (suggested && suggested !== plan.tier) showToast(t('Đã chuyển sang mức chi tiêu gợi ý cho phong cách này'))
+            return commit({ ...plan, style, tier: suggested || plan.tier })
+        }
         case 'share':
             return sharePlan()
         case 'copy-text':
@@ -778,6 +857,11 @@ function initPlanner() {
     })
     root.addEventListener('change', e => {
         if (e.target.id === 'planner-month') commit({ ...planner.plan, month: Number(e.target.value) })
+        if (e.target.id === 'planner-origin') commit({ ...planner.plan, origin: e.target.value })
+        if (e.target.id === 'planner-people') {
+            const people = Math.min(PEOPLE_MAX, Math.max(1, parseInt(e.target.value, 10) || 2))
+            commit({ ...planner.plan, people })
+        }
         if (e.target.id === 'planner-start') {
             const start = e.target.value
             commit({ ...planner.plan, start, month: start ? Number(start.slice(5, 7)) : planner.plan.month })

@@ -315,6 +315,39 @@ test('trong chuyến đi: chế độ Hôm nay, nhắc chuyến đi, gần tôi,
     await close()
 })
 
+test('hồ sơ chuyến đi và trắc nghiệm "Đi đâu hợp với bạn?"', async () => {
+    /* Xuất phát từ Hà Nội, 3 người, gia đình có trẻ nhỏ */
+    const { page, errors, close } = await openPage('ke-hoach/index.html?p=hue.2,hoi-an.2&o=ha-noi&n=3&s=family')
+    const bookings = await page.$$eval('.booking__title, .booking strong', a => a.map(x => x.textContent.trim()))
+    assert.ok(bookings.some(x => x.includes('Hà Nội → Cố đô Huế')), 'phải có vé chặng đi từ Hà Nội')
+    assert.ok(bookings.some(x => x.includes('Phố cổ Hội An → Hà Nội')), 'phải có vé chặng về Hà Nội')
+    assert.match(await page.textContent('#planner-group'), /3 người[\s\S]*thêm 1 phòng/)
+    assert.ok(await page.isVisible('.style-tips'), 'phải có gợi ý theo phong cách')
+    assert.ok(await page.$('#planner-packing [data-pack-item="kidsmeds"]'), 'gia đình có trẻ nhỏ cần thuốc cho trẻ')
+    assert.match(await page.getAttribute('.plan-day:first-child', 'class'), /plan-day--travel/, 'ngày 1 là ngày di chuyển từ Hà Nội')
+    await page.fill('#planner-people', '4')
+    await page.press('#planner-people', 'Enter')
+    await page.waitForFunction(() => /4 người/.test(document.getElementById('planner-group')?.textContent || ''))
+    assert.match(page.url(), /n=4/)
+
+    /* Trắc nghiệm trên trang chủ → mở gợi ý trong trình lập kế hoạch */
+    await page.goto(page.url().replace(/ke-hoach\/index\.html.*/, 'index.html'))
+    await page.click('.home [data-quiz-open]')
+    assert.ok(await page.isVisible('#quiz'))
+    await page.click('[data-quiz-option="bien"]')
+    await page.click('[data-quiz-nav="next"]')
+    for (const option of ['1', 'medium', 'nam', 'couple', 'saving']) await page.click(`[data-quiz-option="${option}"]`)
+    const href = await page.getAttribute('#quiz-plan', 'href')
+    assert.match(href, /ke-hoach\/index\.html\?p=[a-z-]+\.\d/)
+    assert.match(href, /m=1/)
+    await page.click('#quiz-plan')
+    await page.waitForURL(/ke-hoach/)
+    assert.equal(await page.$$eval('.stop', a => a.length), 2, 'chuyến 4–6 ngày → 2 điểm đến')
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('in & chia sẻ: in lịch trình, chia sẻ liên kết, sao chép kế hoạch dạng chữ', async () => {
     const { page, errors, close } = await openPage('diem-den/hue/index.html')
     await page.click('.tour:not([hidden]) [data-tour-action="print"]')
