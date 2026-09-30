@@ -85,6 +85,9 @@
         </header>
 
         <main class="main">
+            <!-- Nhắc chuyến đi đã lên kế hoạch: đang đi (hôm nay là ngày mấy) hoặc sắp đi (assets/js/home.js) -->
+            <aside class="trip-banner" id="trip-banner" hidden></aside>
+
             <!--==================== HOME ====================-->
             <section class="home" id="home">
                 <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Vịnh Hạ Long" class="home__img" data-priority src="assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp" srcset="assets/img/wiki/halong-bay-in-vietnam-363c5b-480.webp 480w, assets/img/wiki/halong-bay-in-vietnam-363c5b-960.webp 960w, assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp 1920w" sizes="100vw" fetchpriority="high">
@@ -241,6 +244,9 @@
                                 </label>
                                 <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
                                     <i class="ri-heart-3-fill"></i> Yêu thích <span class="chip__count" id="fav-count">0</span>
+                                </button>
+                                <button type="button" class="chip chip--near" id="near-filter" aria-pressed="false">
+                                    <i class="ri-focus-3-line"></i> Gần tôi
                                 </button>
                             </div>
                         </div>
@@ -1145,6 +1151,7 @@
         <script defer src="assets/js/data/events.js"></script>
         <script defer src="assets/js/favorites.js"></script>
         <script defer src="assets/js/components.js"></script>
+        <script defer src="assets/js/today.js"></script>
         <script defer src="assets/js/map.js"></script>
         <script defer src="assets/js/home.js"></script>
         <script defer src="assets/js/config.js"></script>

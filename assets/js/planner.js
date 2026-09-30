@@ -331,8 +331,101 @@ function renderSummary(plan, totals) {
         <div class="planner__share planner__export">
             <button type="button" class="button button--flex button--ghost" data-action="ics"><i class="ri-calendar-2-line"></i> ${t('Thêm vào lịch (.ics)')}</button>
             ${totals.dests.length > 1 ? `<a href="${tripRouteUrl(totals.dests)}" target="_blank" rel="noopener" class="button button--flex button--ghost"><i class="ri-route-line"></i> ${t('Cả tuyến trên Google Maps')}</a>` : ''}
+            ${offlineSupported() ? `<button type="button" class="button button--flex button--ghost" data-action="offline"><i class="ri-download-cloud-2-line"></i> ${t('Tải về dùng offline')}</button>` : ''}
         </div>
+        ${offlineStatusHtml(plan)}
         ${plan.start ? '' : `<p class="budget__note">${t('Chọn ngày khởi hành để thêm lịch trình vào lịch và xem dự báo thời tiết từng ngày.')}</p>`}
+    `
+}
+
+/* Đã lưu offline chưa (và có đúng tuyến hiện tại không) */
+function offlineStatusHtml(plan) {
+    const info = offlineSupported() ? offlineInfo() : null
+    if (!info) return ''
+    const same = info.route === plan.stops.map(s => s.id).join(',')
+    const when = new Date(info.time)
+    const stamp = `${formatDate(`${when.getFullYear()}-${String(when.getMonth() + 1).padStart(2, '0')}-${String(when.getDate()).padStart(2, '0')}`)} ${String(when.getHours()).padStart(2, '0')}:${String(when.getMinutes()).padStart(2, '0')}`
+    return `<p class="offline-status${same ? '' : ' offline-status--stale'}" id="offline-status"><i class="ri-${same ? 'checkbox-circle' : 'error-warning'}-line"></i> ${same
+        ? t('Đã lưu offline {n} tệp lúc {time}', { n: info.count, time: stamp })
+        : t('Bản offline đã lưu là của tuyến cũ – bấm tải lại để cập nhật.')}</p>`
+}
+
+async function downloadOffline(plan, btn) {
+    const totals = planTotals(plan)
+    const pages = [location.href, ...totals.dests.map(d => destinationUrl(d.id))]
+    btn.disabled = true
+    const label = btn.innerHTML
+    try {
+        const result = await saveTripOffline(plan, pages, (done, total) => {
+            btn.innerHTML = `<i class="ri-loader-4-line"></i> ${t('Đang lưu {done}/{total}', { done, total })}`
+        })
+        showToast(result.failed
+            ? t('Đã lưu {n} tệp để dùng offline ({failed} tệp lỗi)', { n: result.saved, failed: result.failed })
+            : t('Đã lưu {n} tệp – mở lại trang này khi mất mạng vẫn xem được', { n: result.saved }))
+    } catch {
+        showToast(t('Không lưu được bản offline trên trình duyệt này'))
+    }
+    btn.innerHTML = label
+    btn.disabled = false
+    const status = document.getElementById('offline-status')
+    const html = offlineStatusHtml(plan)
+    if (status) status.outerHTML = html
+    else btn.closest('.planner__export').insertAdjacentHTML('afterend', html)
+}
+
+/*---------- Chế độ "Hôm nay": ngày đang đi, mốc hiện tại / kế tiếp, chỉ đường ----------*/
+function renderToday(plan, totals) {
+    const status = tripStatus(plan)
+    if (!status) return ''
+    if (status.kind === 'upcoming') {
+        if (status.inDays > 60) return ''
+        return `
+            <div class="today today--upcoming">
+                <i class="ri-suitcase-3-line today__icon"></i>
+                <div>
+                    <strong>${status.inDays === 1 ? t('Ngày mai khởi hành!') : t('Còn {n} ngày nữa là tới chuyến đi', { n: status.inDays })}</strong>
+                    <p>${planRoute(plan)} · ${formatDate(status.trip.start)} – ${formatDate(status.trip.end)}</p>
+                </div>
+            </div>
+        `
+    }
+    const days = planDays(plan, totals)
+    const item = days[status.dayIndex]
+    const entries = planDayTimeline(item)
+    const { current, next, minutesToNext } = currentAndNext(entries)
+    const hm = m => {
+        if (m < 60) return t('{m} phút', { m })
+        return m % 60 ? t('{h} giờ {m} phút', { h: Math.floor(m / 60), m: m % 60 }) : t('{h} giờ', { h: m / 60 })
+    }
+    const line = (e, cls) => {
+        if (!e) return ''
+        const where = entryDestination(e, item.dest.name)
+        const what = e.place ? e.place.name : (e.sights && e.sights.length ? e.sights.map(x => pickLang(x.name)).join(', ') : e.text)
+        return `
+            <div class="today__entry today__entry--${cls}">
+                <span class="today__label">${cls === 'now' ? t('Đang diễn ra') : t('Tiếp theo – còn {time}', { time: hm(minutesToNext) })}</span>
+                <strong><time>${e.time}</time> ${e.title}</strong>
+                <p>${what}</p>
+                ${where ? `<a href="${directionsToUrl(where)}" target="_blank" rel="noopener" class="button button--flex today__go"><i class="ri-direction-line"></i> ${t('Chỉ đường')}</a>` : ''}
+            </div>
+        `
+    }
+    return `
+        <section class="today" id="today" aria-live="polite">
+            <div class="today__head">
+                <span class="today__badge"><i class="ri-map-pin-time-line"></i> ${t('Hôm nay')}</span>
+                <h2 class="today__title">${t('Ngày {n}/{total}', { n: status.dayIndex + 1, total: status.trip.days })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}</h2>
+                <span class="day-tools__forecast" data-forecast-dest="${item.dest.id}" data-forecast-date="${item.date}"></span>
+            </div>
+            <div class="today__entries">
+                ${line(current, 'now')}
+                ${line(next, 'next')}
+                ${!current && !next ? `<p>${t('Chưa có hoạt động nào cho hôm nay.')}</p>` : ''}
+                ${current && !next ? `<p class="today__done"><i class="ri-moon-clear-line"></i> ${t('Đã hết các hoạt động hôm nay – nghỉ ngơi nhé!')}</p>` : ''}
+            </div>
+            ${nearbyLinksHtml()}
+            <a href="#plan-day-${status.dayIndex + 1}" class="today__all"><i class="ri-list-check-2"></i> ${t('Xem cả lịch hôm nay')}</a>
+        </section>
     `
 }
 
@@ -391,7 +484,7 @@ function renderDays(plan, totals) {
         <h2 class="section__title">${t('Lịch trình {n} ngày', { n: days.length })}</h2>
         <ol class="plan-days">
             ${days.map((item, i) => `
-                <li class="plan-day${item.arrival ? ' plan-day--travel' : ''}">
+                <li class="plan-day${item.arrival ? ' plan-day--travel' : ''}" id="plan-day-${i + 1}">
                     <div class="plan-day__head">
                         <span class="plan-day__number">${t('Ngày {n}', { n: i + 1 })}</span>
                         ${item.date ? `<span class="plan-day__date">${formatDate(item.date)}</span>` : ''}
@@ -542,6 +635,7 @@ async function updatePlannerMap(plan, totals) {
 function renderPlanner() {
     const plan = planner.plan
     const totals = planTotals(plan)
+    document.getElementById('planner-today').innerHTML = renderToday(plan, totals)
     document.getElementById('planner-controls').innerHTML = renderControls(plan)
     document.getElementById('planner-stops').innerHTML = renderStops(plan, totals)
     document.getElementById('planner-settings').innerHTML = renderSettings(plan)
@@ -553,7 +647,10 @@ function renderPlanner() {
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
     updatePlannerMap(plan, totals)
-    if (plan.start) fillForecasts(document.getElementById('planner-days'))
+    if (plan.start) {
+        fillForecasts(document.getElementById('planner-days'))
+        fillForecasts(document.getElementById('planner-today'))
+    }
 }
 
 function commit(plan, { scroll = false } = {}) {
@@ -652,6 +749,8 @@ function handlePlannerClick(e) {
             return window.print()
         case 'ics':
             return exportPlanIcs(plan)
+        case 'offline':
+            return downloadOffline(plan, btn)
     }
 }
 
@@ -689,6 +788,14 @@ function initPlanner() {
         }
     })
     renderPlanner()
+
+    /* Cập nhật mốc "đang diễn ra / tiếp theo" mỗi phút */
+    setInterval(() => {
+        const box = document.getElementById('planner-today')
+        if (!box || !box.firstElementChild || box.firstElementChild.classList.contains('today--upcoming')) return
+        box.innerHTML = renderToday(planner.plan, planTotals(planner.plan))
+        fillForecasts(box)
+    }, 60000)
 }
 
 initPlanner()

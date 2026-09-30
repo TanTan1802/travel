@@ -26,7 +26,7 @@ function favoriteButton(id, { withLabel = false } = {}) {
     `
 }
 
-function destinationCard(d, hint = '') {
+function destinationCard(d, hint = '', hintIcon = 'ri-search-line') {
     return `
         <div class="dest-card-wrap">
             <a href="${destinationUrl(d.id)}" class="dest-card">
@@ -38,7 +38,7 @@ function destinationCard(d, hint = '') {
                 <div class="dest-card__body">
                     <h3 class="dest-card__title">${d.name}</h3>
                     <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> ${d.province}</span>
-                    ${hint ? `<span class="dest-card__hint"><i class="ri-search-line"></i> ${hint}</span>` : ''}
+                    ${hint ? `<span class="dest-card__hint"><i class="${hintIcon}"></i> ${hint}</span>` : ''}
                     <p class="dest-card__tagline">${d.tagline}</p>
                     <div class="dest-card__tags">
                         ${d.categories.map(c => `<span class="tag">${CATEGORIES[c]}</span>`).join('')}
