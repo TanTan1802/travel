@@ -1,8 +1,9 @@
 /*
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
+ * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '0979e07e05'
+const VERSION = '83de22dd00'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const MEDIA_CACHE = 'media'
@@ -27,6 +28,7 @@ const CORE_ASSETS = [
     './assets/js/data/packing.js',
     './assets/js/favorites.js',
     './assets/js/components.js',
+    './assets/js/today.js',
     './assets/js/trip-export.js',
     './assets/js/map.js',
     './assets/js/weather.js',
@@ -90,7 +92,7 @@ async function staleWhileRevalidate(request, cacheName, limit) {
             if (limit) trimCache(cacheName, limit)
         }
         return response
-    }).catch(() => cached || Response.error())
+    }).catch(async () => cached || (await caches.match(request)) || Response.error())
     return cached || network
 }
 

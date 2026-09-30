@@ -303,6 +303,35 @@ test('báo sai thông tin: link GitHub Issue điền sẵn', () => {
     assert.match(url.searchParams.get('body'), /Thông tin hiện tại:\*\* Miễn phí/)
 })
 
+test('chế độ Hôm nay: trạng thái chuyến đi và mốc hiện tại / kế tiếp', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/today.js'],
+        ['tripStatus', 'currentAndNext', 'daysBetween', 'assetsInHtml'],
+    )
+    const plan = { stops: [{ id: 'ha-noi', days: 2 }, { id: 'hoi-an', days: 3 }], start: '2026-12-30' }
+    assert.equal(app.daysBetween('2026-12-30', '2027-01-02'), 3)
+    assert.equal(app.tripStatus(plan, '2026-12-20').kind, 'upcoming')
+    assert.equal(app.tripStatus(plan, '2026-12-20').inDays, 10)
+    const ongoing = app.tripStatus(plan, '2027-01-01')
+    assert.equal(ongoing.kind, 'ongoing')
+    assert.equal(ongoing.dayIndex, 2)
+    assert.equal(ongoing.trip.end, '2027-01-03')
+    assert.equal(app.tripStatus(plan, '2027-01-04'), null, 'chuyến đã kết thúc')
+    assert.equal(app.tripStatus({ ...plan, start: '' }, '2027-01-01'), null, 'chưa có ngày khởi hành')
+
+    const entries = [{ time: '06:30' }, { time: '07:30' }, { time: '11:30' }, { time: '13:00' }]
+    const at = (h, m) => app.currentAndNext(entries, h * 60 + m)
+    assert.equal(at(6, 0).current, null)
+    assert.equal(at(6, 0).next.time, '06:30')
+    assert.equal(at(12, 15).current.time, '11:30')
+    assert.equal(at(12, 15).next.time, '13:00')
+    assert.equal(at(12, 15).minutesToNext, 45)
+    assert.equal(at(22, 0).next, null)
+
+    const assets = [...app.assetsInHtml('<script src="../../assets/js/a.js"></script><img srcset="x-480.webp 480w, x-1920.webp 1920w"><a href="https://x.com/a.js">', 'http://h/diem-den/hoi-an/index.html')]
+    assert.deepEqual(assets.sort(), ['http://h/assets/js/a.js', 'http://h/diem-den/hoi-an/x-480.webp'], 'bỏ ảnh 1920 và link ngoài')
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]

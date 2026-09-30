@@ -20,10 +20,11 @@ test.after(async () => {
 })
 
 /* Trang mới với tài nguyên ngoài đã được giả lập; trả về trang + danh sách lỗi thu được */
-async function openPage(url, { viewport = { width: 1280, height: 900 } } = {}) {
-    const context = await browser.newContext({ viewport, serviceWorkers: 'block' })
+async function openPage(url, { viewport = { width: 1280, height: 900 }, geolocation = null } = {}) {
+    const context = await browser.newContext({ viewport, serviceWorkers: 'block', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) })
     await setupRoutes(context)
-    await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: server.url.replace(/\/$/, '') })
+    /* grantPermissions thay thế quyền của origin nên phải kèm cả geolocation nếu cần */
+    await context.grantPermissions(['clipboard-read', 'clipboard-write', ...(geolocation ? ['geolocation'] : [])], { origin: server.url.replace(/\/$/, '') })
     /* Ghi nhận lệnh in thay vì mở hộp thoại in */
     await context.addInitScript(() => {
         window.print = () => { window.__printed = { count: (window.__printed?.count || 0) + 1, bodyClass: document.body.className } }
@@ -272,6 +273,43 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     await page.click('[data-plan-add="da-lat"]')
     await page.waitForURL(/ke-hoach/)
     assert.ok((await stops()).includes('Đà Lạt'))
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('trong chuyến đi: chế độ Hôm nay, nhắc chuyến đi, gần tôi, lưu offline', async () => {
+    /* Đang đi: ngày 2/3 ở Hội An lúc 12:00 → đang ăn trưa (11:30), tiếp theo cà phê 13:00 */
+    const { page, errors, close } = await openPage('ke-hoach/index.html?p=hoi-an.3&d=2026-11-10&today=2026-11-11&now=12:00', { geolocation: { latitude: 21.03, longitude: 105.85 } })
+    assert.match(await page.textContent('#today .today__title'), /Ngày 2\/3 – Phố cổ Hội An/)
+    assert.match(await page.textContent('#today .today__entry--now'), /11:30/)
+    const next = await page.textContent('#today .today__entry--next')
+    assert.match(next, /còn 1 giờ\s/)
+    assert.match(next, /13:00/)
+    assert.match(await page.getAttribute('#today .today__entry--next .today__go', 'href'), /google\.com\/maps\/dir\/\?api=1&destination=/)
+    assert.ok(await page.$$eval('#today .nearby-links__chip', a => a.length) >= 5, 'cần tìm nhanh quanh đây')
+
+    /* Lưu offline: trang kế hoạch, trang điểm đến và mã nguồn vào Cache Storage */
+    await page.click('[data-action="offline"]')
+    await page.waitForSelector('#offline-status')
+    const cached = await page.evaluate(async () => (await (await caches.open('trip-offline')).keys()).map(r => new URL(r.url).pathname))
+    assert.ok(cached.some(p => p.endsWith('/diem-den/hoi-an/index.html')), 'phải lưu trang Hội An')
+    assert.ok(cached.some(p => p.endsWith('/assets/js/data/dest/hoi-an.js')), 'phải lưu dữ liệu riêng của Hội An')
+    assert.ok(cached.some(p => /\/assets\/img\/wiki\/.+-480\.webp$/.test(p)), 'phải lưu ảnh cỡ nhỏ')
+
+    /* Sắp đi: còn 5 ngày */
+    await page.goto(page.url().split('?')[0] + '?p=hoi-an.3&d=2026-11-10&today=2026-11-05')
+    assert.match(await page.textContent('#planner-today .today--upcoming'), /Còn 5 ngày/)
+
+    /* Trang chủ nhắc chuyến đi đang diễn ra + "Gần tôi" sắp theo khoảng cách (vị trí: Hà Nội) */
+    await page.goto(page.url().replace(/ke-hoach\/index\.html.*/, 'index.html?today=2026-11-11'))
+    assert.match(await page.textContent('#trip-banner'), /ngày 2\/3 của chuyến đi – Phố cổ Hội An/)
+    await page.click('#trip-banner .trip-banner__close')
+    assert.ok(await page.isHidden('#trip-banner'))
+    await page.click('#near-filter')
+    await page.waitForSelector('#near-filter[aria-pressed="true"]')
+    assert.match(await page.textContent('#dest-grid .dest-card__hint'), /Cách bạn ~\d+ km/)
+    assert.equal((await page.textContent('#dest-grid .dest-card__title')).trim(), 'Hà Nội', 'gần Hà Nội nhất là Hà Nội')
 
     assert.deepEqual(errors, [])
     await close()

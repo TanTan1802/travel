@@ -96,6 +96,7 @@ const exploreState = {
     view: 'grid',
     favoritesOnly: false,
     month: 0,
+    near: null,
 }
 
 /*==================== EXPLORE: BẢN ĐỒ ====================*/
@@ -208,6 +209,75 @@ function resetFilters() {
     renderGrid()
 }
 
+/* Đường bộ dài hơn đường chim bay khoảng 30% (giống trình lập kế hoạch) */
+const ROAD_FACTOR_HOME = 1.3
+
+/* "Gần tôi": lấy vị trí điện thoại (chỉ dùng trong trình duyệt, không gửi đi đâu) */
+function initNearFilter() {
+    const btn = document.getElementById('near-filter')
+    if (!btn) return
+    if (!('geolocation' in navigator)) {
+        btn.hidden = true
+        return
+    }
+    btn.addEventListener('click', () => {
+        if (exploreState.near) {
+            exploreState.near = null
+            btn.setAttribute('aria-pressed', 'false')
+            btn.classList.remove('chip--active')
+            return renderGrid()
+        }
+        btn.classList.add('chip--loading')
+        navigator.geolocation.getCurrentPosition(pos => {
+            btn.classList.remove('chip--loading')
+            exploreState.near = { lat: pos.coords.latitude, lng: pos.coords.longitude }
+            btn.setAttribute('aria-pressed', 'true')
+            btn.classList.add('chip--active')
+            renderGrid()
+            showToast(t('Đã sắp xếp điểm đến theo khoảng cách từ vị trí của bạn'))
+        }, () => {
+            btn.classList.remove('chip--loading')
+            showToast(t('Không lấy được vị trí – hãy cho phép truy cập vị trí trong trình duyệt'))
+        }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 })
+    })
+}
+
+/* Nhắc chuyến đi đã lên kế hoạch: đang đi → hôm nay là ngày mấy; sắp đi (≤ 14 ngày) → đếm ngược */
+const TRIP_BANNER_DISMISS = 'viet-travel:trip-banner-closed'
+
+function renderTripBanner() {
+    const box = document.getElementById('trip-banner')
+    if (!box || typeof tripStatus !== 'function') return
+    const plan = TripPlan.get()
+    const status = tripStatus(plan)
+    const today = currentIsoDate()
+    let dismissed = ''
+    try { dismissed = sessionStorage.getItem(TRIP_BANNER_DISMISS) || '' } catch { /* bỏ qua */ }
+    if (!status || dismissed === today || (status.kind === 'upcoming' && status.inDays > 14)) return
+
+    let text
+    if (status.kind === 'ongoing') {
+        let offset = status.dayIndex
+        const stop = plan.stops.find(s => (offset -= s.days) < 0)
+        text = t('Hôm nay là ngày {n}/{total} của chuyến đi – {name}', { n: status.dayIndex + 1, total: status.trip.days, name: getDestination(stop.id).name })
+    } else {
+        text = status.inDays === 1 ? t('Ngày mai khởi hành!') : t('Còn {n} ngày nữa là tới chuyến đi', { n: status.inDays })
+    }
+    box.innerHTML = `
+        <i class="ri-suitcase-3-line trip-banner__icon"></i>
+        <div class="trip-banner__text">
+            <strong>${text}</strong>
+            <a href="${plannerUrl(status.kind === 'ongoing' ? '#today' : '')}">${status.kind === 'ongoing' ? t('Xem lịch hôm nay') : t('Xem kế hoạch')} <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <button type="button" class="trip-banner__close" aria-label="${t('Đóng')}"><i class="ri-close-line"></i></button>
+    `
+    box.hidden = false
+    box.querySelector('.trip-banner__close').addEventListener('click', () => {
+        box.hidden = true
+        try { sessionStorage.setItem(TRIP_BANNER_DISMISS, today) } catch { /* bỏ qua */ }
+    })
+}
+
 /* Danh sách hiện theo trang để trang chủ không quá dài (nhất là trên điện thoại) */
 const GRID_PAGE = 8
 
@@ -225,10 +295,14 @@ function renderGrid({ more = false } = {}) {
             (!exploreState.month || d.bestMonths.includes(exploreState.month)))
         .map(d => ({ d, match: tokens.length ? scoreDestination(d, tokens) : { score: 0, hint: '' } }))
         .filter(r => r.match)
-        .sort((a, b) => b.match.score - a.match.score)
+        .map(r => (exploreState.near ? { ...r, km: distanceKm(exploreState.near, r.d) } : r))
+        /* "Gần tôi" (khi không tìm kiếm): sắp theo khoảng cách; còn lại theo độ khớp từ khóa */
+        .sort((a, b) => (exploreState.near && !tokens.length ? a.km - b.km : b.match.score - a.match.score))
 
     const shown = results.slice(0, exploreState.visible)
-    grid.innerHTML = shown.map(r => destinationCard(r.d, r.match.hint)).join('')
+    grid.innerHTML = shown.map(r => (r.km != null && !r.match.hint
+        ? destinationCard(r.d, t('Cách bạn ~{km} km', { km: Math.round(r.km * ROAD_FACTOR_HOME).toLocaleString(LANG === 'en' ? 'en-US' : 'vi-VN') }), 'ri-focus-3-line')
+        : destinationCard(r.d, r.match.hint))).join('')
     grid.dataset.results = results.length
     const rest = results.length - shown.length
     document.getElementById('explore-more-wrap').hidden = rest <= 0
@@ -313,6 +387,7 @@ function initExplore() {
 
     initFavoriteFilter()
     initMonthFilter()
+    initNearFilter()
 
     const count = document.getElementById('dest-count')
     if (count) count.textContent = DESTINATIONS.length
@@ -376,6 +451,7 @@ function renderSeasonEvents(month) {
 }
 
 renderDiscover()
+renderTripBanner()
 renderSeason()
 initExplore()
 hydrateWikiImages()
