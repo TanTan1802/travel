@@ -524,6 +524,12 @@
                     <p>Việt Travel · Quang Binh · Best time: March – August</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Start date</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Pick a date to see the daily weather forecast and add the itinerary to your calendar.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -557,6 +563,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -589,6 +598,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Phong Nha Cave</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Phong+Nha%2C+B%E1%BA%BFn+thuy%E1%BB%81n+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch&destination=Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Phong+Nha&waypoints=%C4%90%E1%BB%99ng+Ti%C3%AAn+S%C6%A1n%2C+Khu+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -761,6 +780,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Paradise Cave – Dark Cave</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Thi%C3%AAn+%C4%90%C6%B0%E1%BB%9Dng%2C+S%C6%A1n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=S%C3%B4ng+Ch%C3%A0y+%E2%80%93+hang+T%E1%BB%91i+%28zipline%2C+t%E1%BA%AFm+b%C3%B9n%29%2C+S%C3%B4ng+Ch%C3%A0y%2C+Phong+Nha" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -904,6 +933,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Nuoc Mooc stream – Trang Nguyen</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Su%E1%BB%91i+N%C6%B0%E1%BB%9Bc+Mo%E1%BB%8Dc%2C+Ph%C3%BAc+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=Hang+T%C3%A1m+C%C3%B4+%E2%80%93+%C4%91%C6%B0%E1%BB%9Dng+Tr%C6%B0%E1%BB%9Dng+S%C6%A1n%2C+T%C3%A2n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1197,6 +1236,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 4 days 3 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 4 days 3 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -1235,6 +1277,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Phong Nha Cave</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Phong+Nha%2C+B%E1%BA%BFn+thuy%E1%BB%81n+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch&destination=Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Phong+Nha&waypoints=%C4%90%E1%BB%99ng+Ti%C3%AAn+S%C6%A1n%2C+Khu+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1407,6 +1459,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Paradise Cave – Dark Cave</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Thi%C3%AAn+%C4%90%C6%B0%E1%BB%9Dng%2C+S%C6%A1n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=S%C3%B4ng+Ch%C3%A0y+%E2%80%93+hang+T%E1%BB%91i+%28zipline%2C+t%E1%BA%AFm+b%C3%B9n%29%2C+S%C3%B4ng+Ch%C3%A0y%2C+Phong+Nha" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -1551,6 +1613,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Nuoc Mooc stream – Trang Nguyen</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Su%E1%BB%91i+N%C6%B0%E1%BB%9Bc+Mo%E1%BB%8Dc%2C+Ph%C3%BAc+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=Hang+T%C3%A1m+C%C3%B4+%E2%80%93+%C4%91%C6%B0%E1%BB%9Dng+Tr%C6%B0%E1%BB%9Dng+S%C6%A1n%2C+T%C3%A2n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -1694,6 +1766,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Dong Hoi – Nhat Le beach</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Th%C3%A0nh+c%E1%BB%95+%C4%90%E1%BB%93ng+H%E1%BB%9Bi+%E2%80%93+nh%C3%A0+th%E1%BB%9D+Tam+T%C3%B2a%2C+Quang+Trung%2C+%C4%90%E1%BB%93ng+H%E1%BB%9Bi&destination=Bi%E1%BB%83n+Nh%E1%BA%ADt+L%E1%BB%87+%E2%80%93+%C4%91%E1%BB%93i+c%C3%A1t+Quang+Ph%C3%BA%2C+Quang+Ph%C3%BA%2C+%C4%90%E1%BB%93ng+H%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1983,6 +2065,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 5 days 4 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 5 days 4 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -2027,6 +2112,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Phong Nha Cave</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Phong+Nha%2C+B%E1%BA%BFn+thuy%E1%BB%81n+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch&destination=Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Thung+l%C5%A9ng+B%E1%BB%93ng+Lai%2C+Phong+Nha&waypoints=%C4%90%E1%BB%99ng+Ti%C3%AAn+S%C6%A1n%2C+Khu+Phong+Nha%2C+S%C6%A1n+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2199,6 +2294,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Paradise Cave – Dark Cave</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%99ng+Thi%C3%AAn+%C4%90%C6%B0%E1%BB%9Dng%2C+S%C6%A1n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=S%C3%B4ng+Ch%C3%A0y+%E2%80%93+hang+T%E1%BB%91i+%28zipline%2C+t%E1%BA%AFm+b%C3%B9n%29%2C+S%C3%B4ng+Ch%C3%A0y%2C+Phong+Nha" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -2342,6 +2447,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Nuoc Mooc stream – Trang Nguyen</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Su%E1%BB%91i+N%C6%B0%E1%BB%9Bc+Mo%E1%BB%8Dc%2C+Ph%C3%BAc+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch&destination=Hang+T%C3%A1m+C%C3%B4+%E2%80%93+%C4%91%C6%B0%E1%BB%9Dng+Tr%C6%B0%E1%BB%9Dng+S%C6%A1n%2C+T%C3%A2n+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2487,6 +2602,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Dong Hoi – Nhat Le beach</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Th%C3%A0nh+c%E1%BB%95+%C4%90%E1%BB%93ng+H%E1%BB%9Bi+%E2%80%93+nh%C3%A0+th%E1%BB%9D+Tam+T%C3%B2a%2C+Quang+Trung%2C+%C4%90%E1%BB%93ng+H%E1%BB%9Bi&destination=Bi%E1%BB%83n+Nh%E1%BA%ADt+L%E1%BB%87+%E2%80%93+%C4%91%E1%BB%93i+c%C3%A1t+Quang+Ph%C3%BA%2C+Quang+Ph%C3%BA%2C+%C4%90%E1%BB%93ng+H%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -2626,6 +2751,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Day 5: Vung Chua – Yen Island</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phong-nha"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=M%E1%BB%99+%C4%90%E1%BA%A1i+t%C6%B0%E1%BB%9Bng+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p%2C+V%C5%A9ng+Ch%C3%B9a%2C+Qu%E1%BA%A3ng+%C4%90%C3%B4ng%2C+Qu%E1%BA%A3ng+Tr%E1%BA%A1ch&destination=Bi%E1%BB%83n+%C4%90%C3%A1+Nh%E1%BA%A3y%2C+Thanh+Tr%E1%BA%A1ch%2C+B%E1%BB%91+Tr%E1%BA%A1ch" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3171,6 +3306,7 @@
         <script defer src="../../../assets/js/data/dest/phong-nha.js"></script>
         <script defer src="../../../assets/js/favorites.js"></script>
         <script defer src="../../../assets/js/components.js"></script>
+        <script defer src="../../../assets/js/trip-export.js"></script>
         <script defer src="../../../assets/js/config.js"></script>
         <script defer src="../../../assets/js/map.js"></script>
         <script defer src="../../../assets/js/weather.js"></script>

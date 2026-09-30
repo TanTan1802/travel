@@ -512,6 +512,12 @@
                     <p>Việt Travel · Kiên Giang · Thời điểm đẹp: Tháng 11 – 4</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -545,6 +551,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -577,6 +586,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nam đảo</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%C3%A1p+treo+H%C3%B2n+Th%C6%A1m+%2B+Aquatopia%2C+Ga+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Sunset+Town+%E2%80%93+show+Kiss+of+the+Sea%2C+Sunset+Town%2C+An+Th%E1%BB%9Bi&waypoints=B%C3%A3i+Sao%2C+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+t%C3%B9+Ph%C3%BA+Qu%E1%BB%91c+%28C%C3%A2y+D%E1%BB%ABa%29%2C+350+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB%2C+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -761,6 +780,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Tour 4 đảo</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+4+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4%2C+C%E1%BA%A3ng+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+Dinh+C%E1%BA%ADu%2C+V%C3%B5+Th%E1%BB%8B+S%C3%A1u%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng&waypoints=H%C3%B2n+M%C3%A2y+R%C3%BAt+%E2%80%93+H%C3%B2n+M%C3%B3ng+Tay%2C+Qu%E1%BA%A7n+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -916,6 +945,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bắc đảo</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Grand+World+Ph%C3%BA+Qu%E1%BB%91c%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=B%C3%A3i+D%C3%A0i%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&waypoints=VinWonders+%E2%80%93+Vinpearl+Safari%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CR%E1%BA%A1ch+V%E1%BA%B9m+%E2%80%93+b%C3%A3i+sao+bi%E1%BB%83n%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+th%C3%B9ng+n%C6%B0%E1%BB%9Bc+m%E1%BA%AFm+%E2%80%93+v%C6%B0%E1%BB%9Dn+ti%C3%AAu%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng%2C+Ph%C3%BA+Qu%E1%BB%91c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1256,6 +1295,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 4 ngày 3 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1294,6 +1336,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nam đảo</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%C3%A1p+treo+H%C3%B2n+Th%C6%A1m+%2B+Aquatopia%2C+Ga+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Sunset+Town+%E2%80%93+show+Kiss+of+the+Sea%2C+Sunset+Town%2C+An+Th%E1%BB%9Bi&waypoints=B%C3%A3i+Sao%2C+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+t%C3%B9+Ph%C3%BA+Qu%E1%BB%91c+%28C%C3%A2y+D%E1%BB%ABa%29%2C+350+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB%2C+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1478,6 +1530,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Tour 4 đảo</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+4+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4%2C+C%E1%BA%A3ng+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+Dinh+C%E1%BA%ADu%2C+V%C3%B5+Th%E1%BB%8B+S%C3%A1u%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng&waypoints=H%C3%B2n+M%C3%A2y+R%C3%BAt+%E2%80%93+H%C3%B2n+M%C3%B3ng+Tay%2C+Qu%E1%BA%A7n+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1633,6 +1695,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bắc đảo</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Grand+World+Ph%C3%BA+Qu%E1%BB%91c%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=B%C3%A3i+D%C3%A0i%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&waypoints=VinWonders+%E2%80%93+Vinpearl+Safari%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CR%E1%BA%A1ch+V%E1%BA%B9m+%E2%80%93+b%C3%A3i+sao+bi%E1%BB%83n%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+th%C3%B9ng+n%C6%B0%E1%BB%9Bc+m%E1%BA%AFm+%E2%80%93+v%C6%B0%E1%BB%9Dn+ti%C3%AAu%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng%2C+Ph%C3%BA+Qu%E1%BB%91c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1824,6 +1896,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Làng chài Hàm Ninh – suối Tranh</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C3%A0ng+ch%C3%A0i+H%C3%A0m+Ninh%2C+H%C3%A0m+Ninh%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Dinh+C%E1%BA%ADu%2C+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng&waypoints=Su%E1%BB%91i+Tranh%2C+H%C3%A0m+Ninh%2C+Ph%C3%BA+Qu%E1%BB%91c%7CTr%E1%BA%A1i+nu%C3%B4i+ng%E1%BB%8Dc+trai%2C+%C4%90%C6%B0%E1%BB%9Dng+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2144,6 +2226,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 5 ngày 4 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -2188,6 +2273,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Nam đảo</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=C%C3%A1p+treo+H%C3%B2n+Th%C6%A1m+%2B+Aquatopia%2C+Ga+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Sunset+Town+%E2%80%93+show+Kiss+of+the+Sea%2C+Sunset+Town%2C+An+Th%E1%BB%9Bi&waypoints=B%C3%A3i+Sao%2C+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+t%C3%B9+Ph%C3%BA+Qu%E1%BB%91c+%28C%C3%A2y+D%E1%BB%ABa%29%2C+350+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB%2C+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2372,6 +2467,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Tour 4 đảo</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+4+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4%2C+C%E1%BA%A3ng+An+Th%E1%BB%9Bi%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+Dinh+C%E1%BA%ADu%2C+V%C3%B5+Th%E1%BB%8B+S%C3%A1u%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng&waypoints=H%C3%B2n+M%C3%A2y+R%C3%BAt+%E2%80%93+H%C3%B2n+M%C3%B3ng+Tay%2C+Qu%E1%BA%A7n+%C4%91%E1%BA%A3o+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2527,6 +2632,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bắc đảo</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Grand+World+Ph%C3%BA+Qu%E1%BB%91c%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=B%C3%A3i+D%C3%A0i%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&waypoints=VinWonders+%E2%80%93+Vinpearl+Safari%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CR%E1%BA%A1ch+V%E1%BA%B9m+%E2%80%93+b%C3%A3i+sao+bi%E1%BB%83n%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c%7CNh%C3%A0+th%C3%B9ng+n%C6%B0%E1%BB%9Bc+m%E1%BA%AFm+%E2%80%93+v%C6%B0%E1%BB%9Dn+ti%C3%AAu%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng%2C+Ph%C3%BA+Qu%E1%BB%91c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2719,6 +2834,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Làng chài Hàm Ninh – suối Tranh</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C3%A0ng+ch%C3%A0i+H%C3%A0m+Ninh%2C+H%C3%A0m+Ninh%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Dinh+C%E1%BA%ADu%2C+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng&waypoints=Su%E1%BB%91i+Tranh%2C+H%C3%A0m+Ninh%2C+Ph%C3%BA+Qu%E1%BB%91c%7CTr%E1%BA%A1i+nu%C3%B4i+ng%E1%BB%8Dc+trai%2C+%C4%90%C6%B0%E1%BB%9Dng+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+An+Th%E1%BB%9Bi" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2889,6 +3014,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Mũi Gành Dầu – rừng nguyên sinh</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="phu-quoc"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C6%B0%E1%BB%9Dn+qu%E1%BB%91c+gia+Ph%C3%BA+Qu%E1%BB%91c+%E2%80%93+m%C5%A9i+G%C3%A0nh+D%E1%BA%A7u%2C+G%C3%A0nh+D%E1%BA%A7u%2C+Ph%C3%BA+Qu%E1%BB%91c&destination=Ch%C3%B9a+H%E1%BB%99+Qu%E1%BB%91c%2C+D%C6%B0%C6%A1ng+T%C6%A1%2C+Ph%C3%BA+Qu%E1%BB%91c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3433,6 +3568,7 @@
         <script defer src="../../assets/js/data/dest/phu-quoc.js"></script>
         <script defer src="../../assets/js/favorites.js"></script>
         <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/trip-export.js"></script>
         <script defer src="../../assets/js/config.js"></script>
         <script defer src="../../assets/js/map.js"></script>
         <script defer src="../../assets/js/weather.js"></script>

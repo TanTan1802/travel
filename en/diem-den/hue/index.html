@@ -538,6 +538,12 @@
                     <p>Việt Travel · Thua Thien Hue · Best time: January – April</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Start date</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Pick a date to see the daily weather forecast and add the itinerary to your calendar.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -571,6 +577,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -603,6 +612,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Hue Imperial City</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A1i+N%E1%BB%99i+Hu%E1%BA%BF+%E2%80%93+Ng%E1%BB%8D+M%C3%B4n%2C+T%E1%BB%AD+C%E1%BA%A5m+Th%C3%A0nh%2C+23+Th%C3%A1ng+8%2C+Thu%E1%BA%ADn+H%C3%B2a%2C+Hu%E1%BA%BF&destination=Ca+Hu%E1%BA%BF+tr%C3%AAn+thuy%E1%BB%81n+r%E1%BB%93ng%2C+B%E1%BA%BFn+T%C3%B2a+Kh%C3%A2m%2C+L%C3%AA+L%E1%BB%A3i%2C+Hu%E1%BA%BF&waypoints=Ch%C3%B9a+Thi%C3%AAn+M%E1%BB%A5%2C+Kim+Long%2C+Hu%E1%BA%BF%7CL%C4%83ng+Minh+M%E1%BA%A1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%8D%2C+H%C6%B0%C6%A1ng+Tr%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -772,6 +791,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Royal tombs and food</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C4%83ng+Kh%E1%BA%A3i+%C4%90%E1%BB%8Bnh%2C+Th%E1%BB%A7y+B%E1%BA%B1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%A7y&destination=Ch%E1%BB%A3+%C4%90%C3%B4ng+Ba%2C+2+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+Hu%E1%BA%BF&waypoints=L%C4%83ng+T%E1%BB%B1+%C4%90%E1%BB%A9c%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF%7CL%C3%A0ng+h%C6%B0%C6%A1ng+Th%E1%BB%A7y+Xu%C3%A2n%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -939,6 +968,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Tam Giang lagoon – Thuan An beach</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A7m+Chu%E1%BB%93n+%E2%80%93+ph%C3%A1+Tam+Giang%2C+Ph%C3%BA+An%2C+Ph%C3%BA+Vang&destination=Bi%E1%BB%83n+Thu%E1%BA%ADn+An%2C+Thu%E1%BA%ADn+An%2C+Hu%E1%BA%BF&waypoints=L%C3%A0ng+c%E1%BB%95+Ph%C6%B0%E1%BB%9Bc+T%C3%ADch%2C+Phong+H%C3%B2a%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1259,6 +1298,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 4 days 3 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 4 days 3 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -1297,6 +1339,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Hue Imperial City</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A1i+N%E1%BB%99i+Hu%E1%BA%BF+%E2%80%93+Ng%E1%BB%8D+M%C3%B4n%2C+T%E1%BB%AD+C%E1%BA%A5m+Th%C3%A0nh%2C+23+Th%C3%A1ng+8%2C+Thu%E1%BA%ADn+H%C3%B2a%2C+Hu%E1%BA%BF&destination=Ca+Hu%E1%BA%BF+tr%C3%AAn+thuy%E1%BB%81n+r%E1%BB%93ng%2C+B%E1%BA%BFn+T%C3%B2a+Kh%C3%A2m%2C+L%C3%AA+L%E1%BB%A3i%2C+Hu%E1%BA%BF&waypoints=Ch%C3%B9a+Thi%C3%AAn+M%E1%BB%A5%2C+Kim+Long%2C+Hu%E1%BA%BF%7CL%C4%83ng+Minh+M%E1%BA%A1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%8D%2C+H%C6%B0%C6%A1ng+Tr%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1466,6 +1518,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Royal tombs and food</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C4%83ng+Kh%E1%BA%A3i+%C4%90%E1%BB%8Bnh%2C+Th%E1%BB%A7y+B%E1%BA%B1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%A7y&destination=Ch%E1%BB%A3+%C4%90%C3%B4ng+Ba%2C+2+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+Hu%E1%BA%BF&waypoints=L%C4%83ng+T%E1%BB%B1+%C4%90%E1%BB%A9c%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF%7CL%C3%A0ng+h%C6%B0%C6%A1ng+Th%E1%BB%A7y+Xu%C3%A2n%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -1633,6 +1695,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Tam Giang lagoon – Thuan An beach</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A7m+Chu%E1%BB%93n+%E2%80%93+ph%C3%A1+Tam+Giang%2C+Ph%C3%BA+An%2C+Ph%C3%BA+Vang&destination=Bi%E1%BB%83n+Thu%E1%BA%ADn+An%2C+Thu%E1%BA%ADn+An%2C+Hu%E1%BA%BF&waypoints=L%C3%A0ng+c%E1%BB%95+Ph%C6%B0%E1%BB%9Bc+T%C3%ADch%2C+Phong+H%C3%B2a%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1804,6 +1876,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Bach Ma – Lang Co</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C6%B0%E1%BB%9Dn+qu%E1%BB%91c+gia+B%E1%BA%A1ch+M%C3%A3+%E2%80%93+th%C3%A1c+%C4%90%E1%BB%97+Quy%C3%AAn%2C+Th%E1%BB%8B+tr%E1%BA%A5n+Ph%C3%BA+L%E1%BB%99c%2C+Hu%E1%BA%BF&destination=V%E1%BB%8Bnh+L%C4%83ng+C%C3%B4%2C+L%C4%83ng+C%C3%B4%2C+Ph%C3%BA+L%E1%BB%99c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2097,6 +2179,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 5 days 4 nights itinerary">
                                     <i class="ri-printer-line"></i> <span>Print / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 5 days 4 nights itinerary to your calendar (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
                                     <i class="ri-share-line"></i> <span>Share</span>
                                 </button>
@@ -2141,6 +2226,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Hue Imperial City</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A1i+N%E1%BB%99i+Hu%E1%BA%BF+%E2%80%93+Ng%E1%BB%8D+M%C3%B4n%2C+T%E1%BB%AD+C%E1%BA%A5m+Th%C3%A0nh%2C+23+Th%C3%A1ng+8%2C+Thu%E1%BA%ADn+H%C3%B2a%2C+Hu%E1%BA%BF&destination=Ca+Hu%E1%BA%BF+tr%C3%AAn+thuy%E1%BB%81n+r%E1%BB%93ng%2C+B%E1%BA%BFn+T%C3%B2a+Kh%C3%A2m%2C+L%C3%AA+L%E1%BB%A3i%2C+Hu%E1%BA%BF&waypoints=Ch%C3%B9a+Thi%C3%AAn+M%E1%BB%A5%2C+Kim+Long%2C+Hu%E1%BA%BF%7CL%C4%83ng+Minh+M%E1%BA%A1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%8D%2C+H%C6%B0%C6%A1ng+Tr%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2310,6 +2405,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Royal tombs and food</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C4%83ng+Kh%E1%BA%A3i+%C4%90%E1%BB%8Bnh%2C+Th%E1%BB%A7y+B%E1%BA%B1ng%2C+H%C6%B0%C6%A1ng+Th%E1%BB%A7y&destination=Ch%E1%BB%A3+%C4%90%C3%B4ng+Ba%2C+2+Tr%E1%BA%A7n+H%C6%B0ng+%C4%90%E1%BA%A1o%2C+Hu%E1%BA%BF&waypoints=L%C4%83ng+T%E1%BB%B1+%C4%90%E1%BB%A9c%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF%7CL%C3%A0ng+h%C6%B0%C6%A1ng+Th%E1%BB%A7y+Xu%C3%A2n%2C+Th%E1%BB%A7y+Xu%C3%A2n%2C+Hu%E1%BA%BF" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -2477,6 +2582,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Tam Giang lagoon – Thuan An beach</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A7m+Chu%E1%BB%93n+%E2%80%93+ph%C3%A1+Tam+Giang%2C+Ph%C3%BA+An%2C+Ph%C3%BA+Vang&destination=Bi%E1%BB%83n+Thu%E1%BA%ADn+An%2C+Thu%E1%BA%ADn+An%2C+Hu%E1%BA%BF&waypoints=L%C3%A0ng+c%E1%BB%95+Ph%C6%B0%E1%BB%9Bc+T%C3%ADch%2C+Phong+H%C3%B2a%2C+Phong+%C4%90i%E1%BB%81n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2649,6 +2764,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Bach Ma – Lang Co</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C6%B0%E1%BB%9Dn+qu%E1%BB%91c+gia+B%E1%BA%A1ch+M%C3%A3+%E2%80%93+th%C3%A1c+%C4%90%E1%BB%97+Quy%C3%AAn%2C+Th%E1%BB%8B+tr%E1%BA%A5n+Ph%C3%BA+L%E1%BB%99c%2C+Hu%E1%BA%BF&destination=V%E1%BB%8Bnh+L%C4%83ng+C%C3%B4%2C+L%C4%83ng+C%C3%B4%2C+Ph%C3%BA+L%E1%BB%99c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
@@ -2792,6 +2917,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Day 5: Over Hai Van pass to Da Nang</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="hue"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+H%E1%BA%A3i+V%C3%A2n+%E2%80%93+H%E1%BA%A3i+V%C3%A2n+Quan%2C+%C4%90%E1%BB%89nh+%C4%91%C3%A8o+H%E1%BA%A3i+V%C3%A2n&destination=C%E1%BA%A7u+R%E1%BB%93ng%2C+Nguy%E1%BB%85n+V%C4%83n+Linh%2C+%C4%90%C3%A0+N%E1%BA%B5ng&waypoints=Bi%E1%BB%83n+M%E1%BB%B9+Kh%C3%AA%2C+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p%2C+%C4%90%C3%A0+N%E1%BA%B5ng%7CCh%C3%B9a+Linh+%E1%BB%A8ng+S%C6%A1n+Tr%C3%A0%2C+B%C3%A3i+B%E1%BB%A5t%2C+S%C6%A1n+Tr%C3%A0%2C+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3365,6 +3500,7 @@
         <script defer src="../../../assets/js/data/dest/hue.js"></script>
         <script defer src="../../../assets/js/favorites.js"></script>
         <script defer src="../../../assets/js/components.js"></script>
+        <script defer src="../../../assets/js/trip-export.js"></script>
         <script defer src="../../../assets/js/config.js"></script>
         <script defer src="../../../assets/js/map.js"></script>
         <script defer src="../../../assets/js/weather.js"></script>

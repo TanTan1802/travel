@@ -37,6 +37,27 @@ const WEATHER_MOCK = {
     },
 }
 
+/* Dự báo theo khoảng ngày (start_date → end_date) khi trang hỏi theo ngày đi, còn lại dùng mẫu cố định */
+function weatherMock(url) {
+    const start = url.searchParams.get('start_date')
+    const end = url.searchParams.get('end_date')
+    if (!start || !end) return WEATHER_MOCK
+    const time = []
+    for (let d = new Date(`${start}T00:00:00Z`); d <= new Date(`${end}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1)) {
+        time.push(d.toISOString().slice(0, 10))
+    }
+    const codes = [0, 2, 61, 95]
+    return {
+        daily: {
+            time,
+            weather_code: time.map((_, i) => codes[i % codes.length]),
+            temperature_2m_max: time.map((_, i) => 30 + (i % 3)),
+            temperature_2m_min: time.map((_, i) => 23 + (i % 2)),
+            precipitation_probability_max: time.map((_, i) => (i * 17) % 100),
+        },
+    }
+}
+
 /*
  * Chặn/giả lập tài nguyên bên ngoài để test ổn định:
  * - Wikimedia Commons: 404 (bắt buộc dùng ảnh trong repo), Open-Meteo: dữ liệu giả, Giscus: chặn.
@@ -45,7 +66,7 @@ const WEATHER_MOCK = {
 async function setupRoutes(context) {
     await context.route('https://commons.wikimedia.org/**', r => r.fulfill({ status: 404, body: '' }))
     await context.route('https://api.open-meteo.com/**', r => r.fulfill({
-        status: 200, contentType: 'application/json', body: JSON.stringify(WEATHER_MOCK),
+        status: 200, contentType: 'application/json', body: JSON.stringify(weatherMock(new URL(r.request().url()))),
     }))
     await context.route('https://giscus.app/**', r => r.fulfill({ status: 404, body: '' }))
     await context.route('https://*.tile.openstreetmap.org/**', r => r.fulfill({

@@ -201,7 +201,9 @@ function initTourActions(d) {
     document.addEventListener('click', e => {
         const btn = e.target.closest('[data-tour-action]')
         if (!btn) return
-        if (btn.dataset.tourAction === 'print') {
+        if (btn.dataset.tourAction === 'ics') {
+            exportTourIcs(d, Number(btn.closest('.tour').dataset.tour))
+        } else if (btn.dataset.tourAction === 'print') {
             document.body.classList.add('print-itinerary')
             window.addEventListener('afterprint', () => document.body.classList.remove('print-itinerary'), { once: true })
             window.print()
@@ -214,6 +216,84 @@ function initTourActions(d) {
             })
         }
     })
+}
+
+/*==================== NGÀY KHỞI HÀNH: DỰ BÁO THỜI TIẾT + XUẤT LỊCH ====================*/
+const TOUR_START_KEY = 'viet-travel:tour-start'
+
+function tourStart() {
+    return document.getElementById('tour-start')?.value || ''
+}
+
+/* Điền ngày, dự báo và link Google Calendar cho từng ngày của mọi tour */
+function applyTourStart(d) {
+    const start = tourStart()
+    const plan = ITINERARIES[d.id]
+    document.querySelectorAll('.tour').forEach(tour => {
+        const n = Number(tour.dataset.tour)
+        tour.querySelectorAll('.day-tools').forEach(tools => {
+            const i = Number(tools.dataset.dayOffset)
+            const date = start ? addDays(start, i) : ''
+            const dateEl = tools.querySelector('[data-day-date]')
+            const forecast = tools.querySelector('[data-forecast-dest]')
+            const gcal = tools.querySelector('[data-gcal]')
+            dateEl.hidden = !date
+            dateEl.innerHTML = date ? `<i class="ri-calendar-line"></i> ${formatDate(date)}` : ''
+            gcal.hidden = !date
+            if (date) {
+                forecast.dataset.forecastDate = date
+                const entries = dayTimeline(d.id, i, plan.days[i], { last: i === n - 1 })
+                gcal.href = googleCalendarDayUrl({
+                    title: `${d.name} – ${t('Ngày {n}', { n: i + 1 })}: ${plan.days[i].title}`,
+                    date,
+                    details: `${dayDetailsText(entries)}\n\n${location.href.split('#')[0]}#itinerary`,
+                    location: `${d.name}, ${d.province}`,
+                })
+            } else {
+                delete forecast.dataset.forecastDate
+                forecast.innerHTML = ''
+            }
+        })
+    })
+    if (start) fillForecasts(document.getElementById('itinerary'))
+}
+
+function initTourStart(d) {
+    const input = document.getElementById('tour-start')
+    if (!input) return
+    input.min = todayIso()
+    try {
+        const saved = localStorage.getItem(TOUR_START_KEY)
+        if (saved && saved >= todayIso()) input.value = saved
+    } catch { /* bỏ qua */ }
+    input.addEventListener('change', () => {
+        try {
+            if (input.value) localStorage.setItem(TOUR_START_KEY, input.value)
+            else localStorage.removeItem(TOUR_START_KEY)
+        } catch { /* bỏ qua */ }
+        applyTourStart(d)
+    })
+    applyTourStart(d)
+}
+
+/* Tải file .ics của tour đang chọn: mỗi mốc timeline là một sự kiện có giờ */
+function exportTourIcs(d, n) {
+    const start = tourStart()
+    if (!start) {
+        const input = document.getElementById('tour-start')
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        input.focus()
+        showToast(t('Chọn ngày khởi hành trước để thêm vào lịch'))
+        return
+    }
+    const plan = ITINERARIES[d.id]
+    const events = plan.days.slice(0, n).flatMap((day, i) => timelineToEvents(
+        dayTimeline(d.id, i, day, { last: i === n - 1 }),
+        { date: addDays(start, i), destName: d.name, dayLabel: `${t('Ngày {n}', { n: i + 1 })}: ${day.title}` },
+    ))
+    const name = `${d.name} – ${tourLabel(n)}`
+    downloadTextFile(`${safeFileName(name)}-${start}.ics`, buildIcs({ name, events }))
+    showToast(t('Đã tải file lịch – mở file để thêm vào Google Calendar, Apple Calendar hoặc Outlook'))
 }
 
 /*==================== THANH 12 THÁNG: BẤM CHỌN THÁNG ====================*/
@@ -340,6 +420,7 @@ if (dest) {
     syncPlanButtons()
     initItineraryTabs()
     initTourActions(dest)
+    initTourStart(dest)
     initLocationMap(dest)
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
     initComments()

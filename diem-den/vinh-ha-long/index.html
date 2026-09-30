@@ -522,6 +522,12 @@
                     <p>Việt Travel · Quảng Ninh · Thời điểm đẹp: Tháng 4 – 10</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -555,6 +561,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -587,6 +596,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Lên du thuyền, khám phá vịnh</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C3%A9+tham+quan+v%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+1%E2%80%932%29%2C+C%E1%BA%A3ng+t%C3%A0u+kh%C3%A1ch+qu%E1%BB%91c+t%E1%BA%BF+Tu%E1%BA%A7n+Ch%C3%A2u%2C+H%E1%BA%A1+Long&destination=Ch%C3%A8o+kayak+hang+Lu%E1%BB%93n%2C+Hang+Lu%E1%BB%93n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&waypoints=Hang+S%E1%BB%ADng+S%E1%BB%91t%2C+%C4%90%E1%BA%A3o+B%E1%BB%93+H%C3%B2n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -743,6 +762,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Ti Tốp và làng chài</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&destination=Sun+World+H%E1%BA%A1+Long+%E2%80%93+v%C3%B2ng+quay+M%E1%BA%B7t+Tr%E1%BB%9Di%2C+C%C3%B4ng+vi%C3%AAn+Sun+World%2C+B%C3%A3i+Ch%C3%A1y&waypoints=L%C3%A0ng+ch%C3%A0i+C%E1%BB%ADa+V%E1%BA%A1n%2C+V%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+2%29" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -914,6 +943,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bảo tàng và chợ hải sản</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=B%E1%BA%A3o+t%C3%A0ng+Qu%E1%BA%A3ng+Ninh%2C+Tr%E1%BA%A7n+Qu%E1%BB%91c+Nghi%E1%BB%85n%2C+H%E1%BB%93ng+Gai%2C+H%E1%BA%A1+Long&destination=Ch%E1%BB%A3+H%E1%BA%A1+Long+1%2C+%C4%90%C6%B0%E1%BB%9Dng+C%E1%BB%99t+%C4%90%E1%BB%93ng+H%E1%BB%93%2C+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+H%E1%BA%A1+Long&waypoints=C%C3%A1p+treo+N%E1%BB%AF+Ho%C3%A0ng+%E2%80%93+%C4%91%E1%BB%93i+Ba+%C4%90%C3%A8o%2C+Ga+H%E1%BA%A1+Long+Park%2C+B%C3%A3i+Ch%C3%A1y" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1234,6 +1273,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 4 ngày 3 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1272,6 +1314,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Lên du thuyền, khám phá vịnh</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C3%A9+tham+quan+v%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+1%E2%80%932%29%2C+C%E1%BA%A3ng+t%C3%A0u+kh%C3%A1ch+qu%E1%BB%91c+t%E1%BA%BF+Tu%E1%BA%A7n+Ch%C3%A2u%2C+H%E1%BA%A1+Long&destination=Ch%C3%A8o+kayak+hang+Lu%E1%BB%93n%2C+Hang+Lu%E1%BB%93n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&waypoints=Hang+S%E1%BB%ADng+S%E1%BB%91t%2C+%C4%90%E1%BA%A3o+B%E1%BB%93+H%C3%B2n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1428,6 +1480,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Ti Tốp và làng chài</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&destination=Sun+World+H%E1%BA%A1+Long+%E2%80%93+v%C3%B2ng+quay+M%E1%BA%B7t+Tr%E1%BB%9Di%2C+C%C3%B4ng+vi%C3%AAn+Sun+World%2C+B%C3%A3i+Ch%C3%A1y&waypoints=L%C3%A0ng+ch%C3%A0i+C%E1%BB%ADa+V%E1%BA%A1n%2C+V%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+2%29" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1600,6 +1662,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bảo tàng và chợ hải sản</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=B%E1%BA%A3o+t%C3%A0ng+Qu%E1%BA%A3ng+Ninh%2C+Tr%E1%BA%A7n+Qu%E1%BB%91c+Nghi%E1%BB%85n%2C+H%E1%BB%93ng+Gai%2C+H%E1%BA%A1+Long&destination=Ch%E1%BB%A3+H%E1%BA%A1+Long+1%2C+%C4%90%C6%B0%E1%BB%9Dng+C%E1%BB%99t+%C4%90%E1%BB%93ng+H%E1%BB%93%2C+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+H%E1%BA%A1+Long&waypoints=C%C3%A1p+treo+N%E1%BB%AF+Ho%C3%A0ng+%E2%80%93+%C4%91%E1%BB%93i+Ba+%C4%90%C3%A8o%2C+Ga+H%E1%BA%A1+Long+Park%2C+B%C3%A3i+Ch%C3%A1y" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1770,6 +1842,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Vịnh Lan Hạ – Cát Bà</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+thuy%E1%BB%81n+v%E1%BB%8Bnh+Lan+H%E1%BA%A1+%2B+kayak%2C+B%E1%BA%BFn+B%C3%A8o%2C+th%E1%BB%8B+tr%E1%BA%A5n+C%C3%A1t+B%C3%A0&destination=B%C3%A3i+Ba+Tr%C3%A1i+%C4%90%C3%A0o%2C+V%E1%BB%8Bnh+Lan+H%E1%BA%A1%2C+C%C3%A1t+B%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2055,6 +2137,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 5 ngày 4 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -2099,6 +2184,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Lên du thuyền, khám phá vịnh</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=V%C3%A9+tham+quan+v%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+1%E2%80%932%29%2C+C%E1%BA%A3ng+t%C3%A0u+kh%C3%A1ch+qu%E1%BB%91c+t%E1%BA%BF+Tu%E1%BA%A7n+Ch%C3%A2u%2C+H%E1%BA%A1+Long&destination=Ch%C3%A8o+kayak+hang+Lu%E1%BB%93n%2C+Hang+Lu%E1%BB%93n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&waypoints=Hang+S%E1%BB%ADng+S%E1%BB%91t%2C+%C4%90%E1%BA%A3o+B%E1%BB%93+H%C3%B2n%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2255,6 +2350,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Ti Tốp và làng chài</h3>
+                
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+%C4%90%E1%BA%A3o+Ti+T%E1%BB%91p%2C+v%E1%BB%8Bnh+H%E1%BA%A1+Long&destination=Sun+World+H%E1%BA%A1+Long+%E2%80%93+v%C3%B2ng+quay+M%E1%BA%B7t+Tr%E1%BB%9Di%2C+C%C3%B4ng+vi%C3%AAn+Sun+World%2C+B%C3%A3i+Ch%C3%A1y&waypoints=L%C3%A0ng+ch%C3%A0i+C%E1%BB%ADa+V%E1%BA%A1n%2C+V%E1%BB%8Bnh+H%E1%BA%A1+Long+%28tuy%E1%BA%BFn+2%29" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2427,6 +2532,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Bảo tàng và chợ hải sản</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=B%E1%BA%A3o+t%C3%A0ng+Qu%E1%BA%A3ng+Ninh%2C+Tr%E1%BA%A7n+Qu%E1%BB%91c+Nghi%E1%BB%85n%2C+H%E1%BB%93ng+Gai%2C+H%E1%BA%A1+Long&destination=Ch%E1%BB%A3+H%E1%BA%A1+Long+1%2C+%C4%90%C6%B0%E1%BB%9Dng+C%E1%BB%99t+%C4%90%E1%BB%93ng+H%E1%BB%93%2C+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+H%E1%BA%A1+Long&waypoints=C%C3%A1p+treo+N%E1%BB%AF+Ho%C3%A0ng+%E2%80%93+%C4%91%E1%BB%93i+Ba+%C4%90%C3%A8o%2C+Ga+H%E1%BA%A1+Long+Park%2C+B%C3%A3i+Ch%C3%A1y" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2598,6 +2713,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Vịnh Lan Hạ – Cát Bà</h3>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+thuy%E1%BB%81n+v%E1%BB%8Bnh+Lan+H%E1%BA%A1+%2B+kayak%2C+B%E1%BA%BFn+B%C3%A8o%2C+th%E1%BB%8B+tr%E1%BA%A5n+C%C3%A1t+B%C3%A0&destination=B%C3%A3i+Ba+Tr%C3%A1i+%C4%90%C3%A0o%2C+V%E1%BB%8Bnh+Lan+H%E1%BA%A1%2C+C%C3%A1t+B%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2733,6 +2858,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Yên Tử linh thiêng</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="vinh-ha-long"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Y%C3%AAn+T%E1%BB%AD+%E2%80%93+v%C3%A9+th%E1%BA%AFng+c%E1%BA%A3nh+%2B+c%C3%A1p+treo%2C+Th%C6%B0%E1%BB%A3ng+Y%C3%AAn+C%C3%B4ng%2C+U%C3%B4ng+B%C3%AD&destination=Thi%E1%BB%81n+vi%E1%BB%87n+Tr%C3%BAc+L%C3%A2m+Y%C3%AAn+T%E1%BB%AD%2C+Khu+L%C3%A2n%2C+Th%C6%B0%E1%BB%A3ng+Y%C3%AAn+C%C3%B4ng%2C+U%C3%B4ng+B%C3%AD" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3266,6 +3401,7 @@
         <script defer src="../../assets/js/data/dest/vinh-ha-long.js"></script>
         <script defer src="../../assets/js/favorites.js"></script>
         <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/trip-export.js"></script>
         <script defer src="../../assets/js/config.js"></script>
         <script defer src="../../assets/js/map.js"></script>
         <script defer src="../../assets/js/weather.js"></script>

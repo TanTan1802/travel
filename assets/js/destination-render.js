@@ -276,6 +276,24 @@ function activitiesSection(d) {
 
 const tourLabel = n => t('{n} ngày {m} đêm', { n, m: n - 1 })
 
+/*
+ * Công cụ của một ngày: lộ trình trên Google Maps (luôn có) + ngày, dự báo thời tiết và link
+ * Google Calendar (hiện khi người dùng chọn ngày khởi hành – điền bởi destination.js).
+ */
+function dayToolsHtml(d, dayIndex) {
+    const route = dayRouteUrl(d.id, dayIndex)
+    return `
+        <div class="day-tools" data-day-offset="${dayIndex}">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="${d.id}"></span>
+            <span class="day-tools__links">
+                ${route ? `<a href="${route}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> ${t('Lộ trình trên Google Maps')}</a>` : ''}
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> ${t('Thêm ngày này vào Google Calendar')}</a>
+            </span>
+        </div>
+    `
+}
+
 function tourDaysHtml(d, plan, n) {
     const days = plan.days.slice(0, n)
     return `
@@ -292,6 +310,7 @@ function tourDaysHtml(d, plan, n) {
         ${days.map((day, i) => `
             <div class="itinerary__panel" role="tabpanel" id="tour${n}-panel-${i}" aria-labelledby="tour${n}-tab-${i}"${i === 0 ? '' : ' hidden'}>
                 <h3 class="itinerary__day-title">${t('Ngày {n}', { n: i + 1 })}: ${day.title}</h3>
+                ${dayToolsHtml(d, i)}
                 ${dayTimelineHtml(dayTimeline(d.id, i, day, { last: i === n - 1 }))}
             </div>
         `).join('')}
@@ -346,6 +365,12 @@ function itinerarySection(d) {
                     <p>Việt Travel · ${d.province} · ${t('Thời điểm đẹp')}: ${d.bestTime}</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> ${t('Ngày khởi hành')}</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">${t('Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.')}</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="${t('Chọn tour')}">
                     ${lengths.map((n, i) => `
                         <button type="button" class="tour-picker__btn${i === 0 ? ' tour-picker__btn--active' : ''}" role="tab"
@@ -366,6 +391,9 @@ function itinerarySection(d) {
                                 </button>
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="${t('In lịch trình {tour}', { tour: tourLabel(n) })}">
                                     <i class="ri-printer-line"></i> <span>${t('In / PDF')}</span>
+                                </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="${t('Thêm lịch trình {tour} vào lịch (.ics)', { tour: tourLabel(n) })}">
+                                    <i class="ri-calendar-2-line"></i> <span>${t('Thêm vào lịch')}</span>
                                 </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="${t('Chia sẻ lịch trình')}">
                                     <i class="ri-share-line"></i> <span>${t('Chia sẻ')}</span>

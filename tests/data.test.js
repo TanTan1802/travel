@@ -171,6 +171,75 @@ test('món đặc sản nào cũng có ảnh (ảnh thật hoặc ảnh minh h�
     }
 })
 
+test('xuất lịch .ics đúng chuẩn RFC 5545, link Google Calendar và Google Maps hợp lệ', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+            'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js', 'assets/js/trip-export.js'],
+        ['DESTINATIONS', 'ITINERARIES', 'dayTimeline', 'timelineToEvents', 'buildIcs', 'foldIcsLine', 'googleCalendarDayUrl',
+            'dayDetailsText', 'dayRouteUrl', 'tripRouteUrl', 'safeFileName', 'addDays'],
+    )
+    const d = app.DESTINATIONS.find(x => x.id === 'hoi-an')
+    const days = app.ITINERARIES[d.id].days.slice(0, 3)
+    const start = '2026-12-30' // qua năm mới để kiểm tra cộng ngày
+    const entries = days.map((day, i) => app.dayTimeline(d.id, i, day, { last: i === 2 }))
+    const events = entries.flatMap((list, i) => app.timelineToEvents(list, { date: app.addDays(start, i), destName: d.name, dayLabel: `Ngày ${i + 1}` }))
+    assert.equal(events.length, entries.reduce((n, list) => n + list.length, 0), 'mỗi mốc timeline là một sự kiện')
+    events.forEach(e => assert.ok(e.end > e.start, `sự kiện ${e.summary} phải kết thúc sau khi bắt đầu`))
+    assert.ok(events.some(e => e.start.startsWith('20270101T')), 'ngày thứ 3 phải là 01/01/2027')
+
+    const ics = app.buildIcs({ name: 'Hội An; thử, "ký tự" đặc biệt', events, now: new Date(Date.UTC(2026, 8, 30, 8, 0, 0)) })
+    assert.ok(ics.startsWith('BEGIN:VCALENDAR\r\nVERSION:2.0\r\n'), 'mở đầu VCALENDAR + VERSION')
+    assert.ok(ics.endsWith('END:VCALENDAR\r\n'))
+    assert.ok(!/[^\r]\n/.test(ics), 'mọi dòng phải kết thúc bằng CRLF')
+    const lines = ics.split('\r\n').slice(0, -1)
+    lines.forEach(line => assert.ok(Buffer.byteLength(line, 'utf8') <= 75, `dòng quá 75 byte: ${line}`))
+    const unfolded = ics.replace(/\r\n /g, '').split('\r\n')
+    assert.equal(unfolded.filter(l => l === 'BEGIN:VEVENT').length, events.length)
+    assert.equal(unfolded.filter(l => l === 'END:VEVENT').length, events.length)
+    assert.ok(unfolded.includes('TZID:Asia/Ho_Chi_Minh') && unfolded.includes('TZOFFSETTO:+0700'), 'cần VTIMEZONE Việt Nam')
+    assert.ok(unfolded.includes('X-WR-CALNAME:Hội An\\; thử\\, "ký tự" đặc biệt'), 'phải thoát ; và , trong TEXT')
+    assert.ok(unfolded.every(l => !l.startsWith('DTSTART;') || /^DTSTART;TZID=Asia\/Ho_Chi_Minh:\d{8}T\d{6}$/.test(l)), 'DTSTART sai định dạng')
+    assert.ok(unfolded.includes('DTSTAMP:20260930T080000Z'), 'DTSTAMP theo UTC')
+    const uids = unfolded.filter(l => l.startsWith('UID:'))
+    assert.equal(new Set(uids).size, uids.length, 'UID không được trùng')
+    /* Gập dòng không làm vỡ ký tự tiếng Việt nhiều byte */
+    const long = `DESCRIPTION:${'Phố cổ Hội An – đèn lồng rực rỡ '.repeat(8)}`
+    assert.equal(app.foldIcsLine(long).replace(/\r\n /g, ''), long)
+
+    const gcal = new URL(app.googleCalendarDayUrl({ title: 'Hội An – Ngày 1', date: '2026-12-31', details: app.dayDetailsText(entries[0]), location: 'Hội An' }))
+    assert.equal(gcal.hostname, 'calendar.google.com')
+    assert.equal(gcal.searchParams.get('dates'), '20261231/20270101', 'sự kiện cả ngày: ngày kết thúc là hôm sau')
+    assert.equal(gcal.searchParams.get('ctz'), 'Asia/Ho_Chi_Minh')
+    assert.ok(gcal.searchParams.get('details').length <= 1500)
+
+    for (const x of app.DESTINATIONS) {
+        app.ITINERARIES[x.id].days.forEach((_, i) => {
+            const url = app.dayRouteUrl(x.id, i)
+            assert.ok(url.startsWith('https://www.google.com/maps/'), `${x.id} ngày ${i + 1}: thiếu lộ trình Google Maps`)
+            if (url.includes('/dir/')) {
+                const waypoints = new URL(url).searchParams.get('waypoints')
+                assert.ok(!waypoints || waypoints.split('|').length <= 8, `${x.id} ngày ${i + 1}: quá 8 điểm dừng`)
+            }
+        })
+    }
+    const route = new URL(app.tripRouteUrl(['ha-noi', 'hue', 'hoi-an'].map(id => app.DESTINATIONS.find(x => x.id === id))))
+    assert.equal(route.searchParams.get('waypoints').split('|').length, 1)
+    assert.equal(app.safeFileName('Phố cổ Hội An – 3 ngày 2 đêm'), 'pho-co-hoi-an-3-ngay-2-dem')
+})
+
+test('dự báo theo ngày đi: chỉ hỏi trong tầm 16 ngày', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/weather.js'],
+        ['forecastWindow', 'lastForecastDate', 'todayIso'],
+    )
+    const now = new Date(2026, 8, 30, 10) // 30/09/2026
+    assert.equal(app.todayIso(now), '2026-09-30')
+    assert.equal(app.lastForecastDate(now), '2026-10-15')
+    assert.deepEqual({ ...app.forecastWindow('2026-10-10', '2026-10-20', now) }, { from: '2026-10-10', to: '2026-10-15' })
+    assert.deepEqual({ ...app.forecastWindow('2026-09-25', '2026-10-02', now) }, { from: '2026-09-30', to: '2026-10-02' })
+    assert.equal(app.forecastWindow('2026-11-01', '2026-11-05', now), null, 'quá xa thì không gọi API')
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]

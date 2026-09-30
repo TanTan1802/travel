@@ -4321,3 +4321,127 @@ body.dark-theme .sight__price--free {
     overflow: visible !important;
   }
 }
+
+/*=============== NGÀY KHỞI HÀNH, CÔNG CỤ TỪNG NGÀY, DỰ BÁO THEO NGÀY ===============*/
+.trip-date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+  margin-bottom: 1.25rem;
+  padding: .75rem 1rem;
+  border-radius: .75rem;
+  background-color: hsla(160, 45%, 35%, .08);
+}
+
+.trip-date__label {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.trip-date__input {
+  width: auto;
+  min-width: 11rem;
+}
+
+.trip-date__hint {
+  flex-basis: 100%;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.day-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  margin: .25rem 0 .75rem;
+}
+
+.day-tools__date {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.day-tools__date[hidden],
+.day-tools__link[hidden] {
+  display: none;
+}
+
+.day-tools__forecast:empty {
+  display: none;
+}
+
+.day-tools__links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.day-tools__link {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .3rem .7rem;
+  border: 1px solid var(--input-color);
+  border-radius: 1rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+body.dark-theme .day-tools__link {
+  color: var(--accent-color);
+}
+
+.day-tools__link:hover {
+  border-color: currentColor;
+}
+
+.forecast-chip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .3rem;
+  padding: .3rem .7rem;
+  border-radius: 1rem;
+  background-color: hsla(205, 80%, 50%, .1);
+  color: var(--title-color);
+  font-size: var(--smaller-font-size);
+}
+
+.forecast-chip i {
+  font-size: 1rem;
+  color: hsl(205, 75%, 45%);
+}
+
+.forecast-chip--later,
+.forecast-chip--loading,
+.forecast-chip--error {
+  background-color: hsla(0, 0%, 50%, .08);
+  color: var(--text-color-light);
+}
+
+.forecast-chip--later i,
+.forecast-chip--loading i,
+.forecast-chip--error i {
+  color: inherit;
+}
+
+.planner__export {
+  margin-top: .5rem;
+}
+
+@media print {
+  .trip-date,
+  .day-tools__links {
+    display: none !important;
+  }
+}

@@ -538,6 +538,12 @@
                     <p>Việt Travel · Sài Gòn · Thời điểm đẹp: Tháng 12 – 4 (mùa khô)</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
@@ -571,6 +577,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -603,6 +612,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Sài Gòn di sản</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+%C4%90%E1%BB%99c+L%E1%BA%ADp%2C+135+Nam+K%E1%BB%B3+Kh%E1%BB%9Fi+Ngh%C4%A9a%2C+Qu%E1%BA%ADn+1&destination=Saigon+Skydeck+%28Bitexco%29%2C+36+H%E1%BB%93+T%C3%B9ng+M%E1%BA%ADu%2C+Qu%E1%BA%ADn+1&waypoints=Nh%C3%A0+th%E1%BB%9D+%C4%90%E1%BB%A9c+B%C3%A0%2C+01+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%C6%B0u+%C4%91i%E1%BB%87n+Th%C3%A0nh+ph%E1%BB%91%2C+02+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%E1%BA%A3o+t%C3%A0ng+Ch%E1%BB%A9ng+t%C3%ADch+Chi%E1%BA%BFn+tranh%2C+28+V%C3%B5+V%C4%83n+T%E1%BA%A7n%2C+Qu%E1%BA%ADn+3%7CCh%E1%BB%A3+B%E1%BA%BFn+Th%C3%A0nh%2C+L%C3%AA+L%E1%BB%A3i%2C+Qu%E1%BA%ADn+1%7CPh%E1%BB%91+%C4%91i+b%E1%BB%99+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Qu%E1%BA%ADn+1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -823,6 +842,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Địa đạo và ẩm thực</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%8Ba+%C4%91%E1%BA%A1o+C%E1%BB%A7+Chi%2C+Ph%C3%BA+Hi%E1%BB%87p%2C+C%E1%BB%A7+Chi&destination=Food+tour+xe+m%C3%A1y+Qu%E1%BA%ADn+4%2C+%C4%90%C3%B3n+t%E1%BA%A1i+kh%C3%A1ch+s%E1%BA%A1n+Qu%E1%BA%ADn+1&waypoints=Ch%C3%B9a+B%C3%A0+Thi%C3%AAn+H%E1%BA%ADu%2C+710+Nguy%E1%BB%85n+Tr%C3%A3i%2C+Qu%E1%BA%ADn+5%7CCh%E1%BB%A3+L%E1%BB%9Bn+%E2%80%93+ch%E1%BB%A3+B%C3%ACnh+T%C3%A2y%2C+Th%C3%A1p+M%C6%B0%E1%BB%9Di%2C+Qu%E1%BA%ADn+6" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -990,6 +1019,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cần Giờ – rừng ngập mặn</h3>
+                
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=R%E1%BB%ABng+S%C3%A1c+C%E1%BA%A7n+Gi%E1%BB%9D+%E2%80%93+%C4%91%E1%BA%A3o+Kh%E1%BB%89%2C+Long+H%C3%B2a%2C+C%E1%BA%A7n+Gi%E1%BB%9D&destination=Du+thuy%E1%BB%81n+s%C3%B4ng+S%C3%A0i+G%C3%B2n%2C+B%E1%BA%BFn+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+Qu%E1%BA%ADn+1&waypoints=Bi%E1%BB%83n+30%2F4+C%E1%BA%A7n+Gi%E1%BB%9D%2C+Th%E1%BB%8B+tr%E1%BA%A5n+C%E1%BA%A7n+Th%E1%BA%A1nh%2C+C%E1%BA%A7n+Gi%E1%BB%9D" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1295,6 +1334,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 4 ngày 3 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -1333,6 +1375,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Sài Gòn di sản</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+%C4%90%E1%BB%99c+L%E1%BA%ADp%2C+135+Nam+K%E1%BB%B3+Kh%E1%BB%9Fi+Ngh%C4%A9a%2C+Qu%E1%BA%ADn+1&destination=Saigon+Skydeck+%28Bitexco%29%2C+36+H%E1%BB%93+T%C3%B9ng+M%E1%BA%ADu%2C+Qu%E1%BA%ADn+1&waypoints=Nh%C3%A0+th%E1%BB%9D+%C4%90%E1%BB%A9c+B%C3%A0%2C+01+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%C6%B0u+%C4%91i%E1%BB%87n+Th%C3%A0nh+ph%E1%BB%91%2C+02+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%E1%BA%A3o+t%C3%A0ng+Ch%E1%BB%A9ng+t%C3%ADch+Chi%E1%BA%BFn+tranh%2C+28+V%C3%B5+V%C4%83n+T%E1%BA%A7n%2C+Qu%E1%BA%ADn+3%7CCh%E1%BB%A3+B%E1%BA%BFn+Th%C3%A0nh%2C+L%C3%AA+L%E1%BB%A3i%2C+Qu%E1%BA%ADn+1%7CPh%E1%BB%91+%C4%91i+b%E1%BB%99+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Qu%E1%BA%ADn+1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -1553,6 +1605,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Địa đạo và ẩm thực</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%8Ba+%C4%91%E1%BA%A1o+C%E1%BB%A7+Chi%2C+Ph%C3%BA+Hi%E1%BB%87p%2C+C%E1%BB%A7+Chi&destination=Food+tour+xe+m%C3%A1y+Qu%E1%BA%ADn+4%2C+%C4%90%C3%B3n+t%E1%BA%A1i+kh%C3%A1ch+s%E1%BA%A1n+Qu%E1%BA%ADn+1&waypoints=Ch%C3%B9a+B%C3%A0+Thi%C3%AAn+H%E1%BA%ADu%2C+710+Nguy%E1%BB%85n+Tr%C3%A3i%2C+Qu%E1%BA%ADn+5%7CCh%E1%BB%A3+L%E1%BB%9Bn+%E2%80%93+ch%E1%BB%A3+B%C3%ACnh+T%C3%A2y%2C+Th%C3%A1p+M%C6%B0%E1%BB%9Di%2C+Qu%E1%BA%ADn+6" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1721,6 +1783,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cần Giờ – rừng ngập mặn</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=R%E1%BB%ABng+S%C3%A1c+C%E1%BA%A7n+Gi%E1%BB%9D+%E2%80%93+%C4%91%E1%BA%A3o+Kh%E1%BB%89%2C+Long+H%C3%B2a%2C+C%E1%BA%A7n+Gi%E1%BB%9D&destination=Du+thuy%E1%BB%81n+s%C3%B4ng+S%C3%A0i+G%C3%B2n%2C+B%E1%BA%BFn+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+Qu%E1%BA%ADn+1&waypoints=Bi%E1%BB%83n+30%2F4+C%E1%BA%A7n+Gi%E1%BB%9D%2C+Th%E1%BB%8B+tr%E1%BA%A5n+C%E1%BA%A7n+Th%E1%BA%A1nh%2C+C%E1%BA%A7n+Gi%E1%BB%9D" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -1876,6 +1948,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Mỹ Tho – Bến Tre</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=M%E1%BB%B9+Tho+%E2%80%93+c%E1%BB%93n+Th%E1%BB%9Bi+S%C6%A1n%2C+B%E1%BA%BFn+t%C3%A0u+du+l%E1%BB%8Bch+M%E1%BB%B9+Tho&destination=Ph%E1%BB%91+T%C3%A2y+B%C3%B9i+Vi%E1%BB%87n%2C+B%C3%B9i+Vi%E1%BB%87n%2C+Qu%E1%BA%ADn+1&waypoints=Xu%E1%BB%93ng+ba+l%C3%A1+r%E1%BA%A1ch+d%E1%BB%ABa+B%E1%BA%BFn+Tre%2C+C%E1%BB%93n+Ph%E1%BB%A5ng%2C+B%E1%BA%BFn+Tre" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2184,6 +2266,9 @@
                                 <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
                                     <i class="ri-printer-line"></i> <span>In / PDF</span>
                                 </button>
+                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 5 ngày 4 đêm vào lịch (.ics)">
+                                    <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                                </button>
                                 <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
                                     <i class="ri-share-line"></i> <span>Chia sẻ</span>
                                 </button>
@@ -2228,6 +2313,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Sài Gòn di sản</h3>
+                
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+%C4%90%E1%BB%99c+L%E1%BA%ADp%2C+135+Nam+K%E1%BB%B3+Kh%E1%BB%9Fi+Ngh%C4%A9a%2C+Qu%E1%BA%ADn+1&destination=Saigon+Skydeck+%28Bitexco%29%2C+36+H%E1%BB%93+T%C3%B9ng+M%E1%BA%ADu%2C+Qu%E1%BA%ADn+1&waypoints=Nh%C3%A0+th%E1%BB%9D+%C4%90%E1%BB%A9c+B%C3%A0%2C+01+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%C6%B0u+%C4%91i%E1%BB%87n+Th%C3%A0nh+ph%E1%BB%91%2C+02+C%C3%B4ng+x%C3%A3+Paris%2C+Qu%E1%BA%ADn+1%7CB%E1%BA%A3o+t%C3%A0ng+Ch%E1%BB%A9ng+t%C3%ADch+Chi%E1%BA%BFn+tranh%2C+28+V%C3%B5+V%C4%83n+T%E1%BA%A7n%2C+Qu%E1%BA%ADn+3%7CCh%E1%BB%A3+B%E1%BA%BFn+Th%C3%A0nh%2C+L%C3%AA+L%E1%BB%A3i%2C+Qu%E1%BA%ADn+1%7CPh%E1%BB%91+%C4%91i+b%E1%BB%99+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Qu%E1%BA%ADn+1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2448,6 +2543,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Địa đạo và ẩm thực</h3>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%8Ba+%C4%91%E1%BA%A1o+C%E1%BB%A7+Chi%2C+Ph%C3%BA+Hi%E1%BB%87p%2C+C%E1%BB%A7+Chi&destination=Food+tour+xe+m%C3%A1y+Qu%E1%BA%ADn+4%2C+%C4%90%C3%B3n+t%E1%BA%A1i+kh%C3%A1ch+s%E1%BA%A1n+Qu%E1%BA%ADn+1&waypoints=Ch%C3%B9a+B%C3%A0+Thi%C3%AAn+H%E1%BA%ADu%2C+710+Nguy%E1%BB%85n+Tr%C3%A3i%2C+Qu%E1%BA%ADn+5%7CCh%E1%BB%A3+L%E1%BB%9Bn+%E2%80%93+ch%E1%BB%A3+B%C3%ACnh+T%C3%A2y%2C+Th%C3%A1p+M%C6%B0%E1%BB%9Di%2C+Qu%E1%BA%ADn+6" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2616,6 +2721,16 @@
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Cần Giờ – rừng ngập mặn</h3>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=R%E1%BB%ABng+S%C3%A1c+C%E1%BA%A7n+Gi%E1%BB%9D+%E2%80%93+%C4%91%E1%BA%A3o+Kh%E1%BB%89%2C+Long+H%C3%B2a%2C+C%E1%BA%A7n+Gi%E1%BB%9D&destination=Du+thuy%E1%BB%81n+s%C3%B4ng+S%C3%A0i+G%C3%B2n%2C+B%E1%BA%BFn+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+Qu%E1%BA%ADn+1&waypoints=Bi%E1%BB%83n+30%2F4+C%E1%BA%A7n+Gi%E1%BB%9D%2C+Th%E1%BB%8B+tr%E1%BA%A5n+C%E1%BA%A7n+Th%E1%BA%A1nh%2C+C%E1%BA%A7n+Gi%E1%BB%9D" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
         
         <div class="day-cost">
             <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
@@ -2771,6 +2886,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Mỹ Tho – Bến Tre</h3>
+                
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=M%E1%BB%B9+Tho+%E2%80%93+c%E1%BB%93n+Th%E1%BB%9Bi+S%C6%A1n%2C+B%E1%BA%BFn+t%C3%A0u+du+l%E1%BB%8Bch+M%E1%BB%B9+Tho&destination=Ph%E1%BB%91+T%C3%A2y+B%C3%B9i+Vi%E1%BB%87n%2C+B%C3%B9i+Vi%E1%BB%87n%2C+Qu%E1%BA%ADn+1&waypoints=Xu%E1%BB%93ng+ba+l%C3%A1+r%E1%BA%A1ch+d%E1%BB%ABa+B%E1%BA%BFn+Tre%2C+C%E1%BB%93n+Ph%E1%BB%A5ng%2C+B%E1%BA%BFn+Tre" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -2930,6 +3055,16 @@
         
             <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Tây Ninh – núi Bà Đen</h3>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="sai-gon"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=T%C3%B2a+Th%C3%A1nh+Cao+%C4%90%C3%A0i+T%C3%A2y+Ninh%2C+H%C3%B2a+Th%C3%A0nh%2C+T%C3%A2y+Ninh&destination=C%C3%A1p+treo+n%C3%BAi+B%C3%A0+%C4%90en%2C+Th%E1%BA%A1nh+T%C3%A2n%2C+T%C3%A2y+Ninh" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
                 
         
         <div class="day-cost">
@@ -3463,6 +3598,7 @@
         <script defer src="../../assets/js/data/dest/sai-gon.js"></script>
         <script defer src="../../assets/js/favorites.js"></script>
         <script defer src="../../assets/js/components.js"></script>
+        <script defer src="../../assets/js/trip-export.js"></script>
         <script defer src="../../assets/js/config.js"></script>
         <script defer src="../../assets/js/map.js"></script>
         <script defer src="../../assets/js/weather.js"></script>
