@@ -73,6 +73,15 @@ const PACKING = {
         { when: 'heritage', items: [
             { id: 'modest', group: 'clothes', name: ['Trang phục kín vai, gối khi vào chùa, lăng', 'Clothes covering shoulders and knees for temples'] },
         ] },
+        { when: 'family', items: [
+            { id: 'kidsmeds', group: 'health', name: ['Thuốc hạ sốt, men tiêu hóa cho trẻ', 'Kids’ fever and digestion meds'] },
+            { id: 'kidsgear', group: 'gear', name: ['Đồ ăn vặt, bình nước, đồ chơi nhỏ cho trẻ', 'Snacks, water bottle and small toys for kids'] },
+            { id: 'wetwipes', group: 'health', name: ['Khăn ướt, khăn giấy', 'Wet wipes and tissues'] },
+        ] },
+        { when: 'elder', items: [
+            { id: 'regularmeds', group: 'health', name: ['Thuốc dùng hằng ngày (huyết áp, tiểu đường...) đủ cả chuyến', 'Daily medication (blood pressure, diabetes...) for the whole trip'] },
+            { id: 'softshoes', group: 'clothes', name: ['Giày đế êm, chống trơn', 'Soft, non-slip shoes'] },
+        ] },
         { when: 'cave', items: [
             { id: 'torch', group: 'gear', name: ['Đèn pin nhỏ', 'Small torch'] },
         ] },
@@ -103,8 +112,8 @@ function packingConditions(d, month) {
     return set
 }
 
-/* Danh sách đồ gộp cho một hoặc nhiều điểm đến, không trùng món */
-function packingList(dests, months = []) {
+/* Danh sách đồ gộp cho một hoặc nhiều điểm đến, không trùng món (style: phong cách chuyến đi) */
+function packingList(dests, months = [], { style = '' } = {}) {
     const seen = new Set()
     const items = []
     const add = item => {
@@ -115,6 +124,7 @@ function packingList(dests, months = []) {
     PACKING.base.forEach(add)
     dests.forEach((d, i) => {
         const conditions = packingConditions(d, months[i] || months[0] || 0)
+        if (style === 'family' || style === 'elder') conditions.add(style)
         PACKING.rules.forEach(rule => { if (conditions.has(rule.when)) rule.items.forEach(add) })
     })
     return Object.keys(PACKING_GROUPS)

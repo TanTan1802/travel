@@ -96,7 +96,10 @@
                     <div class="home__data">
                         <span class="home__data-subtitle">Vietnam – Endless beauty</span>
                         <h1 class="home__data-title">Discover The <br> Most <b>Stunning Wonders <br> Of Vietnam</b></h1>
-                        <a href="#place" class="button">Explore now</a>
+                        <div class="home__actions">
+                            <a href="#place" class="button">Explore now</a>
+                            <button type="button" class="button button--light button--flex" data-quiz-open><i class="ri-questionnaire-line"></i> Where should you go?</button>
+                        </div>
                     </div>
 
                     <div class="home__social">
@@ -208,6 +211,7 @@
 
                     <div class="season__actions">
                         <button type="button" class="button button--flex" id="season-more">See all top picks for this month <i class="ri-arrow-down-line"></i></button>
+                        <button type="button" class="button button--ghost button--flex" data-quiz-open>Where should you go? <i class="ri-questionnaire-line"></i></button>
                         <a href="../en/cam-nang/thoi-diem-du-lich/index.html" class="button button--ghost button--flex">Where to go each month <i class="ri-calendar-2-line"></i></a>
                         <a href="../en/ke-hoach/index.html" class="button button--ghost button--flex">Plan your trip <i class="ri-route-line"></i></a>
                     </div>
@@ -1065,6 +1069,15 @@
             </section>
         </main>
 
+        <!--==================== TRẮC NGHIỆM ĐI ĐÂU (assets/js/quiz.js) ====================-->
+        <dialog class="quiz" id="quiz" aria-labelledby="quiz-heading">
+            <div class="quiz__header">
+                <strong id="quiz-heading"><i class="ri-questionnaire-line"></i> Where should you go?</strong>
+                <button type="button" class="quiz__close" data-quiz-close aria-label="Close"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="quiz__body" id="quiz-body"></div>
+        </dialog>
+
         <!--==================== FOOTER ====================-->
         <footer class="footer section">
             <div class="footer__container container grid">
@@ -1147,11 +1160,13 @@
         <script defer src="../assets/js/i18n.js"></script>
         <script defer src="../assets/js/data/destinations.js"></script>
         <script defer src="../assets/js/data/events.js"></script>
+        <script defer src="../assets/js/data/profiles.js"></script>
         <script defer src="../assets/js/favorites.js"></script>
         <script defer src="../assets/js/components.js"></script>
         <script defer src="../assets/js/today.js"></script>
         <script defer src="../assets/js/map.js"></script>
         <script defer src="../assets/js/home.js"></script>
+        <script defer src="../assets/js/quiz.js"></script>
         <script defer src="../assets/js/config.js"></script>
         <script defer src="../assets/js/newsletter.js"></script>
 

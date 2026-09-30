@@ -332,6 +332,31 @@ test('chế độ Hôm nay: trạng thái chuyến đi và mốc hiện tại / 
     assert.deepEqual(assets.sort(), ['http://h/assets/js/a.js', 'http://h/diem-den/hoi-an/x-480.webp'], 'bỏ ảnh 1920 và link ngoài')
 })
 
+test('hồ sơ chuyến đi: chi phí cả nhóm và trắc nghiệm gợi ý điểm đến', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/data/profiles.js', 'assets/js/quiz.js'],
+        ['DESTINATIONS', 'TRAVEL_STYLES', 'ORIGIN_IDS', 'groupCost', 'quizRecommendation', 'distanceKm'],
+    )
+    assert.equal(app.groupCost(1000000, 300000, 2), 2000000, '2 người = 2 lần chi phí / người')
+    assert.equal(app.groupCost(1000000, 300000, 3), 3300000, '3 người cần 2 phòng')
+    assert.equal(app.groupCost(1000000, 300000, 1), 1300000, '1 người trả trọn phòng')
+    app.ORIGIN_IDS.forEach(id => assert.ok(app.DESTINATIONS.some(d => d.id === id), `điểm xuất phát ${id} không tồn tại`))
+    Object.entries(app.TRAVEL_STYLES).forEach(([id, st]) => {
+        assert.ok(st.label[0] && st.label[1] && st.tips.length, `${id}: thiếu nhãn / gợi ý`)
+        st.caution.forEach(x => assert.ok(app.DESTINATIONS.some(d => d.id === x), `${id}: caution ${x} không tồn tại`))
+    })
+
+    const get = id => app.DESTINATIONS.find(d => d.id === id)
+    const beachSouthJan = app.quizRecommendation({ likes: ['bien'], month: '1', length: 'long', region: 'nam', style: 'couple', tier: 'saving' })
+    assert.equal(beachSouthJan.stops.reduce((n, s) => n + s.days, 0), 9, 'chuyến 7–10 ngày ≈ 9 ngày')
+    const first = get(beachSouthJan.stops[0].id)
+    assert.ok(first.categories.includes('bien') && first.region === 'nam' && first.bestMonths.includes(1), `gợi ý đầu (${first.id}) phải là biển miền Nam đẹp tháng 1`)
+    beachSouthJan.stops.slice(1).forEach(s => assert.ok(beachSouthJan.stops.some(o => o.id !== s.id && app.distanceKm(get(o.id), get(s.id)) <= 450), `${s.id} phải gần một điểm khác trong tuyến`))
+    const family = app.quizRecommendation({ likes: ['nui'], month: '10', length: 'short', region: 'bac', style: 'family' })
+    assert.equal(family.stops.length, 1)
+    assert.ok(!app.TRAVEL_STYLES.family.caution.includes(family.stops[0].id), 'gia đình có trẻ nhỏ không nên gợi ý điểm nhiều đèo dốc')
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]
