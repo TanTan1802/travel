@@ -256,6 +256,32 @@ function applyTourStart(d) {
         })
     })
     if (start) fillForecasts(document.getElementById('itinerary'))
+    renderTourAlerts(d)
+    renderPacking(d)
+}
+
+/* Lễ hội, nghỉ lễ, thời tiết cần lưu ý trùng các ngày của tour đang chọn */
+function renderTourAlerts(d) {
+    const box = document.getElementById('tour-alerts')
+    if (!box) return
+    const start = tourStart()
+    const tour = document.querySelector('.tour:not([hidden])')
+    const n = tour ? Number(tour.dataset.tour) : 3
+    const events = start ? eventsForTrip(d.id, { dates: Array.from({ length: n }, (_, i) => addDays(start, i)) }) : []
+    box.hidden = !events.length
+    box.innerHTML = events.length
+        ? `<li class="trip-alerts__title"><i class="ri-alarm-warning-line"></i> ${t('Lưu ý trong những ngày bạn đi')}</li>${events.map(e => eventCardHtml(e)).join('')}`
+        : ''
+}
+
+/* Danh sách đồ cần mang theo tháng đi (ngày khởi hành hoặc tháng hiện tại) */
+function renderPacking(d) {
+    const block = document.getElementById('packing')
+    if (!block) return
+    const start = tourStart()
+    const month = start ? Number(start.slice(5, 7)) : new Date().getMonth() + 1
+    block.querySelector('[data-packing-title]').textContent = t('Đồ cần mang – tháng {m}', { m: monthLabel(month) })
+    block.querySelector('[data-packing-slot]').innerHTML = packingHtml(packingList([d], [month]), d.id)
 }
 
 function initTourStart(d) {
@@ -273,6 +299,8 @@ function initTourStart(d) {
         } catch { /* bỏ qua */ }
         applyTourStart(d)
     })
+    /* Đổi tour 3/4/5 ngày → cập nhật lưu ý theo số ngày */
+    document.querySelectorAll('.tour-picker__btn').forEach(btn => btn.addEventListener('click', () => renderTourAlerts(d)))
     applyTourStart(d)
 }
 
@@ -314,6 +342,13 @@ function initSeasonPicker(d) {
             ? t('Tháng {m} là thời điểm đẹp để đi!', { m: monthLabel(month) })
             : t('Tháng {m} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.', { m: monthLabel(month) })
         status.classList.toggle('season__status--good', good)
+
+        /* Làm nổi lễ hội / mùa đặc sắc diễn ra trong tháng đang xem */
+        document.querySelectorAll('#dest-events .event').forEach(el => {
+            const inMonth = el.dataset.eventMonths.split(',').map(Number).includes(month)
+            el.classList.toggle('event--active', inMonth)
+            el.classList.toggle('event--dim', !inMonth)
+        })
 
         /* Gợi ý các điểm đến khác đẹp vào tháng này */
         const picks = DESTINATIONS.filter(x => x.id !== d.id && x.bestMonths.includes(month)).slice(0, 6)

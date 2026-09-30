@@ -4445,3 +4445,248 @@ body.dark-theme .day-tools__link {
     display: none !important;
   }
 }
+
+/*=============== LỄ HỘI & SỰ KIỆN ===============*/
+.events-card {
+  grid-column: 1 / -1;
+}
+
+.events__list {
+  display: grid;
+  gap: .75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.events-card .events__list {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin: .75rem 0;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: .75rem;
+  padding: .75rem;
+  border: 1px solid var(--input-color);
+  border-radius: .75rem;
+  background-color: var(--container-color);
+  transition: opacity .3s, border-color .3s;
+}
+
+.event__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: hsla(160, 45%, 35%, .12);
+  color: var(--first-color);
+  font-size: 1.1rem;
+}
+
+.event--festival .event__icon { background-color: hsla(350, 70%, 55%, .12); color: hsl(350, 65%, 48%); }
+.event--nature .event__icon { background-color: hsla(120, 45%, 40%, .12); color: hsl(120, 45%, 32%); }
+.event--holiday .event__icon { background-color: hsla(35, 90%, 50%, .15); color: hsl(30, 85%, 40%); }
+.event--weather .event__icon { background-color: hsla(210, 70%, 50%, .12); color: hsl(210, 65%, 42%); }
+
+.event__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .15rem .75rem;
+}
+
+.event__name {
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+}
+
+.event__name small {
+  font-weight: normal;
+  color: var(--text-color-light);
+}
+
+.event__when {
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--accent-color);
+  white-space: nowrap;
+}
+
+.event__desc,
+.event__tip {
+  font-size: var(--smaller-font-size);
+}
+
+.event__tip {
+  margin-top: .2rem;
+  color: var(--text-color-light);
+}
+
+.event--active {
+  border-color: var(--accent-color);
+}
+
+.event--dim {
+  opacity: .55;
+}
+
+.trip-alerts {
+  flex-basis: 100%;
+  margin-top: .5rem;
+}
+
+.trip-alerts[hidden] {
+  display: none;
+}
+
+.trip-alerts__title {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.season__events {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.season__events[hidden] {
+  display: none;
+}
+
+.season__events-title {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.event-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+/*=============== DANH SÁCH ĐỒ CẦN MANG ===============*/
+.packing-block {
+  margin-top: 2rem;
+}
+
+.packing-block__hint {
+  margin-bottom: .75rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.packing__progress {
+  margin-bottom: .75rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color);
+}
+
+.packing__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.packing__group {
+  padding: .75rem 1rem;
+  border-radius: .75rem;
+  background-color: var(--container-color);
+  box-shadow: 0 2px 12px hsla(0, 0%, 0%, .06);
+}
+
+.packing__title {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin-bottom: .5rem;
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+}
+
+.packing__list {
+  display: grid;
+  gap: .35rem;
+  padding: 0;
+  list-style: none;
+}
+
+.packing__item {
+  display: flex;
+  align-items: flex-start;
+  gap: .5rem;
+  font-size: var(--small-font-size);
+  cursor: pointer;
+}
+
+.packing__item input {
+  margin-top: .2rem;
+  accent-color: var(--first-color);
+}
+
+.packing__item input:checked + span {
+  color: var(--text-color-light);
+  text-decoration: line-through;
+}
+
+/*=============== BÁO SAI THÔNG TIN ===============*/
+.report-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  width: fit-content;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.report-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.report-page {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  margin-top: 2rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+/*=============== KHỐI THÔNG TIN TRONG TRANG LẬP KẾ HOẠCH ===============*/
+.planner__block {
+  margin-top: 2rem;
+}
+
+.planner__block-title {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .5rem;
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+}
+
+@media print {
+  .report-link,
+  .report-page,
+  .packing-block__hint {
+    display: none !important;
+  }
+
+  .event--dim {
+    opacity: 1;
+  }
+}

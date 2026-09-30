@@ -113,8 +113,22 @@ function climateSection(d) {
                     <p class="season__status" data-season-status="${d.bestMonths.join(',')}" aria-live="polite"></p>
                     <div class="season__others" id="season-others"></div>
                 </div>
+                ${eventsCardHtml(d)}
             </div>
         </section>
+    `
+}
+
+/* Lễ hội & mùa đặc sắc của điểm đến – bấm tháng trên thanh 12 tháng để làm nổi sự kiện của tháng đó */
+function eventsCardHtml(d) {
+    const events = destinationEvents(d.id)
+    if (!events.length) return ''
+    return `
+        <div class="climate__card events-card">
+            <h3 class="season__title"><i class="ri-flag-2-line"></i> ${t('Lễ hội & mùa đặc sắc')}</h3>
+            <ul class="events__list" id="dest-events">${events.map(e => eventCardHtml(e)).join('')}</ul>
+            <p class="budget__note">${t('Lễ theo âm lịch đổi ngày dương mỗi năm – kiểm tra lịch chính thức trước khi đi.')}</p>
+        </div>
     `
 }
 
@@ -163,6 +177,7 @@ function eatCard(e, d) {
             <a href="${mapsSearchUrl(`${e.name}, ${e.address}`)}" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> ${e.address}
             </a>
+            ${reportLinkHtml({ dest: d.name, item: e.name, details: `${e.address} · ${priceRange(e.price)}` })}
         </li>
     `
 }
@@ -270,6 +285,17 @@ function activitiesSection(d) {
                     ${d.tips.map(t => `<li class="tip-item">${t}</li>`).join('')}
                 </ul>
             </div>` : ''}
+
+            <div class="packing-block container" id="packing" data-dest="${d.id}">
+                <h3 class="tips__title"><i class="ri-luggage-cart-line"></i> <span data-packing-title>${t('Đồ cần mang')}</span></h3>
+                <p class="packing-block__hint">${t('Tự gợi ý theo điểm đến và tháng đi (chọn ngày khởi hành ở phần Lịch trình để đổi tháng). Đánh dấu để ghi nhớ món đã chuẩn bị.')}</p>
+                <div data-packing-slot></div>
+            </div>
+
+            <p class="report-page container">
+                <i class="ri-feedback-line"></i> ${t('Thấy giá vé, giờ mở cửa hay quán đã thay đổi?')}
+                ${reportLinkHtml({ dest: d.name, item: t('Thông tin chung') })}
+            </p>
         </section>
     `
 }
@@ -369,6 +395,7 @@ function itinerarySection(d) {
                     <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> ${t('Ngày khởi hành')}</label>
                     <input type="date" id="tour-start" class="planner__select trip-date__input">
                     <small class="trip-date__hint">${t('Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.')}</small>
+                    <ul class="trip-alerts events__list" id="tour-alerts" hidden></ul>
                 </div>
 
                 <div class="tour-picker" role="tablist" aria-label="${t('Chọn tour')}">

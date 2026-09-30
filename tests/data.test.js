@@ -240,6 +240,69 @@ test('dự báo theo ngày đi: chỉ hỏi trong tầm 16 ngày', () => {
     assert.equal(app.forecastWindow('2026-11-01', '2026-11-05', now), null, 'quá xa thì không gọi API')
 })
 
+test('lễ hội & sự kiện: dữ liệu hợp lệ và tra đúng theo ngày đi', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/destinations.js', 'assets/js/data/events.js'],
+        ['DESTINATIONS', 'EVENTS', 'EVENT_TYPES', 'eventsForTrip', 'destinationEvents'],
+    )
+    const ids = new Set(app.DESTINATIONS.map(d => d.id))
+    const pair = (v, where) => assert.ok(Array.isArray(v) && v.length === 2 && v[0] && v[1], `${where}: cần [vi, en]`)
+    const seen = new Set()
+    for (const e of app.EVENTS) {
+        assert.ok(!seen.has(e.id), `trùng mã sự kiện ${e.id}`)
+        seen.add(e.id)
+        assert.ok(app.EVENT_TYPES[e.type], `${e.id}: type không hợp lệ`)
+        ;['name', 'desc', 'tip'].forEach(k => pair(e[k], `${e.id}.${k}`))
+        assert.ok(e.where === 'all' || (e.where.length && e.where.every(id => ids.has(id))), `${e.id}: where có điểm đến không tồn tại`)
+        assert.ok(Boolean(e.dates) !== Boolean(e.months), `${e.id}: cần đúng một trong dates / months`)
+        if (e.dates) {
+            e.dates.forEach(md => assert.match(md, /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/, `${e.id}: ngày ${md} sai định dạng MM-DD`))
+            assert.ok(e.dates[0] <= e.dates[1], `${e.id}: ngày bắt đầu phải trước ngày kết thúc`)
+        } else {
+            assert.ok(e.months.every(m => m >= 1 && m <= 12), `${e.id}: tháng không hợp lệ`)
+        }
+    }
+    const has = (list, id) => list.some(e => e.id === id)
+    assert.ok(has(app.eventsForTrip('ha-noi', { dates: ['2027-02-06', '2027-02-07'] }), 'tet'), 'tháng 2 phải có Tết')
+    assert.ok(has(app.eventsForTrip('da-lat', { dates: ['2026-04-30'] }), 'le-30-4'), '30/4 là nghỉ lễ toàn quốc')
+    assert.ok(!has(app.eventsForTrip('da-lat', { dates: ['2026-05-04'] }), 'le-30-4'), '04/05 đã hết kỳ nghỉ')
+    assert.ok(has(app.eventsForTrip('mu-cang-chai', { dates: ['2026-09-20'] }), 'lua-chin-tay-bac'))
+    assert.ok(has(app.eventsForTrip('hoi-an', { month: 10 }), 'bao-mien-trung'), 'tháng 10 miền Trung có mưa bão')
+    assert.ok(!has(app.eventsForTrip('sa-pa', { month: 10 }), 'bao-mien-trung'))
+    assert.ok(app.destinationEvents('ha-noi').every(e => e.where !== 'all'), 'danh sách riêng không gồm nghỉ lễ toàn quốc')
+})
+
+test('danh sách đồ cần mang theo điểm đến và tháng', () => {
+    const app = loadBrowserScripts(
+        ['assets/js/data/destinations.js', 'assets/js/data/packing.js'],
+        ['DESTINATIONS', 'PACKING', 'PACKING_GROUPS', 'packingList'],
+    )
+    const get = id => app.DESTINATIONS.find(d => d.id === id)
+    const ids = (dests, months) => app.packingList(dests, months).flatMap(g => g.items.map(i => i.id))
+    const allItems = [...app.PACKING.base, ...app.PACKING.rules.flatMap(r => r.items)]
+    allItems.forEach(item => {
+        assert.ok(app.PACKING_GROUPS[item.group], `${item.id}: nhóm không hợp lệ`)
+        assert.ok(Array.isArray(item.name) && item.name[0] && item.name[1], `${item.id}: cần [vi, en]`)
+    })
+    const sapaDec = ids([get('sa-pa')], [12])
+    assert.ok(sapaDec.includes('down') && sapaDec.includes('trekshoes'), 'Sa Pa tháng 12: áo phao, giày trekking')
+    assert.ok(!sapaDec.includes('swim'))
+    const pqJul = ids([get('phu-quoc')], [7])
+    assert.ok(['swim', 'sunscreen', 'seasick', 'raincoat', 'light'].every(id => pqJul.includes(id)), 'Phú Quốc tháng 7: đồ biển, thuốc say tàu, áo mưa')
+    assert.ok(!ids([get('phu-quoc')], [1]).includes('raincoat'), 'Phú Quốc tháng 1 là mùa khô')
+    const trip = ids([get('sa-pa'), get('phu-quoc')], [12, 12])
+    assert.equal(new Set(trip).size, trip.length, 'không trùng món khi gộp nhiều điểm đến')
+    assert.ok(trip.includes('cccd') && trip.includes('down') && trip.includes('swim'))
+})
+
+test('báo sai thông tin: link GitHub Issue điền sẵn', () => {
+    const app = loadBrowserScripts(['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js'], ['reportUrl'])
+    const url = new URL(app.reportUrl({ dest: 'Phố cổ Hội An', item: 'Chùa Cầu', details: 'Miễn phí' }))
+    assert.equal(url.origin + url.pathname, 'https://github.com/TanTan1802/travel/issues/new')
+    assert.equal(url.searchParams.get('title'), '[Sửa thông tin] Phố cổ Hội An – Chùa Cầu')
+    assert.match(url.searchParams.get('body'), /Thông tin hiện tại:\*\* Miễn phí/)
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]
