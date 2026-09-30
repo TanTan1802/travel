@@ -1,0 +1,66 @@
+# Đồng bộ giá vé, giờ mở cửa, giá quán từ Google Sheets → data/*.json → mở Pull Request để duyệt.
+# Cấu hình (Settings → Secrets and variables → Actions → Variables):
+#   SHEET_SIGHTS_CSV_URL – link "Xuất bản lên web" dạng CSV của trang tính điểm tham quan
+#   SHEET_EATS_CSV_URL   – link CSV của trang tính quán ăn / quán nước
+# Và bật: Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests".
+# Hướng dẫn chi tiết: docs/du-lieu.md
+name: Đồng bộ Google Sheets
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 1 * * 1' # 8:17 sáng thứ Hai giờ Việt Nam
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-sheets
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Cài thư viện
+        run: npm install --no-audit --no-fund
+
+      - name: Đọc Google Sheets và cập nhật data/*.json
+        id: sync
+        env:
+          SHEET_SIGHTS_CSV: ${{ vars.SHEET_SIGHTS_CSV_URL }}
+          SHEET_EATS_CSV: ${{ vars.SHEET_EATS_CSV_URL }}
+        run: |
+          node tools/sheets.js sync
+          if git diff --quiet -- data; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Sinh lại dữ liệu và trang tĩnh
+        if: steps.sync.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Mở Pull Request
+        if: steps.sync.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: data/sync-google-sheets
+          delete-branch: true
+          commit-message: 'Dữ liệu: đồng bộ giá vé, giờ mở cửa, giá quán từ Google Sheets'
+          title: 'Dữ liệu: đồng bộ từ Google Sheets'
+          body-path: data/sheets/last-sync.md
+          add-paths: |
+            data/*.json
+            assets/js/data
+            diem-den
+            en
+            ke-hoach
+            cam-nang
+            index.html
+            sitemap.xml
+            sw.js

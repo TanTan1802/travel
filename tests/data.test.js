@@ -9,7 +9,7 @@ const { loadBrowserScripts } = require('../tools/lib')
 const { ROOT, builtPages } = require('./helpers')
 
 const site = loadBrowserScripts(
-    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js', 'assets/js/data/sights.js'],
+    ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js', 'assets/js/data/sights.js'],
     ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS', 'PLACES', 'STAY_TYPES', 'SIGHTS'],
 )
 const { DESTINATIONS, ITINERARIES, TRANSLATION_EN: EN, REGIONS, CATEGORIES } = site
@@ -45,7 +45,7 @@ test('lịch trình: mỗi điểm đến có 5 ngày và phí tham quan cho 2 m
 
 test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộng đúng các khoản', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js',
             'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
         ['DESTINATIONS', 'tripCost'],
     )
@@ -62,7 +62,7 @@ test('chi phí tour: tăng theo số ngày, hai mức chênh hợp lý và cộn
 
 test('timeline 5 ngày: không lặp quán / món, không chèn bữa trùng với lịch tham quan', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js',
             'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
         ['DESTINATIONS', 'ITINERARIES', 'dayTimeline'],
     )
@@ -145,7 +145,7 @@ test('điểm tham quan: đủ 5 ngày, có giá vé, giờ mở cửa, địa c
 
 test('timeline: mỗi ngày có quán nước có tên và ước tính chi phí', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js',
             'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js'],
         ['DESTINATIONS', 'ITINERARIES', 'dayTimeline', 'dayCost'],
     )
@@ -173,7 +173,7 @@ test('món đặc sản nào cũng có ảnh (ảnh thật hoặc ảnh minh h�
 
 test('xuất lịch .ics đúng chuẩn RFC 5545, link Google Calendar và Google Maps hợp lệ', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/data/itineraries.js',
+        ['assets/js/data/local-images.js', 'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js',
             'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/components.js', 'assets/js/trip-export.js'],
         ['DESTINATIONS', 'ITINERARIES', 'dayTimeline', 'timelineToEvents', 'buildIcs', 'foldIcsLine', 'googleCalendarDayUrl',
             'dayDetailsText', 'dayRouteUrl', 'tripRouteUrl', 'safeFileName', 'addDays'],
@@ -229,7 +229,7 @@ test('xuất lịch .ics đúng chuẩn RFC 5545, link Google Calendar và Googl
 
 test('dự báo theo ngày đi: chỉ hỏi trong tầm 16 ngày', () => {
     const app = loadBrowserScripts(
-        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/weather.js'],
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/components.js', 'assets/js/weather.js'],
         ['forecastWindow', 'lastForecastDate', 'todayIso'],
     )
     const now = new Date(2026, 8, 30, 10) // 30/09/2026
@@ -242,7 +242,7 @@ test('dự báo theo ngày đi: chỉ hỏi trong tầm 16 ngày', () => {
 
 test('lễ hội & sự kiện: dữ liệu hợp lệ và tra đúng theo ngày đi', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/destinations.js', 'assets/js/data/events.js'],
+        ['assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/events.js'],
         ['DESTINATIONS', 'EVENTS', 'EVENT_TYPES', 'eventsForTrip', 'destinationEvents'],
     )
     const ids = new Set(app.DESTINATIONS.map(d => d.id))
@@ -274,7 +274,7 @@ test('lễ hội & sự kiện: dữ liệu hợp lệ và tra đúng theo ngày
 
 test('danh sách đồ cần mang theo điểm đến và tháng', () => {
     const app = loadBrowserScripts(
-        ['assets/js/data/destinations.js', 'assets/js/data/packing.js'],
+        ['assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/packing.js'],
         ['DESTINATIONS', 'PACKING', 'PACKING_GROUPS', 'packingList'],
     )
     const get = id => app.DESTINATIONS.find(d => d.id === id)
@@ -296,7 +296,7 @@ test('danh sách đồ cần mang theo điểm đến và tháng', () => {
 })
 
 test('báo sai thông tin: link GitHub Issue điền sẵn', () => {
-    const app = loadBrowserScripts(['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js'], ['reportUrl'])
+    const app = loadBrowserScripts(['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/components.js'], ['reportUrl'])
     const url = new URL(app.reportUrl({ dest: 'Phố cổ Hội An', item: 'Chùa Cầu', details: 'Miễn phí' }))
     assert.equal(url.origin + url.pathname, 'https://github.com/TanTan1802/travel/issues/new')
     assert.equal(url.searchParams.get('title'), '[Sửa thông tin] Phố cổ Hội An – Chùa Cầu')
@@ -305,7 +305,7 @@ test('báo sai thông tin: link GitHub Issue điền sẵn', () => {
 
 test('chế độ Hôm nay: trạng thái chuyến đi và mốc hiện tại / kế tiếp', () => {
     const app = loadBrowserScripts(
-        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/today.js'],
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/components.js', 'assets/js/today.js'],
         ['tripStatus', 'currentAndNext', 'daysBetween', 'assetsInHtml'],
     )
     const plan = { stops: [{ id: 'ha-noi', days: 2 }, { id: 'hoi-an', days: 3 }], start: '2026-12-30' }
@@ -334,7 +334,7 @@ test('chế độ Hôm nay: trạng thái chuyến đi và mốc hiện tại / 
 
 test('hồ sơ chuyến đi: chi phí cả nhóm và trắc nghiệm gợi ý điểm đến', () => {
     const app = loadBrowserScripts(
-        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/components.js', 'assets/js/data/profiles.js', 'assets/js/quiz.js'],
+        ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/components.js', 'assets/js/data/profiles.js', 'assets/js/quiz.js'],
         ['DESTINATIONS', 'TRAVEL_STYLES', 'ORIGIN_IDS', 'groupCost', 'quizRecommendation', 'distanceKm'],
     )
     assert.equal(app.groupCost(1000000, 300000, 2), 2000000, '2 người = 2 lần chi phí / người')
@@ -355,6 +355,59 @@ test('hồ sơ chuyến đi: chi phí cả nhóm và trắc nghiệm gợi ý đ
     const family = app.quizRecommendation({ likes: ['nui'], month: '10', length: 'short', region: 'bac', style: 'family' })
     assert.equal(family.stops.length, 1)
     assert.ok(!app.TRAVEL_STYLES.family.caution.includes(family.stops[0].id), 'gia đình có trẻ nhỏ không nên gợi ý điểm nhiều đèo dốc')
+})
+
+test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với JSON', () => {
+    const { loadAndValidate, DATASETS } = require('../tools/build-data')
+    const { data, errors } = loadAndValidate()
+    assert.deepEqual(errors, [], `dữ liệu không hợp lệ:\n${errors.join('\n')}`)
+    for (const [name, { vars }] of Object.entries(DATASETS)) {
+        const generated = loadBrowserScripts([`assets/js/data/${name}.js`], Object.values(vars))
+        for (const [key, constName] of Object.entries(vars)) {
+            assert.equal(JSON.stringify(generated[constName]), JSON.stringify(data[name][key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
+        }
+    }
+
+    /* Schema phải bắt được lỗi thường gặp */
+    const Ajv2020 = require('ajv/dist/2020')
+    const ajv = new Ajv2020({ allErrors: true, strictRequired: false })
+    for (const file of fs.readdirSync(path.join(ROOT, 'data/schema'))) ajv.addSchema(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/schema', file), 'utf8')))
+    const sightsSchema = ajv.getSchema('sights.schema.json')
+    const bad = JSON.parse(JSON.stringify(data.sights))
+    bad.sights['hoi-an'][0][0].price = -5
+    assert.equal(sightsSchema(bad), false, 'giá âm phải bị từ chối')
+    const eventsSchema = ajv.getSchema('events.schema.json')
+    const ev = JSON.parse(JSON.stringify(data.events))
+    const fixed = ev.events.find(e => e.dates)
+    fixed.dates = ['13-01', '13-05']
+    assert.equal(eventsSchema(ev), false, 'tháng 13 phải bị từ chối')
+})
+
+test('đồng bộ Google Sheets: CSV hai chiều, chỉ cập nhật mục đã có', () => {
+    const sheets = require('../tools/sheets')
+    const sights = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/sights.json'), 'utf8')).sights
+    const places = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/places.json'), 'utf8')).places
+    const csv = sheets.toCsv(sheets.SIGHT_COLUMNS, sheets.sightsToRows(sights))
+    const rows = sheets.parseCsv(csv)
+    assert.equal(rows.length, sheets.sightsToRows(sights).length)
+    assert.equal(sheets.applySightRows(JSON.parse(JSON.stringify(sights)), rows).changes.length, 0, 'xuất rồi nhập lại không được đổi gì')
+
+    const copy = JSON.parse(JSON.stringify(sights))
+    const row = rows.find(r => r.dest_id === 'hoi-an' && r.name_vi === 'Chùa Cầu')
+    const edited = [{ ...row, price_min: '30.000', price_max: '30.000đ', hours: '07:00–21:30' }, { ...row, name_vi: 'Không có thật' }]
+    const result = sheets.applySightRows(copy, edited)
+    const bridge = copy['hoi-an'].flat().find(s => s.name[0] === 'Chùa Cầu')
+    assert.equal(bridge.price, 30000, '"30.000" và "30.000đ" → 30000')
+    assert.equal(bridge.hours, '07:00–21:30')
+    assert.equal(result.unknown.length, 1, 'dòng không khớp bị bỏ qua và báo lại')
+    assert.equal(sheets.applySightRows(copy, [{ ...row, price_min: '50000', price_max: '10000' }]).errors.length, 1, 'giá thấp > giá cao là lỗi')
+
+    const eatRows = sheets.parseCsv(sheets.toCsv(sheets.EAT_COLUMNS, sheets.eatsToRows(places)))
+    const eat = eatRows.find(r => r.kind === 'cafe')
+    const placesCopy = JSON.parse(JSON.stringify(places))
+    sheets.applyEatRows(placesCopy, [{ ...eat, price_min: '20000', price_max: '45000' }])
+    assert.deepEqual(placesCopy[eat.dest_id].cafes.find(c => c.name === eat.name).price, [20000, 45000])
+    assert.deepEqual(sheets.parseCsv('a,b\n"x, ""y""",2\n'), [{ a: 'x, "y"', b: '2' }], 'CSV có dấu phẩy và ngoặc kép')
 })
 
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {

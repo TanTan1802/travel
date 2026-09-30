@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "itineraries.schema.json",
+  "title": "Lịch trình tour 3 – 4 – 5 ngày",
+  "description": "Mỗi điểm đến có 5 ngày nối tiếp; tour n ngày = n ngày đầu. fees: vé tham quan trung bình / người / ngày [tiết kiệm, thoải mái].",
+  "type": "object",
+  "required": ["tourLengths", "itineraries"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "tourLengths": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 5 } },
+    "itineraries": {
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["days", "fees"],
+        "properties": {
+          "days": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "morning", "afternoon", "evening"],
+              "properties": {
+                "title": { "type": "string", "minLength": 1 },
+                "morning": { "type": "string", "minLength": 1 },
+                "afternoon": { "type": "string", "minLength": 1 },
+                "evening": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "fees": { "$ref": "common.schema.json#/$defs/range" }
+        }
+      }
+    }
+  }
+}

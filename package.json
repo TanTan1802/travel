@@ -5,7 +5,8 @@
   "scripts": {
     "images": "node tools/download-images.js && node tools/optimize-images.js",
     "check-images": "node tools/check-images.js",
-    "build": "node tools/build.js",
+    "build": "node tools/build-data.js && node tools/build.js",
+    "check-data": "node tools/build-data.js --check",
     "serve": "python3 -m http.server 8000",
     "test": "npm run test:data && npm run test:e2e",
     "test:data": "node --test tests/data.test.js",
@@ -15,7 +16,8 @@
     "node": ">=18"
   },
   "devDependencies": {
-    "sharp": "^0.33.5",
-    "playwright": "^1.56.1"
+    "ajv": "^8.20.0",
+    "playwright": "^1.56.1",
+    "sharp": "^0.33.5"
   }
 }

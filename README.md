@@ -21,7 +21,9 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 ## Cấu trúc & quy trình
 | Đường dẫn | Vai trò |
 |---|---|
-| `assets/js/data/destinations.js` | Toàn bộ dữ liệu điểm đến |
+| `data/*.json` + `data/schema/` | **Nguồn dữ liệu** (điểm đến, lịch trình, quán, điểm tham quan, lễ hội) có JSON Schema – xem [docs/du-lieu.md](docs/du-lieu.md) |
+| `assets/js/data/destinations.js`, `itineraries.js`, `places.js`, `sights.js`, `events.js` | Sinh tự động từ `data/*.json` khi build – **không sửa tay** |
+| `assets/js/core.js` | Hàm dùng chung (ảnh, điểm đến, tra cứu lễ hội) |
 | `destination.html` | Mẫu giao diện trang chi tiết (cũng chạy động với `?id=`) |
 | `diem-den/<id>/index.html`, `en/` | Trang tĩnh sinh tự động (vi + en) – **không sửa tay** |
 | `tools/` | Script build, tải ảnh, kiểm tra ảnh |
@@ -29,8 +31,12 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 Sau khi sửa dữ liệu hoặc `destination.html`:
 
 ```bash
-npm run build          # sinh lại diem-den/*, danh sách ở index.html, sitemap.xml
+npm run check-data     # kiểm tra data/*.json theo JSON Schema
+npm run build          # kiểm tra dữ liệu, sinh assets/js/data/*.js, diem-den/*, index.html, sitemap.xml
 ```
+
+Cập nhật giá vé, giờ mở cửa, giá quán bằng **Google Sheets**: workflow `Đồng bộ Google Sheets` đọc bảng tính
+và mở Pull Request – hướng dẫn thiết lập ở [docs/du-lieu.md](docs/du-lieu.md).
 
 Tự host ảnh (khuyên dùng, chạy trên máy có Internet):
 
@@ -45,7 +51,7 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
 ## Song ngữ
 - Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
   (`ui`, `html`, `destinations`, `itineraries`).
-- Lịch trình nằm trong `assets/js/data/itineraries.js`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
+- Lịch trình nằm trong `data/itineraries.json`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
   lấy lần lượt 3/4/5 ngày đầu; `fees` là vé tham quan & trải nghiệm mỗi ngày [tiết kiệm, thoải mái].
 - Chi phí tour tính theo từng khoản bằng `tripCost()` (components.js): lưu trú (phòng đôi chia 2, từ `places.js`), ăn uống (từ giá các quán), đi lại tại chỗ và vé tham quan. Mức thoải mái = khách sạn 3–4 sao, nhà hàng, Grab (≈ 1,7–1,9 lần mức tiết kiệm). Bấm vào mỗi mức để xem bảng chi tiết.
 - Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
@@ -96,7 +102,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Bài "Nên đi du lịch Việt Nam vào tháng nào?" có bảng 12 tháng tự sinh từ `bestMonths` của các điểm đến.
 - Thêm bài mới: thêm một phần tử vào `GUIDES` rồi chạy `npm run build`.
 
-## Quán ăn, lưu trú & đặt chỗ (`assets/js/data/places.js`)
+## Quán ăn, lưu trú & đặt chỗ (`data/places.json`)
 
 - Mỗi điểm đến có: 8 quán cụ thể (tên, món, địa chỉ, giá/người), 3 quán cà phê/quán nước (`cafes`), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.
 - Trang điểm đến: mục **Quán nên ghé** (bấm địa chỉ mở Google Maps) và mục **Lưu trú & đi lại** với nút Booking.com / Airbnb / Google Maps, vé máy bay (Google Flights), vé tàu (dsvn.vn), vé xe (Vexere).

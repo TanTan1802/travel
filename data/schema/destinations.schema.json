@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "destinations.schema.json",
+  "title": "Điểm đến",
+  "description": "Danh sách điểm đến, vùng miền và loại hình. Bản dịch tiếng Anh nằm ở assets/js/data/en.js.",
+  "type": "object",
+  "required": ["regions", "categories", "destinations"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "regions": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+    "categories": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+    "destinations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "province", "region", "categories", "rating", "lat", "lng", "bestMonths", "tagline", "description", "highlights", "bestTime", "duration", "hero", "gallery", "foods", "activities", "tips"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "name": { "type": "string", "minLength": 1 },
+          "province": { "type": "string", "minLength": 1 },
+          "region": { "type": "string", "enum": ["bac", "trung", "nam"] },
+          "categories": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "enum": ["bien", "nui", "di-san", "thanh-pho", "hang-dong"] } },
+          "rating": { "type": "number", "exclusiveMinimum": 0, "maximum": 5 },
+          "lat": { "type": "number", "minimum": 8, "maximum": 24 },
+          "lng": { "type": "number", "minimum": 102, "maximum": 110 },
+          "bestMonths": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/month" } },
+          "tagline": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 20 },
+          "highlights": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "bestTime": { "type": "string", "minLength": 1 },
+          "duration": { "type": "string", "minLength": 1 },
+          "hero": { "$ref": "common.schema.json#/$defs/imageFile" },
+          "gallery": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["file", "caption"],
+              "properties": { "file": { "$ref": "common.schema.json#/$defs/imageFile" }, "caption": { "type": "string", "minLength": 1 } }
+            }
+          },
+          "foods": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "desc", "price", "file"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "desc": { "type": "string", "minLength": 1 },
+                "price": { "type": "string", "minLength": 1 },
+                "file": {
+                  "description": "Ảnh món ăn; nhiều ảnh dự phòng thì dùng mảng",
+                  "oneOf": [
+                    { "$ref": "common.schema.json#/$defs/imageFile" },
+                    { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/imageFile" } }
+                  ]
+                },
+                "illustrative": { "description": "Chú thích khi dùng ảnh minh họa (không đúng món)", "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "activities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["icon", "title", "desc"],
+              "properties": { "icon": { "$ref": "common.schema.json#/$defs/icon" }, "title": { "type": "string", "minLength": 1 }, "desc": { "type": "string", "minLength": 1 } }
+            }
+          },
+          "tips": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    }
+  }
+}

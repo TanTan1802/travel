@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "places.schema.json",
+  "title": "Quán ăn, quán nước, lưu trú và đi lại theo điểm đến",
+  "description": "price: VND [thấp, cao] – quán: mỗi người; lưu trú: mỗi đêm / phòng. city dùng để tìm trên Booking / Google Maps.",
+  "type": "object",
+  "required": ["stayTypes", "places"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "stayTypes": { "type": "object", "additionalProperties": { "$ref": "common.schema.json#/$defs/pair" } },
+    "places": {
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["city", "airport", "getThere", "eats", "cafes", "stays"],
+        "properties": {
+          "city": { "type": "string", "minLength": 1 },
+          "airport": { "description": "Mã sân bay IATA gần nhất", "type": "string", "pattern": "^[A-Z]{3}$" },
+          "rail": { "description": "Ga tàu Thống Nhất gần nhất", "type": "string", "minLength": 1 },
+          "getThere": { "$ref": "common.schema.json#/$defs/pair" },
+          "eats": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "dish", "address", "price"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "dish": { "$ref": "common.schema.json#/$defs/pair" },
+                "address": { "type": "string", "minLength": 1 },
+                "price": { "$ref": "common.schema.json#/$defs/range" }
+              }
+            }
+          },
+          "cafes": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "drink", "address", "price"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "drink": { "$ref": "common.schema.json#/$defs/pair" },
+                "address": { "type": "string", "minLength": 1 },
+                "price": { "$ref": "common.schema.json#/$defs/range" }
+              }
+            }
+          },
+          "stays": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["area", "type", "price", "note"],
+              "properties": {
+                "area": { "$ref": "common.schema.json#/$defs/pair" },
+                "type": { "type": "string", "enum": ["homestay", "hotel", "resort", "boat"] },
+                "price": { "$ref": "common.schema.json#/$defs/range" },
+                "note": { "$ref": "common.schema.json#/$defs/pair" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
