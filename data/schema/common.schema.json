@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Kiểu dữ liệu dùng chung",
+  "$defs": {
+    "id": {
+      "description": "Mã điểm đến: chữ thường không dấu, số, gạch nối (vd. hoi-an)",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "pair": {
+      "description": "Chuỗi hai ngôn ngữ [tiếng Việt, English]",
+      "type": "array",
+      "prefixItems": [{ "type": "string", "minLength": 1 }, { "type": "string", "minLength": 1 }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "vnd": { "description": "Số tiền VND", "type": "integer", "minimum": 0 },
+    "range": {
+      "description": "Khoảng giá VND [thấp, cao]",
+      "type": "array",
+      "prefixItems": [{ "$ref": "#/$defs/vnd" }, { "$ref": "#/$defs/vnd" }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "month": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "icon": { "description": "Lớp biểu tượng Remix Icon (vd. ri-sun-line)", "type": "string", "pattern": "^ri-[a-z0-9-]+$" },
+    "imageFile": { "description": "Tên file ảnh trên Wikimedia Commons", "type": "string", "pattern": "\\.(jpe?g|png|webp|JPE?G|PNG)$" }
+  }
+}

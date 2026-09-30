@@ -7,6 +7,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/**'
       - 'assets/js/data/destinations.js'
       - 'assets/js/data/itineraries.js'
       - 'assets/js/data/en.js'
@@ -57,7 +58,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/img/wiki assets/img/og assets/js/data/local-images.js assets/js/data/dest diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
+          git add -A assets/img/wiki assets/img/og assets/js/data diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có thay đổi."
           else

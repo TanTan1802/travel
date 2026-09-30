@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sights.schema.json",
+  "title": "Điểm tham quan và quán nước gần điểm theo từng ngày",
+  "description": "sights[id][ngày] = danh sách điểm của ngày đó (cùng thứ tự 5 ngày trong itineraries). Giá vé và giờ mở cửa mang tính tham khảo.",
+  "type": "object",
+  "required": ["sights"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "sights": {
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/id" },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["at", "name", "price", "hours", "address"],
+            "properties": {
+              "at": { "description": "Buổi: m sáng · a chiều · e tối", "type": "string", "enum": ["m", "a", "e"] },
+              "name": { "$ref": "common.schema.json#/$defs/pair" },
+              "price": {
+                "description": "Giá vé / người lớn: 0 = miễn phí, số hoặc [thấp, cao]",
+                "oneOf": [{ "$ref": "common.schema.json#/$defs/vnd" }, { "$ref": "common.schema.json#/$defs/range" }]
+              },
+              "note": { "$ref": "common.schema.json#/$defs/pair" },
+              "hours": {
+                "description": "Giờ mở cửa: 'all' = mở cả ngày, chuỗi giờ hoặc [vi, en]",
+                "oneOf": [{ "type": "string", "minLength": 1 }, { "$ref": "common.schema.json#/$defs/pair" }]
+              },
+              "address": { "type": "string", "minLength": 1 },
+              "cafe": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "drink", "price"],
+                "properties": {
+                  "name": { "type": "string", "minLength": 1 },
+                  "drink": { "$ref": "common.schema.json#/$defs/pair" },
+                  "price": { "$ref": "common.schema.json#/$defs/range" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
