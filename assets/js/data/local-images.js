@@ -21,6 +21,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Ba Den Mountain summit temple illuminated night fog Tay Ninh Vietnam.jpg": {
+        "xs": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-480.webp",
+        "sm": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-960.webp",
+        "lg": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-1920.webp",
+        "w": 1920,
+        "h": 1279
+    },
     "Bai-sao-phu-quoc-tuonglamphotos.jpg": {
         "xs": "assets/img/wiki/bai-sao-phu-quoc-tuonglamphotos-6ea68b-480.webp",
         "sm": "assets/img/wiki/bai-sao-phu-quoc-tuonglamphotos-6ea68b-960.webp",
@@ -287,6 +294,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Caodaist Holy See - Tây-Ninh Province.jpg": {
+        "xs": "assets/img/wiki/caodaist-holy-see-tay-ninh-province-9d6374-480.webp",
+        "sm": "assets/img/wiki/caodaist-holy-see-tay-ninh-province-9d6374-960.webp",
+        "lg": "assets/img/wiki/caodaist-holy-see-tay-ninh-province-9d6374-1920.webp",
+        "w": 1920,
+        "h": 1282
+    },
     "Cat Ba island fishing village.jpg": {
         "xs": "assets/img/wiki/cat-ba-island-fishing-village-419564-480.webp",
         "sm": "assets/img/wiki/cat-ba-island-fishing-village-419564-960.webp",
@@ -315,6 +329,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Chùa Trung, Núi Bà Đen, 2025.jpg": {
+        "xs": "assets/img/wiki/chua-trung-nui-ba-den-2025-e22ea5-480.webp",
+        "sm": "assets/img/wiki/chua-trung-nui-ba-den-2025-e22ea5-960.webp",
+        "lg": "assets/img/wiki/chua-trung-nui-ba-den-2025-e22ea5-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Chả cá Lã Vọng.jpg": {
         "xs": "assets/img/wiki/cha-ca-la-vong-b96fae-480.webp",
         "sm": "assets/img/wiki/cha-ca-la-vong-b96fae-960.webp",
@@ -342,6 +363,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/cliff-of-stone-plates-ghenh-da-dia-in-vietnam-29360e-1920.webp",
         "w": 600,
         "h": 343
+    },
+    "Coastal view from Nui Chua National Park.jpg": {
+        "xs": "assets/img/wiki/coastal-view-from-nui-chua-national-park-a074c7-480.webp",
+        "sm": "assets/img/wiki/coastal-view-from-nui-chua-national-park-a074c7-960.webp",
+        "lg": "assets/img/wiki/coastal-view-from-nui-chua-national-park-a074c7-1920.webp",
+        "w": 1920,
+        "h": 1410
     },
     "Con Dao Tiger Käfige.jpg": {
         "xs": "assets/img/wiki/con-dao-tiger-kafige-6bc41c-480.webp",
@@ -392,6 +420,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Cáp treo núi Bà Đen.JPG": {
+        "xs": "assets/img/wiki/cap-treo-nui-ba-den-7caab2-480.webp",
+        "sm": "assets/img/wiki/cap-treo-nui-ba-den-7caab2-960.webp",
+        "lg": "assets/img/wiki/cap-treo-nui-ba-den-7caab2-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Côn Đảo National Park.jpg": {
         "xs": "assets/img/wiki/con-dao-national-park-17d3e7-480.webp",
         "sm": "assets/img/wiki/con-dao-national-park-17d3e7-960.webp",
@@ -433,6 +468,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/da-lat-viet-nam-7afd6a-1920.webp",
         "w": 1920,
         "h": 1080
+    },
+    "Dau Tieng Reservoir (39748281134).jpg": {
+        "xs": "assets/img/wiki/dau-tieng-reservoir-39748281134-48b568-480.webp",
+        "sm": "assets/img/wiki/dau-tieng-reservoir-39748281134-48b568-960.webp",
+        "lg": "assets/img/wiki/dau-tieng-reservoir-39748281134-48b568-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Dragon Bridge, Da Nang at night - 20230819.jpg": {
         "xs": "assets/img/wiki/dragon-bridge-da-nang-at-night-20230819-a97408-480.webp",
@@ -489,6 +531,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ganh-da-dia-d1b516-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Gốm Bàu Trúc.JPG": {
+        "xs": "assets/img/wiki/gom-bau-truc-94fed2-480.webp",
+        "sm": "assets/img/wiki/gom-bau-truc-94fed2-960.webp",
+        "lg": "assets/img/wiki/gom-bau-truc-94fed2-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Ha Giang Loop.jpg": {
         "xs": "assets/img/wiki/ha-giang-loop-845007-480.webp",
@@ -557,6 +606,13 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/ham-ninh-market-phu-quoc-kien-giang-vietnam-panoramio-bbb204-480.webp",
         "sm": "assets/img/wiki/ham-ninh-market-phu-quoc-kien-giang-vietnam-panoramio-bbb204-960.webp",
         "lg": "assets/img/wiki/ham-ninh-market-phu-quoc-kien-giang-vietnam-panoramio-bbb204-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Hang Rái in Ninh Thuan Province, Vietnam.jpg": {
+        "xs": "assets/img/wiki/hang-rai-in-ninh-thuan-province-vietnam-4a58dc-480.webp",
+        "sm": "assets/img/wiki/hang-rai-in-ninh-thuan-province-vietnam-4a58dc-960.webp",
+        "lg": "assets/img/wiki/hang-rai-in-ninh-thuan-province-vietnam-4a58dc-1920.webp",
         "w": 1920,
         "h": 1440
     },
@@ -903,6 +959,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1275
     },
+    "Ninh Chu Beach (Bãi biển ninh chữ Ninh Thuận ) - panoramio.jpg": {
+        "xs": "assets/img/wiki/ninh-chu-beach-bai-bien-ninh-chu-ninh-thuan-panoramio-976f2d-480.webp",
+        "sm": "assets/img/wiki/ninh-chu-beach-bai-bien-ninh-chu-ninh-thuan-panoramio-976f2d-960.webp",
+        "lg": "assets/img/wiki/ninh-chu-beach-bai-bien-ninh-chu-ninh-thuan-panoramio-976f2d-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
     "Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg": {
         "xs": "assets/img/wiki/notre-dame-cathedral-ho-chi-minh-city-39543912241-9bf3b1-480.webp",
         "sm": "assets/img/wiki/notre-dame-cathedral-ho-chi-minh-city-39543912241-9bf3b1-960.webp",
@@ -937,6 +1000,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/pho-bo-39425047901-b06356-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Po Klong Garai Temple 4.jpg": {
+        "xs": "assets/img/wiki/po-klong-garai-temple-4-23ed85-480.webp",
+        "sm": "assets/img/wiki/po-klong-garai-temple-4-23ed85-960.webp",
+        "lg": "assets/img/wiki/po-klong-garai-temple-4-23ed85-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Po Nagar Nha Trang Vietnam.JPG": {
         "xs": "assets/img/wiki/po-nagar-nha-trang-vietnam-f6bcb2-480.webp",
@@ -1134,6 +1204,13 @@ const LOCAL_IMAGES = {
         "w": 1632,
         "h": 1224
     },
+    "Tay Bo Da Son Bodhisattva statue above sea of clouds Ba Den Mountain Tay Ninh Vietnam.jpg": {
+        "xs": "assets/img/wiki/tay-bo-da-son-bodhisattva-statue-above-sea-of-clouds-ba-den-mountain-tay-ninh-vi-ab0886-480.webp",
+        "sm": "assets/img/wiki/tay-bo-da-son-bodhisattva-statue-above-sea-of-clouds-ba-den-mountain-tay-ninh-vi-ab0886-960.webp",
+        "lg": "assets/img/wiki/tay-bo-da-son-bodhisattva-statue-above-sea-of-clouds-ba-den-mountain-tay-ninh-vi-ab0886-1920.webp",
+        "w": 1920,
+        "h": 1279
+    },
     "Temple of Literature, Hanoi by Xiquinho Silva 04.jpg": {
         "xs": "assets/img/wiki/temple-of-literature-hanoi-by-xiquinho-silva-04-5c4573-480.webp",
         "sm": "assets/img/wiki/temple-of-literature-hanoi-by-xiquinho-silva-04-5c4573-960.webp",
@@ -1302,10 +1379,24 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Vinh hy bay.jpg": {
+        "xs": "assets/img/wiki/vinh-hy-bay-951dc1-480.webp",
+        "sm": "assets/img/wiki/vinh-hy-bay-951dc1-960.webp",
+        "lg": "assets/img/wiki/vinh-hy-bay-951dc1-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Vung Tau Hon Ba.JPG": {
         "xs": "assets/img/wiki/vung-tau-hon-ba-de86c7-480.webp",
         "sm": "assets/img/wiki/vung-tau-hon-ba-de86c7-960.webp",
         "lg": "assets/img/wiki/vung-tau-hon-ba-de86c7-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Vườn Nho ở Phan Rang, Ninh Thuận.JPG": {
+        "xs": "assets/img/wiki/vuon-nho-o-phan-rang-ninh-thuan-4fd4ef-480.webp",
+        "sm": "assets/img/wiki/vuon-nho-o-phan-rang-ninh-thuan-4fd4ef-960.webp",
+        "lg": "assets/img/wiki/vuon-nho-o-phan-rang-ninh-thuan-4fd4ef-1920.webp",
         "w": 1920,
         "h": 1440
     },
