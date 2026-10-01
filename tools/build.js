@@ -499,8 +499,11 @@ function scriptSource(file, site, pageFiles) {
         const { html, itineraries, ...en } = loadSite('en', '').TRANSLATION_EN
         const local = site.TRANSLATION_LOCAL
         if (local) {
-            /* Bỏ chuỗi tiếng Anh đã có bản dịch riêng (không bao giờ hiện) */
-            const omit = (obj, keys = {}) => Object.fromEntries(Object.entries(obj).filter(([k]) => !(k in keys)))
+            /* Bỏ chuỗi tiếng Anh đã có bản dịch riêng (không bao giờ hiện); giữ phần bản dịch không có (vd. giá món ăn) */
+            const covered = (a, b) => (a && typeof a === 'object'
+                ? b != null && typeof b === 'object' && Object.keys(a).every(k => covered(a[k], b[k]))
+                : b !== undefined)
+            const omit = (obj, over = {}) => Object.fromEntries(Object.entries(obj).filter(([k, v]) => !covered(v, over[k])))
             ;['ui', 'regions', 'categories'].forEach(k => { en[k] = omit(en[k], local[k]) })
             en.destinations = Object.fromEntries(Object.entries(en.destinations).map(([id, d]) => [id, omit(d, local.destinations[id])]))
         }

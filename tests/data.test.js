@@ -514,6 +514,9 @@ test('bản dịch ko/zh/ja: đủ điểm đến + giao diện, trang build đ�
         assert.deepEqual(untranslated, [], `${lang}: chưa dịch ${untranslated.slice(0, 5).join(' | ')}`)
         DESTINATIONS.forEach(d => {
             assert.ok(tr.destinations[d.id] && tr.destinations[d.id].name, `${lang}: thiếu ${d.id}`)
+            for (const key of ['gallery', 'foods', 'activities', 'tips']) {
+                assert.equal((tr.destinations[d.id][key] || []).length, d[key].length, `${lang}: ${d.id}.${key} chưa dịch đủ`)
+            }
             assert.equal(tr.itineraries[d.id].days.length, ITINERARIES[d.id].days.length, `${lang}: số ngày lịch trình ${d.id} lệch`)
         })
         const html = fs.readFileSync(path.join(ROOT, `${lang}/diem-den/hue/index.html`), 'utf8')

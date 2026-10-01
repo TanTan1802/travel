@@ -19,8 +19,9 @@ if (typeof TRANSLATION_LOCAL !== 'undefined' && typeof TRANSLATION_EN !== 'undef
     ;['ui', 'html', 'regions', 'categories'].forEach(key => {
         if (TRANSLATION_LOCAL[key]) TRANSLATION_EN[key] = { ...TRANSLATION_EN[key], ...TRANSLATION_LOCAL[key] }
     })
+    /* Ghép sâu: món ăn giữ giá của bản tiếng Anh, chỉ thay tên + mô tả */
     Object.entries(TRANSLATION_LOCAL.destinations || {}).forEach(([id, d]) => {
-        TRANSLATION_EN.destinations[id] = { ...TRANSLATION_EN.destinations[id], ...d }
+        TRANSLATION_EN.destinations[id] = mergeTranslation(TRANSLATION_EN.destinations[id] || {}, d)
     })
 }
 
