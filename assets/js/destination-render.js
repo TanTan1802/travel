@@ -506,15 +506,41 @@ function locationSection(d) {
     `
 }
 
+/* Form gửi ảnh (GitHub Issue form .github/ISSUE_TEMPLATE/gui-anh.yml), điền sẵn điểm đến */
+const photoSubmitUrl = d => `https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({ template: 'gui-anh.yml', title: `[Ảnh] ${d.name}`, dest: d.name })}`
+
+function communityPhotoHtml(p) {
+    const src = size => `${SITE_ROOT}assets/img/community/${p.base}-${size}.webp`
+    return `
+        <figure class="community-photo">
+            <img src="${src(960)}" srcset="${src(480)} 480w, ${src(960)} 960w, ${src(1920)} 1920w"
+                 sizes="(max-width: 576px) calc(100vw - 32px), 360px" width="${p.w}" height="${p.h}" alt="${pickLang(p.caption)}" loading="lazy">
+            <figcaption>${pickLang(p.caption)} <small>· ${t('Ảnh: {author}', { author: p.author })} (${p.license})</small></figcaption>
+        </figure>
+    `
+}
+
+/* Cộng đồng: ảnh người đọc gửi (đã duyệt) + bình luận/đánh giá bằng Giscus (khi đã cấu hình) */
 function commentsSection(d) {
-    if (typeof giscusEnabled === 'undefined' || !giscusEnabled()) return ''
+    const photos = (typeof COMMUNITY_PHOTOS !== 'undefined' ? COMMUNITY_PHOTOS : []).filter(p => p.dest === d.id)
+    const comments = typeof giscusEnabled !== 'undefined' && giscusEnabled()
     return `
         <section class="comments section" id="comments">
             <span class="section__subtitle">${t('Cộng đồng')}</span>
             <h2 class="section__title">${t('Chia sẻ trải nghiệm của bạn')}</h2>
             <div class="comments__container container">
-                <p class="comments__intro">${t('Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!', { name: d.name })}</p>
-                <div class="giscus" id="giscus" data-term="${d.id}"></div>
+                <h3 class="community__title"><i class="ri-camera-3-line"></i> ${t('Ảnh từ người đọc')}</h3>
+                ${photos.length
+                    ? `<div class="community__photos">${photos.map(communityPhotoHtml).join('')}</div>`
+                    : `<p class="comments__intro">${t('Chưa có ảnh nào – hãy là người đầu tiên chia sẻ khoảnh khắc ở {name}!', { name: d.name })}</p>`}
+                <a href="${photoSubmitUrl(d)}" target="_blank" rel="noopener" class="button button--flex community__submit">
+                    <i class="ri-image-add-line"></i> ${t('Gửi ảnh của bạn')}
+                </a>
+                ${comments ? `
+                    <h3 class="community__title"><i class="ri-chat-smile-2-line"></i> ${t('Cảm nhận & đánh giá')}</h3>
+                    <p class="comments__intro">${t('Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi – và thả cảm xúc để đánh giá nhé!', { name: d.name })}</p>
+                    <div class="giscus" id="giscus" data-term="${d.id}"></div>
+                ` : ''}
             </div>
         </section>
     `

@@ -37,6 +37,10 @@ const DATASETS = {
         vars: { eventTypes: 'EVENT_TYPES', events: 'EVENTS' },
         doc: 'Lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết cần lưu ý. Hàm tra cứu nằm ở assets/js/core.js.',
     },
+    'community-photos': {
+        vars: { photos: 'COMMUNITY_PHOTOS' },
+        doc: 'Ảnh do người đọc gửi (đã duyệt, ghi tác giả + giấy phép) – thêm bằng tools/add-photo.js.',
+    },
     /* Không bắt buộc: chưa có data/routes.json thì ROUTES = null (trình lập kế hoạch ước tính theo đường chim bay) */
     routes: {
         whole: 'ROUTES',
@@ -109,6 +113,12 @@ function crossChecks(data) {
         if (!data.events.eventTypes[e.type]) errors.push(`events.${e.id}: loại ${e.type} chưa khai báo`)
         if (e.where !== 'all') e.where.filter(id => !idSet.has(id)).forEach(id => errors.push(`events.${e.id}: điểm đến ${id} không tồn tại`))
         if (e.dates && e.dates[0] > e.dates[1]) errors.push(`events.${e.id}: ngày bắt đầu sau ngày kết thúc`)
+    })
+    data['community-photos'].photos.forEach((p, i) => {
+        if (!idSet.has(p.dest)) errors.push(`community-photos[${i}]: điểm đến ${p.dest} không tồn tại`)
+        ;[480, 960, 1920].forEach(size => {
+            if (!fs.existsSync(path.join(ROOT, 'assets/img/community', `${p.base}-${size}.webp`))) errors.push(`community-photos[${i}]: thiếu assets/img/community/${p.base}-${size}.webp`)
+        })
     })
     if (data.routes) {
         const { ids: routeIds, km, hours } = data.routes

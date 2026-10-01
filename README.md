@@ -71,6 +71,14 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 - Form **"Báo sai"** ngay trên trang (`assets/js/report.js`): gửi tới `reportEndpoint` trong `config.js`, chưa cấu hình thì
   mở GitHub Issue điền sẵn. Chi tiết: [docs/du-lieu.md](docs/du-lieu.md#độ-mới-của-dữ-liệu).
 
+## Cộng đồng: ảnh người đọc & bình luận
+
+- Mỗi trang điểm đến có mục **Cộng đồng**: ảnh người đọc gửi (đã duyệt, ghi tên tác giả + giấy phép CC) và nút
+  **Gửi ảnh của bạn** → form GitHub (`.github/ISSUE_TEMPLATE/gui-anh.yml`, điền sẵn điểm đến, cam kết là tác giả).
+- Duyệt ảnh: `npm run add-photo -- --dest hoi-an --src <URL ảnh trong Issue> --author "Tên" --caption "..." --caption-en "..." --issue <link>`
+  → tạo WebP 480/960/1920 trong `assets/img/community/` (đã **xóa EXIF/GPS**), thêm vào `data/community-photos.json`; rồi `npm run build`.
+- Bình luận + **đánh giá bằng cảm xúc (reactions)** qua Giscus: xem mục Bình luận bên dưới để bật.
+
 ## Form đăng ký nhận tin
 Tạo form miễn phí tại [Formspree](https://formspree.io), rồi dán URL vào `assets/js/config.js`:
 

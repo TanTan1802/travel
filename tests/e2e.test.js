@@ -460,3 +460,14 @@ test('dữ liệu luôn mới: tháng cập nhật và form báo sai ngay trên 
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('cộng đồng: mục ảnh người đọc + nút gửi ảnh mở form GitHub điền sẵn điểm đến', async () => {
+    const { page, errors, close } = await openPage('diem-den/hoi-an/index.html')
+    assert.ok(await page.isVisible('#comments .community__title'))
+    const submit = new URL(await page.getAttribute('#comments .community__submit', 'href'))
+    assert.equal(submit.hostname, 'github.com')
+    assert.equal(submit.searchParams.get('template'), 'gui-anh.yml')
+    assert.equal(submit.searchParams.get('dest'), 'Phố cổ Hội An')
+    assert.deepEqual(errors, [])
+    await close()
+})

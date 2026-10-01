@@ -39,6 +39,7 @@ const SCRIPTS = [
     'assets/js/data/places.js',
     'assets/js/data/sights.js',
     'assets/js/data/events.js',
+    'assets/js/data/community-photos.js',
     'assets/js/data/packing.js',
     'assets/js/data/guides.js',
     'assets/js/components.js',
@@ -48,7 +49,7 @@ const SCRIPTS = [
     'assets/js/guide-render.js',
     'assets/js/seo-render.js',
 ]
-const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
+const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
     'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
@@ -214,6 +215,7 @@ function headTags(site, d, lang) {
 const DEST_DATA_DIR = 'assets/js/data/dest'
 const DEST_DATA_SCRIPTS = /(\s*)<script defer src="assets\/js\/data\/places\.js"><\/script>\s*<script defer src="assets\/js\/data\/sights\.js"><\/script>/
 const ITINERARIES_SCRIPT = /\s*<script defer src="assets\/js\/data\/itineraries\.js"><\/script>/
+const PHOTOS_SCRIPT = /\s*<script defer src="assets\/js\/data\/community-photos\.js"><\/script>/
 
 function destDataFile(d, site, enSite) {
     const pick = (obj, key) => JSON.stringify(obj && obj[key] ? { [key]: obj[key] } : {})
@@ -223,7 +225,8 @@ function destDataFile(d, site, enSite) {
         `const SIGHTS = ${pick(site.SIGHTS, d.id)}\n` +
         `const TOUR_LENGTHS = ${JSON.stringify(site.TOUR_LENGTHS)}\n` +
         `const ITINERARIES = ${pick(site.ITINERARIES, d.id)}\n` +
-        `const ITINERARIES_EN = ${pick(enSite.TRANSLATION_EN.itineraries, d.id)}\n`
+        `const ITINERARIES_EN = ${pick(enSite.TRANSLATION_EN.itineraries, d.id)}\n` +
+        `const COMMUNITY_PHOTOS = ${JSON.stringify((site.COMMUNITY_PHOTOS || []).filter(p => p.dest === d.id))}\n`
 }
 
 function buildDestinationPage(template, lang, d, site) {
@@ -232,6 +235,7 @@ function buildDestinationPage(template, lang, d, site) {
     if (!ITINERARIES_SCRIPT.test(template)) throw new Error('destination.html thiếu thẻ script itineraries.js')
     template = template.replace(DEST_DATA_SCRIPTS, `$1<script defer src="${DEST_DATA_DIR}/${d.id}.js"></script>`)
         .replace(ITINERARIES_SCRIPT, '')
+        .replace(PHOTOS_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const other = lang === 'vi' ? 'en' : 'vi'
 

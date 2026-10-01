@@ -13,7 +13,8 @@
     "test:data": "node --test tests/data.test.js",
     "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.js",
     "check-links": "node tools/check-links.js",
-    "check-freshness": "node tools/check-freshness.js"
+    "check-freshness": "node tools/check-freshness.js",
+    "add-photo": "node tools/add-photo.js"
   },
   "engines": {
     "node": ">=18"

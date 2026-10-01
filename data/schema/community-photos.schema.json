@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "community-photos.schema.json",
+  "title": "Ảnh do người đọc gửi (đã duyệt) – thêm bằng tools/add-photo.js",
+  "description": "Ảnh lưu ở assets/img/community/<base>-{480,960,1920}.webp. Chỉ nhận ảnh người gửi là tác giả và đồng ý giấy phép.",
+  "type": "object",
+  "required": ["photos"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dest", "base", "w", "h", "caption", "author", "license", "date"],
+        "properties": {
+          "dest": { "$ref": "common.schema.json#/$defs/id" },
+          "base": { "description": "Tên file gốc (không gồm -480.webp...)", "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "w": { "type": "integer", "minimum": 1 },
+          "h": { "type": "integer", "minimum": 1 },
+          "caption": { "$ref": "common.schema.json#/$defs/pair" },
+          "author": { "type": "string", "minLength": 1 },
+          "license": { "type": "string", "enum": ["CC BY 4.0", "CC BY-SA 4.0", "CC0"] },
+          "date": { "$ref": "common.schema.json#/$defs/yearMonth" },
+          "source": { "description": "Link Issue gửi ảnh", "type": "string", "pattern": "^https://" }
+        }
+      }
+    }
+  }
+}
