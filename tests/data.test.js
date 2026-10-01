@@ -490,3 +490,24 @@ test('mọi icon dùng trong mã đều có trong bộ icon rút gọn (npm run 
     assert.deepEqual(missing, [], `thiếu icon ${missing.join(', ')} – chạy npm run icons`)
     assert.ok(fs.existsSync(path.join(ROOT, 'assets/fonts/remixicon.woff2')), 'thiếu font icon – chạy npm run icons')
 })
+
+test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề – có trong sitemap, JSON-LD hợp lệ', () => {
+    const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
+    const rels = [
+        ...DESTINATIONS.flatMap(d => [`diem-den/${d.id}/gia-ve/`, `en/diem-den/${d.id}/gia-ve/`]),
+        ...Array.from({ length: 12 }, (_, i) => [`thang/${i + 1}/`, `en/thang/${i + 1}/`]).flat(),
+        ...['bien', 'nui', 'di-san', 'thanh-pho', 'hang-dong', 'mien-bac', 'mien-trung', 'mien-nam'].flatMap(s => [`chu-de/${s}/`, `en/chu-de/${s}/`]),
+    ]
+    for (const rel of rels) {
+        assert.ok(sitemap.includes(`/travel/${rel}<`), `sitemap thiếu ${rel}`)
+        const html = fs.readFileSync(path.join(ROOT, rel, 'index.html'), 'utf8')
+        const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]))
+        const graph = blocks.flatMap(b => b['@graph'] || [b])
+        assert.ok(graph.some(n => n['@type'] === 'BreadcrumbList'), `${rel} thiếu BreadcrumbList`)
+        assert.ok(graph.some(n => n['@type'] === 'ItemList' && n.itemListElement.length), `${rel} thiếu ItemList`)
+        assert.match(html, /<link rel="canonical" href="https:\/\/tantan1802\.github\.io\/travel\//)
+    }
+    /* Mỗi điểm tham quan có anchor riêng trên trang giá vé */
+    const hue = fs.readFileSync(path.join(ROOT, 'diem-den/hue/gia-ve/index.html'), 'utf8')
+    assert.ok(hue.includes('id="dai-noi-hue-ngo-mon-tu-cam-thanh"'))
+})

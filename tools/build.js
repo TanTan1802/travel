@@ -21,6 +21,9 @@ const SITE_URL = 'https://tantan1802.github.io/travel/'
 const PAGE_DIR = 'diem-den'
 const PLANNER_DIR = 'ke-hoach'
 const GUIDE_DIR = 'cam-nang'
+const PRICES_DIR = 'gia-ve'
+const MONTH_DIR = 'thang'
+const THEME_DIR = 'chu-de'
 
 const LANGS = {
     vi: { prefix: '', locale: 'vi_VN', switchLabel: 'EN' },
@@ -43,10 +46,13 @@ const SCRIPTS = [
     'assets/js/config.js',
     'assets/js/destination-render.js',
     'assets/js/guide-render.js',
+    'assets/js/seo-render.js',
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
-    'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang']
+    'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
+    'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
+    'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -76,6 +82,9 @@ const homePath = lang => `${LANGS[lang].prefix}index.html`
 const destPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/index.html`
 const plannerPath = lang => `${LANGS[lang].prefix}${PLANNER_DIR}/index.html`
 const guidePath = (lang, slug = '') => `${LANGS[lang].prefix}${GUIDE_DIR}/${slug ? `${slug}/` : ''}index.html`
+const pricesPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/${PRICES_DIR}/index.html`
+const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.html`
+const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -98,7 +107,7 @@ function absoluteImage(site, file) {
  */
 function prefixPaths(html, siteRoot, langRoot) {
     return html.replace(/(href|src)="(?!https?:|#|mailto:|data:|\/)([^"]+)"/g, (m, attr, url) => {
-        const isPage = url.startsWith('index.html') || url.startsWith(`${PAGE_DIR}/`) || url.startsWith(`${PLANNER_DIR}/`) || url.startsWith(`${GUIDE_DIR}/`)
+        const isPage = url.startsWith('index.html') || [PAGE_DIR, PLANNER_DIR, GUIDE_DIR, MONTH_DIR, THEME_DIR].some(dir => url.startsWith(`${dir}/`))
         return `${attr}="${isPage ? langRoot : siteRoot}${url}"`
     })
 }
@@ -314,22 +323,111 @@ function buildGuidePage(template, lang, slug, site) {
         .replace(/(\s*)<script defer src="/,
             `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
         .replace('<main class="main guide-page" id="guide-page"></main>',
-            `<main class="main guide-page" id="guide-page" data-prerendered>${guide ? site.guideArticlePage(guide) : site.guidesIndexPage()}</main>`)
+            `<main class="main guide-page" id="guide-page" data-prerendered>${guide ? site.guideArticlePage(guide) : site.guidesIndexPage() + site.exploreHubHtml()}</main>`)
     if (!html.includes('data-prerendered')) throw new Error('Không tìm thấy <main id="guide-page"> trong guide.html')
     return html
+}
+
+/*
+ * Trang nội dung tĩnh dùng khung guide.html (trang giá vé, theo tháng, theo chủ đề):
+ * title/description/canonical/hreflang/Open Graph + JSON-LD (kèm BreadcrumbList).
+ */
+function buildContentPage(template, lang, rel, otherRel, site, { title, description, main, image, jsonLd = [], crumbs = [] }) {
+    const other = lang === 'vi' ? 'en' : 'vi'
+    let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
+    const url = pageUrl(rel)
+    const graph = [...jsonLd, {
+        '@type': 'BreadcrumbList',
+        itemListElement: [...crumbs, [title, url]].map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })),
+    }]
+    const head = `
+        <link rel="canonical" href="${url}">${alternateLinks(rel.replace(/^en\//, ''), `en/${rel.replace(/^en\//, '')}`)}
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="${LANGS[lang].locale}">
+        <meta property="og:title" content="${escapeHtml(title)}">
+        <meta property="og:description" content="${escapeHtml(description)}">
+        <meta property="og:url" content="${url}">
+        <meta property="og:image" content="${escapeHtml(image)}">
+        <meta name="twitter:card" content="summary_large_image">
+        <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>
+    `
+    html = setLangSwitch(html, lang, siteRoot, otherRel)
+        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)} – Việt Travel</title>`)
+        .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(truncate(description))}">`)
+        .replace('</head>', `${head}</head>`)
+        .replace(/(\s*)<script defer src="/,
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
+        .replace('<main class="main guide-page" id="guide-page"></main>',
+            `<main class="main guide-page" id="guide-page" data-prerendered>${main}</main>`)
+    if (!html.includes('data-prerendered')) throw new Error('Không tìm thấy <main id="guide-page"> trong guide.html')
+    return html
+}
+
+/* Trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề/miền */
+function explorePages(template, lang) {
+    const other = lang === 'vi' ? 'en' : 'vi'
+    const pages = []
+    const home = [loadSite(lang, '').t('Trang chủ'), pageUrl(homePath(lang))]
+    const destSite = loadSite(lang, rootFor(pricesPath(lang, 'x')))
+    for (const d of destSite.DESTINATIONS) {
+        const rel = pricesPath(lang, d.id)
+        const sum = destSite.destinationSights(d.id).flatMap(g => g.sights).length
+        if (!sum) continue
+        pages.push([rel, () => buildContentPage(template, lang, rel, pricesPath(other, d.id), destSite, {
+            title: destSite.t('Giá vé tham quan {name} & giờ mở cửa', { name: d.name }),
+            description: destSite.t('Giá vé, giờ mở cửa và địa chỉ {count} điểm tham quan ở {name} theo lịch trình từng ngày, kèm quán nước gần đó.', { count: sum, name: d.name }),
+            main: destSite.pricesPage(d),
+            image: ogImage(destSite, d),
+            jsonLd: [destSite.pricesJsonLd(d, pageUrl(rel))],
+            crumbs: [home, [d.name, pageUrl(destPath(lang, d.id))]],
+        }), destSite])
+    }
+    const monthSite = loadSite(lang, rootFor(monthPath(lang, 1)))
+    for (let m = 1; m <= 12; m++) {
+        const rel = monthPath(lang, m)
+        const picks = monthSite.monthDestinations(m)
+        pages.push([rel, () => buildContentPage(template, lang, rel, monthPath(other, m), monthSite, {
+            title: monthSite.monthTitle(m),
+            description: `${monthSite.pickLang(monthSite.MONTH_NOTES[m])} ${picks.slice(0, 5).map(d => d.name).join(', ')}…`,
+            main: monthSite.monthPage(m),
+            image: picks[0] ? ogImage(monthSite, picks[0]) : `${SITE_URL}assets/img/og/hoi-an.jpg`,
+            jsonLd: [{ '@type': 'ItemList', name: monthSite.monthTitle(m),
+                itemListElement: picks.map((d, i) => ({ '@type': 'ListItem', position: i + 1, url: pageUrl(destPath(lang, d.id)), name: d.name })) }],
+            crumbs: [home],
+        }), monthSite])
+    }
+    const themeSite = loadSite(lang, rootFor(themePath(lang, 'x')))
+    for (const theme of themeSite.themeList()) {
+        const rel = themePath(lang, theme.slug)
+        const picks = themeSite.DESTINATIONS.filter(d => (theme.kind === 'region' ? d.region === theme.key : d.categories.includes(theme.key)))
+            .sort((a, b) => b.rating - a.rating)
+        pages.push([rel, () => buildContentPage(template, lang, rel, themePath(other, theme.slug), themeSite, {
+            title: themeSite.themeTitle(theme),
+            description: themeSite.pickLang(themeSite.THEME_INTROS[theme.key]),
+            main: themeSite.themePage(theme),
+            image: picks[0] ? ogImage(themeSite, picks[0]) : `${SITE_URL}assets/img/og/hoi-an.jpg`,
+            jsonLd: [{ '@type': 'ItemList', name: themeSite.themeTitle(theme),
+                itemListElement: picks.map((d, i) => ({ '@type': 'ListItem', position: i + 1, url: pageUrl(destPath(lang, d.id)), name: d.name })) }],
+            crumbs: [home],
+        }), themeSite])
+    }
+    return pages
 }
 
 function buildSitemap(site) {
     const today = new Date().toISOString().slice(0, 10)
     const rels = Object.keys(LANGS).flatMap(lang =>
         [homePath(lang), plannerPath(lang), guidePath(lang), ...site.GUIDES.map(g => guidePath(lang, g.slug)),
-            ...site.DESTINATIONS.map(d => destPath(lang, d.id))])
+            ...site.DESTINATIONS.map(d => destPath(lang, d.id)), ...exploreRels(lang)])
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${rels.map(rel => `  <url><loc>${pageUrl(rel)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `
 }
+
+const exploreRels = lang => explorePages(read('guide.html'), lang).map(([rel]) => rel)
 
 /* Đổi VERSION của service worker theo nội dung tài nguyên để trình duyệt tải bản mới */
 /* Gồm tài nguyên tải sẵn trong sw.js và mọi file CSS/JS (kể cả file chỉ được lưu khi mở trang) */
@@ -458,11 +556,14 @@ function main() {
     fs.rmSync(path.join(ROOT, 'en'), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, PLANNER_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, MONTH_DIR), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, THEME_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
     fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).forEach(f => fs.rmSync(path.join(ROOT, CSS_DIR, f)))
 
     let count = 0
+    let explore = 0
     for (const lang of Object.keys(LANGS)) {
         const pageSite = loadSite(lang, rootFor(destPath(lang, 'x')))
         for (const d of pageSite.DESTINATIONS) {
@@ -478,6 +579,10 @@ function main() {
         page(plannerPath(lang), site => buildPlanner(plannerTemplate, lang, site))
         page(guidePath(lang), site => buildGuidePage(guideTemplate, lang, '', site))
         for (const g of loadSite(lang, '').GUIDES) page(guidePath(lang, g.slug), site => buildGuidePage(guideTemplate, lang, g.slug, site))
+        for (const [rel, build, site] of explorePages(guideTemplate, lang)) {
+            write(rel, bundleScripts(build(), rootFor(rel), site))
+            explore++
+        }
     }
 
     bundles.forEach((code, rel) => write(rel, code))
@@ -485,7 +590,7 @@ function main() {
     write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
-    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
+    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
 }
 
 main()
