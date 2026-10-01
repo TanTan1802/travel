@@ -60,9 +60,9 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
 - Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
 - **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.js` –
-  `ui`, `html`, `regions`, `categories`, `destinations` (tên, tỉnh, khẩu hiệu, mùa đẹp, số ngày, điểm nổi bật, mô tả)
+  `ui`, `html`, `regions`, `categories`, `destinations` (tên, tỉnh, khẩu hiệu, mùa đẹp, số ngày, điểm nổi bật, mô tả, chú thích ảnh, món ăn, trải nghiệm, kinh nghiệm)
   và `itineraries` (tên từng ngày). Bản dịch được phủ lên bản tiếng Anh, nên phần chưa dịch
-  (món ăn, hoạt động, quán, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.js`
+  (chi tiết lịch trình, quán ăn, điểm tham quan, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.js`
   hoặc biến `{…}` không khớp.
 - Thêm ngôn ngữ mới: tạo `data/i18n/<mã>.json`, khai báo trong `LANGS` (tools/build.js) và `SITE_LANGS` +
   tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`

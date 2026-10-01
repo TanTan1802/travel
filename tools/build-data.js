@@ -166,13 +166,16 @@ function generate(name, json) {
 /*==================== BẢN DỊCH KO / ZH / JA ====================*/
 /*
  * data/i18n/<lang>.json – khóa là chuỗi tiếng Việt gốc (giống assets/js/data/en.js):
- *   ui, html, regions, categories, destinations (chữ của điểm đến), itineraries (tên từng ngày).
+ *   ui, html, regions, categories, destinations (chữ của điểm đến: thông tin, chú thích ảnh, món ăn,
+ *   trải nghiệm, kinh nghiệm), itineraries (tên từng ngày).
  * Sinh assets/js/data/i18n/<lang>.js (TRANSLATION_LOCAL) – i18n.js phủ lên bản tiếng Anh,
  * chuỗi chưa dịch sẽ hiện tiếng Anh. Thêm ngôn ngữ: tạo file JSON + khai báo trong LANGS của tools/build.js.
  */
 const I18N_DIR = path.join(DATA_DIR, 'i18n')
 const I18N_OUT = path.join(OUT_DIR, 'i18n')
-const I18N_FIELDS = ['name', 'province', 'tagline', 'bestTime', 'duration', 'highlights', 'description']
+const I18N_FIELDS = ['name', 'province', 'tagline', 'bestTime', 'duration', 'highlights', 'description', 'gallery', 'foods', 'activities', 'tips']
+/* Trường chữ được dịch trong từng phần tử của mảng */
+const I18N_ITEM_FIELDS = { gallery: ['caption'], foods: ['name', 'desc', 'illustrative'], activities: ['title', 'desc'] }
 
 const placeholders = text => [...String(text).matchAll(/\{(\w+)\}/g)].map(m => m[1]).sort().join(',')
 
@@ -192,7 +195,14 @@ function checkTranslation(lang, json, data, en) {
     Object.entries(json.destinations || {}).forEach(([id, d]) => {
         if (!dests.has(id)) return errors.push(`i18n/${lang}.destinations: ${id} không tồn tại`)
         Object.keys(d).filter(k => !I18N_FIELDS.includes(k)).forEach(k => errors.push(`i18n/${lang}.destinations.${id}: trường ${k} không dịch được`))
-        if (d.highlights && d.highlights.length !== dests.get(id).highlights.length) errors.push(`i18n/${lang}.destinations.${id}: highlights phải có ${dests.get(id).highlights.length} mục`)
+        const vi = dests.get(id)
+        ;['highlights', 'gallery', 'foods', 'activities', 'tips'].forEach(key => {
+            if (d[key] && d[key].length !== vi[key].length) errors.push(`i18n/${lang}.destinations.${id}: ${key} phải có ${vi[key].length} mục`)
+        })
+        Object.entries(I18N_ITEM_FIELDS).forEach(([key, fields]) => (d[key] || []).forEach((item, i) => {
+            Object.keys(item).filter(k => !fields.includes(k)).forEach(k => errors.push(`i18n/${lang}.destinations.${id}.${key}[${i}]: trường ${k} không dịch được`))
+            if (key === 'foods' && !!item.illustrative !== !!(vi.foods[i] && vi.foods[i].illustrative)) errors.push(`i18n/${lang}.destinations.${id}.foods[${i}]: illustrative phải khớp dữ liệu gốc`)
+        }))
     })
     Object.entries(json.itineraries || {}).forEach(([id, plan]) => {
         const days = data.itineraries.itineraries[id] && data.itineraries.itineraries[id].days
