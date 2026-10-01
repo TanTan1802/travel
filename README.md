@@ -118,7 +118,9 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 ## Hiệu năng (Lighthouse)
 
 - Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.
-- Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); font Google và Remix Icon tải không chặn hiển thị; toàn bộ script dùng `defer`.
+- Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); font Google tải không chặn hiển thị; toàn bộ script dùng `defer`.
+- Icon Remix Icon **tự host, rút gọn** còn các icon đang dùng (`assets/css/icons.css` + `assets/fonts/remixicon.woff2`, ~18 KB thay vì ~235 KB từ CDN).
+  Thêm icon mới → viết đủ tên class (`'ri-sun-line'`, không ghép chuỗi) rồi chạy `npm run icons`; `npm run test:data` báo lỗi nếu quên.
 - `data-sizes` trên thẻ ảnh cho biết kích thước hiển thị thực để trình duyệt chọn file WebP vừa đủ.
 - Ảnh WebP 480/960/1920 tính theo **cạnh dài** (ảnh dọc không cao quá 1920px); `srcset` ghi chiều rộng thật của từng file.
 - Lịch trình tour 3/4/5 ngày render **một lần** (tour ngắn = các ngày đầu của tour dài): ngày ngoài tour ẩn bằng
@@ -138,7 +140,7 @@ npm test                          # = npm run test:data && npm run test:e2e
 ```
 
 - Dùng Chromium có sẵn trên máy: `CHROMIUM_PATH=/đường/dẫn/chrome npm run test:e2e`.
-- Máy không ra được CDN: `LOCAL_CDN_DIR=<thư mục node_modules có leaflet@1.9.4 và remixicon@2.5.0>`.
+- Máy không ra được CDN: `LOCAL_CDN_DIR=<thư mục node_modules có leaflet@1.9.4>`.
 - CI dùng `npm ci` (khóa phiên bản bằng `package-lock.json`) và lưu cache npm + Chromium.
 
 - `tests/data.test.js`: dữ liệu điểm đến, lịch trình 3/4/5 ngày, bản dịch tiếng Anh, manifest ảnh, trang tĩnh & sitemap, liên kết nội bộ.

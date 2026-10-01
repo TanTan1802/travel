@@ -478,3 +478,15 @@ test('không có liên kết nội bộ hỏng trong các trang đã build', () 
     }
     assert.deepEqual([...new Set(broken)], [], `liên kết hỏng:\n${[...new Set(broken)].join('\n')}`)
 })
+
+test('mọi icon dùng trong mã đều có trong bộ icon rút gọn (npm run icons)', () => {
+    const { usedIcons, remixCodepoints, CSS_OUT } = require('../tools/build-icons')
+    const codepoints = remixCodepoints()
+    const used = usedIcons()
+    const unknown = used.filter(name => !codepoints.has(name))
+    assert.deepEqual(unknown, [], `icon không có trong Remix Icon 2.5.0: ${unknown.join(', ')}`)
+    const css = fs.readFileSync(path.join(ROOT, CSS_OUT), 'utf8')
+    const missing = used.filter(name => !css.includes(`.${name}:before`))
+    assert.deepEqual(missing, [], `thiếu icon ${missing.join(', ')} – chạy npm run icons`)
+    assert.ok(fs.existsSync(path.join(ROOT, 'assets/fonts/remixicon.woff2')), 'thiếu font icon – chạy npm run icons')
+})
