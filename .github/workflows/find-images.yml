@@ -1,0 +1,26 @@
+# Tìm ảnh Wikimedia Commons (giấy phép tự do, ≥ 1200px) cho điểm đến / món ăn mới.
+# Tab Actions → "Tìm ảnh Wikimedia" → Run workflow → nhập từ khóa ngăn cách bằng "|". Kết quả ở Summary của lần chạy.
+name: Tìm ảnh Wikimedia
+
+on:
+  workflow_dispatch:
+    inputs:
+      queries:
+        description: 'Từ khóa, ngăn cách bằng | (vd: Mai Chau|Com lam)'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Tìm ảnh
+        env:
+          QUERIES: ${{ inputs.queries }}
+        run: node tools/find-images.js
