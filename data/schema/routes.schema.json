@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "routes.schema.json",
+  "title": "Quãng đường và thời gian lái xe giữa các điểm đến (sinh bởi tools/build-routes.js)",
+  "description": "km[i][j], hours[i][j]: từ ids[i] tới ids[j]; null = không có đường bộ.",
+  "type": "object",
+  "required": ["source", "generated", "ids", "km", "hours"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "source": { "type": "string", "minLength": 1 },
+    "generated": { "type": "string", "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$" },
+    "ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/id" }, "minItems": 2 },
+    "km": { "type": "array", "items": { "type": "array", "items": { "type": ["number", "null"], "minimum": 0 } } },
+    "hours": { "type": "array", "items": { "type": "array", "items": { "type": ["number", "null"], "minimum": 0 } } }
+  }
+}

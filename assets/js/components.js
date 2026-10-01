@@ -82,11 +82,12 @@ function formatDate(iso) {
     return LANG === 'en' ? `${MONTHS_EN[m - 1].slice(0, 3)} ${d}, ${y}` : `${d}/${m}/${y}`
 }
 
-/* Link tìm phòng đã điền sẵn nơi ở + ngày (nếu có) */
-function stayLinks(city, area = '', checkin = '', nights = 0) {
+/* Link tìm phòng đã điền sẵn nơi ở + ngày (nếu có) + số người (phòng đôi: 2 người/phòng) */
+function stayLinks(city, area = '', checkin = '', nights = 0, people = 2) {
     const checkout = checkin && nights ? addDays(checkin, nights) : ''
-    const booking = new URLSearchParams({ ss: `${city}, Vietnam`, group_adults: 2, no_rooms: 1 })
-    const airbnb = new URLSearchParams({ adults: 2 })
+    const adults = Math.max(1, people || 2)
+    const booking = new URLSearchParams({ ss: `${city}, Vietnam`, group_adults: adults, no_rooms: Math.ceil(adults / 2) })
+    const airbnb = new URLSearchParams({ adults })
     if (checkin) {
         booking.set('checkin', checkin); booking.set('checkout', checkout)
         airbnb.set('checkin', checkin); airbnb.set('checkout', checkout)

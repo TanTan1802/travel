@@ -361,7 +361,14 @@ test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với J
     const { loadAndValidate, DATASETS } = require('../tools/build-data')
     const { data, errors } = loadAndValidate()
     assert.deepEqual(errors, [], `dữ liệu không hợp lệ:\n${errors.join('\n')}`)
-    for (const [name, { vars }] of Object.entries(DATASETS)) {
+    for (const [name, { vars, whole }] of Object.entries(DATASETS)) {
+        if (whole) {
+            /* Bộ dữ liệu không bắt buộc, sinh nguyên khối (vd. ROUTES = null khi chưa có data/routes.json) */
+            const value = loadBrowserScripts([`assets/js/data/${name}.js`], [whole])[whole]
+            const expected = data[name] && (({ $schema, ...rest }) => rest)(data[name])
+            assert.equal(JSON.stringify(value), JSON.stringify(expected || null), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
+            continue
+        }
         const generated = loadBrowserScripts([`assets/js/data/${name}.js`], Object.values(vars))
         for (const [key, constName] of Object.entries(vars)) {
             assert.equal(JSON.stringify(generated[constName]), JSON.stringify(data[name][key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
@@ -541,4 +548,38 @@ test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề �
     /* Mỗi điểm tham quan có anchor riêng trên trang giá vé */
     const hue = fs.readFileSync(path.join(ROOT, 'diem-den/hue/gia-ve/index.html'), 'utf8')
     assert.ok(hue.includes('id="dai-noi-hue-ngo-mon-tu-cam-thanh"'))
+})
+
+test('lập kế hoạch: dùng quãng đường/thời gian đường bộ thật (ROUTES) khi có, không thì ước tính', () => {
+    const vm = require('vm')
+    const noop = () => {}
+    const files = ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js',
+        'assets/js/data/sights.js', 'assets/js/data/events.js', 'assets/js/data/packing.js', 'assets/js/data/profiles.js', 'assets/js/favorites.js',
+        'assets/js/components.js', 'assets/js/planner.js']
+    const run = routes => {
+        const ctx = {
+            window: { addEventListener: noop }, URLSearchParams, URL, navigator: {},
+            document: { getElementById: () => null, querySelector: () => null, querySelectorAll: () => [], addEventListener: noop, documentElement: { lang: 'vi' } },
+            localStorage: { getItem: () => null, setItem: noop }, location: { search: '', href: 'http://x/' },
+        }
+        vm.runInNewContext(`const ROUTES = ${JSON.stringify(routes)};\n${files.map(f => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n;\n')}
+            ;this.leg = (a, b) => legInfo(getDestination(a), getDestination(b), 'saving')
+            ;this.links = stayLinks('Hue', '', '2026-11-10', 2, 5)`, ctx)
+        return ctx
+    }
+    const estimated = run(null)
+    const guess = estimated.leg('hue', 'hoi-an')
+    assert.equal(guess.mode, 'road')
+    assert.ok(guess.km > 100 && guess.km < 200)
+
+    const measured = run({ ids: ['hue', 'hoi-an', 'ha-noi'], km: [[0, 125, 660], [125, 0, 780], [660, 780, 0]], hours: [[0, 2.5, 11], [2.5, 0, 13], [11, 13, 0]] })
+    const leg = measured.leg('hue', 'hoi-an')
+    assert.equal(leg.km, 125, 'quãng đường lấy từ ROUTES')
+    assert.equal(leg.hours, 3, '2,5 giờ lái xe × 1,25 (xe khách) ≈ 3 giờ')
+    assert.equal(measured.leg('hue', 'ha-noi').mode, 'flight', 'trên 450 km đường bộ → gợi ý bay')
+
+    /* Link đặt phòng theo số người: 5 người → 3 phòng */
+    const booking = new URL(measured.links.find(l => l.label === 'Booking.com').url)
+    assert.equal(booking.searchParams.get('group_adults'), '5')
+    assert.equal(booking.searchParams.get('no_rooms'), '3')
 })

@@ -1,0 +1,48 @@
+# Cập nhật bảng quãng đường + thời gian lái xe thật giữa các điểm đến (OSRM) cho trình lập kế hoạch.
+# Bấm "Run workflow" trong tab Actions (khi thêm điểm đến mới). Kết quả đẩy lên nhánh data/osrm-routes
+# để mở Pull Request duyệt trước khi lên web.
+name: Cập nhật quãng đường
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: osrm-routes
+  cancel-in-progress: false
+
+jobs:
+  routes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cài thư viện
+        run: npm ci --no-audit --no-fund
+
+      - name: Lấy bảng quãng đường từ OSRM
+        run: node tools/build-routes.js
+
+      - name: Sinh lại dữ liệu và trang
+        run: npm run build
+
+      - name: Đẩy lên nhánh data/osrm-routes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B data/osrm-routes
+          git add -A data/routes.json assets/js/data assets/js/dist assets/css sw.js
+          if git diff --cached --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "Dữ liệu: quãng đường + thời gian lái xe giữa các điểm đến (OSRM)"
+            git push -f origin data/osrm-routes
+            echo "### Đã đẩy nhánh data/osrm-routes – mở Pull Request để duyệt" >> "$GITHUB_STEP_SUMMARY"
+          fi

@@ -15,6 +15,7 @@ Toàn bộ nội dung (điểm đến, lịch trình, quán ăn, điểm tham qu
 | `data/places.json` | Quán ăn, quán nước, khu lưu trú, cách đi tới | `places.schema.json` |
 | `data/sights.json` | Điểm tham quan theo từng ngày (giá vé, giờ mở cửa, địa chỉ) + quán nước gần điểm | `sights.schema.json` |
 | `data/events.json` | Lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết cần lưu ý | `events.schema.json` |
+| `data/routes.json` *(không bắt buộc)* | Quãng đường + thời gian lái xe giữa các điểm đến (OSRM) – sinh bởi `tools/build-routes.js`, **không sửa tay** | `routes.schema.json` |
 
 Bản dịch tiếng Anh của phần chữ trong điểm đến và lịch trình vẫn nằm ở `assets/js/data/en.js`. Các chuỗi hai ngôn ngữ trong `places`, `sights` và `events` được viết dạng `["tiếng Việt", "English"]`.
 
