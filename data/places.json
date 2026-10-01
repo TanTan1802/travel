@@ -5687,6 +5687,395 @@
           ]
         }
       ]
+    },
+    "tay-ninh": {
+      "city": "Tay Ninh",
+      "airport": "SGN",
+      "getThere": [
+        "Từ TP.HCM: xe khách/limousine khoảng 2–2,5 giờ (~100 km) theo QL22, nhiều chuyến trong ngày; hoặc thuê xe đi về trong ngày.",
+        "From Saigon: bus or limousine van about 2–2.5 h (~100 km) on Highway 22, many departures daily; or hire a car for a day trip."
+      ],
+      "eats": [
+        {
+          "name": "Bánh canh Trảng Bàng ven QL22",
+          "dish": [
+            "Bánh canh Trảng Bàng giò heo",
+            "Trang Bang noodle soup with pork hock"
+          ],
+          "address": "Quốc lộ 22, Trảng Bàng, Tây Ninh",
+          "price": [
+            40000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Bánh tráng phơi sương Trảng Bàng",
+          "dish": [
+            "Bánh tráng phơi sương cuốn thịt luộc, rau rừng",
+            "Dew-dried rice paper rolls with boiled pork and wild herbs"
+          ],
+          "address": "Trảng Bàng, Tây Ninh",
+          "price": [
+            80000,
+            150000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bò tơ đường 30/4",
+          "dish": [
+            "Bò tơ nướng ngói, hấp gừng",
+            "Young beef grilled on a tile or steamed with ginger"
+          ],
+          "address": "Đường 30/4, TP Tây Ninh",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán chay quanh Tòa Thánh",
+          "dish": [
+            "Cơm chay, bún chay",
+            "Vegetarian rice and noodles"
+          ],
+          "address": "Hòa Thành, Tây Ninh",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Bánh xèo chân núi Bà Đen",
+          "dish": [
+            "Bánh xèo, bánh khọt rau rừng",
+            "Sizzling pancakes and mini pancakes with wild greens"
+          ],
+          "address": "Chân núi Bà Đen, Tây Ninh",
+          "price": [
+            50000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cá nướng ven hồ Dầu Tiếng",
+          "dish": [
+            "Cá lóc nướng trui, lẩu cá hồ",
+            "Grilled snakehead and lake-fish hotpot"
+          ],
+          "address": "Dương Minh Châu, Tây Ninh",
+          "price": [
+            120000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Long Hoa",
+          "dish": [
+            "Ăn vặt, mua muối tôm, bánh tráng",
+            "Snacks, shrimp salt and rice paper"
+          ],
+          "address": "Chợ Long Hoa, Hòa Thành, Tây Ninh",
+          "price": [
+            20000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Hủ tiếu, cơm tấm sáng TP Tây Ninh",
+          "dish": [
+            "Hủ tiếu, cơm tấm bữa sáng",
+            "Hu tieu noodles and broken rice for breakfast"
+          ],
+          "address": "Trung tâm TP Tây Ninh",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê sân vườn TP Tây Ninh",
+          "drink": [
+            "Cà phê sữa đá, trà đá trong vườn",
+            "Iced milk coffee and tea in a garden"
+          ],
+          "address": "Trung tâm TP Tây Ninh",
+          "price": [
+            20000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nước mía chân núi Bà Đen",
+          "drink": [
+            "Nước mía, nước dừa sau khi xuống núi",
+            "Sugarcane juice and coconut water after the mountain"
+          ],
+          "address": "Chân núi Bà Đen, Tây Ninh",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê view núi Bà Đen",
+          "drink": [
+            "Cà phê, sinh tố ngắm núi",
+            "Coffee and smoothies with mountain views"
+          ],
+          "address": "Đường lên núi Bà Đen, Tây Ninh",
+          "price": [
+            25000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "TP Tây Ninh (trung tâm)",
+            "Tay Ninh city centre"
+          ],
+          "type": "hotel",
+          "price": [
+            350000,
+            1000000
+          ],
+          "note": [
+            "Gần chợ, quán ăn; đi Tòa Thánh 10 phút.",
+            "Near markets and food; 10 min to the Holy See."
+          ]
+        },
+        {
+          "area": [
+            "Chân núi Bà Đen",
+            "Foot of Ba Den Mountain"
+          ],
+          "type": "hotel",
+          "price": [
+            400000,
+            1200000
+          ],
+          "note": [
+            "Tiện lên núi sớm săn biển mây.",
+            "Handy for an early start to catch the clouds."
+          ]
+        }
+      ]
+    },
+    "ninh-thuan": {
+      "city": "Phan Rang",
+      "airport": "CXR",
+      "getThere": [
+        "Bay tới Cam Ranh rồi đi xe khoảng 1 giờ; tàu hỏa tới ga Tháp Chàm; xe khách từ TP.HCM khoảng 6 giờ.",
+        "Fly to Cam Ranh then about 1 h by car; train to Thap Cham station; or a bus from Saigon in about 6 h."
+      ],
+      "eats": [
+        {
+          "name": "Bánh căn Phan Rang",
+          "dish": [
+            "Bánh căn trứng, mực chấm mắm cá",
+            "Bánh căn with egg or squid and fish dipping sauce"
+          ],
+          "address": "Trung tâm Phan Rang – Tháp Chàm",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cừu nướng Phan Rang",
+          "dish": [
+            "Thịt cừu nướng, lẩu cừu",
+            "Grilled lamb and lamb hotpot"
+          ],
+          "address": "Phan Rang – Tháp Chàm",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Hải sản bè Vĩnh Hy",
+          "dish": [
+            "Tôm hùm, ốc, cá trên bè giữa vịnh",
+            "Lobster, snails and fish on a raft in the bay"
+          ],
+          "address": "Vịnh Vĩnh Hy, Ninh Hải",
+          "price": [
+            250000,
+            600000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Gỏi cá mai Ninh Chữ",
+          "dish": [
+            "Gỏi cá mai, cá cơm",
+            "Raw anchovy salad"
+          ],
+          "address": "Ninh Chữ, Ninh Hải",
+          "price": [
+            80000,
+            150000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Bánh xèo mực Phan Rang",
+          "dish": [
+            "Bánh xèo mực, tôm",
+            "Squid and shrimp sizzling pancakes"
+          ],
+          "address": "Phan Rang – Tháp Chàm",
+          "price": [
+            30000,
+            70000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Bún sứa, bún cá chợ Phan Rang",
+          "dish": [
+            "Bún sứa, bún cá",
+            "Jellyfish noodles and fish noodle soup"
+          ],
+          "address": "Chợ Phan Rang",
+          "price": [
+            30000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Phan Rang",
+          "dish": [
+            "Ăn vặt, mua nho, táo, mật nho",
+            "Snacks, grapes, apples and grape syrup"
+          ],
+          "address": "Trung tâm Phan Rang",
+          "price": [
+            20000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Ốc nướng Ninh Chữ",
+          "dish": [
+            "Ốc nướng, sò điệp",
+            "Grilled snails and scallops"
+          ],
+          "address": "Ninh Chữ, Ninh Hải",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê view biển Ninh Chữ",
+          "drink": [
+            "Cà phê, nước dừa nhìn ra biển",
+            "Coffee and coconut water facing the sea"
+          ],
+          "address": "Ninh Chữ, Ninh Hải",
+          "price": [
+            25000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nước nho ép Phan Rang",
+          "drink": [
+            "Nước nho ép, sinh tố táo",
+            "Fresh grape juice and apple smoothies"
+          ],
+          "address": "Phan Rang – Tháp Chàm",
+          "price": [
+            15000,
+            40000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê sân vườn Phan Rang",
+          "drink": [
+            "Cà phê sữa đá, trà đá",
+            "Iced milk coffee and iced tea"
+          ],
+          "address": "Phan Rang – Tháp Chàm",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Biển Ninh Chữ",
+            "Ninh Chu beach"
+          ],
+          "type": "resort",
+          "price": [
+            700000,
+            2500000
+          ],
+          "note": [
+            "Biển đẹp, gần đường đi Vĩnh Hy và Hang Rái.",
+            "A nice beach close to Vinh Hy and Hang Rai."
+          ]
+        },
+        {
+          "area": [
+            "Trung tâm Phan Rang",
+            "Phan Rang centre"
+          ],
+          "type": "hotel",
+          "price": [
+            300000,
+            800000
+          ],
+          "note": [
+            "Rẻ, gần chợ và quán ăn.",
+            "Cheap and close to the market and food."
+          ]
+        },
+        {
+          "area": [
+            "Làng chài Vĩnh Hy",
+            "Vinh Hy fishing village"
+          ],
+          "type": "homestay",
+          "price": [
+            300000,
+            700000
+          ],
+          "note": [
+            "Ngủ ngay bên vịnh, sáng sớm ra biển.",
+            "Sleep right by the bay for an early start."
+          ]
+        }
+      ]
     }
   }
 }

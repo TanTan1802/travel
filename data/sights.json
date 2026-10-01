@@ -8120,6 +8120,478 @@
           "updated": "2026-09"
         }
       ]
+    ],
+    "tay-ninh": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Tòa Thánh Cao Đài",
+            "Cao Dai Holy See"
+          ],
+          "price": 0,
+          "note": [
+            "Lễ lúc 6h, 12h, 18h; khách xem từ ban công, ăn mặc kín đáo",
+            "Services at 6:00, 12:00 and 18:00; visitors watch from the balcony, dress modestly"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Hòa Thành, Tây Ninh",
+          "cafe": {
+            "name": "Quán nước trước cổng Tòa Thánh",
+            "drink": [
+              "Nước mía, trà đá",
+              "Sugarcane juice, iced tea"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cáp treo lên đỉnh núi Bà Đen",
+            "Cable car to Ba Den summit"
+          ],
+          "price": [
+            250000,
+            650000
+          ],
+          "note": [
+            "Giá tùy tuyến cáp (lên chùa Bà hay lên đỉnh) – xem giá mới trên trang khu du lịch",
+            "Price depends on the line (pagoda or summit) – check the resort's website"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Núi Bà Đen, Tây Ninh",
+          "cafe": {
+            "name": "Cà phê trên đỉnh núi Bà Đen",
+            "drink": [
+              "Cà phê nóng, trà gừng giữa mây",
+              "Hot coffee and ginger tea among the clouds"
+            ],
+            "price": [
+              40000,
+              90000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chùa Bà (Linh Sơn Tiên Thạch Tự)",
+            "Main pagoda (Linh Son Tien Thach)"
+          ],
+          "price": 0,
+          "note": [
+            "Đi cáp treo tuyến chùa Bà hoặc leo bộ",
+            "Take the pagoda cable line or walk up"
+          ],
+          "hours": "05:00–18:00",
+          "address": "Lưng chừng núi Bà Đen, Tây Ninh",
+          "cafe": {
+            "name": "Quán chè lưng chừng núi",
+            "drink": [
+              "Chè, nước sâm mát",
+              "Sweet soup and herbal drinks"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Đường mòn leo núi Bà Đen",
+            "Ba Den Mountain hiking trail"
+          ],
+          "price": 0,
+          "note": [
+            "Leo 2–3 giờ, chỉ đi khi trời khô, mang đủ nước",
+            "2–3 h climb; only in dry weather, bring plenty of water"
+          ],
+          "hours": "06:00–16:00",
+          "address": "Núi Bà Đen, Tây Ninh",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hồ Dầu Tiếng",
+            "Dau Tieng Lake"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Dương Minh Châu, Tây Ninh",
+          "cafe": {
+            "name": "Quán nước ven hồ Dầu Tiếng",
+            "drink": [
+              "Nước dừa, cà phê võng ven hồ",
+              "Coconut water and hammock coffee by the lake"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Khu di tích Căn cứ Trung ương Cục miền Nam",
+            "Central Office for South Vietnam historic base"
+          ],
+          "price": [
+            10000,
+            30000
+          ],
+          "note": [
+            "Nên thuê hướng dẫn viên tại chỗ",
+            "A local guide is worthwhile"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Tân Lập, Tân Biên, Tây Ninh",
+          "cafe": {
+            "name": "Quán nước cổng khu di tích",
+            "drink": [
+              "Nước mía, nước sâm",
+              "Sugarcane juice and herbal drinks"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Vườn quốc gia Lò Gò – Xa Mát",
+            "Lo Go – Xa Mat National Park"
+          ],
+          "price": [
+            20000,
+            60000
+          ],
+          "note": [
+            "Đặt hướng dẫn viên nếu muốn đi sâu vào rừng ngắm chim",
+            "Book a guide to go deeper for birdwatching"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Tân Bình, Tân Biên, Tây Ninh",
+          "cafe": {
+            "name": "Quán nước Tân Biên",
+            "drink": [
+              "Cà phê, nước ép trái cây",
+              "Coffee and fruit juice"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Làng bánh tráng phơi sương Trảng Bàng",
+            "Trang Bang dew-dried rice paper village"
+          ],
+          "price": 0,
+          "note": [
+            "Bánh được nướng đêm, phơi sương sáng sớm",
+            "Rice paper is toasted at night and dew-dried at dawn"
+          ],
+          "hours": "all",
+          "address": "Trảng Bàng, Tây Ninh",
+          "cafe": {
+            "name": "Cà phê võng Trảng Bàng",
+            "drink": [
+              "Cà phê võng ven quốc lộ",
+              "Roadside hammock coffee"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Địa đạo Củ Chi (Bến Dược)",
+            "Cu Chi tunnels (Ben Duoc)"
+          ],
+          "price": [
+            35000,
+            125000
+          ],
+          "note": [
+            "Giá khác nhau cho khách trong nước / nước ngoài",
+            "Different prices for Vietnamese / foreign visitors"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Phú Hiệp, Củ Chi, TP.HCM",
+          "cafe": {
+            "name": "Quán khoai mì chấm muối mè Củ Chi",
+            "drink": [
+              "Trà, khoai mì luộc chấm muối mè",
+              "Tea and boiled cassava with sesame salt"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "ninh-thuan": [
+      [
+        {
+          "at": "a",
+          "name": [
+            "Tháp Pô Klong Garai",
+            "Po Klong Garai towers"
+          ],
+          "price": 25000,
+          "note": [
+            "Đẹp nhất lúc chiều muộn; ăn mặc kín đáo khi vào tháp",
+            "Best in the late afternoon; dress modestly inside the towers"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Đồi Trầu, Phan Rang – Tháp Chàm",
+          "cafe": {
+            "name": "Quán nước chân đồi Trầu",
+            "drink": [
+              "Nước dừa, nước nho ép",
+              "Coconut water and grape juice"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Biển Ninh Chữ",
+            "Ninh Chu beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Ninh Chữ, Ninh Hải",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Vịnh Vĩnh Hy – tàu đáy kính",
+            "Vinh Hy Bay – glass-bottom boat"
+          ],
+          "price": [
+            150000,
+            250000
+          ],
+          "note": [
+            "Đi buổi sáng khi biển êm",
+            "Go in the morning when the sea is calm"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Vĩnh Hy, Vĩnh Hải, Ninh Hải",
+          "cafe": {
+            "name": "Cà phê bến Vĩnh Hy",
+            "drink": [
+              "Cà phê, nước dừa nhìn ra vịnh",
+              "Coffee and coconut water facing the bay"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Lặn ngắm san hô Vĩnh Hy",
+            "Snorkelling in Vinh Hy Bay"
+          ],
+          "price": [
+            200000,
+            500000
+          ],
+          "note": [
+            "Giá gồm thuyền + dụng cụ, tùy số người",
+            "Includes boat and gear; depends on group size"
+          ],
+          "hours": "08:00–16:00",
+          "address": "Vịnh Vĩnh Hy, Ninh Hải",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hang Rái",
+            "Hang Rai"
+          ],
+          "price": 20000,
+          "note": [
+            "Đến sớm, khi triều thấp rêu xanh mới lộ ra",
+            "Arrive early; the green moss only shows at low tide"
+          ],
+          "hours": "06:00–17:30",
+          "address": "Vĩnh Hải, Ninh Hải (Vườn quốc gia Núi Chúa)",
+          "cafe": {
+            "name": "Quán nước cổng Hang Rái",
+            "drink": [
+              "Nước mát, dừa tươi",
+              "Cold drinks and fresh coconut"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Vườn nho Thái An",
+            "Thai An vineyards"
+          ],
+          "price": [
+            0,
+            50000
+          ],
+          "note": [
+            "Nhiều vườn miễn phí vào, mua nho tại vườn",
+            "Many vineyards are free to enter – buy grapes on site"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Thái An, Vĩnh Hải, Ninh Hải",
+          "cafe": {
+            "name": "Quán vang nho Thái An",
+            "drink": [
+              "Vang nho, mật nho pha đá",
+              "Grape wine and iced grape syrup"
+            ],
+            "price": [
+              20000,
+              60000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đồi cát Nam Cương",
+            "Nam Cuong sand dunes"
+          ],
+          "price": 0,
+          "note": [
+            "Đi lúc bình minh để tránh nắng gắt",
+            "Go at sunrise to avoid the harsh sun"
+          ],
+          "hours": "05:00–18:00",
+          "address": "An Hải, Ninh Phước",
+          "cafe": {
+            "name": "Quán nước chân đồi cát",
+            "drink": [
+              "Nước mía, nước dừa",
+              "Sugarcane juice and coconut water"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Làng gốm Bàu Trúc",
+            "Bau Truc pottery village"
+          ],
+          "price": 0,
+          "note": [
+            "Gốm nặn tay không dùng bàn xoay – mua tại xưởng",
+            "Hand-shaped pottery without a wheel – buy at the workshops"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Phước Dân, Ninh Phước",
+          "cafe": {
+            "name": "Quán trà làng Bàu Trúc",
+            "drink": [
+              "Trà đá, nước sâm",
+              "Iced tea and herbal drinks"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đồng muối Tri Hải",
+            "Tri Hai salt fields"
+          ],
+          "price": 0,
+          "note": [
+            "Đẹp nhất lúc sáng sớm khi diêm dân thu muối",
+            "Best early morning when salt is harvested"
+          ],
+          "hours": "all",
+          "address": "Tri Hải, Ninh Hải",
+          "cafe": {
+            "name": "Cà phê ven đầm Nại",
+            "drink": [
+              "Cà phê, nước ép nho ngắm đầm",
+              "Coffee and grape juice by the lagoon"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
     ]
   }
 }
