@@ -7,6 +7,15 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        /* Trợ lý hỏi đáp (assistant.js) */
+        'Hỏi Việt Travel': 'Ask Viet Travel',
+        'Xin chào! Hỏi mình về điểm đến, thời điểm đẹp, lịch trình, giá vé hay chi phí nhé. Ví dụ: "Đi Đà Lạt 3 ngày tháng 12 hết bao nhiêu?"': 'Hi! Ask me about destinations, the best time to go, itineraries, ticket prices or costs. For example: "How much is a 3-day trip to Da Lat in December?"',
+        'Câu hỏi của bạn': 'Your question',
+        'Nhập câu hỏi...': 'Type your question...',
+        'Gửi': 'Send',
+        'Trợ lý AI trả lời dựa trên dữ liệu của site và có thể nhầm – hãy kiểm tra lại trước khi đặt chỗ.': 'The AI assistant answers from this site\'s data and can make mistakes – double-check before booking.',
+        'Đang trả lời...': 'Answering...',
+        'Chưa kết nối được trợ lý, thử lại sau nhé.': 'Could not reach the assistant – please try again later.',
         /* Cộng đồng: ảnh người đọc, bình luận */
         'Ảnh: {author}': 'Photo: {author}',
         'Ảnh từ người đọc': 'Reader photos',

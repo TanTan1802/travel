@@ -5200,3 +5200,94 @@ body.dark-theme .month-nav__prevnext a {
   width: fit-content;
   margin-bottom: .5rem;
 }
+
+/*==================== TRỢ LÝ HỎI ĐÁP (assistant.js) ====================*/
+.assistant__fab {
+  position: fixed;
+  right: 1rem;
+  bottom: 4.5rem;
+  z-index: var(--z-fixed, 100);
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .75rem 1.1rem;
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, .2);
+  cursor: pointer;
+}
+
+.assistant__fab i {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 576px) {
+  .assistant__fab span {
+    display: none;
+  }
+}
+
+.assistant[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.assistant__log {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  min-height: 220px;
+  max-height: 55vh;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+}
+
+.assistant__msg {
+  max-width: 85%;
+  padding: .6rem .85rem;
+  border-radius: .9rem;
+  font-size: var(--small-font-size);
+  line-height: 1.5;
+}
+
+.assistant__msg--assistant {
+  align-self: flex-start;
+  background-color: var(--input-color);
+  color: var(--text-color);
+}
+
+.assistant__msg--user {
+  align-self: flex-end;
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.assistant__msg--error {
+  color: hsl(0, 70%, 45%);
+}
+
+.assistant__msg a {
+  color: var(--first-color);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+body.dark-theme .assistant__msg--assistant a {
+  color: var(--title-color);
+}
+
+.assistant__form {
+  display: flex;
+  gap: .5rem;
+  align-items: flex-end;
+  padding: 0 1.25rem .5rem;
+}
+
+.assistant__note {
+  padding: 0 1.25rem 1rem;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "viet-travel-assistant",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker – trợ lý hỏi đáp Việt Travel (Claude API)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.145.0"
+  }
+}
