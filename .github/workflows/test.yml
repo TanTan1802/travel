@@ -45,11 +45,14 @@ jobs:
         run: |
           npm run build
           # -I: bỏ qua <lastmod> của sitemap (lấy theo ngày chạy build nên khác ngày là khác)
-          git diff --exit-code -I '<lastmod>' -- diem-den assets/js/data assets/js/dist assets/css ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js \
+          git diff --exit-code -I '<lastmod>' -- diem-den assets/js/data assets/js/dist assets/css worker/src/knowledge.js ke-hoach cam-nang thang chu-de en index.html sitemap.xml robots.txt sw.js \
             || (echo "::error::Trang tĩnh chưa được build lại – chạy npm run build rồi commit." && exit 1)
 
       - name: Test dữ liệu
         run: npm run test:data
+
+      - name: Test trợ lý hỏi đáp (Worker, không gọi API thật)
+        run: npm run test:worker
 
       - name: Test giao diện (Playwright)
         run: npm run test:e2e

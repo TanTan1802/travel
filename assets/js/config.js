@@ -14,6 +14,12 @@ const SITE_CONFIG = {
     reportEndpoint: '',
 
     /*
+     * Trợ lý hỏi đáp (Claude) – URL Cloudflare Worker trong thư mục worker/ (xem worker/README.md).
+     * Để trống: không hiện nút "Hỏi Việt Travel".
+     */
+    assistantEndpoint: '',
+
+    /*
      * Bình luận qua Giscus (lưu trong GitHub Discussions của repo).
      * 1. Bật Discussions cho repo và cài app https://github.com/apps/giscus
      * 2. Vào https://giscus.app, nhập repo → copy data-repo-id, data-category, data-category-id vào đây.

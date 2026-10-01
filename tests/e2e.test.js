@@ -471,3 +471,31 @@ test('cộng đồng: mục ảnh người đọc + nút gửi ảnh mở form G
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('trợ lý hỏi đáp: ẩn khi chưa cấu hình; có endpoint thì hỏi được, gửi kèm điểm đến đang xem', async () => {
+    const { page, errors, close } = await openPage('diem-den/hue/index.html')
+    assert.equal(await page.$('#assistant-open'), null, 'chưa đặt assistantEndpoint → không có nút')
+
+    let sent
+    await page.route('https://assistant.test/**', route => {
+        sent = JSON.parse(route.request().postData())
+        route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ answer: 'Huế đẹp nhất tháng 1–4. Xem https://tantan1802.github.io/travel/diem-den/hue/ <b>x</b>' }) })
+    })
+    await page.evaluate(() => initAssistant('https://assistant.test/ask'))
+    await page.click('#assistant-open')
+    await page.fill('#assistant-input', 'Nên đi tháng mấy?')
+    await page.press('#assistant-input', 'Enter')
+    await page.waitForSelector('.assistant__msg--assistant a[href*="diem-den/hue"]')
+    assert.equal(sent.question, 'Nên đi tháng mấy?')
+    assert.equal(sent.page, 'hue')
+    assert.equal(await page.$('.assistant__msg b'), null, 'không chèn HTML từ câu trả lời')
+
+    /* Câu hỏi thứ hai gửi kèm lịch sử */
+    await page.fill('#assistant-input', 'Còn giá vé?')
+    await page.click('#assistant-form button[type="submit"]')
+    await page.waitForFunction(() => document.querySelectorAll('.assistant__msg--user').length === 2)
+    await page.waitForFunction(() => !document.querySelector('#assistant-form button[type="submit"]').disabled)
+    assert.deepEqual(sent.history.map(m => m.role), ['user', 'assistant'])
+    assert.deepEqual(errors, [])
+    await close()
+})

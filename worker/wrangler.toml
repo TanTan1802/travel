@@ -1,0 +1,19 @@
+# Cloudflare Worker cho trợ lý hỏi đáp – hướng dẫn trong worker/README.md
+name = "viet-travel-assistant"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Các trang được gọi trợ lý (CORS), ngăn cách bằng dấu phẩy
+ALLOWED_ORIGINS = "https://tantan1802.github.io"
+# Model và mức effort (mặc định claude-opus-5-5, effort "low" cho câu hỏi ngắn)
+# MODEL = "claude-opus-5-5"
+# EFFORT = "low"
+
+# Giới hạn 10 câu hỏi / phút mỗi IP (Cloudflare Workers Rate Limiting)
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }

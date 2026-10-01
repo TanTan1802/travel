@@ -60,10 +60,13 @@ jobs:
             assets/js/data
             assets/js/dist
             assets/css
+            worker/src/knowledge.js
             diem-den
             en
             ke-hoach
             cam-nang
+            thang
+            chu-de
             index.html
             sitemap.xml
             sw.js

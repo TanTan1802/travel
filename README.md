@@ -79,6 +79,12 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
   → tạo WebP 480/960/1920 trong `assets/img/community/` (đã **xóa EXIF/GPS**), thêm vào `data/community-photos.json`; rồi `npm run build`.
 - Bình luận + **đánh giá bằng cảm xúc (reactions)** qua Giscus: xem mục Bình luận bên dưới để bật.
 
+## Trợ lý hỏi đáp (Claude)
+
+- Nút **"Hỏi Việt Travel"** (`assets/js/assistant.js`) mở khung chat; câu hỏi gửi tới Cloudflare Worker trong `worker/`,
+  Worker gọi Claude kèm dữ liệu site (`worker/src/knowledge.js`, sinh khi `npm run build`, dùng prompt caching).
+- Ẩn cho tới khi đặt `assistantEndpoint` trong `config.js`. Triển khai, chi phí, an toàn: [worker/README.md](worker/README.md).
+
 ## Form đăng ký nhận tin
 Tạo form miễn phí tại [Formspree](https://formspree.io), rồi dán URL vào `assets/js/config.js`:
 
