@@ -7,6 +7,7 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        '{rooms} phòng cho {n} người': '{rooms} rooms for {n} people',
         /* Độ mới dữ liệu + form báo sai (report.js) */
         'Cập nhật {m}/{y}': 'Updated {m}/{y}',
         'Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất': 'Month this information was last updated or re-checked',

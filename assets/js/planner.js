@@ -30,14 +30,32 @@ const planner = {
     layer: null,
 }
 
+const COACH_FACTOR = 1.25 // xe khách / limousine chậm hơn ô tô riêng (dừng đón trả, nghỉ giữa đường)
+
+/*
+ * Quãng đường + thời gian đường bộ thật giữa hai điểm đến từ bảng ROUTES (OSRM, data/routes.json – xem
+ * tools/build-routes.js); chưa có bảng thì ước tính theo đường chim bay × ROAD_FACTOR, 45 km/h.
+ */
+function roadRoute(a, b) {
+    const table = typeof ROUTES !== 'undefined' && ROUTES
+    const i = table ? table.ids.indexOf(a.id) : -1
+    const j = table ? table.ids.indexOf(b.id) : -1
+    if (i >= 0 && j >= 0 && table.km[i][j] != null) {
+        return { km: table.km[i][j], hours: table.hours[i][j] * COACH_FACTOR, measured: true }
+    }
+    const km = Math.round(distanceKm(a, b) * ROAD_FACTOR)
+    return { km, hours: km / 45, measured: false }
+}
+
 /*---------- Tính toán ----------*/
 function legInfo(a, b, tier) {
-    const km = Math.round(distanceKm(a, b) * ROAD_FACTOR)
+    const road = roadRoute(a, b)
+    const km = road.km
     const flight = km >= FLIGHT_FROM_KM || ISLAND_IDS.includes(a.id) || ISLAND_IDS.includes(b.id)
     if (flight) {
         return { km, mode: 'flight', hours: null, cost: TRANSPORT_COST.flight[tier] }
     }
-    const hours = Math.max(1, Math.round(km / 45 * 2) / 2)
+    const hours = Math.max(1, Math.round(road.hours * 2) / 2)
     return { km, mode: 'road', hours, cost: Math.max(TRANSPORT_COST.road.min, Math.round(km * TRANSPORT_COST.road[tier] / 10000) * 10000) }
 }
 
@@ -552,7 +570,7 @@ function renderDays(plan, totals) {
                     ${item.checkin && item.checkin.stay ? `
                         <div class="plan-day__stay">
                             <p><i class="ri-hotel-bed-line"></i> <strong>${t('Nghỉ đêm')}:</strong> ${pickLang(item.checkin.stay.area)} · ${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')} · ${t('{n} đêm', { n: item.checkin.nights })}</p>
-                            <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights))}</div>
+                            <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights, planner.plan.people))}</div>
                         </div>
                     ` : ''}
                 </li>
@@ -637,8 +655,8 @@ function bookingItems(plan, totals) {
                 key: `stay:${d.id}`,
                 icon: 'ri-hotel-bed-line',
                 title: t('Phòng tại {name}', { name: d.name }),
-                detail: `${pickLang(s.stay.area)} · ${t('{n} đêm', { n: s.nights })}${s.checkin ? ` · ${formatDate(s.checkin)} → ${formatDate(addDays(s.checkin, s.nights))}` : ''}`,
-                links: stayLinks(places.city, pickLang(s.stay.area), s.checkin, s.nights),
+                detail: `${pickLang(s.stay.area)} · ${t('{n} đêm', { n: s.nights })}${(plan.people || 2) > 2 ? ` · ${t('{rooms} phòng cho {n} người', { rooms: Math.ceil(plan.people / 2), n: plan.people })}` : ''}${s.checkin ? ` · ${formatDate(s.checkin)} → ${formatDate(addDays(s.checkin, s.nights))}` : ''}`,
+                links: stayLinks(places.city, pickLang(s.stay.area), s.checkin, s.nights, plan.people),
             })
         }
     })

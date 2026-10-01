@@ -37,6 +37,12 @@ const DATASETS = {
         vars: { eventTypes: 'EVENT_TYPES', events: 'EVENTS' },
         doc: 'Lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết cần lưu ý. Hàm tra cứu nằm ở assets/js/core.js.',
     },
+    /* Không bắt buộc: chưa có data/routes.json thì ROUTES = null (trình lập kế hoạch ước tính theo đường chim bay) */
+    routes: {
+        whole: 'ROUTES',
+        optional: true,
+        doc: 'Quãng đường (km) + thời gian lái xe (giờ) giữa các điểm đến từ OSRM – sinh bởi tools/build-routes.js.',
+    },
 }
 
 function readJson(file) {
@@ -104,6 +110,12 @@ function crossChecks(data) {
         if (e.where !== 'all') e.where.filter(id => !idSet.has(id)).forEach(id => errors.push(`events.${e.id}: điểm đến ${id} không tồn tại`))
         if (e.dates && e.dates[0] > e.dates[1]) errors.push(`events.${e.id}: ngày bắt đầu sau ngày kết thúc`)
     })
+    if (data.routes) {
+        const { ids: routeIds, km, hours } = data.routes
+        routeIds.filter(id => !idSet.has(id)).forEach(id => errors.push(`routes: điểm đến ${id} không tồn tại`))
+        const square = m => m.length === routeIds.length && m.every(row => row.length === routeIds.length)
+        if (!square(km) || !square(hours)) errors.push(`routes: km/hours phải là bảng ${routeIds.length}×${routeIds.length}`)
+    }
     return errors
 }
 
@@ -113,6 +125,10 @@ function loadAndValidate() {
     const errors = []
     for (const name of Object.keys(DATASETS)) {
         const file = path.join(DATA_DIR, `${name}.json`)
+        if (DATASETS[name].optional && !fs.existsSync(file)) {
+            data[name] = null
+            continue
+        }
         const json = readJson(file)
         const validate = ajv.getSchema(`${name}.schema.json`)
         if (!validate(json)) {
@@ -125,10 +141,12 @@ function loadAndValidate() {
 }
 
 function generate(name, json) {
-    const { vars, doc } = DATASETS[name]
-    const body = Object.entries(vars)
-        .map(([key, constName]) => `const ${constName} = ${JSON.stringify(json[key])}`)
-        .join('\n\n')
+    const { vars, whole, doc } = DATASETS[name]
+    const body = whole
+        ? `const ${whole} = ${json ? JSON.stringify((({ $schema, ...rest }) => rest)(json)) : 'null'}`
+        : Object.entries(vars)
+            .map(([key, constName]) => `const ${constName} = ${JSON.stringify(json[key])}`)
+            .join('\n\n')
     return `/*=============== SINH TỰ ĐỘNG TỪ data/${name}.json – KHÔNG SỬA TAY ===============*/\n` +
         `/*\n * ${doc}\n * Sửa dữ liệu trong data/${name}.json rồi chạy \`npm run build\` (kiểm tra theo data/schema/${name}.schema.json).\n */\n` +
         `${body}\n`
