@@ -466,7 +466,7 @@ function initComments() {
             'emit-metadata': '0',
             'input-position': 'top',
             theme: giscusTheme(),
-            lang: LANG,
+            lang: LANG === 'zh' ? 'zh-CN' : LANG,
             loading: 'lazy',
         }).forEach(([key, value]) => script.setAttribute(`data-${key}`, value))
         el.appendChild(script)
@@ -496,9 +496,10 @@ if (dest) {
         canonical.href = new URL(destinationUrl(dest.id).replace('index.html', ''), location.href).href
         document.head.appendChild(canonical)
 
-        /* Nút chuyển ngôn ngữ trỏ tới trang tiếng Anh tương ứng */
-        const langSwitch = document.querySelector('.nav__lang')
-        if (langSwitch) langSwitch.href = `${SITE_ROOT}en/diem-den/${dest.id}/index.html`
+        /* Menu ngôn ngữ trỏ tới trang tĩnh tương ứng của từng ngôn ngữ */
+        document.querySelectorAll('.nav__lang a[hreflang]').forEach(a => {
+            a.href = `${SITE_ROOT}${langPrefix(a.hreflang)}diem-den/${dest.id}/index.html`
+        })
     }
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()

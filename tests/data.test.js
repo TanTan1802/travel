@@ -6,7 +6,7 @@ const assert = require('node:assert/strict')
 const fs = require('fs')
 const path = require('path')
 const { loadBrowserScripts } = require('../tools/lib')
-const { ROOT, builtPages } = require('./helpers')
+const { ROOT, LANG_PREFIXES, builtPages } = require('./helpers')
 
 const site = loadBrowserScripts(
     ['assets/js/data/local-images.js', 'assets/js/data/en.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js', 'assets/js/data/sights.js'],
@@ -493,14 +493,37 @@ test('ảnh trong repo: mọi file trong manifest đều tồn tại', () => {
     if (notLocal.length) console.log(`  ⚠️  ${notLocal.length} ảnh chưa tải về repo (workflow sẽ tải sau khi merge): ${notLocal.join(', ')}`)
 })
 
-test('trang tĩnh đã được build cho mọi điểm đến ở cả hai ngôn ngữ', () => {
+test('trang tĩnh đã được build cho mọi điểm đến ở mọi ngôn ngữ', () => {
     for (const d of DESTINATIONS) {
-        for (const rel of [`diem-den/${d.id}/index.html`, `en/diem-den/${d.id}/index.html`]) {
+        for (const rel of LANG_PREFIXES.map(p => `${p}diem-den/${d.id}/index.html`)) {
             assert.ok(fs.existsSync(path.join(ROOT, rel)), `chưa build ${rel} – chạy npm run build`)
         }
     }
     const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
-    DESTINATIONS.forEach(d => assert.ok(sitemap.includes(`/diem-den/${d.id}/`), `sitemap thiếu ${d.id}`))
+    DESTINATIONS.forEach(d => LANG_PREFIXES.forEach(p => assert.ok(sitemap.includes(`/travel/${p}diem-den/${d.id}/`), `sitemap thiếu ${p}${d.id}`)))
+})
+
+test('bản dịch ko/zh/ja: đủ điểm đến + giao diện, trang build đúng ngôn ngữ, menu ngôn ngữ trỏ đúng trang', () => {
+    const { loadAndValidate, loadTranslations } = require('../tools/build-data')
+    const { translations, errors } = loadTranslations(loadAndValidate().data)
+    assert.deepEqual(errors, [])
+    assert.deepEqual(Object.keys(translations).sort(), ['ja', 'ko', 'zh'])
+    const htmlLang = { ko: 'ko', zh: 'zh-Hans', ja: 'ja' }
+    for (const [lang, tr] of Object.entries(translations)) {
+        const untranslated = Object.keys(EN.ui).filter(k => !tr.ui[k])
+        assert.deepEqual(untranslated, [], `${lang}: chưa dịch ${untranslated.slice(0, 5).join(' | ')}`)
+        DESTINATIONS.forEach(d => {
+            assert.ok(tr.destinations[d.id] && tr.destinations[d.id].name, `${lang}: thiếu ${d.id}`)
+            assert.equal(tr.itineraries[d.id].days.length, ITINERARIES[d.id].days.length, `${lang}: số ngày lịch trình ${d.id} lệch`)
+        })
+        const html = fs.readFileSync(path.join(ROOT, `${lang}/diem-den/hue/index.html`), 'utf8')
+        assert.ok(html.includes(`<html lang="${htmlLang[lang]}">`), `${lang}: thuộc tính lang`)
+        assert.ok(html.includes(`assets/js/data/i18n/${lang}.js`) || /assets\/js\/dist\//.test(html), `${lang}: thiếu script bản dịch`)
+        assert.ok(html.includes(tr.destinations.hue.name), `${lang}: tên điểm đến chưa dịch`)
+        const menu = html.match(/<details class="nav__lang"[\s\S]*?<\/details>/)[0]
+        LANG_PREFIXES.forEach(p => assert.ok(menu.includes(`../../../${p}diem-den/hue/index.html`), `${lang}: menu thiếu ${p || 'vi'}`))
+        assert.match(html, new RegExp(`hreflang="${htmlLang[lang]}" href="https://tantan1802\\.github\\.io/travel/${lang}/diem-den/hue/"`))
+    }
 })
 
 test('không có liên kết nội bộ hỏng trong các trang đã build', () => {

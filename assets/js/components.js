@@ -10,10 +10,10 @@ const homeUrl = (suffix = '') => `${SITE_ROOT}${LANG_PREFIX}index.html${suffix}`
 
 applyTranslations()
 
-/* Định dạng tiền VND theo ngôn ngữ: 2.400.000đ / 2,400,000 VND */
+/* Định dạng tiền VND theo ngôn ngữ: 2.400.000đ (vi) / 2,400,000 VND (ngôn ngữ khác) */
 function formatVnd(amount) {
-    const grouped = String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'en' ? ',' : '.')
-    return LANG === 'en' ? `${grouped} VND` : `${grouped}đ`
+    const grouped = String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, LANG === 'vi' ? '.' : ',')
+    return LANG === 'vi' ? `${grouped}đ` : `${grouped} VND`
 }
 
 /* Thẻ điểm đến – dùng ở trang chủ và mục "Điểm đến cùng vùng" */
@@ -52,16 +52,16 @@ function destinationCard(d, hint = '', hintIcon = 'ri-search-line') {
 }
 
 /*==================== QUÁN ĂN, LƯU TRÚ & ĐẶT CHỖ ====================*/
-/* Chọn chuỗi theo ngôn ngữ từ cặp [vi, en] (chuỗi thường giữ nguyên) */
-const pickLang = pair => (Array.isArray(pair) ? pair[LANG === 'en' ? 1 : 0] || pair[0] : pair)
+/* Chọn chuỗi theo ngôn ngữ từ cặp [vi, en] (chuỗi thường giữ nguyên) – trang ko/zh/ja dùng tiếng Anh */
+const pickLang = pair => (Array.isArray(pair) ? pair[LANG === 'vi' ? 0 : 1] || pair[0] : pair)
 
 const placesOf = id => (typeof PLACES !== 'undefined' && PLACES[id]) || null
 
-/* 45000 → 45k · 1200000 → 1,2tr (vi) / 1.2M (en) */
+/* 45000 → 45k · 1200000 → 1,2tr (vi) / 1.2M (ngôn ngữ khác) */
 function shortVnd(n) {
     if (n >= 1000000) {
         const m = String(Math.round(n / 100000) / 10)
-        return LANG === 'en' ? `${m}M` : `${m.replace('.', ',')}tr`
+        return LANG === 'vi' ? `${m.replace('.', ',')}tr` : `${m}M`
     }
     return `${Math.round(n / 1000)}k`
 }
@@ -77,9 +77,17 @@ function addDays(iso, n) {
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
 
+const DATE_FORMATS = {
+    vi: (y, m, d) => `${d}/${m}/${y}`,
+    en: (y, m, d) => `${MONTHS_EN[m - 1].slice(0, 3)} ${d}, ${y}`,
+    ko: (y, m, d) => `${y}. ${m}. ${d}.`,
+    zh: (y, m, d) => `${y}年${m}月${d}日`,
+    ja: (y, m, d) => `${y}年${m}月${d}日`,
+}
+
 function formatDate(iso) {
     const [y, m, d] = iso.split('-').map(Number)
-    return LANG === 'en' ? `${MONTHS_EN[m - 1].slice(0, 3)} ${d}, ${y}` : `${d}/${m}/${y}`
+    return DATE_FORMATS[LANG](y, m, d)
 }
 
 /* Link tìm phòng đã điền sẵn nơi ở + ngày (nếu có) + số người (phòng đôi: 2 người/phòng) */

@@ -163,6 +163,21 @@ themeButton.addEventListener('click', () => {
     } catch { /* bỏ qua: trình duyệt chặn lưu trữ */ }
 })
 
+/*==================== MENU NGÔN NGỮ ====================*/
+/* <details> tự mở/đóng khi bấm nút; thêm: đóng khi bấm ra ngoài hoặc nhấn Esc */
+const langMenu = document.getElementById('lang-menu')
+if (langMenu) {
+    document.addEventListener('click', e => {
+        if (langMenu.open && !langMenu.contains(e.target)) langMenu.open = false
+    })
+    langMenu.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && langMenu.open) {
+            langMenu.open = false
+            langMenu.querySelector('summary').focus()
+        }
+    })
+}
+
 /*==================== PWA: SERVICE WORKER ====================*/
 /* Chỉ đăng ký trên HTTPS hoặc localhost (yêu cầu của trình duyệt) */
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {

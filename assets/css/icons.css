@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 144 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 145 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -74,6 +74,7 @@
 .ri-footprint-line:before { content: "\ed91"; }
 .ri-function-line:before { content: "\ed9e"; }
 .ri-gas-station-line:before { content: "\edad"; }
+.ri-global-line:before { content: "\edcf"; }
 .ri-goblet-line:before { content: "\edd3"; }
 .ri-group-line:before { content: "\ede3"; }
 .ri-hand-heart-line:before { content: "\edf3"; }

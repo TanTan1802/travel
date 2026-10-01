@@ -42,7 +42,9 @@ async function openPage(url, { viewport = { width: 1280, height: 900 }, geolocat
 
 test('mọi trang tải không có lỗi JS và không thiếu tài nguyên nội bộ', async () => {
     const problems = []
-    for (const rel of builtPages()) {
+    /* ko/zh/ja dùng chung mã + bundle với en: chỉ kiểm tra mỗi loại trang một mẫu cho nhanh */
+    const sample = /^(ko|zh|ja)\/(index\.html|ke-hoach\/|cam-nang\/index|diem-den\/hue\/|thang\/1\/|chu-de\/bien\/)/
+    for (const rel of builtPages().filter(p => !/^(ko|zh|ja)\//.test(p) || sample.test(p))) {
         const { page, errors, close } = await openPage(rel)
         await page.waitForLoadState('networkidle')
         if (errors.length) problems.push(`${rel}: ${errors.join('; ')}`)
@@ -405,7 +407,8 @@ test('cẩm nang: trang chủ, danh sách, bài viết, bảng tháng', async ()
     assert.ok(await page.$$eval('.guide__toc a', a => a.length) >= 3, 'cần mục lục')
     assert.ok(await page.$$eval('#guide-page .dest-card', a => a.length) >= 1, 'cần điểm đến liên quan')
 
-    await page.click('#lang-switch')
+    await page.click('#lang-menu summary')
+    await page.click('#lang-menu a[data-lang="en"]')
     await page.waitForURL(/en\/cam-nang\/thoi-diem-du-lich/)
     assert.match(await page.textContent('h1'), /When is the best time/)
 
@@ -413,16 +416,47 @@ test('cẩm nang: trang chủ, danh sách, bài viết, bảng tháng', async ()
     await close()
 })
 
-test('bản tiếng Anh và nút chuyển ngôn ngữ', async () => {
+test('bản tiếng Anh và menu chuyển ngôn ngữ', async () => {
     const { page, errors, close } = await openPage('en/diem-den/hue/index.html')
     assert.equal(await page.$eval('html', h => h.lang), 'en')
     assert.match(await page.textContent('.tour-picker__btn'), /3 days 2 nights/)
     assert.match(await page.textContent('.tour-picker__btn small'), /VND/)
 
-    await page.click('#lang-switch')
+    /* Menu đóng khi bấm ra ngoài */
+    await page.click('#lang-menu summary')
+    assert.ok(await page.isVisible('#lang-menu a[data-lang="ko"]'))
+    await page.mouse.click(5, 500)
+    assert.equal(await page.$eval('#lang-menu', d => d.open), false)
+
+    await page.click('#lang-menu summary')
+    await page.click('#lang-menu a[data-lang="vi"]')
     await page.waitForLoadState('domcontentloaded')
     assert.match(page.url(), /\/diem-den\/hue\/index\.html$/)
     assert.equal(await page.$eval('html', h => h.lang), 'vi')
+
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('bản tiếng Hàn / Trung / Nhật: giao diện, ngày tháng, lịch trình đã dịch', async () => {
+    const { page, errors, close } = await openPage('ko/diem-den/hue/index.html')
+    assert.equal(await page.$eval('html', h => h.lang), 'ko')
+    assert.match(await page.textContent('.tour-picker__btn'), /3일 2박/)
+    assert.match(await page.textContent('.tour-picker__btn small'), /VND/)
+    assert.match(await page.textContent('#lang-menu summary'), /KO/)
+    /* Tên ngày trong lịch trình dùng bản dịch tiếng Hàn (không phải tiếng Anh) */
+    assert.match(await page.textContent('.itinerary__day-title'), /[\uac00-\ud7a3]/)
+
+    await page.click('#lang-menu summary')
+    await page.click('#lang-menu a[data-lang="ja"]')
+    await page.waitForURL(/\/ja\/diem-den\/hue\/index\.html$/)
+    assert.equal(await page.$eval('html', h => h.lang), 'ja')
+    assert.match(await page.textContent('.tour-picker__btn'), /3 日間 2 泊/)
+
+    await page.goto(page.url().replace('/ja/diem-den/hue/index.html', '/zh/ke-hoach/index.html'))
+    assert.equal(await page.$eval('html', h => h.lang), 'zh-Hans')
+    await page.waitForSelector('.planner--ready')
+    assert.match(await page.textContent('h1, .section__title'), /[\u4e00-\u9fff]/)
 
     assert.deepEqual(errors, [])
     await close()

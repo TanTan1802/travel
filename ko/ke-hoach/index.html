@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="베트남 여러 곳을 묶은 여행 계획: 여행지별 일수, 최단 경로, 예상 비용, 일자별 일정.">
+        <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="../../manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../../assets/css/site-e0090cb4f6.css">
+
+        <title>여행 플래너 – Việt Travel</title>
+    
+        <link rel="canonical" href="https://tantan1802.github.io/travel/ko/ke-hoach/">
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/ke-hoach/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/ke-hoach/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/ke-hoach/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/ke-hoach/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/ke-hoach/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/ke-hoach/">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="ko_KR">
+        <meta property="og:title" content="여행 플래너 – Việt Travel">
+        <meta property="og:description" content="베트남 여러 곳을 묶은 여행 계획: 여행지별 일수, 최단 경로, 예상 비용, 일자별 일정.">
+        <meta property="og:url" content="https://tantan1802.github.io/travel/ko/ke-hoach/">
+        <meta property="og:image" content="https://tantan1802.github.io/travel/assets/img/og/hoi-an.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+    </head>
+    <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="../../ko/index.html" class="nav__logo">Việt Travel</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="../../ko/index.html" class="nav__link">홈</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../../ko/index.html#place" class="nav__link">여행지</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../../ko/ke-hoach/index.html" class="nav__link active-link">여행 플래너</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../../ko/cam-nang/index.html" class="nav__link">여행 가이드</a>
+                        </li>
+                    </ul>
+
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> KO</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../../ke-hoach/index.html" hreflang="vi" lang="vi" data-lang="vi">Tiếng Việt</a></li>
+                            <li><a href="../../en/ke-hoach/index.html" hreflang="en" lang="en" data-lang="en">English</a></li>
+                            <li><a href="../../ko/ke-hoach/index.html" hreflang="ko" lang="ko" data-lang="ko" aria-current="true">한국어</a></li>
+                            <li><a href="../../zh/ke-hoach/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../../ja/ke-hoach/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
+
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">다크 모드</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
+
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main planner-page" id="planner-page">
+            <section class="planner-hero">
+                <div class="container">
+                    <span class="section__subtitle">나의 여정</span>
+                    <h1 class="planner-hero__title">여행 계획 세우기</h1>
+                    <p class="planner-hero__text">여러 여행지를 하나의 여정으로 묶어 보세요: 각 여행지 체류 일수를 정하고, 최단 경로를 찾고, 예상 비용과 일자별 일정을 확인하세요.</p>
+                </div>
+            </section>
+
+            <section class="planner section container">
+                <div id="planner-today"></div>
+                <div class="planner__grid">
+                    <div class="planner__main">
+                        <div class="planner__controls" id="planner-controls"></div>
+                        <div id="planner-stops"></div>
+                    </div>
+                    <aside class="planner__side">
+                        <div class="planner__card">
+                            <div class="planner__settings" id="planner-settings"></div>
+                            <div id="planner-summary"></div>
+                        </div>
+                        <div class="planner__map" id="planner-map" hidden></div>
+                    </aside>
+                </div>
+                <div class="planner__bookings" id="planner-bookings"></div>
+                <div class="planner__notes" id="planner-notes"></div>
+                <div class="planner__packing" id="planner-packing"></div>
+                <div class="planner__days" id="planner-days"></div>
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">여행지는 당신이 고르고, <br> 완벽한 경험은 <br>
+                            저희가 드립니다.
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">북부 베트남</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../ko/diem-den/vinh-ha-long/index.html" class="footer__link">하롱베이</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/ha-giang/index.html" class="footer__link">하장</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">중부 베트남</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../ko/diem-den/hoi-an/index.html" class="footer__link">호이안</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/da-nang/index.html" class="footer__link">다낭</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/da-lat/index.html" class="footer__link">달랏</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">남부 베트남</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../../ko/diem-den/sai-gon/index.html" class="footer__link">호찌민시</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/can-tho/index.html" class="footer__link">껀터</a></li>
+                            <li class="footer__item"><a href="../../ko/diem-den/phu-quoc/index.html" class="footer__link">푸꾸옥</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. 사진: Wikimedia Commons (CC BY / CC BY-SA).</p>
+                    <div class="footer__terms">
+                        <a href="../../ko/ke-hoach/index.html" class="footer__terms-link">여행 플래너</a>
+                        <a href="../../ko/cam-nang/index.html" class="footer__terms-link">여행 가이드</a>
+                        <a href="#" class="footer__terms-link">이용약관</a>
+                        <a href="#" class="footer__terms-link">개인정보 처리방침</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up" aria-label="맨 위로">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'ko'</script>
+        <script defer src="../../assets/js/dist/84a964bc82.js"></script>
+    </body>
+</html>

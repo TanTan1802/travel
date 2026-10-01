@@ -85,10 +85,13 @@ async function setupRoutes(context) {
     }
 }
 
+/* Tiền tố thư mục của các ngôn ngữ (tiếng Việt ở gốc site) */
+const LANG_PREFIXES = ['', 'en/', 'ko/', 'zh/', 'ja/']
+
 /* Danh sách mọi trang HTML đã build (tương đối với gốc repo) */
 function builtPages() {
-    const pages = ['index.html', 'en/index.html', 'ke-hoach/index.html', 'en/ke-hoach/index.html', 'cam-nang/index.html', 'en/cam-nang/index.html']
-    for (const dir of ['diem-den', 'en/diem-den', 'cam-nang', 'en/cam-nang', 'thang', 'en/thang', 'chu-de', 'en/chu-de']) {
+    const pages = LANG_PREFIXES.flatMap(p => [`${p}index.html`, `${p}ke-hoach/index.html`, `${p}cam-nang/index.html`])
+    for (const dir of LANG_PREFIXES.flatMap(p => ['diem-den', 'cam-nang', 'thang', 'chu-de'].map(d => p + d))) {
         for (const id of fs.readdirSync(path.join(ROOT, dir))) {
             if (!fs.statSync(path.join(ROOT, dir, id)).isDirectory()) continue
             pages.push(`${dir}/${id}/index.html`)
@@ -99,4 +102,4 @@ function builtPages() {
     return pages
 }
 
-module.exports = { ROOT, startServer, setupRoutes, builtPages }
+module.exports = { ROOT, LANG_PREFIXES, startServer, setupRoutes, builtPages }

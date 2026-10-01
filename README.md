@@ -16,7 +16,7 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 - **Bản đồ** (Leaflet + OpenStreetMap) với điểm lân cận và khoảng cách.
 - **Thời tiết hiện tại** (Open-Meteo) và thanh 12 tháng tô màu mùa đẹp.
 - **Yêu thích**: lưu điểm đến ngay trên trình duyệt, không cần đăng nhập.
-- **Song ngữ Việt – Anh**: bản tiếng Anh ở `/en/`, nút chuyển ngôn ngữ trên thanh menu.
+- **5 ngôn ngữ**: Việt (gốc), Anh `/en/`, Hàn `/ko/`, Trung giản thể `/zh/`, Nhật `/ja/` – menu chọn ngôn ngữ trên thanh menu.
 
 ## Cấu trúc & quy trình
 | Đường dẫn | Vai trò |
@@ -26,7 +26,8 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 | `assets/js/core.js` | Hàm dùng chung (ảnh, điểm đến, tra cứu lễ hội) |
 | `destination.html` | Mẫu giao diện trang chi tiết (cũng chạy động với `?id=`) |
 | `home.html`, `destination.html`, `planner.html`, `guide.html` | Mẫu giao diện (sửa ở đây) |
-| `index.html`, `diem-den/<id>/index.html`, `en/`, `ke-hoach/`, `cam-nang/` | Trang tĩnh sinh tự động (vi + en) – **không sửa tay** |
+| `index.html`, `diem-den/<id>/index.html`, `en/`, `ko/`, `zh/`, `ja/`, `ke-hoach/`, `cam-nang/` | Trang tĩnh sinh tự động (5 ngôn ngữ) – **không sửa tay** |
+| `data/i18n/<lang>.json` | Bản dịch tiếng Hàn / Trung / Nhật → sinh `assets/js/data/i18n/<lang>.js` |
 | `assets/js/dist/<hash>.js` | Script mỗi trang đã gộp + nén (esbuild) khi build – **không sửa tay** |
 | `tools/` | Script build, tải ảnh, kiểm tra ảnh |
 
@@ -50,7 +51,7 @@ npm run build
 Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi chia sẻ Facebook/Zalo),
 dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
 
-## Song ngữ
+## Đa ngôn ngữ
 - Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
   (`ui`, `html`, `destinations`, `itineraries`).
 - Lịch trình nằm trong `data/itineraries.json`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
@@ -58,6 +59,14 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
 - Chi phí tour tính theo từng khoản bằng `tripCost()` (components.js): lưu trú (phòng đôi chia 2, từ `places.js`), ăn uống (từ giá các quán), đi lại tại chỗ và vé tham quan. Mức thoải mái = khách sạn 3–4 sao, nhà hàng, Grab (≈ 1,7–1,9 lần mức tiết kiệm). Bấm vào mỗi mức để xem bảng chi tiết.
 - Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
+- **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.js` –
+  `ui`, `html`, `regions`, `categories`, `destinations` (tên, tỉnh, khẩu hiệu, mùa đẹp, số ngày, điểm nổi bật, mô tả)
+  và `itineraries` (tên từng ngày). Bản dịch được phủ lên bản tiếng Anh, nên phần chưa dịch
+  (món ăn, hoạt động, quán, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.js`
+  hoặc biến `{…}` không khớp.
+- Thêm ngôn ngữ mới: tạo `data/i18n/<mã>.json`, khai báo trong `LANGS` (tools/build.js) và `SITE_LANGS` +
+  tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`
+  vào danh sách kiểm tra build của workflow.
 
 ## Cài như ứng dụng (PWA)
 Website có thể cài lên màn hình chính điện thoại/máy tính và xem lại các trang đã mở khi mất mạng
@@ -129,7 +138,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 ## Trang khám phá (SEO) – `assets/js/seo-render.js`
 
-Sinh tự động khi build từ dữ liệu sẵn có (vi + en, có trong sitemap, canonical/hreflang, Open Graph, JSON-LD `ItemList` +
+Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong sitemap, canonical/hreflang, Open Graph, JSON-LD `ItemList` +
 `BreadcrumbList`):
 
 | Đường dẫn | Nội dung |
@@ -181,7 +190,7 @@ Sinh tự động khi build từ dữ liệu sẵn có (vi + en, có trong sitem
 
 ## Lighthouse CI
 
-- Workflow `Lighthouse` đo 5 trang tiêu biểu (trang chủ, điểm đến vi/en, kế hoạch, cẩm nang) cho mỗi pull request.
+- Workflow `Lighthouse` đo 8 trang tiêu biểu (trang chủ, điểm đến vi/en/ja, kế hoạch, cẩm nang, giá vé, theo tháng) cho mỗi pull request.
 - Ngân sách trong `lighthouserc.json`: CLS ≤ 0,1; JS ≤ 140 KB, CSS ≤ 25 KB, font ≤ 170 KB (dung lượng truyền);
   điểm truy cập ≥ 90, SEO ≥ 95, best practices ≥ 90 → vượt là check đỏ. Điểm hiệu năng < 85 hoặc LCP > 3,5 s chỉ cảnh báo
   (dao động theo máy chạy).

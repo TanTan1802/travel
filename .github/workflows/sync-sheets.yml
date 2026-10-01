@@ -63,6 +63,9 @@ jobs:
             worker/src/knowledge.js
             diem-den
             en
+            ko
+            zh
+            ja
             ke-hoach
             cam-nang
             thang
