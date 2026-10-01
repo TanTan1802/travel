@@ -1,0 +1,45 @@
+# Kiểm tra định kỳ độ "sống" của dữ liệu: mục lâu chưa cập nhật, liên kết ra ngoài hỏng, ảnh Wikimedia không còn.
+# Chạy ngày 1 hằng tháng (hoặc bấm "Run workflow"). Có lỗi → lần chạy đỏ và GitHub gửi email cho chủ repo;
+# chi tiết xem ở phần Summary của lần chạy.
+name: Kiểm tra định kỳ dữ liệu
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 1 1 * *' # 8:23 sáng ngày 1 hằng tháng giờ Việt Nam
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cài thư viện
+        run: npm ci --no-audit --no-fund
+
+      - name: Mục chưa cập nhật trong 12 tháng (chỉ báo cáo)
+        run: npm run check-freshness
+
+      - name: Liên kết ra ngoài
+        id: links
+        continue-on-error: true
+        run: npm run check-links
+
+      - name: Ảnh trên Wikimedia Commons
+        id: images
+        continue-on-error: true
+        run: npm run check-images
+
+      - name: Kết luận
+        if: steps.links.outcome == 'failure' || steps.images.outcome == 'failure'
+        run: |
+          echo "::error::Có liên kết hoặc ảnh hỏng – xem Summary của lần chạy."
+          exit 1

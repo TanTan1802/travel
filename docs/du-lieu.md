@@ -38,6 +38,16 @@ Trình soạn thảo có hỗ trợ JSON Schema (VS Code…) sẽ tự gợi ý 
 5. Thêm bản dịch vào `assets/js/data/en.js`, phần `destinations` và `itineraries`.
 6. Chạy `npm run build` và `npm test`, rồi mở Pull Request. Sau khi merge, workflow sẽ tự tải ảnh.
 
+## Độ mới của dữ liệu
+
+- Mỗi điểm tham quan, quán ăn và quán nước có trường **`updated`** (`"YYYY-MM"`, bắt buộc): tháng thông tin được cập nhật
+  hoặc kiểm tra lại gần nhất. Trang web hiện "Cập nhật 09/2026" cạnh từng mục. Khi sửa tay JSON, nhớ đổi `updated`.
+- `npm run check-freshness` liệt kê mục chưa cập nhật trong 12 tháng (`--months 6` để đổi mốc, `--strict` để báo lỗi).
+- Workflow **Kiểm tra định kỳ dữ liệu** (ngày 1 hằng tháng) chạy: độ mới dữ liệu, `npm run check-links` (liên kết ra ngoài
+  còn sống) và `npm run check-images` (ảnh Wikimedia). Có lỗi → lần chạy đỏ, GitHub gửi email cho chủ repo.
+- Người xem bấm **"Báo sai"** ở từng mục → form ngay trên trang. Đặt `reportEndpoint` trong `assets/js/config.js`
+  (vd. một form Formspree) để nhận báo cáo qua email; để trống thì form mở GitHub Issue đã điền sẵn nội dung.
+
 ## Cập nhật giá vé, giờ mở cửa bằng Google Sheets
 
 Người không rành code vẫn có thể cập nhật giá bằng Google Sheets. Workflow **Đồng bộ Google Sheets** (`.github/workflows/sync-sheets.yml`) chạy mỗi sáng thứ Hai, hoặc khi bấm *Run workflow*. Nó đọc bảng tính, cập nhật `data/*.json` và **mở Pull Request** để bạn duyệt trước khi lên web.
@@ -66,8 +76,12 @@ Người không rành code vẫn có thể cập nhật giá bằng Google Sheet
 | `hours` | Giờ mở cửa, ví dụ `07:00–17:30`; `all` là mở cả ngày; hai ngôn ngữ thì viết `Sáng thứ Bảy \| Saturday morning` |
 | `address` | Địa chỉ |
 | `name_en`, `note_vi`, `note_en` | Tên tiếng Anh và ghi chú về giá |
+| `updated` | Tháng thông tin được cập nhật gần nhất (chỉ để xem, sửa ô này không có tác dụng) |
+| `confirmed` | Ghi `x` khi bạn **đã kiểm tra lại mà thông tin không đổi** → tháng cập nhật được ghi lại thành tháng hiện tại |
 
-**Quán** (`eats.csv`): `dest_id`, `kind` (`eat` là quán ăn, `cafe` là quán nước) và `name` dùng để xác định mục. Các cột sửa được là `price_min`, `price_max` (giá mỗi người), `address`, `dish_vi` và `dish_en`.
+**Quán** (`eats.csv`): `dest_id`, `kind` (`eat` là quán ăn, `cafe` là quán nước) và `name` dùng để xác định mục. Các cột sửa được là `price_min`, `price_max` (giá mỗi người), `address`, `dish_vi` và `dish_en`; `updated` và `confirmed` giống bảng điểm tham quan.
+
+Mục nào có thay đổi (hoặc được đánh dấu `confirmed`) sẽ tự ghi `updated` = tháng đồng bộ.
 
 Công cụ đồng bộ **chỉ cập nhật mục đã có**, không tự thêm hay xóa. Dòng không khớp mục nào (ví dụ gõ sai tên) sẽ được liệt kê trong mô tả của Pull Request để bạn kiểm tra. Nếu dữ liệu sau khi đồng bộ không hợp lệ theo schema, workflow sẽ dừng và **không** mở PR.
 

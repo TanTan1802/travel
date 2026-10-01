@@ -27,12 +27,13 @@
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["name", "dish", "address", "price"],
+              "required": ["name", "dish", "address", "price", "updated"],
               "properties": {
                 "name": { "type": "string", "minLength": 1 },
                 "dish": { "$ref": "common.schema.json#/$defs/pair" },
                 "address": { "type": "string", "minLength": 1 },
-                "price": { "$ref": "common.schema.json#/$defs/range" }
+                "price": { "$ref": "common.schema.json#/$defs/range" },
+                "updated": { "$ref": "common.schema.json#/$defs/yearMonth" }
               }
             }
           },
@@ -42,12 +43,13 @@
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["name", "drink", "address", "price"],
+              "required": ["name", "drink", "address", "price", "updated"],
               "properties": {
                 "name": { "type": "string", "minLength": 1 },
                 "drink": { "$ref": "common.schema.json#/$defs/pair" },
                 "address": { "type": "string", "minLength": 1 },
-                "price": { "$ref": "common.schema.json#/$defs/range" }
+                "price": { "$ref": "common.schema.json#/$defs/range" },
+                "updated": { "$ref": "common.schema.json#/$defs/yearMonth" }
               }
             }
           },

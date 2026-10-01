@@ -21,7 +21,7 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["at", "name", "price", "hours", "address"],
+            "required": ["at", "name", "price", "hours", "address", "updated"],
             "properties": {
               "at": { "description": "Buổi: m sáng · a chiều · e tối", "type": "string", "enum": ["m", "a", "e"] },
               "name": { "$ref": "common.schema.json#/$defs/pair" },
@@ -35,6 +35,7 @@
                 "oneOf": [{ "type": "string", "minLength": 1 }, { "$ref": "common.schema.json#/$defs/pair" }]
               },
               "address": { "type": "string", "minLength": 1 },
+              "updated": { "$ref": "common.schema.json#/$defs/yearMonth" },
               "cafe": {
                 "type": "object",
                 "additionalProperties": false,

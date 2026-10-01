@@ -436,3 +436,27 @@ test('giao diện điện thoại không bị tràn ngang', async () => {
         await close()
     }
 })
+
+test('dữ liệu luôn mới: tháng cập nhật và form báo sai ngay trên trang', async () => {
+    const { page, errors, close } = await openPage('diem-den/hue/gia-ve/index.html')
+    assert.match(await page.textContent('.sight .sight__meta'), /Cập nhật \d{2}\/\d{4}/, 'điểm tham quan cần hiện tháng cập nhật')
+
+    /* Bấm "Báo sai" → form trên trang (không rời trang), bắt buộc nhập thông tin đúng */
+    await page.evaluate(() => { window.open = (url) => { window.__opened = url } })
+    await page.click('.sight .report-link')
+    await page.waitForSelector('#report-dialog[open]')
+    assert.match(await page.textContent('#report-dialog .report-form__item'), /Cố đô Huế – Đại Nội/)
+    await page.click('#report-dialog button[type="submit"]')
+    assert.match(await page.textContent('#report-dialog .report-form__status'), /thông tin đúng/)
+    await page.fill('#report-correction', 'Giá vé mới 220.000đ')
+    await page.fill('#report-source', 'https://hueworldheritage.org.vn')
+    await page.click('#report-dialog button[type="submit"]')
+    /* Chưa cấu hình reportEndpoint → mở GitHub Issue chứa nội dung vừa nhập */
+    const opened = new URL(await page.evaluate(() => window.__opened))
+    assert.equal(opened.hostname, 'github.com')
+    assert.match(opened.searchParams.get('body'), /Giá vé mới 220\.000đ[\s\S]*hueworldheritage/)
+    assert.ok(await page.isHidden('#report-dialog'))
+
+    assert.deepEqual(errors, [])
+    await close()
+})
