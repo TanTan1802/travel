@@ -5108,3 +5108,49 @@ body.dark-theme .month-nav__prevnext a {
 .guide-section__list a:hover {
   text-decoration: underline;
 }
+
+.eat__updated {
+  display: inline-flex;
+  gap: .25rem;
+  align-items: center;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+/*==================== FORM BÁO SAI (report.js) ====================*/
+.report-form__item {
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+}
+
+.report-form__item small {
+  color: var(--text-color-light);
+}
+
+.report-form__label {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.report-form__input {
+  width: 100%;
+  padding: .65rem .8rem;
+  border: 1px solid var(--input-color);
+  border-radius: .6rem;
+  background-color: var(--container-color, var(--body-color));
+  color: var(--text-color);
+  font: inherit;
+  font-size: var(--small-font-size);
+  resize: vertical;
+}
+
+.report-form__status {
+  min-height: 1.2em;
+  font-size: var(--smaller-font-size);
+  color: var(--accent-color);
+}
+
+.report-form__submit {
+  justify-self: start;
+}

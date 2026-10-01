@@ -7,6 +7,18 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        /* Độ mới dữ liệu + form báo sai (report.js) */
+        'Cập nhật {m}/{y}': 'Updated {m}/{y}',
+        'Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất': 'Month this information was last updated or re-checked',
+        'Thông tin đúng / góp ý': 'Correct information / suggestion',
+        'Vd: giá vé đã tăng lên 250.000đ từ tháng 6, quán đã chuyển sang địa chỉ...': 'E.g. the ticket went up to 250,000 VND in June, the shop moved to...',
+        'Nguồn (không bắt buộc)': 'Source (optional)',
+        'Link trang chính thức, thời điểm bạn ghé...': 'Official website link, when you visited...',
+        'Email để nhận phản hồi (không bắt buộc)': 'Email for a reply (optional)',
+        'Gửi báo cáo': 'Send report',
+        'Hãy cho biết thông tin đúng hoặc góp ý của bạn.': 'Please tell us the correct information or your suggestion.',
+        'Đã mở GitHub để gửi báo cáo – cảm ơn bạn!': 'GitHub opened to submit the report – thank you!',
+        'Đã gửi – cảm ơn bạn đã giúp thông tin chính xác hơn!': 'Sent – thanks for helping keep the information accurate!',
         /* Trang khám phá: giá vé, theo tháng, chủ đề (seo-render.js) */
         'Giá vé tham quan {name} & giờ mở cửa': '{name} entrance fees & opening hours',
         '{count} điểm tham quan theo lịch trình gợi ý, có giá vé, giờ mở cửa, địa chỉ và quán nước gần đó.': '{count} sights from the suggested itinerary, with entrance fees, opening hours, addresses and nearby drink stops.',

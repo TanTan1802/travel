@@ -177,6 +177,7 @@ function eatCard(e, d) {
             <a href="${mapsSearchUrl(`${e.name}, ${e.address}`)}" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> ${e.address}
             </a>
+            ${e.updated ? `<small class="eat__updated"><i class="ri-refresh-line"></i> ${updatedText(e.updated)}</small>` : ''}
             ${reportLinkHtml({ dest: d.name, item: e.name, details: `${e.address} · ${priceRange(e.price)}` })}
         </li>
     `

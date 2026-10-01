@@ -410,6 +410,37 @@ test('đồng bộ Google Sheets: CSV hai chiều, chỉ cập nhật mục đã
     assert.deepEqual(sheets.parseCsv('a,b\n"x, ""y""",2\n'), [{ a: 'x, "y"', b: '2' }], 'CSV có dấu phẩy và ngoặc kép')
 })
 
+test('độ mới dữ liệu: mọi mục có tháng cập nhật; đồng bộ Sheets ghi tháng khi sửa hoặc đánh dấu đã kiểm tra', () => {
+    const { staleItems, monthsBetween } = require('../tools/check-freshness')
+    assert.equal(monthsBetween('2025-11', '2026-10'), 11)
+    const now = staleItems()
+    assert.ok(now.total > 600)
+    assert.equal(now.stale.filter(x => !x.updated).length, 0, 'mục nào cũng phải có updated')
+    assert.equal(staleItems('2099-01').stale.length, now.total, 'sau nhiều năm thì mọi mục đều cũ')
+
+    const sheets = require('../tools/sheets')
+    process.env.SYNC_MONTH = '2027-03'
+    try {
+        const sights = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/sights.json'), 'utf8')).sights
+        const rows = sheets.parseCsv(sheets.toCsv(sheets.SIGHT_COLUMNS, sheets.sightsToRows(sights)))
+        const pick = (data, name) => data['hoi-an'].flat().find(s => s.name[0] === name)
+        const row = rows.find(r => r.dest_id === 'hoi-an' && r.name_vi === 'Chùa Cầu')
+        const other = rows.find(r => r.dest_id === 'hoi-an' && r.name_vi !== 'Chùa Cầu')
+
+        const unchanged = JSON.parse(JSON.stringify(sights))
+        sheets.applySightRows(unchanged, [row])
+        assert.equal(pick(unchanged, 'Chùa Cầu').updated, '2026-09', 'không đổi gì, không đánh dấu → giữ tháng cũ')
+
+        const edited = JSON.parse(JSON.stringify(sights))
+        const result = sheets.applySightRows(edited, [{ ...row, price_min: '99000', price_max: '99000' }, { ...other, confirmed: 'x' }])
+        assert.equal(pick(edited, 'Chùa Cầu').updated, '2027-03', 'sửa giá → ghi tháng cập nhật')
+        assert.equal(pick(edited, other.name_vi).updated, '2027-03', 'ghi "x" ở cột confirmed → ghi tháng đã kiểm tra')
+        assert.ok(result.changes.some(c => c.includes('đã kiểm tra lại')))
+    } finally {
+        delete process.env.SYNC_MONTH
+    }
+})
+
 test('bản dịch tiếng Anh đầy đủ và khớp vị trí với dữ liệu gốc', () => {
     for (const d of DESTINATIONS) {
         const e = EN.destinations[d.id]

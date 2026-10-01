@@ -455,12 +455,16 @@ function sightHtml(s, { id = '' } = {}) {
             <small class="sight__meta">
                 <span><i class="ri-time-line"></i> ${sightHours(s.hours)}</span>
                 <span><i class="ri-map-pin-2-line"></i> ${s.address}</span>
+                ${s.updated ? `<span title="${t('Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất')}"><i class="ri-refresh-line"></i> ${updatedText(s.updated)}</span>` : ''}
             </small>
             ${s.note ? `<small class="sight__note"><i class="ri-information-line"></i> ${pickLang(s.note)}</small>` : ''}
             ${s.dest ? reportLinkHtml({ dest: s.dest, item: s.name[0], details: `${sightPriceText(s.price)} · ${sightHours(s.hours)} · ${s.address}` }) : ''}
         </li>
     `
 }
+
+/* "2026-09" → "Cập nhật 09/2026" */
+const updatedText = ym => t('Cập nhật {m}/{y}', { m: ym.slice(5, 7), y: ym.slice(0, 4) })
 
 /* Chi phí ước tính mỗi người trong ngày: vé tham quan + ăn uống, cà phê (quán có giá) */
 function dayCost(entries) {
@@ -587,22 +591,28 @@ if (typeof document !== 'undefined' && typeof document.addEventListener === 'fun
 /* Mở GitHub Issue điền sẵn nội dung – ai cũng góp ý được, không cần server */
 const ISSUES_URL = 'https://github.com/TanTan1802/travel/issues/new'
 
-function reportUrl({ dest = '', item = '', details = '' } = {}) {
+function reportUrl({ dest = '', item = '', details = '', correction = '', source = '', page = '' } = {}) {
     const title = `[Sửa thông tin] ${[dest, item].filter(Boolean).join(' – ')}`
     const body = [
         `**Điểm đến:** ${dest || '-'}`,
         `**Mục cần sửa:** ${item || '-'}`,
         ...(details ? [`**Thông tin hiện tại:** ${details}`] : []),
+        ...(page ? [`**Trang:** ${page}`] : []),
         '',
         '**Thông tin đúng / góp ý:**',
+        correction,
         '',
         '**Nguồn (link, ảnh chụp bảng giá...):**',
+        source,
     ].join('\n')
     return `${ISSUES_URL}?${new URLSearchParams({ title, body, labels: 'sua-thong-tin' })}`
 }
 
+/* Liên kết "Báo sai": không có JS → mở GitHub Issue điền sẵn; có JS → report.js mở form ngay trên trang */
 function reportLinkHtml(opts, { label = true } = {}) {
-    return `<a href="${reportUrl(opts)}" target="_blank" rel="noopener" class="report-link" title="${t('Báo sai thông tin')}"><i class="ri-flag-line"></i>${label ? ` ${t('Báo sai')}` : ''}</a>`
+    const attr = value => String(value || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+    return `<a href="${reportUrl(opts)}" target="_blank" rel="noopener" class="report-link" title="${t('Báo sai thông tin')}"
+        data-report-dest="${attr(opts.dest)}" data-report-item="${attr(opts.item)}" data-report-details="${attr(opts.details)}"><i class="ri-flag-line"></i>${label ? ` ${t('Báo sai')}` : ''}</a>`
 }
 
 /*==================== CHIA SẺ & IN ====================*/

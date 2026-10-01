@@ -8,6 +8,12 @@ const SITE_CONFIG = {
     newsletterEndpoint: '',
 
     /*
+     * Nơi nhận báo cáo "Báo sai thông tin" (form trên trang). Có thể dùng một form Formspree khác.
+     * Để trống: form mở GitHub Issue đã điền sẵn nội dung người dùng nhập (cần tài khoản GitHub).
+     */
+    reportEndpoint: '',
+
+    /*
      * Bình luận qua Giscus (lưu trong GitHub Discussions của repo).
      * 1. Bật Discussions cho repo và cài app https://github.com/apps/giscus
      * 2. Vào https://giscus.app, nhập repo → copy data-repo-id, data-category, data-category-id vào đây.

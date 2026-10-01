@@ -76,6 +76,14 @@ function crossChecks(data) {
         if (plan.fees[0] > plan.fees[1]) errors.push(`itineraries.${id}: phí tiết kiệm lớn hơn thoải mái`)
     })
     const rangeOk = (r, where) => { if (r[0] > r[1]) errors.push(`${where}: giá thấp lớn hơn giá cao`) }
+    /* Tháng cập nhật không được ở tương lai (gõ nhầm năm/tháng) */
+    const thisMonth = new Date().toISOString().slice(0, 7)
+    Object.entries(data.sights.sights).forEach(([id, days]) => days.flat().forEach(s => {
+        if (s.updated > thisMonth) errors.push(`sights.${id} · ${s.name[0]}: updated ${s.updated} ở tương lai`)
+    }))
+    Object.entries(data.places.places).forEach(([id, p]) => [...p.eats, ...p.cafes].forEach(e => {
+        if (e.updated > thisMonth) errors.push(`places.${id} · ${e.name}: updated ${e.updated} ở tương lai`)
+    }))
     Object.entries(data.places.places).forEach(([id, p]) => {
         p.eats.forEach((e, i) => rangeOk(e.price, `places.${id}.eats[${i}]`))
         p.cafes.forEach((c, i) => rangeOk(c.price, `places.${id}.cafes[${i}]`))

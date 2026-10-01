@@ -15,8 +15,22 @@ const ROOT = path.join(__dirname, '..')
 const DATA_DIR = path.join(ROOT, 'data')
 const SHEETS_DIR = path.join(DATA_DIR, 'sheets')
 
-const SIGHT_COLUMNS = ['dest_id', 'day', 'at', 'name_vi', 'name_en', 'price_min', 'price_max', 'hours', 'address', 'note_vi', 'note_en']
-const EAT_COLUMNS = ['dest_id', 'kind', 'name', 'price_min', 'price_max', 'address', 'dish_vi', 'dish_en']
+/* updated: tháng cập nhật gần nhất (chỉ để xem); confirmed: ghi "x" khi đã kiểm tra lại mà thông tin không đổi */
+const SIGHT_COLUMNS = ['dest_id', 'day', 'at', 'name_vi', 'name_en', 'price_min', 'price_max', 'hours', 'address', 'note_vi', 'note_en', 'updated', 'confirmed']
+const EAT_COLUMNS = ['dest_id', 'kind', 'name', 'price_min', 'price_max', 'address', 'dish_vi', 'dish_en', 'updated', 'confirmed']
+
+/* Tháng hiện tại YYYY-MM (SYNC_MONTH để test) */
+const currentMonth = () => process.env.SYNC_MONTH || new Date().toISOString().slice(0, 7)
+
+/* Có thay đổi hoặc được đánh dấu đã kiểm tra → ghi tháng cập nhật */
+function touch(item, row, changed, changes, label) {
+    if (!changed && !String(row.confirmed || '').trim()) return
+    const month = currentMonth()
+    if (item.updated !== month) {
+        if (!changed) changes.push(`${label}: đã kiểm tra lại (${item.updated || '-'} → ${month})`)
+        item.updated = month
+    }
+}
 
 /*---------- CSV (RFC 4180) ----------*/
 function parseCsv(text) {
@@ -66,7 +80,7 @@ function sightsToRows(sights) {
     Object.entries(sights).forEach(([id, days]) => days.forEach((list, d) => list.forEach(s => rows.push({
         dest_id: id, day: d + 1, at: s.at, name_vi: s.name[0], name_en: s.name[1],
         ...priceCells(s.price), hours: hoursCell(s.hours), address: s.address,
-        note_vi: s.note ? s.note[0] : '', note_en: s.note ? s.note[1] : '',
+        note_vi: s.note ? s.note[0] : '', note_en: s.note ? s.note[1] : '', updated: s.updated || '', confirmed: '',
     }))))
     return rows
 }
@@ -74,8 +88,8 @@ function sightsToRows(sights) {
 function eatsToRows(places) {
     const rows = []
     Object.entries(places).forEach(([id, p]) => {
-        p.eats.forEach(e => rows.push({ dest_id: id, kind: 'eat', name: e.name, ...priceCells(e.price), address: e.address, dish_vi: e.dish[0], dish_en: e.dish[1] }))
-        p.cafes.forEach(c => rows.push({ dest_id: id, kind: 'cafe', name: c.name, ...priceCells(c.price), address: c.address, dish_vi: c.drink[0], dish_en: c.drink[1] }))
+        p.eats.forEach(e => rows.push({ dest_id: id, kind: 'eat', name: e.name, ...priceCells(e.price), address: e.address, dish_vi: e.dish[0], dish_en: e.dish[1], updated: e.updated || '', confirmed: '' }))
+        p.cafes.forEach(c => rows.push({ dest_id: id, kind: 'cafe', name: c.name, ...priceCells(c.price), address: c.address, dish_vi: c.drink[0], dish_en: c.drink[1], updated: c.updated || '', confirmed: '' }))
     })
     return rows
 }
@@ -123,6 +137,7 @@ function applySightRows(sights, rows) {
             if (row.address) updates.address = row.address
             if (row.name_en) updates.name = [s.name[0], row.name_en]
             if (row.note_vi) updates.note = [row.note_vi, row.note_en || row.note_vi]
+            const before = changes.length
             Object.entries(updates).forEach(([key, value]) => {
                 if (!same(s[key], value)) {
                     changes.push(`${row.dest_id} · ${row.name_vi}: ${key} ${JSON.stringify(s[key])} → ${JSON.stringify(value)}`)
@@ -133,6 +148,7 @@ function applySightRows(sights, rows) {
                 changes.push(`${row.dest_id} · ${row.name_vi}: bỏ ghi chú`)
                 delete s.note
             }
+            touch(s, row, changes.length > before, changes, `${row.dest_id} · ${row.name_vi}`)
         } catch (err) {
             errors.push(`dòng ${line} (${row.name_vi}): ${err.message}`)
         }
@@ -157,12 +173,14 @@ function applyEatRows(places, rows) {
             if (price != null) updates.price = price
             if (row.address) updates.address = row.address
             if (row.dish_vi) updates[textKey] = [row.dish_vi, row.dish_en || item[textKey][1]]
+            const before = changes.length
             Object.entries(updates).forEach(([key, value]) => {
                 if (!same(item[key], value)) {
                     changes.push(`${row.dest_id} · ${row.name}: ${key} ${JSON.stringify(item[key])} → ${JSON.stringify(value)}`)
                     item[key] = value
                 }
             })
+            touch(item, row, changes.length > before, changes, `${row.dest_id} · ${row.name}`)
         } catch (err) {
             errors.push(`dòng ${line} (${row.name}): ${err.message}`)
         }
