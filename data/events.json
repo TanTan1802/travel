@@ -108,7 +108,8 @@
         "phu-quoc",
         "ly-son",
         "con-dao",
-        "mui-ne"
+        "mui-ne",
+        "ninh-thuan"
       ],
       "type": "holiday",
       "months": [
@@ -675,6 +676,55 @@
       "tip": [
         "Để dư 1 ngày trong lịch trình phòng khi tàu hủy.",
         "Keep a spare day in case boats are cancelled."
+      ]
+    },
+    {
+      "id": "hoi-xuan-nui-ba",
+      "where": [
+        "tay-ninh"
+      ],
+      "type": "festival",
+      "months": [
+        1,
+        2,
+        3
+      ],
+      "lunar": true,
+      "name": [
+        "Hội Xuân núi Bà Đen",
+        "Ba Den Mountain Spring Festival"
+      ],
+      "desc": [
+        "Từ mùng 1 Tết đến hết tháng Giêng âm lịch – lượng khách hành hương đông nhất năm.",
+        "From Tet to the end of the first lunar month – the busiest pilgrimage season of the year."
+      ],
+      "tip": [
+        "Mua vé cáp treo trước, đi thật sớm và tránh ngày rằm.",
+        "Buy cable car tickets ahead, go very early and avoid the full-moon day."
+      ]
+    },
+    {
+      "id": "kate",
+      "where": [
+        "ninh-thuan"
+      ],
+      "type": "festival",
+      "months": [
+        9,
+        10
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Katê của người Chăm",
+        "Cham Kate Festival"
+      ],
+      "desc": [
+        "Tháng 7 lịch Chăm (thường rơi vào tháng 9–10 dương lịch) – lễ rước y trang, múa hát ở các tháp Pô Klong Garai, Pô Rômê.",
+        "The seventh month of the Cham calendar (usually September–October) – costume processions, music and dance at the Po Klong Garai and Po Rome towers."
+      ],
+      "tip": [
+        "Xem ngày cụ thể của tỉnh trước khi đi; tôn trọng nghi lễ, không chen vào đoàn rước.",
+        "Check the official dates first; respect the rites and don't cut into the procession."
       ]
     }
   ]

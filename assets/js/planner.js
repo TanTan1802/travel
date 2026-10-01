@@ -207,7 +207,7 @@ function planFromQuery(search) {
 /*---------- Giao diện ----------*/
 const legMode = leg => (leg.mode === 'flight'
     ? t('Máy bay / tàu cao tốc')
-    : t('Xe khách / ô tô ~{h} giờ', { h: LANG === 'en' ? leg.hours : String(leg.hours).replace('.', ',') }))
+    : t('Xe khách / ô tô ~{h} giờ', { h: LANG === 'vi' ? String(leg.hours).replace('.', ',') : leg.hours }))
 
 const legLabel = leg => `<i class="${leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line'}"></i> ${legMode(leg)}`
 
@@ -369,7 +369,7 @@ function renderSummary(plan, totals) {
         <div class="planner__stats">
             <div class="planner__stat"><i class="ri-calendar-2-line"></i><strong>${totals.days}</strong><span>${t('ngày')}</span></div>
             <div class="planner__stat"><i class="ri-map-pin-2-line"></i><strong>${plan.stops.length}</strong><span>${t('điểm đến')}</span></div>
-            <div class="planner__stat"><i class="ri-road-map-line"></i><strong>~${totals.km.toLocaleString(LANG === 'en' ? 'en-US' : 'vi-VN')}</strong><span>km</span></div>
+            <div class="planner__stat"><i class="ri-road-map-line"></i><strong>~${totals.km.toLocaleString(LANG === 'vi' ? 'vi-VN' : 'en-US')}</strong><span>km</span></div>
         </div>
         <div class="planner__cost">
             <span>${t('Chi phí ước tính / người')}</span>

@@ -10,6 +10,7 @@
 const fs = require('fs')
 const path = require('path')
 const Ajv2020 = require('ajv/dist/2020')
+const { loadBrowserScripts } = require('./lib')
 
 const ROOT = path.join(__dirname, '..')
 const DATA_DIR = path.join(ROOT, 'data')
@@ -162,12 +163,76 @@ function generate(name, json) {
         `${body}\n`
 }
 
+/*==================== BẢN DỊCH KO / ZH / JA ====================*/
+/*
+ * data/i18n/<lang>.json – khóa là chuỗi tiếng Việt gốc (giống assets/js/data/en.js):
+ *   ui, html, regions, categories, destinations (chữ của điểm đến), itineraries (tên từng ngày).
+ * Sinh assets/js/data/i18n/<lang>.js (TRANSLATION_LOCAL) – i18n.js phủ lên bản tiếng Anh,
+ * chuỗi chưa dịch sẽ hiện tiếng Anh. Thêm ngôn ngữ: tạo file JSON + khai báo trong LANGS của tools/build.js.
+ */
+const I18N_DIR = path.join(DATA_DIR, 'i18n')
+const I18N_OUT = path.join(OUT_DIR, 'i18n')
+const I18N_FIELDS = ['name', 'province', 'tagline', 'bestTime', 'duration', 'highlights', 'description']
+
+const placeholders = text => [...String(text).matchAll(/\{(\w+)\}/g)].map(m => m[1]).sort().join(',')
+
+function checkTranslation(lang, json, data, en) {
+    const errors = []
+    for (const section of ['ui', 'html']) {
+        Object.entries(json[section] || {}).forEach(([key, value]) => {
+            if (!(key in en[section])) errors.push(`i18n/${lang}.${section}: "${key.slice(0, 50)}" không còn trong en.js (chuỗi gốc đã đổi?)`)
+            else if (typeof value !== 'string' || !value.trim()) errors.push(`i18n/${lang}.${section}: "${key.slice(0, 50)}" để trống`)
+            else if (placeholders(key) !== placeholders(value)) errors.push(`i18n/${lang}.${section}: "${key.slice(0, 50)}" sai biến {…}`)
+        })
+    }
+    ;['regions', 'categories'].forEach(section => Object.keys(json[section] || {}).forEach(key => {
+        if (!data.destinations[section][key]) errors.push(`i18n/${lang}.${section}: ${key} không tồn tại`)
+    }))
+    const dests = new Map(data.destinations.destinations.map(d => [d.id, d]))
+    Object.entries(json.destinations || {}).forEach(([id, d]) => {
+        if (!dests.has(id)) return errors.push(`i18n/${lang}.destinations: ${id} không tồn tại`)
+        Object.keys(d).filter(k => !I18N_FIELDS.includes(k)).forEach(k => errors.push(`i18n/${lang}.destinations.${id}: trường ${k} không dịch được`))
+        if (d.highlights && d.highlights.length !== dests.get(id).highlights.length) errors.push(`i18n/${lang}.destinations.${id}: highlights phải có ${dests.get(id).highlights.length} mục`)
+    })
+    Object.entries(json.itineraries || {}).forEach(([id, plan]) => {
+        const days = data.itineraries.itineraries[id] && data.itineraries.itineraries[id].days
+        if (!days) errors.push(`i18n/${lang}.itineraries: ${id} không tồn tại`)
+        else if (plan.days.length > days.length) errors.push(`i18n/${lang}.itineraries.${id}: nhiều ngày hơn lịch trình gốc`)
+    })
+    return errors
+}
+
+function loadTranslations(data) {
+    if (!fs.existsSync(I18N_DIR)) return { translations: {}, errors: [] }
+    const { TRANSLATION_EN: en } = loadBrowserScripts(['assets/js/data/en.js'], ['TRANSLATION_EN'])
+    const translations = {}
+    const errors = []
+    for (const file of fs.readdirSync(I18N_DIR).filter(f => f.endsWith('.json')).sort()) {
+        const lang = file.replace(/\.json$/, '')
+        translations[lang] = readJson(path.join(I18N_DIR, file))
+        errors.push(...checkTranslation(lang, translations[lang], data, en))
+    }
+    return { translations, errors }
+}
+
+function generateTranslation(lang, json) {
+    return `/*=============== SINH TỰ ĐỘNG TỪ data/i18n/${lang}.json – KHÔNG SỬA TAY ===============*/\n` +
+        '/* Bản dịch phủ lên TRANSLATION_EN (assets/js/i18n.js) – chuỗi chưa dịch hiện tiếng Anh. */\n' +
+        `const TRANSLATION_LOCAL = ${JSON.stringify(json)}\n`
+}
+
 function main() {
     const checkOnly = process.argv.includes('--check')
     const { data, errors } = loadAndValidate()
     if (errors.length) {
         console.error(`❌ Dữ liệu không hợp lệ (${errors.length} lỗi):`)
         errors.forEach(e => console.error(`  - ${e}`))
+        process.exit(1)
+    }
+    const { translations, errors: i18nErrors } = loadTranslations(data)
+    if (i18nErrors.length) {
+        console.error(`❌ Bản dịch không hợp lệ (${i18nErrors.length} lỗi):`)
+        i18nErrors.slice(0, 30).forEach(e => console.error(`  - ${e}`))
         process.exit(1)
     }
     if (checkOnly) {
@@ -177,9 +242,12 @@ function main() {
     for (const name of Object.keys(DATASETS)) {
         fs.writeFileSync(path.join(OUT_DIR, `${name}.js`), generate(name, data[name]))
     }
+    fs.rmSync(I18N_OUT, { recursive: true, force: true })
+    fs.mkdirSync(I18N_OUT, { recursive: true })
+    Object.entries(translations).forEach(([lang, json]) => fs.writeFileSync(path.join(I18N_OUT, `${lang}.js`), generateTranslation(lang, json)))
     console.log(`✅ Dữ liệu hợp lệ – đã sinh ${Object.keys(DATASETS).length} file assets/js/data/*.js`)
 }
 
 if (require.main === module) main()
 
-module.exports = { loadAndValidate, DATASETS }
+module.exports = { loadAndValidate, loadTranslations, DATASETS }

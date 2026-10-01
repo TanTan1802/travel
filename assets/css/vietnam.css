@@ -1806,6 +1806,12 @@ body.dark-theme .season__status--good {
   position: absolute;
   left: 3rem;
   bottom: 7rem;
+}
+
+.nav__lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
   padding: .25rem .6rem;
   border: 1.5px solid currentColor;
   border-radius: .4rem;
@@ -1813,25 +1819,70 @@ body.dark-theme .season__status--good {
   font-weight: 700;
   letter-spacing: .05em;
   color: var(--text-color);
+  list-style: none;
+  cursor: pointer;
   transition: .3s;
 }
 
-.nav__lang:hover {
+.nav__lang-btn::-webkit-details-marker { display: none; }
+
+.nav__lang-btn:hover,
+.nav__lang[open] .nav__lang-btn {
   background-color: var(--first-color);
   border-color: var(--first-color);
   color: var(--white-color);
 }
 
+.nav__lang-list {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + .5rem);
+  z-index: 110;
+  min-width: 10rem;
+  margin: 0;
+  padding: .35rem;
+  list-style: none;
+  background-color: var(--container-color);
+  border-radius: .5rem;
+  box-shadow: var(--shadow);
+}
+
+.nav__lang-list a {
+  display: block;
+  padding: .45rem .75rem;
+  border-radius: .35rem;
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+  white-space: nowrap;
+}
+
+.nav__lang-list a:hover { background-color: var(--input-color); }
+
+.nav__lang-list a[aria-current] {
+  color: var(--first-color);
+  font-weight: var(--font-semi-bold);
+}
+
 @media screen and (min-width: 768px) {
   .nav__lang {
-    position: static;
+    position: relative;
+    left: auto;
+    bottom: auto;
     align-self: center;
-    color: var(--white-color);
   }
 
-  .scroll-header .nav__lang,
-  .header--solid .nav__lang {
+  .nav__lang-btn { color: var(--white-color); }
+
+  .scroll-header .nav__lang-btn,
+  .header--solid .nav__lang-btn {
     color: var(--text-color);
+  }
+
+  .nav__lang-list {
+    top: calc(100% + .5rem);
+    bottom: auto;
+    left: auto;
+    right: 0;
   }
 }
 

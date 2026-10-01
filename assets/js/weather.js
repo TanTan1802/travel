@@ -16,9 +16,13 @@ function describeWeather(code) {
     return { ...w, text: t(w.text) }
 }
 
-const WEEKDAYS = LANG === 'en'
-    ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    : ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
+const WEEKDAYS = {
+    vi: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+    en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    ko: ['일', '월', '화', '수', '목', '금', '토'],
+    zh: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+    ja: ['日', '月', '火', '水', '木', '金', '土'],
+}[LANG]
 const WEATHER_CACHE_MINUTES = 30
 
 async function fetchWeather(lat, lng) {

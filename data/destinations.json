@@ -2753,6 +2753,211 @@
         "Kết hợp Hà Tiên với Phú Quốc (tàu cao tốc ~1,5 giờ) trong cùng chuyến.",
         "Mùa mưa (tháng 5 – 10) biển thường động, tàu ra đảo có thể tạm ngừng."
       ]
+    },
+    {
+      "id": "tay-ninh",
+      "name": "Tây Ninh – Núi Bà Đen",
+      "province": "Tây Ninh",
+      "region": "nam",
+      "categories": [
+        "nui",
+        "di-san"
+      ],
+      "rating": 4.4,
+      "lat": 11.3101,
+      "lng": 106.0983,
+      "bestMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tagline": "Nóc nhà Nam Bộ và Tòa Thánh Cao Đài",
+      "description": "Cách TP.HCM khoảng 100 km, Tây Ninh có núi Bà Đen cao 986 m – nóc nhà Nam Bộ – với cáp treo lên đỉnh, quần thể chùa Bà linh thiêng và tượng Phật Bà Tây Bổ Đà Sơn giữa biển mây. Tòa Thánh Cao Đài với kiến trúc độc đáo và buổi hành lễ trang nghiêm là trải nghiệm có một không hai, cùng đặc sản bánh tráng phơi sương và muối tôm.",
+      "highlights": [
+        "Núi Bà Đen",
+        "Tòa Thánh Cao Đài",
+        "Hồ Dầu Tiếng",
+        "Căn cứ Trung ương Cục miền Nam"
+      ],
+      "bestTime": "Tháng 12 – 4",
+      "duration": "1 – 2 ngày",
+      "hero": "Tay Bo Da Son Bodhisattva statue above sea of clouds Ba Den Mountain Tay Ninh Vietnam.jpg",
+      "gallery": [
+        {
+          "file": "Caodaist Holy See - Tây-Ninh Province.jpg",
+          "caption": "Tòa Thánh Cao Đài Tây Ninh"
+        },
+        {
+          "file": "Ba Den Mountain summit temple illuminated night fog Tay Ninh Vietnam.jpg",
+          "caption": "Đỉnh núi Bà Đen về đêm"
+        },
+        {
+          "file": "Cáp treo núi Bà Đen.JPG",
+          "caption": "Cáp treo lên núi Bà Đen"
+        },
+        {
+          "file": "Chùa Trung, Núi Bà Đen, 2025.jpg",
+          "caption": "Chùa Trung trên núi Bà Đen"
+        },
+        {
+          "file": "Dau Tieng Reservoir (39748281134).jpg",
+          "caption": "Hồ Dầu Tiếng"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Bánh tráng phơi sương",
+          "desc": "Bánh tráng Trảng Bàng phơi qua sương đêm nên mềm dẻo, cuốn thịt heo luộc và rau rừng, chấm mắm nêm hoặc muối tôm.",
+          "price": "100.000đ",
+          "file": "Bánh tráng cuốn thịt heo.jpg",
+          "illustrative": "Bánh tráng cuốn thịt heo"
+        },
+        {
+          "name": "Bánh canh Trảng Bàng",
+          "desc": "Sợi bánh canh bột gạo dai mềm, nước dùng ngọt xương, ăn kèm giò heo luộc và rau sống.",
+          "price": "50.000đ",
+          "file": "Bánh Canh Nam Phổ, Da Nang, Vietnam.jpg",
+          "illustrative": "Bát bánh canh"
+        },
+        {
+          "name": "Bò tơ Tây Ninh",
+          "desc": "Bò non thịt mềm, nướng ngói, hấp gừng hay làm gỏi – món nhậu nổi tiếng của vùng.",
+          "price": "200.000đ",
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "illustrative": "Thịt nướng than hoa"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-landscape-line",
+          "title": "Cáp treo lên đỉnh núi Bà Đen",
+          "desc": "Lên nóc nhà Nam Bộ ngắm biển mây và tượng Phật Bà Tây Bổ Đà Sơn."
+        },
+        {
+          "icon": "ri-ancient-pavilion-line",
+          "title": "Dự lễ ở Tòa Thánh Cao Đài",
+          "desc": "Xem buổi hành lễ trang nghiêm từ ban công dành cho khách."
+        },
+        {
+          "icon": "ri-walk-line",
+          "title": "Leo bộ núi Bà Đen",
+          "desc": "Đường mòn qua chùa Bà, chùa Hang – thử thách 2–3 giờ."
+        },
+        {
+          "icon": "ri-sun-line",
+          "title": "Hoàng hôn hồ Dầu Tiếng",
+          "desc": "Mặt hồ rộng mênh mông, đẹp nhất lúc chiều tà."
+        }
+      ],
+      "tips": [
+        "Ở Tòa Thánh: ăn mặc kín đáo, giữ im lặng và không chụp ảnh gần tín đồ khi đang hành lễ.",
+        "Dịp Tết và rằm tháng Giêng núi Bà rất đông – mua vé cáp treo trước và đi thật sớm."
+      ]
+    },
+    {
+      "id": "ninh-thuan",
+      "name": "Ninh Thuận – Vĩnh Hy",
+      "province": "Ninh Thuận",
+      "region": "trung",
+      "categories": [
+        "bien",
+        "di-san"
+      ],
+      "rating": 4.5,
+      "lat": 11.5643,
+      "lng": 108.9886,
+      "bestMonths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "tagline": "Nắng gió, nho xanh và tháp Chăm cổ",
+      "description": "Ninh Thuận là vùng đất nắng gió bậc nhất Việt Nam với vịnh Vĩnh Hy nước trong xanh, cung đường ven biển xuyên Vườn quốc gia Núi Chúa, đồi cát Nam Cương và những vườn nho trĩu quả. Đây cũng là trung tâm văn hóa Chăm với tháp Pô Klong Garai cổ kính, làng gốm Bàu Trúc và lễ hội Katê rực rỡ.",
+      "highlights": [
+        "Vịnh Vĩnh Hy",
+        "Tháp Pô Klong Garai",
+        "Vườn quốc gia Núi Chúa",
+        "Hang Rái"
+      ],
+      "bestTime": "Tháng 1 – 8",
+      "duration": "2 – 3 ngày",
+      "hero": "Vinh hy bay.jpg",
+      "gallery": [
+        {
+          "file": "Po Klong Garai Temple 4.jpg",
+          "caption": "Tháp Chăm Pô Klong Garai"
+        },
+        {
+          "file": "Coastal view from Nui Chua National Park.jpg",
+          "caption": "Bờ biển Vườn quốc gia Núi Chúa"
+        },
+        {
+          "file": "Hang Rái in Ninh Thuan Province, Vietnam.jpg",
+          "caption": "Hang Rái"
+        },
+        {
+          "file": "Ninh Chu Beach (Bãi biển ninh chữ Ninh Thuận ) - panoramio.jpg",
+          "caption": "Bãi biển Ninh Chữ"
+        },
+        {
+          "file": "Gốm Bàu Trúc.JPG",
+          "caption": "Gốm Bàu Trúc của người Chăm"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Bánh căn",
+          "desc": "Bánh bột gạo nướng khuôn đất, nhân trứng, mực hoặc tôm, chấm nước mắm cá kho và xoài xanh.",
+          "price": "40.000đ",
+          "file": "Bánh căn in phan rang, vietnam.jpg"
+        },
+        {
+          "name": "Nho và vang nho",
+          "desc": "Nho Phan Rang ngọt thanh, ăn tươi tại vườn hoặc mua vang, mật nho, nho khô làm quà.",
+          "price": "60.000đ/kg",
+          "file": "Vườn Nho ở Phan Rang, Ninh Thuận.JPG"
+        },
+        {
+          "name": "Thịt cừu nướng",
+          "desc": "Cừu nuôi thả trên đồng cỏ khô, thịt thơm, nướng than hoặc nấu lẩu thuốc bắc.",
+          "price": "250.000đ",
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "illustrative": "Thịt nướng than hoa"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Tàu đáy kính vịnh Vĩnh Hy",
+          "desc": "Ngắm san hô và cá qua đáy tàu, tắm biển nước trong vắt."
+        },
+        {
+          "icon": "ri-ancient-gate-line",
+          "title": "Tháp Pô Klong Garai",
+          "desc": "Cụm tháp Chăm thế kỷ XIII trên đồi Trầu, đẹp nhất lúc hoàng hôn."
+        },
+        {
+          "icon": "ri-car-line",
+          "title": "Cung đường ven biển Núi Chúa",
+          "desc": "Một trong những cung đường biển đẹp nhất Việt Nam."
+        },
+        {
+          "icon": "ri-plant-line",
+          "title": "Thăm vườn nho",
+          "desc": "Tự tay cắt nho, thử vang và mật nho tại vườn."
+        }
+      ],
+      "tips": [
+        "Nắng gió rất gắt: mang kem chống nắng, mũ rộng vành, kính; ra vịnh nên đi buổi sáng khi biển êm.",
+        "Hang Rái đẹp nhất lúc sáng sớm và khi triều thấp (rêu xanh lộ ra) – xem lịch thủy triều trước."
+      ]
     }
   ]
 }

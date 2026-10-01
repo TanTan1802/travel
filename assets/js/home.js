@@ -301,7 +301,7 @@ function renderGrid({ more = false } = {}) {
 
     const shown = results.slice(0, exploreState.visible)
     grid.innerHTML = shown.map(r => (r.km != null && !r.match.hint
-        ? destinationCard(r.d, t('Cách bạn ~{km} km', { km: Math.round(r.km * ROAD_FACTOR_HOME).toLocaleString(LANG === 'en' ? 'en-US' : 'vi-VN') }), 'ri-focus-3-line')
+        ? destinationCard(r.d, t('Cách bạn ~{km} km', { km: Math.round(r.km * ROAD_FACTOR_HOME).toLocaleString(LANG === 'vi' ? 'vi-VN' : 'en-US') }), 'ri-focus-3-line')
         : destinationCard(r.d, r.match.hint))).join('')
     grid.dataset.results = results.length
     const rest = results.length - shown.length

@@ -4,8 +4,10 @@
  * Tiếng Việt (gốc site):
  *   - diem-den/<id>/index.html – trang điểm đến render sẵn (SEO + Open Graph).
  *   - index.html – chèn sẵn danh sách thẻ điểm đến.
- * Tiếng Anh (thư mục en/):
- *   - en/index.html, en/diem-den/<id>/index.html – dịch từ assets/js/data/en.js.
+ * Tiếng Anh (thư mục en/), Hàn (ko/), Trung giản thể (zh/), Nhật (ja/):
+ *   - <lang>/index.html, <lang>/diem-den/<id>/index.html, ... – dịch từ assets/js/data/en.js;
+ *     ko/zh/ja phủ thêm bản dịch riêng assets/js/data/i18n/<lang>.js (sinh từ data/i18n/<lang>.json),
+ *     chuỗi chưa dịch hiện tiếng Anh.
  * Kèm sitemap.xml, robots.txt và cập nhật phiên bản service worker.
  *
  * Mẫu giao diện là home.html (→ index.html), destination.html, planner.html, guide.html – sửa ở đó rồi chạy lại build.
@@ -25,10 +27,16 @@ const PRICES_DIR = 'gia-ve'
 const MONTH_DIR = 'thang'
 const THEME_DIR = 'chu-de'
 
+/* code: mã trong SITE_LANG / thư mục; html: thuộc tính lang + hreflang; label: tên trong menu ngôn ngữ */
 const LANGS = {
-    vi: { prefix: '', locale: 'vi_VN', switchLabel: 'EN' },
-    en: { prefix: 'en/', locale: 'en_US', switchLabel: 'VI' },
+    vi: { prefix: '', html: 'vi', locale: 'vi_VN', label: 'Tiếng Việt' },
+    en: { prefix: 'en/', html: 'en', locale: 'en_US', label: 'English' },
+    ko: { prefix: 'ko/', html: 'ko', locale: 'ko_KR', label: '한국어' },
+    zh: { prefix: 'zh/', html: 'zh-Hans', locale: 'zh_CN', label: '中文（简体）' },
+    ja: { prefix: 'ja/', html: 'ja', locale: 'ja_JP', label: '日本語' },
 }
+/* Script dịch nạp trước local-images.js: tiếng Anh làm nền, ko/zh/ja phủ thêm bản dịch riêng */
+const translationScripts = lang => (lang === 'vi' ? [] : lang === 'en' ? ['assets/js/data/en.js'] : ['assets/js/data/en.js', `assets/js/data/i18n/${lang}.js`])
 
 const SCRIPTS = [
     'assets/js/data/local-images.js',
@@ -51,7 +59,7 @@ const SCRIPTS = [
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
-    'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
+    'TRANSLATION_LOCAL', 'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel']
 
@@ -73,7 +81,7 @@ const siteCache = new Map()
 function loadSite(lang, siteRoot) {
     const key = `${lang}:${siteRoot}`
     if (!siteCache.has(key)) {
-        const scripts = lang === 'en' ? ['assets/js/data/en.js', ...SCRIPTS] : SCRIPTS
+        const scripts = [...translationScripts(lang), ...SCRIPTS]
         siteCache.set(key, loadBrowserScripts(scripts, EXPORTS, { SITE_ROOT: siteRoot, SITE_LANG: lang }))
     }
     return siteCache.get(key)
@@ -145,29 +153,37 @@ function prioritizeImages(html, site) {
     })
 }
 
-function alternateLinks(viRel, enRel) {
-    return `
-        <link rel="alternate" hreflang="vi" href="${pageUrl(viRel)}">
-        <link rel="alternate" hreflang="en" href="${pageUrl(enRel)}">
-        <link rel="alternate" hreflang="x-default" href="${pageUrl(viRel)}">`
+/* relOf(lang) → đường dẫn trang tương ứng ở ngôn ngữ đó */
+function alternateLinks(relOf) {
+    return Object.entries(LANGS).map(([lang, { html }]) => `
+        <link rel="alternate" hreflang="${html}" href="${pageUrl(relOf(lang))}">`).join('') + `
+        <link rel="alternate" hreflang="x-default" href="${pageUrl(relOf('vi'))}">`
 }
 
-/* Nút chuyển ngôn ngữ trỏ tới trang tương ứng của ngôn ngữ kia */
-function setLangSwitch(html, lang, siteRoot, otherRel) {
-    const other = lang === 'vi' ? 'en' : 'vi'
-    return html.replace(/<a class="nav__lang"[^>]*>[^<]*<\/a>/,
-        `<a class="nav__lang" id="lang-switch" href="${siteRoot}${otherRel}" hreflang="${other}" lang="${other}" title="${other === 'en' ? 'English' : 'Tiếng Việt'}">${LANGS[lang].switchLabel}</a>`)
+/* Menu ngôn ngữ: mỗi mục trỏ tới trang tương ứng của ngôn ngữ đó */
+function setLangSwitch(html, lang, siteRoot, relOf) {
+    const items = Object.entries(LANGS).map(([code, l]) =>
+        `<li><a href="${siteRoot}${relOf(code)}" hreflang="${l.html}" lang="${l.html}" data-lang="${code}"${code === lang ? ' aria-current="true"' : ''}>${l.label}</a></li>`)
+    const menu = `<details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> ${lang.toUpperCase()}</summary>
+                        <ul class="nav__lang-list">
+                            ${items.join('\n                            ')}
+                        </ul>
+                    </details>`
+    if (!/<details class="nav__lang"[\s\S]*?<\/details>/.test(html)) throw new Error('Mẫu HTML thiếu menu ngôn ngữ (details.nav__lang)')
+    return html.replace(/<details class="nav__lang"[\s\S]*?<\/details>/, menu)
 }
 
 /* Chuẩn bị mẫu HTML cho một ngôn ngữ và độ sâu thư mục */
 function prepareTemplate(template, lang, rel, site) {
     const siteRoot = rootFor(rel)
     let html = template
-    if (lang === 'en') {
+    if (lang !== 'vi') {
+        const scripts = [...translationScripts(lang), 'assets/js/data/local-images.js']
         html = translateHtml(html, site.TRANSLATION_EN.html)
-            .replace('<html lang="vi">', '<html lang="en">')
+            .replace('<html lang="vi">', `<html lang="${LANGS[lang].html}">`)
             .replace('<script defer src="assets/js/data/local-images.js"></script>',
-                '<script defer src="assets/js/data/en.js"></script>\n        <script defer src="assets/js/data/local-images.js"></script>')
+                scripts.map(src => `<script defer src="${src}"></script>`).join('\n        '))
     }
     html = prefixPaths(html, siteRoot, siteRoot + LANGS[lang].prefix)
     return { html, siteRoot }
@@ -184,7 +200,7 @@ function headTags(site, d, lang) {
         name: d.name,
         description: d.description,
         url,
-        inLanguage: lang,
+        inLanguage: LANGS[lang].html,
         image: [d.hero, ...d.gallery.map(g => g.file)].slice(0, 4).map(f => absoluteImage(site, f)),
         address: { '@type': 'PostalAddress', addressRegion: d.province, addressCountry: 'VN' },
         touristType: d.categories.map(c => site.CATEGORIES[c]),
@@ -192,7 +208,7 @@ function headTags(site, d, lang) {
     }
 
     return `
-        <link rel="canonical" href="${url}">${alternateLinks(destPath('vi', d.id), destPath('en', d.id))}
+        <link rel="canonical" href="${url}">${alternateLinks(l => destPath(l, d.id))}
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
         <meta property="og:locale" content="${LANGS[lang].locale}">
@@ -237,9 +253,8 @@ function buildDestinationPage(template, lang, d, site) {
         .replace(ITINERARIES_SCRIPT, '')
         .replace(PHOTOS_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
-    const other = lang === 'vi' ? 'en' : 'vi'
 
-    html = setLangSwitch(html, lang, siteRoot, destPath(other, d.id))
+    html = setLangSwitch(html, lang, siteRoot, l => destPath(l, d.id))
         .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(d.name)} – Việt Travel</title>`)
         .replace(/<meta name="description" content="[^"]*">/,
             `<meta name="description" content="${escapeHtml(truncate(d.description))}">`)
@@ -259,20 +274,20 @@ function buildHome(template, lang, site) {
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const cards = site.DESTINATIONS.map(d => site.destinationCard(d)).join('')
 
-    html = setLangSwitch(html, lang, siteRoot, homePath(lang === 'vi' ? 'en' : 'vi'))
+    html = setLangSwitch(html, lang, siteRoot, homePath)
         .replace(/<!-- build:grid -->[\s\S]*?<!-- \/build:grid -->/, `<!-- build:grid -->${cards}<!-- /build:grid -->`)
         .replace(/<!-- build:guides -->[\s\S]*?<!-- \/build:guides -->/, `<!-- build:guides -->${site.homeGuidesSection()}<!-- /build:guides -->`)
         .replace(/(<span id="dest-count">)\d+(<\/span>)/, `$1${site.DESTINATIONS.length}$2`)
         .replace(/<!-- build:alternate -->[\s\S]*?<!-- \/build:alternate -->/,
-            `<!-- build:alternate -->${alternateLinks(homePath('vi'), homePath('en'))}\n        <!-- /build:alternate -->`)
+            `<!-- build:alternate -->${alternateLinks(homePath)}\n        <!-- /build:alternate -->`)
         .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${LANGS[lang].locale}$2`)
 
     html = prioritizeImages(html, site)
-    if (lang === 'en') {
+    if (lang !== 'vi') {
         html = html.replace(/(\s*)<script defer src="/,
-            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = 'en'</script>$1<script defer src="`)
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
     }
     return html
 }
@@ -280,12 +295,11 @@ function buildHome(template, lang, site) {
 /* Trang lập kế hoạch chuyến đi: nội dung do planner.js tạo trên trình duyệt */
 function buildPlanner(template, lang, site) {
     const rel = plannerPath(lang)
-    const other = lang === 'vi' ? 'en' : 'vi'
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1]
     const description = (html.match(/<meta name="description" content="([^"]*)">/) || [])[1]
     const head = `
-        <link rel="canonical" href="${pageUrl(rel)}">${alternateLinks(plannerPath('vi'), plannerPath('en'))}
+        <link rel="canonical" href="${pageUrl(rel)}">${alternateLinks(plannerPath)}
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Việt Travel">
         <meta property="og:locale" content="${LANGS[lang].locale}">
@@ -295,7 +309,7 @@ function buildPlanner(template, lang, site) {
         <meta property="og:image" content="${SITE_URL}assets/img/og/hoi-an.jpg">
         <meta name="twitter:card" content="summary_large_image">
     `
-    return setLangSwitch(html, lang, siteRoot, plannerPath(other))
+    return setLangSwitch(html, lang, siteRoot, plannerPath)
         .replace('</head>', `${head}</head>`)
         .replace(/(\s*)<script defer src="/,
             `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
@@ -304,13 +318,12 @@ function buildPlanner(template, lang, site) {
 /* Trang cẩm nang (danh sách hoặc một bài): nội dung render sẵn từ guide-render.js */
 function buildGuidePage(template, lang, slug, site) {
     const rel = guidePath(lang, slug)
-    const other = lang === 'vi' ? 'en' : 'vi'
     const guide = slug && site.GUIDES.find(g => g.slug === slug)
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const title = guide ? `${site.pickLang(guide.title)} – Việt Travel` : (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1]
     const description = guide ? site.pickLang(guide.summary) : (html.match(/<meta name="description" content="([^"]*)">/) || [])[1]
     const head = `
-        <link rel="canonical" href="${pageUrl(rel)}">${alternateLinks(guidePath('vi', slug), guidePath('en', slug))}
+        <link rel="canonical" href="${pageUrl(rel)}">${alternateLinks(l => guidePath(l, slug))}
         <meta property="og:type" content="${guide ? 'article' : 'website'}">
         <meta property="og:site_name" content="Việt Travel">
         <meta property="og:locale" content="${LANGS[lang].locale}">
@@ -320,7 +333,7 @@ function buildGuidePage(template, lang, slug, site) {
         <meta property="og:image" content="${SITE_URL}assets/img/og/${guide && guide.related && guide.related[0] ? guide.related[0] : 'hoi-an'}.jpg">
         <meta name="twitter:card" content="summary_large_image">
     `
-    html = setLangSwitch(html, lang, siteRoot, guidePath(other, slug))
+    html = setLangSwitch(html, lang, siteRoot, l => guidePath(l, slug))
         .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
         .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(description)}">`)
         .replace('</head>', `${head}</head>`)
@@ -336,8 +349,8 @@ function buildGuidePage(template, lang, slug, site) {
  * Trang nội dung tĩnh dùng khung guide.html (trang giá vé, theo tháng, theo chủ đề):
  * title/description/canonical/hreflang/Open Graph + JSON-LD (kèm BreadcrumbList).
  */
-function buildContentPage(template, lang, rel, otherRel, site, { title, description, main, image, jsonLd = [], crumbs = [] }) {
-    const other = lang === 'vi' ? 'en' : 'vi'
+function buildContentPage(template, lang, relOf, site, { title, description, main, image, jsonLd = [], crumbs = [] }) {
+    const rel = relOf(lang)
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const url = pageUrl(rel)
     const graph = [...jsonLd, {
@@ -345,7 +358,7 @@ function buildContentPage(template, lang, rel, otherRel, site, { title, descript
         itemListElement: [...crumbs, [title, url]].map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })),
     }]
     const head = `
-        <link rel="canonical" href="${url}">${alternateLinks(rel.replace(/^en\//, ''), `en/${rel.replace(/^en\//, '')}`)}
+        <link rel="canonical" href="${url}">${alternateLinks(relOf)}
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
         <meta property="og:locale" content="${LANGS[lang].locale}">
@@ -356,7 +369,7 @@ function buildContentPage(template, lang, rel, otherRel, site, { title, descript
         <meta name="twitter:card" content="summary_large_image">
         <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>
     `
-    html = setLangSwitch(html, lang, siteRoot, otherRel)
+    html = setLangSwitch(html, lang, siteRoot, relOf)
         .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)} – Việt Travel</title>`)
         .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(truncate(description))}">`)
         .replace('</head>', `${head}</head>`)
@@ -370,7 +383,6 @@ function buildContentPage(template, lang, rel, otherRel, site, { title, descript
 
 /* Trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề/miền */
 function explorePages(template, lang) {
-    const other = lang === 'vi' ? 'en' : 'vi'
     const pages = []
     const home = [loadSite(lang, '').t('Trang chủ'), pageUrl(homePath(lang))]
     const destSite = loadSite(lang, rootFor(pricesPath(lang, 'x')))
@@ -378,7 +390,7 @@ function explorePages(template, lang) {
         const rel = pricesPath(lang, d.id)
         const sum = destSite.destinationSights(d.id).flatMap(g => g.sights).length
         if (!sum) continue
-        pages.push([rel, () => buildContentPage(template, lang, rel, pricesPath(other, d.id), destSite, {
+        pages.push([rel, () => buildContentPage(template, lang, l => pricesPath(l, d.id), destSite, {
             title: destSite.t('Giá vé tham quan {name} & giờ mở cửa', { name: d.name }),
             description: destSite.t('Giá vé, giờ mở cửa và địa chỉ {count} điểm tham quan ở {name} theo lịch trình từng ngày, kèm quán nước gần đó.', { count: sum, name: d.name }),
             main: destSite.pricesPage(d),
@@ -391,7 +403,7 @@ function explorePages(template, lang) {
     for (let m = 1; m <= 12; m++) {
         const rel = monthPath(lang, m)
         const picks = monthSite.monthDestinations(m)
-        pages.push([rel, () => buildContentPage(template, lang, rel, monthPath(other, m), monthSite, {
+        pages.push([rel, () => buildContentPage(template, lang, l => monthPath(l, m), monthSite, {
             title: monthSite.monthTitle(m),
             description: `${monthSite.pickLang(monthSite.MONTH_NOTES[m])} ${picks.slice(0, 5).map(d => d.name).join(', ')}…`,
             main: monthSite.monthPage(m),
@@ -406,7 +418,7 @@ function explorePages(template, lang) {
         const rel = themePath(lang, theme.slug)
         const picks = themeSite.DESTINATIONS.filter(d => (theme.kind === 'region' ? d.region === theme.key : d.categories.includes(theme.key)))
             .sort((a, b) => b.rating - a.rating)
-        pages.push([rel, () => buildContentPage(template, lang, rel, themePath(other, theme.slug), themeSite, {
+        pages.push([rel, () => buildContentPage(template, lang, l => themePath(l, theme.slug), themeSite, {
             title: themeSite.themeTitle(theme),
             description: themeSite.pickLang(themeSite.THEME_INTROS[theme.key]),
             main: themeSite.themePage(theme),
@@ -483,9 +495,22 @@ function compactLocalImages(images) {
 function scriptSource(file, site, pageFiles) {
     if (file === 'assets/js/data/local-images.js') return compactLocalImages(site.LOCAL_IMAGES)
     if (file === 'assets/js/data/en.js') {
-        const { html, itineraries, ...en } = site.TRANSLATION_EN
+        /* Bản tiếng Anh gốc (trang ko/zh/ja: i18n.js tự phủ bản dịch riêng lên trên trình duyệt) */
+        const { html, itineraries, ...en } = loadSite('en', '').TRANSLATION_EN
+        const local = site.TRANSLATION_LOCAL
+        if (local) {
+            /* Bỏ chuỗi tiếng Anh đã có bản dịch riêng (không bao giờ hiện) */
+            const omit = (obj, keys = {}) => Object.fromEntries(Object.entries(obj).filter(([k]) => !(k in keys)))
+            ;['ui', 'regions', 'categories'].forEach(k => { en[k] = omit(en[k], local[k]) })
+            en.destinations = Object.fromEntries(Object.entries(en.destinations).map(([id, d]) => [id, omit(d, local.destinations[id])]))
+        }
         const withPlans = pageFiles.includes('assets/js/data/itineraries.js')
         return `const TRANSLATION_EN = ${JSON.stringify({ ...en, itineraries: withPlans ? itineraries : {} })}`
+    }
+    if (file.startsWith('assets/js/data/i18n/')) {
+        /* Giữ tên ngày của lịch trình (nhỏ) – trang điểm đến cần nó, bỏ bảng dịch HTML tĩnh */
+        const { html, ...local } = site.TRANSLATION_LOCAL
+        return `const TRANSLATION_LOCAL = ${JSON.stringify(local)}`
     }
     return read(file)
 }
@@ -551,13 +576,13 @@ function main() {
     const homeTemplate = read('home.html')
     const plannerTemplate = read('planner.html')
     const guideTemplate = read('guide.html')
-    for (const marker of ['<!-- build:grid -->', '<!-- build:alternate -->', 'class="nav__lang"']) {
+    for (const marker of ['<!-- build:grid -->', '<!-- build:alternate -->', '<details class="nav__lang"']) {
         if (!homeTemplate.includes(marker)) throw new Error(`home.html thiếu ${marker}`)
     }
 
     // Xóa trang cũ (điểm đến đã bị đổi tên/xóa)
     fs.rmSync(path.join(ROOT, PAGE_DIR), { recursive: true, force: true })
-    fs.rmSync(path.join(ROOT, 'en'), { recursive: true, force: true })
+    Object.values(LANGS).filter(l => l.prefix).forEach(l => fs.rmSync(path.join(ROOT, l.prefix), { recursive: true, force: true }))
     fs.rmSync(path.join(ROOT, PLANNER_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, MONTH_DIR), { recursive: true, force: true })
@@ -594,7 +619,8 @@ function main() {
     write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
-    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
+    const n = Object.keys(LANGS).length
+    console.log(`✅ Đã tạo ${count} trang điểm đến (${Object.keys(LANGS).join(' + ')}), ${n} trang chủ, ${n} trang kế hoạch, ${n * (1 + loadSite('vi', '').GUIDES.length)} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
 }
 
 main()

@@ -1069,6 +1069,82 @@
         320000,
         450000
       ]
+    },
+    "tay-ninh": {
+      "days": [
+        {
+          "title": "Tòa Thánh Cao Đài – đỉnh núi Bà Đen",
+          "morning": "Khởi hành sớm từ TP.HCM (khoảng 2,5 giờ), ăn sáng bánh canh Trảng Bàng, tới Tòa Thánh Cao Đài dự buổi lễ trưa.",
+          "afternoon": "Đi cáp treo lên đỉnh núi Bà Đen, ngắm tượng Phật Bà Tây Bổ Đà Sơn và biển mây.",
+          "evening": "Ăn bò tơ, bánh tráng phơi sương ở thành phố Tây Ninh."
+        },
+        {
+          "title": "Chùa Bà – đường mòn núi Bà Đen",
+          "morning": "Viếng chùa Bà (Linh Sơn Tiên Thạch Tự) ở lưng chừng núi, chùa Hang.",
+          "afternoon": "Leo bộ một đoạn đường mòn hoặc đi máng trượt xuống chân núi.",
+          "evening": "Dạo chợ Long Hoa, mua muối tôm, bánh tráng làm quà."
+        },
+        {
+          "title": "Hồ Dầu Tiếng",
+          "morning": "Đi hồ Dầu Tiếng – một trong những hồ thủy lợi lớn nhất Việt Nam.",
+          "afternoon": "Dạo ven hồ, ăn cá nướng trui, chờ hoàng hôn trên mặt hồ.",
+          "evening": "Về thành phố Tây Ninh nghỉ ngơi."
+        },
+        {
+          "title": "Căn cứ Trung ương Cục – Lò Gò Xa Mát",
+          "morning": "Khu di tích Căn cứ Trung ương Cục miền Nam giữa rừng Tân Biên.",
+          "afternoon": "Vườn quốc gia Lò Gò – Xa Mát: rừng khộp, ngắm chim.",
+          "evening": "Về Tây Ninh, ăn bánh xèo, lẩu cá."
+        },
+        {
+          "title": "Trảng Bàng – về TP.HCM",
+          "morning": "Làng bánh tráng phơi sương Trảng Bàng, xem cách làm bánh.",
+          "afternoon": "Ghé địa đạo Củ Chi trên đường về.",
+          "evening": "Về lại TP.HCM."
+        }
+      ],
+      "fees": [
+        450000,
+        650000
+      ]
+    },
+    "ninh-thuan": {
+      "days": [
+        {
+          "title": "Phan Rang – tháp Pô Klong Garai",
+          "morning": "Tới Phan Rang (sân bay Cam Ranh ~1 giờ xe hoặc tàu hỏa tới ga Tháp Chàm), ăn bánh căn.",
+          "afternoon": "Tháp Chăm Pô Klong Garai trên đồi Trầu, ngắm hoàng hôn.",
+          "evening": "Thịt cừu nướng, dạo biển Ninh Chữ."
+        },
+        {
+          "title": "Vịnh Vĩnh Hy",
+          "morning": "Theo cung đường ven biển qua Núi Chúa tới vịnh Vĩnh Hy, đi tàu đáy kính ngắm san hô.",
+          "afternoon": "Tắm biển, lặn ngắm san hô, ăn hải sản trên bè.",
+          "evening": "Ngắm hoàng hôn trên đèo ven biển, về Ninh Chữ."
+        },
+        {
+          "title": "Hang Rái – vườn nho",
+          "morning": "Hang Rái lúc sáng sớm: ghềnh đá san hô phủ rêu xanh.",
+          "afternoon": "Vườn nho Thái An – cắt nho, thử vang và mật nho.",
+          "evening": "Gỏi cá mai, ốc nướng ở Ninh Chữ."
+        },
+        {
+          "title": "Đồi cát Nam Cương – làng Chăm",
+          "morning": "Đồi cát Nam Cương lúc bình minh.",
+          "afternoon": "Làng gốm Bàu Trúc – xem nặn gốm bằng tay không dùng bàn xoay.",
+          "evening": "Bánh xèo mực, bún sứa ở Phan Rang."
+        },
+        {
+          "title": "Đồng muối – về",
+          "morning": "Đồng muối Tri Hải và những trụ điện gió ven biển.",
+          "afternoon": "Mua nho khô, mật nho, tỏi Phan Rang làm quà.",
+          "evening": "Ra sân bay Cam Ranh hoặc ga Tháp Chàm."
+        }
+      ],
+      "fees": [
+        300000,
+        450000
+      ]
     }
   }
 }
