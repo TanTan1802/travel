@@ -120,7 +120,10 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 ## Hiệu năng (Lighthouse)
 
 - Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.
-- Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); font Google tải không chặn hiển thị; toàn bộ script dùng `defer`.
+- Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); toàn bộ script dùng `defer`.
+- Font chữ **tự host** (`assets/css/fonts.css` + `assets/fonts/`): Open Sans 400/600, Raleway 500/600/700, chỉ bộ ký tự latin +
+  tiếng Việt (`unicode-range`), giấy phép OFL. Trang không còn gọi Google Fonts/CDN nào ngoài Leaflet và API thời tiết.
+- **Gộp & nén CSS**: các `<link rel="stylesheet">` trong `assets/css/` của trang tĩnh gộp thành `assets/css/site-<hash>.css` khi build.
 - Icon Remix Icon **tự host, rút gọn** còn các icon đang dùng (`assets/css/icons.css` + `assets/fonts/remixicon.woff2`, ~18 KB thay vì ~235 KB từ CDN).
   Thêm icon mới → viết đủ tên class (`'ri-sun-line'`, không ghép chuỗi) rồi chạy `npm run icons`; `npm run test:data` báo lỗi nếu quên.
 - `data-sizes` trên thẻ ảnh cho biết kích thước hiển thị thực để trình duyệt chọn file WebP vừa đủ.

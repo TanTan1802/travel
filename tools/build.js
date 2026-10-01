@@ -399,6 +399,7 @@ function bundleFile(files, site, pageFiles) {
 const isOwnFile = src => src.startsWith(`${DEST_DATA_DIR}/`)
 
 function bundleScripts(html, siteRoot, site) {
+    html = bundleStyles(html, siteRoot)
     const pageFiles = [...html.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => m[1].slice(siteRoot.length))
     /* Một chuỗi script liền nhau (cho phép chú thích HTML xen giữa – chú thích bị bỏ) */
     return html.replace(/(?:<script defer src="[^"]+"><\/script>\s*(?:<!--[\s\S]*?-->\s*)*)+/g, (run, offset) => {
@@ -418,10 +419,29 @@ function bundleScripts(html, siteRoot, site) {
     })
 }
 
-/* Script trang chủ (tiếng Việt) để service worker tải sẵn: ghi vào khối build:core-scripts của sw.js */
-function updateCoreScripts(sw, homeHtml) {
-    const scripts = [...homeHtml.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => `    './${m[1]}',`)
-    return sw.replace(/(\/\* build:core-scripts \*\/)[\s\S]*?(\n\s*\/\* \/build:core-scripts \*\/)/, `$1\n${scripts.join('\n')}$2`)
+/*
+ * CSS: các <link rel="stylesheet"> liền nhau trỏ tới assets/css/ được gộp + nén thành assets/css/site-<hash>.css
+ * (đặt cùng thư mục để đường dẫn url(../fonts/...) giữ nguyên).
+ */
+const CSS_DIR = 'assets/css'
+
+function bundleStyles(html, siteRoot) {
+    return html.replace(/(?:<link rel="stylesheet" href="[^"]+">\s*)+/g, (run, offset) => {
+        const trailing = run.match(/\s*$/)[0]
+        const hrefs = [...run.matchAll(/href="([^"]+)"/g)].map(m => m[1])
+        if (hrefs.length < 2 || !hrefs.every(h => h.startsWith(`${siteRoot}${CSS_DIR}/`))) return run
+        const code = hrefs.map(h => read(h.slice(siteRoot.length))).join('\n')
+        const { code: min } = esbuild.transformSync(code, { loader: 'css', minify: true, legalComments: 'none', charset: 'utf8' })
+        const rel = `${CSS_DIR}/site-${crypto.createHash('md5').update(min).digest('hex').slice(0, 10)}.css`
+        bundles.set(rel, min)
+        return `<link rel="stylesheet" href="${siteRoot}${rel}">${trailing}`
+    })
+}
+
+/* CSS + script trang chủ (tiếng Việt) để service worker tải sẵn: ghi vào khối build:core-assets của sw.js */
+function updateCoreAssets(sw, homeHtml) {
+    const assets = [...homeHtml.matchAll(/<(?:script defer src|link rel="stylesheet" href)="([^"]+)"/g)].map(m => `    './${m[1]}',`)
+    return sw.replace(/(\/\* build:core-assets \*\/)[\s\S]*?(\n\s*\/\* \/build:core-assets \*\/)/, `$1\n${assets.join('\n')}$2`)
 }
 
 function main() {
@@ -440,6 +460,7 @@ function main() {
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
+    fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).forEach(f => fs.rmSync(path.join(ROOT, CSS_DIR, f)))
 
     let count = 0
     for (const lang of Object.keys(LANGS)) {
@@ -461,10 +482,10 @@ function main() {
 
     bundles.forEach((code, rel) => write(rel, code))
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
-    write('sw.js', updateServiceWorkerVersion(updateCoreScripts(read('sw.js'), read(homePath('vi')))))
+    write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
-    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${bundles.size} bundle JS, sitemap.xml, robots.txt`)
+    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
 }
 
 main()
