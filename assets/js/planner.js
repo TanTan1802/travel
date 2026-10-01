@@ -872,6 +872,7 @@ function initPlanner() {
         }
     })
     renderPlanner()
+    root.querySelector('.planner')?.classList.add('planner--ready')
 
     /* Cập nhật mốc "đang diễn ra / tiếp theo" mỗi phút */
     setInterval(() => {

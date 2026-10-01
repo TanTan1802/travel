@@ -1,0 +1,34 @@
+# Đo Lighthouse (hiệu năng, khả năng truy cập, SEO) trên các trang tiêu biểu cho mỗi pull request và lần đẩy lên main.
+# Ngưỡng ("ngân sách") nằm trong lighthouserc.json: vượt ngưỡng "error" → check đỏ, "warn" → chỉ cảnh báo.
+# Báo cáo HTML đầy đủ: tab Actions → lần chạy → Artifacts → lighthouse-reports.
+name: Lighthouse
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Chạy Lighthouse CI
+        run: npx --yes @lhci/cli@0.15.1 autorun
+
+      - name: Lưu báo cáo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci
+          if-no-files-found: ignore
