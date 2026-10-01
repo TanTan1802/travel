@@ -2109,6 +2109,12 @@ body:not(.dark-theme) .planner-hero .section__subtitle {
 
 .planner {
   padding-top: 2.5rem;
+  /* Nội dung do planner.js vẽ: giữ chỗ + ẩn khung trống tới khi vẽ xong để footer/cột bên không bị đẩy (CLS) */
+  min-height: 100vh;
+}
+
+.planner:not(.planner--ready) > * {
+  visibility: hidden;
 }
 
 .planner__grid {

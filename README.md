@@ -141,6 +141,14 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Service worker chỉ tải sẵn tài nguyên trang chủ + trang offline; ảnh địa danh lưu ở bộ nhớ `media` (giới hạn 250 file,
   không bị xóa khi đổi phiên bản), trang HTML giữ tối đa 80 trang.
 
+## Lighthouse CI
+
+- Workflow `Lighthouse` đo 5 trang tiêu biểu (trang chủ, điểm đến vi/en, kế hoạch, cẩm nang) cho mỗi pull request.
+- Ngân sách trong `lighthouserc.json`: CLS ≤ 0,1; JS ≤ 140 KB, CSS ≤ 25 KB, font ≤ 170 KB (dung lượng truyền);
+  điểm truy cập ≥ 90, SEO ≥ 95, best practices ≥ 90 → vượt là check đỏ. Điểm hiệu năng < 85 hoặc LCP > 3,5 s chỉ cảnh báo
+  (dao động theo máy chạy).
+- Chạy trên máy: `npx @lhci/cli@0.15.1 autorun` (cần Chrome; đặt `CHROME_PATH` nếu dùng Chromium khác). Báo cáo ở `.lighthouseci/`.
+
 ## Test tự động
 
 ```bash

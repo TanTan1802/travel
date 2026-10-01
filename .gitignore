@@ -4,3 +4,6 @@ node_modules/
 
 # Bảng CSV xuất ra / báo cáo đồng bộ Google Sheets (tools/sheets.js) – sinh lại khi cần
 data/sheets/
+
+# Báo cáo Lighthouse CI chạy trên máy
+.lighthouseci/
