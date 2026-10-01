@@ -403,7 +403,7 @@ function offlineStatusHtml(plan) {
     const same = info.route === plan.stops.map(s => s.id).join(',')
     const when = new Date(info.time)
     const stamp = `${formatDate(`${when.getFullYear()}-${String(when.getMonth() + 1).padStart(2, '0')}-${String(when.getDate()).padStart(2, '0')}`)} ${String(when.getHours()).padStart(2, '0')}:${String(when.getMinutes()).padStart(2, '0')}`
-    return `<p class="offline-status${same ? '' : ' offline-status--stale'}" id="offline-status"><i class="ri-${same ? 'checkbox-circle' : 'error-warning'}-line"></i> ${same
+    return `<p class="offline-status${same ? '' : ' offline-status--stale'}" id="offline-status"><i class="${same ? 'ri-checkbox-circle-line' : 'ri-error-warning-line'}"></i> ${same
         ? t('Đã lưu offline {n} tệp lúc {time}', { n: info.count, time: stamp })
         : t('Bản offline đã lưu là của tuyến cũ – bấm tải lại để cập nhật.')}</p>`
 }

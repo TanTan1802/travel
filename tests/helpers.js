@@ -61,7 +61,7 @@ function weatherMock(url) {
 /*
  * Chặn/giả lập tài nguyên bên ngoài để test ổn định:
  * - Wikimedia Commons: 404 (bắt buộc dùng ảnh trong repo), Open-Meteo: dữ liệu giả, Giscus: chặn.
- * - CDN (Leaflet, Remix Icon, Google Fonts): dùng mạng thật; nếu đặt LOCAL_CDN_DIR thì lấy bản cục bộ.
+ * - CDN (Leaflet, Google Fonts): dùng mạng thật; nếu đặt LOCAL_CDN_DIR thì lấy bản cục bộ (icon đã tự host).
  */
 async function setupRoutes(context) {
     await context.route('https://commons.wikimedia.org/**', r => r.fulfill({ status: 404, body: '' }))
@@ -80,12 +80,6 @@ async function setupRoutes(context) {
             const css = r.request().url().endsWith('.css')
             r.fulfill({ status: 200, contentType: css ? 'text/css' : 'application/javascript',
                 body: fs.readFileSync(path.join(local, 'leaflet/dist', css ? 'leaflet.css' : 'leaflet.js')) })
-        })
-        await context.route('https://cdn.jsdelivr.net/npm/remixicon@2.5.0/**', r => {
-            const rel = r.request().url().split('remixicon@2.5.0/')[1].split('?')[0]
-            const file = path.join(local, 'remixicon', rel)
-            if (!fs.existsSync(file)) return r.fulfill({ status: 404, body: '' })
-            r.fulfill({ status: 200, body: fs.readFileSync(file) })
         })
         await context.route('https://fonts.googleapis.com/**', r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }))
     }

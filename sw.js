@@ -3,7 +3,7 @@
  * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = 'ec0ba2ef69'
+const VERSION = '77a04294a8'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const PAGE_LIMIT = 80
@@ -20,6 +20,8 @@ const CORE_ASSETS = [
     './index.html',
     './offline.html',
     './manifest.webmanifest',
+    './assets/css/icons.css',
+    './assets/fonts/remixicon.woff2',
     './assets/css/styles.css',
     './assets/css/vietnam.css',
     './assets/js/data/local-images.js',
@@ -42,7 +44,7 @@ const CORE_ASSETS = [
 ]
 
 /* Thư viện/phông chữ bên ngoài: lưu lại để dùng offline */
-const CDN_HOSTS = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com']
+const CDN_HOSTS = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com']
 /* Ảnh và ô bản đồ: lưu có giới hạn */
 const MEDIA_HOSTS = ['commons.wikimedia.org', 'upload.wikimedia.org', 'tile.openstreetmap.org']
 
