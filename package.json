@@ -15,7 +15,8 @@
     "check-links": "node tools/check-links.js",
     "check-freshness": "node tools/check-freshness.js",
     "add-photo": "node tools/add-photo.js",
-    "test:worker": "node --test tests/assistant.test.js"
+    "test:worker": "node --test tests/assistant.test.js",
+    "find-images": "node tools/find-images.js"
   },
   "engines": {
     "node": ">=18"
