@@ -40,6 +40,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Ban Gioc Waterfall","description":"On the Quay Son river at the Vietnam–China border, Ban Gioc tumbles over several limestone tiers, creating a white curtain of water amid green mountains. Combine it with Nguom Ngao cave and Ba Be lake for a complete northeastern adventure.","url":"https://tantan1802.github.io/travel/en/diem-den/ban-gioc/","inLanguage":"en","image":["https://tantan1802.github.io/travel/assets/img/wiki/ban-gioc-waterfall-trung-kanh-district-cao-bang-province-vietnam-01-48119813303-e01273-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/ban-gioc-waterfall-trung-kanh-district-cao-bang-province-vietnam-16-48119888466-ece0d2-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/thac-ban-gioc-64b7c6-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/ban-gioc-detian-falls2-743404-1920.webp"],"address":{"@type":"PostalAddress","addressRegion":"Cao Bang","addressCountry":"VN"},"touristType":["Mountains & forests"],"geo":{"@type":"GeoCoordinates","latitude":22.8551,"longitude":106.7234}}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../../en/index.html" class="nav__logo">Việt Travel</a>
@@ -536,1566 +538,79 @@
                 <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
-                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                                aria-selected="true" aria-controls="tour-plan" data-tour="3">
                             <strong>3 days 2 nights</strong>
                             <small>from 2,250,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="4">
                             <strong>4 days 3 nights</strong>
                             <small>from 3,050,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="5">
                             <strong>5 days 4 nights</strong>
                             <small>from 3,850,000 VND</small>
                         </button>
                     
                 </div>
 
-                
-                    <div class="tour" id="tour-3" data-tour="3">
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="tour" id="tour-plan" data-tour="3">
+                    <div class="tour__toolbar">
                         
+                            <p class="tour__summary" data-tour-len="3"><i class="ri-route-line"></i> 3 days 2 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha</p>
+                        
+                            <p class="tour__summary" data-tour-len="4" hidden><i class="ri-route-line"></i> 4 days 3 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac</p>
+                        
+                            <p class="tour__summary" data-tour-len="5" hidden><i class="ri-route-line"></i> 5 days 4 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac → Ba Be lake</p>
+                        
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
+                                <i class="ri-printer-line"></i> <span>Print / PDF</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
+                                <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
+                                <i class="ri-share-line"></i> <span>Share</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    
         <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
             
                 <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                        id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-day="0">
                     <span>Day 1</span>
                     <small>Cao Bang city – Pac Bo</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                        id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-day="1">
                     <span>Day 2</span>
                     <small>Ban Gioc Waterfall</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Thang Hen lake – Khau Coc Cha</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
-                
-        <div class="day-tools" data-day-offset="0">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20di%20t%C3%ADch%20P%C3%A1c%20B%C3%B3%20%E2%80%93%20hang%20C%E1%BB%91c%20B%C3%B3%2C%20Tr%C6%B0%E1%BB%9Dng%20H%C3%A0%2C%20H%C3%A0%20Qu%E1%BA%A3ng%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>225,000 VND – 520,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <ul class="day-tl__list"><li>Arrive in Cao Bang</li><li>Breakfast on rice rolls with broth</li></ul>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=V%E1%BB%8Bt%20quay%207%20v%E1%BB%8B%20%E2%80%93%20ch%E1%BB%A3%20Xanh%2C%20Ch%E1%BB%A3%20Xanh%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Vịt quay 7 vị – chợ Xanh</a>
-        <span class="day-tl__what">Roast duck with mac mat leaves, fried rice cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Xanh, TP Cao Bằng · 80k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20su%E1%BB%91i%20L%C3%AA-nin%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước suối Lê-nin</a>
-        <span class="day-tl__what">Hot tea, sugarcane juice, seasonal cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Pac Bo relic site – Coc Bo cave · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20di%20t%C3%ADch%20P%C3%A1c%20B%C3%B3%20%E2%80%93%20hang%20C%E1%BB%91c%20B%C3%B3%2C%20Tr%C6%B0%E1%BB%9Dng%20H%C3%A0%2C%20H%C3%A0%20Qu%E1%BA%A3ng%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="sight__name">Pac Bo relic site – Coc Bo cave</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Trường Hà, Hà Quảng, Cao Bằng</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Khu+di+t%C3%ADch+P%C3%A1c+B%C3%B3+%E2%80%93+hang+C%E1%BB%91c+B%C3%B3&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Khu+di+t%C3%ADch+P%C3%A1c+B%C3%B3+%E2%80%93+hang+C%E1%BB%91c+B%C3%B3%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Tr%C6%B0%E1%BB%9Dng+H%C3%A0%2C+H%C3%A0+Qu%E1%BA%A3ng%2C+Cao+B%E1%BA%B1ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20Khu%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân thác Bản Giốc</a>
-        <span class="day-tl__what">Sugarcane juice, roasted chestnuts, hot tea</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Khu thác Bản Giốc · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C3%A1%20su%E1%BB%91i%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20Khu%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng cá suối thác Bản Giốc</a>
-        <span class="day-tl__what">Crispy stream fish, wild greens</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Khu thác Bản Giốc · 120k–250k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Enjoy seven-flavour roast duck and stay in the city.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
-                
-        <div class="day-tools" data-day-offset="1">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh&destination=%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh&waypoints=Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>90,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>185,000 VND – 400,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20chua%20Cao%20B%E1%BA%B1ng%2C%20Ph%E1%BB%91%20Kim%20%C4%90%E1%BB%93ng%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Phở chua Cao Bằng</a>
-        <span class="day-tl__what">Sour pho, rice rolls in broth</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố Kim Đồng, TP Cao Bằng · 35k–60k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Ban Gioc waterfall</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 45,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            <small class="sight__note"><i class="ri-information-line"></i> Bamboo raft ~50,000đ per person</small>
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+45%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20%C4%83n%20Tr%C3%B9ng%20Kh%C3%A1nh%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="day-tl__place">Quán ăn Trùng Khánh</a>
-        <span class="day-tl__what">Trung Khanh chestnuts, grilled stream fish</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Trùng Khánh · 80k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20h%E1%BA%A1t%20d%E1%BA%BB%20%E2%80%93%20tr%C3%A0%20n%C3%B3ng%20c%E1%BB%95ng%20th%C3%A1c%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán hạt dẻ – trà nóng cổng thác</a>
-        <span class="day-tl__what">Hot tea with roasted Trung Khanh chestnuts</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ban Gioc waterfall · 20k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%B9a%20Ph%E1%BA%ADt%20t%C3%ADch%20Tr%C3%BAc%20L%C3%A2m%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Truc Lam Ban Gioc pagoda</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 06:00–18:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%99ng%20Ng%C6%B0%E1%BB%9Dm%20Ngao%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Nguom Ngao cave</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 45,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:30–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+45%2C000+VND+%C2%B7+07%3A30%E2%80%9317%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20%C4%91%E1%BB%99ng%20Ng%C6%B0%E1%BB%9Dm%20Ngao%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng động Ngườm Ngao</a>
-        <span class="day-tl__what">Coconut water, iced tea</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Nguom Ngao cave · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20v%E1%BB%8Bt%20quay%20Cao%20B%E1%BA%B1ng%2C%20Ph%E1%BB%91%20Ho%C3%A0ng%20Nh%C6%B0%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Phở vịt quay Cao Bằng</a>
-        <span class="day-tl__what">Roast-duck pho</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố Hoàng Như, TP Cao Bằng · 40k–60k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Stay at a homestay in Trung Khanh.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
-                
-        <div class="day-tools" data-day-offset="2">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0%2C+Quang+Trung%2C+Tr%C3%A0+L%C4%A9nh&destination=L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp%2C+Qu%E1%BA%A3ng+H%C3%B2a%2C+Cao+B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>20,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>70,000 VND – 160,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20cu%E1%BB%91n%20canh%20H%E1%BA%A3i%20Ghi%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Bánh cuốn canh Hải Ghi</a>
-        <span class="day-tl__what">Rice rolls in bone broth with egg</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> TP Cao Bằng · 30k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">See Thang Hen lake and the "14-tier" Khau Coc Cha pass.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=H%E1%BB%93%20Thang%20Hen%20%E2%80%93%20%C4%91%C3%A8o%20Khau%20C%E1%BB%91c%20Ch%C3%A0%2C%20Quang%20Trung%2C%20Tr%C3%A0%20L%C4%A9nh" target="_blank" rel="noopener" class="sight__name">Thang Hen lake – Khau Coc Cha pass</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Quang Trung, Trà Lĩnh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Quang+Trung%2C+Tr%C3%A0+L%C4%A9nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20%C3%A1p%20chao%20ch%E1%BB%A3%20Xanh%2C%20Ch%E1%BB%A3%20Xanh%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Bánh áp chao chợ Xanh</a>
-        <span class="day-tl__what">Fried rice cakes and khao cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Xanh, TP Cao Bằng · 20k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20%C4%91%C3%A8o%20Khau%20C%E1%BB%91c%20Ch%C3%A0%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước đèo Khau Cốc Chà</a>
-        <span class="day-tl__what">Hot tea and grilled corn over the 14-bend pass</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Thang Hen lake – Khau Coc Cha pass · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Phuc Sen blacksmith village and Phja Thap incense village.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng%20r%C3%A8n%20Ph%C3%BAc%20Sen%20%E2%80%93%20l%C3%A0ng%20h%C6%B0%C6%A1ng%20Phja%20Th%E1%BA%AFp%2C%20Qu%E1%BA%A3ng%20H%C3%B2a%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="sight__name">Phuc Sen blacksmiths – Phja Thap incense village</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Quảng Hòa, Cao Bằng</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Qu%E1%BA%A3ng+H%C3%B2a%2C+Cao+B%E1%BA%B1ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20l%C3%A0ng%20h%C6%B0%C6%A1ng%20Phja%20Th%E1%BA%AFp%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước làng hương Phja Thắp</a>
-        <span class="day-tl__what">Green tea, banh khao cookies</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Phuc Sen blacksmiths – Phja Thap incense village · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner & evening</h4>
-                        <p class="day-tl__text">Buy Trung Khanh chestnuts and try sour phở.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:00</time>
-                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">End of tour</h4>
-                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-    
-
-                        
-        <div class="budget">
-            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
-            <div class="budget__options" role="group" aria-label="Budget level">
-                
-                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
-                        <span>Budget</span>
-                        <strong>2,250,000 VND</strong>
-                        <small>Homestays, local eateries, scooters</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
-                        <span>Comfort</span>
-                        <strong>3,910,000 VND</strong>
-                        <small>3–4 star hotels, restaurants, Grab</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-            </div>
-            
-                <div class="budget__detail" data-budget-detail="saving">
-                    <p class="budget__detail-title">Breakdown: budget</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>Homestay in Near Ban Gioc falls (300k–800k/room), shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>300,000 VND</strong>
-                        <small>2 night × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Cheap breakfasts and local spots like Vịt quay 7 vị – chợ Xanh, Phở chua Cao Bằng</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>510,000 VND</strong>
-                        <small>3 days × 170,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Scooter rental or buses, shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>180,000 VND</strong>
-                        <small>3 days × 60,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>Entrance fees, boats and cable cars per itinerary</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,260,000 VND</strong>
-                        <small>3 days × 420,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-                <div class="budget__detail" data-budget-detail="comfort" hidden>
-                    <p class="budget__detail-title">Breakdown: comfort</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>3–4 star hotel, double room shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>760,000 VND</strong>
-                        <small>2 night × 380,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Mid-range restaurants, specialties and seafood</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>930,000 VND</strong>
-                        <small>3 days × 310,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Grab, taxis or short private rides</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>450,000 VND</strong>
-                        <small>3 days × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>As per itinerary, plus guided tours/shows</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,770,000 VND</strong>
-                        <small>3 days × 590,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-        </div>
-    
-                    </div>
-                
-                    <div class="tour" id="tour-4" data-tour="4" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 4 days 3 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 4 days 3 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Cao Bang city – Pac Bo</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Ban Gioc Waterfall</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                        id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-day="2">
                     <span>Day 3</span>
                     <small>Thang Hen lake – Khau Coc Cha</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
-                    <span>Day 4</span>
-                    <small>Eye of God mountain – Bao Lac</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
-                
-        <div class="day-tools" data-day-offset="0">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20di%20t%C3%ADch%20P%C3%A1c%20B%C3%B3%20%E2%80%93%20hang%20C%E1%BB%91c%20B%C3%B3%2C%20Tr%C6%B0%E1%BB%9Dng%20H%C3%A0%2C%20H%C3%A0%20Qu%E1%BA%A3ng%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>225,000 VND – 520,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <ul class="day-tl__list"><li>Arrive in Cao Bang</li><li>Breakfast on rice rolls with broth</li></ul>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=V%E1%BB%8Bt%20quay%207%20v%E1%BB%8B%20%E2%80%93%20ch%E1%BB%A3%20Xanh%2C%20Ch%E1%BB%A3%20Xanh%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Vịt quay 7 vị – chợ Xanh</a>
-        <span class="day-tl__what">Roast duck with mac mat leaves, fried rice cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Xanh, TP Cao Bằng · 80k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20su%E1%BB%91i%20L%C3%AA-nin%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước suối Lê-nin</a>
-        <span class="day-tl__what">Hot tea, sugarcane juice, seasonal cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Pac Bo relic site – Coc Bo cave · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Pac Bo historic site, Lenin stream and Coc Bo cave.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20di%20t%C3%ADch%20P%C3%A1c%20B%C3%B3%20%E2%80%93%20hang%20C%E1%BB%91c%20B%C3%B3%2C%20Tr%C6%B0%E1%BB%9Dng%20H%C3%A0%2C%20H%C3%A0%20Qu%E1%BA%A3ng%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="sight__name">Pac Bo relic site – Coc Bo cave</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Trường Hà, Hà Quảng, Cao Bằng</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Khu+di+t%C3%ADch+P%C3%A1c+B%C3%B3+%E2%80%93+hang+C%E1%BB%91c+B%C3%B3&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Khu+di+t%C3%ADch+P%C3%A1c+B%C3%B3+%E2%80%93+hang+C%E1%BB%91c+B%C3%B3%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Tr%C6%B0%E1%BB%9Dng+H%C3%A0%2C+H%C3%A0+Qu%E1%BA%A3ng%2C+Cao+B%E1%BA%B1ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20Khu%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân thác Bản Giốc</a>
-        <span class="day-tl__what">Sugarcane juice, roasted chestnuts, hot tea</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Khu thác Bản Giốc · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C3%A1%20su%E1%BB%91i%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20Khu%20th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng cá suối thác Bản Giốc</a>
-        <span class="day-tl__what">Crispy stream fish, wild greens</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Khu thác Bản Giốc · 120k–250k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Enjoy seven-flavour roast duck and stay in the city.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
-                
-        <div class="day-tools" data-day-offset="1">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh&destination=%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh&waypoints=Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c%2C+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>90,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>185,000 VND – 400,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20chua%20Cao%20B%E1%BA%B1ng%2C%20Ph%E1%BB%91%20Kim%20%C4%90%E1%BB%93ng%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Phở chua Cao Bằng</a>
-        <span class="day-tl__what">Sour pho, rice rolls in broth</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố Kim Đồng, TP Cao Bằng · 35k–60k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Cross Ma Phuc pass to Ban Gioc and take a bamboo raft to the falls.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Ban Gioc waterfall</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 45,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            <small class="sight__note"><i class="ri-information-line"></i> Bamboo raft ~50,000đ per person</small>
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%A1c+B%E1%BA%A3n+Gi%E1%BB%91c%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+45%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20%C4%83n%20Tr%C3%B9ng%20Kh%C3%A1nh%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="day-tl__place">Quán ăn Trùng Khánh</a>
-        <span class="day-tl__what">Trung Khanh chestnuts, grilled stream fish</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Trùng Khánh · 80k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20h%E1%BA%A1t%20d%E1%BA%BB%20%E2%80%93%20tr%C3%A0%20n%C3%B3ng%20c%E1%BB%95ng%20th%C3%A1c%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán hạt dẻ – trà nóng cổng thác</a>
-        <span class="day-tl__what">Hot tea with roasted Trung Khanh chestnuts</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ban Gioc waterfall · 20k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Truc Lam Buddhist pagoda and Nguom Ngao cave.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%B9a%20Ph%E1%BA%ADt%20t%C3%ADch%20Tr%C3%BAc%20L%C3%A2m%20B%E1%BA%A3n%20Gi%E1%BB%91c%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Truc Lam Ban Gioc pagoda</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 06:00–18:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%C3%B9a+Ph%E1%BA%ADt+t%C3%ADch+Tr%C3%BAc+L%C3%A2m+B%E1%BA%A3n+Gi%E1%BB%91c%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%99ng%20Ng%C6%B0%E1%BB%9Dm%20Ngao%2C%20%C4%90%C3%A0m%20Th%E1%BB%A7y%2C%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="sight__name">Nguom Ngao cave</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 45,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:30–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Đàm Thủy, Trùng Khánh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%E1%BB%99ng+Ng%C6%B0%E1%BB%9Dm+Ngao%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+45%2C000+VND+%C2%B7+07%3A30%E2%80%9317%3A00+%C2%B7+%C4%90%C3%A0m+Th%E1%BB%A7y%2C+Tr%C3%B9ng+Kh%C3%A1nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20%C4%91%E1%BB%99ng%20Ng%C6%B0%E1%BB%9Dm%20Ngao%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng động Ngườm Ngao</a>
-        <span class="day-tl__what">Coconut water, iced tea</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Nguom Ngao cave · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20v%E1%BB%8Bt%20quay%20Cao%20B%E1%BA%B1ng%2C%20Ph%E1%BB%91%20Ho%C3%A0ng%20Nh%C6%B0%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Phở vịt quay Cao Bằng</a>
-        <span class="day-tl__what">Roast-duck pho</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố Hoàng Như, TP Cao Bằng · 40k–60k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Stay at a homestay in Trung Khanh.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
-                
-        <div class="day-tools" data-day-offset="2">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0%2C+Quang+Trung%2C+Tr%C3%A0+L%C4%A9nh&destination=L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp%2C+Qu%E1%BA%A3ng+H%C3%B2a%2C+Cao+B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>20,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>70,000 VND – 160,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20cu%E1%BB%91n%20canh%20H%E1%BA%A3i%20Ghi%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Bánh cuốn canh Hải Ghi</a>
-        <span class="day-tl__what">Rice rolls in bone broth with egg</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> TP Cao Bằng · 30k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">See Thang Hen lake and the "14-tier" Khau Coc Cha pass.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=H%E1%BB%93%20Thang%20Hen%20%E2%80%93%20%C4%91%C3%A8o%20Khau%20C%E1%BB%91c%20Ch%C3%A0%2C%20Quang%20Trung%2C%20Tr%C3%A0%20L%C4%A9nh" target="_blank" rel="noopener" class="sight__name">Thang Hen lake – Khau Coc Cha pass</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Quang Trung, Trà Lĩnh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+H%E1%BB%93+Thang+Hen+%E2%80%93+%C4%91%C3%A8o+Khau+C%E1%BB%91c+Ch%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Quang+Trung%2C+Tr%C3%A0+L%C4%A9nh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20%C3%A1p%20chao%20ch%E1%BB%A3%20Xanh%2C%20Ch%E1%BB%A3%20Xanh%2C%20TP%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tl__place">Bánh áp chao chợ Xanh</a>
-        <span class="day-tl__what">Fried rice cakes and khao cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Xanh, TP Cao Bằng · 20k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20%C4%91%C3%A8o%20Khau%20C%E1%BB%91c%20Ch%C3%A0%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước đèo Khau Cốc Chà</a>
-        <span class="day-tl__what">Hot tea and grilled corn over the 14-bend pass</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Thang Hen lake – Khau Coc Cha pass · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Phuc Sen blacksmith village and Phja Thap incense village.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng%20r%C3%A8n%20Ph%C3%BAc%20Sen%20%E2%80%93%20l%C3%A0ng%20h%C6%B0%C6%A1ng%20Phja%20Th%E1%BA%AFp%2C%20Qu%E1%BA%A3ng%20H%C3%B2a%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="sight__name">Phuc Sen blacksmiths – Phja Thap incense village</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Quảng Hòa, Cao Bằng</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%C3%A0ng+r%C3%A8n+Ph%C3%BAc+Sen+%E2%80%93+l%C3%A0ng+h%C6%B0%C6%A1ng+Phja+Th%E1%BA%AFp%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+Qu%E1%BA%A3ng+H%C3%B2a%2C+Cao+B%E1%BA%B1ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20l%C3%A0ng%20h%C6%B0%C6%A1ng%20Phja%20Th%E1%BA%AFp%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước làng hương Phja Thắp</a>
-        <span class="day-tl__what">Green tea, banh khao cookies</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Phuc Sen blacksmiths – Phja Thap incense village · 10k–30k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner & evening</h4>
-                        <p class="day-tl__text">Buy Trung Khanh chestnuts and try sour phở.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
-                <h3 class="itinerary__day-title">Day 4: Eye of God mountain – Bao Lac</h3>
-                
-        <div class="day-tools" data-day-offset="3">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ban-gioc"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=N%C3%BAi+M%E1%BA%AFt+Th%E1%BA%A7n%2C+Qu%E1%BB%91c+To%E1%BA%A3n%2C+Qu%E1%BA%A3ng+H%C3%B2a&destination=S%C3%B4ng+G%C3%A2m+%E2%80%93+B%E1%BA%A3o+L%E1%BA%A1c%2C+B%E1%BA%A3o+L%E1%BA%A1c%2C+Cao+B%E1%BA%B1ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>130,000 VND – 265,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        <p class="day-tl__text">Breakfast at your stay (often included in the room rate)</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">The Eye of God (pierced mountain) in Quang Uyen.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=N%C3%BAi%20M%E1%BA%AFt%20Th%E1%BA%A7n%2C%20Qu%E1%BB%91c%20To%E1%BA%A3n%2C%20Qu%E1%BA%A3ng%20H%C3%B2a" target="_blank" rel="noopener" class="sight__name">Eye of God mountain</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Quốc Toản, Quảng Hòa</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+N%C3%BAi+M%E1%BA%AFt+Th%E1%BA%A7n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+N%C3%BAi+M%E1%BA%AFt+Th%E1%BA%A7n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Qu%E1%BB%91c+To%E1%BA%A3n%2C+Qu%E1%BA%A3ng+H%C3%B2a%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20l%E1%BB%A3n%20quay%20Tr%C3%B9ng%20Kh%C3%A1nh%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Tr%C3%B9ng%20Kh%C3%A1nh" target="_blank" rel="noopener" class="day-tl__place">Quán lợn quay Trùng Khánh</a>
-        <span class="day-tl__what">Roast pork with mac mat leaves, olive sticky rice</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Trùng Khánh · 100k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20n%C3%BAi%20M%E1%BA%AFt%20Th%E1%BA%A7n%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân núi Mắt Thần</a>
-        <span class="day-tl__what">Iced tea, soft drinks</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Eye of God mountain · 10k–25k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Cross Ma Phuc pass to Bao Lac and the winding Gam river.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=S%C3%B4ng%20G%C3%A2m%20%E2%80%93%20B%E1%BA%A3o%20L%E1%BA%A1c%2C%20B%E1%BA%A3o%20L%E1%BA%A1c%2C%20Cao%20B%E1%BA%B1ng" target="_blank" rel="noopener" class="sight__name">Gam river – Bao Lac</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Bảo Lạc, Cao Bằng</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ban+Gioc+Waterfall+%E2%80%93+S%C3%B4ng+G%C3%A2m+%E2%80%93+B%E1%BA%A3o+L%E1%BA%A1c&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ban+Gioc+Waterfall%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+S%C3%B4ng+G%C3%A2m+%E2%80%93+B%E1%BA%A3o+L%E1%BA%A1c%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+B%E1%BA%A3o+L%E1%BA%A1c%2C+Cao+B%E1%BA%B1ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20b%E1%BB%9D%20s%C3%B4ng%20G%C3%A2m%20Cao%20Bang" target="_blank" rel="noopener" class="day-tl__place">Cà phê bờ sông Gâm</a>
-        <span class="day-tl__what">Coffee and lemonade by the river bend</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Gam river – Bao Lac · 20k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner & evening</h4>
-                        <p class="day-tl__text">Stay in Bao Lac and try bánh áp chao pastries.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:00</time>
-                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">End of tour</h4>
-                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-    
-
-                        
-        <div class="budget">
-            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
-            <div class="budget__options" role="group" aria-label="Budget level">
-                
-                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
-                        <span>Budget</span>
-                        <strong>3,050,000 VND</strong>
-                        <small>Homestays, local eateries, scooters</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
-                        <span>Comfort</span>
-                        <strong>5,340,000 VND</strong>
-                        <small>3–4 star hotels, restaurants, Grab</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-            </div>
-            
-                <div class="budget__detail" data-budget-detail="saving">
-                    <p class="budget__detail-title">Breakdown: budget</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>Homestay in Near Ban Gioc falls (300k–800k/room), shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>450,000 VND</strong>
-                        <small>3 night × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Cheap breakfasts and local spots like Vịt quay 7 vị – chợ Xanh, Phở chua Cao Bằng</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>680,000 VND</strong>
-                        <small>4 days × 170,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Scooter rental or buses, shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>240,000 VND</strong>
-                        <small>4 days × 60,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>Entrance fees, boats and cable cars per itinerary</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,680,000 VND</strong>
-                        <small>4 days × 420,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-                <div class="budget__detail" data-budget-detail="comfort" hidden>
-                    <p class="budget__detail-title">Breakdown: comfort</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>3–4 star hotel, double room shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,140,000 VND</strong>
-                        <small>3 night × 380,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Mid-range restaurants, specialties and seafood</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,240,000 VND</strong>
-                        <small>4 days × 310,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Grab, taxis or short private rides</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>600,000 VND</strong>
-                        <small>4 days × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>As per itinerary, plus guided tours/shows</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>2,360,000 VND</strong>
-                        <small>4 days × 590,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-        </div>
-    
-                    </div>
-                
-                    <div class="tour" id="tour-5" data-tour="5" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Cao Bang city – Pac Bo → Ban Gioc Waterfall → Thang Hen lake – Khau Coc Cha → Eye of God mountain – Bao Lac → Ba Be lake</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 5 days 4 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 5 days 4 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Cao Bang city – Pac Bo</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Ban Gioc Waterfall</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Thang Hen lake – Khau Coc Cha</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                        id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-day="3" hidden>
                     <span>Day 4</span>
                     <small>Eye of God mountain – Bao Lac</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                        id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-day="4" hidden>
                     <span>Day 5</span>
                     <small>Ba Be lake</small>
                 </button>
@@ -2103,7 +618,7 @@
         </div>
 
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Cao Bang city – Pac Bo</h3>
                 
         <div class="day-tools" data-day-offset="0">
@@ -2246,7 +761,7 @@
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Ban Gioc Waterfall</h3>
                 
         <div class="day-tools" data-day-offset="1">
@@ -2430,7 +945,7 @@
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Thang Hen lake – Khau Coc Cha</h3>
                 
         <div class="day-tools" data-day-offset="2">
@@ -2571,7 +1086,7 @@
                     </div>
                 </li>
             
-                <li class="day-tl__item day-tl__item--rest">
+                <li class="day-tl__item day-tl__item--rest" data-end="more" hidden>
                     <time class="day-tl__time">21:30</time>
                     <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
                     <div class="day-tl__body">
@@ -2582,11 +1097,22 @@
                     </div>
                 </li>
             
+                <li class="day-tl__item day-tl__item--rest" data-end="last">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
         </ol>
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Eye of God mountain – Bao Lac</h3>
                 
         <div class="day-tools" data-day-offset="3">
@@ -2723,7 +1249,7 @@
                     </div>
                 </li>
             
-                <li class="day-tl__item day-tl__item--rest">
+                <li class="day-tl__item day-tl__item--rest" data-end="more">
                     <time class="day-tl__time">21:30</time>
                     <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
                     <div class="day-tl__body">
@@ -2734,11 +1260,22 @@
                     </div>
                 </li>
             
+                <li class="day-tl__item day-tl__item--rest" data-end="last" hidden>
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
         </ol>
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" hidden>
                 <h3 class="itinerary__day-title">Day 5: Ba Be lake</h3>
                 
         <div class="day-tools" data-day-offset="4">
@@ -2903,8 +1440,280 @@
         
     
 
-                        
-        <div class="budget">
+                    
+        <div class="budget" data-tour-len="3">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>2,250,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>3,910,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Near Ban Gioc falls (300k–800k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>300,000 VND</strong>
+                        <small>2 night × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Vịt quay 7 vị – chợ Xanh, Phở chua Cao Bằng</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>510,000 VND</strong>
+                        <small>3 days × 170,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180,000 VND</strong>
+                        <small>3 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,260,000 VND</strong>
+                        <small>3 days × 420,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>760,000 VND</strong>
+                        <small>2 night × 380,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>930,000 VND</strong>
+                        <small>3 days × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450,000 VND</strong>
+                        <small>3 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,770,000 VND</strong>
+                        <small>3 days × 590,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="4" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>3,050,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>5,340,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Near Ban Gioc falls (300k–800k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450,000 VND</strong>
+                        <small>3 night × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Vịt quay 7 vị – chợ Xanh, Phở chua Cao Bằng</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>680,000 VND</strong>
+                        <small>4 days × 170,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240,000 VND</strong>
+                        <small>4 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,680,000 VND</strong>
+                        <small>4 days × 420,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,140,000 VND</strong>
+                        <small>3 night × 380,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,240,000 VND</strong>
+                        <small>4 days × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>4 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,360,000 VND</strong>
+                        <small>4 days × 590,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="5" hidden>
             <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
             <div class="budget__options" role="group" aria-label="Budget level">
                 
@@ -3040,8 +1849,7 @@
             
         </div>
     
-                    </div>
-                
+                </div>
 
                 <p class="budget__note">Excludes flights/transport to Ban Gioc Waterfall. Prices are indicative and vary by season.</p>
 
@@ -3289,10 +2097,9 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'ban-gioc'</script>
-        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'ban-gioc'</script>
         <script defer src="../../../assets/js/data/en.js"></script>
         <script defer src="../../../assets/js/data/local-images.js"></script>
         <script defer src="../../../assets/js/i18n.js"></script>

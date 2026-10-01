@@ -40,6 +40,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"Ha Giang","description":"The Dong Van Karst Plateau – a UNESCO Global Geopark – is a paradise for road trippers. Ma Pi Leng pass winds above deep gorges, the Nho Que river glows turquoise, Lung Cu flag tower marks the country's northern tip and buckwheat flowers paint the hills pink in autumn.","url":"https://tantan1802.github.io/travel/en/diem-den/ha-giang/","inLanguage":"en","image":["https://tantan1802.github.io/travel/assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/ma-pi-leng-pass-plateau-in-2014-af9258-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/le-col-de-ma-pi-leng-dong-van-meo-vac-9cf8bb-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/ha-giang-loop-845007-1920.webp"],"address":{"@type":"PostalAddress","addressRegion":"Ha Giang","addressCountry":"VN"},"touristType":["Mountains & forests"],"geo":{"@type":"GeoCoordinates","latitude":23.2787,"longitude":105.362}}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../../en/index.html" class="nav__logo">Việt Travel</a>
@@ -86,7 +88,7 @@
         <!-- Nội dung được tạo động từ dữ liệu theo tham số ?id=... (assets/js/destination.js) -->
         <main class="main" id="destination" data-prerendered>
         <section class="dest-hero" id="top">
-            <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="1920" alt="Ha Giang" class="dest-hero__img" data-priority src="../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp" srcset="../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-480.webp 480w, ../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-960.webp 960w, ../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp 1920w" sizes="100vw" fetchpriority="high">
+            <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="1920" alt="Ha Giang" class="dest-hero__img" data-priority src="../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp" srcset="../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-480.webp 270w, ../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-960.webp 540w, ../../../assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp 1080w" sizes="100vw" fetchpriority="high">
             <div class="dest-hero__overlay"></div>
 
             <div class="dest-hero__content container">
@@ -594,1666 +596,79 @@
                 <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
-                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                                aria-selected="true" aria-controls="tour-plan" data-tour="3">
                             <strong>3 days 2 nights</strong>
                             <small>from 2,540,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="4">
                             <strong>4 days 3 nights</strong>
                             <small>from 3,430,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="5">
                             <strong>5 days 4 nights</strong>
                             <small>from 4,320,000 VND</small>
                         </button>
                     
                 </div>
 
-                
-                    <div class="tour" id="tour-3" data-tour="3">
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="tour" id="tour-plan" data-tour="3">
+                    <div class="tour__toolbar">
                         
+                            <p class="tour__summary" data-tour-len="3"><i class="ri-route-line"></i> 3 days 2 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que</p>
+                        
+                            <p class="tour__summary" data-tour-len="4" hidden><i class="ri-route-line"></i> 4 days 3 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia</p>
+                        
+                            <p class="tour__summary" data-tour-len="5" hidden><i class="ri-route-line"></i> 5 days 4 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia → Hoang Su Phi</p>
+                        
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
+                                <i class="ri-printer-line"></i> <span>Print / PDF</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
+                                <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
+                                <i class="ri-share-line"></i> <span>Share</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    
         <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
             
                 <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
+                        id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-day="0">
                     <span>Day 1</span>
                     <small>Ha Giang – Quan Ba – Yen Minh</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
+                        id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-day="1">
                     <span>Day 2</span>
                     <small>Dong Van – Lung Cu</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Ma Pi Leng – Nho Que</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
-                
-        <div class="day-tools" data-day-offset="0">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang%2C+Tr%C6%B0%E1%BB%9Bc+UBND+t%E1%BB%89nh%2C+TP+H%C3%A0+Giang&destination=R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh%2C+QL4C%2C+Y%C3%AAn+Minh&waypoints=C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn%2C+Tam+S%C6%A1n%2C+Qu%E1%BA%A3n+B%E1%BA%A1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>100,000 VND – 290,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n%2C%20Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="day-tl__place">Phố cổ Đồng Văn</a>
-        <span class="day-tl__what">Rice rolls in bone broth, thang co</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố cổ Đồng Văn · 30k–100k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99t%20m%E1%BB%91c%20Km0%20H%C3%A0%20Giang%2C%20Tr%C6%B0%E1%BB%9Bc%20UBND%20t%E1%BB%89nh%2C%20TP%20H%C3%A0%20Giang" target="_blank" rel="noopener" class="sight__name">Ha Giang Km0 marker</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Trước UBND tỉnh, TP Hà Giang</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Tr%C6%B0%E1%BB%9Bc+UBND+t%E1%BB%89nh%2C+TP+H%C3%A0+Giang%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20phi%C3%AAn%20%C4%90%E1%BB%93ng%20V%C4%83n%20(Ch%E1%BB%A7%20nh%E1%BA%ADt)%2C%20Ch%E1%BB%A3%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="day-tl__place">Chợ phiên Đồng Văn (Chủ nhật)</a>
-        <span class="day-tl__what">Thang co, corn wine, buckwheat cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Đồng Văn · 30k–100k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20Km0%20H%C3%A0%20Giang%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Cà phê Km0 Hà Giang</a>
-        <span class="day-tl__what">Coffee or shan tea before setting off</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ha Giang Km0 marker · 25k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%95ng%20tr%E1%BB%9Di%20Qu%E1%BA%A3n%20B%E1%BA%A1%20%E2%80%93%20n%C3%BAi%20%C4%91%C3%B4i%20C%C3%B4%20Ti%C3%AAn%2C%20Tam%20S%C6%A1n%2C%20Qu%E1%BA%A3n%20B%E1%BA%A1" target="_blank" rel="noopener" class="sight__name">Quan Ba Heaven Gate – Fairy Bosom hills</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Tam Sơn, Quản Bạ</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Tam+S%C6%A1n%2C+Qu%E1%BA%A3n+B%E1%BA%A1%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=R%E1%BB%ABng%20th%C3%B4ng%20Y%C3%AAn%20Minh%2C%20QL4C%2C%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="sight__name">Yen Minh pine forest</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Yên Minh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+Y%C3%AAn+Minh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20tr%E1%BB%9Di%20Qu%E1%BA%A3n%20B%E1%BA%A1%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng trời Quản Bạ</a>
-        <span class="day-tl__what">Hot tea and grilled eggs facing the twin hills</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Quan Ba Heaven Gate – Fairy Bosom hills · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner & evening</h4>
-                        <ul class="day-tl__list"><li>Stay in Yen Minh</li><li>Try thắng cố or black chicken hotpot</li></ul>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
-                
-        <div class="day-tools" data-day-offset="1">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng%2C+S%C3%A0+Ph%C3%ACn%2C+%C4%90%E1%BB%93ng+V%C4%83n&destination=Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n%2C+Th%E1%BB%8B+tr%E1%BA%A5n+%C4%90%E1%BB%93ng+V%C4%83n&waypoints=D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3%2C+QL4C%2C+Ph%E1%BB%91+C%C3%A1o%7CC%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA%2C+L%C5%A9ng+C%C3%BA%2C+%C4%90%E1%BB%93ng+V%C4%83n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>45,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>190,000 VND – 445,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20chua%20Qu%E1%BA%A3n%20B%E1%BA%A1%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Tam%20S%C6%A1n%2C%20Qu%E1%BA%A3n%20B%E1%BA%A1" target="_blank" rel="noopener" class="day-tl__place">Phở chua Quản Bạ</a>
-        <span class="day-tl__what">Sour pho for breakfast on the road</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Tam Sơn, Quản Bạ · 30k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">The Vuong family mansion and Tham Ma slope.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Dinh%20th%E1%BB%B1%20h%E1%BB%8D%20V%C6%B0%C6%A1ng%2C%20S%C3%A0%20Ph%C3%ACn%2C%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Vuong family mansion</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:30</span>
-                <span><i class="ri-map-pin-2-line"></i> Sà Phìn, Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+S%C3%A0+Ph%C3%ACn%2C+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=D%E1%BB%91c%20Th%E1%BA%A9m%20M%C3%A3%2C%20QL4C%2C%20Ph%E1%BB%91%20C%C3%A1o" target="_blank" rel="noopener" class="sight__name">Tham Ma slope</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Phố Cáo</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+Ph%E1%BB%91+C%C3%A1o%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20th%E1%BB%8Bt%20tr%C3%A2u%20g%C3%A1c%20b%E1%BA%BFp%20Y%C3%AAn%20Minh%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="day-tl__place">Quán thịt trâu gác bếp Yên Minh</a>
-        <span class="day-tl__what">Smoked buffalo, smoked sausages</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Yên Minh · 100k–250k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%91c%20Th%E1%BA%A9m%20M%C3%A3%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước dốc Thẩm Mã</a>
-        <span class="day-tl__what">Shan tea, corn milk</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Tham Ma slope · 15k–35k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA%2C%20L%C5%A9ng%20C%C3%BA%2C%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Lung Cu flag tower</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 25,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:30</span>
-                <span><i class="ri-map-pin-2-line"></i> Lũng Cú, Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+25%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+L%C5%A9ng+C%C3%BA%2C+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20tr%C3%A0%20ch%C3%A2n%20c%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán trà chân cột cờ Lũng Cú</a>
-        <span class="day-tl__what">Hot tea, buckwheat cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Lung Cu flag tower · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20%C4%91%C3%AAm%20TP%20H%C3%A0%20Giang%2C%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20H%E1%BB%8Dc%2C%20TP%20H%C3%A0%20Giang" target="_blank" rel="noopener" class="day-tl__place">Chợ đêm TP Hà Giang</a>
-        <span class="day-tl__what">Au tau porridge, egg rice rolls</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Đường Nguyễn Thái Học, TP Hà Giang · 30k–70k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Wander Dong Van old quarter and its cafés.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Dong Van old quarter</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Thị trấn Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Th%E1%BB%8B+tr%E1%BA%A5n+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
-                
-        <div class="day-tools" data-day-offset="2">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n%2C+QL4C%2C+%C4%90%E1%BB%93ng+V%C4%83n+%E2%80%93+M%C3%A8o+V%E1%BA%A1c&destination=Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF%2C+B%E1%BA%BFn+thuy%E1%BB%81n+T%C3%A0+L%C3%A0ng%2C+M%C3%A8o+V%E1%BA%A1c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>150,000 VND – 200,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>350,000 VND – 660,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        <p class="day-tl__text">Grab banh mi or sticky rice to go if leaving early</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Cross Ma Pi Leng pass and admire Tu San canyon.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A8o%20M%C3%A3%20P%C3%AD%20L%C3%A8ng%20%E2%80%93%20h%E1%BA%BBm%20Tu%20S%E1%BA%A3n%2C%20QL4C%2C%20%C4%90%E1%BB%93ng%20V%C4%83n%20%E2%80%93%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="sight__name">Ma Pi Leng pass – Tu San canyon</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Đồng Văn – Mèo Vạc</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+%C4%90%E1%BB%93ng+V%C4%83n+%E2%80%93+M%C3%A8o+V%E1%BA%A1c%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20l%E1%BA%A9u%20g%C3%A0%20%C4%91en%20M%C3%A8o%20V%E1%BA%A1c%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="day-tl__place">Quán lẩu gà đen Mèo Vạc</a>
-        <span class="day-tl__what">Black-chicken hotpot with H'Mong greens</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Mèo Vạc · 200k–350k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=M%C3%A3%20P%C3%AD%20L%C3%A8ng%20Panorama%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Mã Pí Lèng Panorama</a>
-        <span class="day-tl__what">Coffee and tea above the Nho Que river</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ma Pi Leng pass – Tu San canyon · 35k–70k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Take a boat on the Nho Que river, then head to Meo Vac.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Thuy%E1%BB%81n%20s%C3%B4ng%20Nho%20Qu%E1%BA%BF%2C%20B%E1%BA%BFn%20thuy%E1%BB%81n%20T%C3%A0%20L%C3%A0ng%2C%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="sight__name">Nho Que river boat</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 150,000 VND – 200,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Bến thuyền Tà Làng, Mèo Vạc</span>
-            </small>
-            <small class="sight__note"><i class="ri-information-line"></i> Return trip ~1.5 h</small>
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+150%2C000+VND+%E2%80%93+200%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+B%E1%BA%BFn+thuy%E1%BB%81n+T%C3%A0+L%C3%A0ng%2C+M%C3%A8o+V%E1%BA%A1c%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20b%E1%BA%BFn%20thuy%E1%BB%81n%20Nho%20Qu%E1%BA%BF%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước bến thuyền Nho Quế</a>
-        <span class="day-tl__what">Coconut water, soft drinks, boiled corn</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Nho Que river boat · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C6%A1m%20b%E1%BA%A3n%20L%C5%A9ng%20C%C3%BA%2C%20Ch%C3%A2n%20c%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng cơm bản Lũng Cú</a>
-        <span class="day-tl__what">Village meal: smoked pork, bamboo shoots, beans</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chân cột cờ Lũng Cú · 100k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Join the love market (if in season) and stay in Meo Vac.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:00</time>
-                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">End of tour</h4>
-                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-    
-
-                        
-        <div class="budget">
-            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
-            <div class="budget__options" role="group" aria-label="Budget level">
-                
-                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
-                        <span>Budget</span>
-                        <strong>2,540,000 VND</strong>
-                        <small>Homestays, local eateries, scooters</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
-                        <span>Comfort</span>
-                        <strong>4,250,000 VND</strong>
-                        <small>3–4 star hotels, restaurants, Grab</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-            </div>
-            
-                <div class="budget__detail" data-budget-detail="saving">
-                    <p class="budget__detail-title">Breakdown: budget</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>Homestay in Dong Van old town (250k–600k/room), shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>260,000 VND</strong>
-                        <small>2 night × 130,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Cheap breakfasts and local spots like Chợ đêm TP Hà Giang, Phố cổ Đồng Văn</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>600,000 VND</strong>
-                        <small>3 days × 200,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Scooter rental or buses, shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>180,000 VND</strong>
-                        <small>3 days × 60,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>Entrance fees, boats and cable cars per itinerary</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,500,000 VND</strong>
-                        <small>3 days × 500,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-                <div class="budget__detail" data-budget-detail="comfort" hidden>
-                    <p class="budget__detail-title">Breakdown: comfort</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>3–4 star hotel, double room shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>620,000 VND</strong>
-                        <small>2 night × 310,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Mid-range restaurants, specialties and seafood</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,080,000 VND</strong>
-                        <small>3 days × 360,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Grab, taxis or short private rides</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>450,000 VND</strong>
-                        <small>3 days × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>As per itinerary, plus guided tours/shows</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>2,100,000 VND</strong>
-                        <small>3 days × 700,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-        </div>
-    
-                    </div>
-                
-                    <div class="tour" id="tour-4" data-tour="4" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 4 days 3 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 4 days 3 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Ha Giang – Quan Ba – Yen Minh</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Dong Van – Lung Cu</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                        id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-day="2">
                     <span>Day 3</span>
                     <small>Ma Pi Leng – Nho Que</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
-                    <span>Day 4</span>
-                    <small>Meo Vac – Du Gia</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
-                
-        <div class="day-tools" data-day-offset="0">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang%2C+Tr%C6%B0%E1%BB%9Bc+UBND+t%E1%BB%89nh%2C+TP+H%C3%A0+Giang&destination=R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh%2C+QL4C%2C+Y%C3%AAn+Minh&waypoints=C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn%2C+Tam+S%C6%A1n%2C+Qu%E1%BA%A3n+B%E1%BA%A1" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>100,000 VND – 290,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n%2C%20Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="day-tl__place">Phố cổ Đồng Văn</a>
-        <span class="day-tl__what">Rice rolls in bone broth, thang co</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố cổ Đồng Văn · 30k–100k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Rent a motorbike or hire an easy rider, check in at the Km0 marker.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99t%20m%E1%BB%91c%20Km0%20H%C3%A0%20Giang%2C%20Tr%C6%B0%E1%BB%9Bc%20UBND%20t%E1%BB%89nh%2C%20TP%20H%C3%A0%20Giang" target="_blank" rel="noopener" class="sight__name">Ha Giang Km0 marker</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Trước UBND tỉnh, TP Hà Giang</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%99t+m%E1%BB%91c+Km0+H%C3%A0+Giang%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Tr%C6%B0%E1%BB%9Bc+UBND+t%E1%BB%89nh%2C+TP+H%C3%A0+Giang%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20phi%C3%AAn%20%C4%90%E1%BB%93ng%20V%C4%83n%20(Ch%E1%BB%A7%20nh%E1%BA%ADt)%2C%20Ch%E1%BB%A3%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="day-tl__place">Chợ phiên Đồng Văn (Chủ nhật)</a>
-        <span class="day-tl__what">Thang co, corn wine, buckwheat cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Đồng Văn · 30k–100k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20Km0%20H%C3%A0%20Giang%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Cà phê Km0 Hà Giang</a>
-        <span class="day-tl__what">Coffee or shan tea before setting off</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ha Giang Km0 marker · 25k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Quan Ba Heaven's Gate, the Fairy Twin Mountains and Yen Minh pine forest.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%95ng%20tr%E1%BB%9Di%20Qu%E1%BA%A3n%20B%E1%BA%A1%20%E2%80%93%20n%C3%BAi%20%C4%91%C3%B4i%20C%C3%B4%20Ti%C3%AAn%2C%20Tam%20S%C6%A1n%2C%20Qu%E1%BA%A3n%20B%E1%BA%A1" target="_blank" rel="noopener" class="sight__name">Quan Ba Heaven Gate – Fairy Bosom hills</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Tam Sơn, Quản Bạ</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%95ng+tr%E1%BB%9Di+Qu%E1%BA%A3n+B%E1%BA%A1+%E2%80%93+n%C3%BAi+%C4%91%C3%B4i+C%C3%B4+Ti%C3%AAn%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Tam+S%C6%A1n%2C+Qu%E1%BA%A3n+B%E1%BA%A1%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=R%E1%BB%ABng%20th%C3%B4ng%20Y%C3%AAn%20Minh%2C%20QL4C%2C%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="sight__name">Yen Minh pine forest</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Yên Minh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+R%E1%BB%ABng+th%C3%B4ng+Y%C3%AAn+Minh%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+Y%C3%AAn+Minh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20tr%E1%BB%9Di%20Qu%E1%BA%A3n%20B%E1%BA%A1%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng trời Quản Bạ</a>
-        <span class="day-tl__what">Hot tea and grilled eggs facing the twin hills</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Quan Ba Heaven Gate – Fairy Bosom hills · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner & evening</h4>
-                        <ul class="day-tl__list"><li>Stay in Yen Minh</li><li>Try thắng cố or black chicken hotpot</li></ul>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
-                
-        <div class="day-tools" data-day-offset="1">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng%2C+S%C3%A0+Ph%C3%ACn%2C+%C4%90%E1%BB%93ng+V%C4%83n&destination=Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n%2C+Th%E1%BB%8B+tr%E1%BA%A5n+%C4%90%E1%BB%93ng+V%C4%83n&waypoints=D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3%2C+QL4C%2C+Ph%E1%BB%91+C%C3%A1o%7CC%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA%2C+L%C5%A9ng+C%C3%BA%2C+%C4%90%E1%BB%93ng+V%C4%83n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>45,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>190,000 VND – 445,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20chua%20Qu%E1%BA%A3n%20B%E1%BA%A1%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Tam%20S%C6%A1n%2C%20Qu%E1%BA%A3n%20B%E1%BA%A1" target="_blank" rel="noopener" class="day-tl__place">Phở chua Quản Bạ</a>
-        <span class="day-tl__what">Sour pho for breakfast on the road</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Tam Sơn, Quản Bạ · 30k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">The Vuong family mansion and Tham Ma slope.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Dinh%20th%E1%BB%B1%20h%E1%BB%8D%20V%C6%B0%C6%A1ng%2C%20S%C3%A0%20Ph%C3%ACn%2C%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Vuong family mansion</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:30</span>
-                <span><i class="ri-map-pin-2-line"></i> Sà Phìn, Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Dinh+th%E1%BB%B1+h%E1%BB%8D+V%C6%B0%C6%A1ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+S%C3%A0+Ph%C3%ACn%2C+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=D%E1%BB%91c%20Th%E1%BA%A9m%20M%C3%A3%2C%20QL4C%2C%20Ph%E1%BB%91%20C%C3%A1o" target="_blank" rel="noopener" class="sight__name">Tham Ma slope</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Phố Cáo</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+D%E1%BB%91c+Th%E1%BA%A9m+M%C3%A3%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+Ph%E1%BB%91+C%C3%A1o%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20th%E1%BB%8Bt%20tr%C3%A2u%20g%C3%A1c%20b%E1%BA%BFp%20Y%C3%AAn%20Minh%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="day-tl__place">Quán thịt trâu gác bếp Yên Minh</a>
-        <span class="day-tl__what">Smoked buffalo, smoked sausages</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Yên Minh · 100k–250k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%91c%20Th%E1%BA%A9m%20M%C3%A3%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước dốc Thẩm Mã</a>
-        <span class="day-tl__what">Shan tea, corn milk</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Tham Ma slope · 15k–35k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Climb Lung Cu flag tower – Vietnam's northernmost point.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA%2C%20L%C5%A9ng%20C%C3%BA%2C%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Lung Cu flag tower</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 25,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:30</span>
-                <span><i class="ri-map-pin-2-line"></i> Lũng Cú, Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+C%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%99t+c%E1%BB%9D+L%C5%A9ng+C%C3%BA%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+25%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+L%C5%A9ng+C%C3%BA%2C+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20tr%C3%A0%20ch%C3%A2n%20c%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán trà chân cột cờ Lũng Cú</a>
-        <span class="day-tl__what">Hot tea, buckwheat cakes</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Lung Cu flag tower · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20%C4%91%C3%AAm%20TP%20H%C3%A0%20Giang%2C%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20H%E1%BB%8Dc%2C%20TP%20H%C3%A0%20Giang" target="_blank" rel="noopener" class="day-tl__place">Chợ đêm TP Hà Giang</a>
-        <span class="day-tl__what">Au tau porridge, egg rice rolls</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Đường Nguyễn Thái Học, TP Hà Giang · 30k–70k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Wander Dong Van old quarter and its cafés.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="sight__name">Dong Van old quarter</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Thị trấn Đồng Văn</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ph%E1%BB%91+c%E1%BB%95+%C4%90%E1%BB%93ng+V%C4%83n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Th%E1%BB%8B+tr%E1%BA%A5n+%C4%90%E1%BB%93ng+V%C4%83n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
-                
-        <div class="day-tools" data-day-offset="2">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n%2C+QL4C%2C+%C4%90%E1%BB%93ng+V%C4%83n+%E2%80%93+M%C3%A8o+V%E1%BA%A1c&destination=Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF%2C+B%E1%BA%BFn+thuy%E1%BB%81n+T%C3%A0+L%C3%A0ng%2C+M%C3%A8o+V%E1%BA%A1c" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>150,000 VND – 200,000 VND</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>350,000 VND – 660,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        <p class="day-tl__text">Grab banh mi or sticky rice to go if leaving early</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Cross Ma Pi Leng pass and admire Tu San canyon.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A8o%20M%C3%A3%20P%C3%AD%20L%C3%A8ng%20%E2%80%93%20h%E1%BA%BBm%20Tu%20S%E1%BA%A3n%2C%20QL4C%2C%20%C4%90%E1%BB%93ng%20V%C4%83n%20%E2%80%93%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="sight__name">Ma Pi Leng pass – Tu San canyon</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> QL4C, Đồng Văn – Mèo Vạc</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%C3%A8o+M%C3%A3+P%C3%AD+L%C3%A8ng+%E2%80%93+h%E1%BA%BBm+Tu+S%E1%BA%A3n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL4C%2C+%C4%90%E1%BB%93ng+V%C4%83n+%E2%80%93+M%C3%A8o+V%E1%BA%A1c%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">11:30</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Lunch</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20l%E1%BA%A9u%20g%C3%A0%20%C4%91en%20M%C3%A8o%20V%E1%BA%A1c%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="day-tl__place">Quán lẩu gà đen Mèo Vạc</a>
-        <span class="day-tl__what">Black-chicken hotpot with H'Mong greens</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Mèo Vạc · 200k–350k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=M%C3%A3%20P%C3%AD%20L%C3%A8ng%20Panorama%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Mã Pí Lèng Panorama</a>
-        <span class="day-tl__what">Coffee and tea above the Nho Que river</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ma Pi Leng pass – Tu San canyon · 35k–70k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Take a boat on the Nho Que river, then head to Meo Vac.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Thuy%E1%BB%81n%20s%C3%B4ng%20Nho%20Qu%E1%BA%BF%2C%20B%E1%BA%BFn%20thuy%E1%BB%81n%20T%C3%A0%20L%C3%A0ng%2C%20M%C3%A8o%20V%E1%BA%A1c" target="_blank" rel="noopener" class="sight__name">Nho Que river boat</a>
-                <span class="sight__price"><i class="ri-ticket-2-line"></i> 150,000 VND – 200,000 VND</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> 07:00–17:00</span>
-                <span><i class="ri-map-pin-2-line"></i> Bến thuyền Tà Làng, Mèo Vạc</span>
-            </small>
-            <small class="sight__note"><i class="ri-information-line"></i> Return trip ~1.5 h</small>
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Thuy%E1%BB%81n+s%C3%B4ng+Nho+Qu%E1%BA%BF%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+150%2C000+VND+%E2%80%93+200%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+B%E1%BA%BFn+thuy%E1%BB%81n+T%C3%A0+L%C3%A0ng%2C+M%C3%A8o+V%E1%BA%A1c%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20b%E1%BA%BFn%20thuy%E1%BB%81n%20Nho%20Qu%E1%BA%BF%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước bến thuyền Nho Quế</a>
-        <span class="day-tl__what">Coconut water, soft drinks, boiled corn</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Nho Que river boat · 15k–40k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C6%A1m%20b%E1%BA%A3n%20L%C5%A9ng%20C%C3%BA%2C%20Ch%C3%A2n%20c%E1%BB%99t%20c%E1%BB%9D%20L%C5%A9ng%20C%C3%BA" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng cơm bản Lũng Cú</a>
-        <span class="day-tl__what">Village meal: smoked pork, bamboo shoots, beans</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chân cột cờ Lũng Cú · 100k–200k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Join the love market (if in season) and stay in Meo Vac.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:30</time>
-                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Back to your stay</h4>
-                        <p class="day-tl__text">A short night stroll, then back to rest</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
-                <h3 class="itinerary__day-title">Day 4: Meo Vac – Du Gia</h3>
-                
-        <div class="day-tools" data-day-offset="3">
-            <span class="day-tools__date" data-day-date hidden></span>
-            <span class="day-tools__forecast" data-forecast-dest="ha-giang"></span>
-            <span class="day-tools__links">
-                <a href="https://www.google.com/maps/dir/?api=1&origin=Cung+%C4%91%C6%B0%E1%BB%9Dng+M%C3%A8o+V%E1%BA%A1c+%E2%80%93+Du+Gi%C3%A0%2C+M%C3%A8o+V%E1%BA%A1c+%E2%80%93+Y%C3%AAn+Minh&destination=Th%C3%A1c+Du+Gi%C3%A0%2C+Du+Gi%C3%A0%2C+Y%C3%AAn+Minh" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
-                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
-            </span>
-        </div>
-    
-                
-        
-        <div class="day-cost">
-            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
-            <span class="day-cost__item">Tickets: <strong>Free</strong></span>
-            <span class="day-cost__item">Food & coffee: <strong>140,000 VND – 265,000 VND</strong></span>
-        </div>
-    
-        <ol class="day-tl">
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">06:30</time>
-                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Breakfast</h4>
-                        <p class="day-tl__text">Breakfast at your stay (often included in the room rate)</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">07:30</time>
-                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Morning sightseeing</h4>
-                        <p class="day-tl__text">Ride the Meo Vac – Du Gia route over majestic slopes.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Cung%20%C4%91%C6%B0%E1%BB%9Dng%20M%C3%A8o%20V%E1%BA%A1c%20%E2%80%93%20Du%20Gi%C3%A0%2C%20M%C3%A8o%20V%E1%BA%A1c%20%E2%80%93%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="sight__name">Meo Vac – Du Gia road</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Mèo Vạc – Yên Minh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Cung+%C4%91%C6%B0%E1%BB%9Dng+M%C3%A8o+V%E1%BA%A1c+%E2%80%93+Du+Gi%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Cung+%C4%91%C6%B0%E1%BB%9Dng+M%C3%A8o+V%E1%BA%A1c+%E2%80%93+Du+Gi%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+M%C3%A8o+V%E1%BA%A1c+%E2%80%93+Y%C3%AAn+Minh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--cafe">
-                    <time class="day-tl__time">13:00</time>
-                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Coffee & midday break</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20th%C3%A1c%20Du%20Gi%C3%A0%20Ha%20Giang" target="_blank" rel="noopener" class="day-tl__place">Quán nước thác Du Già</a>
-        <span class="day-tl__what">Tea, cold beer, soft drinks</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Du Gia waterfall · 15k–35k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">14:30</time>
-                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
-                        <p class="day-tl__text">Swim in Du Gia stream, lunch at a homestay.</p>
-                        <ul class="day-tl__sights">
-        <li class="sight">
-            <div class="sight__head">
-                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20Du%20Gi%C3%A0%2C%20Du%20Gi%C3%A0%2C%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="sight__name">Du Gia waterfall</a>
-                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
-            </div>
-            <small class="sight__meta">
-                <span><i class="ri-time-line"></i> Open all day</span>
-                <span><i class="ri-map-pin-2-line"></i> Du Già, Yên Minh</span>
-            </small>
-            
-            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Ha+Giang+%E2%80%93+Th%C3%A1c+Du+Gi%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Ha+Giang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%A1c+Du+Gi%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+Du+Gi%C3%A0%2C+Y%C3%AAn+Minh%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"><i class="ri-flag-line"></i> Report</a>
-        </li>
-    </ul>
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--drink">
-                    <time class="day-tl__time">16:30</time>
-                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Drinks & snacks</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20Ph%E1%BB%91%20C%C3%A1o%20%E2%80%93%20%C4%90%E1%BB%93ng%20V%C4%83n%2C%20Ph%E1%BB%91%20c%E1%BB%95%20%C4%90%E1%BB%93ng%20V%C4%83n" target="_blank" rel="noopener" class="day-tl__place">Cà phê Phố Cáo – Đồng Văn</a>
-        <span class="day-tl__what">Coffee and shan tuyet tea in a rammed-earth house</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Phố cổ Đồng Văn · 25k–50k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--meal">
-                    <time class="day-tl__time">18:00</time>
-                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Dinner</h4>
-                        
-                        
-                        
-        <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp%20homestay%20Du%20Gi%C3%A0%2C%20L%C3%A0ng%20Du%20Gi%C3%A0%2C%20Y%C3%AAn%20Minh" target="_blank" rel="noopener" class="day-tl__place">Bếp homestay Du Già</a>
-        <span class="day-tl__what">Tay family meal with stream fish</span>
-        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Làng Du Già, Yên Minh · 100k–180k</small>
-    
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--visit">
-                    <time class="day-tl__time">19:30</time>
-                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">Evening</h4>
-                        <p class="day-tl__text">Stay in Du Gia with a Tay family around the campfire.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-                <li class="day-tl__item day-tl__item--rest">
-                    <time class="day-tl__time">21:00</time>
-                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
-                    <div class="day-tl__body">
-                        <h4 class="day-tl__title">End of tour</h4>
-                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
-                        
-                        
-                    </div>
-                </li>
-            
-        </ol>
-    
-            </div>
-        
-    
-
-                        
-        <div class="budget">
-            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
-            <div class="budget__options" role="group" aria-label="Budget level">
-                
-                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
-                        <span>Budget</span>
-                        <strong>3,430,000 VND</strong>
-                        <small>Homestays, local eateries, scooters</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
-                        <span>Comfort</span>
-                        <strong>5,770,000 VND</strong>
-                        <small>3–4 star hotels, restaurants, Grab</small>
-                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
-                    </button>
-                
-            </div>
-            
-                <div class="budget__detail" data-budget-detail="saving">
-                    <p class="budget__detail-title">Breakdown: budget</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>Homestay in Dong Van old town (250k–600k/room), shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>390,000 VND</strong>
-                        <small>3 night × 130,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Cheap breakfasts and local spots like Chợ đêm TP Hà Giang, Phố cổ Đồng Văn</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>800,000 VND</strong>
-                        <small>4 days × 200,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Scooter rental or buses, shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>240,000 VND</strong>
-                        <small>4 days × 60,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>Entrance fees, boats and cable cars per itinerary</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>2,000,000 VND</strong>
-                        <small>4 days × 500,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-                <div class="budget__detail" data-budget-detail="comfort" hidden>
-                    <p class="budget__detail-title">Breakdown: comfort</p>
-                    
-        <ul class="cost-list">
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Accommodation</strong>
-                        <small>3–4 star hotel, double room shared by 2</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>930,000 VND</strong>
-                        <small>3 night × 310,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Food & drink</strong>
-                        <small>Mid-range restaurants, specialties and seafood</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>1,440,000 VND</strong>
-                        <small>4 days × 360,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Local transport</strong>
-                        <small>Grab, taxis or short private rides</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>600,000 VND</strong>
-                        <small>4 days × 150,000 VND</small>
-                    </div>
-                </li>
-            
-                <li class="cost-item">
-                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
-                    <div class="cost-item__text">
-                        <strong>Tickets & activities</strong>
-                        <small>As per itinerary, plus guided tours/shows</small>
-                    </div>
-                    <div class="cost-item__amount">
-                        <strong>2,800,000 VND</strong>
-                        <small>4 days × 700,000 VND</small>
-                    </div>
-                </li>
-            
-        </ul>
-    
-                </div>
-            
-        </div>
-    
-                    </div>
-                
-                    <div class="tour" id="tour-5" data-tour="5" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Ha Giang – Quan Ba – Yen Minh → Dong Van – Lung Cu → Ma Pi Leng – Nho Que → Meo Vac – Du Gia → Hoang Su Phi</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 5 days 4 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 5 days 4 nights itinerary to your calendar (.ics)">
-                                    <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Ha Giang – Quan Ba – Yen Minh</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Dong Van – Lung Cu</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Ma Pi Leng – Nho Que</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                        id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-day="3" hidden>
                     <span>Day 4</span>
                     <small>Meo Vac – Du Gia</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                        id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-day="4" hidden>
                     <span>Day 5</span>
                     <small>Hoang Su Phi</small>
                 </button>
@@ -2261,7 +676,7 @@
         </div>
 
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Ha Giang – Quan Ba – Yen Minh</h3>
                 
         <div class="day-tools" data-day-offset="0">
@@ -2430,7 +845,7 @@
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Dong Van – Lung Cu</h3>
                 
         <div class="day-tools" data-day-offset="1">
@@ -2627,7 +1042,7 @@
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Ma Pi Leng – Nho Que</h3>
                 
         <div class="day-tools" data-day-offset="2">
@@ -2779,7 +1194,7 @@
                     </div>
                 </li>
             
-                <li class="day-tl__item day-tl__item--rest">
+                <li class="day-tl__item day-tl__item--rest" data-end="more" hidden>
                     <time class="day-tl__time">21:30</time>
                     <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
                     <div class="day-tl__body">
@@ -2790,11 +1205,22 @@
                     </div>
                 </li>
             
+                <li class="day-tl__item day-tl__item--rest" data-end="last">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
         </ol>
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Meo Vac – Du Gia</h3>
                 
         <div class="day-tools" data-day-offset="3">
@@ -2931,7 +1357,7 @@
                     </div>
                 </li>
             
-                <li class="day-tl__item day-tl__item--rest">
+                <li class="day-tl__item day-tl__item--rest" data-end="more">
                     <time class="day-tl__time">21:30</time>
                     <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
                     <div class="day-tl__body">
@@ -2942,11 +1368,22 @@
                     </div>
                 </li>
             
+                <li class="day-tl__item day-tl__item--rest" data-end="last" hidden>
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
         </ol>
     
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" hidden>
                 <h3 class="itinerary__day-title">Day 5: Hoang Su Phi</h3>
                 
         <div class="day-tools" data-day-offset="4">
@@ -3115,8 +1552,280 @@
         
     
 
-                        
-        <div class="budget">
+                    
+        <div class="budget" data-tour-len="3">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>2,540,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>4,250,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Dong Van old town (250k–600k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>260,000 VND</strong>
+                        <small>2 night × 130,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Chợ đêm TP Hà Giang, Phố cổ Đồng Văn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>3 days × 200,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180,000 VND</strong>
+                        <small>3 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,500,000 VND</strong>
+                        <small>3 days × 500,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>620,000 VND</strong>
+                        <small>2 night × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,080,000 VND</strong>
+                        <small>3 days × 360,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450,000 VND</strong>
+                        <small>3 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,100,000 VND</strong>
+                        <small>3 days × 700,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="4" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>3,430,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>5,770,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Homestay in Dong Van old town (250k–600k/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>390,000 VND</strong>
+                        <small>3 night × 130,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Chợ đêm TP Hà Giang, Phố cổ Đồng Văn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>800,000 VND</strong>
+                        <small>4 days × 200,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240,000 VND</strong>
+                        <small>4 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,000,000 VND</strong>
+                        <small>4 days × 500,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>930,000 VND</strong>
+                        <small>3 night × 310,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,440,000 VND</strong>
+                        <small>4 days × 360,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>4 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,800,000 VND</strong>
+                        <small>4 days × 700,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="5" hidden>
             <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
             <div class="budget__options" role="group" aria-label="Budget level">
                 
@@ -3252,8 +1961,7 @@
             
         </div>
     
-                    </div>
-                
+                </div>
 
                 <p class="budget__note">Excludes flights/transport to Ha Giang. Prices are indicative and vary by season.</p>
 
@@ -3501,10 +2209,9 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'ha-giang'</script>
-        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'ha-giang'</script>
         <script defer src="../../../assets/js/data/en.js"></script>
         <script defer src="../../../assets/js/data/local-images.js"></script>
         <script defer src="../../../assets/js/i18n.js"></script>

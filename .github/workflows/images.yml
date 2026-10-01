@@ -36,9 +36,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
 
       - name: Cài thư viện xử lý ảnh (sharp)
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Kiểm tra ảnh trên Wikimedia Commons
         run: npm run check-images

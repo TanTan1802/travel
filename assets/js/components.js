@@ -489,7 +489,7 @@ function dayTimelineHtml(entries) {
         ${dayCostHtml(entries)}
         <ol class="day-tl">
             ${entries.map(e => `
-                <li class="day-tl__item day-tl__item--${e.kind}">
+                <li class="day-tl__item day-tl__item--${e.kind}"${e.end ? ` data-end="${e.end}"` : ''}${e.hidden ? ' hidden' : ''}>
                     <time class="day-tl__time">${e.time}</time>
                     <span class="day-tl__icon"><i class="${e.icon}"></i></span>
                     <div class="day-tl__body">

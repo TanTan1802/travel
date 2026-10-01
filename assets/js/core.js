@@ -28,11 +28,19 @@ function wikiImg(file, width = 1280) {
     return `${WIKI_BASE}Special:FilePath/${encodeURIComponent(file)}?width=${width}`
 }
 
-/* srcset cho ảnh đã tối ưu (WebP 480/960/1920) – trình duyệt tự chọn ảnh vừa với màn hình */
+/*
+ * srcset cho ảnh đã tối ưu (WebP 480/960/1920 theo cạnh dài) – trình duyệt tự chọn ảnh vừa với màn hình.
+ * Mô tả bằng chiều rộng thật (ảnh dọc/ảnh gốc nhỏ hẹp hơn 480/960/1920), bỏ cỡ trùng nhau.
+ */
 function wikiSrcset(file) {
     const local = localImage(file)
     if (!local || !local.xs) return ''
+    const long = Math.max(local.w || 0, local.h || 0)
+    const widthAt = box => (!long || long <= box ? local.w || box : Math.round(local.w * box / long))
+    const seen = new Set()
     return [['xs', 480], ['sm', 960], ['lg', 1920]]
+        .map(([key, box]) => [key, widthAt(box)])
+        .filter(([, w]) => !seen.has(w) && seen.add(w))
         .map(([key, w]) => `${SITE_ROOT}${local[key]} ${w}w`).join(', ')
 }
 

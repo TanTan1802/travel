@@ -318,8 +318,12 @@ ${rels.map(rel => `  <url><loc>${pageUrl(rel)}</loc><lastmod>${today}</lastmod><
 }
 
 /* Đổi VERSION của service worker theo nội dung tài nguyên để trình duyệt tải bản mới */
+/* Gồm tài nguyên tải sẵn trong sw.js và mọi file CSS/JS (kể cả file chỉ được lưu khi mở trang) */
 function updateServiceWorkerVersion(sw) {
-    const assets = [...sw.matchAll(/'\.\/([^']+\.(?:css|js|html|webmanifest))'/g)].map(m => m[1])
+    const listed = [...sw.matchAll(/'\.\/([^']+\.(?:css|js|html|webmanifest))'/g)].map(m => m[1])
+    const walk = dir => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap(e =>
+        e.isDirectory() ? walk(`${dir}/${e.name}`) : /\.(?:css|js)$/.test(e.name) ? [`${dir}/${e.name}`] : [])
+    const assets = [...new Set([...listed, ...walk('assets/js'), ...walk('assets/css')])].sort()
     const hash = crypto.createHash('md5')
     assets.forEach(file => hash.update(read(file)))
     return sw.replace(/const VERSION = '[^']*'/, `const VERSION = '${hash.digest('hex').slice(0, 10)}'`)

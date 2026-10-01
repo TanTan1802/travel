@@ -20,17 +20,32 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
 
       - name: Cài thư viện
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
+
+      # Lưu Chromium của Playwright giữa các lần chạy (khóa theo package-lock.json)
+      - name: Cache trình duyệt Playwright
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Cài trình duyệt Chromium
+        if: steps.pw-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Cài thư viện hệ thống cho Chromium
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Trang tĩnh phải khớp dữ liệu (đã chạy npm run build)
         run: |
           npm run build
-          git diff --exit-code -- diem-den assets/js/data ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js \
+          # -I: bỏ qua <lastmod> của sitemap (lấy theo ngày chạy build nên khác ngày là khác)
+          git diff --exit-code -I '<lastmod>' -- diem-den assets/js/data ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js \
             || (echo "::error::Trang tĩnh chưa được build lại – chạy npm run build rồi commit." && exit 1)
 
       - name: Test dữ liệu
