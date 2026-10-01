@@ -5154,3 +5154,49 @@ body.dark-theme .month-nav__prevnext a {
 .report-form__submit {
   justify-self: start;
 }
+
+/*==================== CỘNG ĐỒNG: ẢNH NGƯỜI ĐỌC + BÌNH LUẬN ====================*/
+.community__title {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin: 1.5rem 0 .75rem;
+  font-size: var(--h3-font-size);
+}
+
+.community__title:first-child {
+  margin-top: 0;
+}
+
+.community__photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.community-photo {
+  margin: 0;
+}
+
+.community-photo img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.community-photo figcaption {
+  margin-top: .35rem;
+  font-size: var(--small-font-size);
+}
+
+.community-photo small {
+  color: var(--text-color-light);
+}
+
+.community__submit {
+  justify-self: start;
+  width: fit-content;
+  margin-bottom: .5rem;
+}

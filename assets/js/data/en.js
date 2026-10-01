@@ -7,6 +7,13 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        /* Cộng đồng: ảnh người đọc, bình luận */
+        'Ảnh: {author}': 'Photo: {author}',
+        'Ảnh từ người đọc': 'Reader photos',
+        'Chưa có ảnh nào – hãy là người đầu tiên chia sẻ khoảnh khắc ở {name}!': 'No photos yet – be the first to share a moment in {name}!',
+        'Gửi ảnh của bạn': 'Share your photo',
+        'Cảm nhận & đánh giá': 'Reviews & impressions',
+        'Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi – và thả cảm xúc để đánh giá nhé!': 'Been to {name}? Leave your impressions, tips or questions – and react to rate it!',
         '{rooms} phòng cho {n} người': '{rooms} rooms for {n} people',
         /* Độ mới dữ liệu + form báo sai (report.js) */
         'Cập nhật {m}/{y}': 'Updated {m}/{y}',

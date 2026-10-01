@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 140 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 143 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -36,10 +36,12 @@
 .ri-calendar-check-line:before { content: "\eb23"; }
 .ri-calendar-event-line:before { content: "\eb25"; }
 .ri-calendar-line:before { content: "\eb27"; }
+.ri-camera-3-line:before { content: "\eb2d"; }
 .ri-camera-lens-line:before { content: "\eb30"; }
 .ri-camera-line:before { content: "\eb31"; }
 .ri-capsule-line:before { content: "\eb37"; }
 .ri-car-line:before { content: "\eb39"; }
+.ri-chat-smile-2-line:before { content: "\eb6f"; }
 .ri-check-line:before { content: "\eb7b"; }
 .ri-checkbox-circle-fill:before { content: "\eb80"; }
 .ri-checkbox-circle-line:before { content: "\eb81"; }
@@ -83,6 +85,7 @@
 .ri-hospital-line:before { content: "\ee37"; }
 .ri-hotel-bed-line:before { content: "\ee39"; }
 .ri-hotel-line:before { content: "\ee3b"; }
+.ri-image-add-line:before { content: "\ee47"; }
 .ri-image-line:before { content: "\ee4b"; }
 .ri-information-line:before { content: "\ee59"; }
 .ri-instagram-fill:before { content: "\ee65"; }

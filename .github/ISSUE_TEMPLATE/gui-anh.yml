@@ -1,0 +1,46 @@
+name: Gửi ảnh của bạn
+description: Chia sẻ ảnh bạn chụp tại một điểm đến để hiện trên Việt Travel (ghi tên tác giả).
+title: "[Ảnh] "
+labels: ["anh-nguoi-doc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn! Ảnh được duyệt sẽ hiện ở mục **Cộng đồng** của trang điểm đến, kèm tên bạn và giấy phép bên dưới.
+        Ảnh được thu nhỏ và **xóa thông tin vị trí (GPS/EXIF)** trước khi đăng.
+  - type: input
+    id: dest
+    attributes:
+      label: Điểm đến
+      description: Ví dụ "Hội An" hoặc mã trên đường dẫn (hoi-an)
+    validations:
+      required: true
+  - type: textarea
+    id: photos
+    attributes:
+      label: Ảnh
+      description: Kéo thả ảnh vào đây (tối đa 3 ảnh, nên ≥ 1600px chiều ngang, không chèn chữ / logo)
+    validations:
+      required: true
+  - type: input
+    id: caption
+    attributes:
+      label: Chú thích
+      description: Ảnh chụp gì, ở đâu, tháng nào? Ví dụ "Phố cổ lúc lên đèn, tháng 3"
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Tên hiển thị (ghi công tác giả)
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Giấy phép
+      options:
+        - label: Tôi là người chụp các ảnh này và đồng ý chia sẻ theo giấy phép Creative Commons CC BY 4.0 (người khác được dùng lại nếu ghi tên tôi).
+          required: true
+        - label: Ảnh không có người lạ nhìn rõ mặt khi chưa được họ đồng ý.
+          required: true
