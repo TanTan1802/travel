@@ -53,7 +53,9 @@ function applyTranslations() {
     Object.assign(CATEGORIES, TRANSLATION_EN.categories)
     DESTINATIONS.forEach(d => mergeTranslation(d, TRANSLATION_EN.destinations[d.id]))
     if (typeof ITINERARIES !== 'undefined') {
-        Object.entries(TRANSLATION_EN.itineraries || {}).forEach(([id, plan]) => {
+        /* Trang điểm đến đã build: bản dịch lịch trình nằm trong data/dest/<id>.js (ITINERARIES_EN) */
+        const plans = { ...TRANSLATION_EN.itineraries, ...(typeof ITINERARIES_EN !== 'undefined' ? ITINERARIES_EN : {}) }
+        Object.entries(plans).forEach(([id, plan]) => {
             if (ITINERARIES[id]) mergeTranslation(ITINERARIES[id], plan)
         })
     }

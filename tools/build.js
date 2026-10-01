@@ -8,11 +8,13 @@
  *   - en/index.html, en/diem-den/<id>/index.html – dịch từ assets/js/data/en.js.
  * Kèm sitemap.xml, robots.txt và cập nhật phiên bản service worker.
  *
- * Mẫu giao diện là index.html và destination.html – sửa ở đó rồi chạy lại build.
+ * Mẫu giao diện là home.html (→ index.html), destination.html, planner.html, guide.html – sửa ở đó rồi chạy lại build.
+ * Script của mỗi trang được gộp + nén bằng esbuild thành assets/js/dist/<hash>.js (xem bundleScripts).
  */
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
+const esbuild = require('esbuild')
 const { ROOT, loadBrowserScripts } = require('./lib')
 
 const SITE_URL = 'https://tantan1802.github.io/travel/'
@@ -42,7 +44,7 @@ const SCRIPTS = [
     'assets/js/destination-render.js',
     'assets/js/guide-render.js',
 ]
-const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
+const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
     'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang']
 
@@ -60,9 +62,14 @@ function truncate(text, max = 160) {
 }
 
 /* Nạp dữ liệu + hàm render cho một ngôn ngữ, với đường dẫn gốc tương ứng độ sâu của trang */
+const siteCache = new Map()
 function loadSite(lang, siteRoot) {
-    const scripts = lang === 'en' ? ['assets/js/data/en.js', ...SCRIPTS] : SCRIPTS
-    return loadBrowserScripts(scripts, EXPORTS, { SITE_ROOT: siteRoot, SITE_LANG: lang })
+    const key = `${lang}:${siteRoot}`
+    if (!siteCache.has(key)) {
+        const scripts = lang === 'en' ? ['assets/js/data/en.js', ...SCRIPTS] : SCRIPTS
+        siteCache.set(key, loadBrowserScripts(scripts, EXPORTS, { SITE_ROOT: siteRoot, SITE_LANG: lang }))
+    }
+    return siteCache.get(key)
 }
 
 const homePath = lang => `${LANGS[lang].prefix}index.html`
@@ -191,24 +198,31 @@ function headTags(site, d, lang) {
 }
 
 /*
- * Dữ liệu quán ăn / lưu trú / điểm tham quan chỉ của một điểm đến (~8 KB) để trang điểm đến
- * khỏi tải cả places.js + sights.js (~215 KB). Trình lập kế hoạch vẫn dùng file đầy đủ.
+ * Dữ liệu quán ăn / lưu trú / điểm tham quan / lịch trình (kèm bản dịch lịch trình) chỉ của một điểm đến
+ * (~10 KB) để trang điểm đến khỏi tải cả places.js + sights.js + itineraries.js (~250 KB).
+ * Trình lập kế hoạch và trang động destination.html?id= vẫn dùng file đầy đủ.
  */
 const DEST_DATA_DIR = 'assets/js/data/dest'
 const DEST_DATA_SCRIPTS = /(\s*)<script defer src="assets\/js\/data\/places\.js"><\/script>\s*<script defer src="assets\/js\/data\/sights\.js"><\/script>/
+const ITINERARIES_SCRIPT = /\s*<script defer src="assets\/js\/data\/itineraries\.js"><\/script>/
 
-function destDataFile(d, site) {
-    const pick = (obj, key) => JSON.stringify(obj[key] ? { [key]: obj[key] } : {}, null, 1)
-    return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js – không sửa tay. */\n' +
+function destDataFile(d, site, enSite) {
+    const pick = (obj, key) => JSON.stringify(obj && obj[key] ? { [key]: obj[key] } : {})
+    return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js + itineraries.js + en.js – không sửa tay. */\n' +
         `const STAY_TYPES = ${JSON.stringify(site.STAY_TYPES)}\n` +
         `const PLACES = ${pick(site.PLACES, d.id)}\n` +
-        `const SIGHTS = ${pick(site.SIGHTS, d.id)}\n`
+        `const SIGHTS = ${pick(site.SIGHTS, d.id)}\n` +
+        `const TOUR_LENGTHS = ${JSON.stringify(site.TOUR_LENGTHS)}\n` +
+        `const ITINERARIES = ${pick(site.ITINERARIES, d.id)}\n` +
+        `const ITINERARIES_EN = ${pick(enSite.TRANSLATION_EN.itineraries, d.id)}\n`
 }
 
 function buildDestinationPage(template, lang, d, site) {
     const rel = destPath(lang, d.id)
     if (!DEST_DATA_SCRIPTS.test(template)) throw new Error('destination.html thiếu thẻ script places.js + sights.js')
+    if (!ITINERARIES_SCRIPT.test(template)) throw new Error('destination.html thiếu thẻ script itineraries.js')
     template = template.replace(DEST_DATA_SCRIPTS, `$1<script defer src="${DEST_DATA_DIR}/${d.id}.js"></script>`)
+        .replace(ITINERARIES_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const other = lang === 'vi' ? 'en' : 'vi'
 
@@ -329,13 +343,94 @@ function updateServiceWorkerVersion(sw) {
     return sw.replace(/const VERSION = '[^']*'/, `const VERSION = '${hash.digest('hex').slice(0, 10)}'`)
 }
 
+/*==================== GỘP & NÉN SCRIPT ====================*/
+/*
+ * Mỗi chuỗi thẻ <script defer src="assets/js/..."> liền nhau trong trang đã build được gộp thành một
+ * file nén assets/js/dist/<hash>.js (cùng nội dung → cùng file, trang giống nhau dùng chung).
+ * Các script là script thường dùng chung phạm vi toàn cục nên nối theo đúng thứ tự là tương đương.
+ * Dữ liệu riêng từng điểm đến (data/dest/<id>.js) giữ file riêng để "Tải về dùng offline" lưu theo điểm.
+ * Rút gọn theo trang: bỏ bảng dịch HTML tĩnh (chỉ build dùng) và bản dịch lịch trình khi trang không
+ * nạp itineraries.js (trang điểm đến lấy lịch trình + bản dịch của riêng nó trong data/dest/<id>.js).
+ * Nhờ vậy mọi trang điểm đến cùng ngôn ngữ dùng chung một bundle (trình duyệt chỉ tải một lần).
+ */
+const DIST_DIR = 'assets/js/dist'
+const bundles = new Map()
+
+/* LOCAL_IMAGES dạng gọn: chỉ lưu tên gốc + kích thước, đường dẫn 3 cỡ dựng lại trên trình duyệt (~64 KB → ~25 KB) */
+function compactLocalImages(images) {
+    const compact = {}
+    const full = {}
+    for (const [file, e] of Object.entries(images)) {
+        const base = (e.lg || '').match(/^assets\/img\/wiki\/(.+)-1920\.webp$/)
+        if (base && e.sm === `assets/img/wiki/${base[1]}-960.webp` && e.xs === `assets/img/wiki/${base[1]}-480.webp`) {
+            compact[file] = [base[1], e.w, e.h]
+        } else {
+            full[file] = e
+        }
+    }
+    return `const LOCAL_IMAGES = (() => {
+    const out = ${JSON.stringify(full)}
+    const path = (base, size) => \`assets/img/wiki/\${base}-\${size}.webp\`
+    Object.entries(${JSON.stringify(compact)}).forEach(([file, [base, w, h]]) => {
+        out[file] = { xs: path(base, 480), sm: path(base, 960), lg: path(base, 1920), w, h }
+    })
+    return out
+})()`
+}
+
+function scriptSource(file, site, pageFiles) {
+    if (file === 'assets/js/data/local-images.js') return compactLocalImages(site.LOCAL_IMAGES)
+    if (file === 'assets/js/data/en.js') {
+        const { html, itineraries, ...en } = site.TRANSLATION_EN
+        const withPlans = pageFiles.includes('assets/js/data/itineraries.js')
+        return `const TRANSLATION_EN = ${JSON.stringify({ ...en, itineraries: withPlans ? itineraries : {} })}`
+    }
+    return read(file)
+}
+
+function bundleFile(files, site, pageFiles) {
+    const code = files.map(f => `/* ${f} */\n${scriptSource(f, site, pageFiles)}`).join('\n;\n')
+    const { code: min } = esbuild.transformSync(code, { minify: true, legalComments: 'none', charset: 'utf8' })
+    const rel = `${DIST_DIR}/${crypto.createHash('md5').update(min).digest('hex').slice(0, 10)}.js`
+    bundles.set(rel, min)
+    return rel
+}
+
+const isOwnFile = src => src.startsWith(`${DEST_DATA_DIR}/`)
+
+function bundleScripts(html, siteRoot, site) {
+    const pageFiles = [...html.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => m[1].slice(siteRoot.length))
+    /* Một chuỗi script liền nhau (cho phép chú thích HTML xen giữa – chú thích bị bỏ) */
+    return html.replace(/(?:<script defer src="[^"]+"><\/script>\s*(?:<!--[\s\S]*?-->\s*)*)+/g, (run, offset) => {
+        const trailing = run.match(/\s*$/)[0]
+        const srcs = [...run.matchAll(/src="([^"]+)"/g)].map(m => m[1])
+        if (!srcs.every(src => src.startsWith(`${siteRoot}assets/js/`))) return run
+        const rels = srcs.map(src => src.slice(siteRoot.length))
+        const groups = []
+        rels.forEach(rel => {
+            if (isOwnFile(rel)) groups.push({ own: rel })
+            else if (groups.length && !groups[groups.length - 1].own) groups[groups.length - 1].files.push(rel)
+            else groups.push({ files: [rel] })
+        })
+        const indent = (html.slice(0, offset).match(/[ \t]*$/) || [''])[0]
+        return groups.map(g => `<script defer src="${siteRoot}${g.own || bundleFile(g.files, site, pageFiles)}"></script>`)
+            .join(`\n${indent}`) + trailing
+    })
+}
+
+/* Script trang chủ (tiếng Việt) để service worker tải sẵn: ghi vào khối build:core-scripts của sw.js */
+function updateCoreScripts(sw, homeHtml) {
+    const scripts = [...homeHtml.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => `    './${m[1]}',`)
+    return sw.replace(/(\/\* build:core-scripts \*\/)[\s\S]*?(\n\s*\/\* \/build:core-scripts \*\/)/, `$1\n${scripts.join('\n')}$2`)
+}
+
 function main() {
     const destTemplate = read('destination.html')
-    const homeTemplate = read('index.html')
+    const homeTemplate = read('home.html')
     const plannerTemplate = read('planner.html')
     const guideTemplate = read('guide.html')
     for (const marker of ['<!-- build:grid -->', '<!-- build:alternate -->', 'class="nav__lang"']) {
-        if (!homeTemplate.includes(marker)) throw new Error(`index.html thiếu ${marker}`)
+        if (!homeTemplate.includes(marker)) throw new Error(`home.html thiếu ${marker}`)
     }
 
     // Xóa trang cũ (điểm đến đã bị đổi tên/xóa)
@@ -344,27 +439,32 @@ function main() {
     fs.rmSync(path.join(ROOT, PLANNER_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
 
     let count = 0
     for (const lang of Object.keys(LANGS)) {
         const pageSite = loadSite(lang, rootFor(destPath(lang, 'x')))
         for (const d of pageSite.DESTINATIONS) {
-            write(destPath(lang, d.id), buildDestinationPage(destTemplate, lang, d, pageSite))
-            if (lang === 'vi') write(`${DEST_DATA_DIR}/${d.id}.js`, destDataFile(d, pageSite))
+            write(destPath(lang, d.id), bundleScripts(buildDestinationPage(destTemplate, lang, d, pageSite), rootFor(destPath(lang, d.id)), pageSite))
+            if (lang === 'vi') write(`${DEST_DATA_DIR}/${d.id}.js`, destDataFile(d, pageSite, loadSite('en', '')))
             count++
         }
-        write(homePath(lang), buildHome(homeTemplate, lang, loadSite(lang, rootFor(homePath(lang)))))
-        write(plannerPath(lang), buildPlanner(plannerTemplate, lang, loadSite(lang, rootFor(plannerPath(lang)))))
-        write(guidePath(lang), buildGuidePage(guideTemplate, lang, '', loadSite(lang, rootFor(guidePath(lang)))))
-        const guideSite = loadSite(lang, rootFor(guidePath(lang, 'x')))
-        for (const g of guideSite.GUIDES) write(guidePath(lang, g.slug), buildGuidePage(guideTemplate, lang, g.slug, guideSite))
+        const page = (rel, build) => {
+            const site = loadSite(lang, rootFor(rel))
+            write(rel, bundleScripts(build(site), rootFor(rel), site))
+        }
+        page(homePath(lang), site => buildHome(homeTemplate, lang, site))
+        page(plannerPath(lang), site => buildPlanner(plannerTemplate, lang, site))
+        page(guidePath(lang), site => buildGuidePage(guideTemplate, lang, '', site))
+        for (const g of loadSite(lang, '').GUIDES) page(guidePath(lang, g.slug), site => buildGuidePage(guideTemplate, lang, g.slug, site))
     }
 
+    bundles.forEach((code, rel) => write(rel, code))
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
-    write('sw.js', updateServiceWorkerVersion(read('sw.js')))
+    write('sw.js', updateServiceWorkerVersion(updateCoreScripts(read('sw.js'), read(homePath('vi')))))
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
-    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, sitemap.xml, robots.txt`)
+    console.log(`✅ Đã tạo ${count} trang điểm đến (vi + en), 2 trang chủ, 2 trang kế hoạch, ${2 + 2 * loadSite("vi", "").GUIDES.length} trang cẩm nang, ${bundles.size} bundle JS, sitemap.xml, robots.txt`)
 }
 
 main()
