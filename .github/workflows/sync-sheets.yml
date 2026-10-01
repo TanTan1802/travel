@@ -58,6 +58,7 @@ jobs:
           add-paths: |
             data/*.json
             assets/js/data
+            assets/js/dist
             diem-den
             en
             ke-hoach

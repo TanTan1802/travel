@@ -11,7 +11,7 @@ on:
       - 'assets/js/data/destinations.js'
       - 'assets/js/data/itineraries.js'
       - 'assets/js/data/en.js'
-      - 'index.html'
+      - 'home.html'
       - 'destination.html'
       - 'planner.html'
       - 'guide.html'
@@ -45,7 +45,7 @@ jobs:
         run: npm run check-images
         continue-on-error: true
 
-      # Build trước để danh sách ảnh trong index.html khớp dữ liệu mới nhất
+      # Build trước để danh sách ảnh trong trang chủ khớp dữ liệu mới nhất
       - name: Build trước khi tải ảnh
         run: npm run build
 
@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/img/wiki assets/img/og assets/js/data diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
+          git add -A assets/img/wiki assets/img/og assets/js/data assets/js/dist diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có thay đổi."
           else

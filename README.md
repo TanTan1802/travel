@@ -4,7 +4,7 @@ link: https://tantan1802.github.io/travel/
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (`index.html`): 28 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 28 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
@@ -25,14 +25,16 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 | `assets/js/data/destinations.js`, `itineraries.js`, `places.js`, `sights.js`, `events.js` | Sinh tự động từ `data/*.json` khi build – **không sửa tay** |
 | `assets/js/core.js` | Hàm dùng chung (ảnh, điểm đến, tra cứu lễ hội) |
 | `destination.html` | Mẫu giao diện trang chi tiết (cũng chạy động với `?id=`) |
-| `diem-den/<id>/index.html`, `en/` | Trang tĩnh sinh tự động (vi + en) – **không sửa tay** |
+| `home.html`, `destination.html`, `planner.html`, `guide.html` | Mẫu giao diện (sửa ở đây) |
+| `index.html`, `diem-den/<id>/index.html`, `en/`, `ke-hoach/`, `cam-nang/` | Trang tĩnh sinh tự động (vi + en) – **không sửa tay** |
+| `assets/js/dist/<hash>.js` | Script mỗi trang đã gộp + nén (esbuild) khi build – **không sửa tay** |
 | `tools/` | Script build, tải ảnh, kiểm tra ảnh |
 
 Sau khi sửa dữ liệu hoặc `destination.html`:
 
 ```bash
 npm run check-data     # kiểm tra data/*.json theo JSON Schema
-npm run build          # kiểm tra dữ liệu, sinh assets/js/data/*.js, diem-den/*, index.html, sitemap.xml
+npm run build          # kiểm tra dữ liệu, sinh assets/js/data/*.js, trang tĩnh, bundle JS, sitemap.xml
 ```
 
 Cập nhật giá vé, giờ mở cửa, giá quán bằng **Google Sheets**: workflow `Đồng bộ Google Sheets` đọc bảng tính
@@ -122,6 +124,11 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Icon Remix Icon **tự host, rút gọn** còn các icon đang dùng (`assets/css/icons.css` + `assets/fonts/remixicon.woff2`, ~18 KB thay vì ~235 KB từ CDN).
   Thêm icon mới → viết đủ tên class (`'ri-sun-line'`, không ghép chuỗi) rồi chạy `npm run icons`; `npm run test:data` báo lỗi nếu quên.
 - `data-sizes` trên thẻ ảnh cho biết kích thước hiển thị thực để trình duyệt chọn file WebP vừa đủ.
+- **Gộp & nén script**: mẫu HTML vẫn liệt kê từng file trong `assets/js/` (dễ sửa, trang động `destination.html?id=` dùng trực tiếp);
+  khi build, mỗi chuỗi `<script defer>` liền nhau của trang tĩnh được nối đúng thứ tự và nén bằng esbuild thành
+  `assets/js/dist/<hash>.js` (trang giống nhau dùng chung bundle). Bundle bỏ bảng dịch HTML tĩnh và bản dịch lịch trình
+  khi trang không cần; `LOCAL_IMAGES` được ghi dạng gọn. Trang điểm đến lấy lịch trình riêng trong `data/dest/<id>.js`.
+  Service worker tải sẵn bundle trang chủ (khối `build:core-scripts` trong `sw.js` do build ghi).
 - Ảnh WebP 480/960/1920 tính theo **cạnh dài** (ảnh dọc không cao quá 1920px); `srcset` ghi chiều rộng thật của từng file.
 - Lịch trình tour 3/4/5 ngày render **một lần** (tour ngắn = các ngày đầu của tour dài): ngày ngoài tour ẩn bằng
   `itinerary__panel--off`, mục cuối ngày có hai dạng "Về nghỉ"/"Kết thúc tour" (`data-end`) – xem `tourDaysHtml()` và `setTourLength()`.
