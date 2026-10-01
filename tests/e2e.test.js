@@ -11,7 +11,8 @@ let server, browser
 
 test.before(async () => {
     server = await startServer()
-    browser = await chromium.launch()
+    /* CHROMIUM_PATH: dùng Chromium có sẵn trên máy thay vì bản Playwright tải về */
+    browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {})
 })
 
 test.after(async () => {
@@ -110,7 +111,8 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
 
 test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn tháng, lightbox', async () => {
     const { page, errors, close } = await openPage('diem-den/hoi-an/index.html')
-    const visiblePanels = () => page.$$eval('.tour:not([hidden]) .itinerary__panel', a => a.map(p => (p.hidden ? 0 : 1)).join(''))
+    /* Tour 3/4/5 ngày dùng chung một khối: chỉ tính các ngày thuộc tour đang chọn */
+    const visiblePanels = () => page.$$eval('.tour:not([hidden]) .itinerary__panel:not(.itinerary__panel--off)', a => a.map(p => (p.hidden ? 0 : 1)).join(''))
 
     assert.equal(await page.$$eval('.tour-picker__btn', a => a.length), 3, 'cần 3 lựa chọn tour')
     assert.ok(await page.$$eval('.eat', a => a.length) >= 3, 'cần danh sách quán nên ghé')
@@ -118,7 +120,7 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.match(await page.getAttribute('#stay .book-link', 'href'), /booking\.com.*Hoi\+An/)
 
     /* Chi phí: mặc định hiện chi tiết mức tiết kiệm, bấm để xem mức thoải mái */
-    const budget = '.tour:not([hidden]) .budget'
+    const budget = '.tour:not([hidden]) .budget:not([hidden])'
     assert.ok(await page.isVisible(`${budget} [data-budget-detail="saving"]`), 'phải xem được chi tiết mức tiết kiệm')
     assert.equal(await page.$$eval(`${budget} [data-budget-detail="saving"] .cost-item`, a => a.length), 4)
     await page.click(`${budget} [data-budget-tier="comfort"]`)
@@ -132,6 +134,18 @@ test('trang điểm đến: chọn tour, chuyển ngày, xem tất cả, chọn 
     assert.equal(await visiblePanels(), '00001')
     const lastDay = '.tour:not([hidden]) .itinerary__panel:not([hidden])'
     assert.match(await page.textContent(`${lastDay} .day-tl__item:last-child`), /Kết thúc tour/, 'ngày cuối phải có mục kết thúc tour')
+    assert.equal(await page.$$eval('.tour:not([hidden]) .budget:not([hidden])', a => a.map(b => b.dataset.tourLen).join()), '5', 'chỉ hiện chi phí tour đang chọn')
+
+    /* Tour 3 ngày: ngày 3 kết thúc tour, ngày 4–5 bị ẩn; quay lại tour 5 ngày thì ngày 3 là "Về nghỉ" */
+    await page.click('.tour-picker__btn[data-tour="3"]')
+    assert.equal(await visiblePanels(), '100', 'đang ở ngày 5 → về ngày 1 khi đổi sang tour 3 ngày')
+    assert.ok(await page.isHidden('.tour:not([hidden]) .itinerary__tab[data-day="3"]'))
+    await page.click('.tour:not([hidden]) .itinerary__tab[data-day="2"]')
+    const endOfDay = `${lastDay} .day-tl__item:not([hidden])`
+    assert.match(await page.$$eval(endOfDay, a => a.at(-1).textContent), /Kết thúc tour/)
+    await page.click('.tour-picker__btn[data-tour="5"]')
+    assert.match(await page.$$eval(endOfDay, a => a.at(-1).textContent), /Về nghỉ/)
+    await page.click('.tour:not([hidden]) .itinerary__tab[data-day="4"]')
     assert.ok(await page.$$eval(`${lastDay} .day-tl__item`, a => a.length) >= 8, 'mỗi ngày cần timeline chi tiết')
     assert.ok(await page.$$eval(`${lastDay} .day-tl__item--cafe, ${lastDay} .day-tl__item--drink`, a => a.length) >= 1, 'timeline cần quán cà phê / quán nước')
     assert.ok(await page.$$eval(`${lastDay} .sight`, a => a.length) >= 1, 'buổi tham quan cần thẻ điểm cụ thể')

@@ -41,6 +41,8 @@
         <title>Du lịch Việt Nam – Khám phá danh lam thắng cảnh</title>
     </head>
     <body>
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="index.html" class="nav__logo">Việt Travel</a>
@@ -90,7 +92,7 @@
 
             <!--==================== HOME ====================-->
             <section class="home" id="home">
-                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Vịnh Hạ Long" class="home__img" data-priority src="assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp" srcset="assets/img/wiki/halong-bay-in-vietnam-363c5b-480.webp 480w, assets/img/wiki/halong-bay-in-vietnam-363c5b-960.webp 960w, assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp 1920w" sizes="100vw" fetchpriority="high">
+                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="Vịnh Hạ Long" class="home__img" data-priority src="assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp" srcset="assets/img/wiki/halong-bay-in-vietnam-363c5b-480.webp 480w, assets/img/wiki/halong-bay-in-vietnam-363c5b-960.webp 960w, assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp 1600w" sizes="100vw" fetchpriority="high">
 
                 <div class="home__container container grid">
                     <div class="home__data">
@@ -1153,7 +1155,6 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script defer src="assets/js/scrollreveal.min.js"></script>
 
         <!--=============== SWIPER JS ===============-->
 

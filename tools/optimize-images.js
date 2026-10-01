@@ -1,6 +1,7 @@
 /*
  * Chuyển ảnh đã tải (assets/img/wiki) sang WebP ở 3 kích thước 480 / 960 / 1920px
  * để trình duyệt chọn ảnh vừa đủ theo màn hình (srcset). Xóa file JPG/PNG gốc sau khi chuyển.
+ * Kích thước tính theo CẠNH DÀI (ảnh dọc 1920 không cao tới 3000px+); srcset dùng chiều rộng thật (core.js).
  * Chạy:  npm run images   (tự gọi sau bước tải ảnh)
  */
 const fs = require('fs')
@@ -29,13 +30,14 @@ async function optimizeEntry(entry) {
     const target = Object.fromEntries(Object.entries(SIZES).map(([k, w]) => [k, `${base}-${w}.webp`]))
     const done = Object.values(target).every(rel => fs.existsSync(abs(rel)))
     if (done) {
-        /* Đã tối ưu từ trước: chỉ đọc kích thước, không nén lại (tránh giảm chất lượng) */
+        /* Đã tối ưu từ trước: chỉ đọc kích thước, không nén lại (tránh giảm chất lượng) –
+           trừ ảnh dọc tạo theo quy tắc cũ (chỉ giới hạn chiều rộng) còn vượt khung */
         const { width, height } = await sharp(abs(target.lg)).metadata()
-        return { entry: { ...target, w: width, h: height }, converted: false }
+        if (Math.max(width, height) <= SIZES.lg) return { entry: { ...target, w: width, h: height }, converted: false }
     }
 
     /* Nguồn: ảnh lớn nhất đang có (JPG gốc hoặc WebP 1920) */
-    const source = [entry.lg, entry.sm].find(rel => rel && fs.existsSync(abs(rel)))
+    const source = [entry.lg, target.lg, entry.sm].find(rel => rel && fs.existsSync(abs(rel)))
     if (!source) throw new Error('không tìm thấy file nguồn')
     const input = fs.readFileSync(abs(source))
     const meta = await sharp(input).metadata()
@@ -43,7 +45,7 @@ async function optimizeEntry(entry) {
     for (const [key, width] of Object.entries(SIZES)) {
         await sharp(input)
             .rotate()
-            .resize({ width, withoutEnlargement: true })
+            .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
             .webp({ quality: QUALITY, effort: 5 })
             .toFile(abs(target[key]))
     }

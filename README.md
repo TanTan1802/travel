@@ -120,6 +120,14 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Ảnh bìa được ghi sẵn `src/srcset` + `fetchpriority="high"` lúc build (thuộc tính `data-priority`), các ảnh khác tải lười.
 - Leaflet chỉ được tải khi mở bản đồ (`loadLeaflet()` trong `map.js`); font Google và Remix Icon tải không chặn hiển thị; toàn bộ script dùng `defer`.
 - `data-sizes` trên thẻ ảnh cho biết kích thước hiển thị thực để trình duyệt chọn file WebP vừa đủ.
+- Ảnh WebP 480/960/1920 tính theo **cạnh dài** (ảnh dọc không cao quá 1920px); `srcset` ghi chiều rộng thật của từng file.
+- Lịch trình tour 3/4/5 ngày render **một lần** (tour ngắn = các ngày đầu của tour dài): ngày ngoài tour ẩn bằng
+  `itinerary__panel--off`, mục cuối ngày có hai dạng "Về nghỉ"/"Kết thúc tour" (`data-end`) – xem `tourDaysHtml()` và `setTourLength()`.
+- Hiệu ứng hiện dần khi cuộn dùng `IntersectionObserver` + CSS (`.reveal` trong `main.js`, không cần thư viện), chỉ áp dụng cho
+  phần dưới màn hình đầu tiên và tắt khi bật "giảm chuyển động". Một listener cuộn duy nhất, gom theo `requestAnimationFrame`.
+- Chế độ tối được gắn bằng script nội tuyến ngay sau `<body>` nên không nháy nền sáng khi tải trang.
+- Service worker chỉ tải sẵn tài nguyên trang chủ + trang offline; ảnh địa danh lưu ở bộ nhớ `media` (giới hạn 250 file,
+  không bị xóa khi đổi phiên bản), trang HTML giữ tối đa 80 trang.
 
 ## Test tự động
 
@@ -128,6 +136,10 @@ npm install
 npx playwright install chromium   # lần đầu
 npm test                          # = npm run test:data && npm run test:e2e
 ```
+
+- Dùng Chromium có sẵn trên máy: `CHROMIUM_PATH=/đường/dẫn/chrome npm run test:e2e`.
+- Máy không ra được CDN: `LOCAL_CDN_DIR=<thư mục node_modules có leaflet@1.9.4 và remixicon@2.5.0>`.
+- CI dùng `npm ci` (khóa phiên bản bằng `package-lock.json`) và lưu cache npm + Chromium.
 
 - `tests/data.test.js`: dữ liệu điểm đến, lịch trình 3/4/5 ngày, bản dịch tiếng Anh, manifest ảnh, trang tĩnh & sitemap, liên kết nội bộ.
 - `tests/e2e.test.js` (Playwright + Chromium): mọi trang không lỗi JS, tìm kiếm/lọc/yêu thích, chọn tour & ngày, chọn tháng, lightbox, chuyển ngôn ngữ, giao diện điện thoại. Tài nguyên ngoài (Wikimedia, Open-Meteo, bản đồ, giscus) được giả lập nên test chạy ổn định.

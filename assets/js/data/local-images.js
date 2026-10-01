@@ -4,8 +4,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/0040323-thap-doi-cham-hindu-complex-quy-nhon-binh-dinh-vietnam-248-c4472d-480.webp",
         "sm": "assets/img/wiki/0040323-thap-doi-cham-hindu-complex-quy-nhon-binh-dinh-vietnam-248-c4472d-960.webp",
         "lg": "assets/img/wiki/0040323-thap-doi-cham-hindu-complex-quy-nhon-binh-dinh-vietnam-248-c4472d-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg": {
         "xs": "assets/img/wiki/2024-hoi-an-japanese-covered-bridge-chua-cau-after-renovation-img-11-fc4021-480.webp",
@@ -74,8 +74,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/banh-cuon-6f2390-480.webp",
         "sm": "assets/img/wiki/banh-cuon-6f2390-960.webp",
         "lg": "assets/img/wiki/banh-cuon-6f2390-1920.webp",
-        "w": 1920,
-        "h": 2072
+        "w": 1779,
+        "h": 1920
     },
     "Banh khot aka Banh can - Thanh Ha AUD8 (4171696432).jpg": {
         "xs": "assets/img/wiki/banh-khot-aka-banh-can-thanh-ha-aud8-4171696432-139025-480.webp",
@@ -193,8 +193,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/banh-canh-cua-vietnamese-thick-noodle-with-crab-soup-143a00-480.webp",
         "sm": "assets/img/wiki/banh-canh-cua-vietnamese-thick-noodle-with-crab-soup-143a00-960.webp",
         "lg": "assets/img/wiki/banh-canh-cua-vietnamese-thick-noodle-with-crab-soup-143a00-1920.webp",
-        "w": 1920,
-        "h": 3413
+        "w": 1080,
+        "h": 1920
     },
     "Bánh căn in phan rang, vietnam.jpg": {
         "xs": "assets/img/wiki/banh-can-in-phan-rang-vietnam-7898c6-480.webp",
@@ -242,8 +242,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/banh-da-cua-hai-phong-27-2-1-74b2d3-480.webp",
         "sm": "assets/img/wiki/banh-da-cua-hai-phong-27-2-1-74b2d3-960.webp",
         "lg": "assets/img/wiki/banh-da-cua-hai-phong-27-2-1-74b2d3-1920.webp",
-        "w": 1920,
-        "h": 2199
+        "w": 1676,
+        "h": 1920
     },
     "Bún chả cá, tháng 8 năm 2018.JPG": {
         "xs": "assets/img/wiki/bun-cha-ca-thang-8-nam-2018-2f1849-480.webp",
@@ -291,8 +291,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/cat-ba-island-fishing-village-419564-480.webp",
         "sm": "assets/img/wiki/cat-ba-island-fishing-village-419564-960.webp",
         "lg": "assets/img/wiki/cat-ba-island-fishing-village-419564-1920.webp",
-        "w": 1920,
-        "h": 2562
+        "w": 1439,
+        "h": 1920
     },
     "Cha gio.jpg": {
         "xs": "assets/img/wiki/cha-gio-af7dc6-480.webp",
@@ -424,8 +424,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-480.webp",
         "sm": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-960.webp",
         "lg": "assets/img/wiki/cua-so-bach-dinh-nhin-ra-bien-3aefa0-1920.webp",
-        "w": 1920,
-        "h": 2885
+        "w": 1278,
+        "h": 1920
     },
     "Da Lat - Viet Nam.jpg": {
         "xs": "assets/img/wiki/da-lat-viet-nam-7afd6a-480.webp",
@@ -494,8 +494,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/ha-giang-loop-845007-480.webp",
         "sm": "assets/img/wiki/ha-giang-loop-845007-960.webp",
         "lg": "assets/img/wiki/ha-giang-loop-845007-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Ha Giang rizieres bis.jpg": {
         "xs": "assets/img/wiki/ha-giang-rizieres-bis-720109-480.webp",
@@ -620,8 +620,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/homemade-hotpot-22e27f-480.webp",
         "sm": "assets/img/wiki/homemade-hotpot-22e27f-960.webp",
         "lg": "assets/img/wiki/homemade-hotpot-22e27f-1920.webp",
-        "w": 1920,
-        "h": 2467
+        "w": 1494,
+        "h": 1920
     },
     "Hu tieu trieu chau.JPG": {
         "xs": "assets/img/wiki/hu-tieu-trieu-chau-e1a37c-480.webp",
@@ -648,8 +648,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-480.webp",
         "sm": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-960.webp",
         "lg": "assets/img/wiki/hau-sua-nuong-pho-mai-binh-tan-nam-2020-17-e9c61b-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Hạ Long Bay.jpg": {
         "xs": "assets/img/wiki/ha-long-bay-afe747-480.webp",
@@ -697,8 +697,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-480.webp",
         "sm": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-960.webp",
         "lg": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Khao lam87.jpg": {
         "xs": "assets/img/wiki/khao-lam87-aea848-480.webp",
@@ -760,8 +760,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-480.webp",
         "sm": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-960.webp",
         "lg": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Lợn mán mẹt.jpg": {
         "xs": "assets/img/wiki/lon-man-met-2b333f-480.webp",
@@ -781,8 +781,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-480.webp",
         "sm": "assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-960.webp",
         "lg": "assets/img/wiki/mapileng-hagiang-vietnam-2c6f64-1920.webp",
-        "w": 1920,
-        "h": 3413
+        "w": 1080,
+        "h": 1920
     },
     "Marble Mountains, Vietnam.jpg": {
         "xs": "assets/img/wiki/marble-mountains-vietnam-285c3d-480.webp",
@@ -844,8 +844,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-480.webp",
         "sm": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-960.webp",
         "lg": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Mắm cá lóc.JPG": {
         "xs": "assets/img/wiki/mam-ca-loc-276ddd-480.webp",
@@ -907,8 +907,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/notre-dame-cathedral-ho-chi-minh-city-39543912241-9bf3b1-480.webp",
         "sm": "assets/img/wiki/notre-dame-cathedral-ho-chi-minh-city-39543912241-9bf3b1-960.webp",
         "lg": "assets/img/wiki/notre-dame-cathedral-ho-chi-minh-city-39543912241-9bf3b1-1920.webp",
-        "w": 1920,
-        "h": 3001
+        "w": 1228,
+        "h": 1920
     },
     "Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg": {
         "xs": "assets/img/wiki/noi-ba-chua-xu-nui-sam-ngu-khi-xua-ce1cf4-480.webp",
@@ -928,8 +928,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/pho-bat-da-c4d09f-480.webp",
         "sm": "assets/img/wiki/pho-bat-da-c4d09f-960.webp",
         "lg": "assets/img/wiki/pho-bat-da-c4d09f-1920.webp",
-        "w": 1920,
-        "h": 3413
+        "w": 1080,
+        "h": 1920
     },
     "Phở bò (39425047901).jpg": {
         "xs": "assets/img/wiki/pho-bo-39425047901-b06356-480.webp",
@@ -942,8 +942,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/po-nagar-nha-trang-vietnam-f6bcb2-480.webp",
         "sm": "assets/img/wiki/po-nagar-nha-trang-vietnam-f6bcb2-960.webp",
         "lg": "assets/img/wiki/po-nagar-nha-trang-vietnam-f6bcb2-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Pu Luong 01.JPG": {
         "xs": "assets/img/wiki/pu-luong-01-b3e5d5-480.webp",
@@ -984,8 +984,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/quyet-tien-market-ha-giang-vietnam-2-a02ca2-480.webp",
         "sm": "assets/img/wiki/quyet-tien-market-ha-giang-vietnam-2-a02ca2-960.webp",
         "lg": "assets/img/wiki/quyet-tien-market-ha-giang-vietnam-2-a02ca2-1920.webp",
-        "w": 1920,
-        "h": 2875
+        "w": 1282,
+        "h": 1920
     },
     "Quảng trường huyện Mộc Châu.jpg": {
         "xs": "assets/img/wiki/quang-truong-huyen-moc-chau-8ca11c-480.webp",
@@ -1082,15 +1082,15 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/son-doong-cave-by-daniel-burka-537e90-480.webp",
         "sm": "assets/img/wiki/son-doong-cave-by-daniel-burka-537e90-960.webp",
         "lg": "assets/img/wiki/son-doong-cave-by-daniel-burka-537e90-1920.webp",
-        "w": 1920,
-        "h": 2880
+        "w": 1280,
+        "h": 1920
     },
     "Stairs to the Fansipan.jpg": {
         "xs": "assets/img/wiki/stairs-to-the-fansipan-5a6c26-480.webp",
         "sm": "assets/img/wiki/stairs-to-the-fansipan-5a6c26-960.webp",
         "lg": "assets/img/wiki/stairs-to-the-fansipan-5a6c26-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg": {
         "xs": "assets/img/wiki/starfishes-on-the-starfish-beach-phu-quoc-vietnam-01df14-480.webp",
@@ -1110,8 +1110,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/stelae-of-doctors-temple-of-literature-hanoi-dsc04563-ca4e18-480.webp",
         "sm": "assets/img/wiki/stelae-of-doctors-temple-of-literature-hanoi-dsc04563-ca4e18-960.webp",
         "lg": "assets/img/wiki/stelae-of-doctors-temple-of-literature-hanoi-dsc04563-ca4e18-1920.webp",
-        "w": 1920,
-        "h": 2716
+        "w": 1357,
+        "h": 1920
     },
     "Tam Coc, Ninh Binh ,Vietnam.jpg": {
         "xs": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-480.webp",
@@ -1180,8 +1180,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-480.webp",
         "sm": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-960.webp",
         "lg": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-1920.webp",
-        "w": 1920,
-        "h": 2560
+        "w": 1440,
+        "h": 1920
     },
     "Thị trấn Mộc Châu, Sơn La.jpg": {
         "xs": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-480.webp",
@@ -1201,8 +1201,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1419-5252-943d6e-480.webp",
         "sm": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1419-5252-943d6e-960.webp",
         "lg": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1419-5252-943d6e-1920.webp",
-        "w": 1920,
-        "h": 2051
+        "w": 1797,
+        "h": 1920
     },
     "Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg": {
         "xs": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1456-5313-b025c5-480.webp",
@@ -1215,8 +1215,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1456-5316-cbd672-480.webp",
         "sm": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1456-5316-cbd672-960.webp",
         "lg": "assets/img/wiki/trang-an-landscape-complex-ninh-binh-province-vietnam-20240202-1456-5316-cbd672-1920.webp",
-        "w": 1920,
-        "h": 2876
+        "w": 1282,
+        "h": 1920
     },
     "Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg": {
         "xs": "assets/img/wiki/turtle-tower-hoan-kiem-lake-hanoi-4g4a7301-643815-480.webp",
@@ -1250,8 +1250,8 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-480.webp",
         "sm": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-960.webp",
         "lg": "assets/img/wiki/vietnam-distilled-coffee-3861948911-6070b6-1920.webp",
-        "w": 1920,
-        "h": 2880
+        "w": 1280,
+        "h": 1920
     },
     "Vietnam, Hue, Imperial City of Hue, Enclosure.jpg": {
         "xs": "assets/img/wiki/vietnam-hue-imperial-city-of-hue-enclosure-998fda-480.webp",

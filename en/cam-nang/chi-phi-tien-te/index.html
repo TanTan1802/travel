@@ -37,6 +37,8 @@
         <meta name="twitter:card" content="summary_large_image">
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../../en/index.html" class="nav__logo">Việt Travel</a>
@@ -345,10 +347,9 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'</script>
-        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
+        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'</script>
         <script defer src="../../../assets/js/data/en.js"></script>
         <script defer src="../../../assets/js/data/local-images.js"></script>
         <script defer src="../../../assets/js/i18n.js"></script>

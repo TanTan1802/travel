@@ -1953,7 +1953,11 @@ body.dark-theme .season__status--good {
   color: var(--white-color);
 }
 
-.tour[hidden] {
+.tour[hidden],
+.tour__summary[hidden],
+.itinerary__tab[hidden],
+.budget[hidden],
+.day-tl__item[hidden] {
   display: none;
 }
 
@@ -2861,6 +2865,11 @@ body.dark-theme .planner__stat i {
   /* Trang điểm đến: in đủ các ngày của tour đang chọn */
   .tour:not([hidden]) .itinerary__panel {
     display: block !important;
+  }
+
+  /* …trừ các ngày ngoài tour đang chọn (tour 3/4/5 ngày dùng chung một khối) */
+  .tour .itinerary__panel.itinerary__panel--off {
+    display: none !important;
   }
 
   .tour .itinerary__day-title,
@@ -5156,4 +5165,42 @@ body.dark-theme .quiz .button--ghost {
   color: var(--white-color);
   font-weight: var(--font-semi-bold);
   opacity: .95;
+}
+
+/*==================== HIỆN DẦN KHI CUỘN (main.js – thay ScrollReveal) ====================*/
+.reveal {
+  opacity: 0;
+  transition: opacity .9s ease, transform .9s cubic-bezier(.5, 0, 0, 1);
+}
+
+.reveal--top {
+  transform: translateY(-40px);
+}
+
+.reveal--left {
+  transform: translateX(-40px);
+}
+
+.reveal--right {
+  transform: translateX(40px);
+}
+
+.reveal.reveal--in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
