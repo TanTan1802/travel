@@ -422,6 +422,9 @@ function renderSeason() {
     list.innerHTML = chosen.map(d => destinationCard(d)).join('')
     renderSeasonEvents(month)
     syncFavoriteButtons(list)
+    /* Trang tĩnh "Tháng N nên đi đâu" của tháng hiện tại */
+    const monthLink = document.getElementById('season-month-link')
+    if (monthLink) monthLink.href = `${SITE_ROOT}${LANG_PREFIX}thang/${month}/index.html`
 
     document.getElementById('season-more')?.addEventListener('click', () => {
         const select = document.getElementById('month-filter')

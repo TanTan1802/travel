@@ -5049,3 +5049,62 @@ body.dark-theme .quiz .button--ghost {
     transform: none !important;
   }
 }
+
+/*==================== TRANG KHÁM PHÁ: THEO THÁNG, CHỦ ĐỀ, GIÁ VÉ (seo-render.js) ====================*/
+.month-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+
+.explore-hub .month-nav {
+  justify-content: flex-start;
+  padding-top: .5rem;
+}
+
+.explore-hub__group {
+  margin-bottom: 1.25rem;
+}
+
+.month-nav__prevnext {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  font-weight: var(--font-semi-bold);
+}
+
+.months-table__month a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide__body .day-tl__sights {
+  margin-top: .75rem;
+}
+
+.guide__body .sight {
+  scroll-margin-top: 5rem;
+}
+
+.guide__body .sight:target {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px hsla(39, 92%, 55%, .25);
+}
+
+.guide-section__list a,
+.month-nav__prevnext a {
+  color: var(--first-color);
+}
+
+body.dark-theme .guide-section__list a,
+body.dark-theme .month-nav__prevnext a {
+  color: var(--title-color);
+}
+
+.guide-section__list a:hover {
+  text-decoration: underline;
+}

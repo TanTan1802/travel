@@ -443,11 +443,11 @@ function activityTextHtml(e) {
 }
 
 /* Thẻ chi tiết một điểm tham quan: tên (mở Google Maps), giá vé, giờ mở cửa, địa chỉ */
-function sightHtml(s) {
+function sightHtml(s, { id = '' } = {}) {
     const name = pickLang(s.name)
     const free = !Array.isArray(s.price) ? s.price === 0 : !s.price[1]
     return `
-        <li class="sight">
+        <li class="sight"${id ? ` id="${id}"` : ''}>
             <div class="sight__head">
                 <a href="${mapsSearchUrl(`${s.name[0]}, ${s.address}`)}" target="_blank" rel="noopener" class="sight__name">${name}</a>
                 <span class="sight__price${free ? ' sight__price--free' : ''}"><i class="ri-ticket-2-line"></i> ${sightPriceText(s.price)}</span>

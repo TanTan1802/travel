@@ -455,6 +455,8 @@ function itinerarySection(d) {
 
                 <p class="budget__note">${t('Chưa gồm vé máy bay/tàu xe tới {name}. Giá tham khảo, thay đổi theo mùa.', { name: d.name })}</p>
 
+                <p class="budget__note"><i class="ri-ticket-2-line"></i> <a href="${SITE_ROOT}${LANG_PREFIX}diem-den/${d.id}/gia-ve/index.html">${t('Bảng giá vé & giờ mở cửa các điểm tham quan ở {name}', { name: d.name })}</a></p>
+
                 <div class="plan-cta">
                     <p><i class="ri-route-line"></i> ${t('Muốn đi nhiều nơi trong một chuyến? Ghép {name} với các điểm đến khác.', { name: d.name })}</p>
                     <button type="button" class="button button--flex plan-btn" data-plan-add="${d.id}">

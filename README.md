@@ -104,6 +104,21 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Bài "Nên đi du lịch Việt Nam vào tháng nào?" có bảng 12 tháng tự sinh từ `bestMonths` của các điểm đến.
 - Thêm bài mới: thêm một phần tử vào `GUIDES` rồi chạy `npm run build`.
 
+## Trang khám phá (SEO) – `assets/js/seo-render.js`
+
+Sinh tự động khi build từ dữ liệu sẵn có (vi + en, có trong sitemap, canonical/hreflang, Open Graph, JSON-LD `ItemList` +
+`BreadcrumbList`):
+
+| Đường dẫn | Nội dung |
+|---|---|
+| `diem-den/<id>/gia-ve/` | Bảng **giá vé & giờ mở cửa** mọi điểm tham quan của điểm đến, xếp theo ngày lịch trình; mỗi điểm có anchor riêng (`#hang-sung-sot`) và dữ liệu `TouristAttraction`. Trang điểm đến có liên kết tới đây. |
+| `thang/<1–12>/` | **Tháng N nên đi đâu**: điểm đến đúng mùa theo miền, lễ hội & lưu ý thời tiết của tháng. Nút "Tháng nào đi đâu?" ở trang chủ trỏ tới tháng hiện tại; bảng 12 tháng trong cẩm nang có liên kết. |
+| `chu-de/<loại hình \| miền>/` | Điểm đến theo **chủ đề** (biển đảo, núi rừng, di sản, thành phố, hang động) và theo **miền**. |
+
+- Một trang cho mỗi điểm đến thay vì mỗi điểm tham quan một trang: mỗi điểm chỉ có vài dòng (giá, giờ, địa chỉ) nên gộp lại
+  thành trang đầy đủ tốt hơn cho SEO (tránh "nội dung mỏng"), vẫn tìm được từng điểm qua anchor.
+- Lời giới thiệu theo tháng/chủ đề ở `MONTH_NOTES`, `THEME_INTROS` (song ngữ). Trang cẩm nang có khối "Khám phá theo tháng & chủ đề".
+
 ## Quán ăn, lưu trú & đặt chỗ (`data/places.json`)
 
 - Mỗi điểm đến có: 8 quán cụ thể (tên, món, địa chỉ, giá/người), 3 quán cà phê/quán nước (`cafes`), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.
