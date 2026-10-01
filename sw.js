@@ -3,7 +3,7 @@
  * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = 'f04b67b4e8'
+const VERSION = 'becb4894d7'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const PAGE_LIMIT = 80
@@ -20,19 +20,19 @@ const CORE_ASSETS = [
     './index.html',
     './offline.html',
     './manifest.webmanifest',
-    './assets/css/icons.css',
     './assets/fonts/remixicon.woff2',
-    './assets/css/styles.css',
-    './assets/css/vietnam.css',
-    /* build:core-scripts */
+    './assets/fonts/open-sans-latin-400.woff2',
+    './assets/fonts/open-sans-vietnamese-400.woff2',
+    /* build:core-assets */
+    './assets/css/site-30314b3661.css',
     './assets/js/dist/9f4ad3b649.js',
-    /* /build:core-scripts */
+    /* /build:core-assets */
     './assets/img/favicon.png',
     './assets/img/icons/icon-192.png',
 ]
 
-/* Thư viện/phông chữ bên ngoài: lưu lại để dùng offline */
-const CDN_HOSTS = ['cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com']
+/* Thư viện bên ngoài (Leaflet): lưu lại để dùng offline */
+const CDN_HOSTS = ['cdnjs.cloudflare.com']
 /* Ảnh và ô bản đồ: lưu có giới hạn */
 const MEDIA_HOSTS = ['commons.wikimedia.org', 'upload.wikimedia.org', 'tile.openstreetmap.org']
 

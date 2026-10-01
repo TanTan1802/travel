@@ -59,6 +59,7 @@ jobs:
             data/*.json
             assets/js/data
             assets/js/dist
+            assets/css
             diem-den
             en
             ke-hoach
