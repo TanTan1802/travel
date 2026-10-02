@@ -16,7 +16,9 @@
     "check-freshness": "node tools/check-freshness.js",
     "add-photo": "node tools/add-photo.js",
     "test:worker": "node --test tests/assistant.test.js",
-    "find-images": "node tools/find-images.js"
+    "find-images": "node tools/find-images.js",
+    "build:dist": "node tools/dist.js",
+    "deploy:cf": "node tools/dist.js && npx wrangler@4 pages deploy dist --project-name viet-travel"
   },
   "engines": {
     "node": ">=18"

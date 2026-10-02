@@ -1,0 +1,48 @@
+# Deploy site lên Cloudflare Pages mỗi khi main thay đổi (hoặc bấm "Run workflow").
+# Cần cấu hình một lần trong Settings → Secrets and variables → Actions:
+#   - Secret  CLOUDFLARE_API_TOKEN  – token có quyền "Cloudflare Pages: Edit"
+#   - Secret  CLOUDFLARE_ACCOUNT_ID – Account ID (trang tổng quan Cloudflare, cột bên phải)
+#   - Variable CF_PAGES_PROJECT (tùy chọn, mặc định viet-travel) và CF_SITE_URL (vd. https://viet-travel.pages.dev/)
+# Chưa có secret thì workflow bỏ qua bước deploy (không báo lỗi).
+name: Deploy Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PROJECT: ${{ vars.CF_PAGES_PROJECT || 'viet-travel' }}
+      SITE_URL: ${{ vars.CF_SITE_URL }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Gom file vào dist/
+        run: node tools/dist.js
+
+      - name: Deploy
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
+        run: |
+          # Lần đầu: tạo project nếu chưa có (đã có thì lệnh báo lỗi – bỏ qua)
+          npx --yes wrangler@4 pages project create "$PROJECT" --production-branch main || true
+          npx --yes wrangler@4 pages deploy dist --project-name "$PROJECT" --branch main --commit-dirty=true
+
+      - name: Chưa cấu hình
+        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == ''
+        run: echo "### Bỏ qua deploy Cloudflare – chưa có secret CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID" >> "$GITHUB_STEP_SUMMARY"
