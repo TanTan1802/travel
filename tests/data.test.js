@@ -529,6 +529,27 @@ test('bản dịch ko/zh/ja: đủ điểm đến + giao diện, trang build đ�
     }
 })
 
+test('gói deploy dist/: chỉ file cần đăng, đổi địa chỉ site, có _headers và 404.html', () => {
+    const { buildDist, SOURCE_URL } = require('../tools/dist')
+    const os = require('os')
+    const out = fs.mkdtempSync(path.join(os.tmpdir(), 'dist-'))
+    try {
+        buildDist(out, 'https://vd.pages.dev')
+        for (const rel of ['index.html', 'en/index.html', 'ko/diem-den/hue/index.html', 'destination.html', 'sw.js', '_headers', '404.html', 'sitemap.xml']) {
+            assert.ok(fs.existsSync(path.join(out, rel)), `dist thiếu ${rel}`)
+        }
+        for (const rel of ['tools', 'tests', 'data', 'worker', 'node_modules', 'package.json', 'home.html']) {
+            assert.ok(!fs.existsSync(path.join(out, rel)), `dist không được chứa ${rel}`)
+        }
+        const sitemap = fs.readFileSync(path.join(out, 'sitemap.xml'), 'utf8')
+        assert.ok(sitemap.includes('https://vd.pages.dev/diem-den/hue/') && !sitemap.includes(SOURCE_URL), 'sitemap phải dùng địa chỉ mới')
+        assert.match(fs.readFileSync(path.join(out, 'diem-den/hue/index.html'), 'utf8'), /rel="canonical" href="https:\/\/vd\.pages\.dev\/diem-den\/hue\/"/)
+        assert.throws(() => buildDist(out, 'http://khong-https'), /SITE_URL/)
+    } finally {
+        fs.rmSync(out, { recursive: true, force: true })
+    }
+})
+
 test('không có liên kết nội bộ hỏng trong các trang đã build', () => {
     const broken = []
     for (const page of builtPages()) {

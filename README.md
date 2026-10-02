@@ -68,6 +68,29 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
   tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`
   vào danh sách kiểm tra build của workflow.
 
+## Deploy lên Cloudflare Pages
+Site là trang tĩnh nên đăng được lên Cloudflare Pages (song song với GitHub Pages).
+
+**Từ máy của bạn** (cần Node 18+):
+```bash
+npx wrangler login                                          # mở trình duyệt đăng nhập Cloudflare (một lần)
+SITE_URL=https://viet-travel.pages.dev/ npm run build:dist  # gom file cần đăng vào dist/
+npx wrangler pages deploy dist --project-name viet-travel   # lần đầu wrangler hỏi tạo project → chọn tạo mới
+```
+- `npm run build:dist` (tools/dist.js) chép trang đã build + tài nguyên vào `dist/` (bỏ `tools/`, `data/`, `tests/`, `worker/`, `node_modules/`…),
+  thêm `_headers` (cache dài cho file có hash) và `404.html`.
+- `SITE_URL` đổi canonical, hreflang, og:image và sitemap sang địa chỉ Cloudflare; bỏ trống thì giữ địa chỉ GitHub Pages
+  (bản Cloudflare khi đó là bản sao, Google vẫn coi GitHub Pages là bản chính). Dùng tên miền riêng thì đặt `SITE_URL` là tên miền đó.
+- Gõ tắt: `npm run deploy:cf` (project `viet-travel`, giữ địa chỉ canonical GitHub Pages).
+
+**Tự động qua GitHub Actions** (workflow `Deploy Cloudflare Pages`, chạy mỗi khi main thay đổi):
+1. Cloudflare → *My Profile → API Tokens → Create Token* → mẫu **Edit Cloudflare Workers** (hoặc token tùy chỉnh có quyền *Account · Cloudflare Pages · Edit*).
+2. GitHub repo → *Settings → Secrets and variables → Actions*: thêm secret `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`;
+   thêm variable `CF_SITE_URL` (vd. `https://viet-travel.pages.dev/`) và `CF_PAGES_PROJECT` nếu đặt tên project khác `viet-travel`.
+3. Chạy workflow một lần bằng *Run workflow* (project được tạo ở lần deploy đầu nếu chưa có).
+
+Trợ lý hỏi đáp: `ALLOWED_ORIGINS` trong `worker/wrangler.toml` đã có `https://viet-travel.pages.dev` – đặt tên project hoặc tên miền khác thì thêm địa chỉ đó.
+
 ## Cài như ứng dụng (PWA)
 Website có thể cài lên màn hình chính điện thoại/máy tính và xem lại các trang đã mở khi mất mạng
 (hữu ích khi lên vùng cao). Service worker (`sw.js`) được `npm run build` tự cập nhật phiên bản.

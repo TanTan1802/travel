@@ -7,3 +7,6 @@ data/sheets/
 
 # Báo cáo Lighthouse CI chạy trên máy
 .lighthouseci/
+
+# Bản đóng gói để deploy (npm run build:dist)
+dist/
