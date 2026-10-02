@@ -1,0 +1,12 @@
+// Deploy site tĩnh (thư mục dist/ do tools/dist.js tạo) lên Cloudflare Workers Static Assets.
+// Cloudflare Workers Builds: Build command = node tools/dist.js, Deploy command = npx wrangler deploy
+// Trợ lý hỏi đáp là Worker riêng, cấu hình ở worker/wrangler.toml.
+{
+  "name": "viet-travel",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    // Đường dẫn không tồn tại → trả dist/404.html với mã 404 (không trả trang chủ)
+    "not_found_handling": "404-page"
+  }
+}

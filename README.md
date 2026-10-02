@@ -83,6 +83,13 @@ npx wrangler pages deploy dist --project-name viet-travel   # lần đầu wrang
   (bản Cloudflare khi đó là bản sao, Google vẫn coi GitHub Pages là bản chính). Dùng tên miền riêng thì đặt `SITE_URL` là tên miền đó.
 - Gõ tắt: `npm run deploy:cf` (project `viet-travel`, giữ địa chỉ canonical GitHub Pages).
 
+**Kết nối repo trong Cloudflare (đơn giản nhất)** – *Workers & Pages → Create → Import a repository* → chọn repo này:
+- Luồng **Workers**: Build command `node tools/dist.js`, Deploy command `npx wrangler deploy` (đọc `wrangler.jsonc`: tên `viet-travel`,
+  thư mục `dist/`, trả `404.html` cho đường dẫn sai). Site ở `https://viet-travel.<tài-khoản>.workers.dev`.
+- Luồng **Pages**: Build command `node tools/dist.js`, Build output directory `dist`.
+- Biến build: `SITE_URL` = địa chỉ site (sau lần deploy đầu), `NODE_VERSION` = `22`, `SKIP_DEPENDENCY_INSTALL` = `1`.
+- Mỗi lần main thay đổi Cloudflare tự build lại – khi đó không cần secret cho workflow bên dưới.
+
 **Tự động qua GitHub Actions** (workflow `Deploy Cloudflare Pages`, chạy mỗi khi main thay đổi):
 1. Cloudflare → *My Profile → API Tokens → Create Token* → mẫu **Edit Cloudflare Workers** (hoặc token tùy chỉnh có quyền *Account · Cloudflare Pages · Edit*).
 2. GitHub repo → *Settings → Secrets and variables → Actions*: thêm secret `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`;

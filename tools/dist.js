@@ -16,7 +16,7 @@ const { ROOT } = require('./lib')
 const SOURCE_URL = 'https://tantan1802.github.io/travel/'
 /* Chỉ phục vụ việc phát triển – không đăng */
 const EXCLUDE = new Set(['.git', '.github', '.claude', '.lighthouseci', 'node_modules', 'dist', 'tools', 'tests', 'data', 'docs', 'worker',
-    'package.json', 'package-lock.json', 'lighthouserc.json', 'README.md', '.gitignore',
+    'package.json', 'package-lock.json', 'lighthouserc.json', 'wrangler.jsonc', 'README.md', '.gitignore',
     'home.html']) // mẫu của index.html
 const TEXT = /\.(html|xml|txt|js|json|css|webmanifest)$/
 
