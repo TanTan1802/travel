@@ -57,7 +57,7 @@ const SCRIPTS = [
     'assets/js/guide-render.js',
     'assets/js/seo-render.js',
 ]
-const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
+const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
     'TRANSLATION_LOCAL', 'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
@@ -237,6 +237,7 @@ function destDataFile(d, site, enSite) {
     const pick = (obj, key) => JSON.stringify(obj && obj[key] ? { [key]: obj[key] } : {})
     return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js + itineraries.js + en.js – không sửa tay. */\n' +
         `const STAY_TYPES = ${JSON.stringify(site.STAY_TYPES)}\n` +
+        `const TRANSPORT = ${JSON.stringify(site.TRANSPORT)}\n` +
         `const PLACES = ${pick(site.PLACES, d.id)}\n` +
         `const SIGHTS = ${pick(site.SIGHTS, d.id)}\n` +
         `const TOUR_LENGTHS = ${JSON.stringify(site.TOUR_LENGTHS)}\n` +

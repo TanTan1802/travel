@@ -154,10 +154,23 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Mẫu `planner.html` → build ra `ke-hoach/index.html` và `en/ke-hoach/index.html`; logic ở `assets/js/planner.js`.
 - Ghép tối đa 10 điểm đến, mỗi nơi 1–7 ngày; nút "Sắp xếp tuyến ngắn nhất" (láng giềng gần nhất + 2-opt, giữ điểm xuất phát).
 - Quãng đường + thời gian đường bộ **thật** từ bảng OSRM (`data/routes.json`, tạo bằng `node tools/build-routes.js` hoặc workflow
-  **Cập nhật quãng đường**; chưa có bảng thì ước tính đường chim bay × 1,3), phương tiện (xe khách/ô tô hoặc máy bay khi xa trên 450 km hay ra đảo) và chi phí/người (tổng `tripCost()` từng điểm dừng + di chuyển giữa các điểm, có bảng "Xem chi tiết chi phí"). Hằng số ở đầu `planner.js`.
+  **Cập nhật quãng đường**; chưa có bảng thì ước tính đường chim bay × 1,3) và chi phí/người (tổng `tripCost()` từng điểm dừng + di chuyển giữa các điểm, có bảng "Xem chi tiết chi phí").
+- **Phương tiện từng chặng** (`transportOptions()` trong `components.js`): ✈ máy bay (hai sân bay khác nhau, cách ≥ 200 km),
+  🚆 tàu hỏa (hai ga cùng tuyến – km lý trình, tốc độ, giá vé đ/km ở `transport.rail` trong `data/places.json`),
+  🚌 xe khách / ô tô, ⛴ xe + tàu cao tốc ra đảo (cảng ở `transport.ports`: Phú Quốc, Côn Đảo, Lý Sơn, Cát Bà).
+  Gợi ý mặc định: bay khi đường bộ ≥ 450 km (không có sân bay thì đi tàu), ra đảo bằng tàu nếu ≤ 4 giờ, còn lại xe khách;
+  người dùng bấm để đổi phương tiện từng chặng (kể cả chặng đi / về từ Hà Nội, Đà Nẵng, Sài Gòn), lưu trong kế hoạch và URL (`&t=ha-noi.hue.t`).
+  Trang điểm đến có bảng "Đi từ các thành phố lớn" với các phương án và giá. Thời gian, giá vé là ước tính tham khảo.
 - Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
+
+## Giao diện sáng / tối
+- Bấm nút mặt trăng / mặt trời trên menu; lựa chọn lưu trong trình duyệt (`selected-theme`).
+- Màu chữ / icon nhấn dùng biến theo theme, đừng dùng thẳng màu nền nút cho chữ:
+  `--first-color-text` (sáng: xanh thương hiệu, tối: cam) và `--accent-color-text` (sáng: cam đậm đủ tương phản trên nền trắng, tối: cam).
+  `--first-color` / `--accent-color` chỉ dùng làm nền nút, viền, nền thẻ.
+- Test e2e "chữ đủ tương phản với nền" đo tỷ lệ tương phản WCAG AA mọi đoạn chữ trên các trang chính ở cả hai theme (bỏ qua chữ đặt trên ảnh).
 
 ## Cẩm nang du lịch (`cam-nang/`)
 

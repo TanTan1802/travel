@@ -7,6 +7,23 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        /* Phương tiện: máy bay, tàu hỏa, xe khách, tàu ra đảo (components.js, planner.js) */
+        'Máy bay ~{time}': 'Flight ~{time}',
+        'Tàu hỏa ~{time}': 'Train ~{time}',
+        'Tàu cao tốc ~{time}': 'Fast boat ~{time}',
+        'Xe + tàu cao tốc ~{time}': 'Bus + fast boat ~{time}',
+        'Xe khách / ô tô ~{time}': 'Bus / car ~{time}',
+        'Ga {from} → {to}': '{from} → {to} station',
+        'Qua {port}': 'Via {port}',
+        'Chưa gồm thời gian ra sân bay': 'Excludes getting to the airport',
+        'Từ {name}': 'From {name}',
+        'Đi từ các thành phố lớn': 'Getting here from major cities',
+        'Thời gian ước tính lúc di chuyển, giá một chiều / người mức tiết kiệm – tham khảo. Phương án in đậm là gợi ý.': 'Estimated travel time; one-way budget fare per person – for reference. The option in bold is our suggestion.',
+        'Vé tàu cao tốc': 'Fast boat tickets',
+        'Chọn phương tiện': 'Choose transport',
+        'gợi ý': 'suggested',
+        'Đi từ {name}': 'Depart from {name}',
+        'Về {name}': 'Back to {name}',
         /* Trợ lý hỏi đáp (assistant.js) */
         'Hỏi Việt Travel': 'Ask Viet Travel',
         'Xin chào! Hỏi mình về điểm đến, thời điểm đẹp, lịch trình, giá vé hay chi phí nhé. Ví dụ: "Đi Đà Lạt 3 ngày tháng 12 hết bao nhiêu?"': 'Hi! Ask me about destinations, the best time to go, itineraries, ticket prices or costs. For example: "How much is a 3-day trip to Da Lat in December?"',

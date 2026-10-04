@@ -236,6 +236,7 @@ function staySection(d) {
                 <div class="getthere">
                     <h3 class="getthere__title"><i class="ri-map-2-line"></i> ${t('Cách đi tới {name}', { name: d.name })}</h3>
                     <p>${pickLang(places.getThere)}</p>
+                    ${hubTransportTable(d)}
                     <div class="book-links">${linkButtons(travel)}</div>
                 </div>
                 <p class="budget__note">${t('Giá phòng tham khảo cho 2 người/đêm, cao hơn vào lễ Tết và cuối tuần. Việt Travel không nhận hoa hồng từ các trang đặt chỗ.')}</p>

@@ -21,8 +21,10 @@ test.after(async () => {
 })
 
 /* Trang mới với tài nguyên ngoài đã được giả lập; trả về trang + danh sách lỗi thu được */
-async function openPage(url, { viewport = { width: 1280, height: 900 }, geolocation = null } = {}) {
-    const context = await browser.newContext({ viewport, serviceWorkers: 'block', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) })
+async function openPage(url, { viewport = { width: 1280, height: 900 }, geolocation = null, theme = '' } = {}) {
+    const context = await browser.newContext({ viewport, serviceWorkers: 'block', reducedMotion: theme ? 'reduce' : 'no-preference', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) })
+    /* theme: 'dark' / 'light' – giống người dùng đã bấm nút đổi giao diện */
+    if (theme) await context.addInitScript(value => { try { localStorage.setItem('selected-theme', value) } catch { /* bỏ qua */ } }, theme)
     await setupRoutes(context)
     /* grantPermissions thay thế quyền của origin nên phải kèm cả geolocation nếu cần */
     await context.grantPermissions(['clipboard-read', 'clipboard-write', ...(geolocation ? ['geolocation'] : [])], { origin: server.url.replace(/\/$/, '') })
@@ -294,6 +296,29 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
     await close()
 })
 
+test('lập kế hoạch: chọn phương tiện từng chặng (máy bay / tàu hỏa / xe khách), có chặng đi – về từ Hà Nội', async () => {
+    const { page, errors, close } = await openPage('ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi')
+    await page.waitForSelector('.planner--ready')
+    const outbound = page.locator('.leg', { hasText: 'Đi từ Hà Nội' })
+    assert.equal(await outbound.locator('.leg__mode--active').getAttribute('data-mode'), 'flight', 'Hà Nội → Huế mặc định đi máy bay')
+    const before = await page.textContent('.planner__cost strong')
+    await outbound.locator('.leg__mode[data-mode="train"]').click()
+    await page.waitForFunction(() => document.querySelector('.leg .leg__mode--active[data-mode="train"]'))
+    assert.match(page.url(), /[?&]t=ha-noi\.hue\.t/, 'URL chia sẻ ghi phương tiện đã chọn')
+    assert.match(await page.locator('.leg').first().textContent(), /Ga Hà Nội → Huế/)
+    assert.notEqual(await page.textContent('.planner__cost strong'), before, 'chi phí cập nhật theo phương tiện')
+    /* Huế → Đà Nẵng có tàu qua đèo Hải Vân, không có máy bay */
+    const hueDn = page.locator('.leg[aria-label="Di chuyển"]').first()
+    assert.equal(await hueDn.locator('.leg__mode[data-mode="train"]').count(), 1)
+    assert.equal(await hueDn.locator('.leg__mode[data-mode="flight"]').count(), 0)
+    /* Mở lại liên kết: giữ lựa chọn */
+    await page.reload()
+    await page.waitForSelector('.planner--ready')
+    assert.equal(await page.locator('.leg').first().locator('.leg__mode--active').getAttribute('data-mode'), 'train')
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('trong chuyến đi: chế độ Hôm nay, nhắc chuyến đi, gần tôi, lưu offline', async () => {
     /* Đang đi: ngày 2/3 ở Hội An lúc 12:00 → đang ăn trưa (11:30), tiếp theo cà phê 13:00 */
     const { page, errors, close } = await openPage('ke-hoach/index.html?p=hoi-an.3&d=2026-11-10&today=2026-11-11&now=12:00', { geolocation: { latitude: 21.03, longitude: 105.85 } })
@@ -460,6 +485,85 @@ test('bản tiếng Hàn / Trung / Nhật: giao diện, ngày tháng, lịch tr�
 
     assert.deepEqual(errors, [])
     await close()
+})
+
+/*
+ * Tương phản chữ / nền theo WCAG AA (4,5:1; chữ lớn 3:1) cho mọi đoạn chữ có nền đơn sắc hoặc gradient.
+ * Bỏ qua chữ đặt trên ảnh (không đo được) – các chỗ đó đã có lớp phủ tối riêng.
+ */
+async function lowContrastText(page) {
+    /* Cuộn tức thì (site bật scroll-behavior: smooth) để đo đúng vị trí */
+    await page.addStyleTag({ content: 'html, body { scroll-behavior: auto !important; } *, *::before, *::after { transition: none !important; }' })
+    await page.evaluate(async () => {
+        for (let y = 0; y < document.body.scrollHeight; y += 700) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 20)) }
+        window.scrollTo(0, 0)
+    })
+    return page.evaluate(() => {
+        const parse = c => { const m = c.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return { r: p[0], g: p[1], b: p[2], a: p[3] == null ? 1 : p[3] } }
+        const blend = (top, bot) => ({ r: top.r * top.a + bot.r * (1 - top.a), g: top.g * top.a + bot.g * (1 - top.a), b: top.b * top.a + bot.b * (1 - top.a), a: 1 })
+        const lum = c => { const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4 }; return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b) }
+        const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05) }
+        /* Nền thực sự nằm dưới điểm giữa của chữ (cả lớp phủ, header cố định...); gặp ảnh / video thì không đo */
+        const background = el => {
+            el.scrollIntoView({ block: 'center', inline: 'center' })
+            const r = el.getBoundingClientRect()
+            const x = Math.min(innerWidth - 1, Math.max(0, r.left + r.width / 2))
+            const y = Math.min(innerHeight - 1, Math.max(0, r.top + r.height / 2))
+            const layers = []
+            for (const n of document.elementsFromPoint(x, y)) {
+                if (n.tagName === 'IMG' || n.tagName === 'VIDEO' || n.tagName === 'IFRAME') return null
+                const cs = getComputedStyle(n)
+                if (cs.backgroundImage.includes('url(')) return null
+                if (cs.backgroundImage.includes('gradient')) {
+                    const stops = [...cs.backgroundImage.matchAll(/rgba?\([^)]+\)/g)].map(m => parse(m[0])).filter(Boolean)
+                    if (stops.length) {
+                        const avg = k => stops.reduce((sum, c) => sum + c[k], 0) / stops.length
+                        layers.push({ r: avg('r'), g: avg('g'), b: avg('b'), a: Math.min(1, avg('a')) })
+                        if (avg('a') >= 0.99) break
+                    }
+                }
+                const c = parse(cs.backgroundColor)
+                if (c && c.a > 0) { layers.push(c); if (c.a >= 1) break }
+            }
+            return layers.reverse().reduce((bg, layer) => blend(layer, bg), { r: 255, g: 255, b: 255, a: 1 })
+        }
+        const bad = []
+        const seen = new Set()
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+        while (walker.nextNode()) {
+            const el = walker.currentNode.parentElement
+            const text = walker.currentNode.textContent.trim()
+            if (!el || text.length < 2 || seen.has(el)) continue
+            seen.add(el)
+            if (el.closest('script, style, noscript, svg, [hidden], .print-only, .leaflet-container')) continue
+            if (!el.checkVisibility({ checkVisibilityCSS: true }) || !el.getBoundingClientRect().width) continue
+            const cs = getComputedStyle(el)
+            if (el.closest('[disabled], :disabled')) continue
+            const bg = background(el)
+            if (!bg) continue
+            const fg = blend(parse(cs.color), bg)
+            const size = parseFloat(cs.fontSize)
+            const need = size >= 24 || (size >= 18.66 && Number(cs.fontWeight) >= 700) ? 3 : 4.5
+            const r = ratio(fg, bg)
+            if (r < need) bad.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} "${text.slice(0, 30)}" ${r.toFixed(2)} < ${need} (${cs.color})`)
+        }
+        return [...new Set(bad)]
+    })
+}
+
+test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
+    const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html']
+    const problems = []
+    for (const theme of ['dark', 'light']) {
+        for (const rel of pages) {
+            const { page, close } = await openPage(rel, { theme })
+            await page.waitForLoadState('networkidle')
+            assert.equal(await page.evaluate(() => document.body.classList.contains('dark-theme')), theme === 'dark')
+            ;(await lowContrastText(page)).forEach(p => problems.push(`[${theme}] ${rel}: ${p}`))
+            await close()
+        }
+    }
+    assert.deepEqual(problems, [], `chữ khó đọc:\n${problems.join('\n')}`)
 })
 
 test('giao diện điện thoại không bị tràn ngang', async () => {

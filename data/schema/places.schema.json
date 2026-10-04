@@ -4,11 +4,69 @@
   "title": "Quán ăn, quán nước, lưu trú và đi lại theo điểm đến",
   "description": "price: VND [thấp, cao] – quán: mỗi người; lưu trú: mỗi đêm / phòng. city dùng để tìm trên Booking / Google Maps.",
   "type": "object",
-  "required": ["stayTypes", "places"],
+  "required": ["stayTypes", "transport", "places"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
     "stayTypes": { "type": "object", "additionalProperties": { "$ref": "common.schema.json#/$defs/pair" } },
+    "transport": {
+      "description": "Tàu hỏa (km lý trình từng ga theo tuyến) và cảng tàu cao tốc ra đảo – gợi ý phương tiện giữa các điểm đến",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rail", "ports"],
+      "properties": {
+        "rail": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fare", "lines"],
+          "properties": {
+            "note": { "type": "string" },
+            "fare": {
+              "description": "Giá vé đ/km theo mức chi tiêu + giá tối thiểu một chặng",
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["saving", "comfort", "min"],
+              "properties": {
+                "saving": { "type": "integer", "minimum": 1 },
+                "comfort": { "type": "integer", "minimum": 1 },
+                "min": { "$ref": "common.schema.json#/$defs/vnd" }
+              }
+            },
+            "lines": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "kmh", "stations"],
+                "properties": {
+                  "name": { "$ref": "common.schema.json#/$defs/pair" },
+                  "kmh": { "description": "Tốc độ trung bình kể cả dừng đỗ", "type": "number", "exclusiveMinimum": 0 },
+                  "stations": { "description": "Tên ga → km lý trình", "type": "object", "minProperties": 2, "additionalProperties": { "type": "number", "minimum": 0 } }
+                }
+              }
+            }
+          }
+        },
+        "ports": {
+          "description": "Cảng tàu cao tốc ra đảo: đi bằng đường bộ tới cảng rồi đi tàu",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["dest", "name", "lat", "lng", "hours", "price"],
+            "properties": {
+              "dest": { "$ref": "common.schema.json#/$defs/id" },
+              "name": { "$ref": "common.schema.json#/$defs/pair" },
+              "lat": { "type": "number", "minimum": 8, "maximum": 24 },
+              "lng": { "type": "number", "minimum": 102, "maximum": 110 },
+              "hours": { "type": "number", "exclusiveMinimum": 0 },
+              "price": { "$ref": "common.schema.json#/$defs/range" }
+            }
+          }
+        }
+      }
+    },
     "places": {
       "type": "object",
       "propertyNames": { "$ref": "common.schema.json#/$defs/id" },
@@ -19,7 +77,7 @@
         "properties": {
           "city": { "type": "string", "minLength": 1 },
           "airport": { "description": "Mã sân bay IATA gần nhất", "type": "string", "pattern": "^[A-Z]{3}$" },
-          "rail": { "description": "Ga tàu Thống Nhất gần nhất", "type": "string", "minLength": 1 },
+          "rail": { "description": "Ga tàu gần nhất – phải có trong transport.rail.lines", "type": "string", "minLength": 1 },
           "getThere": { "$ref": "common.schema.json#/$defs/pair" },
           "eats": {
             "type": "array",

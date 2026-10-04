@@ -134,6 +134,13 @@ a {
   text-decoration: none;
 }
 
+/* Link trong đoạn văn (không có class riêng): cùng màu nhấn của theme, gạch chân để nhận ra */
+:where(p, li, small, td) > a:not([class]) {
+  color: var(--first-color-text, var(--first-color));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 img,
 video {
   max-width: 100%;

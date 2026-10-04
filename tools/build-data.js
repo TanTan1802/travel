@@ -27,8 +27,10 @@ const DATASETS = {
         doc: 'Lịch trình 5 ngày mỗi điểm đến (tour 3/4/5 ngày = 3/4/5 ngày đầu) + fees [tiết kiệm, thoải mái].',
     },
     places: {
-        vars: { stayTypes: 'STAY_TYPES', places: 'PLACES' },
-        doc: 'Quán ăn, quán nước, khu lưu trú và cách đi tới từng điểm đến.',
+        vars: { stayTypes: 'STAY_TYPES', transport: 'TRANSPORT', places: 'PLACES' },
+        doc: 'Quán ăn, quán nước, khu lưu trú và cách đi tới từng điểm đến; TRANSPORT: tàu hỏa, cảng tàu ra đảo\n * và (sinh thêm) stations = sân bay + ga của từng điểm đến.',
+        /* Sân bay + ga của mọi điểm đến đi kèm TRANSPORT để trang điểm đến (chỉ nạp dữ liệu của riêng nó) vẫn tính được chặng từ thành phố khác */
+        transform: json => ({ ...json, transport: { ...json.transport, stations: Object.fromEntries(Object.entries(json.places).map(([id, p]) => [id, { airport: p.airport, ...(p.rail ? { rail: p.rail } : {}) }])) } }),
     },
     sights: {
         vars: { sights: 'SIGHTS' },
@@ -95,6 +97,11 @@ function crossChecks(data) {
     Object.entries(data.places.places).forEach(([id, p]) => [...p.eats, ...p.cafes].forEach(e => {
         if (e.updated > thisMonth) errors.push(`places.${id} · ${e.name}: updated ${e.updated} ở tương lai`)
     }))
+    const stations = new Set(data.places.transport.rail.lines.flatMap(l => Object.keys(l.stations)))
+    Object.entries(data.places.places).forEach(([id, p]) => {
+        if (p.rail && !stations.has(p.rail)) errors.push(`places.${id}: ga ${p.rail} không có trong transport.rail.lines`)
+    })
+    data.places.transport.ports.forEach((port, i) => { if (!idSet.has(port.dest)) errors.push(`places.transport.ports[${i}]: điểm đến ${port.dest} không tồn tại`) })
     Object.entries(data.places.places).forEach(([id, p]) => {
         p.eats.forEach((e, i) => rangeOk(e.price, `places.${id}.eats[${i}]`))
         p.cafes.forEach((c, i) => rangeOk(c.price, `places.${id}.cafes[${i}]`))
@@ -152,7 +159,8 @@ function loadAndValidate() {
 }
 
 function generate(name, json) {
-    const { vars, whole, doc } = DATASETS[name]
+    const { vars, whole, doc, transform } = DATASETS[name]
+    if (transform && json) json = transform(json)
     const body = whole
         ? `const ${whole} = ${json ? JSON.stringify((({ $schema, ...rest }) => rest)(json)) : 'null'}`
         : Object.entries(vars)

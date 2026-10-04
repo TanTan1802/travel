@@ -361,7 +361,7 @@ test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với J
     const { loadAndValidate, DATASETS } = require('../tools/build-data')
     const { data, errors } = loadAndValidate()
     assert.deepEqual(errors, [], `dữ liệu không hợp lệ:\n${errors.join('\n')}`)
-    for (const [name, { vars, whole }] of Object.entries(DATASETS)) {
+    for (const [name, { vars, whole, transform }] of Object.entries(DATASETS)) {
         if (whole) {
             /* Bộ dữ liệu không bắt buộc, sinh nguyên khối (vd. ROUTES = null khi chưa có data/routes.json) */
             const value = loadBrowserScripts([`assets/js/data/${name}.js`], [whole])[whole]
@@ -370,8 +370,9 @@ test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với J
             continue
         }
         const generated = loadBrowserScripts([`assets/js/data/${name}.js`], Object.values(vars))
+        const source = transform ? transform(data[name]) : data[name]
         for (const [key, constName] of Object.entries(vars)) {
-            assert.equal(JSON.stringify(generated[constName]), JSON.stringify(data[name][key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
+            assert.equal(JSON.stringify(generated[constName]), JSON.stringify(source[key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
         }
     }
 
@@ -597,7 +598,7 @@ test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề �
     assert.ok(hue.includes('id="dai-noi-hue-ngo-mon-tu-cam-thanh"'))
 })
 
-test('lập kế hoạch: dùng quãng đường/thời gian đường bộ thật (ROUTES) khi có, không thì ước tính', () => {
+test('lập kế hoạch: quãng đường bộ thật (ROUTES), nhiều phương tiện (bay / tàu hỏa / xe / tàu ra đảo), chọn phương tiện từng chặng', () => {
     const vm = require('vm')
     const noop = () => {}
     const files = ['assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js', 'assets/js/data/places.js',
@@ -611,6 +612,10 @@ test('lập kế hoạch: dùng quãng đường/thời gian đường bộ th�
         }
         vm.runInNewContext(`const ROUTES = ${JSON.stringify(routes)};\n${files.map(f => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n;\n')}
             ;this.leg = (a, b) => legInfo(getDestination(a), getDestination(b), 'saving')
+            ;this.options = (a, b) => transportOptions(getDestination(a), getDestination(b), 'saving')
+            ;this.totals = plan => planTotals(plan)
+            ;this.toQuery = plan => planToQuery(plan)
+            ;this.fromQuery = q => planFromQuery(q)
             ;this.links = stayLinks('Hue', '', '2026-11-10', 2, 5)`, ctx)
         return ctx
     }
@@ -624,6 +629,39 @@ test('lập kế hoạch: dùng quãng đường/thời gian đường bộ th�
     assert.equal(leg.km, 125, 'quãng đường lấy từ ROUTES')
     assert.equal(leg.hours, 3, '2,5 giờ lái xe × 1,25 (xe khách) ≈ 3 giờ')
     assert.equal(measured.leg('hue', 'ha-noi').mode, 'flight', 'trên 450 km đường bộ → gợi ý bay')
+
+    /* Nhiều phương tiện: tàu hỏa theo km lý trình, tàu cao tốc ra đảo, đảo không có đường bộ */
+    const opts = (a, b) => measured.options(a, b)
+    const hnDn = opts('ha-noi', 'da-nang')
+    assert.deepEqual([...hnDn.options.map(o => o.mode)].sort(), ['flight', 'road', 'train'], 'Hà Nội – Đà Nẵng: bay, tàu, xe')
+    assert.equal(hnDn.recommended, 'flight')
+    const train = hnDn.options.find(o => o.mode === 'train')
+    assert.equal(train.km, 791, 'km lý trình Hà Nội – Đà Nẵng')
+    assert.ok(train.hours >= 15 && train.hours <= 17, `tàu Hà Nội – Đà Nẵng ~16 giờ (${train.hours})`)
+    assert.ok(train.cost < hnDn.options.find(o => o.mode === 'flight').cost, 'vé tàu rẻ hơn vé bay')
+    assert.ok(opts('hue', 'da-nang').options.some(o => o.mode === 'train'), 'Huế – Đà Nẵng có tàu qua đèo Hải Vân')
+    assert.ok(opts('ha-noi', 'sa-pa').options.some(o => o.mode === 'train' && o.stations[1] === 'Lào Cai'), 'Hà Nội – Sa Pa: tàu tới ga Lào Cai')
+    assert.ok(!opts('hue', 'sa-pa').options.some(o => o.mode === 'train'), 'khác tuyến thì không gợi ý tàu thẳng')
+    assert.ok(!opts('hue', 'da-nang').options.some(o => o.mode === 'flight'), 'quá gần thì không có chuyến bay')
+    const island = opts('ha-tien', 'phu-quoc')
+    assert.equal(island.recommended, 'boat')
+    assert.ok(!island.options.some(o => o.mode === 'road'), 'không đi đường bộ ra đảo')
+    assert.deepEqual([...opts('phu-quoc', 'con-dao').options.map(o => o.mode)], ['flight'], 'đảo – đảo chỉ có máy bay')
+    assert.equal(opts('ha-noi', 'cat-ba').recommended, 'boat', 'Cát Bà: xe + tàu cao tốc')
+
+    /* Chọn phương tiện cho từng chặng: lưu trong plan.modes, chia sẻ qua URL (t=...) */
+    const plan = { stops: [{ id: 'hue', days: 2 }, { id: 'da-nang', days: 2 }], tier: 'saving', origin: 'ha-noi', modes: {} }
+    const before = measured.totals(plan)
+    assert.equal(before.legs[0].mode, 'road')
+    assert.equal(before.outbound.mode, 'flight')
+    const chosen = { ...plan, modes: { 'hue>da-nang': 'train', 'ha-noi>hue': 'train' } }
+    const after = measured.totals(chosen)
+    assert.equal(after.legs[0].mode, 'train')
+    assert.equal(after.outbound.mode, 'train')
+    assert.ok(after.total < before.total, 'đi tàu thay máy bay rẻ hơn')
+    const query = measured.toQuery(chosen)
+    assert.match(query, /t=hue\.da-nang\.t,ha-noi\.hue\.t|t=ha-noi\.hue\.t,hue\.da-nang\.t/)
+    assert.deepEqual({ ...measured.fromQuery(query).modes }, chosen.modes)
 
     /* Link đặt phòng theo số người: 5 người → 3 phòng */
     const booking = new URL(measured.links.find(l => l.label === 'Booking.com').url)

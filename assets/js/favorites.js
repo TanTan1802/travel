@@ -87,7 +87,7 @@ function planDefaultDays(d) {
 
 const TripPlan = (() => {
     const KEY = 'viet-travel:plan'
-    const empty = () => ({ stops: [], month: 0, start: '', tier: 'saving', booked: {}, origin: '', people: 2, style: '' })
+    const empty = () => ({ stops: [], month: 0, start: '', tier: 'saving', booked: {}, origin: '', people: 2, style: '', modes: {} })
 
     function read() {
         try {

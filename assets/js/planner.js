@@ -5,15 +5,7 @@
  * Kế hoạch lưu trên trình duyệt (TripPlan) và chia sẻ được qua URL: ?p=hue.2,hoi-an.3&m=3&b=c
  */
 
-/* Đảo chỉ đến được bằng máy bay / tàu cao tốc */
-const ISLAND_IDS = ['phu-quoc', 'con-dao']
-const ROAD_FACTOR = 1.3 // đường bộ dài hơn đường chim bay khoảng 30%
-const FLIGHT_FROM_KM = 450 // từ quãng đường bộ này trở lên gợi ý bay
-
-const TRANSPORT_COST = {
-    road: { saving: 900, comfort: 2200, min: 120000 }, // đ/km: xe khách / xe riêng ghép
-    flight: { saving: 1300000, comfort: 2800000 }, // vé một chiều phổ thông
-}
+/* Phương tiện giữa các điểm đến (máy bay, tàu hỏa, xe khách, tàu ra đảo): transportOptions() trong components.js */
 
 const SUGGESTED_ROUTES = [
     { title: 'Miền Bắc kinh điển', icon: 'ri-landscape-line', stops: [['ha-noi', 2], ['ninh-binh', 2], ['vinh-ha-long', 2], ['sa-pa', 3]] },
@@ -30,38 +22,20 @@ const planner = {
     layer: null,
 }
 
-const COACH_FACTOR = 1.25 // xe khách / limousine chậm hơn ô tô riêng (dừng đón trả, nghỉ giữa đường)
-
-/*
- * Quãng đường + thời gian đường bộ thật giữa hai điểm đến từ bảng ROUTES (OSRM, data/routes.json – xem
- * tools/build-routes.js); chưa có bảng thì ước tính theo đường chim bay × ROAD_FACTOR, 45 km/h.
- */
-function roadRoute(a, b) {
-    const table = typeof ROUTES !== 'undefined' && ROUTES
-    const i = table ? table.ids.indexOf(a.id) : -1
-    const j = table ? table.ids.indexOf(b.id) : -1
-    if (i >= 0 && j >= 0 && table.km[i][j] != null) {
-        return { km: table.km[i][j], hours: table.hours[i][j] * COACH_FACTOR, measured: true }
-    }
-    const km = Math.round(distanceKm(a, b) * ROAD_FACTOR)
-    return { km, hours: km / 45, measured: false }
-}
-
 /*---------- Tính toán ----------*/
-function legInfo(a, b, tier) {
-    const road = roadRoute(a, b)
-    const km = road.km
-    const flight = km >= FLIGHT_FROM_KM || ISLAND_IDS.includes(a.id) || ISLAND_IDS.includes(b.id)
-    if (flight) {
-        return { km, mode: 'flight', hours: null, cost: TRANSPORT_COST.flight[tier] }
-    }
-    const hours = Math.max(1, Math.round(road.hours * 2) / 2)
-    return { km, mode: 'road', hours, cost: Math.max(TRANSPORT_COST.road.min, Math.round(km * TRANSPORT_COST.road[tier] / 10000) * 10000) }
+const legKey = (a, b) => `${a.id}>${b.id}`
+
+/* Chặng a → b: phương tiện người dùng đã chọn (plan.modes), không thì phương án gợi ý */
+function legInfo(a, b, tier, modes = {}) {
+    const { options, recommended } = transportOptions(a, b, tier)
+    const chosen = options.find(o => o.mode === modes[legKey(a, b)]) || options.find(o => o.mode === recommended) || options[0]
+    return { ...chosen, key: legKey(a, b), options, recommended }
 }
 
 function planTotals(plan) {
     const dests = plan.stops.map(s => getDestination(s.id))
-    const legs = dests.slice(1).map((d, i) => legInfo(dests[i], d, plan.tier))
+    const modes = plan.modes || {}
+    const legs = dests.slice(1).map((d, i) => legInfo(dests[i], d, plan.tier, modes))
     const days = plan.stops.reduce((sum, s) => sum + s.days, 0)
     /* Chi phí từng điểm dừng (lưu trú, ăn uống, đi lại, vé tham quan) – xem tripCost() trong components.js */
     const nights = planStays(plan).map(s => s.nights)
@@ -82,8 +56,8 @@ function planTotals(plan) {
 
     /* Điểm xuất phát: thêm chặng đi và chặng về (bỏ qua nếu trùng điểm đầu / cuối) */
     const origin = plan.origin && getDestination(plan.origin)
-    const outbound = origin && dests.length && origin.id !== dests[0].id ? legInfo(origin, dests[0], plan.tier) : null
-    const inbound = origin && dests.length && origin.id !== dests[dests.length - 1].id ? legInfo(dests[dests.length - 1], origin, plan.tier) : null
+    const outbound = origin && dests.length && origin.id !== dests[0].id ? legInfo(origin, dests[0], plan.tier, modes) : null
+    const inbound = origin && dests.length && origin.id !== dests[dests.length - 1].id ? legInfo(dests[dests.length - 1], origin, plan.tier, modes) : null
     const originCost = (outbound ? outbound.cost : 0) + (inbound ? inbound.cost : 0)
     if (originCost) {
         breakdown.push({ key: 'origin', icon: 'ri-flight-takeoff-line', label: t('Đi và về {name}', { name: origin.name }), amount: originCost, count: [outbound, inbound].filter(Boolean).length, unit: t('chặng') })
@@ -180,6 +154,9 @@ function planToQuery(plan) {
     if (plan.origin) params.set('o', plan.origin)
     if (plan.people && plan.people !== 2) params.set('n', plan.people)
     if (plan.style) params.set('s', plan.style)
+    /* Phương tiện tự chọn từng chặng: t=ha-noi.da-nang.t,hue.hoi-an.r */
+    const modes = Object.entries(plan.modes || {}).filter(([, m]) => MODES.includes(m))
+    if (modes.length) params.set('t', modes.map(([key, m]) => `${key.replace('>', '.')}.${m[0]}`).join(','))
     return `?${params.toString().replace(/%2C/g, ',')}`
 }
 
@@ -196,20 +173,44 @@ function planFromQuery(search) {
     const start = /^\d{4}-\d{2}-\d{2}$/.test(params.get('d') || '') ? params.get('d') : ''
     const month = start ? Number(start.slice(5, 7)) : parseInt(params.get('m'), 10)
     const people = parseInt(params.get('n'), 10)
+    const modes = {}
+    ;(params.get('t') || '').split(',').forEach(part => {
+        const [a, b, m] = part.split('.')
+        const mode = MODES.find(x => x[0] === m)
+        if (getDestination(a) && getDestination(b) && mode) modes[`${a}>${b}`] = mode
+    })
     return {
         stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {},
         origin: ORIGIN_IDS.includes(params.get('o')) ? params.get('o') : '',
         people: people >= 1 && people <= PEOPLE_MAX ? people : 2,
         style: TRAVEL_STYLES[params.get('s')] ? params.get('s') : '',
+        modes,
     }
 }
 
 /*---------- Giao diện ----------*/
-const legMode = leg => (leg.mode === 'flight'
-    ? t('Máy bay / tàu cao tốc')
-    : t('Xe khách / ô tô ~{h} giờ', { h: LANG === 'vi' ? String(leg.hours).replace('.', ',') : leg.hours }))
+const legMode = leg => modeLabel(leg)
 
-const legLabel = leg => `<i class="${leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line'}"></i> ${legMode(leg)}`
+/* Một chặng trong danh sách điểm dừng: chọn phương tiện (giá / người, ghi chú ga – cảng) */
+function legItem(leg, title = '') {
+    const options = MODES.map(m => leg.options.find(o => o.mode === m)).filter(Boolean)
+    const note = modeNote(leg)
+    return `
+        <li class="leg" aria-label="${title || t('Di chuyển')}">
+            ${title ? `<span class="leg__title">${title}</span>` : ''}
+            <div class="leg__modes" role="group" aria-label="${t('Chọn phương tiện')}">
+                ${options.map(o => `
+                    <button type="button" class="leg__mode${o.mode === leg.mode ? ' leg__mode--active' : ''}" data-action="leg-mode" data-leg="${leg.key}" data-mode="${o.mode}" aria-pressed="${o.mode === leg.mode}"${options.length < 2 ? ' disabled' : ''}>
+                        <i class="${MODE_ICONS[o.mode]}"></i>
+                        <span>${modeLabel(o)}</span>
+                        <small>${formatVnd(o.cost)}${o.mode === leg.recommended && options.length > 1 ? ` · ${t('gợi ý')}` : ''}</small>
+                    </button>
+                `).join('')}
+            </div>
+            <span class="leg__meta">~${leg.km} km${note ? ` · ${note}` : ''}</span>
+        </li>
+    `
+}
 
 function destinationOptions(plan) {
     return Object.keys(REGIONS).map(region => `
@@ -276,6 +277,7 @@ function renderStops(plan, totals) {
             <p class="print-url"></p>
         </div>
         <ol class="planner__stops">
+            ${totals.outbound ? legItem(totals.outbound, t('Đi từ {name}', { name: totals.origin.name })) : ''}
             ${plan.stops.map((stop, i) => {
                 const d = totals.dests[i]
                 const offSeason = plan.month && !d.bestMonths.includes(plan.month)
@@ -301,14 +303,10 @@ function renderStops(plan, totals) {
                             <button type="button" data-action="remove" aria-label="${t('Xóa {name}', { name: d.name })}"><i class="ri-close-line"></i></button>
                         </div>
                     </li>
-                    ${leg ? `
-                        <li class="leg" aria-label="${t('Di chuyển')}">
-                            <span>${legLabel(leg)}</span>
-                            <span>~${leg.km} km · ${formatVnd(leg.cost)}</span>
-                        </li>
-                    ` : ''}
+                    ${leg ? legItem(leg) : ''}
                 `
             }).join('')}
+            ${totals.inbound ? legItem(totals.inbound, t('Về {name}', { name: totals.origin.name })) : ''}
         </ol>
     `
 }
@@ -630,7 +628,7 @@ function bookingItems(plan, totals) {
     const items = []
     const originItem = (from, to, leg, date, key) => ({
         key,
-        icon: leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line',
+        icon: MODE_ICONS[leg.mode],
         title: `${from.name} → ${to.name}`,
         detail: `${legMode(leg)}${date ? ` · ${formatDate(date)}` : ''}`,
         links: transportLinks(from, to, leg.mode, date),
@@ -643,7 +641,7 @@ function bookingItems(plan, totals) {
             const from = totals.dests[i - 1]
             items.push({
                 key: `leg:${from.id}>${d.id}`,
-                icon: leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line',
+                icon: MODE_ICONS[leg.mode],
                 title: `${from.name} → ${d.name}`,
                 detail: `${legMode(leg)}${s.checkin ? ` · ${formatDate(s.checkin)}` : ''}`,
                 links: transportLinks(from, d, leg.mode, s.checkin),
@@ -832,6 +830,8 @@ function handlePlannerClick(e) {
             return commit({ ...plan, stops: plan.stops.filter((_, i) => i !== index) })
         case 'tier':
             return commit({ ...plan, tier: btn.dataset.tier })
+        case 'leg-mode':
+            return commit({ ...plan, modes: { ...(plan.modes || {}), [btn.dataset.leg]: btn.dataset.mode } })
         case 'style': {
             const style = plan.style === btn.dataset.style ? '' : btn.dataset.style
             const suggested = style && TRAVEL_STYLES[style].tier

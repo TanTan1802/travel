@@ -2,6 +2,9 @@
 :root {
   --container-color: #FFF;
   --accent-color: hsl(38, 92%, 55%);
+  /* Màu chữ / icon nhấn: --first-color quá tối trên nền tối, --accent-color quá nhạt trên nền trắng */
+  --first-color-text: var(--first-color);
+  --accent-color-text: hsl(32, 90%, 34%);
   --shadow: 0 8px 24px hsla(var(--hue-color), 64%, 18%, .12);
   --radius: .75rem;
 }
@@ -9,6 +12,8 @@
 body.dark-theme {
   --container-color: hsl(var(--hue-color), 29%, 16%);
   --shadow: 0 8px 24px hsla(0, 0%, 0%, .35);
+  --first-color-text: var(--accent-color);
+  --accent-color-text: var(--accent-color);
 }
 
 body.no-scroll {
@@ -20,7 +25,7 @@ body.no-scroll {
   text-align: center;
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--accent-color);
+  color: var(--accent-color-text);
   text-transform: uppercase;
   letter-spacing: .12em;
   margin-bottom: var(--mb-0-5);
@@ -165,7 +170,7 @@ body:not(.dark-theme) .itinerary__tab--active span {
 .explore__tip {
   text-align: center;
   font-size: var(--smaller-font-size);
-  color: var(--accent-color);
+  color: var(--accent-color-text);
   margin: calc(-1 * var(--mb-1)) 0 var(--mb-1-5);
 }
 
@@ -506,12 +511,9 @@ body.page-detail {
 }
 
 .overview__highlights i {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .overview__highlights i {
-  color: var(--accent-color);
-}
 
 .overview__img {
   border-radius: var(--radius);
@@ -1197,12 +1199,9 @@ body.dark-theme .overview__highlights i {
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
   background-color: var(--input-color);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .nearby-item__distance {
-  color: var(--accent-color);
-}
 
 .location__directions {
   justify-content: center;
@@ -1337,7 +1336,7 @@ body.dark-theme .nearby-item__distance {
   font-style: normal;
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 /* Mức đang chọn */
@@ -1397,13 +1396,9 @@ body.dark-theme .nearby-item__distance {
   height: 36px;
   border-radius: 50%;
   background-color: var(--input-color);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .cost-item__icon,
-body.dark-theme .budget__more {
-  color: var(--accent-color);
-}
 
 .cost-item__text,
 .cost-item__amount {
@@ -1435,12 +1430,9 @@ body.dark-theme .budget__more {
   cursor: pointer;
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .cost-details summary {
-  color: var(--accent-color);
-}
 
 .budget__note {
   margin-top: var(--mb-0-75);
@@ -1519,6 +1511,10 @@ body.dark-theme .cost-details summary {
   font-size: 1.15rem;
 }
 
+.fav-btn--labeled:not(.fav-btn--active) {
+  color: hsl(350, 72%, 44%);
+}
+
 .fav-btn--labeled.fav-btn--active {
   background-color: hsl(350, 75%, 52%);
   color: var(--white-color);
@@ -1594,7 +1590,7 @@ body.dark-theme .cost-details summary {
 }
 
 .weather {
-  background: linear-gradient(135deg, hsl(200, 70%, 45%), hsl(215, 65%, 32%));
+  background: linear-gradient(135deg, hsl(200, 72%, 38%), hsl(215, 65%, 28%));
   color: var(--white-color);
 }
 
@@ -1663,7 +1659,7 @@ body.dark-theme .cost-details summary {
   row-gap: .15rem;
   padding: .6rem .25rem;
   border-radius: .6rem;
-  background-color: hsla(0, 0%, 100%, .14);
+  background-color: hsla(0, 0%, 100%, .1);
   font-size: var(--small-font-size);
 }
 
@@ -1859,7 +1855,7 @@ body.dark-theme .season__status--good {
 .nav__lang-list a:hover { background-color: var(--input-color); }
 
 .nav__lang-list a[aria-current] {
-  color: var(--first-color);
+  color: var(--first-color-text);
   font-weight: var(--font-semi-bold);
 }
 
@@ -2143,7 +2139,7 @@ button.season__month:hover {
 
 .planner-hero .section__subtitle,
 body:not(.dark-theme) .planner-hero .section__subtitle {
-  color: var(--accent-color);
+  color: hsl(40, 95%, 68%);
 }
 
 .planner-hero__title {
@@ -2364,11 +2360,127 @@ body.dark-theme .stop__warn {
 }
 
 .leg i {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .leg i {
-  color: var(--accent-color);
+
+.leg {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.leg__title {
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.leg__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.leg__mode {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .15rem .35rem;
+  padding: .4rem .7rem;
+  border: 1px solid var(--input-color);
+  border-radius: .5rem;
+  background-color: var(--container-color);
+  color: var(--text-color);
+  font: inherit;
+  font-size: var(--small-font-size);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+}
+
+.leg__mode small {
+  color: var(--text-color-light);
+}
+
+.leg__mode:hover:not(:disabled) {
+  border-color: var(--first-color);
+}
+
+.leg__mode--active {
+  border-color: var(--first-color);
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.leg__mode--active i,
+.leg__mode--active small {
+  color: var(--white-color);
+}
+
+.leg__mode:disabled {
+  cursor: default;
+}
+
+.leg__meta {
+  color: var(--text-color-light);
+}
+
+@media print {
+  .leg__mode:not(.leg__mode--active) { display: none; }
+}
+
+/* Trang điểm đến: đi từ Hà Nội / Đà Nẵng / Sài Gòn */
+.hub-transport {
+  margin: 1rem 0;
+}
+
+.hub-transport__title {
+  margin-bottom: .5rem;
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+}
+
+.hub-transport__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--small-font-size);
+}
+
+.hub-transport__table th,
+.hub-transport__table td {
+  padding: .5rem .25rem;
+  border-top: 1px solid var(--input-color);
+  text-align: left;
+  vertical-align: top;
+}
+
+.hub-transport__table th {
+  width: 7.5rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.hub-modes {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-color);
+}
+
+.hub-modes i {
+  color: var(--first-color-text);
+}
+
+
+.hub-modes span {
+  color: var(--text-color-light);
+}
+
+.hub-modes__item--best {
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
 }
 
 /* Trạng thái trống + hành trình gợi ý */
@@ -2381,12 +2493,9 @@ body.dark-theme .leg i {
 
 .planner__empty > i {
   font-size: 2.5rem;
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .planner__empty > i {
-  color: var(--accent-color);
-}
 
 .planner__empty > p {
   margin: var(--mb-0-5) 0 var(--mb-1-5);
@@ -2422,12 +2531,9 @@ body.dark-theme .planner__empty > i {
 .planner__route i {
   grid-area: icon;
   font-size: 1.6rem;
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .planner__route i {
-  color: var(--accent-color);
-}
 
 .planner__route strong {
   grid-area: title;
@@ -2485,13 +2591,10 @@ body.dark-theme .planner__route i {
 }
 
 .planner__stat i {
-  color: var(--first-color);
+  color: var(--first-color-text);
   font-size: 1.25rem;
 }
 
-body.dark-theme .planner__stat i {
-  color: var(--accent-color);
-}
 
 .planner__stat strong {
   font-size: var(--h3-font-size);
@@ -2715,6 +2818,8 @@ body.dark-theme .planner__stat i {
     --container-color: #FFF;
     --input-color: hsl(190, 20%, 95%);
     --body-color: #FFF;
+    --first-color-text: var(--first-color);
+    --accent-color-text: hsl(32, 90%, 34%);
     background: #FFF !important;
     color: var(--text-color);
     font-size: 10.5pt;
@@ -2968,12 +3073,9 @@ body.dark-theme .planner__stat i {
   flex-shrink: 0;
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .eat__price {
-  color: var(--accent-color);
-}
 
 .eat__dish {
   font-size: var(--small-font-size);
@@ -2988,7 +3090,7 @@ body.dark-theme .eat__price {
 }
 
 .eat__address:hover {
-  color: var(--first-color);
+  color: var(--first-color-text);
   text-decoration: underline;
 }
 
@@ -3036,12 +3138,9 @@ body.dark-theme .eat__price {
 
 .stay-card__price {
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .stay-card__price {
-  color: var(--accent-color);
-}
 
 .stay-card__price small {
   font-weight: normal;
@@ -3077,7 +3176,7 @@ body.dark-theme .stay-card__price {
   padding: .35rem .75rem;
   border-radius: 2rem;
   border: 1px solid var(--first-color);
-  color: var(--first-color);
+  color: var(--first-color-text);
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
   transition: .2s;
@@ -3123,12 +3222,9 @@ body.dark-theme .book-link:hover {
 }
 
 .plan-day__stay i {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .plan-day__stay i {
-  color: var(--accent-color);
-}
 
 .planner__bookings {
   margin-top: 3rem;
@@ -3216,12 +3312,9 @@ body.dark-theme .plan-day__stay i {
   height: 36px;
   border-radius: 50%;
   background-color: var(--input-color);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .booking__icon {
-  color: var(--accent-color);
-}
 
 .booking__text {
   display: grid;
@@ -3304,13 +3397,10 @@ body.dark-theme .booking__icon {
   height: 48px;
   border-radius: 50%;
   background-color: var(--input-color);
-  color: var(--first-color);
+  color: var(--first-color-text);
   font-size: 1.5rem;
 }
 
-body.dark-theme .guide-card__icon {
-  color: var(--accent-color);
-}
 
 .guide-card__title {
   font-size: var(--h3-font-size);
@@ -3327,12 +3417,9 @@ body.dark-theme .guide-card__icon {
   align-items: center;
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .guide-card__more {
-  color: var(--accent-color);
-}
 
 .guides-home__more {
   display: flex;
@@ -3395,7 +3482,7 @@ body.dark-theme .guide-card__more {
 }
 
 .guide__toc a:hover {
-  color: var(--first-color);
+  color: var(--first-color-text);
   text-decoration: underline;
 }
 
@@ -3635,12 +3722,9 @@ body.dark-theme .guide-card__more {
 
 .chip-row .chip i {
   font-size: 1.05rem;
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .chip-row .chip i {
-  color: var(--accent-color);
-}
 
 .chip-row .chip:hover,
 .filter-group--inline .chip:hover,
@@ -3848,12 +3932,9 @@ body.dark-theme .filter-reset {
 
 .day-tl__place {
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .day-tl__place {
-  color: var(--accent-color);
-}
 
 .day-tl__place:hover {
   text-decoration: underline;
@@ -3924,12 +4005,9 @@ body.dark-theme .day-tl__place {
 }
 
 .day-cost__item strong {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
-body.dark-theme .day-cost__item strong {
-  color: var(--accent-color);
-}
 
 .day-tl__sights {
   display: grid;
@@ -3964,7 +4042,7 @@ body.dark-theme .day-cost__item strong {
 }
 
 .sight__name:hover {
-  color: var(--first-color);
+  color: var(--first-color-text);
   text-decoration: underline;
 }
 
@@ -3975,7 +4053,7 @@ body.dark-theme .day-cost__item strong {
   padding: .1rem .5rem;
   border-radius: 1rem;
   background-color: hsla(24, 85%, 52%, .12);
-  color: hsl(24, 80%, 40%);
+  color: hsl(24, 80%, 36%);
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
   white-space: nowrap;
@@ -4299,7 +4377,7 @@ body.dark-theme .sight__price--free {
   border-radius: 1rem;
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 body.dark-theme .day-tools__link {
@@ -4386,7 +4464,7 @@ body.dark-theme .day-tools__link {
   height: 36px;
   border-radius: 50%;
   background-color: hsla(160, 45%, 35%, .12);
-  color: var(--first-color);
+  color: var(--first-color-text);
   font-size: 1.1rem;
 }
 
@@ -4415,7 +4493,7 @@ body.dark-theme .day-tools__link {
 .event__when {
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--accent-color);
+  color: var(--accent-color-text);
   white-space: nowrap;
 }
 
@@ -4434,7 +4512,7 @@ body.dark-theme .day-tools__link {
 }
 
 .event--dim {
-  opacity: .55;
+  opacity: .75;
 }
 
 .trip-alerts {
@@ -4494,7 +4572,7 @@ body.dark-theme .day-tools__link {
 .packing__progress {
   margin-bottom: .75rem;
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .packing__groups {
@@ -4615,7 +4693,7 @@ body.dark-theme .day-tools__link {
 
 .today__icon {
   font-size: 2rem;
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .today--upcoming p {
@@ -4701,7 +4779,7 @@ body.dark-theme .day-tools__link {
   gap: .3rem;
   width: fit-content;
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .nearby-links {
@@ -4754,7 +4832,7 @@ body.dark-theme .offline-status {
 
 .trip-banner__icon {
   font-size: 1.6rem;
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .trip-banner__text {
@@ -4772,7 +4850,7 @@ body.dark-theme .offline-status {
   align-items: center;
   gap: .25rem;
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .trip-banner__close {
@@ -4861,7 +4939,8 @@ body.dark-theme .offline-status {
 
 .button--light {
   background-color: hsla(0, 0%, 100%, .9);
-  color: var(--title-color);
+  /* Nền luôn trắng → chữ luôn tối (không theo --title-color của chế độ tối) */
+  color: hsl(var(--hue-color), 64%, 18%);
 }
 
 .button--light:hover {
@@ -5015,7 +5094,7 @@ body.dark-theme .offline-status {
 }
 
 .quiz__reason {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 .quiz__alt {
@@ -5032,7 +5111,7 @@ body.dark-theme .offline-status {
 .explore__more .button--ghost,
 .eats__more .button--ghost,
 .quiz .button--ghost {
-  color: var(--first-color);
+  color: var(--first-color-text);
   border-color: var(--first-color);
 }
 
@@ -5148,7 +5227,7 @@ body.dark-theme .quiz .button--ghost {
 
 .guide-section__list a,
 .month-nav__prevnext a {
-  color: var(--first-color);
+  color: var(--first-color-text);
 }
 
 body.dark-theme .guide-section__list a,
@@ -5199,7 +5278,7 @@ body.dark-theme .month-nav__prevnext a {
 .report-form__status {
   min-height: 1.2em;
   font-size: var(--smaller-font-size);
-  color: var(--accent-color);
+  color: var(--accent-color-text);
 }
 
 .report-form__submit {
@@ -5321,7 +5400,7 @@ body.dark-theme .month-nav__prevnext a {
 }
 
 .assistant__msg a {
-  color: var(--first-color);
+  color: var(--first-color-text);
   text-decoration: underline;
   word-break: break-all;
 }
