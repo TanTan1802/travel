@@ -205,11 +205,10 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - Trang kế hoạch: bản in gồm trang tóm tắt tuyến/chi phí và lịch từng ngày; nút **Sao chép dạng chữ** tạo lịch trình để dán vào Zalo/Messenger.
 
 ## Google Search Console / Bing
-Site đã xác minh trong Search Console bằng **tệp HTML** `google4bbf20e625e01976.html` ở gốc repo (đừng xóa).
-Cloudflare mặc định chuyển hướng `/x.html` → `/x`, nên `wrangler.jsonc` có worker nhỏ (`tools/cloudflare/site-worker.js`,
-chỉ chạy cho `/google*`) trả nguyên nội dung tệp, không chuyển hướng. Thêm tệp xác minh khác: đặt tệp `googleXXXX.html` ở gốc repo.
-Cách khác (thẻ HTML): điền mã vào `SITE_VERIFICATION` trong `tools/lib.js` – build chèn thẻ meta vào trang chủ; Bing: `msvalidate.01`.
-Sau khi xác minh: Search Console → *Sơ đồ trang web* → gửi `sitemap.xml`.
+Chưa bật. Khi cần: Search Console → *Thêm tài sản* → *Tiền tố URL* → phương thức **Thẻ HTML**, chép giá trị `content="…"`
+vào `SITE_VERIFICATION.google` trong `tools/lib.js` (Bing: `msvalidate.01` → `SITE_VERIFICATION.bing`), chạy `npm run build`
+– thẻ meta được chèn vào trang chủ 5 ngôn ngữ. (Không dùng phương thức "Tệp HTML": Cloudflare chuyển hướng `/x.html` → `/x`.)
+Sau khi xác minh: *Sơ đồ trang web* → gửi `sitemap.xml`.
 
 ## Hiệu năng (Lighthouse)
 
