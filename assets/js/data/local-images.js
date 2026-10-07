@@ -231,6 +231,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1920
     },
+    "Bánh hỏi nem nướng ăn với bánh tráng tháng 6 năm 2018 (1).jpg": {
+        "xs": "assets/img/wiki/banh-hoi-nem-nuong-an-voi-banh-trang-thang-6-nam-2018-1-718b71-480.webp",
+        "sm": "assets/img/wiki/banh-hoi-nem-nuong-an-voi-banh-trang-thang-6-nam-2018-1-718b71-960.webp",
+        "lg": "assets/img/wiki/banh-hoi-nem-nuong-an-voi-banh-trang-thang-6-nam-2018-1-718b71-1920.webp",
+        "w": 1920,
+        "h": 1118
+    },
     "Bánh hỏi thịt quay.JPG": {
         "xs": "assets/img/wiki/banh-hoi-thit-quay-6ed02b-480.webp",
         "sm": "assets/img/wiki/banh-hoi-thit-quay-6ed02b-960.webp",
@@ -286,6 +293,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/bun-rieu-cua-nuoc-956649-1920.webp",
         "w": 1920,
         "h": 1285
+    },
+    "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg": {
+        "xs": "assets/img/wiki/bun-thit-nuong-cang-cat-lai-ng10th5n2022-thit-nuong-than-khoi-1-e94b19-480.webp",
+        "sm": "assets/img/wiki/bun-thit-nuong-cang-cat-lai-ng10th5n2022-thit-nuong-than-khoi-1-e94b19-960.webp",
+        "lg": "assets/img/wiki/bun-thit-nuong-cang-cat-lai-ng10th5n2022-thit-nuong-than-khoi-1-e94b19-1920.webp",
+        "w": 1440,
+        "h": 1920
     },
     "Ca Phe Sua Da.jpg": {
         "xs": "assets/img/wiki/ca-phe-sua-da-53db0a-480.webp",
@@ -441,10 +455,10 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
-    "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg": {
-        "xs": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-480.webp",
-        "sm": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-960.webp",
-        "lg": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-1920.webp",
+    "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-26.jpg": {
+        "xs": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-26-f39d8f-480.webp",
+        "sm": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-26-f39d8f-960.webp",
+        "lg": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-26-f39d8f-1920.webp",
         "w": 1920,
         "h": 1280
     },
@@ -882,10 +896,10 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
-    "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg": {
-        "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-480.webp",
-        "sm": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-960.webp",
-        "lg": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-thit-nuong-tay-bac-vi-nuong-than-56e1f9-1920.webp",
+    "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg": {
+        "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-480.webp",
+        "sm": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-960.webp",
+        "lg": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-1920.webp",
         "w": 1440,
         "h": 1920
     },
@@ -923,6 +937,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/mai-chau-rice-field-86b0e8-1920.webp",
         "w": 1920,
         "h": 864
+    },
+    "Mam ba khia (Vietnamese).jpg": {
+        "xs": "assets/img/wiki/mam-ba-khia-vietnamese-a53092-480.webp",
+        "sm": "assets/img/wiki/mam-ba-khia-vietnamese-a53092-960.webp",
+        "lg": "assets/img/wiki/mam-ba-khia-vietnamese-a53092-1920.webp",
+        "w": 1600,
+        "h": 1200
     },
     "Marble Mountains, Vietnam.jpg": {
         "xs": "assets/img/wiki/marble-mountains-vietnam-285c3d-480.webp",
