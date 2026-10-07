@@ -264,6 +264,10 @@ rồi chạy `npm run build`.
 Ảnh chỉ cần khai báo **tên file trên Wikimedia Commons**; trang sẽ tự tải bản độ phân giải cao
 qua `Special:FilePath`, và mỗi ảnh trong lightbox có liên kết về trang bản quyền gốc.
 
+Tìm ảnh: tab **Actions → "Tìm ảnh Wikimedia" → Run workflow**, nhập từ khóa ngăn cách bằng `|`
+và tích **Ảnh xem trước** → bảng ứng viên (≥ 1200px, giấy phép tự do) ở Summary, kèm tấm ghép ảnh
+có đánh số trên nhánh `image-previews` để chọn ảnh đúng nội dung trước khi khai báo.
+
 ## Tìm kiếm
 - Gõ **không dấu** (`pho`) để tìm rộng, gõ **có dấu** (`phở`) để tìm chính xác.
 - Tìm theo tên, tỉnh thành, điểm nhấn, món ăn, hoạt động; kết quả xếp theo độ liên quan
