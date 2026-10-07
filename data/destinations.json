@@ -78,7 +78,8 @@
           "name": "Bánh cuốn chả mực",
           "desc": "Bánh cuốn mỏng mềm ăn cùng chả mực giòn thơm – bữa sáng kiểu Quảng Ninh.",
           "price": "45.000đ",
-          "file": "Banh cuon.jpg"
+          "file": "Banh cuon.jpg",
+          "illustrative": "Bánh cuốn"
         },
         {
           "name": "Phở",
@@ -164,8 +165,7 @@
           "name": "Thắng cố",
           "desc": "Món ăn truyền thống của người H'Mông, nấu từ thịt và nội tạng ngựa cùng thảo quả.",
           "price": "100.000đ",
-          "file": "Indigenous Girl in Sunday Market - Bac Ha - Lao Cai Province - Vietnam - 01 (48218346821).jpg",
-          "illustrative": "Chợ phiên Bắc Hà – nơi bán thắng cố"
+          "file": "Thang Co (Cattle Intestines Soup).jpg"
         },
         {
           "name": "Cơm lam",
@@ -263,7 +263,7 @@
           "name": "Phở Hà Nội",
           "desc": "Nước dùng trong, ngọt từ xương bò hầm hàng giờ, bánh phở mềm.",
           "price": "50.000đ",
-          "file": "Phở bát đá.jpg"
+          "file": "Phở bò, Cầu Giấy, Hà Nội.jpg"
         },
         {
           "name": "Bún chả",
@@ -365,10 +365,7 @@
           "name": "Cơm cháy Ninh Bình",
           "desc": "Cơm cháy giòn rụm chan nước sốt tim cật, đặc sản cố đô.",
           "price": "80.000đ",
-          "file": [
-            "Cơm cháy kho quẹt.jpg",
-            "Cơm rang.JPG"
-          ]
+          "file": "Cơm cháy kho quẹt.jpg"
         },
         {
           "name": "Thịt dê núi",
@@ -471,7 +468,8 @@
           "name": "Bánh cuốn trứng",
           "desc": "Bánh cuốn kẹp trứng chan nước xương hầm – bữa sáng kiểu Hà Giang.",
           "price": "25.000đ",
-          "file": "Banh cuon.jpg"
+          "file": "Banh cuon.jpg",
+          "illustrative": "Bánh cuốn"
         },
         {
           "name": "Cơm lam",
@@ -560,7 +558,8 @@
           "name": "Bánh cuốn Cao Bằng",
           "desc": "Bánh mỏng, ăn cùng nước canh xương nóng thay vì nước mắm.",
           "price": "30.000đ",
-          "file": "Banh cuon.jpg"
+          "file": "Banh cuon.jpg",
+          "illustrative": "Bánh cuốn"
         },
         {
           "name": "Phở chua",
@@ -655,10 +654,7 @@
           "name": "Nem cua bể",
           "desc": "Nem vuông nhân cua bể chiên giòn, chấm nước mắm chua ngọt.",
           "price": "15.000đ/chiếc",
-          "file": [
-            "Cha gio.jpg",
-            "East-asian-food-spring-rolls-3.jpg"
-          ],
+          "file": "Cha gio.jpg",
           "illustrative": "Nem rán (chả giò)"
         }
       ],
@@ -738,10 +734,7 @@
           "name": "Thịt trâu gác bếp",
           "desc": "Thịt trâu tẩm mắc khén, hun khói trên gác bếp, dai ngọt đậm vị núi rừng.",
           "price": "900.000đ/kg",
-          "file": [
-            "Thịt trâu gác bếp Tả Phìn Hồ.jpg",
-            "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg"
-          ]
+          "file": "Thịt trâu gác bếp Tả Phìn Hồ.jpg"
         },
         {
           "name": "Xôi ngũ sắc",
@@ -1235,7 +1228,7 @@
         },
         {
           "file": "Nhatrang Beach at night.jpg",
-          "caption": "Nha Trang về đêm"
+          "caption": "Ô dù trên bãi biển Nha Trang"
         },
         {
           "file": "Beach at Nha Trang, Vietnam.jpg",
@@ -1739,8 +1732,7 @@
           "name": "Cơm tấm",
           "desc": "Sườn nướng mật ong, bì, chả trứng trên đĩa cơm tấm thơm dẻo.",
           "price": "45.000đ",
-          "file": "Broken rice restaurant in Saigon.JPG",
-          "illustrative": "Quán cơm tấm Sài Gòn"
+          "file": "Dĩa cơm tấm SG ng1th5n2022 (2).jpg"
         },
         {
           "name": "Bánh mì Sài Gòn",
@@ -1931,8 +1923,7 @@
           "name": "Gỏi cá trích",
           "desc": "Cá trích tươi trộn dừa nạo, hành tây, cuốn bánh tráng rau rừng.",
           "price": "120.000đ",
-          "file": "Ham Ninh market, Phu Quoc- Kien Giang, Vietnam - panoramio.jpg",
-          "illustrative": "Chợ hải sản Hàm Ninh"
+          "file": "Gỏi Cá Trích.jpg"
         },
         {
           "name": "Nước mắm Phú Quốc",
@@ -2120,10 +2111,7 @@
           "name": "Lẩu mắm",
           "desc": "Nồi lẩu mắm cá linh, cá sặc thơm nồng, ăn với rau đồng mùa nước nổi.",
           "price": "250.000đ",
-          "file": [
-            "Mắm cá lóc.JPG",
-            "Homemade Hotpot.jpg"
-          ],
+          "file": "Mắm cá lóc.JPG",
           "illustrative": "Mắm cá lóc – nguyên liệu nấu lẩu mắm"
         },
         {
@@ -2511,7 +2499,7 @@
           "desc": "Ốc bắt trên rạn đá núi lửa, luộc sả hoặc nướng mỡ hành.",
           "price": "100.000đ/đĩa",
           "file": "Cooked snails.JPG",
-          "illustrative": "Ốc luộc"
+          "illustrative": "Ốc nướng"
         },
         {
           "name": "Rong biển Lý Sơn",
