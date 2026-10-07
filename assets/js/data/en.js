@@ -565,7 +565,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ha Long squid cakes (chả mực)', desc: 'Hand-pounded squid, chewy and crispy, fried golden – the region\'s number-one specialty.', price: '350,000 VND/kg' },
-                { name: 'Rolled rice pancakes with squid cake', desc: 'Silky bánh cuốn served with crispy squid cake – a Quang Ninh breakfast.', price: '45,000 VND' },
+                { name: 'Rolled rice pancakes with squid cake', desc: 'Silky bánh cuốn served with crispy squid cake – a Quang Ninh breakfast.', price: '45,000 VND', illustrative: 'Steamed rice rolls' },
                 { name: 'Phở', desc: 'Vietnam\'s signature noodle soup – a steaming bowl for a morning on the bay.', price: '45,000 VND' },
             ],
             activities: [
@@ -591,7 +591,7 @@ const TRANSLATION_EN = {
                 { caption: 'Stone steps to Fansipan summit' },
             ],
             foods: [
-                { name: 'Thắng cố (H\'Mong stew)', desc: 'A traditional H\'Mong dish of horse meat and offal simmered with black cardamom.', price: '100,000 VND', illustrative: 'Bac Ha market – where thắng cố is sold' },
+                { name: 'Thắng cố (H\'Mong stew)', desc: 'A traditional H\'Mong dish of horse meat and offal simmered with black cardamom.', price: '100,000 VND' },
                 { name: 'Cơm lam (bamboo rice)', desc: 'Upland sticky rice roasted in bamboo tubes, soft and smoky.', price: '20,000 VND/tube' },
                 { name: 'Salmon hotpot', desc: 'Salmon raised in Sa Pa\'s cold spring water – firm and sweet.', price: '300,000 VND', illustrative: 'A steaming hotpot' },
             ],
@@ -677,7 +677,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ấu tẩu porridge', desc: 'A slightly bitter, nutty porridge made from ấu tẩu root – warming on cold nights.', price: '30,000 VND', illustrative: 'A Ha Giang market' },
-                { name: 'Egg rice rolls', desc: 'Rice rolls with egg in hot bone broth – breakfast Ha Giang style.', price: '25,000 VND' },
+                { name: 'Egg rice rolls', desc: 'Rice rolls with egg in hot bone broth – breakfast Ha Giang style.', price: '25,000 VND', illustrative: 'Steamed rice rolls' },
                 { name: 'Cơm lam (bamboo rice)', desc: 'Upland rice roasted in bamboo, eaten with sesame salt or grilled meat.', price: '20,000 VND/tube' },
             ],
             activities: [
@@ -703,7 +703,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Seven-flavour roast duck', desc: 'Duck roasted with mắc mật leaves, fragrant with golden crispy skin – Cao Bang\'s pride.', price: '250,000 VND/duck', illustrative: 'Roast duck' },
-                { name: 'Cao Bang rice rolls', desc: 'Thin rolls served with hot bone broth instead of fish sauce.', price: '30,000 VND' },
+                { name: 'Cao Bang rice rolls', desc: 'Thin rolls served with hot bone broth instead of fish sauce.', price: '30,000 VND', illustrative: 'Steamed rice rolls' },
                 { name: 'Sour phở', desc: 'Phở tossed in a sweet-sour sauce with roast pork, peanuts and herbs.', price: '40,000 VND', illustrative: 'A bowl of phở' },
             ],
             activities: [
@@ -892,7 +892,7 @@ const TRANSLATION_EN = {
                 { caption: 'Tran Phu beach' },
                 { caption: 'Po Nagar towers' },
                 { caption: 'An ancient Cham tower' },
-                { caption: 'Nha Trang at night' },
+                { caption: 'Beach umbrellas in Nha Trang' },
                 { caption: 'Blue sea, white sand' },
             ],
             foods: [
@@ -1033,7 +1033,7 @@ const TRANSLATION_EN = {
                 { caption: 'Bustling Ben Thanh' },
             ],
             foods: [
-                { name: 'Cơm tấm (broken rice)', desc: 'Honey-grilled pork chop, shredded pork skin and egg meatloaf on fragrant broken rice.', price: '45,000 VND', illustrative: 'A Saigon broken-rice eatery' },
+                { name: 'Cơm tấm (broken rice)', desc: 'Honey-grilled pork chop, shredded pork skin and egg meatloaf on fragrant broken rice.', price: '45,000 VND' },
                 { name: 'Saigon bánh mì', desc: 'A baguette packed with pâté, pork roll, cold cuts and pickles.', price: '25,000 VND' },
                 { name: 'Fresh spring rolls (gỏi cuốn)', desc: 'Shrimp, pork, noodles and herbs in rice paper, dipped in peanut-hoisin sauce.', price: '10,000 VND/roll' },
                 { name: 'Hủ tiếu', desc: 'Chewy rice noodles in a sweet pork-bone broth with shrimp, liver and minced pork.', price: '45,000 VND' },
@@ -1087,7 +1087,7 @@ const TRANSLATION_EN = {
                 { caption: 'Crystal-clear water' },
             ],
             foods: [
-                { name: 'Herring salad (gỏi cá trích)', desc: 'Fresh herring with grated coconut and onion, wrapped in rice paper with wild herbs.', price: '120,000 VND', illustrative: 'Ham Ninh seafood market' },
+                { name: 'Herring salad (gỏi cá trích)', desc: 'Fresh herring with grated coconut and onion, wrapped in rice paper with wild herbs.', price: '120,000 VND' },
                 { name: 'Phu Quoc fish sauce', desc: 'Anchovy fish sauce aged for a year or more in wooden barrels – the island\'s famous specialty.', price: '150,000 VND/litre', illustrative: 'Fish sauce barrel house' },
                 { name: 'Crab noodle soup (bánh canh ghẹ)', desc: 'Thick noodle soup with firm, sweet Ham Ninh crab.', price: '60,000 VND' },
             ],
@@ -1244,7 +1244,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ly Son garlic salad', desc: 'Young garlic leaves tossed with shrimp, pork belly and peanuts – found only here.', price: '80,000 VND', illustrative: 'Single-clove garlic' },
-                { name: 'Rock snails', desc: 'Snails from volcanic reefs, boiled with lemongrass or grilled with scallion oil.', price: '100,000 VND/plate', illustrative: 'Boiled snails' },
+                { name: 'Rock snails', desc: 'Snails from volcanic reefs, boiled with lemongrass or grilled with scallion oil.', price: '100,000 VND/plate', illustrative: 'Baked snails' },
                 { name: 'Ly Son seaweed', desc: 'Seaweed salad or a cooling sweet soup.', price: '30,000 VND', illustrative: 'Seaweed' },
                 { name: 'Sea urchin porridge', desc: 'Fresh sea urchin cooked into a rich, sweet porridge.', price: '50,000 VND', illustrative: 'Sea urchin' },
             ],
