@@ -284,3 +284,49 @@ td .badge { margin-right: .25rem; }
 .steps { padding-left: 1.2rem; }
 .steps li { margin-bottom: .35rem; }
 code { font-size: .9em; }
+
+/*---------- Giao diện & mùa ----------*/
+.grid--langs { display: grid; gap: .4rem .8rem; }
+@media (min-width: 720px) { .grid--langs { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); } }
+.field__lang { display: block; font-size: .78rem; color: var(--muted); margin-bottom: .15rem; }
+
+.presets { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .7rem; }
+.preset {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--input);
+  color: var(--text);
+  padding: .2rem .6rem .2rem .3rem;
+  font-size: .8rem;
+}
+.preset__dot { width: .95rem; height: .95rem; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .15); }
+
+.hue-range {
+  width: 100%;
+  height: 1.1rem;
+  border-radius: 999px;
+  appearance: none;
+  background: linear-gradient(90deg, hsl(0, 64%, 40%), hsl(60, 64%, 40%), hsl(120, 64%, 40%), hsl(180, 64%, 40%), hsl(240, 64%, 40%), hsl(300, 64%, 40%), hsl(359, 64%, 40%));
+}
+
+.tp { display: grid; gap: .6rem; margin-top: .7rem; }
+@media (min-width: 720px) { .tp { grid-template-columns: 1fr 1fr; } }
+.tp__box { display: grid; gap: .25rem; justify-items: start; padding: .9rem 1rem; border-radius: 8px; border: 1px solid var(--line); }
+.tp__box--light { background: hsl(var(--h), 100%, 99%); }
+.tp__box--light .tp__sub { color: hsl(calc(var(--a) - 5), 90%, 31%); }
+.tp__box--light .tp__title { color: hsl(var(--h), 64%, 18%); }
+.tp__box--light .tp__text { color: hsl(var(--h), 24%, 35%); }
+.tp__box--dark { background: hsl(var(--h), 29%, 12%); }
+.tp__box--dark .tp__sub { color: hsl(var(--a), 92%, 55%); }
+.tp__box--dark .tp__title { color: hsl(var(--h), 24%, 95%); }
+.tp__box--dark .tp__text { color: hsl(var(--h), 8%, 75%); }
+.tp__sub { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.tp__title { font-size: 1.1rem; }
+.tp__btn { margin-top: .3rem; padding: .35rem .8rem; border-radius: 6px; background: hsl(var(--h), 64%, 22%); color: #fff; font-size: .85rem; font-weight: 600; }
+.tp__box--dark .tp__btn { background: hsl(var(--h), 64%, 30%); }
+.tp__issues .errors { margin: .6rem 0 0; }
+.tp__ok { color: var(--ok); margin: .5rem 0 0; }
+.tabs [data-season-add] { border: 1px dashed var(--line); border-radius: 8px 8px 0 0; background: none; color: var(--accent); padding: .5rem .8rem; font-weight: 600; }

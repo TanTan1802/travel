@@ -10,6 +10,7 @@
 const fs = require('fs')
 const path = require('path')
 const Ajv2020 = require('ajv/dist/2020')
+const { contrastIssues } = require('./theme')
 
 const ROOT = path.join(__dirname, '..')
 const DATA_DIR = path.join(ROOT, 'data')
@@ -136,6 +137,32 @@ function crossChecks(data) {
     return errors
 }
 
+/* data/site.json: điểm đến nổi bật có thật, ngày hợp lệ, màu đủ tương phản */
+function siteChecks(site, idSet) {
+    const errors = []
+    const checkFeatured = (where, list) => list.filter(id => !idSet.has(id)).forEach(id => errors.push(`${where}: điểm đến ${id} không tồn tại`))
+    const checkTheme = (where, theme) => contrastIssues(theme).forEach(msg => errors.push(`${where}: màu chưa đủ tương phản – ${msg}`))
+    checkFeatured('site.featured', site.featured)
+    checkTheme('site.theme', site.theme)
+    const seen = new Set()
+    site.seasons.forEach((s, i) => {
+        const where = `site.seasons[${i}] (${s.id})`
+        if (seen.has(s.id)) errors.push(`${where}: mã mùa bị trùng`)
+        seen.add(s.id)
+        if (s.from.length !== s.to.length) errors.push(`${where}: from và to phải cùng dạng (MM-DD hoặc YYYY-MM-DD)`)
+        else if (s.from.length > 5 && s.from > s.to) errors.push(`${where}: ngày bắt đầu sau ngày kết thúc`)
+        for (const day of [s.from, s.to]) {
+            const [y, m, d] = (day.length > 5 ? day : `2024-${day}`).split('-').map(Number)
+            const date = new Date(Date.UTC(y, m - 1, d))
+            if (date.getUTCMonth() !== m - 1) errors.push(`${where}: ngày ${day} không có thật`)
+        }
+        if (s.theme) checkTheme(where, s.theme)
+        if (s.featured) checkFeatured(where, s.featured)
+        if (s.featured && !s.featuredTitle) errors.push(`${where}: có danh sách nổi bật thì cần featuredTitle`)
+    })
+    return errors
+}
+
 function loadAndValidate() {
     const ajv = createValidator()
     const data = {}
@@ -154,6 +181,16 @@ function loadAndValidate() {
         data[name] = json
     }
     if (!errors.length) errors.push(...crossChecks(data))
+
+    /* Giao diện & mùa: tools/build.js đọc thẳng data/site.json (trình duyệt không cần cả file) */
+    const site = readJson(path.join(DATA_DIR, 'site.json'))
+    const validateSite = ajv.getSchema('site.schema.json')
+    if (!validateSite(site)) {
+        validateSite.errors.slice(0, 20).forEach(err => errors.push(`data/site.json${err.instancePath}: ${err.message}${err.params && err.params.additionalProperty ? ` (${err.params.additionalProperty})` : ''}`))
+    } else if (!errors.length) {
+        errors.push(...siteChecks(site, new Set(data.destinations.destinations.map(d => d.id))))
+    }
+    data.site = site
     return { data, errors }
 }
 

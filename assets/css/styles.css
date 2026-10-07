@@ -5,6 +5,8 @@
 
   /*========== Colors ==========*/
   --hue-color: 190;
+  /* Màu nhấn (cam vàng) – cả hai đổi được ở data/site.json (giao diện & mùa) */
+  --accent-hue: 38;
 
   /* HSL color mode */
   --first-color: hsl(var(--hue-color), 64%, 22%);

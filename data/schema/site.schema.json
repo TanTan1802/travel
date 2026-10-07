@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "site.schema.json",
+  "title": "Giao diện & mùa của trang chủ",
+  "description": "Slogan, ảnh bìa, màu chủ đạo, điểm đến nổi bật mặc định và các mùa / chiến dịch tự đổi theo ngày. Sửa bằng trang quản trị /admin/ (Giao diện & mùa) hoặc trực tiếp file này. Màu được kiểm tra độ tương phản (WCAG AA) khi build.",
+  "type": "object",
+  "required": ["theme", "hero", "featured", "featuredTitle", "seasons"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "theme": { "$ref": "#/$defs/theme" },
+    "hero": {
+      "type": "object",
+      "required": ["subtitle", "title", "image", "alt"],
+      "additionalProperties": false,
+      "properties": {
+        "subtitle": { "$ref": "#/$defs/text" },
+        "title": { "$ref": "#/$defs/text" },
+        "image": { "$ref": "#/$defs/images" },
+        "alt": { "$ref": "#/$defs/text" }
+      }
+    },
+    "featured": { "$ref": "#/$defs/featured" },
+    "featuredTitle": { "$ref": "#/$defs/text" },
+    "seasons": {
+      "description": "Mùa / chiến dịch – mùa đứng trước được ưu tiên khi trùng ngày",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "enabled", "from", "to"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "name": { "description": "Tên nội bộ (chỉ hiện ở trang quản trị)", "type": "string", "minLength": 1 },
+          "enabled": { "description": "Tắt thì chỉ xem thử được bằng ?season=<id>", "type": "boolean" },
+          "from": { "$ref": "#/$defs/day" },
+          "to": { "$ref": "#/$defs/day" },
+          "theme": { "$ref": "#/$defs/theme" },
+          "hero": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "subtitle": { "$ref": "#/$defs/text" },
+              "title": { "$ref": "#/$defs/text" },
+              "image": { "$ref": "#/$defs/images" },
+              "alt": { "$ref": "#/$defs/text" }
+            }
+          },
+          "banner": {
+            "description": "Dải thông báo đầu trang chủ",
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": { "$ref": "#/$defs/text" },
+              "link": {
+                "description": "Trang trong site (vd. diem-den/mu-cang-chai/index.html, thang/9/index.html) hoặc địa chỉ https://",
+                "type": "string",
+                "pattern": "^(https://\\S+|[a-z0-9-]+(/[a-z0-9-]+)*/index\\.html)$"
+              }
+            }
+          },
+          "featured": { "$ref": "#/$defs/featured" },
+          "featuredTitle": { "$ref": "#/$defs/text" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "theme": {
+      "type": "object",
+      "required": ["hue", "accentHue"],
+      "additionalProperties": false,
+      "properties": {
+        "hue": { "description": "Sắc độ màu chủ đạo (0–359; 190 = xanh biển)", "type": "integer", "minimum": 0, "maximum": 359 },
+        "accentHue": { "description": "Sắc độ màu nhấn (0–359; 38 = cam vàng)", "type": "integer", "minimum": 0, "maximum": 359 }
+      }
+    },
+    "text": {
+      "description": "Chữ theo ngôn ngữ – vi, en bắt buộc; ko/zh/ja thiếu thì dùng tiếng Anh",
+      "type": "object",
+      "required": ["vi", "en"],
+      "additionalProperties": false,
+      "properties": {
+        "vi": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "ko": { "type": "string", "minLength": 1 },
+        "zh": { "type": "string", "minLength": 1 },
+        "ja": { "type": "string", "minLength": 1 }
+      }
+    },
+    "images": {
+      "description": "Ảnh Wikimedia Commons, các ảnh sau là dự phòng",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "common.schema.json#/$defs/imageFile" }
+    },
+    "featured": {
+      "description": "Mã điểm đến hiện ở mục \"nổi bật\" của trang chủ",
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/id" }
+    },
+    "day": {
+      "description": "MM-DD (lặp lại hằng năm, from > to = vắt qua năm mới) hoặc YYYY-MM-DD (một lần)",
+      "type": "string",
+      "pattern": "^(20[0-9]{2}-)?(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    }
+  }
+}

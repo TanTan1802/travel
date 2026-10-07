@@ -12,7 +12,7 @@
         <link rel="preload" href="assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="stylesheet" href="assets/css/site-a9cd15625d.css">
+        <link rel="stylesheet" href="assets/css/site-bc765c7988.css">
 
         <link rel="canonical" href="https://viet-travel.congtan5918.workers.dev/">
         <!-- build:alternate -->
@@ -39,7 +39,8 @@
     </head>
     <body>
         <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
-        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}
+(function(S){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},md=p(n.getMonth()+1)+'-'+p(n.getDate()),ymd=n.getFullYear()+'-'+md;for(var i=0;i<S.length;i++){var s=S[i];if(q?q[1]===s.i:!s.x&&(s.f.length>5?ymd>=s.f&&ymd<=s.t:s.f<=s.t?md>=s.f&&md<=s.t:md>=s.f||md<=s.t)){var r=document.documentElement,m;window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null){r.style.setProperty('--hue-color',s.h);r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)'}return}}})([{"i":"tet-2027","f":"2027-01-25","t":"2027-02-14","h":355,"a":40},{"i":"he-bien","f":"05-15","t":"08-20","h":205,"a":28},{"i":"lua-chin","f":"09-01","t":"10-20","h":28,"a":38}])</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="index.html" class="nav__logo">Việt Travel</a>
@@ -102,6 +103,8 @@
 
                 <div class="home__container container grid">
                     <div class="home__data">
+                        <!-- Slogan, ảnh bìa, thông báo theo mùa: data/site.json (trang quản trị → Giao diện & mùa), build ghi vào đây -->
+                        <a class="home__promo" id="home-promo" hidden><i class="ri-calendar-event-line"></i> <span></span> <i class="ri-arrow-right-line"></i></a>
                         <span class="home__data-subtitle">Việt Nam – Vẻ đẹp bất tận</span>
                         <h1 class="home__data-title">Khám Phá <br> Danh Thắng <b>Tuyệt Đẹp <br> Của Việt Nam</b></h1>
                         <div class="home__actions">
@@ -109,6 +112,7 @@
                             <button type="button" class="button button--light button--flex" data-quiz-open><i class="ri-questionnaire-line"></i> Đi đâu hợp với bạn?</button>
                         </div>
                     </div>
+                    <!-- build:season --><script>window.HOME_FEATURED=["vinh-ha-long","hoi-an","sa-pa","phu-quoc","ninh-binh","da-nang","ha-giang"];(function(H){var s=window.SEASON&&H[window.SEASON],q=function(c){return document.querySelector(c)},e;window.HOME_SEASON=s||null;if(!s)return;if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}})({"tet-2027":{"sub":"Xuân Đinh Mùi 2027","title":"Du Xuân \u003cbr> Đón Tết \u003cb>Khắp Ba Miền \u003cbr> Việt Nam\u003c/b>","img":{"wiki":"Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg","src":"assets/img/wiki/lanterns-in-hoi-an-4-6750c0-1920.webp","srcset":"assets/img/wiki/lanterns-in-hoi-an-4-6750c0-480.webp 480w, assets/img/wiki/lanterns-in-hoi-an-4-6750c0-960.webp 960w, assets/img/wiki/lanterns-in-hoi-an-4-6750c0-1920.webp 1920w","sizes":"100vw","alt":"Đèn lồng phố cổ Hội An"},"promo":{"text":"Tết Đinh Mùi 6/2/2027 – xem lễ hội và lên kế hoạch du xuân sớm","href":"thang/2/index.html","ext":false},"featured":["ha-noi","hoi-an","hue","ninh-binh","da-lat","sai-gon","can-tho"],"ft":"Du xuân \u003cbr> đón Tết"},"he-bien":{"sub":"Mùa hè rực nắng","title":"Hè Này \u003cbr> Ra \u003cb>Biển Đảo \u003cbr> Việt Nam\u003c/b>","img":{"wiki":"Nha Trang Beach, Vietnam.jpg|Pulo Condore island beach.jpg","src":"assets/img/wiki/nha-trang-beach-vietnam-4a1265-1920.webp","srcset":"assets/img/wiki/nha-trang-beach-vietnam-4a1265-480.webp 480w, assets/img/wiki/nha-trang-beach-vietnam-4a1265-960.webp 960w, assets/img/wiki/nha-trang-beach-vietnam-4a1265-1920.webp 1920w","sizes":"100vw","alt":"Biển Nha Trang"},"promo":{"text":"Tháng 5 – 8 biển miền Trung và miền Bắc đẹp nhất – xem các điểm biển đảo","href":"chu-de/bien/index.html","ext":false},"featured":["nha-trang","quy-nhon","con-dao","co-to","cat-ba","ly-son","phu-yen"],"ft":"Biển đảo \u003cbr> đẹp nhất mùa hè"},"lua-chin":{"sub":"Mùa vàng Tây Bắc","title":"Ngắm \u003cbr> Mùa Lúa \u003cb>Chín Vàng \u003cbr> Ruộng Bậc Thang\u003c/b>","img":{"wiki":"Mu Cang Chai 02.JPG|Mu Cang Chai.jpg","src":"assets/img/wiki/mu-cang-chai-02-8d192f-1920.webp","srcset":"assets/img/wiki/mu-cang-chai-02-8d192f-480.webp 480w, assets/img/wiki/mu-cang-chai-02-8d192f-960.webp 960w, assets/img/wiki/mu-cang-chai-02-8d192f-1920.webp 1920w","sizes":"100vw","alt":"Ruộng bậc thang Mù Cang Chải"},"promo":{"text":"Lúa chín Mù Cang Chải, Hoàng Su Phì từ giữa tháng 9 đến đầu tháng 10 – xem lịch trình","href":"diem-den/mu-cang-chai/index.html","ext":false},"featured":["mu-cang-chai","ha-giang","sa-pa","mai-chau","pu-luong","ban-gioc","binh-lieu"],"ft":"Mùa vàng \u003cbr> đẹp nhất"}})</script><!-- /build:season -->
 
                     <div class="home__social">
                         <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Facebook">
@@ -1399,6 +1403,6 @@
         <!--=============== SWIPER JS ===============-->
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="assets/js/dist/b1bc46c586.js"></script>
+        <script defer src="assets/js/dist/f4db6674d3.js"></script>
     </body>
 </html>

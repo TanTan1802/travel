@@ -1,10 +1,10 @@
 /*=============== VIETNAM DESTINATIONS – BỔ SUNG CHO styles.css ===============*/
 :root {
   --container-color: #FFF;
-  --accent-color: hsl(38, 92%, 55%);
+  --accent-color: hsl(var(--accent-hue), 92%, 55%);
   /* Màu chữ / icon nhấn: --first-color quá tối trên nền tối, --accent-color quá nhạt trên nền trắng */
   --first-color-text: var(--first-color);
-  --accent-color-text: hsl(32, 90%, 34%);
+  --accent-color-text: hsl(calc(var(--accent-hue) - 6), 90%, 34%);
   --shadow: 0 8px 24px hsla(var(--hue-color), 64%, 18%, .12);
   --radius: .75rem;
 }
@@ -34,7 +34,7 @@ body.no-scroll {
 /* Nền sáng: cam đậm hơn để chữ nhỏ đủ tương phản (WCAG AA) */
 body:not(.dark-theme) .section__subtitle,
 body:not(.dark-theme) .itinerary__tab--active span {
-  color: hsl(33, 90%, 31%);
+  color: hsl(calc(var(--accent-hue) - 5), 90%, 31%);
 }
 
 .button--ghost {
@@ -282,8 +282,8 @@ body:not(.dark-theme) .itinerary__tab--active span {
   border-radius: .35rem;
   font-size: var(--smaller-font-size);
   font-weight: var(--font-semi-bold);
-  color: hsl(30, 80%, 30%);
-  background-color: hsla(38, 92%, 55%, .2);
+  color: hsl(calc(var(--accent-hue) - 8), 80%, 30%);
+  background-color: hsla(var(--accent-hue), 92%, 55%, .2);
 }
 
 body.dark-theme .dest-card__hint {
@@ -2867,14 +2867,14 @@ body.dark-theme .stop__warn {
   /* Luôn in nền sáng, chữ đậm dễ đọc – kể cả khi đang bật chế độ tối */
   body,
   body.dark-theme {
-    --title-color: hsl(190, 40%, 14%);
-    --text-color: hsl(190, 12%, 25%);
-    --text-color-light: hsl(190, 8%, 38%);
+    --title-color: hsl(var(--hue-color), 40%, 14%);
+    --text-color: hsl(var(--hue-color), 12%, 25%);
+    --text-color-light: hsl(var(--hue-color), 8%, 38%);
     --container-color: #FFF;
-    --input-color: hsl(190, 20%, 95%);
+    --input-color: hsl(var(--hue-color), 20%, 95%);
     --body-color: #FFF;
     --first-color-text: var(--first-color);
-    --accent-color-text: hsl(32, 90%, 34%);
+    --accent-color-text: hsl(calc(var(--accent-hue) - 6), 90%, 34%);
     background: #FFF !important;
     color: var(--text-color);
     font-size: 10.5pt;
@@ -3003,7 +3003,7 @@ body.dark-theme .stop__warn {
   .planner__cost {
     background: none !important;
     color: var(--title-color) !important;
-    border: 1px solid hsl(190, 15%, 80%);
+    border: 1px solid hsl(var(--hue-color), 15%, 80%);
   }
 
   .budget__option *,
@@ -3042,7 +3042,7 @@ body.dark-theme .stop__warn {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "num info days";
     padding: .5rem .75rem;
-    border: 1px solid hsl(190, 15%, 85%);
+    border: 1px solid hsl(var(--hue-color), 15%, 85%);
   }
 
   .stop__number,
@@ -3055,7 +3055,7 @@ body.dark-theme .stop__warn {
   .plan-day {
     padding: .75rem 0;
     border: none;
-    border-bottom: 1px solid hsl(190, 15%, 85%);
+    border-bottom: 1px solid hsl(var(--hue-color), 15%, 85%);
     border-radius: 0;
   }
 
@@ -3182,8 +3182,8 @@ body.dark-theme .stop__warn {
 
 .stay-card__type--resort,
 .stay-card__type--boat {
-  background-color: hsl(38, 92%, 90%);
-  color: hsl(28, 80%, 25%);
+  background-color: hsl(var(--accent-hue), 92%, 90%);
+  color: hsl(calc(var(--accent-hue) - 10), 80%, 25%);
 }
 
 .stay-card__area {
@@ -3411,7 +3411,7 @@ body.dark-theme .book-link:hover {
 
   .booking {
     padding: .4rem 0;
-    border-bottom: 1px solid hsl(190, 15%, 85%);
+    border-bottom: 1px solid hsl(var(--hue-color), 15%, 85%);
     border-radius: 0;
     opacity: 1;
   }
@@ -3651,7 +3651,7 @@ body.dark-theme .book-link:hover {
   margin-bottom: 1.75rem;
   border-radius: calc(var(--radius) + .25rem);
   background-color: var(--container-color);
-  box-shadow: 0 10px 30px hsla(190, 40%, 20%, .08);
+  box-shadow: 0 10px 30px hsla(var(--hue-color), 40%, 20%, .08);
   border: 1px solid var(--input-color);
 }
 
@@ -3733,7 +3733,7 @@ body.dark-theme .book-link:hover {
 .segmented .chip.chip--active {
   background-color: var(--first-color);
   color: var(--white-color);
-  box-shadow: 0 4px 12px hsla(190, 60%, 20%, .25);
+  box-shadow: 0 4px 12px hsla(var(--hue-color), 60%, 20%, .25);
 }
 
 .segmented .chip__count {
@@ -5277,7 +5277,7 @@ body.dark-theme .quiz .button--ghost {
 
 .guide__body .sight:target {
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px hsla(39, 92%, 55%, .25);
+  box-shadow: 0 0 0 3px hsla(var(--accent-hue), 92%, 55%, .25);
 }
 
 .guide-section__list a,
@@ -5475,4 +5475,56 @@ body.dark-theme .assistant__msg--assistant a {
   padding: 0 1.25rem 1rem;
   font-size: var(--smaller-font-size);
   color: var(--text-color-light);
+}
+
+/*=============== THÔNG BÁO THEO MÙA (ảnh bìa trang chủ – data/site.json) ===============*/
+.home__promo {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  background-color: hsla(var(--hue-color), 64%, 12%, .72);
+  border: 1px solid hsla(0, 0%, 100%, .35);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  line-height: 1.35;
+  backdrop-filter: blur(6px);
+}
+
+.home__promo[hidden] {
+  display: none;
+}
+
+.home__promo i:first-child {
+  color: hsl(var(--accent-hue), 92%, 65%);
+}
+
+a.home__promo[href]:hover {
+  background-color: hsla(var(--hue-color), 64%, 12%, .9);
+}
+
+/* Lớp phủ tối nhẹ trên ảnh bìa trang chủ: menu và slogan chữ trắng luôn đọc được, kể cả ảnh nhiều trời sáng */
+.home {
+  position: relative;
+}
+
+.home__img {
+  z-index: 0;
+}
+
+.home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, hsla(0, 0%, 0%, .45) 0%, hsla(0, 0%, 0%, .12) 22%, hsla(0, 0%, 0%, .08) 60%, hsla(0, 0%, 0%, .3) 100%);
+}
+
+.home__container {
+  z-index: 2;
 }

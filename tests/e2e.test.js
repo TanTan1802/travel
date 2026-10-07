@@ -647,3 +647,69 @@ test('trợ lý hỏi đáp: ẩn khi chưa cấu hình; có endpoint thì hỏi
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('giao diện & mùa (data/site.json): mỗi mùa đổi màu, slogan, ảnh bìa, thông báo, điểm nổi bật; chữ vẫn đủ tương phản', async () => {
+    const site = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/site.json'), 'utf8'))
+    const read = page => page.evaluate(() => ({
+        season: window.SEASON || null,
+        hue: getComputedStyle(document.documentElement).getPropertyValue('--hue-color').trim(),
+        sub: document.querySelector('.home__data-subtitle').textContent.trim(),
+        promo: document.querySelector('#home-promo').hidden ? null : document.querySelector('#home-promo').getAttribute('href'),
+        featured: [...document.querySelectorAll('#discover-list .discover__card')].map(a => a.getAttribute('href').match(/diem-den\/([^/]+)/)[1]),
+        wiki: document.querySelector('.home__img').dataset.wiki,
+    }))
+
+    /* Tắt mùa: nội dung mặc định */
+    let { page, errors, close } = await openPage('index.html?season=none')
+    await page.waitForLoadState('networkidle')
+    let info = await read(page)
+    assert.equal(info.season, null)
+    assert.equal(info.hue, String(site.theme.hue))
+    assert.equal(info.sub, site.hero.subtitle.vi)
+    assert.equal(info.promo, null)
+    assert.deepEqual(info.featured, site.featured)
+    assert.equal(info.wiki, site.hero.image.join('|'))
+    await close()
+
+    const problems = []
+    for (const s of site.seasons) {
+        ;({ page, errors, close } = await openPage(`index.html?season=${s.id}`))
+        await page.waitForLoadState('networkidle')
+        info = await read(page)
+        assert.equal(info.season, s.id)
+        if (s.theme) assert.equal(info.hue, String(s.theme.hue), `${s.id}: màu`)
+        if (s.hero?.subtitle) assert.equal(info.sub, s.hero.subtitle.vi, `${s.id}: dòng chữ nhỏ`)
+        if (s.hero?.image) assert.equal(info.wiki, s.hero.image.join('|'), `${s.id}: ảnh bìa`)
+        if (s.banner?.link) assert.equal(info.promo, s.banner.link, `${s.id}: liên kết thông báo`)
+        if (s.featured) assert.deepEqual(info.featured, s.featured, `${s.id}: điểm nổi bật`)
+        assert.deepEqual(errors, [])
+        await close()
+        /* Màu của mùa áp cho mọi trang và vẫn đọc rõ ở cả nền sáng lẫn tối */
+        for (const theme of ['light', 'dark']) {
+            for (const rel of [`index.html?season=${s.id}`, `diem-den/hue/index.html?season=${s.id}`]) {
+                ;({ page, close } = await openPage(rel, { theme }))
+                await page.waitForLoadState('networkidle')
+                ;(await lowContrastText(page)).forEach(p => problems.push(`[${s.id} ${theme}] ${rel}: ${p}`))
+                await close()
+            }
+        }
+    }
+    assert.deepEqual(problems, [], `chữ khó đọc:\n${problems.join('\n')}`)
+
+    /* Bản tiếng Anh: chữ của mùa theo ngôn ngữ, liên kết trỏ tới trang tiếng Anh */
+    const withBanner = site.seasons.find(s => s.banner?.link && !s.banner.link.startsWith('https://') && s.hero?.subtitle)
+    if (withBanner) {
+        ;({ page, close } = await openPage(`en/index.html?season=${withBanner.id}`))
+        info = await read(page)
+        assert.equal(info.sub, withBanner.hero.subtitle.en)
+        assert.ok(info.promo.endsWith(`en/${withBanner.banner.link}`), info.promo)
+        await close()
+    }
+})
+
+test('trang quản trị /admin/: tải không lỗi, hiện form đăng nhập', async () => {
+    const { page, errors, close } = await openPage('admin/index.html')
+    await page.waitForSelector('#login-form')
+    assert.deepEqual(errors, [])
+    await close()
+})

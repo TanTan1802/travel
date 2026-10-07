@@ -42,6 +42,18 @@ Sửa tay:
 5. Thêm bản dịch vào `data/i18n/en.json`, phần `destinations` và `itineraries` (bắt buộc – build báo lỗi nếu thiếu); ko/zh/ja tùy chọn.
 6. Chạy `npm run build` và `npm test`, rồi mở Pull Request. Sau khi merge, workflow sẽ tự tải ảnh.
 
+## Giao diện & mùa (`data/site.json`)
+
+Sửa bằng trang quản trị `/admin/` → **Giao diện & mùa**, hoặc trực tiếp file (schema `data/schema/site.schema.json`):
+
+- `theme` – `hue` (màu chủ đạo, 190 = xanh biển) và `accentHue` (màu nhấn, 38 = cam vàng). Build báo lỗi nếu chữ không đủ tương phản.
+- `hero` – `subtitle`, `title` (slogan: xuống dòng = `\n`, `*chữ*` = in đậm), `image` (ảnh Commons, ảnh sau là dự phòng), `alt`.
+  Chữ theo ngôn ngữ `{ vi, en, ko?, zh?, ja? }` – thiếu ko/zh/ja thì dùng tiếng Anh.
+- `featured` + `featuredTitle` – mục "điểm đến nổi bật" trên trang chủ.
+- `seasons` – mỗi mùa: `id`, `name`, `enabled`, `from` / `to` (`MM-DD` lặp hằng năm, được vắt qua năm mới; hoặc `YYYY-MM-DD`),
+  tùy chọn `theme`, `hero`, `banner` (`text` + `link` tới trang trong site hoặc `https://`), `featured` + `featuredTitle`.
+  Mùa đứng trước được ưu tiên. Script đầu mỗi trang chọn mùa theo ngày của người xem; xem thử bằng `?season=<id>`.
+
 ## Độ mới của dữ liệu
 
 - Mỗi điểm tham quan, quán ăn và quán nước có trường **`updated`** (`"YYYY-MM"`, bắt buộc): tháng thông tin được cập nhật

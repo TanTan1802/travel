@@ -70,13 +70,19 @@ function scoreDestination(d, tokens) {
 }
 
 /*==================== DISCOVER (SWIPER) ====================*/
+/* Danh sách nổi bật lấy từ data/site.json (window.HOME_FEATURED / mùa đang chạy: window.HOME_SEASON – do build ghi vào trang) */
 const FEATURED_IDS = ['vinh-ha-long', 'hoi-an', 'sa-pa', 'phu-quoc', 'ninh-binh', 'da-nang', 'ha-giang']
 
 function renderDiscover() {
     const list = document.getElementById('discover-list')
     if (!list) return
 
-    list.innerHTML = FEATURED_IDS.map(getDestination).filter(Boolean).map(d => `
+    const season = window.HOME_SEASON
+    const ids = (season && season.featured) || window.HOME_FEATURED || FEATURED_IDS
+    const title = document.querySelector('#discover .section__title')
+    if (season && season.ft && title) title.innerHTML = season.ft
+
+    list.innerHTML = ids.map(getDestination).filter(Boolean).map(d => `
         <a href="${destinationUrl(d.id)}" class="discover__card">
             <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="960" data-sizes="(max-width: 1024px) 200px, 237px" alt="${d.name}" class="discover__img">
             <div class="discover__data">
