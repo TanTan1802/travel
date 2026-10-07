@@ -44,6 +44,10 @@ const state = {
     lang: 'en',
     dirty: false,
     errors: [],
+    showErrors: false, // hiện lỗi chi tiết sau lần bấm lưu đầu tiên
+    open: new Map(),   // mục danh sách đang mở / đóng
+    draft: null,       // bản nháp tìm thấy khi mở trang sửa
+    prs: null,         // Pull Request từ trang quản trị (đang mở)
 }
 
 /*---------- Tiện ích ----------*/
@@ -59,18 +63,23 @@ function set(obj, path, value) {
     })
     o[path[path.length - 1]] = value
 }
-const thumbUrl = file => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=320`
+/* Ảnh đã tải về site (assets/js/data/local-images.js nạp trước admin.js) – nhanh hơn; chưa có thì lấy từ Commons */
+const LOCAL = typeof LOCAL_IMAGES !== 'undefined' ? LOCAL_IMAGES : {}
+const thumbUrl = file => (LOCAL[file] ? `../${LOCAL[file].xs}` : `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=320`)
 const commonsPage = file => `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/ /g, '_'))}`
 const IMAGE_RE = /\.(jpe?g|png|webp|JPE?G|PNG)$/
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/
 const YM_RE = /^20[0-9]{2}-(0[1-9]|1[0-2])$/
 
-function toast(message, ms = 4000) {
-    const el = $('#toast')
+function toast(message, ms = 4000, type = 'info') {
+    const box = $('#toasts')
+    if (!box) return
+    const el = document.createElement('div')
+    el.className = `toast toast--${type}`
     el.textContent = message
-    el.hidden = false
-    clearTimeout(toast.timer)
-    toast.timer = setTimeout(() => { el.hidden = true }, ms)
+    box.append(el)
+    while (box.children.length > 3) box.firstElementChild.remove() // chỉ giữ 3 thông báo mới nhất
+    setTimeout(() => el.remove(), ms)
 }
 
 /*---------- GitHub API ----------*/
@@ -101,6 +110,7 @@ async function login(token, remember) {
     if (!repo.permissions || !repo.permissions.push) throw new Error('Token không có quyền ghi vào repo travel (cần Contents: Read and write).')
     const user = await gh('/user').catch(() => null)
     state.user = user ? user.login : 'token'
+    state.avatar = user ? user.avatar_url : null
     try {
         if (remember) localStorage.setItem(TOKEN_KEY, token)
         else sessionStorage.setItem(TOKEN_KEY, token)
@@ -109,7 +119,7 @@ async function login(token, remember) {
 
 function logout() {
     try { localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(TOKEN_KEY) } catch { /* bỏ qua */ }
-    Object.assign(state, { token: null, user: null, baseSha: null, texts: {}, data: {}, bundle: null, dirty: false })
+    Object.assign(state, { token: null, user: null, avatar: null, baseSha: null, texts: {}, data: {}, bundle: null, mode: null, dirty: false, prs: null })
     location.hash = '#/'
     render()
 }
@@ -117,6 +127,7 @@ function logout() {
 async function loadData() {
     const ref = await gh(`/repos/${REPO}/git/ref/heads/${BASE_BRANCH}`)
     state.baseSha = ref.object.sha
+    state.loadedAt = new Date().toISOString()
     const entries = await Promise.all(Object.entries(FILES).map(async ([key, path]) => {
         const text = await gh(`/repos/${REPO}/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}?ref=${state.baseSha}`, { raw: true })
         return [key, text]
@@ -654,25 +665,30 @@ function field(spec) {
     return `<div class="field">${label}${src}${input}${help}</div>`
 }
 
+/* Mục danh sách thu gọn được (nhớ trạng thái mở theo đường dẫn); danh sách ngắn mở sẵn */
 function listField(spec, items) {
     const path = spec.path
-    const rows = items.map((item, i) => `
-        <div class="list__item">
-            <div class="list__head">
-                <span>${esc(spec.itemLabel ? spec.itemLabel(item, i) : `#${i + 1}`)}</span>
+    const rows = items.map((item, i) => {
+        const key = JSON.stringify([...path, i])
+        const open = state.open.has(key) ? state.open.get(key) : items.length <= 3
+        return `
+        <details class="list__item" data-key="${esc(key)}"${open ? ' open' : ''}>
+            <summary class="list__head">
+                <span class="list__label"><span class="list__num">${i + 1}</span>${esc(spec.itemLabel ? spec.itemLabel(item, i) : `#${i + 1}`)}</span>
                 ${spec.fixed ? '' : `<span class="list__tools">
                     <button type="button" class="icon-btn" data-op="up" ${attrs([...path, i], 'op')} title="Lên"${i === 0 ? ' disabled' : ''}>↑</button>
                     <button type="button" class="icon-btn" data-op="down" ${attrs([...path, i], 'op')} title="Xuống"${i === items.length - 1 ? ' disabled' : ''}>↓</button>
                     <button type="button" class="icon-btn icon-btn--danger" data-op="del" ${attrs([...path, i], 'op')} title="Xóa">Xóa</button>
                 </span>`}
-            </div>
-            ${spec.fields(i).map(field).join('')}
-        </div>`).join('')
+            </summary>
+            <div class="list__body">${spec.fields(i).map(field).join('')}</div>
+        </details>`
+    }).join('')
     return `<div class="field">
         ${spec.label ? `<h3>${esc(spec.label)}</h3>` : ''}
         ${spec.help ? `<div class="field__help">${spec.help}</div>` : ''}
         <div class="list">${rows || '<p class="muted small">Chưa có mục nào.</p>'}</div>
-        ${spec.fixed ? '' : `<p><button type="button" class="button button--ghost" data-op="add" data-template="${esc(JSON.stringify(spec.newItem()))}" ${attrs(path, 'op')}>+ ${esc(spec.addLabel || 'Thêm')}</button></p>`}
+        ${spec.fixed ? '' : `<p><button type="button" class="btn btn--ghost btn--sm" data-op="add" data-template="${esc(JSON.stringify(spec.newItem()))}" ${attrs(path, 'op')}>+ ${esc(spec.addLabel || 'Thêm')}</button></p>`}
     </div>`
 }
 
@@ -930,7 +946,7 @@ const TABS = {
             const v = state.bundle.dest
             const base = ['tr', lang]
             const fields = [
-                { type: 'html', html: `<div class="toolbar">${TR_LANGS.map(l => `<button type="button" class="button${l === lang ? '' : ' button--ghost'}" data-lang="${l}">${LANG_NAMES[l]}</button>`).join('')}</div>
+                { type: 'html', html: `<div class="toolbar">${TR_LANGS.map(l => `<button type="button" class="btn btn--sm${l === lang ? '' : ' btn--ghost'}" data-lang="${l}">${LANG_NAMES[l]}</button>`).join('')}</div>
                     <p class="muted small">${lang === 'en' ? 'Tiếng Anh <strong>bắt buộc</strong> (build báo lỗi nếu thiếu).' : 'Tùy chọn – mục nào để trống sẽ hiện tiếng Anh. Mỗi mục (vd. món ăn) dịch đủ hoặc để trống cả mục.'} Dòng 🇻🇳 là bản gốc tiếng Việt.</p>` },
                 { type: 'group', fields: [
                     { type: 'text', path: [...base, 'name'], label: 'Tên', src: v.name },
@@ -991,25 +1007,211 @@ function placeFields(list, i, key, keyLabel) {
     ]
 }
 
-/*---------- Trang ----------*/
+/*==================== KHUNG TRANG ====================*/
+const NAV = [
+    ['/', 'Tổng quan', '▦'],
+    ['/dest', 'Điểm đến', '◉'],
+    ['/site', 'Giao diện & mùa', '◐'],
+    ['/prs', 'Pull Request', '⇄'],
+]
+const route = () => location.hash.replace(/^#/, '') || '/'
+const navOf = r => (r.startsWith('/edit/') || r === '/new' ? '/dest' : r)
+
+function renderShell(crumbs = [], actions = '') {
+    $('#side').hidden = false
+    $('#topbar').hidden = false
+    const active = navOf(route().split('?')[0])
+    $('#side-nav').innerHTML = NAV.map(([href, label, icon]) => `<a href="#${href}" class="side__link${active === href ? ' is-active' : ''}"${active === href ? ' aria-current="page"' : ''}>
+            <span class="side__icon" aria-hidden="true">${icon}</span>${label}${href === '/prs' && state.prs && state.prs.length ? `<span class="side__count">${state.prs.length}</span>` : ''}</a>`).join('') +
+        '<a href="#/new" class="side__link side__link--add"><span class="side__icon" aria-hidden="true">＋</span>Thêm điểm đến</a>'
+    $('#side-user').textContent = state.user ? `@${state.user}` : ''
+    const avatar = $('#side-avatar')
+    if (state.avatar) { avatar.src = state.avatar; avatar.hidden = false }
+    $('#crumbs').innerHTML = crumbs.map(([label, href], i) => (href && i < crumbs.length - 1 ? `<a href="${href}">${esc(label)}</a>` : `<span>${esc(label)}</span>`)).join('<span class="crumbs__sep">/</span>')
+    $('#topbar-actions').innerHTML = actions
+    closeNav()
+}
+
+function closeNav() {
+    $('#shell').classList.remove('shell--nav-open')
+    $('#side-backdrop').hidden = true
+    $('#menu-toggle').setAttribute('aria-expanded', 'false')
+}
+
+/*==================== CHỈ SỐ DỮ LIỆU ====================*/
+function monthsAgo(ym) {
+    if (!YM_RE.test(ym || '')) return 0
+    const [y, m] = ym.split('-').map(Number)
+    const now = new Date()
+    return (now.getFullYear() - y) * 12 + (now.getMonth() + 1 - m)
+}
+
+/* Tình trạng một điểm đến: thiếu bản dịch, món dùng ảnh minh họa, mục quá 12 tháng chưa kiểm tra */
+function destHealth(x) {
+    const d = state.data
+    const missing = ['ko', 'zh', 'ja'].filter(l => !(d[l].destinations || {})[x.id])
+    const illus = x.foods.filter(f => f.illustrative).length
+    const p = d.places.places[x.id] || {}
+    const entries = [...(p.eats || []), ...(p.cafes || []), ...(d.sights.sights[x.id] || []).flat()]
+    const stale = entries.filter(e => monthsAgo(e.updated) > 12).length
+    return { missing, illus, stale, eats: (p.eats || []).length, sights: (d.sights.sights[x.id] || []).flat().length, score: missing.length * 2 + illus + stale }
+}
+
+function healthChips(h, { ok = true } = {}) {
+    return [
+        h.missing.length ? `<span class="chip chip--warn" title="Chưa có bản dịch">Thiếu ${h.missing.join(', ')}</span>` : ok ? '<span class="chip chip--ok">Đủ 5 thứ tiếng</span>' : '',
+        h.illus ? `<span class="chip chip--muted" title="Món đang dùng ảnh minh họa">${h.illus} ảnh minh họa</span>` : '',
+        h.stale ? `<span class="chip chip--warn" title="Quán / điểm tham quan quá 12 tháng chưa kiểm tra">${h.stale} mục cũ</span>` : '',
+    ].join('')
+}
+
+function activeSeason(today = new Date().toISOString().slice(0, 10)) {
+    return state.data.site.seasons.find(s => s.enabled && seasonActive(s, today)) || null
+}
+
+/* Mùa sắp tới gần nhất (trong 365 ngày) */
+function nextSeason() {
+    const day = new Date()
+    for (let i = 1; i <= 365; i++) {
+        day.setDate(day.getDate() + 1)
+        const iso = day.toISOString().slice(0, 10)
+        const s = state.data.site.seasons.find(x => x.enabled && seasonActive(x, iso))
+        if (s && s !== activeSeason()) return { season: s, from: iso, days: i }
+    }
+    return null
+}
+
+const swatch = theme => `<span class="swatch" style="background:hsl(${theme.hue}, 64%, 22%)"></span><span class="swatch" style="background:hsl(${theme.accentHue}, 92%, 55%)"></span>`
+const fmtDate = iso => {
+    const d = new Date(iso)
+    return `${d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} ngày ${d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' })}`
+}
+function ago(iso) {
+    const min = Math.round((Date.now() - new Date(iso)) / 60000)
+    if (min < 1) return 'vừa xong'
+    if (min < 60) return `${min} phút trước`
+    if (min < 60 * 24) return `${Math.round(min / 60)} giờ trước`
+    return `${Math.round(min / 1440)} ngày trước`
+}
+
+/*==================== PULL REQUEST TỪ TRANG QUẢN TRỊ ====================*/
+const STATUS_CONTEXT = 'Kiểm tra (admin)'
+const PR_STATUS = {
+    pending: ['Đang build & kiểm tra', 'chip--info'],
+    success: ['Sẵn sàng đăng', 'chip--ok'],
+    failure: ['Kiểm tra lỗi', 'chip--bad'],
+    error: ['Kiểm tra lỗi', 'chip--bad'],
+    unknown: ['Chưa rõ kết quả', 'chip--muted'],
+}
+
+async function prStatus(sha) {
+    try {
+        const combined = await gh(`/repos/${REPO}/commits/${sha}/status`)
+        const st = combined.statuses.find(x => x.context === STATUS_CONTEXT)
+        return st ? { status: st.state, url: st.target_url } : { status: 'pending' }
+    } catch {
+        return { status: 'unknown' } // token chưa có quyền Commit statuses: Read
+    }
+}
+
+async function loadPrs() {
+    const list = await gh(`/repos/${REPO}/pulls?state=open&per_page=50`)
+    const mine = list.filter(p => p.head.ref.startsWith('admin/'))
+    state.prs = await Promise.all(mine.map(async p => ({
+        number: p.number, title: p.title, url: p.html_url, branch: p.head.ref, sha: p.head.sha,
+        created: p.created_at, user: p.user && p.user.login, ...(await prStatus(p.head.sha)),
+    })))
+    return state.prs
+}
+
+function prItem(p) {
+    const [label, cls] = PR_STATUS[p.status] || PR_STATUS.unknown
+    return `<li class="pr" data-pr="${p.number}">
+        <div class="pr__main">
+            <a class="pr__title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+            <span class="pr__meta">#${p.number} · ${esc(p.user || '')} · ${ago(p.created)}</span>
+        </div>
+        <span class="chip ${cls}">${p.status === 'pending' ? '<span class="spin" aria-hidden="true"></span>' : ''}${label}</span>
+        <div class="pr__actions">
+            <a class="btn btn--ghost btn--sm" href="${esc(p.url)}/files" target="_blank" rel="noopener">Xem thay đổi</a>
+            ${p.status === 'failure' || p.status === 'error' ? `<a class="btn btn--ghost btn--sm" href="${esc(p.url || '')}/checks" target="_blank" rel="noopener">Xem lỗi</a>` : ''}
+            <button type="button" class="btn btn--sm" data-pr-merge="${p.number}"${p.status === 'success' || p.status === 'unknown' ? '' : ' disabled'} title="Gộp vào main – site tự cập nhật sau vài phút">Đăng lên site</button>
+            <button type="button" class="btn btn--ghost btn--sm btn--danger" data-pr-close="${p.number}">Đóng</button>
+        </div>
+    </li>`
+}
+
+function prListHtml(prs, empty = 'Không có Pull Request nào đang chờ.') {
+    if (!prs) return '<p class="muted"><span class="spin"></span> Đang tải…</p>'
+    return prs.length ? `<ul class="prs">${prs.map(prItem).join('')}</ul>` : `<p class="empty">${empty}</p>`
+}
+
+async function mergePr(number) {
+    const pr = state.prs.find(p => p.number === number)
+    const warn = pr && pr.status !== 'success' ? '\n\nChưa xem được kết quả kiểm tra của PR này – chỉ đăng khi chắc chắn PR đã xanh.' : ''
+    if (!confirm(`Đăng PR #${number} lên site?${warn}`)) return
+    await gh(`/repos/${REPO}/pulls/${number}/merge`, { method: 'PUT', body: { merge_method: 'merge' } })
+    if (pr) await gh(`/repos/${REPO}/git/refs/heads/${pr.branch}`, { method: 'DELETE' }).catch(() => {})
+    state.baseSha = null // dữ liệu main đã đổi
+    toast(`Đã đăng PR #${number} – Cloudflare cập nhật site sau vài phút.`, 6000, 'ok')
+}
+
+async function closePr(number) {
+    const pr = state.prs.find(p => p.number === number)
+    if (!confirm(`Đóng PR #${number} mà không đăng? Thay đổi trong PR sẽ bị bỏ.`)) return
+    await gh(`/repos/${REPO}/pulls/${number}`, { method: 'PATCH', body: { state: 'closed' } })
+    if (pr) await gh(`/repos/${REPO}/git/refs/heads/${pr.branch}`, { method: 'DELETE' }).catch(() => {})
+    toast(`Đã đóng PR #${number}.`, 4000, 'ok')
+}
+
+/* Làm mới danh sách PR trong vùng đang hiện; tự hỏi lại khi còn PR đang kiểm tra */
+function refreshPrs(target) {
+    clearTimeout(refreshPrs.timer)
+    loadPrs().then(prs => {
+        const box = document.getElementById(target)
+        if (!box) return
+        box.innerHTML = prListHtml(prs)
+        renderShellCount()
+        if (prs.some(p => p.status === 'pending')) refreshPrs.timer = setTimeout(() => refreshPrs(target), 20000)
+    }).catch(err => {
+        const box = document.getElementById(target)
+        if (box) box.innerHTML = `<p class="errors">Không tải được Pull Request: ${esc(err.message)}</p>`
+    })
+}
+
+function renderShellCount() {
+    const link = document.querySelector('.side__link[href="#/prs"]')
+    if (!link || !state.prs) return
+    link.querySelector('.side__count')?.remove()
+    if (state.prs.length) link.insertAdjacentHTML('beforeend', `<span class="side__count">${state.prs.length}</span>`)
+}
+
+/*==================== TRANG ====================*/
 function renderLogin(error) {
-    $('#bar-nav').hidden = true
+    $('#side').hidden = true
+    $('#topbar').hidden = true
     $('#app').innerHTML = `
-        <div class="card" style="max-width:640px">
-            <h1>Đăng nhập</h1>
-            <p>Trang này sửa trực tiếp dữ liệu trong repo <a href="https://github.com/${REPO}" target="_blank" rel="noopener">${REPO}</a> bằng một <strong>fine-grained token</strong> GitHub. Token chỉ lưu trên trình duyệt này và chỉ gửi tới api.github.com.</p>
-            <ol class="steps">
-                <li>Mở <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens → Generate new token</a>.</li>
-                <li><strong>Repository access</strong>: Only select repositories → <code>travel</code>. Đặt thời hạn (vd. 90 ngày).</li>
-                <li><strong>Permissions → Repository</strong>: <code>Contents</code> = Read and write, <code>Pull requests</code> = Read and write.</li>
-                <li>Bấm Generate, chép token (bắt đầu bằng <code>github_pat_</code>) và dán vào ô dưới. Không gửi token cho ai khác.</li>
-            </ol>
-            ${error ? `<div class="errors">${esc(error)}</div>` : ''}
-            <form id="login-form">
-                <div class="field"><label for="token">Token</label><input type="password" id="token" autocomplete="off" required placeholder="github_pat_…"></div>
-                <div class="field"><label class="checks" style="font-weight:400"><input type="checkbox" id="remember"> Ghi nhớ trên máy này (chỉ máy riêng của bạn)</label></div>
-                <button class="button" type="submit">Đăng nhập</button>
-            </form>
+        <div class="login">
+            <div class="login__brand"><span class="side__logo">VT</span><div><strong>Việt Travel</strong><small>Quản trị dữ liệu</small></div></div>
+            <div class="card login__card">
+                <h1>Đăng nhập</h1>
+                <p class="muted">Dùng một <strong>fine-grained token</strong> GitHub chỉ có quyền với repo <a href="https://github.com/${REPO}" target="_blank" rel="noopener">${REPO}</a>. Token chỉ lưu trên trình duyệt này và chỉ gửi tới api.github.com.</p>
+                ${error ? `<div class="errors">${esc(error)}</div>` : ''}
+                <form id="login-form">
+                    <div class="field"><label for="token">Token</label><input type="password" id="token" autocomplete="off" required placeholder="github_pat_…"></div>
+                    <label class="checks"><input type="checkbox" id="remember"> Ghi nhớ trên máy này (chỉ máy riêng của bạn)</label>
+                    <button class="btn btn--block" type="submit">Đăng nhập</button>
+                </form>
+                <details class="login__help">
+                    <summary>Cách tạo token</summary>
+                    <ol class="steps">
+                        <li>Mở <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens → Generate new token</a>.</li>
+                        <li><strong>Repository access</strong>: Only select repositories → <code>travel</code>. Đặt thời hạn (vd. 90 ngày).</li>
+                        <li><strong>Permissions → Repository</strong>: <code>Contents</code> và <code>Pull requests</code> = Read and write; nên thêm <code>Commit statuses</code> = Read-only để xem PR đã kiểm tra xong chưa.</li>
+                        <li>Bấm Generate, chép token (bắt đầu bằng <code>github_pat_</code>) và dán vào ô trên. Không gửi token cho ai khác.</li>
+                    </ol>
+                </details>
+            </div>
         </div>`
     $('#login-form').addEventListener('submit', async e => {
         e.preventDefault()
@@ -1027,44 +1229,123 @@ function renderLogin(error) {
     })
 }
 
+function renderDashboard() {
+    const d = state.data
+    const dests = d.destinations.destinations
+    const health = dests.map(x => ({ x, h: destHealth(x) }))
+    const sum = key => health.reduce((n, { h }) => n + (Array.isArray(h[key]) ? (h[key].length ? 1 : 0) : h[key]), 0)
+    const season = activeSeason()
+    const next = nextSeason()
+    const attention = health.filter(({ h }) => h.score > 0).sort((a, b) => b.h.score - a.h.score).slice(0, 8)
+    renderShell([['Tổng quan']], '<button type="button" class="btn btn--ghost btn--sm" id="reload">↻ Tải lại dữ liệu</button>')
+    $('#app').innerHTML = `
+        <div class="page-head">
+            <div><h1>Xin chào${state.user ? `, ${esc(state.user)}` : ''}</h1>
+            <p class="muted">Dữ liệu nhánh main · commit <code>${esc(state.baseSha.slice(0, 7))}</code> · tải ${ago(state.loadedAt)}</p></div>
+            <div class="page-head__actions"><a class="btn" href="#/new">＋ Thêm điểm đến</a><a class="btn btn--ghost" href="#/site">Giao diện & mùa</a></div>
+        </div>
+        <div class="stats">
+            <a class="stat" href="#/dest"><span class="stat__num">${dests.length}</span><span class="stat__label">Điểm đến</span></a>
+            <a class="stat" href="#/dest?f=lang"><span class="stat__num">${sum('missing')}</span><span class="stat__label">Điểm đến thiếu bản dịch ko / zh / ja</span></a>
+            <a class="stat" href="#/dest?f=illus"><span class="stat__num">${sum('illus')}</span><span class="stat__label">Món đang dùng ảnh minh họa</span></a>
+            <a class="stat" href="#/dest?f=stale"><span class="stat__num">${sum('stale')}</span><span class="stat__label">Quán / điểm quá 12 tháng chưa kiểm tra</span></a>
+        </div>
+        <div class="cols">
+            <section class="card">
+                <div class="card__head"><h2>Mùa trên site</h2><a href="#/site">Sửa →</a></div>
+                ${season ? `<div class="season-now">${season.theme ? swatch(season.theme) : swatch(d.site.theme)}<div><strong>${esc(season.name)}</strong><span class="muted small">Đang chạy · ${esc(season.from)} → ${esc(season.to)}</span></div>
+                    <a class="btn btn--ghost btn--sm" href="${SITE_URL}?season=${esc(season.id)}" target="_blank" rel="noopener">Xem ↗</a></div>`
+                    : `<div class="season-now">${swatch(d.site.theme)}<div><strong>Giao diện mặc định</strong><span class="muted small">Không có mùa nào đang chạy</span></div></div>`}
+                ${next ? `<p class="muted small">Tiếp theo: <strong>${esc(next.season.name)}</strong> sau ${next.days} ngày (${next.from.split('-').reverse().join('/')}).</p>` : ''}
+                <p class="muted small">${d.site.seasons.length} mùa · ${d.site.seasons.filter(s => s.enabled).length} đang bật</p>
+            </section>
+            <section class="card">
+                <div class="card__head"><h2>Pull Request chờ đăng</h2><a href="#/prs">Tất cả →</a></div>
+                <div id="dash-prs">${prListHtml(state.prs)}</div>
+            </section>
+        </div>
+        <section class="card">
+            <div class="card__head"><h2>Cần chú ý</h2><a href="#/dest?f=attention">Xem tất cả →</a></div>
+            ${attention.length ? `<ul class="attention">${attention.map(({ x, h }) => `<li><a href="#/edit/${x.id}"><img src="${esc(thumbUrl(x.hero))}" alt="" loading="lazy"><span><strong>${esc(x.name)}</strong><span class="chips">${healthChips(h, { ok: false })}</span></span></a></li>`).join('')}</ul>` : '<p class="empty">Mọi điểm đến đều đủ bản dịch và dữ liệu mới.</p>'}
+        </section>`
+    refreshPrs('dash-prs')
+}
+
+const DEST_FILTERS = {
+    all: ['Tất cả', () => true],
+    attention: ['Cần chú ý', h => h.score > 0],
+    lang: ['Thiếu bản dịch', h => h.missing.length > 0],
+    illus: ['Có ảnh minh họa', h => h.illus > 0],
+    stale: ['Dữ liệu cũ', h => h.stale > 0],
+}
+const DEST_SORTS = { order: 'Thứ tự trên site', name: 'Tên A → Z', attention: 'Cần chú ý nhất' }
+
 function renderList() {
     const d = state.data
-    const rows = d.destinations.destinations.map(x => {
-        const badges = TR_LANGS.map(l => `<span class="badge ${d[l].destinations?.[x.id] ? 'badge--ok' : 'badge--miss'}" title="${LANG_NAMES[l]}">${l}</span>`).join('')
-        const illus = x.foods.filter(f => f.illustrative).length
-        return `<tr data-search="${esc(`${x.id} ${x.name} ${x.province}`.toLowerCase())}">
-            <td><a href="#/edit/${x.id}"><strong>${esc(x.name)}</strong></a><br><span class="muted small">${esc(x.id)}</span></td>
-            <td>${esc(x.province)}<br><span class="muted small">${esc(d.destinations.regions[x.region] || x.region)}</span></td>
-            <td>${x.foods.length} món${illus ? ` <span class="muted small">(${illus} ảnh minh họa)</span>` : ''}<br><span class="muted small">${(d.places.places[x.id]?.eats || []).length} quán · ${(d.sights.sights[x.id] || []).flat().length} điểm</span></td>
-            <td>${badges}</td>
-            <td><a class="button button--ghost" href="#/edit/${x.id}">Sửa</a></td>
-        </tr>`
-    }).join('')
+    const params = new URLSearchParams(route().split('?')[1] || '')
+    const view = (() => { try { return localStorage.getItem('vt-admin-view') || 'grid' } catch { return 'grid' } })()
+    const f = state.listFilter || { q: '', region: '', filter: params.get('f') || 'all', sort: 'order', view }
+    if (params.get('f')) f.filter = params.get('f')
+    state.listFilter = f
+    renderShell([['Tổng quan', '#/'], ['Điểm đến']], '<a class="btn btn--sm" href="#/new">＋ Thêm điểm đến</a>')
     $('#app').innerHTML = `
-        <h1>Điểm đến (${d.destinations.destinations.length})</h1>
+        <div class="page-head"><div><h1>Điểm đến</h1><p class="muted" id="list-count"></p></div></div>
         <div class="toolbar">
-            <input type="search" id="search" placeholder="Tìm theo tên, mã, tỉnh…" aria-label="Tìm điểm đến">
-            <a class="button" href="#/new">+ Thêm điểm đến</a>
-            <a class="button button--ghost" href="#/site">Giao diện & mùa</a>
-            <button type="button" class="button button--ghost" id="reload">Tải lại dữ liệu</button>
-            <span class="muted small">Dữ liệu nhánh main · commit ${esc(state.baseSha.slice(0, 7))}</span>
+            <input type="search" id="search" placeholder="Tìm theo tên, mã, tỉnh…" aria-label="Tìm điểm đến" value="${esc(f.q)}">
+            <select id="f-region" aria-label="Vùng miền"><option value="">Mọi vùng</option>${Object.entries(d.destinations.regions).map(([k, v]) => `<option value="${k}"${f.region === k ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select>
+            <select id="f-filter" aria-label="Lọc">${Object.entries(DEST_FILTERS).map(([k, [label]]) => `<option value="${k}"${f.filter === k ? ' selected' : ''}>${label}</option>`).join('')}</select>
+            <select id="f-sort" aria-label="Sắp xếp">${Object.entries(DEST_SORTS).map(([k, label]) => `<option value="${k}"${f.sort === k ? ' selected' : ''}>${label}</option>`).join('')}</select>
+            <div class="seg" role="group" aria-label="Kiểu xem">
+                <button type="button" data-view="grid" aria-pressed="${f.view === 'grid'}">▦ Lưới</button>
+                <button type="button" data-view="table" aria-pressed="${f.view === 'table'}">☰ Bảng</button>
+            </div>
         </div>
-        <div class="card" style="padding:0;overflow-x:auto">
-            <table>
-                <thead><tr><th>Điểm đến</th><th>Tỉnh / vùng</th><th>Nội dung</th><th>Bản dịch</th><th></th></tr></thead>
-                <tbody>${rows}</tbody>
-            </table>
-        </div>
-        <p class="muted small">Ngoài điểm đến, các dữ liệu khác (lễ hội, cẩm nang, tàu hỏa / cảng ra đảo, chuỗi giao diện) vẫn sửa trong repo – xem docs/du-lieu.md.</p>`
-    $('#search').addEventListener('input', e => {
-        const q = e.target.value.trim().toLowerCase()
-        document.querySelectorAll('tbody tr').forEach(tr => { tr.hidden = q && !tr.dataset.search.includes(q) })
-    })
-    $('#reload').addEventListener('click', async e => {
-        e.target.disabled = true
-        await loadData().catch(err => toast(err.message))
-        renderList()
-    })
+        <div id="dest-results"></div>`
+    const update = () => {
+        const q = f.q.trim().toLowerCase()
+        let rows = d.destinations.destinations.map(x => ({ x, h: destHealth(x) }))
+            .filter(({ x, h }) => (!q || `${x.id} ${x.name} ${x.province}`.toLowerCase().includes(q))
+                && (!f.region || x.region === f.region) && DEST_FILTERS[f.filter][1](h))
+        if (f.sort === 'name') rows.sort((a, b) => a.x.name.localeCompare(b.x.name, 'vi'))
+        if (f.sort === 'attention') rows.sort((a, b) => b.h.score - a.h.score)
+        $('#list-count').textContent = `${rows.length} / ${d.destinations.destinations.length} điểm đến`
+        const region = x => esc(d.destinations.regions[x.region] || x.region)
+        $('#dest-results').innerHTML = !rows.length ? '<p class="empty">Không có điểm đến nào khớp bộ lọc.</p>' : f.view === 'table'
+            ? `<div class="card card--flush"><table class="table">
+                <thead><tr><th>Điểm đến</th><th>Vùng</th><th>Nội dung</th><th>Tình trạng</th><th></th></tr></thead>
+                <tbody>${rows.map(({ x, h }) => `<tr>
+                    <td><a href="#/edit/${x.id}" class="table__name"><img src="${esc(thumbUrl(x.hero))}" alt="" loading="lazy"><span><strong>${esc(x.name)}</strong><small>${esc(x.province)}</small></span></a></td>
+                    <td>${region(x)}</td>
+                    <td class="small">${x.foods.length} món · ${h.eats} quán · ${h.sights} điểm</td>
+                    <td><span class="chips">${healthChips(h)}</span></td>
+                    <td><a class="btn btn--ghost btn--sm" href="#/edit/${x.id}">Sửa</a></td></tr>`).join('')}</tbody></table></div>`
+            : `<div class="grid-cards">${rows.map(({ x, h }) => `<a class="dcard" href="#/edit/${x.id}">
+                <span class="dcard__img"><img src="${esc(thumbUrl(x.hero))}" alt="" loading="lazy"><span class="dcard__region">${region(x)}</span></span>
+                <span class="dcard__body"><strong>${esc(x.name)}</strong><small>${esc(x.province)}</small>
+                <span class="dcard__meta">${x.foods.length} món · ${h.eats} quán · ${h.sights} điểm</span>
+                <span class="chips">${healthChips(h)}</span></span></a>`).join('')}</div>`
+    }
+    update()
+    $('#search').addEventListener('input', e => { f.q = e.target.value; update() })
+    $('#f-region').addEventListener('change', e => { f.region = e.target.value; update() })
+    $('#f-filter').addEventListener('change', e => { f.filter = e.target.value; update() })
+    $('#f-sort').addEventListener('change', e => { f.sort = e.target.value; update() })
+    document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => {
+        f.view = b.dataset.view
+        try { localStorage.setItem('vt-admin-view', f.view) } catch { /* bỏ qua */ }
+        document.querySelectorAll('[data-view]').forEach(x => x.setAttribute('aria-pressed', String(x === b)))
+        update()
+    }))
+}
+
+function renderPrsPage() {
+    renderShell([['Tổng quan', '#/'], ['Pull Request']], '<button type="button" class="btn btn--ghost btn--sm" id="reload-prs">↻ Làm mới</button>')
+    $('#app').innerHTML = `
+        <div class="page-head"><div><h1>Pull Request từ trang quản trị</h1>
+            <p class="muted">Mỗi lần lưu tạo một PR. GitHub tự build lại trang và chạy toàn bộ test (khoảng 5 phút); khi <strong>Sẵn sàng đăng</strong>, bấm <strong>Đăng lên site</strong> – Cloudflare cập nhật sau vài phút.</p></div></div>
+        <section class="card"><div id="all-prs">${prListHtml(state.prs)}</div></section>
+        <p class="muted small">PR do người khác mở hoặc không bắt đầu bằng <code>admin/</code> xem ở <a href="https://github.com/${REPO}/pulls" target="_blank" rel="noopener">GitHub</a>.</p>`
+    refreshPrs('all-prs')
 }
 
 function iconDatalist() {
@@ -1073,83 +1354,309 @@ function iconDatalist() {
     return `<datalist id="icon-list">${[...icons].sort().map(i => `<option value="${esc(i)}">`).join('')}</datalist>`
 }
 
+/*---------- Trình sửa: lỗi theo tab ----------*/
+function errorTab(msg) {
+    if (state.mode === 'site') {
+        const m = msg.match(/^Mùa (\d+)/)
+        return m ? `s${Number(m[1]) - 1}` : 'general'
+    }
+    const rules = [[/^(Mã|Thông tin chung)/, 'info'], [/^Ảnh/, 'images'], [/^(Ẩm thực|Hoạt động)/, 'food'], [/^Lịch trình/, 'plan'],
+        [/^(Quán|Lưu trú)/, 'places'], [/^Điểm tham quan/, 'sights'], [/^Bản dịch/, 'tr']]
+    const hit = rules.find(([re]) => re.test(msg))
+    return hit ? hit[1] : 'info'
+}
+
+function workingCopy() {
+    if (state.mode === 'site') return fromEditableSite(state.bundle.site)
+    const w = clone(state.bundle)
+    cleanBundle(w)
+    return w
+}
+
+function computeErrors() {
+    const w = workingCopy()
+    return state.mode === 'site' ? validateSite(w) : validate(w)
+}
+
+function errorsByTab(errors) {
+    const by = {}
+    errors.forEach(m => { const t = errorTab(m); (by[t] = by[t] || []).push(m) })
+    return by
+}
+
+/* Cập nhật số lỗi trên tab + thanh lưu mà không vẽ lại form (gõ phím không mất con trỏ) */
+function updateErrorBadges() {
+    if (!state.bundle) return
+    state.errors = computeErrors()
+    const by = errorsByTab(state.errors)
+    document.querySelectorAll('.tabs [data-tab]').forEach(btn => {
+        const n = (by[btn.dataset.tab] || []).length
+        let badge = btn.querySelector('.tab__count')
+        if (!n) { badge?.remove(); return }
+        if (!badge) { badge = document.createElement('span'); badge.className = 'tab__count'; btn.append(badge) }
+        badge.textContent = n
+        badge.classList.toggle('tab__count--bad', state.showErrors)
+    })
+    const status = $('#save-status')
+    if (status) status.innerHTML = saveStatusHtml()
+}
+
+function saveStatusHtml() {
+    const n = state.errors.length
+    const draft = state.draftSavedAt ? ` · nháp tự lưu ${new Date(state.draftSavedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}` : ''
+    return `${state.dirty ? '<span class="dot dot--warn"></span>Có thay đổi chưa đăng' : '<span class="dot"></span>Chưa có thay đổi'}${draft}${n ? ` · <span class="${state.showErrors ? 'text-bad' : ''}">${n} mục cần điền / sửa</span>` : ''}`
+}
+
+/*---------- Trình sửa: bản nháp tự lưu trên trình duyệt ----------*/
+const draftKey = () => `vt-admin-draft:${state.mode === 'site' ? 'site' : state.isNew ? 'new' : `edit:${state.id}`}`
+function readDraft() {
+    try { return JSON.parse(localStorage.getItem(draftKey()) || 'null') } catch { return null }
+}
+function clearDraft() {
+    try { localStorage.removeItem(draftKey()) } catch { /* bỏ qua */ }
+    state.draftSavedAt = null
+}
+function saveDraftSoon() {
+    clearTimeout(saveDraftSoon.timer)
+    saveDraftSoon.timer = setTimeout(() => {
+        if (!state.bundle || !state.dirty) return
+        try {
+            state.draftSavedAt = Date.now()
+            localStorage.setItem(draftKey(), JSON.stringify({ bundle: state.bundle, savedAt: state.draftSavedAt, baseSha: state.baseSha }))
+        } catch { state.draftSavedAt = null }
+        updateErrorBadges()
+    }, 800)
+}
+
+function markDirty() {
+    state.dirty = true
+    saveDraftSoon()
+    clearTimeout(markDirty.timer)
+    markDirty.timer = setTimeout(updateErrorBadges, 300)
+}
+
+/*---------- Trình sửa ----------*/
 function renderEditor() {
     const b = state.bundle
+    const isSite = state.mode === 'site'
     const allTabs = currentTabs()
     if (!allTabs[state.tab]) state.tab = Object.keys(allTabs)[0]
-    const tabs = Object.entries(allTabs).map(([key, t]) => `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === state.tab}">${esc(t.label)}</button>`).join('') +
-        (state.mode === 'site' ? '<button type="button" data-season-add>+ Thêm mùa</button>' : '')
-    const heading = state.mode === 'site' ? 'Giao diện & mùa' : state.isNew ? 'Thêm điểm đến mới' : `Sửa: ${esc(b.dest.name)}`
-    const errors = state.errors.length ? `<div class="errors"><strong>Chưa lưu được – cần sửa ${state.errors.length} chỗ:</strong><ul>${state.errors.slice(0, 25).map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : ''
+    state.errors = computeErrors()
+    const by = errorsByTab(state.errors)
+    const tabs = Object.entries(allTabs).map(([key, t]) => {
+        const n = (by[key] || []).length
+        return `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === state.tab}">${esc(t.label)}${n ? `<span class="tab__count${state.showErrors ? ' tab__count--bad' : ''}">${n}</span>` : ''}</button>`
+    }).join('') + (isSite ? '<button type="button" class="tab--add" data-season-add>＋ Thêm mùa</button>' : '')
+    const title = isSite ? 'Giao diện & mùa' : state.isNew ? 'Thêm điểm đến mới' : b.dest.name
+    const tabErrors = state.showErrors && by[state.tab] ? `<div class="errors"><strong>Cần sửa trong tab này:</strong><ul>${by[state.tab].map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : ''
+    const others = state.showErrors ? Object.keys(by).filter(t => t !== state.tab && allTabs[t]) : []
+    const draft = state.draft ? `<div class="notice">
+            <span>Có bản nháp chưa đăng lưu lúc ${fmtDate(state.draft.savedAt)}${state.draft.baseSha !== state.baseSha ? ' (trên dữ liệu cũ hơn hiện tại)' : ''}.</span>
+            <button type="button" class="btn btn--sm" data-draft="restore">Khôi phục nháp</button>
+            <button type="button" class="btn btn--ghost btn--sm" data-draft="discard">Bỏ nháp</button></div>` : ''
+    const view = !isSite && !state.isNew ? `<a class="btn btn--ghost btn--sm" href="../diem-den/${esc(b.dest.id)}/index.html" target="_blank" rel="noopener">Xem trên site ↗</a>`
+        : isSite ? `<a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener">Xem trang chủ ↗</a>` : ''
+    renderShell(isSite ? [['Tổng quan', '#/'], ['Giao diện & mùa']] : [['Tổng quan', '#/'], ['Điểm đến', '#/dest'], [state.isNew ? 'Thêm mới' : b.dest.name]], view)
     $('#app').innerHTML = `
-        <p><a href="#/">← Danh sách điểm đến</a></p>
-        <h1>${heading}</h1>
-        ${errors}
+        <div class="page-head page-head--editor">
+            ${!isSite && !state.isNew && b.dest.hero ? `<img class="page-head__img" src="${esc(thumbUrl(b.dest.hero))}" alt="">` : ''}
+            <div><h1>${esc(title)}</h1>
+            <p class="muted">${isSite ? 'Màu giao diện, slogan, ảnh bìa trang chủ và các mùa / chiến dịch tự đổi theo ngày.' : state.isNew ? 'Điền đủ các tab – số đỏ trên tab là mục còn thiếu.' : `${esc(b.dest.id)} · ${esc(b.dest.province)}`}</p></div>
+        </div>
+        ${draft}
         <div class="tabs" role="tablist">${tabs}</div>
+        ${tabErrors}
+        ${others.length ? `<p class="muted small">Còn lỗi ở: ${others.map(t => `<button type="button" class="link" data-tab="${t}">${esc(allTabs[t].label)} (${by[t].length})</button>`).join(', ')}</p>` : ''}
         <div class="card" id="tab-body">${allTabs[state.tab].fields().map(field).join('')}</div>
-        ${state.mode === 'site' ? linkDatalist() : iconDatalist()}
+        ${isSite ? linkDatalist() : iconDatalist()}
         <div class="savebar">
-            <span class="savebar__status">${state.dirty ? 'Có thay đổi chưa lưu' : 'Chưa có thay đổi'}</span>
-            <input type="text" id="save-note" placeholder="Ghi chú cho người duyệt (tùy chọn)" style="max-width:320px">
-            <button type="button" class="button" id="save">Lưu thành Pull Request</button>
+            <span class="savebar__status" id="save-status">${saveStatusHtml()}</span>
+            <span class="muted small savebar__hint">Ctrl + S</span>
+            <button type="button" class="btn" id="save">Xem lại & tạo Pull Request</button>
         </div>`
 }
 
 function renderDone(pr) {
+    renderShell([['Tổng quan', '#/'], ['Đã tạo Pull Request']])
     $('#app').innerHTML = `
-        <div class="card" style="max-width:720px">
-            <h1>Đã tạo Pull Request ✔</h1>
-            <p><a class="button" href="${esc(pr.html_url)}" target="_blank" rel="noopener">Mở PR #${pr.number}: ${esc(pr.title)}</a></p>
-            <ol class="steps">
-                <li>Workflow <strong>Kiểm tra PR từ trang quản trị</strong> tự build lại trang, thêm commit vào PR và chạy toàn bộ test (khoảng 5 phút).</li>
-                <li>Nếu báo lỗi: xem log trong tab Checks của PR, sửa lại ở trang này (sẽ tạo PR mới) rồi đóng PR cũ.</li>
-                <li>Khi xanh: xem tab <em>Files changed</em> rồi bấm <strong>Merge</strong>. Cloudflare tự deploy, ảnh mới được tự tải về.</li>
+        <div class="done card">
+            <div class="done__icon" aria-hidden="true">✓</div>
+            <h1>Đã tạo Pull Request #${pr.number}</h1>
+            <p class="muted">${esc(pr.title)}</p>
+            <ol class="timeline">
+                <li class="is-done">Đã lưu thay đổi vào nhánh riêng và mở PR</li>
+                <li class="is-active">GitHub build lại trang và chạy toàn bộ test (khoảng 5 phút)</li>
+                <li>Bấm <strong>Đăng lên site</strong> khi PR sẵn sàng – Cloudflare cập nhật sau vài phút</li>
             </ol>
-            <p><a href="#/">← Về danh sách điểm đến</a></p>
+            <div id="done-pr">${prListHtml(null)}</div>
+            <p><a href="#/">← Về tổng quan</a> · <a href="${esc(pr.html_url)}" target="_blank" rel="noopener">Mở PR trên GitHub ↗</a></p>
         </div>`
+    const poll = () => loadPrs().then(prs => {
+        const box = document.getElementById('done-pr')
+        if (!box) return
+        const mine = prs.filter(p => p.number === pr.number)
+        box.innerHTML = prListHtml(mine, 'PR này đã được đăng hoặc đóng.')
+        renderShellCount()
+        if (mine[0] && mine[0].status === 'pending') setTimeout(poll, 20000)
+    }).catch(() => {})
+    poll()
+}
+
+/*---------- Xem lại thay đổi trước khi tạo PR ----------*/
+/* Diff theo dòng: bỏ phần đầu / cuối giống nhau, phần giữa so bằng LCS (nếu đủ nhỏ) */
+function lineDiff(oldText, newText) {
+    const a = oldText ? oldText.split('\n') : []
+    const b = newText.split('\n')
+    let s = 0
+    while (s < a.length && s < b.length && a[s] === b[s]) s++
+    let ea = a.length
+    let eb = b.length
+    while (ea > s && eb > s && a[ea - 1] === b[eb - 1]) { ea--; eb-- }
+    const A = a.slice(s, ea)
+    const B = b.slice(s, eb)
+    let ops
+    if (A.length * B.length <= 250000) {
+        const L = Array.from({ length: A.length + 1 }, () => new Uint16Array(B.length + 1))
+        for (let i = A.length - 1; i >= 0; i--) for (let j = B.length - 1; j >= 0; j--) L[i][j] = A[i] === B[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1])
+        ops = []
+        let i = 0
+        let j = 0
+        while (i < A.length && j < B.length) {
+            if (A[i] === B[j]) { ops.push([' ', A[i]]); i++; j++ } else if (L[i + 1][j] >= L[i][j + 1]) ops.push(['-', A[i++]])
+            else ops.push(['+', B[j++]])
+        }
+        while (i < A.length) ops.push(['-', A[i++]])
+        while (j < B.length) ops.push(['+', B[j++]])
+    } else {
+        ops = [...A.map(l => ['-', l]), ...B.map(l => ['+', l])]
+    }
+    const ctx = 3
+    const lines = [...a.slice(Math.max(0, s - ctx), s).map(l => [' ', l]), ...ops, ...a.slice(ea, ea + ctx).map(l => [' ', l])]
+    /* Thu gọn đoạn dài không đổi ở giữa */
+    const out = []
+    for (let k = 0; k < lines.length; k++) {
+        let run = 0
+        while (lines[k + run] && lines[k + run][0] === ' ') run++
+        if (run > 2 * ctx + 2) {
+            out.push(...lines.slice(k, k + ctx), ['…', `${run - 2 * ctx} dòng không đổi`], ...lines.slice(k + run - ctx, k + run))
+            k += run - 1
+        } else out.push(lines[k])
+    }
+    return { lines: out, added: ops.filter(o => o[0] === '+').length, removed: ops.filter(o => o[0] === '-').length }
+}
+
+function openModal(html) {
+    $('#modal-box').innerHTML = html
+    $('#modal').hidden = false
+    document.body.classList.add('no-scroll')
+    $('#modal-box').querySelector('textarea, button')?.focus()
+}
+function closeModal() {
+    $('#modal').hidden = true
+    document.body.classList.remove('no-scroll')
+}
+
+function openReview() {
+    if (!state.bundle) return
+    state.showErrors = true
+    state.errors = computeErrors()
+    if (state.errors.length) {
+        const by = errorsByTab(state.errors)
+        const first = Object.keys(currentTabs()).find(t => by[t])
+        if (first) state.tab = first
+        renderEditor()
+        window.scrollTo(0, 0)
+        toast(`Còn ${state.errors.length} mục cần điền / sửa – xem các tab có số đỏ.`, 5000, 'error')
+        return
+    }
+    const w = workingCopy()
+    const changed = state.mode === 'site' ? buildSiteFiles(w) : buildFiles(w)
+    const files = Object.keys(changed)
+    if (!files.length) {
+        toast('Không có thay đổi nào so với dữ liệu hiện tại.', 4000)
+        return
+    }
+    const texts = Object.fromEntries(Object.entries(FILES).map(([k, f]) => [f, state.texts[k]]))
+    const diffs = files.map(f => ({ f, ...lineDiff(texts[f], changed[f]) }))
+    const total = diffs.reduce((n, x) => [n[0] + x.added, n[1] + x.removed], [0, 0])
+    const MAX = 400
+    openModal(`
+        <div class="modal__head"><h2 id="modal-title">Xem lại thay đổi</h2><button type="button" class="icon-btn" data-modal-close aria-label="Đóng">✕</button></div>
+        <p class="muted">${files.length} file · <span class="text-ok">+${total[0]}</span> <span class="text-bad">−${total[1]}</span> dòng. Pull Request sẽ được build và kiểm tra tự động trước khi đăng.</p>
+        <div class="diffs">${diffs.map(x => `<details open class="diff">
+            <summary><code>${esc(x.f)}</code><span><span class="text-ok">+${x.added}</span> <span class="text-bad">−${x.removed}</span></span></summary>
+            <pre>${x.lines.slice(0, MAX).map(([t, l]) => `<span class="diff__l diff__l--${t === '+' ? 'add' : t === '-' ? 'del' : t === '…' ? 'gap' : 'ctx'}">${t === '…' ? `⋯ ${esc(l)}` : `${t} ${esc(l)}`}</span>`).join('')}${x.lines.length > MAX ? `<span class="diff__l diff__l--gap">⋯ còn ${x.lines.length - MAX} dòng – xem đầy đủ trên GitHub sau khi tạo PR</span>` : ''}</pre></details>`).join('')}</div>
+        <div class="field"><label for="save-note">Ghi chú cho người duyệt (tùy chọn)</label><textarea id="save-note" rows="2" placeholder="vd. Cập nhật giá vé theo bảng giá mới tháng 10"></textarea></div>
+        <div class="modal__foot"><button type="button" class="btn btn--ghost" data-modal-close>Quay lại sửa</button><button type="button" class="btn" id="confirm-save">Tạo Pull Request</button></div>`)
+}
+
+async function confirmSave(btn) {
+    const isSite = state.mode === 'site'
+    const working = workingCopy()
+    btn.disabled = true
+    btn.innerHTML = '<span class="spin"></span> Đang tạo Pull Request…'
+    try {
+        const note = $('#save-note').value.trim()
+        const pr = isSite
+            ? await createPullRequest(buildSiteFiles(working), {
+                title: 'Cập nhật giao diện & mùa',
+                slug: 'giao-dien',
+                summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${working.seasons.length} mùa (${working.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).`,
+            }, note)
+            : await saveAsPullRequest(working, note)
+        clearDraft()
+        closeModal()
+        Object.assign(state, { dirty: false, bundle: null, mode: null, id: null, showErrors: false, draft: null, baseSha: null, prs: null })
+        renderDone(pr)
+        toast(`Đã tạo PR #${pr.number}.`, 4000, 'ok')
+    } catch (err) {
+        btn.disabled = false
+        btn.textContent = 'Tạo Pull Request'
+        toast(err.status === 403 ? 'Token thiếu quyền (cần Contents + Pull requests: Read and write).' : err.message, 8000, 'error')
+    }
+}
+
+/*---------- Điều hướng ----------*/
+function openEditor(mode, id, isNew) {
+    Object.assign(state, { mode, id, isNew, dirty: false, errors: [], showErrors: false, open: new Map(), draftSavedAt: null })
+    state.tab = mode === 'site' ? 'general' : 'info'
+    state.bundle = mode === 'site' ? { site: toEditableSite(state.data.site) } : isNew ? newBundle() : loadBundle(id)
+    const draft = state.bundle && readDraft()
+    state.draft = draft && JSON.stringify(draft.bundle) !== JSON.stringify(state.bundle) ? draft : null
 }
 
 function render() {
+    clearTimeout(refreshPrs.timer)
     if (!state.token) return renderLogin()
-    $('#bar-nav').hidden = false
-    $('#bar-user').textContent = state.user ? `@${state.user}` : ''
     if (!state.baseSha) {
-        $('#app').innerHTML = '<p class="muted">Đang tải dữ liệu từ GitHub…</p>'
+        renderShell([['Đang tải…']])
+        $('#app').innerHTML = '<div class="loading"><span class="spin"></span> Đang tải dữ liệu từ GitHub…</div>'
         return loadData().then(render).catch(err => {
             if (err.status === 401) return logout()
             $('#app').innerHTML = `<div class="errors">Không tải được dữ liệu: ${esc(err.message)}</div>`
         })
     }
-    const route = location.hash.replace(/^#/, '') || '/'
-    const edit = route.match(/^\/edit\/([a-z0-9-]+)$/)
-    if (route === '/site') {
-        if (state.mode !== 'site' || !state.bundle) {
-            Object.assign(state, { mode: 'site', id: null, isNew: false, tab: 'general', dirty: false, errors: [] })
-            state.bundle = { site: toEditableSite(state.data.site) }
-        }
+    const r = route()
+    const path = r.split('?')[0]
+    const edit = path.match(/^\/edit\/([a-z0-9-]+)$/)
+    if (path === '/site') {
+        if (state.mode !== 'site' || !state.bundle) openEditor('site', null, false)
         return renderEditor()
     }
-    if (route === '/new' || edit) {
+    if (path === '/new' || edit) {
         const id = edit ? edit[1] : null
-        if (state.mode !== 'dest' || state.id !== id || !state.bundle || state.isNew !== !edit) {
-            state.mode = 'dest'
-            state.isNew = !edit
-            state.id = id
-            state.bundle = edit ? loadBundle(id) : newBundle()
-            state.tab = 'info'
-            state.dirty = false
-            state.errors = []
-            if (!state.bundle) {
-                $('#app').innerHTML = `<div class="errors">Không có điểm đến "${esc(id)}".</div><p><a href="#/">← Danh sách</a></p>`
-                return
-            }
+        if (state.mode !== 'dest' || state.id !== id || !state.bundle || state.isNew !== !edit) openEditor('dest', id, !edit)
+        if (!state.bundle) {
+            renderShell([['Tổng quan', '#/'], ['Điểm đến', '#/dest'], ['Không tìm thấy']])
+            $('#app').innerHTML = `<div class="errors">Không có điểm đến "${esc(id)}".</div><p><a href="#/dest">← Danh sách</a></p>`
+            return
         }
         return renderEditor()
     }
-    state.bundle = null
-    state.mode = null
-    state.id = null
-    renderList()
+    Object.assign(state, { bundle: null, mode: null, id: null })
+    if (path === '/dest') return renderList()
+    if (path === '/prs') return renderPrsPage()
+    return renderDashboard()
 }
 
 /*---------- Sự kiện ----------*/
@@ -1176,7 +1683,7 @@ document.addEventListener('input', e => {
         }
     } else if (kind === 'bool') {
         set(b, path, el.checked)
-        state.dirty = true
+        markDirty()
         rerenderTab()
         return
     }
@@ -1195,39 +1702,102 @@ document.addEventListener('input', e => {
         else hi = el.value === '' ? '' : Number(el.value)
         set(b, path, hi === '' ? lo : [lo, hi])
     } else return
-    if (!state.dirty) {
-        state.dirty = true
-        const status = document.querySelector('.savebar__status')
-        if (status) status.textContent = 'Có thay đổi chưa lưu'
-    }
+    markDirty()
 })
 document.addEventListener('change', e => {
     if (e.target.matches('input[type="checkbox"][data-path]')) e.target.dispatchEvent(new Event('input', { bubbles: true }))
 })
+/* Nhớ mục danh sách đang mở / đóng (sự kiện toggle không nổi bọt nên bắt ở pha capture) */
+document.addEventListener('toggle', e => {
+    if (e.target.matches && e.target.matches('details.list__item')) state.open.set(e.target.dataset.key, e.target.open)
+}, true)
+
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && state.bundle) {
+        e.preventDefault()
+        if ($('#modal').hidden) openReview()
+    }
+    if (e.key === 'Escape' && !$('#modal').hidden) closeModal()
+})
 
 document.addEventListener('click', async e => {
-    const tab = e.target.closest('[data-tab]')
+    const t = e.target
+    if (t.closest('[data-modal-close]') || t.id === 'modal') { closeModal(); return }
+    if (t.closest('#confirm-save')) { confirmSave(t.closest('#confirm-save')); return }
+    if (t.closest('#menu-toggle')) {
+        const open = !$('#shell').classList.contains('shell--nav-open')
+        $('#shell').classList.toggle('shell--nav-open', open)
+        $('#side-backdrop').hidden = !open
+        $('#menu-toggle').setAttribute('aria-expanded', String(open))
+        return
+    }
+    if (t.closest('#side-backdrop')) { closeNav(); return }
+    if (t.closest('#theme-toggle')) {
+        const order = [null, 'dark', 'light']
+        const cur = document.documentElement.getAttribute('data-theme')
+        const next = order[(order.indexOf(cur) + 1) % order.length]
+        if (next) document.documentElement.setAttribute('data-theme', next)
+        else document.documentElement.removeAttribute('data-theme')
+        try { next ? localStorage.setItem('vt-admin-theme', next) : localStorage.removeItem('vt-admin-theme') } catch { /* bỏ qua */ }
+        toast(next === 'dark' ? 'Giao diện tối' : next === 'light' ? 'Giao diện sáng' : 'Giao diện theo hệ thống', 1500)
+        return
+    }
+    if (t.closest('#reload')) {
+        state.baseSha = null
+        state.prs = null
+        render()
+        return
+    }
+    if (t.closest('#reload-prs')) { state.prs = null; renderPrsPage(); return }
+    const merge = t.closest('[data-pr-merge]')
+    const close = t.closest('[data-pr-close]')
+    if (merge || close) {
+        const btn = merge || close
+        btn.disabled = true
+        try {
+            if (merge) await mergePr(Number(merge.dataset.prMerge))
+            else await closePr(Number(close.dataset.prClose))
+        } catch (err) {
+            toast(err.status === 405 ? 'Chưa đăng được: PR chưa đủ điều kiện (đang kiểm tra hoặc bị xung đột).' : err.message, 7000, 'error')
+        }
+        btn.disabled = false
+        render()
+        return
+    }
+    const draftBtn = t.closest('[data-draft]')
+    if (draftBtn && state.draft) {
+        if (draftBtn.dataset.draft === 'restore') {
+            state.bundle = state.draft.bundle
+            state.dirty = true
+            toast('Đã khôi phục bản nháp.', 3000, 'ok')
+        } else clearDraft()
+        state.draft = null
+        renderEditor()
+        return
+    }
+    const tab = t.closest('[data-tab]')
     if (tab) {
         state.tab = tab.dataset.tab
         renderEditor()
+        window.scrollTo(0, 0)
         return
     }
-    const preset = e.target.closest('[data-preset]')
+    const preset = t.closest('[data-preset]')
     if (preset && state.bundle) {
         const [hue, accentHue] = preset.dataset.preset.split(',').map(Number)
         set(state.bundle, JSON.parse(preset.dataset.path), { hue, accentHue })
-        state.dirty = true
+        markDirty()
         rerenderTab()
         return
     }
-    if (e.target.closest('[data-season-add]') && state.mode === 'site') {
+    if (t.closest('[data-season-add]') && state.mode === 'site') {
         state.bundle.site.seasons.push(newSeason())
         state.tab = `s${state.bundle.site.seasons.length - 1}`
-        state.dirty = true
+        markDirty()
         renderEditor()
         return
     }
-    const seasonOp = e.target.closest('[data-season-op]')
+    const seasonOp = t.closest('[data-season-op]')
     if (seasonOp && state.mode === 'site') {
         const list = state.bundle.site.seasons
         const i = Number(seasonOp.dataset.index)
@@ -1240,23 +1810,25 @@ document.addEventListener('click', async e => {
             ;[list[i], list[j]] = [list[j], list[i]]
             state.tab = `s${j}`
         }
-        state.dirty = true
+        markDirty()
         renderEditor()
         return
     }
-    const langBtn = e.target.closest('[data-lang]')
+    const langBtn = t.closest('[data-lang]')
     if (langBtn) {
         state.lang = langBtn.dataset.lang
         rerenderTab()
         return
     }
-    const op = e.target.closest('[data-op]')
+    const op = t.closest('[data-op]')
     if (op && state.bundle) {
+        e.preventDefault() // nút nằm trong <summary>: không đóng / mở mục
         const path = JSON.parse(op.dataset.path)
         if (op.dataset.op === 'add') {
             const list = get(state.bundle, path) || []
             list.push(JSON.parse(op.dataset.template))
             set(state.bundle, path, list)
+            state.open.set(JSON.stringify([...path, list.length - 1]), true)
         } else {
             const i = path[path.length - 1]
             const list = get(state.bundle, path.slice(0, -1))
@@ -1268,71 +1840,42 @@ document.addEventListener('click', async e => {
                 ;[list[i], list[j]] = [list[j], list[i]]
             }
         }
-        state.dirty = true
+        markDirty()
         rerenderTab()
         return
     }
-    if (e.target.id === 'logout') {
-        if (state.dirty && !confirm('Có thay đổi chưa lưu – vẫn đăng xuất?')) return
+    if (t.closest('#logout')) {
+        if (state.dirty && !confirm('Đăng xuất? Thay đổi chưa đăng vẫn được giữ dạng nháp trên máy này.')) return
         logout()
         return
     }
-    if (e.target.id === 'save') {
-        const btn = e.target
-        const isSite = state.mode === 'site'
-        const working = isSite ? fromEditableSite(state.bundle.site) : clone(state.bundle)
-        if (!isSite) cleanBundle(working)
-        state.errors = isSite ? validateSite(working) : validate(working)
-        if (state.errors.length) {
-            rerenderTab()
-            window.scrollTo(0, 0)
-            return
-        }
-        btn.disabled = true
-        btn.textContent = 'Đang tạo Pull Request…'
-        try {
-            const note = $('#save-note').value.trim()
-            const pr = isSite
-                ? await createPullRequest(buildSiteFiles(working), {
-                    title: 'Cập nhật giao diện & mùa',
-                    slug: 'giao-dien',
-                    summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${working.seasons.length} mùa (${working.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).`,
-                }, note)
-                : await saveAsPullRequest(working, note)
-            state.dirty = false
-            state.bundle = null
-            state.mode = null
-            state.id = null
-            state.baseSha = null // lần sau tải lại dữ liệu mới nhất
-            renderDone(pr)
-        } catch (err) {
-            btn.disabled = false
-            btn.textContent = 'Lưu thành Pull Request'
-            toast(err.status === 403 ? 'Token thiếu quyền (cần Contents + Pull requests: Read and write).' : err.message, 8000)
-        }
-    }
+    if (t.closest('#save')) openReview()
 })
 
-window.addEventListener('hashchange', e => {
+/* Rời trang sửa: thay đổi vẫn còn trong bản nháp tự lưu, mở lại sẽ được hỏi khôi phục */
+window.addEventListener('hashchange', () => {
     if (state.dirty && state.bundle) {
+        clearTimeout(saveDraftSoon.timer)
+        try { localStorage.setItem(draftKey(), JSON.stringify({ bundle: state.bundle, savedAt: Date.now(), baseSha: state.baseSha })) } catch { /* bỏ qua */ }
         const here = state.mode === 'site' ? '#/site' : state.isNew ? '#/new' : `#/edit/${state.id}`
-        const leaving = !location.hash.startsWith(here)
-        if (leaving && !confirm('Có thay đổi chưa lưu – rời trang sửa?')) {
-            history.replaceState(null, '', new URL(e.oldURL).hash)
-            return
+        if (!location.hash.startsWith(here)) {
+            state.dirty = false
+            toast('Thay đổi chưa đăng đã được lưu nháp trên máy này.', 3500)
         }
-        if (leaving) state.dirty = false
     }
+    closeModal()
     render()
 })
-window.addEventListener('beforeunload', e => {
-    if (state.dirty) e.preventDefault()
+window.addEventListener('beforeunload', () => {
+    if (state.dirty && state.bundle) {
+        try { localStorage.setItem(draftKey(), JSON.stringify({ bundle: state.bundle, savedAt: Date.now(), baseSha: state.baseSha })) } catch { /* bỏ qua */ }
+    }
 })
 
 /* Khởi động: token đã lưu (nếu có) */
 try { state.token = localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY) } catch { state.token = null }
 if (state.token) {
-    gh('/user').then(u => { state.user = u.login }).catch(() => {}).finally(render)
+    gh('/user').then(u => { state.user = u.login; state.avatar = u.avatar_url }).catch(() => {}).finally(render)
 } else {
     render()
 }
