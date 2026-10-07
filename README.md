@@ -260,11 +260,26 @@ npm test                          # = npm run test:data && npm run test:e2e
 
 - `tests/data.test.js`: dữ liệu điểm đến, lịch trình 3/4/5 ngày, bản dịch tiếng Anh, manifest ảnh, trang tĩnh & sitemap, liên kết nội bộ.
 - `tests/e2e.test.js` (Playwright + Chromium): mọi trang không lỗi JS, tìm kiếm/lọc/yêu thích, chọn tour & ngày, chọn tháng, lightbox, chuyển ngôn ngữ, giao diện điện thoại. Tài nguyên ngoài (Wikimedia, Open-Meteo, bản đồ, giscus) được giả lập nên test chạy ổn định.
-- Workflow `.github/workflows/test.yml` chạy toàn bộ cho mỗi pull request và mỗi lần đẩy lên `main`, đồng thời báo lỗi nếu quên `npm run build` sau khi sửa dữ liệu.
+- Workflow `.github/workflows/test.yml` chạy toàn bộ cho mỗi pull request và mỗi lần đẩy lên `main`, đồng thời báo lỗi nếu quên `npm run build` sau khi sửa dữ liệu
+  (PR từ trang quản trị – nhánh `admin/*` – được `admin-build.yml` tự build và kiểm tra).
+
+## Trang quản trị dữ liệu (`/admin/`)
+Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài gì: mở `https://viet-travel.congtan5918.workers.dev/admin/`.
+
+- **Đăng nhập** bằng *fine-grained token* GitHub: [Generate new token](https://github.com/settings/personal-access-tokens/new)
+  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents` và `Pull requests` = **Read and write**.
+  Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat, issue hay mã nguồn.
+- **Sửa**: danh sách 37 điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
+  Ẩm thực & hoạt động, Lịch trình 5 ngày, Quán & lưu trú, Điểm tham quan, Bản dịch (en bắt buộc; ko/zh/ja tùy chọn).
+  Trang kiểm tra trước các lỗi thường gặp (thiếu quán, thiếu ngày, bản dịch dở dang…).
+- **Lưu thành Pull Request**: tạo nhánh `admin/<mã>-<thời gian>` chỉ đổi đúng các file `data/*.json` liên quan.
+  Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR;
+  xem *Files changed* và **Merge** – Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
+- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
 
 ## Thêm điểm đến mới
-Thêm một object vào mảng `DESTINATIONS` (mã `id`, tên, vùng, mô tả, ảnh, món ăn, hoạt động...)
-rồi chạy `npm run build`.
+Cách nhanh: trang quản trị `/admin/` → **+ Thêm điểm đến**. Sửa tay: xem [docs/du-lieu.md](docs/du-lieu.md)
+(dữ liệu ở `data/*.json`), rồi chạy `npm run build`.
 
 Ảnh chỉ cần khai báo **tên file trên Wikimedia Commons**; trang sẽ tự tải bản độ phân giải cao
 qua `Special:FilePath`, và mỗi ảnh trong lightbox có liên kết về trang bản quyền gốc.

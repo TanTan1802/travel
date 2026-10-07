@@ -708,3 +708,17 @@ test('trang lập kế hoạch: gói JS không chứa dữ liệu mọi điểm 
         }
     }
 })
+
+test('không file nào còn sót dấu xung đột merge; sw.js và trang quản trị là JS hợp lệ', () => {
+    const files = require('child_process').execFileSync('git', ['ls-files', '-co', '--exclude-standard'], { cwd: ROOT, encoding: 'utf8' })
+        .split('\n').filter(f => /\.(js|json|html|css|xml|txt|md|yml)$/.test(f) && fs.existsSync(path.join(ROOT, f)))
+    for (const f of files) {
+        const text = fs.readFileSync(path.join(ROOT, f), 'utf8')
+        assert.doesNotMatch(text, /^(<<<<<<< |>>>>>>> )/m, `${f}: còn dấu xung đột merge`)
+    }
+    const vm = require('vm')
+    for (const f of ['sw.js', 'admin/admin.js']) {
+        assert.doesNotThrow(() => new vm.Script(fs.readFileSync(path.join(ROOT, f), 'utf8'), { filename: f }), `${f}: lỗi cú pháp`)
+    }
+    assert.match(fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8'), /Disallow: \/admin\//, 'robots.txt phải chặn /admin/')
+})

@@ -1,0 +1,77 @@
+# Nhánh admin/* do trang quản trị (/admin/) tạo ra chỉ chứa file dữ liệu data/*.json.
+# Workflow này sinh lại trang tĩnh, chạy toàn bộ test rồi commit phần đã build vào chính nhánh đó,
+# để Pull Request sẵn sàng merge (test.yml bỏ qua các nhánh admin/*).
+name: Kiểm tra PR từ trang quản trị
+
+on:
+  push:
+    branches: ['admin/**']
+
+permissions:
+  contents: write
+  statuses: write
+
+concurrency:
+  group: admin-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cài thư viện
+        run: npm ci --no-audit --no-fund
+
+      - name: Cache trình duyệt Playwright
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Cài trình duyệt Chromium
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Cài thư viện hệ thống cho Chromium
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      - name: Sinh lại dữ liệu và trang
+        run: npm run build
+
+      - name: Test dữ liệu
+        run: npm run test:data
+
+      - name: Test trợ lý hỏi đáp (Worker, không gọi API thật)
+        run: npm run test:worker
+
+      - name: Test giao diện (Playwright)
+        run: npm run test:e2e
+
+      # Commit bằng GITHUB_TOKEN không kích hoạt workflow khác, nên tự gắn trạng thái "đã kiểm tra" cho commit mới
+      - name: Commit trang đã build vào nhánh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de en ko zh ja index.html sitemap.xml robots.txt sw.js
+          if git diff --cached --quiet; then
+            echo "Không có gì cần build thêm."
+          else
+            git commit -m "Tự động: build lại trang theo dữ liệu từ trang quản trị"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+          gh api "repos/${GITHUB_REPOSITORY}/statuses/$(git rev-parse HEAD)" \
+            -f state=success -f context="Kiểm tra (admin)" \
+            -f description="Đã build và qua toàn bộ test" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" > /dev/null
+          echo "### Đã build và kiểm tra – Pull Request sẵn sàng merge" >> "$GITHUB_STEP_SUMMARY"

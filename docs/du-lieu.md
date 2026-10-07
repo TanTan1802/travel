@@ -32,6 +32,9 @@ Trình soạn thảo có hỗ trợ JSON Schema (VS Code…) sẽ tự gợi ý 
 
 ## Thêm một điểm đến mới
 
+Cách dễ nhất: trang quản trị `/admin/` (xem README) – điền form, bấm **Lưu thành Pull Request**, CI tự build và kiểm tra.
+Sửa tay:
+
 1. Thêm một mục vào `data/destinations.json`. `id` viết chữ thường không dấu, nối bằng gạch ngang, ví dụ `"hoi-an"`.
 2. Thêm lịch trình 5 ngày vào `data/itineraries.json`.
 3. Thêm quán ăn, quán nước và lưu trú vào `data/places.json`.

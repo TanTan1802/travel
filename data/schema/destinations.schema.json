@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "destinations.schema.json",
   "title": "Điểm đến",
-  "description": "Danh sách điểm đến, vùng miền và loại hình. Bản dịch tiếng Anh nằm ở assets/js/data/en.js.",
+  "description": "Danh sách điểm đến, vùng miền và loại hình. Bản dịch tiếng Anh nằm ở data/i18n/en.json.",
   "type": "object",
   "required": ["regions", "categories", "destinations"],
   "additionalProperties": false,
