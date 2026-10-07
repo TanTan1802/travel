@@ -154,13 +154,6 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
-    "Broken rice restaurant in Saigon.JPG": {
-        "xs": "assets/img/wiki/broken-rice-restaurant-in-saigon-6cfd8e-480.webp",
-        "sm": "assets/img/wiki/broken-rice-restaurant-in-saigon-6cfd8e-960.webp",
-        "lg": "assets/img/wiki/broken-rice-restaurant-in-saigon-6cfd8e-1920.webp",
-        "w": 1920,
-        "h": 1440
-    },
     "Buah durian.jpg": {
         "xs": "assets/img/wiki/buah-durian-4717c6-480.webp",
         "sm": "assets/img/wiki/buah-durian-4717c6-960.webp",
@@ -504,13 +497,6 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
-    "Cơm rang.JPG": {
-        "xs": "assets/img/wiki/com-rang-34f53d-480.webp",
-        "sm": "assets/img/wiki/com-rang-34f53d-960.webp",
-        "lg": "assets/img/wiki/com-rang-34f53d-1920.webp",
-        "w": 1920,
-        "h": 1440
-    },
     "Cổng chào trên Huyện Đảo Lý Sơn - Quảng Ngãi.jpg": {
         "xs": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-480.webp",
         "sm": "assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-960.webp",
@@ -552,6 +538,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/dragon-marble-mountain-da-nang-vietnam-294662-1920.webp",
         "w": 900,
         "h": 1200
+    },
+    "Dĩa cơm tấm SG ng1th5n2022 (2).jpg": {
+        "xs": "assets/img/wiki/dia-com-tam-sg-ng1th5n2022-2-90693c-480.webp",
+        "sm": "assets/img/wiki/dia-com-tam-sg-ng1th5n2022-2-90693c-960.webp",
+        "lg": "assets/img/wiki/dia-com-tam-sg-ng1th5n2022-2-90693c-1920.webp",
+        "w": 1562,
+        "h": 1920
     },
     "East-asian-food-spring-rolls-3.jpg": {
         "xs": "assets/img/wiki/east-asian-food-spring-rolls-3-178189-480.webp",
@@ -601,6 +594,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ganh-da-dia-d1b516-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Gỏi Cá Trích.jpg": {
+        "xs": "assets/img/wiki/goi-ca-trich-cbd283-480.webp",
+        "sm": "assets/img/wiki/goi-ca-trich-cbd283-960.webp",
+        "lg": "assets/img/wiki/goi-ca-trich-cbd283-1920.webp",
+        "w": 1440,
+        "h": 1920
     },
     "Gốm Bàu Trúc.JPG": {
         "xs": "assets/img/wiki/gom-bau-truc-94fed2-480.webp",
@@ -818,13 +818,6 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/imperial-city-hue-vietnam-6927420512-d4399e-1920.webp",
         "w": 1920,
         "h": 1079
-    },
-    "Indigenous Girl in Sunday Market - Bac Ha - Lao Cai Province - Vietnam - 01 (48218346821).jpg": {
-        "xs": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-480.webp",
-        "sm": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-960.webp",
-        "lg": "assets/img/wiki/indigenous-girl-in-sunday-market-bac-ha-lao-cai-province-vietnam-01-48218346821-d290b2-1920.webp",
-        "w": 1440,
-        "h": 1920
     },
     "Khao lam87.jpg": {
         "xs": "assets/img/wiki/khao-lam87-aea848-480.webp",
@@ -1127,17 +1120,17 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
-    "Phở bát đá.jpg": {
-        "xs": "assets/img/wiki/pho-bat-da-c4d09f-480.webp",
-        "sm": "assets/img/wiki/pho-bat-da-c4d09f-960.webp",
-        "lg": "assets/img/wiki/pho-bat-da-c4d09f-1920.webp",
-        "w": 1080,
-        "h": 1920
-    },
     "Phở bò (39425047901).jpg": {
         "xs": "assets/img/wiki/pho-bo-39425047901-b06356-480.webp",
         "sm": "assets/img/wiki/pho-bo-39425047901-b06356-960.webp",
         "lg": "assets/img/wiki/pho-bo-39425047901-b06356-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Phở bò, Cầu Giấy, Hà Nội.jpg": {
+        "xs": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-480.webp",
+        "sm": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-960.webp",
+        "lg": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-1920.webp",
         "w": 1920,
         "h": 1280
     },
@@ -1378,6 +1371,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/terraced-fields-sa-pa-vietnam-5cdf12-1920.webp",
         "w": 1920,
         "h": 1275
+    },
+    "Thang Co (Cattle Intestines Soup).jpg": {
+        "xs": "assets/img/wiki/thang-co-cattle-intestines-soup-64d9fd-480.webp",
+        "sm": "assets/img/wiki/thang-co-cattle-intestines-soup-64d9fd-960.webp",
+        "lg": "assets/img/wiki/thang-co-cattle-intestines-soup-64d9fd-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "The Golden Bridge, Ba Na Hills, Vietnam.jpg": {
         "xs": "assets/img/wiki/the-golden-bridge-ba-na-hills-vietnam-ddfb9d-480.webp",
