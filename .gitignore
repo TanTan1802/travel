@@ -10,3 +10,6 @@ data/sheets/
 
 # Bản đóng gói để deploy (npm run build:dist)
 /dist/
+
+# Trạng thái cục bộ của wrangler dev
+.wrangler/

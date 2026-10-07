@@ -205,9 +205,11 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - Trang kế hoạch: bản in gồm trang tóm tắt tuyến/chi phí và lịch từng ngày; nút **Sao chép dạng chữ** tạo lịch trình để dán vào Zalo/Messenger.
 
 ## Google Search Console / Bing
-Xác minh địa chỉ site trong Search Console (*Thêm tài sản → Tiền tố URL* → `https://viet-travel.congtan5918.workers.dev/` →
-phương thức **Thẻ HTML**), chép giá trị `content="…"` vào `SITE_VERIFICATION.google` trong `tools/lib.js`, chạy `npm run build`
-và đẩy lên main; sau khi Cloudflare deploy, bấm *Xác minh* rồi gửi `sitemap.xml` ở mục *Sơ đồ trang web*. Bing: thẻ `msvalidate.01` (`SITE_VERIFICATION.bing`).
+Site đã xác minh trong Search Console bằng **tệp HTML** `google4bbf20e625e01976.html` ở gốc repo (đừng xóa).
+Cloudflare mặc định chuyển hướng `/x.html` → `/x`, nên `wrangler.jsonc` có worker nhỏ (`tools/cloudflare/site-worker.js`,
+chỉ chạy cho `/google*`) trả nguyên nội dung tệp, không chuyển hướng. Thêm tệp xác minh khác: đặt tệp `googleXXXX.html` ở gốc repo.
+Cách khác (thẻ HTML): điền mã vào `SITE_VERIFICATION` trong `tools/lib.js` – build chèn thẻ meta vào trang chủ; Bing: `msvalidate.01`.
+Sau khi xác minh: Search Console → *Sơ đồ trang web* → gửi `sitemap.xml`.
 
 ## Hiệu năng (Lighthouse)
 
