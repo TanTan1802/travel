@@ -145,6 +145,20 @@
           80000,
           200000
         ]
+      },
+      {
+        "dest": "co-to",
+        "name": [
+          "cảng Cái Rồng (Vân Đồn)",
+          "Cai Rong port (Van Don)"
+        ],
+        "lat": 21.067,
+        "lng": 107.426,
+        "hours": 1.5,
+        "price": [
+          250000,
+          350000
+        ]
       }
     ]
   },
@@ -6204,6 +6218,814 @@
           "note": [
             "Ngủ ngay bên vịnh, sáng sớm ra biển.",
             "Sleep right by the bay for an early start."
+          ]
+        }
+      ]
+    },
+    "co-to": {
+      "city": "Co To",
+      "airport": "VDO",
+      "getThere": [
+        "Từ Hà Nội đi limousine ~3,5 giờ tới cảng Cái Rồng (Vân Đồn), tàu cao tốc ~1,5 giờ ra Cô Tô; hoặc bay tới sân bay Vân Đồn (VDO).",
+        "From Hanoi, a ~3.5 h limousine to Cai Rong port (Van Don), then a ~1.5 h fast boat to Co To; or fly to Van Don airport (VDO)."
+      ],
+      "eats": [
+        {
+          "name": "Chợ Cô Tô",
+          "dish": [
+            "Hải sản tươi chế biến tại chỗ",
+            "Fresh seafood cooked on the spot"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            50000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng hải sản ven biển thị trấn",
+          "dish": [
+            "Sá sùng xào, mực nướng, cù kỳ hấp",
+            "Stir-fried peanut worms, grilled squid, steamed crab"
+          ],
+          "address": "Đường ven biển, thị trấn Cô Tô",
+          "price": [
+            150000,
+            400000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh cuốn chả mực",
+          "dish": [
+            "Bánh cuốn chả mực, bún hải sản",
+            "Rice rolls with squid cake, seafood noodles"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            30000,
+            70000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bún sá sùng thị trấn Cô Tô",
+          "dish": [
+            "Bún hải sản, bún sá sùng",
+            "Seafood noodles with peanut worms"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            40000,
+            90000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán mực nướng phố đêm Cô Tô",
+          "dish": [
+            "Mực nướng, mực một nắng",
+            "Grilled squid and one-day sun-dried squid"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            100000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cù kỳ rang me gần cảng",
+          "dish": [
+            "Cù kỳ hấp, rang me",
+            "Rock crab steamed or fried with tamarind"
+          ],
+          "address": "Gần cảng Cô Tô",
+          "price": [
+            200000,
+            400000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cơm gia đình thị trấn Cô Tô",
+          "dish": [
+            "Cơm cá biển, canh rau",
+            "Home-style rice with sea fish and soup"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            50000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ốc, tu hài gần bãi Vàn Chảy",
+          "dish": [
+            "Ốc, tu hài nướng",
+            "Grilled sea snails and geoduck clams"
+          ],
+          "address": "Gần bãi Vàn Chảy, Cô Tô",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê ngắm biển thị trấn Cô Tô",
+          "drink": [
+            "Cà phê, nước dừa nhìn ra biển",
+            "Coffee and coconut water facing the sea"
+          ],
+          "address": "Đường ven biển, thị trấn Cô Tô",
+          "price": [
+            25000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán chè, sinh tố thị trấn Cô Tô",
+          "drink": [
+            "Chè, sinh tố, nước ép",
+            "Sweet soups, smoothies and juices"
+          ],
+          "address": "Thị trấn Cô Tô",
+          "price": [
+            15000,
+            40000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê sân thượng gần cảng Cô Tô",
+          "drink": [
+            "Cà phê, trà chanh ngắm tàu về bến",
+            "Coffee and lime tea watching the boats come in"
+          ],
+          "address": "Gần cảng Cô Tô",
+          "price": [
+            25000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Thị trấn Cô Tô",
+            "Co To town"
+          ],
+          "type": "hotel",
+          "price": [
+            400000,
+            1200000
+          ],
+          "note": [
+            "Gần cảng, chợ và quán ăn.",
+            "Near the port, market and restaurants."
+          ]
+        },
+        {
+          "area": [
+            "Bãi Hồng Vàn",
+            "Hong Van beach"
+          ],
+          "type": "homestay",
+          "price": [
+            300000,
+            800000
+          ],
+          "note": [
+            "Yên tĩnh, sát biển.",
+            "Quiet and right by the sea."
+          ]
+        },
+        {
+          "area": [
+            "Gần bãi Vàn Chảy",
+            "Near Van Chay beach"
+          ],
+          "type": "resort",
+          "price": [
+            900000,
+            2500000
+          ],
+          "note": [
+            "Bungalow giữa rừng phi lao.",
+            "Bungalows among casuarina trees."
+          ]
+        }
+      ]
+    },
+    "mang-den": {
+      "city": "Mang Den",
+      "airport": "PXU",
+      "getThere": [
+        "Bay tới Pleiku (PXU), đi xe ~3 giờ qua Kon Tum; hoặc xe giường nằm từ Đà Nẵng, Quảng Ngãi tới Kon Tum rồi đi tiếp ~1,5 giờ.",
+        "Fly to Pleiku (PXU) and drive ~3 h via Kon Tum; or take a sleeper bus from Da Nang or Quang Ngai to Kon Tum, then ~1.5 h more."
+      ],
+      "eats": [
+        {
+          "name": "Quán gỏi lá Kon Tum",
+          "dish": [
+            "Gỏi lá, heo tộc nướng",
+            "Leaf salad rolls, grilled local pork"
+          ],
+          "address": "Trung tâm Kon Tum",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gà nướng cơm lam Măng Đen",
+          "dish": [
+            "Gà nướng, cơm lam, rượu ghè",
+            "Grilled chicken, bamboo rice, jar wine"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng cá tầm Măng Đen",
+          "dish": [
+            "Lẩu cá tầm, gỏi cá tầm",
+            "Sturgeon hotpot, sturgeon salad"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            200000,
+            450000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Măng Đen",
+          "dish": [
+            "Bánh căn, bún, sâm dây, măng rừng",
+            "Rice cakes, noodles, local ginseng, wild bamboo shoots"
+          ],
+          "address": "Trung tâm thị trấn Măng Đen",
+          "price": [
+            20000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh căn Măng Đen",
+          "dish": [
+            "Bánh căn, bánh xèo nóng",
+            "Hot rice-flour cakes and sizzling pancakes"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán phở khô Kon Tum",
+          "dish": [
+            "Phở khô, bún cá",
+            "Two-bowl dry pho and fish noodle soup"
+          ],
+          "address": "Trung tâm Kon Tum",
+          "price": [
+            40000,
+            70000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lẩu gà lá é Măng Đen",
+          "dish": [
+            "Lẩu gà lá é",
+            "Chicken hotpot with lemon-basil leaves"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            200000,
+            350000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bún, cháo sáng Măng Đen",
+          "dish": [
+            "Bún, cháo nóng buổi sáng",
+            "Hot noodles and rice porridge for breakfast"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê bên lò sưởi Măng Đen",
+          "drink": [
+            "Cà phê nóng, ca cao bên lò sưởi",
+            "Hot coffee and cocoa by the fire"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            25000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê đồi thông trung tâm Măng Đen",
+          "drink": [
+            "Cà phê phin, trà gừng giữa rừng thông",
+            "Filter coffee and ginger tea among the pines"
+          ],
+          "address": "Thị trấn Măng Đen",
+          "price": [
+            25000,
+            55000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán sữa đậu nành chợ đêm Măng Đen",
+          "drink": [
+            "Sữa đậu nành, trà gừng nóng",
+            "Hot soy milk and ginger tea"
+          ],
+          "address": "Chợ đêm Măng Đen",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Trung tâm thị trấn",
+            "Town centre"
+          ],
+          "type": "hotel",
+          "price": [
+            400000,
+            1000000
+          ],
+          "note": [
+            "Gần chợ và quán ăn.",
+            "Near the market and restaurants."
+          ]
+        },
+        {
+          "area": [
+            "Đồi thông quanh hồ",
+            "Pine hills around the lakes"
+          ],
+          "type": "homestay",
+          "price": [
+            300000,
+            900000
+          ],
+          "note": [
+            "Nhà gỗ view rừng thông, có lò sưởi.",
+            "Wooden cabins with pine views and fireplaces."
+          ]
+        },
+        {
+          "area": [
+            "Ven hồ Đak Ke",
+            "Dak Ke lakeside"
+          ],
+          "type": "resort",
+          "price": [
+            800000,
+            2500000
+          ],
+          "note": [
+            "Bungalow ven hồ, yên tĩnh.",
+            "Quiet lakeside bungalows."
+          ]
+        }
+      ]
+    },
+    "mai-chau": {
+      "city": "Mai Chau",
+      "airport": "HAN",
+      "getThere": [
+        "Xe khách/limousine từ Hà Nội ~3,5 giờ (140 km) qua đại lộ Thăng Long – Hòa Bình, nhiều chuyến từ bến xe Mỹ Đình.",
+        "Bus or limousine from Hanoi ~3.5 h (140 km) via the Thang Long boulevard and Hoa Binh, frequent departures from My Dinh station."
+      ],
+      "eats": [
+        {
+          "name": "Bếp nhà sàn bản Lác",
+          "dish": [
+            "Cơm lam, cá suối, rau rừng",
+            "Bamboo rice, stream fish, wild greens"
+          ],
+          "address": "Bản Lác, Mai Châu",
+          "price": [
+            100000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gà đồi Pom Coọng",
+          "dish": [
+            "Gà đồi nướng, lợn bản",
+            "Grilled hill chicken, local pork"
+          ],
+          "address": "Bản Pom Coọng, Mai Châu",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Mai Châu",
+          "dish": [
+            "Xôi, bánh, đặc sản thổ cẩm",
+            "Sticky rice, snacks and brocade"
+          ],
+          "address": "Thị trấn Mai Châu",
+          "price": [
+            20000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lợn bản nướng bản Lác",
+          "dish": [
+            "Lợn bản nướng, xôi nếp nương",
+            "Grilled local pork with upland sticky rice"
+          ],
+          "address": "Bản Lác, Mai Châu",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán xôi ngũ sắc Mai Châu",
+          "dish": [
+            "Xôi ngũ sắc, cơm lam",
+            "Five-colour sticky rice and bamboo rice"
+          ],
+          "address": "Thị trấn Mai Châu",
+          "price": [
+            20000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán phở, bún sáng thị trấn Mai Châu",
+          "dish": [
+            "Phở, bún buổi sáng",
+            "Pho and noodle soup for breakfast"
+          ],
+          "address": "Thị trấn Mai Châu",
+          "price": [
+            30000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lẩu cá hồ Thung Nai",
+          "dish": [
+            "Lẩu cá hồ, cá nướng",
+            "Lake-fish hotpot and grilled fish"
+          ],
+          "address": "Thung Nai, Cao Phong",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán thắng cố Hang Kia",
+          "dish": [
+            "Thắng cố, mèn mén",
+            "H'Mong horse stew and steamed corn"
+          ],
+          "address": "Hang Kia, Mai Châu",
+          "price": [
+            50000,
+            120000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê ruộng lúa Mai Châu",
+          "drink": [
+            "Cà phê, nước ép ngắm đồng lúa",
+            "Coffee and juice overlooking the paddies"
+          ],
+          "address": "Bản Lác – Pom Coọng, Mai Châu",
+          "price": [
+            25000,
+            55000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán trà, nước mía thị trấn Mai Châu",
+          "drink": [
+            "Trà đá, nước mía",
+            "Iced tea and sugarcane juice"
+          ],
+          "address": "Thị trấn Mai Châu",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê sân vườn thị trấn Mai Châu",
+          "drink": [
+            "Cà phê sữa đá, trà gừng",
+            "Iced milk coffee and ginger tea"
+          ],
+          "address": "Thị trấn Mai Châu",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Bản Lác – Pom Coọng",
+            "Lac – Pom Coong villages"
+          ],
+          "type": "homestay",
+          "price": [
+            200000,
+            600000
+          ],
+          "note": [
+            "Nhà sàn người Thái giữa đồng lúa.",
+            "Thai stilt houses among the rice fields."
+          ]
+        },
+        {
+          "area": [
+            "Thị trấn Mai Châu",
+            "Mai Chau town"
+          ],
+          "type": "hotel",
+          "price": [
+            350000,
+            900000
+          ],
+          "note": [
+            "Tiện xe khách và chợ.",
+            "Handy for buses and the market."
+          ]
+        },
+        {
+          "area": [
+            "Resort ven thung lũng",
+            "Valley-edge resorts"
+          ],
+          "type": "resort",
+          "price": [
+            1500000,
+            4000000
+          ],
+          "note": [
+            "Hồ bơi view đồng lúa và núi.",
+            "Pools overlooking paddies and mountains."
+          ]
+        }
+      ]
+    },
+    "ca-mau": {
+      "city": "Ca Mau",
+      "airport": "CAH",
+      "getThere": [
+        "Bay tới Cà Mau (CAH) hoặc Cần Thơ (VCA); xe khách Sài Gòn – Cà Mau ~8 giờ. Từ TP. Cà Mau ra Đất Mũi đi ô tô hoặc cano.",
+        "Fly to Ca Mau (CAH) or Can Tho (VCA); buses from Saigon take ~8 h. From Ca Mau city to Dat Mui by car or speedboat."
+      ],
+      "eats": [
+        {
+          "name": "Quán lẩu mắm U Minh",
+          "dish": [
+            "Lẩu mắm, cá kèo nướng",
+            "Fermented fish hotpot, grilled mudskipper"
+          ],
+          "address": "TP. Cà Mau",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng hải sản Năm Căn",
+          "dish": [
+            "Cua hấp, tôm nướng, ba khía",
+            "Steamed crab, grilled prawns, salted crab"
+          ],
+          "address": "Thị trấn Năm Căn",
+          "price": [
+            150000,
+            400000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng khu du lịch Đất Mũi",
+          "dish": [
+            "Cá, tôm, sò huyết nướng",
+            "Grilled fish, prawns and blood cockles"
+          ],
+          "address": "Khu du lịch Mũi Cà Mau",
+          "price": [
+            100000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Cà Mau",
+          "dish": [
+            "Bánh canh, hủ tiếu, tôm khô",
+            "Noodle soups and dried shrimp"
+          ],
+          "address": "Chợ Phường 2, TP. Cà Mau",
+          "price": [
+            25000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cá kèo nướng ven sông",
+          "dish": [
+            "Cá kèo nướng muối ớt, ba khía trộn",
+            "Mudskipper grilled with chilli salt and salted crab salad"
+          ],
+          "address": "TP. Cà Mau",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bún nước lèo Cà Mau",
+          "dish": [
+            "Bún nước lèo",
+            "Khmer-style fermented-fish noodle soup"
+          ],
+          "address": "TP. Cà Mau",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh xèo Cà Mau",
+          "dish": [
+            "Bánh xèo tôm, ốc gạo",
+            "Sizzling pancakes with shrimp or rice snails"
+          ],
+          "address": "TP. Cà Mau",
+          "price": [
+            40000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh tằm cay Bạc Liêu",
+          "dish": [
+            "Bánh tằm cay nước cốt dừa",
+            "Spicy silkworm-shaped noodles with coconut cream"
+          ],
+          "address": "Phường Bạc Liêu, Cà Mau",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê sân vườn TP. Cà Mau",
+          "drink": [
+            "Cà phê sữa đá, trà đá",
+            "Iced milk coffee and iced tea"
+          ],
+          "address": "TP. Cà Mau",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nước dừa Năm Căn",
+          "drink": [
+            "Nước dừa, nước mía",
+            "Coconut water and sugarcane juice"
+          ],
+          "address": "Thị trấn Năm Căn",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê võng ven quốc lộ 1 Cà Mau",
+          "drink": [
+            "Cà phê võng, nước sâm",
+            "Hammock coffee and herbal drinks"
+          ],
+          "address": "Quốc lộ 1, Cà Mau",
+          "price": [
+            15000,
+            35000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "TP. Cà Mau",
+            "Ca Mau city"
+          ],
+          "type": "hotel",
+          "price": [
+            400000,
+            1200000
+          ],
+          "note": [
+            "Nhiều lựa chọn, tiện đi các nơi.",
+            "Plenty of choice and a good base."
+          ]
+        },
+        {
+          "area": [
+            "Đất Mũi",
+            "Dat Mui"
+          ],
+          "type": "homestay",
+          "price": [
+            250000,
+            600000
+          ],
+          "note": [
+            "Ngủ gần mũi đất để đón bình minh.",
+            "Stay near the cape for sunrise."
+          ]
+        },
+        {
+          "area": [
+            "Năm Căn",
+            "Nam Can"
+          ],
+          "type": "hotel",
+          "price": [
+            300000,
+            700000
+          ],
+          "note": [
+            "Điểm dừng giữa đường ra Đất Mũi.",
+            "A stop halfway to Dat Mui."
           ]
         }
       ]

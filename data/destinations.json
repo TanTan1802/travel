@@ -414,7 +414,7 @@
     {
       "id": "ha-giang",
       "name": "Hà Giang",
-      "province": "Hà Giang",
+      "province": "Tuyên Quang (Hà Giang cũ)",
       "region": "bac",
       "categories": [
         "nui"
@@ -692,7 +692,7 @@
     {
       "id": "mu-cang-chai",
       "name": "Mù Cang Chải",
-      "province": "Yên Bái",
+      "province": "Lào Cai (Yên Bái cũ)",
       "region": "bac",
       "categories": [
         "nui"
@@ -780,7 +780,7 @@
     {
       "id": "hue",
       "name": "Cố đô Huế",
-      "province": "Thừa Thiên Huế",
+      "province": "Thành phố Huế",
       "region": "trung",
       "categories": [
         "di-san",
@@ -884,7 +884,7 @@
     {
       "id": "phong-nha",
       "name": "Phong Nha – Kẻ Bàng",
-      "province": "Quảng Bình",
+      "province": "Quảng Trị (Quảng Bình cũ)",
       "region": "trung",
       "categories": [
         "hang-dong",
@@ -1092,7 +1092,7 @@
     {
       "id": "hoi-an",
       "name": "Phố cổ Hội An",
-      "province": "Quảng Nam",
+      "province": "Đà Nẵng (Quảng Nam cũ)",
       "region": "trung",
       "categories": [
         "di-san",
@@ -1398,7 +1398,7 @@
     {
       "id": "mui-ne",
       "name": "Mũi Né",
-      "province": "Bình Thuận",
+      "province": "Lâm Đồng (Bình Thuận cũ)",
       "region": "trung",
       "categories": [
         "bien"
@@ -1486,7 +1486,7 @@
     {
       "id": "quy-nhon",
       "name": "Quy Nhơn",
-      "province": "Bình Định",
+      "province": "Gia Lai (Bình Định cũ)",
       "region": "trung",
       "categories": [
         "bien",
@@ -1587,7 +1587,7 @@
     {
       "id": "phu-yen",
       "name": "Phú Yên – Gành Đá Đĩa",
-      "province": "Phú Yên",
+      "province": "Đắk Lắk (Phú Yên cũ)",
       "region": "trung",
       "categories": [
         "bien"
@@ -1885,7 +1885,7 @@
     {
       "id": "phu-quoc",
       "name": "Phú Quốc",
-      "province": "Kiên Giang",
+      "province": "An Giang (Kiên Giang cũ)",
       "region": "nam",
       "categories": [
         "bien"
@@ -1978,7 +1978,7 @@
     {
       "id": "vung-tau",
       "name": "Vũng Tàu",
-      "province": "Bà Rịa – Vũng Tàu",
+      "province": "TP. Hồ Chí Minh (Bà Rịa – Vũng Tàu cũ)",
       "region": "nam",
       "categories": [
         "bien",
@@ -2171,7 +2171,7 @@
     {
       "id": "con-dao",
       "name": "Côn Đảo",
-      "province": "Bà Rịa – Vũng Tàu",
+      "province": "TP. Hồ Chí Minh (Bà Rịa – Vũng Tàu cũ)",
       "region": "nam",
       "categories": [
         "bien",
@@ -2660,7 +2660,7 @@
     {
       "id": "ha-tien",
       "name": "Hà Tiên",
-      "province": "Kiên Giang",
+      "province": "An Giang (Kiên Giang cũ)",
       "region": "nam",
       "categories": [
         "bien",
@@ -2859,7 +2859,7 @@
     {
       "id": "ninh-thuan",
       "name": "Ninh Thuận – Vĩnh Hy",
-      "province": "Ninh Thuận",
+      "province": "Khánh Hòa (Ninh Thuận cũ)",
       "region": "trung",
       "categories": [
         "bien",
@@ -2957,6 +2957,389 @@
       "tips": [
         "Nắng gió rất gắt: mang kem chống nắng, mũ rộng vành, kính; ra vịnh nên đi buổi sáng khi biển êm.",
         "Hang Rái đẹp nhất lúc sáng sớm và khi triều thấp (rêu xanh lộ ra) – xem lịch thủy triều trước."
+      ]
+    },
+    {
+      "id": "co-to",
+      "name": "Đảo Cô Tô",
+      "province": "Quảng Ninh",
+      "region": "bac",
+      "categories": [
+        "bien"
+      ],
+      "rating": 4.6,
+      "lat": 20.98,
+      "lng": 107.76,
+      "bestMonths": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tagline": "Biển xanh hoang sơ nơi địa đầu Đông Bắc",
+      "description": "Quần đảo Cô Tô cách cảng Cái Rồng (Vân Đồn) khoảng 1,5 giờ tàu cao tốc, nổi tiếng với bãi Hồng Vàn, bãi Vàn Chảy cát trắng mịn, rừng phi lao và con đường ven biển uốn lượn. Nơi đây có ngọn hải đăng ngắm toàn đảo, bãi đá Cầu Mỵ bị sóng bào mòn và đảo Cô Tô Con hoang sơ – khi triều rút có thể đi bộ trên dải cát nối hai đảo.",
+      "highlights": [
+        "Bãi Hồng Vàn",
+        "Bãi đá Cầu Mỵ",
+        "Hải đăng Cô Tô",
+        "Đảo Cô Tô Con"
+      ],
+      "bestTime": "Tháng 4 – 9",
+      "duration": "3 – 4 ngày",
+      "hero": "Co To Island Quang Ninh Viet Nam (160672609).jpeg",
+      "gallery": [
+        {
+          "file": "Alone front of Co To beach, Viet Nam (160620021).jpg",
+          "caption": "Bờ biển Cô Tô"
+        },
+        {
+          "file": "Đường đi trên đảo Cô Tô.jpg",
+          "caption": "Con đường trên đảo Cô Tô"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Sá sùng",
+          "desc": "Sá sùng tươi xào tỏi, nướng hoặc phơi khô làm quà – đặc sản quý.",
+          "price": "300.000đ/đĩa",
+          "file": "Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg",
+          "illustrative": "Hải sản nướng"
+        },
+        {
+          "name": "Mực câu Cô Tô",
+          "desc": "Mực câu đêm nướng, hấp gừng hoặc làm mực một nắng.",
+          "price": "350.000đ/kg",
+          "file": "Grilled squid 001.jpg",
+          "illustrative": "Mực nướng"
+        },
+        {
+          "name": "Cù kỳ",
+          "desc": "Loài cua đá thịt chắc, hấp hoặc rang me.",
+          "price": "250.000đ/kg",
+          "file": "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg",
+          "illustrative": "Cua biển tươi"
+        },
+        {
+          "name": "Bánh cuốn chả mực",
+          "desc": "Bữa sáng quen thuộc của người đảo với chả mực giã tay.",
+          "price": "40.000đ",
+          "file": "Banh cuon.jpg",
+          "illustrative": "Bánh cuốn"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-bike-line",
+          "title": "Đạp xe vòng đảo",
+          "desc": "Con đường ven biển qua rừng phi lao, bãi Vàn Chảy, bãi Hồng Vàn."
+        },
+        {
+          "icon": "ri-sun-line",
+          "title": "Bình minh bãi đá Cầu Mỵ",
+          "desc": "Những phiến đá bị sóng bào mòn đủ hình thù khi mặt trời lên."
+        },
+        {
+          "icon": "ri-lightbulb-flash-line",
+          "title": "Lên hải đăng Cô Tô",
+          "desc": "Ngắm toàn cảnh đảo và biển Đông Bắc từ trên cao."
+        },
+        {
+          "icon": "ri-footprint-line",
+          "title": "Đi bộ ra Cô Tô Con",
+          "desc": "Theo dải cát nối hai đảo khi thủy triều rút, cắm trại qua đêm."
+        }
+      ],
+      "tips": [
+        "Mùa hè cuối tuần rất đông – đặt vé tàu và phòng trước; tàu ngừng chạy khi có bão.",
+        "Trên đảo ít cây ATM – nên mang đủ tiền mặt."
+      ]
+    },
+    {
+      "id": "mang-den",
+      "name": "Măng Đen",
+      "province": "Quảng Ngãi (Kon Tum cũ)",
+      "region": "trung",
+      "categories": [
+        "nui"
+      ],
+      "rating": 4.5,
+      "lat": 14.62,
+      "lng": 108.29,
+      "bestMonths": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "tagline": "\"Đà Lạt thứ hai\" giữa đại ngàn Tây Nguyên",
+      "description": "Thị trấn trên cao nguyên gần 1.200 m quanh năm mát lạnh, bao quanh bởi rừng thông, hồ nước và thác đổ. Măng Đen còn giữ vẻ hoang sơ với tượng Đức Mẹ Măng Đen, làng văn hóa Kon Pring của người Mơ Nâm, hồ Đak Ke và mùa hoa mai anh đào đầu xuân. Từ phường Kon Tum (thành phố Kon Tum cũ) chỉ khoảng 1,5 giờ xe.",
+      "highlights": [
+        "Tượng Đức Mẹ Măng Đen",
+        "Hồ Đak Ke",
+        "Thác Pa Sỹ",
+        "Làng Kon Pring"
+      ],
+      "bestTime": "Tháng 11 – 4",
+      "duration": "2 – 3 ngày",
+      "hero": "Mua ho dao o mang den tinh kon tum 005.jpg",
+      "gallery": [
+        {
+          "file": "Măng Đen 1.jpg",
+          "caption": "Phong cảnh Măng Đen"
+        },
+        {
+          "file": "Thị trấn Măng Đen.jpg",
+          "caption": "Thị trấn Măng Đen"
+        },
+        {
+          "file": "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg",
+          "caption": "Cuộc sống ở làng Kon Pring"
+        },
+        {
+          "file": "Kontum wooden catholic church.jpg",
+          "caption": "Nhà thờ gỗ Kon Tum"
+        },
+        {
+          "file": "Kon Tum wooden catholic church.JPG",
+          "caption": "Nhà thờ gỗ – kiến trúc Roman kết hợp nhà sàn Ba Na"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Gỏi lá Kon Tum",
+          "desc": "Hàng chục loại lá rừng cuốn thịt, tôm, chấm nước chấm sánh đặc.",
+          "price": "150.000đ/phần",
+          "file": "Bánh tráng cuốn thịt heo.jpg",
+          "illustrative": "Thịt cuốn rau lá"
+        },
+        {
+          "name": "Gà nướng cơm lam",
+          "desc": "Gà thả vườn nướng than, ăn cùng cơm lam ống nứa.",
+          "price": "250.000đ/con",
+          "file": "Khao lam87.jpg",
+          "illustrative": "Cơm lam"
+        },
+        {
+          "name": "Lẩu cá tầm",
+          "desc": "Cá tầm nuôi nước lạnh trên cao nguyên, thịt chắc, ngọt.",
+          "price": "400.000đ/nồi",
+          "file": "Homemade Hotpot.jpg",
+          "illustrative": "Nồi lẩu nóng"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Chèo SUP hồ Đak Ke",
+          "desc": "Mặt hồ phẳng lặng giữa rừng thông, đẹp nhất sáng sớm có sương."
+        },
+        {
+          "icon": "ri-drop-line",
+          "title": "Thác Pa Sỹ",
+          "desc": "Thác nước giữa rừng già với cầu treo và đường mòn ven suối."
+        },
+        {
+          "icon": "ri-home-heart-line",
+          "title": "Làng Kon Pring",
+          "desc": "Nhà rông, nhà sàn và nghề đan lát của người Mơ Nâm."
+        },
+        {
+          "icon": "ri-ancient-pavilion-line",
+          "title": "Nhà thờ gỗ Kon Tum",
+          "desc": "Ghé trên đường đi – nhà thờ gỗ hơn 100 năm tuổi."
+        }
+      ],
+      "tips": [
+        "Đêm có thể xuống 10 – 15°C – mang áo ấm.",
+        "Mùa mưa (tháng 5 – 10) đường đèo trơn và nhiều sương mù, nên lái xe chậm."
+      ]
+    },
+    {
+      "id": "mai-chau",
+      "name": "Thung lũng Mai Châu",
+      "province": "Phú Thọ (Hòa Bình cũ)",
+      "region": "bac",
+      "categories": [
+        "nui"
+      ],
+      "rating": 4.5,
+      "lat": 20.66,
+      "lng": 105.08,
+      "bestMonths": [
+        3,
+        4,
+        5,
+        9,
+        10
+      ],
+      "tagline": "Bản Thái yên bình giữa thung lũng lúa",
+      "description": "Thung lũng Mai Châu cách Hà Nội khoảng 140 km, nơi các bản Thái như bản Lác, Pom Coọng nằm giữa cánh đồng lúa bao quanh bởi núi đá. Du khách đến để đạp xe qua đồng, ngủ nhà sàn, xem múa xòe và thưởng thức cơm lam, cá suối. Mai Châu hợp cho chuyến đi cuối tuần hoặc làm điểm dừng trên đường lên Mộc Châu, Pù Luông.",
+      "highlights": [
+        "Bản Lác",
+        "Bản Pom Coọng",
+        "Đèo Thung Khe",
+        "Hang Chiều"
+      ],
+      "bestTime": "Tháng 3 – 5, 9 – 10",
+      "duration": "2 ngày",
+      "hero": "Mai Chau 2008.jpg",
+      "gallery": [
+        {
+          "file": "A Thai stilt house (4115406064).jpg",
+          "caption": "Nhà sàn người Thái ở Mai Châu"
+        },
+        {
+          "file": "Stilt-House-construction-Mai-Chau-Vietnam.jpg",
+          "caption": "Dựng nhà sàn ở Mai Châu"
+        },
+        {
+          "file": "Mai Chau rice field.jpg",
+          "caption": "Đồng lúa Mai Châu"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Cơm lam",
+          "desc": "Gạo nếp nương nướng trong ống tre, chấm muối vừng.",
+          "price": "20.000đ/ống",
+          "file": "Khao lam87.jpg"
+        },
+        {
+          "name": "Cá suối nướng",
+          "desc": "Cá suối tẩm mắc khén, kẹp tre nướng than hồng.",
+          "price": "120.000đ",
+          "file": "Cá lóc nướng trui.JPG",
+          "illustrative": "Cá nướng"
+        },
+        {
+          "name": "Gà đồi nướng",
+          "desc": "Gà thả đồi nướng mật ong, da giòn thịt chắc.",
+          "price": "250.000đ/con",
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "illustrative": "Thịt nướng than hoa"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-bike-line",
+          "title": "Đạp xe bản Lác – Pom Coọng",
+          "desc": "Đường nhỏ giữa đồng lúa, ghé nhà dân xem dệt thổ cẩm."
+        },
+        {
+          "icon": "ri-landscape-line",
+          "title": "Đèo Thung Khe",
+          "desc": "Dừng chân ngắm toàn cảnh thung lũng từ trên cao."
+        },
+        {
+          "icon": "ri-map-2-line",
+          "title": "Hang Chiều",
+          "desc": "Leo hơn 1.000 bậc đá lên hang, nhìn xuống cánh đồng Mai Châu."
+        },
+        {
+          "icon": "ri-fire-line",
+          "title": "Múa xòe bên lửa trại",
+          "desc": "Văn nghệ dân tộc Thái và uống rượu cần buổi tối."
+        }
+      ],
+      "tips": [
+        "Nên ngủ lại ít nhất một đêm ở nhà sàn để cảm nhận nhịp sống bản.",
+        "Mua thổ cẩm trực tiếp tại nhà dân trong bản thường rẻ và đẹp hơn quầy lưu niệm."
+      ]
+    },
+    {
+      "id": "ca-mau",
+      "name": "Mũi Cà Mau",
+      "province": "Cà Mau",
+      "region": "nam",
+      "categories": [
+        "bien"
+      ],
+      "rating": 4.4,
+      "lat": 8.62,
+      "lng": 104.72,
+      "bestMonths": [
+        1,
+        2,
+        3,
+        4,
+        12
+      ],
+      "tagline": "Điểm cực Nam, nơi rừng đước vươn ra biển",
+      "description": "Mũi Cà Mau là điểm cực Nam trên đất liền Việt Nam, nơi có cột mốc tọa độ quốc gia GPS 0001, biểu tượng con tàu hướng ra biển Đông và vùng rừng ngập mặn mỗi năm lấn biển hàng chục mét. Hành trình về \"Đất Mũi\" là dịp đi xuồng qua những con kênh rợp bóng đước, ăn cua, ba khía Cà Mau và ghé rừng tràm U Minh Hạ.",
+      "highlights": [
+        "Cột mốc GPS 0001",
+        "Biểu tượng con tàu",
+        "Rừng đước Đất Mũi",
+        "Rừng tràm U Minh Hạ"
+      ],
+      "bestTime": "Tháng 12 – 4",
+      "duration": "2 – 3 ngày",
+      "hero": "A wooden fence in mudflats in Dat Mui.jpg",
+      "gallery": [
+        {
+          "file": "Chợ Đất Mũi.jpg",
+          "caption": "Chợ Đất Mũi"
+        },
+        {
+          "file": "MũiCàMau.jpg",
+          "caption": "Mũi Cà Mau"
+        },
+        {
+          "file": "Mui Ca Mau 005.JPG",
+          "caption": "Vùng đất cực Nam"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Cua Cà Mau",
+          "desc": "Cua gạch son, thịt chắc – hấp bia, rang me hoặc nướng muối ớt.",
+          "price": "400.000đ/kg",
+          "file": "Món cua Cà Mau ở nhà ng30th7n2023 (2).jpg"
+        },
+        {
+          "name": "Ba khía muối",
+          "desc": "Ba khía muối trộn tỏi ớt, chanh đường – ăn với cơm trắng.",
+          "price": "100.000đ/hũ",
+          "file": "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg",
+          "illustrative": "Cua tươi bán ở Cà Mau"
+        },
+        {
+          "name": "Lẩu mắm U Minh",
+          "desc": "Lẩu mắm cá linh, cá sặc với hàng chục loại rau đồng.",
+          "price": "250.000đ/nồi",
+          "file": "Mắm cá lóc.JPG",
+          "illustrative": "Mắm cá lóc"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-map-pin-line",
+          "title": "Cột mốc GPS 0001 và con tàu",
+          "desc": "Chụp ảnh ở điểm cực Nam, nơi mặt trời mọc và lặn trên biển."
+        },
+        {
+          "icon": "ri-eye-line",
+          "title": "Tháp vọng hải đài",
+          "desc": "Ngắm toàn cảnh rừng đước và biển Đông từ trên cao."
+        },
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Xuồng xuyên rừng đước",
+          "desc": "Len lỏi qua kênh rạch, xem nghề câu ba khía, đặt lú bắt tôm."
+        },
+        {
+          "icon": "ri-plant-line",
+          "title": "Rừng tràm U Minh Hạ",
+          "desc": "Đi xuồng giữa rừng tràm, tìm hiểu nghề ăn ong lấy mật."
+        }
+      ],
+      "tips": [
+        "Từ TP. Cà Mau ra Đất Mũi có thể đi ô tô hoặc cano – hỏi trước lịch tàu và tình trạng đường.",
+        "Mang thuốc chống muỗi và áo dài tay khi vào rừng đước, rừng tràm."
       ]
     }
   ]

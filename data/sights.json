@@ -8592,6 +8592,941 @@
           "updated": "2026-10"
         }
       ]
+    ],
+    "co-to": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Tàu cao tốc Cái Rồng – Cô Tô",
+            "Cai Rong – Co To fast boat"
+          ],
+          "price": [
+            250000,
+            350000
+          ],
+          "note": [
+            "Mùa hè có nhiều chuyến; đặt vé trước, tàu nghỉ khi có bão",
+            "More sailings in summer; book ahead – boats stop during storms"
+          ],
+          "hours": "07:00–15:00",
+          "address": "Cảng Cái Rồng, Vân Đồn",
+          "cafe": {
+            "name": "Quán nước bến Cái Rồng",
+            "drink": [
+              "Cà phê, nước mía chờ tàu",
+              "Coffee and sugarcane juice while waiting for the boat"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Tượng đài Bác Hồ trên đảo Cô Tô",
+            "Ho Chi Minh monument on Co To"
+          ],
+          "price": 0,
+          "note": [
+            "Ghi dấu chuyến thăm đảo của Bác năm 1961",
+            "Marks Ho Chi Minh's visit to the island in 1961"
+          ],
+          "hours": "all",
+          "address": "Thị trấn Cô Tô",
+          "cafe": {
+            "name": "Cà phê quảng trường Cô Tô",
+            "drink": [
+              "Cà phê, sinh tố",
+              "Coffee and smoothies"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bãi đá Cầu Mỵ",
+            "Cau My rocks"
+          ],
+          "price": 0,
+          "note": [
+            "Đẹp nhất lúc bình minh; đá trơn, đi giày bám",
+            "Best at sunrise; the rocks are slippery, wear grippy shoes"
+          ],
+          "hours": "all",
+          "address": "Xã Đồng Tiến, Cô Tô",
+          "cafe": {
+            "name": "Quán nước dừa Cầu Mỵ",
+            "drink": [
+              "Nước dừa, trà đá",
+              "Coconut water and iced tea"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bãi biển Hồng Vàn",
+            "Hong Van beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Xã Đồng Tiến, Cô Tô",
+          "cafe": {
+            "name": "Quán nước bãi Hồng Vàn",
+            "drink": [
+              "Nước ép, cà phê dưới rừng phi lao",
+              "Juice and coffee under the casuarinas"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Hải đăng Cô Tô",
+            "Co To lighthouse"
+          ],
+          "price": 0,
+          "note": [
+            "Leo bậc lên đồi, ngắm hoàng hôn toàn đảo",
+            "Climb the steps for a sunset view over the island"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Thị trấn Cô Tô",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đảo Cô Tô Con",
+            "Co To Con islet"
+          ],
+          "price": [
+            0,
+            150000
+          ],
+          "note": [
+            "Đi bộ theo dải cát khi triều rút hoặc thuê thuyền; xem lịch thủy triều trước",
+            "Walk the sandbar at low tide or hire a boat; check the tide table first"
+          ],
+          "hours": "all",
+          "address": "Cô Tô Con, Cô Tô",
+          "cafe": {
+            "name": "Quán nước đầu dải cát Cô Tô Con",
+            "drink": [
+              "Nước dừa, nước ngọt",
+              "Coconut water and soft drinks"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bãi biển Vàn Chảy",
+            "Van Chay beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Xã Đồng Tiến, Cô Tô",
+          "cafe": {
+            "name": "Cà phê rừng phi lao Vàn Chảy",
+            "drink": [
+              "Cà phê, nước ép trong rừng phi lao",
+              "Coffee and juice among the casuarinas"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bãi Bắc Vàn – cột cờ Tổ quốc",
+            "Bac Van beach – national flagpole"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Thị trấn Cô Tô",
+          "cafe": {
+            "name": "Quán nước chân cột cờ Cô Tô",
+            "drink": [
+              "Trà đá, nước mía",
+              "Iced tea and sugarcane juice"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ hải sản Cô Tô",
+            "Co To seafood market"
+          ],
+          "price": 0,
+          "note": [
+            "Mua mực khô, sá sùng khô làm quà – hỏi giá trước",
+            "Buy dried squid and peanut worms to take home – ask prices first"
+          ],
+          "hours": "05:00–11:00",
+          "address": "Thị trấn Cô Tô",
+          "cafe": {
+            "name": "Cà phê sáng chợ Cô Tô",
+            "drink": [
+              "Cà phê phin, trà nóng",
+              "Filter coffee and hot tea"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "mang-den": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Nhà thờ gỗ Kon Tum",
+            "Kon Tum wooden church"
+          ],
+          "price": 0,
+          "note": [
+            "Ăn mặc lịch sự, giữ yên lặng; tránh giờ lễ",
+            "Dress respectfully and keep quiet; avoid service times"
+          ],
+          "hours": "05:00–18:00",
+          "address": "Đường Nguyễn Huệ, Kon Tum",
+          "cafe": {
+            "name": "Cà phê đối diện nhà thờ gỗ",
+            "drink": [
+              "Cà phê phin, sinh tố bơ",
+              "Filter coffee and avocado smoothie"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Nhà rông Kon Klor",
+            "Kon Klor communal house"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Đường Bắc Kạn, Kon Tum",
+          "cafe": {
+            "name": "Quán nước cầu treo Kon Klor",
+            "drink": [
+              "Nước mía, trà đá bên sông Đắk Bla",
+              "Sugarcane juice and iced tea by the Dak Bla river"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hồ Đak Ke",
+            "Dak Ke lake"
+          ],
+          "price": [
+            0,
+            150000
+          ],
+          "note": [
+            "Thuê SUP / kayak khoảng 100.000–150.000đ",
+            "SUP or kayak rental about 100,000–150,000 VND"
+          ],
+          "hours": "06:00–17:30",
+          "address": "Thị trấn Măng Đen",
+          "cafe": {
+            "name": "Cà phê ven hồ Đak Ke",
+            "drink": [
+              "Cà phê nóng, trà gừng ngắm sương",
+              "Hot coffee and ginger tea in the mist"
+            ],
+            "price": [
+              25000,
+              60000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Thác Pa Sỹ",
+            "Pa Sy waterfall"
+          ],
+          "price": [
+            20000,
+            50000
+          ],
+          "note": [
+            "Đường xuống thác dốc, trơn sau mưa",
+            "The path down is steep and slippery after rain"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Thị trấn Măng Đen",
+          "cafe": {
+            "name": "Quán nước cổng thác Pa Sỹ",
+            "drink": [
+              "Trà nóng, bắp nướng",
+              "Hot tea and grilled corn"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Tượng Đức Mẹ Măng Đen",
+            "Our Lady of Mang Den statue"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Thị trấn Măng Đen",
+          "cafe": {
+            "name": "Cà phê đồi thông Đức Mẹ",
+            "drink": [
+              "Cà phê, ca cao nóng",
+              "Coffee and hot cocoa"
+            ],
+            "price": [
+              25000,
+              55000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Làng văn hóa Kon Pring",
+            "Kon Pring cultural village"
+          ],
+          "price": 0,
+          "note": [
+            "Hỏi ý trước khi chụp ảnh người dân",
+            "Ask before photographing villagers"
+          ],
+          "hours": "all",
+          "address": "Thị trấn Măng Đen",
+          "cafe": {
+            "name": "Quán nước làng Kon Pring",
+            "drink": [
+              "Trà lá rừng, cà phê",
+              "Forest-leaf tea and coffee"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thác Đak Ke",
+            "Dak Ke waterfall"
+          ],
+          "price": [
+            10000,
+            30000
+          ],
+          "note": [
+            "Mùa khô nước ít hơn nhưng đường dễ đi",
+            "Less water in the dry season but an easier path"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Thị trấn Măng Đen",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Hồ Toong Zơ Ri",
+            "Toong Zo Ri lake"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Thị trấn Măng Đen",
+          "cafe": {
+            "name": "Cà phê rừng thông Toong Zơ Ri",
+            "drink": [
+              "Cà phê, trà nóng ven hồ",
+              "Coffee and hot tea by the lake"
+            ],
+            "price": [
+              25000,
+              55000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ Măng Đen",
+            "Mang Den market"
+          ],
+          "price": 0,
+          "note": [
+            "Mua sâm dây, măng rừng khô làm quà",
+            "Buy local ginseng and dried bamboo shoots as gifts"
+          ],
+          "hours": "05:00–18:00",
+          "address": "Trung tâm thị trấn Măng Đen",
+          "cafe": {
+            "name": "Cà phê sáng chợ Măng Đen",
+            "drink": [
+              "Cà phê phin, sữa đậu nành",
+              "Filter coffee and soy milk"
+            ],
+            "price": [
+              10000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "mai-chau": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đèo Thung Khe",
+            "Thung Khe pass"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Quốc lộ 6, Mai Châu",
+          "cafe": {
+            "name": "Quán ngô nướng đèo Thung Khe",
+            "drink": [
+              "Ngô nướng, trà nóng ngắm đèo",
+              "Grilled corn and hot tea over the pass"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bản Lác",
+            "Lac village"
+          ],
+          "price": 0,
+          "note": [
+            "Mua thổ cẩm trực tiếp tại nhà dân",
+            "Buy brocade directly from the weavers' homes"
+          ],
+          "hours": "all",
+          "address": "Bản Lác, Mai Châu",
+          "cafe": {
+            "name": "Cà phê nhà sàn bản Lác",
+            "drink": [
+              "Cà phê, trà gừng trên nhà sàn",
+              "Coffee and ginger tea in a stilt house"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Biểu diễn múa xòe",
+            "Xoe dance performance"
+          ],
+          "price": [
+            50000,
+            150000
+          ],
+          "note": [
+            "Đội văn nghệ biểu diễn trọn gói theo buổi, chia theo số người",
+            "Troupes perform for a set fee per show, split among the group"
+          ],
+          "hours": "19:30–21:00",
+          "address": "Bản Lác, Mai Châu",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bản Pom Coọng",
+            "Pom Coong village"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Bản Pom Coọng, Mai Châu",
+          "cafe": {
+            "name": "Quán nước giữa đồng Pom Coọng",
+            "drink": [
+              "Nước mía, nước chanh",
+              "Sugarcane juice and lemonade"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Hang Chiều",
+            "Chieu cave"
+          ],
+          "price": 0,
+          "note": [
+            "Hơn 1.000 bậc đá – mang nước, đi giày bám",
+            "Over 1,000 stone steps – bring water and grippy shoes"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Thị trấn Mai Châu",
+          "cafe": {
+            "name": "Quán nước chân hang Chiều",
+            "drink": [
+              "Nước dừa, trà đá",
+              "Coconut water and iced tea"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bản Văn – bản Nhót",
+            "Van and Nhot villages"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Thung lũng Mai Châu",
+          "cafe": {
+            "name": "Quán nước bản Văn",
+            "drink": [
+              "Trà đá, nước ngọt",
+              "Iced tea and soft drinks"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bản Hang Kia – Pà Cò",
+            "Hang Kia – Pa Co villages"
+          ],
+          "price": 0,
+          "note": [
+            "Đường đèo dốc – nên thuê xe có tài xế quen đường",
+            "Steep mountain roads – hire a driver who knows them"
+          ],
+          "hours": "all",
+          "address": "Hang Kia – Pà Cò, Mai Châu",
+          "cafe": {
+            "name": "Cà phê săn mây Pà Cò",
+            "drink": [
+              "Cà phê nóng, trà gừng ngắm mây",
+              "Hot coffee and ginger tea above the clouds"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hồ Hòa Bình – đền Thác Bờ",
+            "Hoa Binh lake – Thac Bo temple"
+          ],
+          "price": [
+            150000,
+            300000
+          ],
+          "note": [
+            "Giá thuyền mỗi người tùy số khách",
+            "Boat price per person depends on group size"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Cảng Thung Nai, Cao Phong",
+          "cafe": {
+            "name": "Quán nước cảng Thung Nai",
+            "drink": [
+              "Cà phê, nước dừa ngắm hồ",
+              "Coffee and coconut water facing the lake"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "ca-mau": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ nổi Cà Mau",
+            "Ca Mau floating market"
+          ],
+          "price": 0,
+          "note": [
+            "Đi thật sớm, thuê xuồng ở bến",
+            "Go very early and hire a boat at the pier"
+          ],
+          "hours": "05:00–09:00",
+          "address": "Sông Gành Hào, TP. Cà Mau",
+          "cafe": {
+            "name": "Cà phê ven sông Gành Hào",
+            "drink": [
+              "Cà phê sữa đá ngắm ghe thuyền",
+              "Iced milk coffee watching the boats"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Công viên Hùng Vương",
+            "Hung Vuong park"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "TP. Cà Mau",
+          "cafe": {
+            "name": "Quán nước công viên Hùng Vương",
+            "drink": [
+              "Nước mía, sinh tố",
+              "Sugarcane juice and smoothies"
+            ],
+            "price": [
+              10000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Quảng trường Bông Súng",
+            "Water Lily square"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "TP. Cà Mau",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Khu du lịch Mũi Cà Mau – cột mốc GPS 0001",
+            "Ca Mau Cape – GPS 0001 marker"
+          ],
+          "price": [
+            20000,
+            50000
+          ],
+          "note": [
+            "Giá vé và xe điện trong khu có thể thay đổi",
+            "Ticket and buggy prices may change"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Xã Đất Mũi, Cà Mau",
+          "cafe": {
+            "name": "Cà phê Đất Mũi nhìn ra biển",
+            "drink": [
+              "Cà phê, nước dừa nhìn ra biển",
+              "Coffee and coconut water facing the sea"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Tháp vọng hải đài",
+            "Sea-watch tower"
+          ],
+          "price": [
+            10000,
+            20000
+          ],
+          "hours": "07:00–17:00",
+          "address": "Khu du lịch Mũi Cà Mau",
+          "cafe": {
+            "name": "Quán nước chân tháp vọng hải đài",
+            "drink": [
+              "Nước mía, trà đá",
+              "Sugarcane juice and iced tea"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đi xuồng rừng đước Đất Mũi",
+            "Boat trip through the Dat Mui mangroves"
+          ],
+          "price": [
+            100000,
+            300000
+          ],
+          "note": [
+            "Giá thuê xuồng mỗi người tùy số khách; mang thuốc chống muỗi",
+            "Boat price per person depends on group size; bring insect repellent"
+          ],
+          "hours": "07:00–16:00",
+          "address": "Vườn quốc gia Mũi Cà Mau",
+          "cafe": {
+            "name": "Quán nước bến xuồng Đất Mũi",
+            "drink": [
+              "Nước dừa, cà phê",
+              "Coconut water and coffee"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cồn Ông Trang",
+            "Ong Trang dunes"
+          ],
+          "price": [
+            200000,
+            500000
+          ],
+          "note": [
+            "Thuê cano từ Năm Căn hoặc Đất Mũi, đi khi biển êm",
+            "Hire a speedboat from Nam Can or Dat Mui; go when the sea is calm"
+          ],
+          "hours": "07:00–16:00",
+          "address": "Xã Viên An, Cà Mau",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Vườn quốc gia U Minh Hạ",
+            "U Minh Ha National Park"
+          ],
+          "price": [
+            50000,
+            150000
+          ],
+          "note": [
+            "Giá đi xuồng trong rừng tính riêng; hỏi về nghề ăn ong",
+            "Boat rides in the forest cost extra; ask about wild-honey hunting"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Khánh An, U Minh, Cà Mau",
+          "cafe": {
+            "name": "Quán nước bến xuồng U Minh",
+            "drink": [
+              "Nước mật ong chanh, trà đá",
+              "Honey-lime drink and iced tea"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Chợ đêm Cà Mau",
+            "Ca Mau night market"
+          ],
+          "price": 0,
+          "hours": "17:00–22:00",
+          "address": "TP. Cà Mau",
+          "cafe": {
+            "name": "Quán sinh tố chợ đêm Cà Mau",
+            "drink": [
+              "Sinh tố, chè",
+              "Smoothies and sweet soups"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Nhà Công tử Bạc Liêu",
+            "Bac Lieu Prince's house"
+          ],
+          "price": 30000,
+          "hours": "07:00–17:00",
+          "address": "Đường Điện Biên Phủ, phường Bạc Liêu, Cà Mau",
+          "cafe": {
+            "name": "Cà phê bờ sông Bạc Liêu",
+            "drink": [
+              "Cà phê, nước ép ven sông",
+              "Coffee and juice by the river"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cánh đồng điện gió Bạc Liêu",
+            "Bac Lieu wind farm"
+          ],
+          "price": 0,
+          "note": [
+            "Đẹp nhất lúc chiều muộn; đường ra trụ gió nhiều gió lớn",
+            "Best in the late afternoon; it is very windy along the walkway"
+          ],
+          "hours": "all",
+          "address": "Vĩnh Trạch Đông, Cà Mau",
+          "cafe": {
+            "name": "Quán nước dưới chân điện gió",
+            "drink": [
+              "Nước dừa, nước mía",
+              "Coconut water and sugarcane juice"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
     ]
   }
 }

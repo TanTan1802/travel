@@ -7,6 +7,12 @@
  */
 const TRANSLATION_EN = {
     ui: {
+        /* Hỏi đáp FAQ trong dữ liệu có cấu trúc (tools/build.js) */
+        'Thời điểm nào đẹp nhất để đi {name}?': 'When is the best time to visit {name}?',
+        'Nên đi {name} mấy ngày?': 'How many days do you need in {name}?',
+        'Khoảng {duration}.': 'About {duration}.',
+        '{name} có gì nổi bật?': 'What are the highlights of {name}?',
+        'Đi {name} bằng cách nào?': 'How do you get to {name}?',
         /* Phương tiện: máy bay, tàu hỏa, xe khách, tàu ra đảo (components.js, planner.js) */
         'Máy bay ~{time}': 'Flight ~{time}',
         'Tàu hỏa ~{time}': 'Train ~{time}',
@@ -656,7 +662,7 @@ const TRANSLATION_EN = {
         },
         'ha-giang': {
             name: 'Ha Giang',
-            province: 'Ha Giang',
+            province: 'Tuyen Quang (formerly Ha Giang)',
             tagline: 'Vietnam\'s most spectacular mountain passes',
             description: 'The Dong Van Karst Plateau – a UNESCO Global Geopark – is a paradise for road trippers. Ma Pi Leng pass winds above deep gorges, the Nho Que river glows turquoise, Lung Cu flag tower marks the country\'s northern tip and buckwheat flowers paint the hills pink in autumn.',
             highlights: ['Ma Pi Leng pass', 'Nho Que river', 'Lung Cu flag tower', 'Dong Van old quarter'],
@@ -735,7 +741,7 @@ const TRANSLATION_EN = {
         },
         'mu-cang-chai': {
             name: 'Mu Cang Chai',
-            province: 'Yen Bai',
+            province: 'Lao Cai (formerly Yen Bai)',
             tagline: 'The most beautiful rice terraces of the Northwest',
             description: 'The Mu Cang Chai terraces are a national scenic monument carved into the H\'Mong mountainsides. In May–June the flooded fields shine like mirrors; in September–October the ripe rice turns the whole valley gold. Khau Pha pass – one of the "four great passes" – is a paragliding paradise.',
             highlights: ['Mam Xoi hill', 'Khau Pha pass', 'La Pan Tan', 'Che Cu Nha'],
@@ -762,7 +768,7 @@ const TRANSLATION_EN = {
         /*==================== CENTRAL VIETNAM ====================*/
         'hue': {
             name: 'Hue Imperial City',
-            province: 'Thua Thien Hue',
+            province: 'Hue City',
             tagline: 'The Nguyen dynasty citadel beside the dreamy Perfume River',
             description: 'Capital of 13 Nguyen emperors, Hue preserves a vast complex of royal monuments, solemn tombs and a slow, contemplative way of life. Listening to Hue folk songs on the Perfume River and tasting royal cuisine are experiences you can only have here.',
             highlights: ['Imperial City', 'Thien Mu Pagoda', 'Khai Dinh Tomb', 'Perfume River'],
@@ -791,7 +797,7 @@ const TRANSLATION_EN = {
         },
         'phong-nha': {
             name: 'Phong Nha – Ke Bang',
-            province: 'Quang Binh',
+            province: 'Quang Tri (formerly Quang Binh)',
             tagline: 'The kingdom of caves',
             description: 'Phong Nha – Ke Bang National Park has Asia\'s oldest karst cave system, including Son Doong – the largest cave on the planet. Paradise Cave with its magnificent stalactites and Phong Nha Cave with its underground river are not to be missed.',
             highlights: ['Son Doong Cave', 'Paradise Cave', 'Phong Nha Cave', 'En Cave'],
@@ -848,7 +854,7 @@ const TRANSLATION_EN = {
         },
         'hoi-an': {
             name: 'Hoi An Ancient Town',
-            province: 'Quang Nam',
+            province: 'Da Nang (formerly Quang Nam)',
             tagline: 'An ancient trading port glowing with lanterns',
             description: 'Once one of Southeast Asia\'s busiest ports in the 16th–17th centuries, Hoi An still keeps its rows of yellow-walled, moss-roofed houses intact. At night, thousands of colourful lanterns light up the old town and the Hoai river.',
             highlights: ['Japanese Covered Bridge', 'Hoai River', 'Fujian Assembly Hall', 'Bay Mau coconut forest'],
@@ -932,7 +938,7 @@ const TRANSLATION_EN = {
         },
         'mui-ne': {
             name: 'Mui Ne',
-            province: 'Binh Thuan',
+            province: 'Lam Dong (formerly Binh Thuan)',
             tagline: 'Vietnam\'s "little Sahara"',
             description: 'Mui Ne is famous for red and white sand dunes that change shape with the wind, the Fairy Stream flowing between red clay cliffs and a lively fishing village full of basket boats. It is also Southeast Asia\'s kitesurfing capital.',
             highlights: ['Flying sand dunes', 'White sand dunes', 'Fairy Stream', 'Mui Ne fishing village'],
@@ -957,7 +963,7 @@ const TRANSLATION_EN = {
         },
         'quy-nhon': {
             name: 'Quy Nhon',
-            province: 'Binh Dinh',
+            province: 'Gia Lai (formerly Binh Dinh)',
             tagline: 'A peaceful seaside city in the land of martial arts',
             description: 'Quy Nhon has a long, clear coastline, unspoilt beaches such as Ky Co and Eo Gio and ancient Cham towers. The city keeps a slow pace of life, fresh and affordable seafood and is the home of traditional Binh Dinh martial arts.',
             highlights: ['Ky Co', 'Eo Gio', 'Twin Towers', 'Ghenh Rang Tien Sa'],
@@ -984,7 +990,7 @@ const TRANSLATION_EN = {
         },
         'phu-yen': {
             name: 'Phu Yen – Ganh Da Dia',
-            province: 'Phu Yen',
+            province: 'Dak Lak (formerly Phu Yen)',
             tagline: 'The "land of yellow flowers on green grass" with one-of-a-kind basalt cliffs',
             description: 'Phu Yen is wild and poetic, home to Ganh Da Dia – thousands of hexagonal basalt columns packed together like a honeycomb, formed by volcanic eruptions. Mui Dien greets the earliest sunrise on mainland Vietnam, while Xuan Dai Bay and O Loan lagoon are peaceful fishing-village scenes.',
             highlights: ['Ganh Da Dia', 'Mui Dien', 'Xuan Dai Bay', 'Nhan Tower'],
@@ -1069,7 +1075,7 @@ const TRANSLATION_EN = {
         },
         'phu-quoc': {
             name: 'Phu Quoc',
-            province: 'Kien Giang',
+            province: 'An Giang (formerly Kien Giang)',
             tagline: 'The pearl island with Vietnam\'s most beautiful sunsets',
             description: 'Vietnam\'s largest island has fine white sand, jade-clear water and brilliant sunsets on its west coast. Phu Quoc is also famous for fish sauce, pepper, pearls and the world\'s longest sea-crossing cable car.',
             highlights: ['Sao Beach', 'Hon Thom', 'Grand World', 'Ham Ninh fishing village'],
@@ -1095,7 +1101,7 @@ const TRANSLATION_EN = {
         },
         'vung-tau': {
             name: 'Vung Tau',
-            province: 'Ba Ria – Vung Tau',
+            province: 'Ho Chi Minh City (formerly Ba Ria – Vung Tau)',
             tagline: 'The closest beach city to Saigon',
             description: 'Only about 2 hours from Ho Chi Minh City, Vung Tau is a favourite weekend escape with Back Beach, Front Beach, the Christ the King statue on Small Mountain and an old lighthouse. The city is famous for crispy bánh khọt and fresh seafood.',
             highlights: ['Christ the King statue', 'Vung Tau lighthouse', 'Hon Ba island', 'White Palace'],
@@ -1148,7 +1154,7 @@ const TRANSLATION_EN = {
         },
         'con-dao': {
             name: 'Con Dao',
-            province: 'Ba Ria – Vung Tau',
+            province: 'Ho Chi Minh City (formerly Ba Ria – Vung Tau)',
             tagline: 'Unspoilt nature and moving history',
             description: 'An archipelago of 16 islands with primeval forest, empty beaches and intact coral reefs. Con Dao is also a historic site with its former prisons and Hang Duong cemetery – resting place of the heroine Vo Thi Sau.',
             highlights: ['Dam Trau beach', 'Con Dao prison', 'Hang Duong cemetery', 'Bay Canh island'],
@@ -1307,7 +1313,7 @@ const TRANSLATION_EN = {
         },
         'ninh-thuan': {
             name: 'Ninh Thuan – Vinh Hy',
-            province: 'Ninh Thuan',
+            province: 'Khanh Hoa (formerly Ninh Thuan)',
             tagline: 'Sun, wind, vineyards and ancient Cham towers',
             description: 'Ninh Thuan is one of the sunniest, windiest corners of Vietnam, with the clear waters of Vinh Hy Bay, a coastal road through Nui Chua National Park, Nam Cuong sand dunes and vineyards heavy with grapes. It is also the heart of Cham culture, with the ancient Po Klong Garai towers, Bau Truc pottery village and the colourful Kate festival.',
             highlights: ['Vinh Hy Bay', 'Po Klong Garai towers', 'Nui Chua National Park', 'Hang Rai'],
@@ -1333,9 +1339,115 @@ const TRANSLATION_EN = {
             ],
             tips: ['The sun and wind are fierce: bring sunscreen, a wide-brimmed hat and sunglasses; go out on the bay in the morning when the sea is calm.', 'Hang Rai is best early in the morning at low tide, when the green moss shows – check the tide table first.'],
         },
+        'co-to': {
+            name: 'Co To Island',
+            province: 'Quang Ninh',
+            tagline: 'Unspoilt blue seas at the northeastern frontier',
+            description: 'The Co To archipelago is about 1.5 hours by fast boat from Cai Rong port (Van Don), known for the fine white sand of Hong Van and Van Chay beaches, casuarina forests and a winding coastal road. It has a lighthouse overlooking the whole island, the wave-sculpted rocks of Cau My and wild Co To Con islet – at low tide you can walk across the sandbar between the two.',
+            highlights: ['Hong Van beach', 'Cau My rocks', 'Co To lighthouse', 'Co To Con islet'],
+            bestTime: 'April – September',
+            duration: '3 – 4 days',
+            gallery: [
+                { caption: 'The Co To coast' },
+                { caption: 'A road across Co To island' },
+            ],
+            foods: [
+                { name: 'Sá sùng (peanut worms)', desc: 'A prized local delicacy – stir-fried with garlic, grilled or dried as a gift.', price: '300,000 VND/plate', illustrative: 'Grilled seafood' },
+                { name: 'Line-caught squid', desc: 'Night-caught squid grilled, steamed with ginger or sun-dried for a day.', price: '350,000 VND/kg', illustrative: 'Grilled squid' },
+                { name: 'Cù kỳ (rock crab)', desc: 'Firm-fleshed rock crabs, steamed or fried with tamarind.', price: '250,000 VND/kg', illustrative: 'Fresh sea crabs' },
+                { name: 'Rice rolls with squid cake', desc: 'The islanders\' favourite breakfast with hand-pounded squid cake.', price: '40,000 VND', illustrative: 'Steamed rice rolls' },
+            ],
+            activities: [
+                { title: 'Cycle around the island', desc: 'The coastal road past casuarina forests and Van Chay and Hong Van beaches.' },
+                { title: 'Sunrise at Cau My rocks', desc: 'Wave-carved rocks in every shape as the sun comes up.' },
+                { title: 'Climb Co To lighthouse', desc: 'Panoramic views over the island and the northeastern sea.' },
+                { title: 'Walk to Co To Con', desc: 'Cross the sandbar at low tide and camp overnight.' },
+            ],
+            tips: ['Summer weekends are packed – book boats and rooms ahead; boats stop during storms.', 'There are few ATMs on the island – bring enough cash.'],
+        },
+        'mang-den': {
+            name: 'Mang Den',
+            province: 'Quang Ngai (formerly Kon Tum)',
+            tagline: 'A "second Da Lat" in the Central Highlands forest',
+            description: 'A plateau town nearly 1,200 m up that stays cool all year, surrounded by pine forest, lakes and waterfalls. Mang Den is still unspoilt, with its Our Lady of Mang Den statue, the Mo Nam village of Kon Pring, Dak Ke lake and wild cherry blossoms in early spring. It is only about 1.5 hours from Kon Tum (the former provincial capital).',
+            highlights: ['Our Lady of Mang Den statue', 'Dak Ke lake', 'Pa Sy waterfall', 'Kon Pring village'],
+            bestTime: 'November – April',
+            duration: '2 – 3 days',
+            gallery: [
+                { caption: 'Mang Den scenery' },
+                { caption: 'Mang Den town' },
+                { caption: 'Village life in Kon Pring' },
+                { caption: 'Kon Tum wooden church' },
+                { caption: 'The wooden church – Romanesque style meets Ba Na stilt house' },
+            ],
+            foods: [
+                { name: 'Kon Tum leaf salad', desc: 'Dozens of forest leaves wrapped around pork and shrimp with a thick dipping sauce.', price: '150,000 VND/set', illustrative: 'Meat rolled in fresh leaves' },
+                { name: 'Grilled chicken & bamboo rice', desc: 'Free-range chicken grilled over charcoal with rice cooked in bamboo.', price: '250,000 VND/chicken', illustrative: 'Bamboo-tube rice' },
+                { name: 'Sturgeon hotpot', desc: 'Cold-water sturgeon farmed on the plateau – firm and sweet.', price: '400,000 VND/pot', illustrative: 'A steaming hotpot' },
+            ],
+            activities: [
+                { title: 'Paddleboard on Dak Ke lake', desc: 'A still lake among pines, best on misty mornings.' },
+                { title: 'Pa Sy waterfall', desc: 'Falls in old forest with a suspension bridge and streamside trail.' },
+                { title: 'Kon Pring village', desc: 'Communal houses, stilt homes and Mo Nam basket weaving.' },
+                { title: 'Kon Tum wooden church', desc: 'Stop on the way at this century-old wooden church.' },
+            ],
+            tips: ['Nights can drop to 10 – 15°C – bring warm layers.', 'In the rainy season (May – Oct) mountain roads are slippery and foggy – drive slowly.'],
+        },
+        'mai-chau': {
+            name: 'Mai Chau Valley',
+            province: 'Phu Tho (formerly Hoa Binh)',
+            tagline: 'Peaceful Thai villages in a valley of rice',
+            description: 'Mai Chau valley is about 140 km from Hanoi, where Thai villages such as Lac and Pom Coong sit among rice fields ringed by limestone mountains. Visitors come to cycle through the paddies, sleep in stilt houses, watch xoe dancing and eat bamboo rice and stream fish. It makes a great weekend trip or a stop on the way to Moc Chau and Pu Luong.',
+            highlights: ['Lac village', 'Pom Coong village', 'Thung Khe pass', 'Chieu cave'],
+            bestTime: 'March – May, September – October',
+            duration: '2 days',
+            gallery: [
+                { caption: 'A Thai stilt house in Mai Chau' },
+                { caption: 'Building a stilt house in Mai Chau' },
+                { caption: 'Mai Chau rice fields' },
+            ],
+            foods: [
+                { name: 'Bamboo rice', desc: 'Upland sticky rice cooked in bamboo tubes, dipped in sesame salt.', price: '20,000 VND/tube' },
+                { name: 'Grilled stream fish', desc: 'Stream fish rubbed with mac khen pepper and grilled in bamboo clamps.', price: '120,000 VND', illustrative: 'Grilled fish' },
+                { name: 'Grilled hill chicken', desc: 'Free-range chicken grilled with honey – crisp skin, firm meat.', price: '250,000 VND/chicken', illustrative: 'Charcoal-grilled meat' },
+            ],
+            activities: [
+                { title: 'Cycle Lac – Pom Coong', desc: 'Small lanes through rice fields, stopping to watch brocade weaving.' },
+                { title: 'Thung Khe pass', desc: 'Stop for a panoramic view over the valley.' },
+                { title: 'Chieu cave', desc: 'Climb over 1,000 stone steps to the cave above the Mai Chau fields.' },
+                { title: 'Xoe dancing by the campfire', desc: 'Thai folk performances and tube wine in the evening.' },
+            ],
+            tips: ['Stay at least one night in a stilt house to feel the rhythm of village life.', 'Brocade bought directly from homes in Lac village is usually cheaper and nicer than at souvenir stalls.'],
+        },
+        'ca-mau': {
+            name: 'Ca Mau Cape',
+            province: 'Ca Mau',
+            tagline: 'The southernmost tip, where mangroves reach into the sea',
+            description: 'Ca Mau Cape is the southernmost point of mainland Vietnam, home to the national GPS 0001 marker, a ship-shaped monument facing the East Sea and mangrove forests that push tens of metres further into the sea every year. A trip to "Dat Mui" means boat rides along mangrove-shaded canals, Ca Mau crab and salted crab, and a visit to the U Minh Ha melaleuca forest.',
+            highlights: ['GPS 0001 marker', 'Ship monument', 'Dat Mui mangroves', 'U Minh Ha melaleuca forest'],
+            bestTime: 'December – April',
+            duration: '2 – 3 days',
+            gallery: [
+                { caption: 'Dat Mui market' },
+                { caption: 'Ca Mau Cape' },
+                { caption: 'The southernmost land' },
+            ],
+            foods: [
+                { name: 'Ca Mau crab', desc: 'Roe-rich, firm crabs – steamed with beer, fried with tamarind or grilled with chilli salt.', price: '400,000 VND/kg' },
+                { name: 'Salted ba khía crab', desc: 'Small salted crabs mixed with garlic, chilli, lime and sugar – eaten with rice.', price: '100,000 VND/jar', illustrative: 'Fresh crabs for sale in Ca Mau' },
+                { name: 'U Minh fermented-fish hotpot', desc: 'Fermented fish hotpot with dozens of field greens.', price: '250,000 VND/pot', illustrative: 'Fermented snakehead fish' },
+            ],
+            activities: [
+                { title: 'GPS 0001 marker & ship monument', desc: 'Photos at the southernmost point, where the sun rises and sets over the sea.' },
+                { title: 'Sea-watch tower', desc: 'Views over the mangroves and the East Sea from above.' },
+                { title: 'Boat through the mangroves', desc: 'Wind along the canals and watch locals catch crabs and set shrimp traps.' },
+                { title: 'U Minh Ha melaleuca forest', desc: 'Paddle through the forest and learn about wild-honey hunting.' },
+            ],
+            tips: ['From Ca Mau city you can reach Dat Mui by car or speedboat – check boat times and road conditions first.', 'Bring insect repellent and long sleeves for the mangrove and melaleuca forests.'],
+        },
         'ha-tien': {
             name: 'Ha Tien',
-            province: 'Kien Giang',
+            province: 'An Giang (formerly Kien Giang)',
             tagline: 'A gentle border town on the Gulf of Thailand',
             description: 'Home of the "ten views of Ha Tien": limestone hills, caves, Dong Ho lagoon and Mui Nai beach. Ha Tien is also the gateway to the Hai Tac (Pirate) islands, Phu Quoc and Cambodia – a meeting point of Vietnamese, Chinese and Khmer cultures.',
             highlights: ['Mui Nai beach', 'Thach Dong cave', 'Dong Ho lagoon', 'Hai Tac islands'],
@@ -1564,6 +1676,34 @@ const TRANSLATION_EN = {
             { title: 'Hang Rai – vineyards', morning: 'Hang Rai early in the morning: coral rocks covered in green moss.', afternoon: 'Thai An vineyards – cut grapes and taste wine and grape syrup.', evening: 'Raw anchovy salad and grilled snails in Ninh Chu.' },
             { title: 'Nam Cuong dunes – Cham villages', morning: 'Nam Cuong sand dunes at sunrise.', afternoon: 'Bau Truc pottery village – pots shaped by hand without a wheel.', evening: 'Squid pancakes and jellyfish noodles in Phan Rang.' },
             { title: 'Salt fields – departure', morning: 'Tri Hai salt fields and seaside wind turbines.', afternoon: 'Buy raisins, grape syrup and Phan Rang garlic to take home.', evening: 'Head to Cam Ranh airport or Thap Cham station.' },
+        ] },
+        'co-to': { days: [
+            { title: 'Out to the island', morning: 'A ~3.5 h limousine from Hanoi to Cai Rong port (Van Don).', afternoon: 'A ~1.5 h fast boat to Co To; check in and rent a bicycle or e-cart.', evening: 'Wander the town and have a seafront seafood dinner.' },
+            { title: 'Hong Van and the lighthouse', morning: 'Sunrise at the Cau My rocks.', afternoon: 'Swim at Hong Van beach and cycle the coastal road through casuarina forest.', evening: 'Sunset over the island from Co To lighthouse.' },
+            { title: 'Co To Con', morning: 'Walk the sandbar to Co To Con at low tide.', afternoon: 'Swim on wild beaches, fish and camp.', evening: 'Grilled squid and peanut worms by the campfire.' },
+            { title: 'Van Chay – Bac Van', morning: 'Swim at fine white Van Chay beach.', afternoon: 'Bac Van beach and the national flagpole.', evening: 'Buy dried squid and peanut worms as gifts.' },
+            { title: 'Back to the mainland', morning: 'Breakfast of rice rolls with squid cake, then the boat to Cai Rong.', afternoon: 'Detour to Quan Lan island or head back to Hanoi.', evening: 'Arrive in Hanoi.' },
+        ] },
+        'mang-den': { days: [
+            { title: 'Kon Tum – up to Mang Den', morning: 'Fly to Pleiku and drive to Kon Tum for the wooden church and Kon Klor communal house.', afternoon: 'Cross the pass to Mang Den (~1.5 h) and check in among the pines.', evening: 'Grilled chicken, bamboo rice and jar wine.' },
+            { title: 'Lakes and falls', morning: 'Chase the morning mist and paddleboard on Dak Ke lake.', afternoon: 'Pa Sy waterfall with its suspension bridge and streamside trail.', evening: 'Sturgeon hotpot in the cool evening air.' },
+            { title: 'Kon Pring and Our Lady of Mang Den', morning: 'The Our Lady of Mang Den statue on a pine hill.', afternoon: 'The Mo Nam village of Kon Pring and its basket weavers.', evening: 'Mang Den market and coffee by the fire.' },
+            { title: 'Dak Ke falls and Toong Zo Ri lake', morning: 'Dak Ke waterfall in primeval forest.', afternoon: 'Toong Zo Ri lake, pine-forest walks and photos.', evening: 'BBQ at the homestay.' },
+            { title: 'Back to Pleiku', morning: 'Buy local ginseng and dried bamboo shoots as gifts.', afternoon: 'Down to Kon Tum for leaf salad, then Pleiku airport.', evening: 'End of the trip.' },
+        ] },
+        'mai-chau': { days: [
+            { title: 'Into Lac village', morning: 'Drive ~3.5 h from Hanoi, stopping at Thung Khe pass for valley views.', afternoon: 'Check into a stilt house in Lac village, walk the paddies and watch brocade weaving.', evening: 'Bamboo rice, grilled stream fish and xoe dancing by the fire.' },
+            { title: 'Cycle to Pom Coong', morning: 'Cycle through the rice fields to Pom Coong village.', afternoon: 'Climb the steps to Chieu cave above the Mai Chau fields.', evening: 'Tube wine and Thai folk songs.' },
+            { title: 'Van and Nhot villages', morning: 'Cycle to the quieter Van and Nhot villages.', afternoon: 'Swim in a stream and lunch with a Thai family.', evening: 'Honey-grilled hill chicken.' },
+            { title: 'Hang Kia trek', morning: 'Drive up to the H\'Mong villages of Hang Kia – Pa Co.', afternoon: 'Trek the plum hills and watch clouds roll over Pa Co.', evening: 'Back to Lac village for the night.' },
+            { title: 'Hoa Binh lake – back to Hanoi', morning: 'A boat on Hoa Binh lake and a visit to Thac Bo temple.', afternoon: 'Lake-fish lunch, then back to Hanoi.', evening: 'Arrive in Hanoi.' },
+        ] },
+        'ca-mau': { days: [
+            { title: 'Ca Mau city', morning: 'Fly to Ca Mau or drive from Can Tho; breakfast on noodle soup.', afternoon: 'Ca Mau floating market, Hung Vuong park and Water Lily square.', evening: 'U Minh fermented-fish hotpot and tamarind crab.' },
+            { title: 'To Dat Mui', morning: 'Drive or take a speedboat to Dat Mui via Nam Can.', afternoon: 'The GPS 0001 marker, the ship monument and the sea-watch tower.', evening: 'Sunset over the sea and a homestay night in Dat Mui.' },
+            { title: 'The mangroves', morning: 'A boat through the mangroves to watch locals catch crabs.', afternoon: 'Hon Da Bac or the Ong Trang dunes on the coast.', evening: 'Seafood dinner back in Nam Can.' },
+            { title: 'U Minh Ha forest', morning: 'Paddle through the U Minh Ha melaleuca forest.', afternoon: 'Learn about wild-honey hunting and try field fishing.', evening: 'Back to Ca Mau city and its night market.' },
+            { title: 'Bac Lieu – onwards', morning: 'Drive to Bac Lieu and the Bac Lieu Prince\'s house.', afternoon: 'The coastal wind farm, then on to Can Tho or Saigon.', evening: 'End of the trip.' },
         ] },
         'ha-tien': { days: [
             { title: 'The ten views of Ha Tien', morning: 'Arrive, have crab noodle soup and walk along Dong Ho lagoon.', afternoon: 'Mac Cuu tombs, Phu Dung pagoda and To Chau hill.', evening: 'Ha Tien riverside night market.' },

@@ -59,7 +59,7 @@ const SCRIPTS = [
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
-    'TRANSLATION_LOCAL', 'GUIDES', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
+    'TRANSLATION_LOCAL', 'GUIDES', 'GUIDE_UPDATED', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel']
 
@@ -189,13 +189,60 @@ function prepareTemplate(template, lang, rel, site) {
     return { html, siteRoot }
 }
 
+/*==================== DỮ LIỆU CÓ CẤU TRÚC (schema.org) ====================*/
+const ldScript = graph => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`
+
+/* Đường dẫn breadcrumb: [[tên, rel], ...] – mục cuối là trang hiện tại */
+function breadcrumbLd(items) {
+    return {
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map(([name, rel], i) => ({ '@type': 'ListItem', position: i + 1, name, item: pageUrl(rel) })),
+    }
+}
+
+/* Câu hỏi thường gặp lấy từ thông tin đã hiện trên trang (thời điểm đẹp, số ngày, điểm nổi bật, cách đi) */
+function faqLd(site, d, lang) {
+    const pairs = [
+        [site.t('Thời điểm nào đẹp nhất để đi {name}?', { name: d.name }), `${d.bestTime}.`],
+        [site.t('Nên đi {name} mấy ngày?', { name: d.name }), site.t('Khoảng {duration}.', { duration: d.duration })],
+        [site.t('{name} có gì nổi bật?', { name: d.name }), `${d.highlights.join(', ')}.`],
+    ]
+    /* Cách đi tới chỉ có tiếng Việt / Anh – các ngôn ngữ khác bỏ qua để câu trả lời cùng ngôn ngữ với trang */
+    const place = site.PLACES && site.PLACES[d.id]
+    if (place && (lang === 'vi' || lang === 'en')) pairs.push([site.t('Đi {name} bằng cách nào?', { name: d.name }), site.pickLang(place.getThere)])
+    return {
+        '@type': 'FAQPage',
+        mainEntity: pairs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    }
+}
+
+/* Bài cẩm nang: Article + breadcrumb; trang danh sách: chỉ breadcrumb */
+function guideLd(site, lang, guide, rel, description) {
+    const crumbs = [[site.t('Trang chủ'), homePath(lang)], [site.t('Cẩm nang'), guidePath(lang)]]
+    if (!guide) return [breadcrumbLd(crumbs)]
+    const headline = site.pickLang(guide.title)
+    return [
+        {
+            '@type': 'Article',
+            headline,
+            description,
+            inLanguage: LANGS[lang].html,
+            url: pageUrl(rel),
+            dateModified: site.GUIDE_UPDATED,
+            image: `${SITE_URL}assets/img/og/${guide.related && guide.related[0] ? guide.related[0] : 'hoi-an'}.jpg`,
+            author: { '@type': 'Organization', name: 'Việt Travel', url: SITE_URL },
+            publisher: { '@type': 'Organization', name: 'Việt Travel', url: SITE_URL },
+        },
+        breadcrumbLd([...crumbs, [headline, rel]]),
+    ]
+}
+
 function headTags(site, d, lang) {
     const rel = destPath(lang, d.id)
     const url = pageUrl(rel)
     const title = `${d.name} – ${d.tagline}`
     const image = ogImage(site, d)
     const jsonLd = {
-        '@context': 'https://schema.org',
         '@type': 'TouristDestination',
         name: d.name,
         description: d.description,
@@ -219,7 +266,7 @@ function headTags(site, d, lang) {
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta name="twitter:card" content="summary_large_image">
-        <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+        ${ldScript([jsonLd, breadcrumbLd([[site.t('Trang chủ'), homePath(lang)], [d.name, rel]]), faqLd(site, d, lang)])}
     `
 }
 
@@ -284,6 +331,13 @@ function buildHome(template, lang, site) {
         .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${LANGS[lang].locale}$2`)
+        .replace('</head>', `    ${ldScript([{
+            '@type': 'WebSite',
+            name: 'Việt Travel',
+            url: pageUrl(rel),
+            inLanguage: LANGS[lang].html,
+            description: (html.match(/<meta name="description" content="([^"]*)">/) || [])[1],
+        }])}\n    </head>`)
 
     html = prioritizeImages(html, site)
     if (lang !== 'vi') {
@@ -333,6 +387,7 @@ function buildGuidePage(template, lang, slug, site) {
         <meta property="og:url" content="${pageUrl(rel)}">
         <meta property="og:image" content="${SITE_URL}assets/img/og/${guide && guide.related && guide.related[0] ? guide.related[0] : 'hoi-an'}.jpg">
         <meta name="twitter:card" content="summary_large_image">
+        ${ldScript(guideLd(site, lang, guide, rel, description))}
     `
     html = setLangSwitch(html, lang, siteRoot, l => guidePath(l, slug))
         .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`)

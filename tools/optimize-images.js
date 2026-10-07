@@ -12,6 +12,9 @@ const OUT_DIR = 'assets/img/wiki'
 const MANIFEST = 'assets/js/data/local-images.js'
 const SIZES = { xs: 480, sm: 960, lg: 1920 }
 const QUALITY = 78
+/* Ảnh 1920px nặng hơn ngưỡng này sẽ được nén lại với chất lượng thấp dần (ảnh nhiều chi tiết như rừng, phố cổ) */
+const MAX_BYTES = { lg: 450 * 1024, sm: 200 * 1024 }
+const MIN_QUALITY = 55
 const OG_DIR = 'assets/img/og'
 
 let sharp
@@ -25,15 +28,49 @@ try {
 const abs = rel => path.join(ROOT, rel)
 const baseOf = rel => rel.replace(/-\d+\.\w+$/, '')
 
+/* Mã hóa WebP; nếu vượt MAX_BYTES thì giảm chất lượng từng bước cho tới khi vừa ngưỡng */
+async function encodeWebp(input, width, key) {
+    let quality = QUALITY
+    let buf
+    do {
+        buf = await sharp(input).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true }).webp({ quality, effort: 5 }).toBuffer()
+        quality -= 7
+    } while (MAX_BYTES[key] && buf.length > MAX_BYTES[key] && quality >= MIN_QUALITY)
+    return buf
+}
+
+async function writeWebp(input, width, rel, key) {
+    fs.writeFileSync(abs(rel), await encodeWebp(input, width, key))
+}
+
+/* Ảnh đã tối ưu từ trước nhưng vượt ngưỡng dung lượng: nén lại từ chính bản WebP đó */
+async function shrinkOversized(target) {
+    let shrunk = false
+    for (const [key, max] of Object.entries(MAX_BYTES)) {
+        const rel = target[key]
+        if (fs.statSync(abs(rel)).size <= max) continue
+        /* Chỉ ghi khi nhẹ hơn rõ rệt – tránh nén đi nén lại một ảnh ở mỗi lần chạy */
+        const current = fs.readFileSync(abs(rel))
+        const buf = await encodeWebp(current, SIZES[key], key)
+        if (buf.length > current.length * 0.85) continue
+        fs.writeFileSync(abs(rel), buf)
+        shrunk = true
+    }
+    return shrunk
+}
+
 async function optimizeEntry(entry) {
     const base = baseOf(entry.lg || entry.sm)
     const target = Object.fromEntries(Object.entries(SIZES).map(([k, w]) => [k, `${base}-${w}.webp`]))
     const done = Object.values(target).every(rel => fs.existsSync(abs(rel)))
     if (done) {
-        /* Đã tối ưu từ trước: chỉ đọc kích thước, không nén lại (tránh giảm chất lượng) –
-           trừ ảnh dọc tạo theo quy tắc cũ (chỉ giới hạn chiều rộng) còn vượt khung */
+        /* Đã tối ưu từ trước: không tạo lại (tránh giảm chất lượng), chỉ nén lại ảnh vượt ngưỡng dung lượng –
+           trừ ảnh dọc tạo theo quy tắc cũ (chỉ giới hạn chiều rộng) còn vượt khung thì tạo lại bên dưới */
         const { width, height } = await sharp(abs(target.lg)).metadata()
-        if (Math.max(width, height) <= SIZES.lg) return { entry: { ...target, w: width, h: height }, converted: false }
+        if (Math.max(width, height) <= SIZES.lg) {
+            const shrunk = await shrinkOversized(target)
+            return { entry: { ...target, w: width, h: height }, converted: shrunk }
+        }
     }
 
     /* Nguồn: ảnh lớn nhất đang có (JPG gốc hoặc WebP 1920) */
@@ -43,11 +80,7 @@ async function optimizeEntry(entry) {
     const meta = await sharp(input).metadata()
 
     for (const [key, width] of Object.entries(SIZES)) {
-        await sharp(input)
-            .rotate()
-            .resize({ width, height: width, fit: 'inside', withoutEnlargement: true })
-            .webp({ quality: QUALITY, effort: 5 })
-            .toFile(abs(target[key]))
+        await writeWebp(input, width, target[key], key)
     }
 
     /* Xóa file gốc không còn dùng */

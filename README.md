@@ -4,7 +4,7 @@ link: https://tantan1802.github.io/travel/
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 30 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 34 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
@@ -17,6 +17,8 @@ Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 - **Thời tiết hiện tại** (Open-Meteo) và thanh 12 tháng tô màu mùa đẹp.
 - **Yêu thích**: lưu điểm đến ngay trên trình duyệt, không cần đăng nhập.
 - **5 ngôn ngữ**: Việt (gốc), Anh `/en/`, Hàn `/ko/`, Trung giản thể `/zh/`, Nhật `/ja/` – menu chọn ngôn ngữ trên thanh menu.
+- **Dữ liệu có cấu trúc (schema.org)**: trang điểm đến có `TouristDestination` + `BreadcrumbList` + `FAQPage` (mùa đẹp, số ngày, điểm nổi bật, cách đi), trang chủ có `WebSite`, bài cẩm nang có `Article` – để Google hiện kết quả nhiều thông tin.
+- **Địa giới sau sáp nhập tỉnh (2025)**: tên tỉnh ghi theo đơn vị mới, kèm tên cũ trong ngoặc (vd. "Tuyên Quang (Hà Giang cũ)").
 
 ## Cấu trúc & quy trình
 | Đường dẫn | Vai trò |
