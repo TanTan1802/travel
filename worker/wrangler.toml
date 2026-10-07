@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 # Các trang được gọi trợ lý (CORS), ngăn cách bằng dấu phẩy
-ALLOWED_ORIGINS = "https://tantan1802.github.io,https://viet-travel.pages.dev"
+ALLOWED_ORIGINS = "https://viet-travel.congtan5918.workers.dev,https://tantan1802.github.io"
 # Model và mức effort (mặc định claude-opus-5-5, effort "low" cho câu hỏi ngắn)
 # MODEL = "claude-opus-5-5"
 # EFFORT = "low"

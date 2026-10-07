@@ -17,9 +17,8 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 const esbuild = require('esbuild')
-const { ROOT, loadBrowserScripts } = require('./lib')
+const { ROOT, SITE_URL, loadBrowserScripts } = require('./lib')
 
-const SITE_URL = 'https://tantan1802.github.io/travel/'
 const PAGE_DIR = 'diem-den'
 const PLANNER_DIR = 'ke-hoach'
 const GUIDE_DIR = 'cam-nang'

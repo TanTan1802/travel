@@ -4,6 +4,8 @@ const path = require('path')
 const vm = require('vm')
 
 const ROOT = path.join(__dirname, '..')
+/* Địa chỉ chính của site (canonical, sitemap, og:image) – bản Cloudflare. GitHub Pages là bản sao trỏ canonical về đây. */
+const SITE_URL = 'https://viet-travel.congtan5918.workers.dev/'
 
 /* Nạp các file JS của trình duyệt vào một sandbox và lấy ra các biến toàn cục cần dùng */
 function loadBrowserScripts(files, exportNames, globals = {}) {
@@ -49,4 +51,4 @@ function slugify(text) {
         .slice(0, 80)
 }
 
-module.exports = { ROOT, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }
+module.exports = { ROOT, SITE_URL, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }

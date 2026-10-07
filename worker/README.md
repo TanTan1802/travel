@@ -23,7 +23,7 @@ Sau mỗi lần dữ liệu thay đổi (`npm run build` sinh lại `src/knowled
 
 | Biến | Mặc định | Ý nghĩa |
 |---|---|---|
-| `ALLOWED_ORIGINS` | `https://tantan1802.github.io` | Trang được gọi Worker (CORS), ngăn cách bằng dấu phẩy. Thêm `http://localhost:8000` khi thử trên máy |
+| `ALLOWED_ORIGINS` | `https://viet-travel.congtan5918.workers.dev,https://tantan1802.github.io` | Trang được gọi Worker (CORS), ngăn cách bằng dấu phẩy. Thêm `http://localhost:8000` khi thử trên máy |
 | `MODEL` | `claude-opus-5-5` | Model Claude |
 | `EFFORT` | `low` | Mức suy nghĩ (`low`…`max`); câu hỏi ngắn kiểu trò chuyện dùng `low` là đủ |
 | `RATE_LIMITER` | 10 câu / phút / IP | Binding Rate Limiting của Cloudflare – chống bị gọi tràn làm tốn tiền API |

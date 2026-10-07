@@ -6,9 +6,8 @@
  */
 const fs = require('fs')
 const path = require('path')
-const { ROOT, loadBrowserScripts } = require('./lib')
+const { ROOT, SITE_URL, loadBrowserScripts } = require('./lib')
 
-const SITE_URL = 'https://tantan1802.github.io/travel/'
 const OUT = 'worker/src/knowledge.js'
 
 const site = loadBrowserScripts([

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tantan1802.github.io/travel/sitemap.xml
+Sitemap: https://viet-travel.congtan5918.workers.dev/sitemap.xml

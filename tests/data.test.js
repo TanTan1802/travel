@@ -5,7 +5,8 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const fs = require('fs')
 const path = require('path')
-const { loadBrowserScripts } = require('../tools/lib')
+const { loadBrowserScripts, SITE_URL } = require('../tools/lib')
+const siteRe = SITE_URL.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')
 const { ROOT, LANG_PREFIXES, builtPages } = require('./helpers')
 
 const site = loadBrowserScripts(
@@ -501,7 +502,7 @@ test('trang tĩnh đã được build cho mọi điểm đến ở mọi ngôn n
         }
     }
     const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
-    DESTINATIONS.forEach(d => LANG_PREFIXES.forEach(p => assert.ok(sitemap.includes(`/travel/${p}diem-den/${d.id}/`), `sitemap thiếu ${p}${d.id}`)))
+    DESTINATIONS.forEach(d => LANG_PREFIXES.forEach(p => assert.ok(sitemap.includes(`${SITE_URL}${p}diem-den/${d.id}/`), `sitemap thiếu ${p}${d.id}`)))
 })
 
 test('bản dịch ko/zh/ja: đủ điểm đến + giao diện, trang build đúng ngôn ngữ, menu ngôn ngữ trỏ đúng trang', () => {
@@ -526,7 +527,7 @@ test('bản dịch ko/zh/ja: đủ điểm đến + giao diện, trang build đ�
         assert.ok(html.includes(tr.destinations.hue.name), `${lang}: tên điểm đến chưa dịch`)
         const menu = html.match(/<details class="nav__lang"[\s\S]*?<\/details>/)[0]
         LANG_PREFIXES.forEach(p => assert.ok(menu.includes(`../../../${p}diem-den/hue/index.html`), `${lang}: menu thiếu ${p || 'vi'}`))
-        assert.match(html, new RegExp(`hreflang="${htmlLang[lang]}" href="https://tantan1802\\.github\\.io/travel/${lang}/diem-den/hue/"`))
+        assert.match(html, new RegExp(`hreflang="${htmlLang[lang]}" href="${siteRe}${lang}/diem-den/hue/"`))
     }
 })
 
@@ -602,13 +603,13 @@ test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề �
         ...['bien', 'nui', 'di-san', 'thanh-pho', 'hang-dong', 'mien-bac', 'mien-trung', 'mien-nam'].flatMap(s => [`chu-de/${s}/`, `en/chu-de/${s}/`]),
     ]
     for (const rel of rels) {
-        assert.ok(sitemap.includes(`/travel/${rel}<`), `sitemap thiếu ${rel}`)
+        assert.ok(sitemap.includes(`${SITE_URL}${rel}<`), `sitemap thiếu ${rel}`)
         const html = fs.readFileSync(path.join(ROOT, rel, 'index.html'), 'utf8')
         const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]))
         const graph = blocks.flatMap(b => b['@graph'] || [b])
         assert.ok(graph.some(n => n['@type'] === 'BreadcrumbList'), `${rel} thiếu BreadcrumbList`)
         assert.ok(graph.some(n => n['@type'] === 'ItemList' && n.itemListElement.length), `${rel} thiếu ItemList`)
-        assert.match(html, /<link rel="canonical" href="https:\/\/tantan1802\.github\.io\/travel\//)
+        assert.match(html, new RegExp(`<link rel="canonical" href="${siteRe}`))
     }
     /* Mỗi điểm tham quan có anchor riêng trên trang giá vé */
     const hue = fs.readFileSync(path.join(ROOT, 'diem-den/hue/gia-ve/index.html'), 'utf8')
