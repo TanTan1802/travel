@@ -373,7 +373,7 @@ function buildPlanner(template, lang, site) {
     return setLangSwitch(html, lang, siteRoot, plannerPath)
         .replace('</head>', `${head}</head>`)
         .replace(/(\s*)<script defer src="/,
-            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'</script>$1<script defer src="`)
+            `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'; window.PLAN_DATA = '${siteRoot}${PLAN_DATA_DIR}/${lang}/'</script>$1<script defer src="`)
 }
 
 /* Trang cẩm nang (danh sách hoặc một bài): nội dung render sẵn từ guide-render.js */
@@ -558,31 +558,46 @@ function compactLocalImages(images) {
  * Quán / lưu trú / điểm tham quan lưu cặp [tiếng Việt, English]; trên trình duyệt chỉ đọc qua pickLang (chấp nhận
  * cả chuỗi) nên mỗi trang chỉ cần một ngôn ngữ. Giữ nguyên cặp ở tên điểm tham quan (link Google Maps dùng tên tiếng Việt).
  */
-function monolingualData(file, site, lang) {
-    const one = pair => (Array.isArray(pair) && pair.length === 2 && pair.every(x => typeof x === 'string') ? pair[lang === 'vi' ? 0 : 1] || pair[0] : pair)
-    if (file === 'assets/js/data/sights.js') {
-        const sights = Object.fromEntries(Object.entries(site.SIGHTS).map(([id, days]) => [id, days.map(list => list.map(s => ({
-            ...s,
-            ...(s.note ? { note: one(s.note) } : {}),
-            ...(s.cafe ? { cafe: { ...s.cafe, drink: one(s.cafe.drink) } } : {}),
-        })))]))
-        return `const SIGHTS = ${JSON.stringify(sights)}`
-    }
-    const places = Object.fromEntries(Object.entries(site.PLACES).map(([id, p]) => [id, {
-        ...p,
-        getThere: one(p.getThere),
-        eats: p.eats.map(e => ({ ...e, dish: one(e.dish) })),
-        cafes: p.cafes.map(c => ({ ...c, drink: one(c.drink) })),
-        stays: p.stays.map(st => ({ ...st, area: one(st.area), note: one(st.note) })),
-    }]))
-    const stayTypes = Object.fromEntries(Object.entries(site.STAY_TYPES).map(([k, v]) => [k, one(v)]))
+const monoPair = lang => pair => (Array.isArray(pair) && pair.length === 2 && pair.every(x => typeof x === 'string') ? pair[lang === 'vi' ? 0 : 1] || pair[0] : pair)
+const monoSights = (days, lang, one = monoPair(lang)) => days.map(list => list.map(s => ({
+    ...s,
+    ...(s.note ? { note: one(s.note) } : {}),
+    ...(s.cafe ? { cafe: { ...s.cafe, drink: one(s.cafe.drink) } } : {}),
+})))
+const monoPlaces = (p, lang, one = monoPair(lang)) => ({
+    ...p,
+    getThere: one(p.getThere),
+    eats: p.eats.map(e => ({ ...e, dish: one(e.dish) })),
+    cafes: p.cafes.map(c => ({ ...c, drink: one(c.drink) })),
+    stays: p.stays.map(st => ({ ...st, area: one(st.area), note: one(st.note) })),
+})
+const mapValues = (obj, fn) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, fn(v)]))
+
+/*
+ * Trang lập kế hoạch không nạp sẵn quán / điểm tham quan / lịch trình của cả 34 điểm đến: planner.js tải
+ * assets/js/data/plan/<lang>/<id>.json của các điểm trong kế hoạch khi cần (đã một ngôn ngữ, lịch trình đã dịch).
+ */
+const PLAN_DATA_DIR = 'assets/js/data/plan'
+const isPlannerPage = pageFiles => pageFiles.includes('assets/js/planner.js')
+const planDataFile = (site, lang, id) => JSON.stringify({
+    places: monoPlaces(site.PLACES[id], lang),
+    sights: monoSights(site.SIGHTS[id], lang),
+    itinerary: site.ITINERARIES[id],
+})
+
+function monolingualData(file, site, lang, lazy) {
+    const one = monoPair(lang)
+    if (file === 'assets/js/data/sights.js') return `const SIGHTS = ${lazy ? '{}' : JSON.stringify(mapValues(site.SIGHTS, days => monoSights(days, lang)))}`
+    const stayTypes = mapValues(site.STAY_TYPES, one)
     const transport = { ...site.TRANSPORT, ports: site.TRANSPORT.ports.map(port => ({ ...port, name: one(port.name) })) }
+    const places = lazy ? {} : mapValues(site.PLACES, p => monoPlaces(p, lang))
     return `const STAY_TYPES = ${JSON.stringify(stayTypes)}\nconst TRANSPORT = ${JSON.stringify(transport)}\nconst PLACES = ${JSON.stringify(places)}`
 }
 
 function scriptSource(file, site, pageFiles) {
     if (file === 'assets/js/data/local-images.js') return compactLocalImages(site.LOCAL_IMAGES)
-    if (file === 'assets/js/data/places.js' || file === 'assets/js/data/sights.js') return monolingualData(file, site, siteLangs.get(site))
+    if (file === 'assets/js/data/places.js' || file === 'assets/js/data/sights.js') return monolingualData(file, site, siteLangs.get(site), isPlannerPage(pageFiles))
+    if (file === 'assets/js/data/itineraries.js' && isPlannerPage(pageFiles)) return `const TOUR_LENGTHS = ${JSON.stringify(site.TOUR_LENGTHS)}\nconst ITINERARIES = {}`
     if (file === 'assets/js/data/en.js') {
         /* Bản tiếng Anh gốc (trang ko/zh/ja: i18n.js tự phủ bản dịch riêng lên trên trình duyệt) */
         const { html, itineraries, ...en } = loadSite('en', '').TRANSLATION_EN
@@ -596,7 +611,7 @@ function scriptSource(file, site, pageFiles) {
             ;['ui', 'regions', 'categories'].forEach(k => { en[k] = omit(en[k], local[k]) })
             en.destinations = Object.fromEntries(Object.entries(en.destinations).map(([id, d]) => [id, omit(d, local.destinations[id])]))
         }
-        const withPlans = pageFiles.includes('assets/js/data/itineraries.js')
+        const withPlans = pageFiles.includes('assets/js/data/itineraries.js') && !isPlannerPage(pageFiles)
         return `const TRANSLATION_EN = ${JSON.stringify({ ...en, itineraries: withPlans ? itineraries : {} })}`
     }
     if (file.startsWith('assets/js/data/i18n/')) {
@@ -698,6 +713,9 @@ function main() {
         }
         page(homePath(lang), site => buildHome(homeTemplate, lang, site))
         page(plannerPath(lang), site => buildPlanner(plannerTemplate, lang, site))
+        const planSite = loadSite(lang, '')
+        fs.rmSync(path.join(ROOT, PLAN_DATA_DIR, lang), { recursive: true, force: true })
+        planSite.DESTINATIONS.forEach(d => write(`${PLAN_DATA_DIR}/${lang}/${d.id}.json`, planDataFile(planSite, lang, d.id)))
         page(guidePath(lang), site => buildGuidePage(guideTemplate, lang, '', site))
         for (const g of loadSite(lang, '').GUIDES) page(guidePath(lang, g.slug), site => buildGuidePage(guideTemplate, lang, g.slug, site))
         for (const [rel, build, site] of explorePages(guideTemplate, lang)) {

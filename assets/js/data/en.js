@@ -131,6 +131,7 @@ const TRANSLATION_EN = {
         'Đã lưu {n} tệp để dùng offline ({failed} tệp lỗi)': 'Saved {n} files for offline use ({failed} failed)',
         'Đã lưu {n} tệp – mở lại trang này khi mất mạng vẫn xem được': 'Saved {n} files – you can reopen this page without a connection',
         'Không lưu được bản offline trên trình duyệt này': 'This browser could not save an offline copy',
+        'Không tải được dữ liệu điểm đến – kiểm tra kết nối mạng rồi thử lại': 'Could not load destination data – check your connection and try again',
         '{h} giờ {m} phút': '{h} h {m} min',
         '{m} phút': '{m} min',
         '{h} giờ': '{h} h',

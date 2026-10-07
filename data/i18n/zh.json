@@ -97,6 +97,7 @@
     "Đã lưu {n} tệp để dùng offline ({failed} tệp lỗi)": "已离线保存 {n} 个文件（{failed} 个失败）",
     "Đã lưu {n} tệp – mở lại trang này khi mất mạng vẫn xem được": "已保存 {n} 个文件——无网络时也能重新打开此页面",
     "Không lưu được bản offline trên trình duyệt này": "此浏览器无法保存离线副本",
+    "Không tải được dữ liệu điểm đến – kiểm tra kết nối mạng rồi thử lại": "无法加载目的地数据——请检查网络连接后重试",
     "{h} giờ {m} phút": "{h} 小时 {m} 分钟",
     "{m} phút": "{m} 分钟",
     "{h} giờ": "{h} 小时",

@@ -97,6 +97,7 @@
     "Đã lưu {n} tệp để dùng offline ({failed} tệp lỗi)": "{n} 個のファイルをオフライン用に保存しました（{failed} 個失敗）",
     "Đã lưu {n} tệp – mở lại trang này khi mất mạng vẫn xem được": "{n} 個のファイルを保存しました。オフラインでもこのページを開けます",
     "Không lưu được bản offline trên trình duyệt này": "このブラウザではオフライン版を保存できません",
+    "Không tải được dữ liệu điểm đến – kiểm tra kết nối mạng rồi thử lại": "目的地のデータを読み込めませんでした――接続を確認して再度お試しください",
     "{h} giờ {m} phút": "{h} 時間 {m} 分",
     "{m} phút": "{m} 分",
     "{h} giờ": "{h} 時間",

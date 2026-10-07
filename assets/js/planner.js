@@ -426,7 +426,8 @@ function offlineStatusHtml(plan) {
 
 async function downloadOffline(plan, btn) {
     const totals = planTotals(plan)
-    const pages = [location.href, ...totals.dests.map(d => destinationUrl(d.id))]
+    const pages = [location.href, ...totals.dests.map(d => destinationUrl(d.id)),
+        ...(window.PLAN_DATA ? totals.dests.map(d => new URL(destDataUrl(d.id), location.href).href) : [])]
     btn.disabled = true
     const label = btn.innerHTML
     try {
@@ -719,8 +720,56 @@ async function updatePlannerMap(plan, totals) {
 }
 
 /*---------- Cập nhật ----------*/
+/*---------- Dữ liệu từng điểm đến ----------*/
+/*
+ * Trang đã build không nạp sẵn quán / điểm tham quan / lịch trình của mọi điểm đến (giữ gói JS nhỏ):
+ * tải data/plan/<lang>/<id>.json của các điểm trong kế hoạch khi cần (window.PLAN_DATA – tools/build.js).
+ * Mở planner.html chưa build thì dữ liệu đã có đủ, không tải gì.
+ */
+const destDataLoads = new Map()
+const hasDestData = id => Boolean(PLACES[id] && SIGHTS[id] && ITINERARIES[id])
+const destDataUrl = id => `${window.PLAN_DATA}${id}.json`
+
+function loadDestData(ids) {
+    const missing = [...new Set(ids)].filter(id => !hasDestData(id))
+    if (!missing.length || !window.PLAN_DATA) return Promise.resolve()
+    return Promise.all(missing.map(id => {
+        if (!destDataLoads.has(id)) {
+            destDataLoads.set(id, fetch(destDataUrl(id))
+                .then(res => (res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))))
+                .then(data => {
+                    PLACES[id] = data.places
+                    SIGHTS[id] = data.sights
+                    ITINERARIES[id] = data.itinerary
+                })
+                .catch(err => {
+                    destDataLoads.delete(id) // cho phép thử lại
+                    throw err
+                }))
+        }
+        return destDataLoads.get(id)
+    }))
+}
+
 function renderPlanner() {
     const plan = planner.plan
+    const ids = plan.stops.map(s => s.id)
+    if (!ids.every(hasDestData) && window.PLAN_DATA) {
+        const page = document.getElementById('planner-page')
+        page.setAttribute('aria-busy', 'true')
+        loadDestData(ids)
+            .then(() => {
+                page.removeAttribute('aria-busy')
+                /* Kế hoạch có thể đã đổi trong lúc tải – vẽ theo kế hoạch hiện tại */
+                renderPlanner()
+            })
+            .catch(() => {
+                page.removeAttribute('aria-busy')
+                page.querySelector('.planner')?.classList.add('planner--ready')
+                showToast(t('Không tải được dữ liệu điểm đến – kiểm tra kết nối mạng rồi thử lại'))
+            })
+        return
+    }
     const totals = planTotals(plan)
     document.getElementById('planner-today').innerHTML = renderToday(plan, totals)
     document.getElementById('planner-controls').innerHTML = renderControls(plan)
@@ -733,6 +782,7 @@ function renderPlanner() {
     document.getElementById('planner-days').innerHTML = renderDays(plan, totals)
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
+    document.querySelector('#planner-page .planner')?.classList.add('planner--ready')
     updatePlannerMap(plan, totals)
     if (plan.start) {
         fillForecasts(document.getElementById('planner-days'))
@@ -890,7 +940,6 @@ function initPlanner() {
         }
     })
     renderPlanner()
-    root.querySelector('.planner')?.classList.add('planner--ready')
 
     /* Cập nhật mốc "đang diễn ra / tiếp theo" mỗi phút */
     setInterval(() => {

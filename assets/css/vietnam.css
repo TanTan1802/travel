@@ -2164,6 +2164,13 @@ body:not(.dark-theme) .planner-hero .section__subtitle {
   visibility: hidden;
 }
 
+/* Đang tải dữ liệu điểm đến vừa thêm (planner.js loadDestData) */
+#planner-page[aria-busy="true"] .planner--ready {
+  opacity: .6;
+  cursor: progress;
+  transition: opacity .2s;
+}
+
 .planner__grid {
   display: grid;
   gap: 2rem;
