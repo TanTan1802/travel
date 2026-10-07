@@ -49,6 +49,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1279
     },
+    "Bai Cay Men,Dao nam du.Xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg": {
+        "xs": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-480.webp",
+        "sm": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-960.webp",
+        "lg": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Bai-sao-phu-quoc-tuonglamphotos.jpg": {
         "xs": "assets/img/wiki/bai-sao-phu-quoc-tuonglamphotos-6ea68b-480.webp",
         "sm": "assets/img/wiki/bai-sao-phu-quoc-tuonglamphotos-6ea68b-960.webp",
@@ -153,6 +160,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ben-thanh-market-saigon-671048-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "BinhLieu by phone.jpg": {
+        "xs": "assets/img/wiki/binhlieu-by-phone-3566d5-480.webp",
+        "sm": "assets/img/wiki/binhlieu-by-phone-3566d5-960.webp",
+        "lg": "assets/img/wiki/binhlieu-by-phone-3566d5-1920.webp",
+        "w": 1920,
+        "h": 1080
     },
     "Buah durian.jpg": {
         "xs": "assets/img/wiki/buah-durian-4717c6-480.webp",
@@ -336,6 +350,20 @@ const LOCAL_IMAGES = {
         "w": 1439,
         "h": 1920
     },
+    "Cau cang Dao cu tron-quan Dao nam du. xa An Sơn, Huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-16-Dyt - panoramio.jpg": {
+        "xs": "assets/img/wiki/cau-cang-dao-cu-tron-quan-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-vi-4b052a-480.webp",
+        "sm": "assets/img/wiki/cau-cang-dao-cu-tron-quan-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-vi-4b052a-960.webp",
+        "lg": "assets/img/wiki/cau-cang-dao-cu-tron-quan-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-vi-4b052a-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
+    "Cay co thu, Dao Nam du, Xa An Sơn,HUyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg": {
+        "xs": "assets/img/wiki/cay-co-thu-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-07ca76-480.webp",
+        "sm": "assets/img/wiki/cay-co-thu-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-07ca76-960.webp",
+        "lg": "assets/img/wiki/cay-co-thu-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-07ca76-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Cha gio.jpg": {
         "xs": "assets/img/wiki/cha-gio-af7dc6-480.webp",
         "sm": "assets/img/wiki/cha-gio-af7dc6-960.webp",
@@ -426,6 +454,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/cooked-snails-50cd3c-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Costume, Dao Thanh Phan, Quang Ninh, 2004, industrial cotton and dyes - Vietnamese Women's Museum - Hanoi, Vietnam - DSC03714.JPG": {
+        "xs": "assets/img/wiki/costume-dao-thanh-phan-quang-ninh-2004-industrial-cotton-and-dyes-vietnamese-wom-fbc626-480.webp",
+        "sm": "assets/img/wiki/costume-dao-thanh-phan-quang-ninh-2004-industrial-cotton-and-dyes-vietnamese-wom-fbc626-960.webp",
+        "lg": "assets/img/wiki/costume-dao-thanh-phan-quang-ninh-2004-industrial-cotton-and-dyes-vietnamese-wom-fbc626-1920.webp",
+        "w": 768,
+        "h": 1920
     },
     "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg": {
         "xs": "assets/img/wiki/cua-ca-mau-ban-tren-duong-ns-ng30th7n2023-1-023c79-480.webp",
@@ -538,6 +573,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/dragon-marble-mountain-da-nang-vietnam-294662-1920.webp",
         "w": 900,
         "h": 1200
+    },
+    "Duong ven nui Dao Nam du, xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam, 02-07-2016-Dyt - panoramio.jpg": {
+        "xs": "assets/img/wiki/duong-ven-nui-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-f10a53-480.webp",
+        "sm": "assets/img/wiki/duong-ven-nui-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-f10a53-960.webp",
+        "lg": "assets/img/wiki/duong-ven-nui-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-f10a53-1920.webp",
+        "w": 1920,
+        "h": 1080
     },
     "Dĩa cơm tấm SG ng1th5n2022 (2).jpg": {
         "xs": "assets/img/wiki/dia-com-tam-sg-ng1th5n2022-2-90693c-480.webp",
@@ -861,6 +903,13 @@ const LOCAL_IMAGES = {
         "w": 1024,
         "h": 768
     },
+    "Lang chai ,Dao Cu Tron,xa An Sơn,Huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg": {
+        "xs": "assets/img/wiki/lang-chai-dao-cu-tron-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-ed162b-480.webp",
+        "sm": "assets/img/wiki/lang-chai-dao-cu-tron-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-ed162b-960.webp",
+        "lg": "assets/img/wiki/lang-chai-dao-cu-tron-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-20-ed162b-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Lanterns in Hoi An 4.jpg": {
         "xs": "assets/img/wiki/lanterns-in-hoi-an-4-6750c0-480.webp",
         "sm": "assets/img/wiki/lanterns-in-hoi-an-4-6750c0-960.webp",
@@ -888,6 +937,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ly-son-island-26-panoramio-d063c8-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Lâu đài Tam Đảo - NKS.jpg": {
+        "xs": "assets/img/wiki/lau-dai-tam-dao-nks-b3e9dd-480.webp",
+        "sm": "assets/img/wiki/lau-dai-tam-dao-nks-b3e9dd-960.webp",
+        "lg": "assets/img/wiki/lau-dai-tam-dao-nks-b3e9dd-1920.webp",
+        "w": 1920,
+        "h": 1280
     },
     "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg": {
         "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-480.webp",
@@ -1337,6 +1393,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 960
     },
+    "Tam Dao peaks.jpg": {
+        "xs": "assets/img/wiki/tam-dao-peaks-51511b-480.webp",
+        "sm": "assets/img/wiki/tam-dao-peaks-51511b-960.webp",
+        "lg": "assets/img/wiki/tam-dao-peaks-51511b-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Tau danh ca tai Ly Son.jpg": {
         "xs": "assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-480.webp",
         "sm": "assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-960.webp",
@@ -1371,6 +1434,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/terraced-fields-sa-pa-vietnam-5cdf12-1920.webp",
         "w": 1920,
         "h": 1275
+    },
+    "Thac bac-tam dao.jpg": {
+        "xs": "assets/img/wiki/thac-bac-tam-dao-ccdd53-480.webp",
+        "sm": "assets/img/wiki/thac-bac-tam-dao-ccdd53-960.webp",
+        "lg": "assets/img/wiki/thac-bac-tam-dao-ccdd53-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Thang Co (Cattle Intestines Soup).jpg": {
         "xs": "assets/img/wiki/thang-co-cattle-intestines-soup-64d9fd-480.webp",
@@ -1421,6 +1491,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Thị trấn Tam Đảo - NKS.jpg": {
+        "xs": "assets/img/wiki/thi-tran-tam-dao-nks-c6a539-480.webp",
+        "sm": "assets/img/wiki/thi-tran-tam-dao-nks-c6a539-960.webp",
+        "lg": "assets/img/wiki/thi-tran-tam-dao-nks-c6a539-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
     "Thịt trâu gác bếp Tả Phìn Hồ.jpg": {
         "xs": "assets/img/wiki/thit-trau-gac-bep-ta-phin-ho-d6b8a3-480.webp",
         "sm": "assets/img/wiki/thit-trau-gac-bep-ta-phin-ho-d6b8a3-960.webp",
@@ -1462,6 +1539,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/two-mini-banh-mi-vietnamese-sandwiches-661ce8-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Tây Thiên - Mộ cổ thiền sư - panoramio.jpg": {
+        "xs": "assets/img/wiki/tay-thien-mo-co-thien-su-panoramio-3816c4-480.webp",
+        "sm": "assets/img/wiki/tay-thien-mo-co-thien-su-panoramio-3816c4-960.webp",
+        "lg": "assets/img/wiki/tay-thien-mo-co-thien-su-panoramio-3816c4-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Tết 2024 nhà mình (rổ miến dong).jpg": {
+        "xs": "assets/img/wiki/tet-2024-nha-minh-ro-mien-dong-6ccc3f-480.webp",
+        "sm": "assets/img/wiki/tet-2024-nha-minh-ro-mien-dong-6ccc3f-960.webp",
+        "lg": "assets/img/wiki/tet-2024-nha-minh-ro-mien-dong-6ccc3f-1920.webp",
+        "w": 1440,
+        "h": 1920
     },
     "Vats at a Fish Sauce Factory on Phu Quoc Island in Vietnam 01.jpg": {
         "xs": "assets/img/wiki/vats-at-a-fish-sauce-factory-on-phu-quoc-island-in-vietnam-01-ba0dde-480.webp",
@@ -1554,12 +1645,26 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Vườn su su ở Tam Đảo.jpg": {
+        "xs": "assets/img/wiki/vuon-su-su-o-tam-dao-c97430-480.webp",
+        "sm": "assets/img/wiki/vuon-su-su-o-tam-dao-c97430-960.webp",
+        "lg": "assets/img/wiki/vuon-su-su-o-tam-dao-c97430-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG": {
         "xs": "assets/img/wiki/well-of-heavenly-clarity-temple-of-literature-hanoi-dsc04565-dda6a4-480.webp",
         "sm": "assets/img/wiki/well-of-heavenly-clarity-temple-of-literature-hanoi-dsc04565-dda6a4-960.webp",
         "lg": "assets/img/wiki/well-of-heavenly-clarity-temple-of-literature-hanoi-dsc04565-dda6a4-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Woman's garment with pom-poms, view 1, Dao (Thanh phan) - Vietnam Museum of Ethnology - Hanoi, Vietnam - DSC02999.JPG": {
+        "xs": "assets/img/wiki/woman-s-garment-with-pom-poms-view-1-dao-thanh-phan-vietnam-museum-of-ethnology--10a01e-480.webp",
+        "sm": "assets/img/wiki/woman-s-garment-with-pom-poms-view-1-dao-thanh-phan-vietnam-museum-of-ethnology--10a01e-960.webp",
+        "lg": "assets/img/wiki/woman-s-garment-with-pom-poms-view-1-dao-thanh-phan-vietnam-museum-of-ethnology--10a01e-1920.webp",
+        "w": 1280,
+        "h": 1920
     },
     "Xuan Dai Bay, Phu Yen, Vietnam.JPG": {
         "xs": "assets/img/wiki/xuan-dai-bay-phu-yen-vietnam-c6694f-480.webp",
@@ -1596,6 +1701,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Zen Monastery Truc Lam Tay Thien.JPG": {
+        "xs": "assets/img/wiki/zen-monastery-truc-lam-tay-thien-3915a8-480.webp",
+        "sm": "assets/img/wiki/zen-monastery-truc-lam-tay-thien-3915a8-960.webp",
+        "lg": "assets/img/wiki/zen-monastery-truc-lam-tay-thien-3915a8-1920.webp",
+        "w": 1920,
+        "h": 1447
+    },
     "Đường đi trên đảo Cô Tô.jpg": {
         "xs": "assets/img/wiki/duong-di-tren-dao-co-to-05a8f1-480.webp",
         "sm": "assets/img/wiki/duong-di-tren-dao-co-to-05a8f1-960.webp",
@@ -1616,5 +1728,12 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/anh-dep-vung-tau-bien-bai-sau-gan-hon-ba-7b5160-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Ẩm thực Thanh Hoá.JPG": {
+        "xs": "assets/img/wiki/am-thuc-thanh-hoa-420ae8-480.webp",
+        "sm": "assets/img/wiki/am-thuc-thanh-hoa-420ae8-960.webp",
+        "lg": "assets/img/wiki/am-thuc-thanh-hoa-420ae8-1920.webp",
+        "w": 1920,
+        "h": 1280
     }
 }
