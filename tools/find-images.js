@@ -5,6 +5,8 @@
  *
  *   node tools/find-images.js "Mai Chau" "Ban Lac Mai Chau" "Com lam"
  *   QUERIES="Mai Chau|Com lam" node tools/find-images.js
+ *   PREVIEW_DIR=preview node tools/find-images.js "Com lam"   – thêm ảnh xem trước: mỗi từ khóa một tấm ghép
+ *                                                               các ảnh ứng viên có đánh số (khớp cột # trong bảng)
  */
 const fs = require('fs')
 
@@ -17,7 +19,7 @@ async function search(query, limit = 20) {
     const params = new URLSearchParams({
         action: 'query', format: 'json', generator: 'search', gsrsearch: `${query} filetype:bitmap`,
         gsrnamespace: '6', gsrlimit: String(limit), prop: 'imageinfo',
-        iiprop: 'size|extmetadata', iiextmetadatafilter: 'LicenseShortName|ImageDescription|Artist',
+        iiprop: 'size|url|extmetadata', iiurlwidth: '400', iiextmetadatafilter: 'LicenseShortName|ImageDescription|Artist',
     })
     const res = await fetch(`${API}?${params}`, { headers: { 'user-agent': 'VietTravel/1.0 (https://tantan1802.github.io/travel/)' } })
     if (!res.ok) throw new Error(`Commons HTTP ${res.status}`)
@@ -29,12 +31,38 @@ async function search(query, limit = 20) {
             const meta = info.extmetadata || {}
             return {
                 file: p.title.replace(/^File:/, ''),
-                width: info.width, height: info.height,
+                width: info.width, height: info.height, thumb: info.thumburl,
                 license: strip(meta.LicenseShortName?.value),
                 description: strip(meta.ImageDescription?.value).slice(0, 140),
             }
         })
         .filter(x => x.width >= MIN_WIDTH && FREE.test(x.license))
+}
+
+const slug = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/gi, 'd').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const escapeXml = text => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+/* Tấm ghép ảnh ứng viên (số thứ tự + tên file) để chọn ảnh mà không phải mở từng trang Commons */
+async function contactSheet(results, file) {
+    const sharp = require('sharp')
+    const W = 400, H = 300, LABEL = 36, COLS = 4
+    const tiles = []
+    for (const [i, r] of results.entries()) {
+        const left = (i % COLS) * W
+        const top = Math.floor(i / COLS) * (H + LABEL)
+        try {
+            const res = await fetch(r.thumb, { headers: { 'user-agent': 'VietTravel/1.0 (https://tantan1802.github.io/travel/)' } })
+            if (!res.ok) throw new Error(`HTTP ${res.status}`)
+            tiles.push({ input: await sharp(Buffer.from(await res.arrayBuffer())).resize(W, H, { fit: 'cover' }).toBuffer(), left, top })
+        } catch (err) {
+            console.warn(`  không tải được ảnh xem trước ${r.file}: ${err.message}`)
+        }
+        const label = `${i + 1}. ${r.file}`.slice(0, 48)
+        tiles.push({ input: Buffer.from(`<svg width="${W}" height="${LABEL}"><rect width="100%" height="100%" fill="#111"/><text x="8" y="24" font-size="16" font-family="sans-serif" fill="#fff">${escapeXml(label)}</text></svg>`), left, top: top + H })
+    }
+    const rows = Math.ceil(results.length / COLS)
+    await sharp({ create: { width: W * COLS, height: rows * (H + LABEL), channels: 3, background: '#333' } })
+        .composite(tiles).jpeg({ quality: 75 }).toFile(file)
 }
 
 async function main() {
@@ -43,9 +71,16 @@ async function main() {
     const out = ['## Ảnh Wikimedia Commons (≥ 1200px, giấy phép tự do)', '']
     for (const q of queries) {
         const results = await search(q)
-        out.push(`### ${q} (${results.length})`, '', '| Tên file | Kích thước | Giấy phép | Mô tả |', '|---|---|---|---|')
-        results.slice(0, 10).forEach(r => out.push(`| \`${r.file}\` | ${r.width}×${r.height} | ${r.license} | ${r.description.replace(/\|/g, '/')} |`))
+        const top = results.slice(0, 12)
+        out.push(`### ${q} (${results.length})`, '', '| # | Tên file | Kích thước | Giấy phép | Mô tả |', '|---|---|---|---|---|')
+        top.forEach((r, i) => out.push(`| ${i + 1} | \`${r.file}\` | ${r.width}×${r.height} | ${r.license} | ${r.description.replace(/\|/g, '/')} |`))
         out.push('')
+        if (process.env.PREVIEW_DIR && top.length) {
+            fs.mkdirSync(process.env.PREVIEW_DIR, { recursive: true })
+            const name = `${slug(q) || 'anh'}.jpg`
+            await contactSheet(top, require('path').join(process.env.PREVIEW_DIR, name))
+            out.push(`Ảnh xem trước: \`${name}\` (nhánh image-previews)`, '')
+        }
         await new Promise(resolve => setTimeout(resolve, 500)) // lịch sự với API Commons
     }
     const text = out.join('\n')
