@@ -1,9 +1,8 @@
 /*
- * Gom các file cần đăng lên mạng vào thư mục dist/ (để deploy lên Cloudflare Pages hoặc host tĩnh khác).
+ * Gom các file cần đăng lên mạng vào thư mục dist/ (Cloudflare Workers Builds chạy lệnh này rồi `npx wrangler deploy`).
  *
- *   npm run build:dist                                        – giữ địa chỉ gốc (GitHub Pages) trong canonical/sitemap
- *   SITE_URL=https://viet-travel.pages.dev/ npm run build:dist – đổi canonical, hreflang, og:image, sitemap sang địa chỉ mới
- *   npx wrangler pages deploy dist --project-name viet-travel
+ *   npm run build:dist                                   – giữ địa chỉ site chính (SITE_URL trong tools/lib.js)
+ *   SITE_URL=https://ten-mien-rieng.vn/ npm run build:dist – đổi canonical, hreflang, og:image, sitemap sang địa chỉ khác
  *
  * Không build lại: dùng đúng các trang đã build trong repo (CI bảo đảm luôn mới nhất).
  * Kèm _headers (cache dài cho file có hash, sw.js luôn kiểm tra bản mới) và 404.html
@@ -11,9 +10,8 @@
  */
 const fs = require('fs')
 const path = require('path')
-const { ROOT } = require('./lib')
+const { ROOT, SITE_URL: SOURCE_URL } = require('./lib')
 
-const SOURCE_URL = 'https://tantan1802.github.io/travel/'
 /* Chỉ phục vụ việc phát triển – không đăng */
 const EXCLUDE = new Set(['.git', '.github', '.claude', '.lighthouseci', 'node_modules', 'dist', 'tools', 'tests', 'data', 'docs', 'worker',
     'package.json', 'package-lock.json', 'lighthouserc.json', 'wrangler.jsonc', 'README.md', '.gitignore',
@@ -83,7 +81,7 @@ function copyDir(src, dest, rewrite) {
 
 function buildDist(outDir = path.join(ROOT, 'dist'), siteUrl = process.env.SITE_URL) {
     const target = siteUrl ? siteUrl.replace(/\/?$/, '/') : ''
-    if (target && !/^https:\/\/[^/]+\/(.+\/)?$/.test(target)) throw new Error(`SITE_URL không hợp lệ: ${siteUrl} (ví dụ https://viet-travel.pages.dev/)`)
+    if (target && !/^https:\/\/[^/]+\/(.+\/)?$/.test(target)) throw new Error(`SITE_URL không hợp lệ: ${siteUrl} (ví dụ https://ten-mien-rieng.vn/)`)
     const rewrite = target && target !== SOURCE_URL ? text => text.split(SOURCE_URL).join(target) : null
 
     fs.rmSync(outDir, { recursive: true, force: true })
@@ -96,7 +94,6 @@ function buildDist(outDir = path.join(ROOT, 'dist'), siteUrl = process.env.SITE_
 if (require.main === module) {
     const { count, url } = buildDist()
     console.log(`✅ dist/: ${count} file · địa chỉ site: ${url}`)
-    if (!process.env.SITE_URL) console.log('   (đặt SITE_URL=https://<tên-project>.pages.dev/ để canonical, sitemap trỏ về Cloudflare)')
 }
 
 module.exports = { buildDist, SOURCE_URL }

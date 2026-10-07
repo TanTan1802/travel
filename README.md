@@ -1,5 +1,5 @@
 # travel
-link: https://tantan1802.github.io/travel/
+link: https://viet-travel.congtan5918.workers.dev/ (bản sao: https://tantan1802.github.io/travel/)
 
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
@@ -70,35 +70,25 @@ dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt 
   tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`
   vào danh sách kiểm tra build của workflow.
 
-## Deploy lên Cloudflare Pages
-Site là trang tĩnh nên đăng được lên Cloudflare Pages (song song với GitHub Pages).
+## Deploy lên Cloudflare
+Site chính: **https://viet-travel.congtan5918.workers.dev/** (Cloudflare Workers, kết nối thẳng repo này).
+GitHub Pages vẫn chạy song song nhưng canonical, hreflang, og:image và sitemap đều trỏ về địa chỉ Cloudflare
+(một nguồn duy nhất: `SITE_URL` trong `tools/lib.js`), nên Google coi Cloudflare là bản chính.
 
-**Từ máy của bạn** (cần Node 18+):
-```bash
-npx wrangler login                                          # mở trình duyệt đăng nhập Cloudflare (một lần)
-SITE_URL=https://viet-travel.pages.dev/ npm run build:dist  # gom file cần đăng vào dist/
-npx wrangler pages deploy dist --project-name viet-travel   # lần đầu wrangler hỏi tạo project → chọn tạo mới
-```
-- `npm run build:dist` (tools/dist.js) chép trang đã build + tài nguyên vào `dist/` (bỏ `tools/`, `data/`, `tests/`, `worker/`, `node_modules/`…),
+**Cách đang dùng** – Cloudflare *Workers & Pages → viet-travel → Settings → Build*:
+- Build command `node tools/dist.js`, Deploy command `npx wrangler deploy` (đọc `wrangler.jsonc`: tên `viet-travel`,
+  thư mục `dist/`, trả `404.html` cho đường dẫn sai), Branch control = `main`.
+- Mỗi lần main thay đổi Cloudflare tự build + deploy (xem log ở tab *Deployments*).
+- `tools/dist.js` chép trang đã build + tài nguyên vào `dist/` (bỏ `tools/`, `data/`, `tests/`, `worker/`, `node_modules/`…),
   thêm `_headers` (cache dài cho file có hash) và `404.html`.
-- `SITE_URL` đổi canonical, hreflang, og:image và sitemap sang địa chỉ Cloudflare; bỏ trống thì giữ địa chỉ GitHub Pages
-  (bản Cloudflare khi đó là bản sao, Google vẫn coi GitHub Pages là bản chính). Dùng tên miền riêng thì đặt `SITE_URL` là tên miền đó.
-- Gõ tắt: `npm run deploy:cf` (project `viet-travel`, giữ địa chỉ canonical GitHub Pages).
 
-**Kết nối repo trong Cloudflare (đơn giản nhất)** – *Workers & Pages → Create → Import a repository* → chọn repo này:
-- Luồng **Workers**: Build command `node tools/dist.js`, Deploy command `npx wrangler deploy` (đọc `wrangler.jsonc`: tên `viet-travel`,
-  thư mục `dist/`, trả `404.html` cho đường dẫn sai). Site ở `https://viet-travel.<tài-khoản>.workers.dev`.
-- Luồng **Pages**: Build command `node tools/dist.js`, Build output directory `dist`.
-- Biến build: `SITE_URL` = địa chỉ site (sau lần deploy đầu), `NODE_VERSION` = `22`, `SKIP_DEPENDENCY_INSTALL` = `1`.
-- Mỗi lần main thay đổi Cloudflare tự build lại – khi đó không cần secret cho workflow bên dưới.
+**Deploy từ máy** (cần Node 18+): `npx wrangler login` (một lần) rồi `npm run deploy:cf`.
 
-**Tự động qua GitHub Actions** (workflow `Deploy Cloudflare Pages`, chạy mỗi khi main thay đổi):
-1. Cloudflare → *My Profile → API Tokens → Create Token* → mẫu **Edit Cloudflare Workers** (hoặc token tùy chỉnh có quyền *Account · Cloudflare Pages · Edit*).
-2. GitHub repo → *Settings → Secrets and variables → Actions*: thêm secret `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`;
-   thêm variable `CF_SITE_URL` (vd. `https://viet-travel.pages.dev/`) và `CF_PAGES_PROJECT` nếu đặt tên project khác `viet-travel`.
-3. Chạy workflow một lần bằng *Run workflow* (project được tạo ở lần deploy đầu nếu chưa có).
+**Đổi sang tên miền riêng**: gắn tên miền ở *Settings → Domains & Routes*, rồi sửa `SITE_URL` trong `tools/lib.js`,
+chạy `npm run build` và thêm tên miền vào `ALLOWED_ORIGINS` của trợ lý. (Muốn thử nhanh mà chưa build lại:
+biến build `SITE_URL=https://ten-mien.vn/` trên Cloudflare – `tools/dist.js` đổi địa chỉ trong `dist/`.)
 
-Trợ lý hỏi đáp: `ALLOWED_ORIGINS` trong `worker/wrangler.toml` đã có `https://viet-travel.pages.dev` – đặt tên project hoặc tên miền khác thì thêm địa chỉ đó.
+Trợ lý hỏi đáp: `ALLOWED_ORIGINS` trong `worker/wrangler.toml` đã có địa chỉ Cloudflare và GitHub Pages.
 
 ## Cài như ứng dụng (PWA)
 Website có thể cài lên màn hình chính điện thoại/máy tính và xem lại các trang đã mở khi mất mạng

@@ -16,7 +16,7 @@ async function main() {
     const { destinations } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/destinations.json'), 'utf8'))
     const coords = destinations.map(d => `${d.lng},${d.lat}`).join(';')
     const url = `${OSRM_URL}/table/v1/driving/${coords}?annotations=duration,distance`
-    const res = await fetch(url, { headers: { 'user-agent': 'VietTravel/1.0 (https://tantan1802.github.io/travel/)' } })
+    const res = await fetch(url, { headers: { 'user-agent': 'VietTravel/1.0 (https://viet-travel.congtan5918.workers.dev/)' } })
     if (!res.ok) throw new Error(`OSRM trả về HTTP ${res.status}`)
     const data = await res.json()
     if (data.code !== 'Ok') throw new Error(`OSRM: ${data.code} ${data.message || ''}`)

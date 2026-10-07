@@ -617,7 +617,7 @@ test('trợ lý hỏi đáp: ẩn khi chưa cấu hình; có endpoint thì hỏi
     let sent
     await page.route('https://assistant.test/**', route => {
         sent = JSON.parse(route.request().postData())
-        route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ answer: 'Huế đẹp nhất tháng 1–4. Xem https://tantan1802.github.io/travel/diem-den/hue/ <b>x</b>' }) })
+        route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ answer: 'Huế đẹp nhất tháng 1–4. Xem https://viet-travel.congtan5918.workers.dev/diem-den/hue/ <b>x</b>' }) })
     })
     await page.evaluate(() => initAssistant('https://assistant.test/ask'))
     await page.click('#assistant-open')

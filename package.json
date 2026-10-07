@@ -18,7 +18,7 @@
     "test:worker": "node --test tests/assistant.test.js",
     "find-images": "node tools/find-images.js",
     "build:dist": "node tools/dist.js",
-    "deploy:cf": "node tools/dist.js && npx wrangler@4 pages deploy dist --project-name viet-travel"
+    "deploy:cf": "node tools/dist.js && npx wrangler@4 deploy"
   },
   "engines": {
     "node": ">=18"

@@ -21,7 +21,7 @@ async function search(query, limit = 20) {
         gsrnamespace: '6', gsrlimit: String(limit), prop: 'imageinfo',
         iiprop: 'size|url|extmetadata', iiurlwidth: '400', iiextmetadatafilter: 'LicenseShortName|ImageDescription|Artist',
     })
-    const res = await fetch(`${API}?${params}`, { headers: { 'user-agent': 'VietTravel/1.0 (https://tantan1802.github.io/travel/)' } })
+    const res = await fetch(`${API}?${params}`, { headers: { 'user-agent': 'VietTravel/1.0 (https://viet-travel.congtan5918.workers.dev/)' } })
     if (!res.ok) throw new Error(`Commons HTTP ${res.status}`)
     const data = await res.json()
     return Object.values(data.query?.pages || {})
@@ -51,7 +51,7 @@ async function contactSheet(results, file) {
         const left = (i % COLS) * W
         const top = Math.floor(i / COLS) * (H + LABEL)
         try {
-            const res = await fetch(r.thumb, { headers: { 'user-agent': 'VietTravel/1.0 (https://tantan1802.github.io/travel/)' } })
+            const res = await fetch(r.thumb, { headers: { 'user-agent': 'VietTravel/1.0 (https://viet-travel.congtan5918.workers.dev/)' } })
             if (!res.ok) throw new Error(`HTTP ${res.status}`)
             tiles.push({ input: await sharp(Buffer.from(await res.arrayBuffer())).resize(W, H, { fit: 'cover' }).toBuffer(), left, top })
         } catch (err) {
