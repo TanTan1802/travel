@@ -78,11 +78,13 @@ function truncate(text, max = 160) {
 
 /* Nạp dữ liệu + hàm render cho một ngôn ngữ, với đường dẫn gốc tương ứng độ sâu của trang */
 const siteCache = new Map()
+const siteLangs = new WeakMap()
 function loadSite(lang, siteRoot) {
     const key = `${lang}:${siteRoot}`
     if (!siteCache.has(key)) {
         const scripts = [...translationScripts(lang), ...SCRIPTS]
         siteCache.set(key, loadBrowserScripts(scripts, EXPORTS, { SITE_ROOT: siteRoot, SITE_LANG: lang }))
+        siteLangs.set(siteCache.get(key), lang)
     }
     return siteCache.get(key)
 }
@@ -548,8 +550,35 @@ function compactLocalImages(images) {
 })()`
 }
 
+/*
+ * Quán / lưu trú / điểm tham quan lưu cặp [tiếng Việt, English]; trên trình duyệt chỉ đọc qua pickLang (chấp nhận
+ * cả chuỗi) nên mỗi trang chỉ cần một ngôn ngữ. Giữ nguyên cặp ở tên điểm tham quan (link Google Maps dùng tên tiếng Việt).
+ */
+function monolingualData(file, site, lang) {
+    const one = pair => (Array.isArray(pair) && pair.length === 2 && pair.every(x => typeof x === 'string') ? pair[lang === 'vi' ? 0 : 1] || pair[0] : pair)
+    if (file === 'assets/js/data/sights.js') {
+        const sights = Object.fromEntries(Object.entries(site.SIGHTS).map(([id, days]) => [id, days.map(list => list.map(s => ({
+            ...s,
+            ...(s.note ? { note: one(s.note) } : {}),
+            ...(s.cafe ? { cafe: { ...s.cafe, drink: one(s.cafe.drink) } } : {}),
+        })))]))
+        return `const SIGHTS = ${JSON.stringify(sights)}`
+    }
+    const places = Object.fromEntries(Object.entries(site.PLACES).map(([id, p]) => [id, {
+        ...p,
+        getThere: one(p.getThere),
+        eats: p.eats.map(e => ({ ...e, dish: one(e.dish) })),
+        cafes: p.cafes.map(c => ({ ...c, drink: one(c.drink) })),
+        stays: p.stays.map(st => ({ ...st, area: one(st.area), note: one(st.note) })),
+    }]))
+    const stayTypes = Object.fromEntries(Object.entries(site.STAY_TYPES).map(([k, v]) => [k, one(v)]))
+    const transport = { ...site.TRANSPORT, ports: site.TRANSPORT.ports.map(port => ({ ...port, name: one(port.name) })) }
+    return `const STAY_TYPES = ${JSON.stringify(stayTypes)}\nconst TRANSPORT = ${JSON.stringify(transport)}\nconst PLACES = ${JSON.stringify(places)}`
+}
+
 function scriptSource(file, site, pageFiles) {
     if (file === 'assets/js/data/local-images.js') return compactLocalImages(site.LOCAL_IMAGES)
+    if (file === 'assets/js/data/places.js' || file === 'assets/js/data/sights.js') return monolingualData(file, site, siteLangs.get(site))
     if (file === 'assets/js/data/en.js') {
         /* Bản tiếng Anh gốc (trang ko/zh/ja: i18n.js tự phủ bản dịch riêng lên trên trình duyệt) */
         const { html, itineraries, ...en } = loadSite('en', '').TRANSLATION_EN
