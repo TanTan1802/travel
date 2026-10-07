@@ -3328,6 +3328,301 @@
         "Từ TP. Cà Mau ra Đất Mũi có thể đi ô tô hoặc cano – hỏi trước lịch tàu và tình trạng đường.",
         "Mang thuốc chống muỗi và áo dài tay khi vào rừng đước, rừng tràm."
       ]
+    },
+    {
+      "id": "tam-dao",
+      "name": "Tam Đảo",
+      "province": "Phú Thọ (Vĩnh Phúc cũ)",
+      "region": "bac",
+      "categories": [
+        "nui",
+        "di-san"
+      ],
+      "rating": 4.3,
+      "lat": 21.4586,
+      "lng": 105.644,
+      "bestMonths": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tagline": "Thị trấn mờ sương trên núi gần Hà Nội",
+      "description": "Cách Hà Nội khoảng 85 km, thị trấn Tam Đảo nằm ở độ cao gần 900 m, mát lạnh quanh năm với những biệt thự kiểu Pháp ẩn trong sương, rừng quốc gia nguyên sinh và ba đỉnh núi Thạch Bàn, Thiên Thị, Phù Nghĩa. Dưới chân núi là khu tâm linh Tây Thiên với Thiền viện Trúc Lâm, đền Mẫu và những ngôi mộ tháp cổ – điểm đi cuối tuần quen thuộc của người Hà Nội.",
+      "highlights": [
+        "Thị trấn Tam Đảo",
+        "Tây Thiên",
+        "Thác Bạc",
+        "Cột phát sóng (đỉnh Thiên Thị)"
+      ],
+      "bestTime": "Tháng 4 – 9",
+      "duration": "2 – 3 ngày",
+      "hero": "Thị trấn Tam Đảo - NKS.jpg",
+      "gallery": [
+        {
+          "file": "Lâu đài Tam Đảo - NKS.jpg",
+          "caption": "Lâu đài trên núi Tam Đảo"
+        },
+        {
+          "file": "Tam Dao peaks.jpg",
+          "caption": "Ba đỉnh Tam Đảo nhìn từ Hồ Tây"
+        },
+        {
+          "file": "Thac bac-tam dao.jpg",
+          "caption": "Thác Bạc"
+        },
+        {
+          "file": "Zen Monastery Truc Lam Tay Thien.JPG",
+          "caption": "Thiền viện Trúc Lâm Tây Thiên"
+        },
+        {
+          "file": "Tây Thiên - Mộ cổ thiền sư - panoramio.jpg",
+          "caption": "Mộ tháp cổ ở Tây Thiên"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Su su Tam Đảo",
+          "desc": "Ngọn và quả su su trồng trên sườn núi, xào tỏi hoặc luộc chấm muối vừng – giòn ngọt.",
+          "price": "50.000đ/đĩa",
+          "file": "Vườn su su ở Tam Đảo.jpg",
+          "illustrative": "Vườn su su Tam Đảo"
+        },
+        {
+          "name": "Gà đồi nướng",
+          "desc": "Gà thả đồi nướng than, da vàng giòn, chấm muối tiêu chanh.",
+          "price": "300.000đ/con",
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg",
+          "illustrative": "Gà nướng nguyên con"
+        },
+        {
+          "name": "Lợn cắp nách nướng",
+          "desc": "Lợn bản nhỏ nướng nguyên tảng, thịt thơm chắc – món nhậu ngày se lạnh.",
+          "price": "200.000đ",
+          "file": "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg",
+          "illustrative": "Thịt nướng than hoa"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-walk-line",
+          "title": "Dạo thị trấn trong sương",
+          "desc": "Nhà thờ đá, biệt thự cổ thời Pháp và con dốc quanh co phủ mây."
+        },
+        {
+          "icon": "ri-drop-line",
+          "title": "Thác Bạc",
+          "desc": "Thác nước giữa rừng, có cầu thang bộ và cầu treo."
+        },
+        {
+          "icon": "ri-ancient-pavilion-line",
+          "title": "Khu tâm linh Tây Thiên",
+          "desc": "Thiền viện Trúc Lâm, đền Mẫu Tây Thiên, đi cáp treo hoặc leo bộ."
+        },
+        {
+          "icon": "ri-landscape-line",
+          "title": "Săn mây Cột phát sóng",
+          "desc": "Leo lên đỉnh Thiên Thị ngắm biển mây và toàn cảnh đồng bằng."
+        }
+      ],
+      "tips": [
+        "Cuối tuần mùa hè rất đông – đặt phòng trước, tránh tối thứ Bảy nếu muốn yên tĩnh.",
+        "Đường đèo nhiều khúc cua gắt, sương mù dày về chiều – đi xe máy cần tay lái vững."
+      ]
+    },
+    {
+      "id": "binh-lieu",
+      "name": "Bình Liêu",
+      "province": "Quảng Ninh",
+      "region": "bac",
+      "categories": [
+        "nui"
+      ],
+      "rating": 4.4,
+      "lat": 21.5265,
+      "lng": 107.396,
+      "bestMonths": [
+        3,
+        4,
+        9,
+        10,
+        11
+      ],
+      "tagline": "Sống lưng khủng long và mùa hoa lau biên giới",
+      "description": "Bình Liêu là huyện miền núi biên giới của Quảng Ninh, nổi tiếng với cung đường đồi cỏ uốn lượn như sống lưng khủng long dọc theo các cột mốc, mùa hoa lau trắng tháng 10 – 11 và thác Khe Vằn. Đây là quê hương của người Tày, Dao Thanh Phán, Sán Chỉ với chợ phiên, lễ hội Soóng cọ và đặc sản miến dong làm từ củ dong riềng.",
+      "highlights": [
+        "Sống lưng khủng long",
+        "Cột mốc 1300",
+        "Thác Khe Vằn",
+        "Đỉnh Cao Ly"
+      ],
+      "bestTime": "Tháng 3 – 4, 9 – 11",
+      "duration": "2 – 3 ngày",
+      "hero": "BinhLieu by phone.jpg",
+      "gallery": [
+        {
+          "file": "Costume, Dao Thanh Phan, Quang Ninh, 2004, industrial cotton and dyes - Vietnamese Women's Museum - Hanoi, Vietnam - DSC03714.JPG",
+          "caption": "Trang phục người Dao Thanh Phán (Bảo tàng Phụ nữ Việt Nam)"
+        },
+        {
+          "file": "Woman's garment with pom-poms, view 1, Dao (Thanh phan) - Vietnam Museum of Ethnology - Hanoi, Vietnam - DSC02999.JPG",
+          "caption": "Áo nữ Dao Thanh Phán đính quả bông đỏ (Bảo tàng Dân tộc học)"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Miến dong Bình Liêu",
+          "desc": "Sợi miến làm thủ công từ củ dong riềng, dai trong, nấu canh gà hoặc xào lòng.",
+          "price": "60.000đ",
+          "file": "Tết 2024 nhà mình (rổ miến dong).jpg",
+          "illustrative": "Rổ miến dong"
+        },
+        {
+          "name": "Gà đồi Bình Liêu",
+          "desc": "Gà thả đồi luộc lá chanh hoặc nướng mật ong, thịt chắc ngọt.",
+          "price": "300.000đ/con",
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg",
+          "illustrative": "Gà nướng nguyên con"
+        },
+        {
+          "name": "Thịt trâu gác bếp",
+          "desc": "Thịt trâu tẩm mắc khén hun khói trên gác bếp, xé sợi chấm chẩm chéo.",
+          "price": "900.000đ/kg",
+          "file": "Thịt trâu gác bếp Tả Phìn Hồ.jpg"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-road-map-line",
+          "title": "Sống lưng khủng long",
+          "desc": "Đi bộ trên đường tuần tra biên giới uốn lượn qua các đồi cỏ."
+        },
+        {
+          "icon": "ri-flag-line",
+          "title": "Cột mốc 1300",
+          "desc": "Leo bậc đá lên cột mốc biên giới, ngắm đồi núi hai bên."
+        },
+        {
+          "icon": "ri-drop-line",
+          "title": "Thác Khe Vằn",
+          "desc": "Thác nhiều tầng giữa rừng, tắm suối mùa hè."
+        },
+        {
+          "icon": "ri-store-2-line",
+          "title": "Chợ phiên Bình Liêu",
+          "desc": "Mua miến dong, gặp người Dao Thanh Phán trong trang phục truyền thống."
+        }
+      ],
+      "tips": [
+        "Khu vực biên giới: mang CCCD/hộ chiếu, không bay flycam và không vượt qua cột mốc.",
+        "Mùa hoa lau (tháng 10 – 11) nắng gắt trên đồi trống – mang mũ, nước và đi giày bám."
+      ]
+    },
+    {
+      "id": "nam-du",
+      "name": "Quần đảo Nam Du",
+      "province": "An Giang (Kiên Giang cũ)",
+      "region": "nam",
+      "categories": [
+        "bien"
+      ],
+      "rating": 4.4,
+      "lat": 9.68,
+      "lng": 104.353,
+      "bestMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tagline": "Hải đảo hoang sơ giữa vịnh Thái Lan",
+      "description": "Cách Rạch Giá khoảng 2,5 giờ tàu cao tốc, quần đảo Nam Du gồm hơn 20 hòn đảo lớn nhỏ với những bãi biển nước trong như bãi Cây Mến, bãi Ngự, làng chài trên đảo Củ Tron và con đường ven núi nhìn ra biển. Nam Du còn giữ nét hoang sơ, ít khách, thích hợp đi thuyền câu cá, lặn ngắm san hô và ăn hải sản tươi giá rẻ.",
+      "highlights": [
+        "Bãi Cây Mến",
+        "Đảo Củ Tron",
+        "Ngọn hải đăng Nam Du",
+        "Hòn Mấu"
+      ],
+      "bestTime": "Tháng 11 – 4",
+      "duration": "2 – 3 ngày",
+      "hero": "Bai Cay Men,Dao nam du.Xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg",
+      "gallery": [
+        {
+          "file": "Lang chai ,Dao Cu Tron,xa An Sơn,Huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg",
+          "caption": "Làng chài trên đảo Củ Tron"
+        },
+        {
+          "file": "Duong ven nui Dao Nam du, xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam, 02-07-2016-Dyt - panoramio.jpg",
+          "caption": "Đường ven núi nhìn ra biển"
+        },
+        {
+          "file": "Cay co thu, Dao Nam du, Xa An Sơn,HUyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg",
+          "caption": "Cây cổ thụ bên đường đảo"
+        },
+        {
+          "file": "Cau cang Dao cu tron-quan Dao nam du. xa An Sơn, Huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-16-Dyt - panoramio.jpg",
+          "caption": "Cầu cảng đảo Củ Tron"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Gỏi cá trích",
+          "desc": "Cá trích tươi trộn dừa nạo, hành tây, rau thơm, cuốn bánh tráng chấm nước mắm đậu phộng.",
+          "price": "120.000đ",
+          "file": "Gỏi Cá Trích.jpg"
+        },
+        {
+          "name": "Ghẹ hấp",
+          "desc": "Ghẹ đánh bắt quanh đảo hấp sả, chấm muối tiêu chanh – giá rẻ hơn đất liền.",
+          "price": "300.000đ/kg",
+          "file": "Ẩm thực Thanh Hoá.JPG",
+          "illustrative": "Nồi ghẹ hấp"
+        },
+        {
+          "name": "Mực một nắng nướng",
+          "desc": "Mực câu đêm phơi một nắng, nướng than chấm tương ớt.",
+          "price": "450.000đ/kg",
+          "file": "Grilled squid 001.jpg",
+          "illustrative": "Mực nướng"
+        },
+        {
+          "name": "Hải sản nướng",
+          "desc": "Nhum, sò điệp, ốc nướng mỡ hành trên bè hoặc quán ven biển.",
+          "price": "200.000đ",
+          "file": "Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg",
+          "illustrative": "Hải sản nướng"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-sun-line",
+          "title": "Tắm biển bãi Cây Mến",
+          "desc": "Bãi cát nhỏ nước xanh ngọc giữa rừng dừa trên Hòn Lớn."
+        },
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Đi thuyền quanh các đảo",
+          "desc": "Hòn Mấu, Hòn Dầu, Hòn Ngang – câu cá, lặn ngắm san hô."
+        },
+        {
+          "icon": "ri-lightbulb-flash-line",
+          "title": "Hải đăng Nam Du",
+          "desc": "Ngọn hải đăng trên đỉnh núi cao nhất, ngắm toàn quần đảo."
+        },
+        {
+          "icon": "ri-motorbike-line",
+          "title": "Chạy xe vòng Hòn Lớn",
+          "desc": "Đường ven núi qua làng chài, bãi Ngự và các bãi đá."
+        }
+      ],
+      "tips": [
+        "Tàu cao tốc Rạch Giá – Nam Du nghỉ khi biển động (tháng 6 – 9) – xem lịch tàu và dự báo trước.",
+        "Trên đảo ít ATM, điện có thể cắt theo giờ – mang tiền mặt và sạc dự phòng."
+      ]
     }
   ]
 }

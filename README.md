@@ -4,7 +4,7 @@ link: https://viet-travel.congtan5918.workers.dev/ (bản sao: https://tantan180
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 34 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 37 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),

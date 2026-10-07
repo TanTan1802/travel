@@ -9527,6 +9527,640 @@
           "updated": "2026-10"
         }
       ]
+    ],
+    "tam-dao": [
+      [
+        {
+          "at": "a",
+          "name": [
+            "Nhà thờ đá Tam Đảo",
+            "Tam Dao stone church"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Thị trấn Tam Đảo",
+          "cafe": {
+            "name": "Cà phê cạnh nhà thờ đá",
+            "drink": [
+              "Cà phê, trà nóng",
+              "Coffee and hot tea"
+            ],
+            "price": [
+              25000,
+              55000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "e",
+          "name": [
+            "Quảng trường – chợ đêm Tam Đảo",
+            "Tam Dao square and night market"
+          ],
+          "price": 0,
+          "hours": "17:00–22:00",
+          "address": "Thị trấn Tam Đảo",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thác Bạc",
+            "Silver Waterfall"
+          ],
+          "price": [
+            20000,
+            30000
+          ],
+          "note": [
+            "Hơn 300 bậc đá xuống thác, trơn khi mưa",
+            "Over 300 stone steps down, slippery after rain"
+          ],
+          "hours": "07:00–17:30",
+          "address": "Thị trấn Tam Đảo",
+          "cafe": {
+            "name": "Quán nước cổng Thác Bạc",
+            "drink": [
+              "Nước gừng, ngô nướng",
+              "Ginger drink and grilled corn"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cột phát sóng (đỉnh Thiên Thị)",
+            "Broadcast tower (Thien Thi peak)"
+          ],
+          "price": 0,
+          "note": [
+            "Khoảng 1.400 bậc, 1,5 – 2 giờ leo; đi khi trời quang",
+            "About 1,400 steps, 1.5 – 2 h climb; go in clear weather"
+          ],
+          "hours": "06:00–17:00",
+          "address": "Thị trấn Tam Đảo",
+          "cafe": {
+            "name": "Quán nước chân đường lên cột phát sóng",
+            "drink": [
+              "Nước suối, trà đá",
+              "Bottled water and iced tea"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thiền viện Trúc Lâm Tây Thiên",
+            "Truc Lam Tay Thien Zen monastery"
+          ],
+          "price": 0,
+          "note": [
+            "Ăn mặc kín đáo, giữ yên lặng",
+            "Dress modestly and keep quiet"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Đại Đình, Tam Đảo",
+          "cafe": {
+            "name": "Quán chè chân Thiền viện",
+            "drink": [
+              "Chè, nước sâm",
+              "Sweet soup and herbal drinks"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Đền Mẫu Tây Thiên – cáp treo",
+            "Tay Thien Mother Goddess temple – cable car"
+          ],
+          "price": [
+            100000,
+            200000
+          ],
+          "note": [
+            "Giá cáp treo khứ hồi, có thể leo bộ miễn phí",
+            "Return cable car price – you can also walk up for free"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Khu danh thắng Tây Thiên, Đại Đình",
+          "cafe": {
+            "name": "Quán nước đường lên đền Thượng",
+            "drink": [
+              "Nước mía, trà đá",
+              "Sugarcane juice and iced tea"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Vườn quốc gia Tam Đảo – đường mòn",
+            "Tam Dao National Park trail"
+          ],
+          "price": [
+            20000,
+            50000
+          ],
+          "note": [
+            "Nên đi theo nhóm hoặc thuê kiểm lâm dẫn đường",
+            "Go in a group or hire a ranger as a guide"
+          ],
+          "hours": "07:00–16:00",
+          "address": "Thị trấn Tam Đảo",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Vườn su su Tam Đảo",
+            "Tam Dao chayote gardens"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Sườn núi Tam Đảo",
+          "cafe": {
+            "name": "Quán nước vườn su su",
+            "drink": [
+              "Trà nóng, nước gừng",
+              "Hot tea and ginger drink"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hồ Đại Lải",
+            "Dai Lai lake"
+          ],
+          "price": [
+            0,
+            100000
+          ],
+          "note": [
+            "Thuê thuyền / xe đạp tính riêng",
+            "Boat and bike rental cost extra"
+          ],
+          "hours": "all",
+          "address": "Ngọc Thanh, Phúc Yên",
+          "cafe": {
+            "name": "Cà phê ven hồ Đại Lải",
+            "drink": [
+              "Cà phê, nước ép ngắm hồ",
+              "Coffee and juice by the lake"
+            ],
+            "price": [
+              25000,
+              55000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "binh-lieu": [
+      [
+        {
+          "at": "a",
+          "name": [
+            "Chợ trung tâm Bình Liêu",
+            "Binh Lieu central market"
+          ],
+          "price": 0,
+          "hours": "06:00–17:00",
+          "address": "Thị trấn Bình Liêu",
+          "cafe": {
+            "name": "Quán nước chợ Bình Liêu",
+            "drink": [
+              "Trà đá, nước mía",
+              "Iced tea and sugarcane juice"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Sống lưng khủng long",
+            "The dinosaur spine ridge"
+          ],
+          "price": 0,
+          "note": [
+            "Khu vực biên giới: mang giấy tờ, không bay flycam",
+            "Border area: carry ID, no drones"
+          ],
+          "hours": "all",
+          "address": "Đường tuần tra biên giới, Bình Liêu",
+          "cafe": {
+            "name": "Quán nước chân đồi lau",
+            "drink": [
+              "Nước suối, trà nóng",
+              "Bottled water and hot tea"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cột mốc 1300",
+            "Border marker 1300"
+          ],
+          "price": 0,
+          "note": [
+            "Khoảng 1.000 bậc đá – mang nước",
+            "About 1,000 stone steps – bring water"
+          ],
+          "hours": "06:00–17:00",
+          "address": "Đồng Văn, Bình Liêu",
+          "cafe": {
+            "name": "Quán nước chân cột mốc 1300",
+            "drink": [
+              "Nước mía, trà đá",
+              "Sugarcane juice and iced tea"
+            ],
+            "price": [
+              10000,
+              25000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thác Khe Vằn",
+            "Khe Van waterfall"
+          ],
+          "price": [
+            0,
+            20000
+          ],
+          "note": [
+            "Đường vào dốc, mùa mưa nước chảy xiết",
+            "A steep path in; strong currents in the rainy season"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Húc Động, Bình Liêu",
+          "cafe": {
+            "name": "Quán nước cổng thác Khe Vằn",
+            "drink": [
+              "Nước suối, ngô nướng",
+              "Bottled water and grilled corn"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bản người Dao Thanh Phán",
+            "Dao Thanh Phan village"
+          ],
+          "price": 0,
+          "note": [
+            "Hỏi ý trước khi chụp ảnh người dân",
+            "Ask before photographing villagers"
+          ],
+          "hours": "all",
+          "address": "Húc Động, Bình Liêu",
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ phiên Bình Liêu",
+            "Binh Lieu market day"
+          ],
+          "price": 0,
+          "note": [
+            "Đông nhất sáng Chủ nhật",
+            "Busiest on Sunday mornings"
+          ],
+          "hours": "05:00–11:00",
+          "address": "Thị trấn Bình Liêu",
+          "cafe": {
+            "name": "Cà phê sáng chợ phiên",
+            "drink": [
+              "Cà phê phin, sữa đậu nành",
+              "Filter coffee and soy milk"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Làng làm miến dong Hoành Mô",
+            "Hoanh Mo arrowroot noodle village"
+          ],
+          "price": 0,
+          "note": [
+            "Mùa làm miến từ tháng 10 tới Tết",
+            "Noodle-making season runs from October to Tet"
+          ],
+          "hours": "all",
+          "address": "Hoành Mô – Đồng Văn, Bình Liêu",
+          "cafe": {
+            "name": "Quán trà làng miến",
+            "drink": [
+              "Trà shan tuyết, nước gừng",
+              "Shan tuyet tea and ginger drink"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thị trấn Tiên Yên",
+            "Tien Yen town"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Tiên Yên, Quảng Ninh",
+          "cafe": {
+            "name": "Cà phê phố cổ Tiên Yên",
+            "drink": [
+              "Cà phê, trà chanh",
+              "Coffee and lime tea"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
+    "nam-du": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Tàu cao tốc Rạch Giá – Nam Du",
+            "Rach Gia – Nam Du fast boat"
+          ],
+          "price": [
+            230000,
+            330000
+          ],
+          "note": [
+            "Đặt vé trước dịp lễ; tàu nghỉ khi biển động",
+            "Book ahead for holidays; boats stop in rough seas"
+          ],
+          "hours": "07:00–13:00",
+          "address": "Cảng Rạch Giá",
+          "cafe": {
+            "name": "Quán nước cảng Rạch Giá",
+            "drink": [
+              "Cà phê, nước mía chờ tàu",
+              "Coffee and sugarcane juice while waiting"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bãi Cây Mến",
+            "Cay Men beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Hòn Lớn, Nam Du",
+          "cafe": {
+            "name": "Quán dừa bãi Cây Mến",
+            "drink": [
+              "Nước dừa, nước ngọt",
+              "Coconut water and soft drinks"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Hải đăng Nam Du",
+            "Nam Du lighthouse"
+          ],
+          "price": 0,
+          "note": [
+            "Đường lên dốc đứng – đi sớm tránh nắng",
+            "A steep road up – go early to beat the sun"
+          ],
+          "hours": "06:00–17:00",
+          "address": "Đỉnh núi Hòn Lớn",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bãi Ngự",
+            "Ngu beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Hòn Lớn, Nam Du",
+          "cafe": {
+            "name": "Quán nước bãi Ngự",
+            "drink": [
+              "Sinh tố, nước dừa",
+              "Smoothies and coconut water"
+            ],
+            "price": [
+              20000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đi thuyền Hòn Mấu – Hòn Dầu",
+            "Boat trip to Hon Mau – Hon Dau"
+          ],
+          "price": [
+            150000,
+            350000
+          ],
+          "note": [
+            "Giá mỗi người, gồm dụng cụ câu và lặn",
+            "Per person, including fishing and snorkelling gear"
+          ],
+          "hours": "07:00–16:00",
+          "address": "Bến Hòn Lớn",
+          "cafe": {
+            "name": "Quán nước bè Hòn Mấu",
+            "drink": [
+              "Nước dừa, trà đá trên bè",
+              "Coconut water and iced tea on the raft"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Làng chài đảo Củ Tron",
+            "Cu Tron island fishing village"
+          ],
+          "price": [
+            20000,
+            50000
+          ],
+          "note": [
+            "Đi đò từ Hòn Lớn, giá đò mỗi người",
+            "Small boat from Hon Lon; price per person"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Đảo Củ Tron, Nam Du",
+          "cafe": {
+            "name": "Quán nước cầu cảng Củ Tron",
+            "drink": [
+              "Cà phê, nước ngọt",
+              "Coffee and soft drinks"
+            ],
+            "price": [
+              15000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ Hòn Lớn",
+            "Hon Lon market"
+          ],
+          "price": 0,
+          "note": [
+            "Mua khô mực, khô cá làm quà – hỏi giá trước",
+            "Buy dried squid and fish – ask prices first"
+          ],
+          "hours": "05:00–10:00",
+          "address": "Hòn Lớn, Nam Du",
+          "cafe": {
+            "name": "Quán cà phê võng chợ Hòn Lớn",
+            "drink": [
+              "Cà phê sữa đá",
+              "Iced milk coffee"
+            ],
+            "price": [
+              15000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Khu lấn biển Rạch Giá",
+            "Rach Gia reclaimed seafront"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Phường Vĩnh Bảo, Rạch Giá",
+          "cafe": {
+            "name": "Cà phê ven biển Rạch Giá",
+            "drink": [
+              "Cà phê, nước dừa ngắm hoàng hôn",
+              "Coffee and coconut water at sunset"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
     ]
   }
 }
