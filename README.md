@@ -54,17 +54,17 @@ Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi c
 dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
 
 ## Đa ngôn ngữ
-- Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
+- Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `data/i18n/en.json` (sinh ra `assets/js/data/en.js` khi build – không sửa tay file JS)
   (`ui`, `html`, `destinations`, `itineraries`).
 - Lịch trình nằm trong `data/itineraries.json`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
   lấy lần lượt 3/4/5 ngày đầu; `fees` là vé tham quan & trải nghiệm mỗi ngày [tiết kiệm, thoải mái].
 - Chi phí tour tính theo từng khoản bằng `tripCost()` (components.js): lưu trú (phòng đôi chia 2, từ `places.js`), ăn uống (từ giá các quán), đi lại tại chỗ và vé tham quan. Mức thoải mái = khách sạn 3–4 sao, nhà hàng, Grab (≈ 1,7–1,9 lần mức tiết kiệm). Bấm vào mỗi mức để xem bảng chi tiết.
-- Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
+- Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `data/i18n/en.json` rồi chạy `npm run build` (build báo lỗi nếu điểm đến / lịch trình thiếu bản tiếng Anh)
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
-- **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.js` –
+- **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.json` –
   `ui`, `html`, `regions`, `categories`, `destinations` (tên, tỉnh, khẩu hiệu, mùa đẹp, số ngày, điểm nổi bật, mô tả, chú thích ảnh, món ăn, trải nghiệm, kinh nghiệm)
   và `itineraries` (tên từng ngày). Bản dịch được phủ lên bản tiếng Anh, nên phần chưa dịch
-  (chi tiết lịch trình, quán ăn, điểm tham quan, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.js`
+  (chi tiết lịch trình, quán ăn, điểm tham quan, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.json`
   hoặc biến `{…}` không khớp.
 - Thêm ngôn ngữ mới: tạo `data/i18n/<mã>.json`, khai báo trong `LANGS` (tools/build.js) và `SITE_LANGS` +
   tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`
@@ -112,7 +112,7 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 
 - Món đặc sản đang dùng **ảnh minh họa** có liên kết "Có ảnh thật của món này?" mở cùng form gửi ảnh, điền sẵn mã điểm đến
   và tên món (tiêu đề `[Ảnh món] …`). Duyệt xong: tải ảnh lên Wikimedia Commons (hoặc thêm vào repo), đổi `file` của món trong
-  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `en.js` / `data/i18n`).
+  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `data/i18n/*.json`).
 
 ## Trợ lý hỏi đáp (Claude)
 

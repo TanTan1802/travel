@@ -4,7 +4,7 @@
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
 <<<<<<< HEAD
-const VERSION = '32cc01f971'
+const VERSION = '88c7b0deec'
 =======
 const VERSION = 'd75fd3eb7f'
 >>>>>>> origin/main

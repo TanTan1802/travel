@@ -378,6 +378,9 @@ test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với J
             assert.equal(JSON.stringify(generated[constName]), JSON.stringify(source[key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
         }
     }
+    /* Bản tiếng Anh: assets/js/data/en.js sinh từ data/i18n/en.json */
+    const en = loadBrowserScripts(['assets/js/data/en.js'], ['TRANSLATION_EN']).TRANSLATION_EN
+    assert.equal(JSON.stringify(en), JSON.stringify(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/i18n/en.json'), 'utf8'))), 'assets/js/data/en.js lệch với data/i18n/en.json – chạy npm run build')
 
     /* Schema phải bắt được lỗi thường gặp */
     const Ajv2020 = require('ajv/dist/2020')

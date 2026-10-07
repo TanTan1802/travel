@@ -17,7 +17,7 @@ Toàn bộ nội dung (điểm đến, lịch trình, quán ăn, điểm tham qu
 | `data/events.json` | Lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết cần lưu ý | `events.schema.json` |
 | `data/routes.json` *(không bắt buộc)* | Quãng đường + thời gian lái xe giữa các điểm đến (OSRM) – sinh bởi `tools/build-routes.js`, **không sửa tay** | `routes.schema.json` |
 
-Bản dịch tiếng Anh của phần chữ trong điểm đến và lịch trình vẫn nằm ở `assets/js/data/en.js`. Các chuỗi hai ngôn ngữ trong `places`, `sights` và `events` được viết dạng `["tiếng Việt", "English"]`.
+Bản dịch tiếng Anh (giao diện, điểm đến, lịch trình) nằm ở `data/i18n/en.json` – build sinh `assets/js/data/en.js`; tiếng Hàn / Trung / Nhật ở `data/i18n/ko.json`, `zh.json`, `ja.json`. Các chuỗi hai ngôn ngữ trong `places`, `sights` và `events` được viết dạng `["tiếng Việt", "English"]`.
 
 ## Kiểm tra nhanh
 
@@ -36,7 +36,7 @@ Trình soạn thảo có hỗ trợ JSON Schema (VS Code…) sẽ tự gợi ý 
 2. Thêm lịch trình 5 ngày vào `data/itineraries.json`.
 3. Thêm quán ăn, quán nước và lưu trú vào `data/places.json`.
 4. Thêm điểm tham quan cho 5 ngày vào `data/sights.json`.
-5. Thêm bản dịch vào `assets/js/data/en.js`, phần `destinations` và `itineraries`.
+5. Thêm bản dịch vào `data/i18n/en.json`, phần `destinations` và `itineraries` (bắt buộc – build báo lỗi nếu thiếu); ko/zh/ja tùy chọn.
 6. Chạy `npm run build` và `npm test`, rồi mở Pull Request. Sau khi merge, workflow sẽ tự tải ảnh.
 
 ## Độ mới của dữ liệu
