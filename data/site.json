@@ -94,7 +94,17 @@
           "zh": "2027 年春节为 2 月 6 日 – 查看节庆，提早规划春游",
           "ja": "2027 年のテトは 2 月 6 日 – 祭りをチェックして早めに計画を"
         },
-        "link": "thang/2/index.html"
+        "link": "thang/2/index.html",
+        "countdown": {
+          "date": "2027-02-06",
+          "label": {
+            "vi": "Tết Đinh Mùi",
+            "en": "Lunar New Year",
+            "ko": "설날",
+            "zh": "春节",
+            "ja": "テト"
+          }
+        }
       },
       "featured": [
         "ha-noi",
@@ -111,7 +121,8 @@
         "ko": "설날에\n가기 좋은 곳",
         "zh": "春节\n好去处",
         "ja": "テトに\nおすすめの旅先"
-      }
+      },
+      "decor": "hoa-dao"
     },
     {
       "id": "he-bien",

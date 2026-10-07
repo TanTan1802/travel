@@ -1,0 +1,82 @@
+# Đăng ảnh người đọc gửi (Issue "Gửi ảnh") sau khi duyệt trên trang quản trị /admin/ → Ảnh người đọc.
+# Trang quản trị bình luận dòng <!-- duyet-anh:… --> vào Issue; workflow chỉ chạy khi người bình luận có quyền ghi repo,
+# tải ảnh, xóa EXIF/GPS, tạo WebP (tools/approve-photo.js → add-photo.js), build, test rồi đẩy thẳng lên main.
+name: Đăng ảnh người đọc
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+# Cùng nhóm với workflow tải ảnh: không hai workflow cùng ghi vào main một lúc
+concurrency:
+  group: main-writer
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      !github.event.issue.pull_request &&
+      contains(github.event.comment.body, '<!-- duyet-anh:') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cài thư viện
+        run: npm ci --no-audit --no-fund
+
+      # Nội dung bình luận chỉ đi qua biến môi trường (không chèn vào lệnh shell)
+      - name: Tải và thêm ảnh
+        id: photo
+        env:
+          COMMENT: ${{ github.event.comment.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/approve-photo.js
+
+      - name: Sinh lại trang và kiểm tra
+        run: |
+          npm run build
+          npm run test:data
+
+      - name: Đẩy lên main
+        env:
+          SUMMARY: ${{ steps.photo.outputs.summary }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/img/community data/community-photos.json assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de en ko zh ja index.html sitemap.xml robots.txt sw.js
+          git commit -m "Ảnh người đọc: ${SUMMARY} (#${ISSUE})"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Báo đã đăng và đóng Issue
+        env:
+          SUMMARY: ${{ steps.photo.outputs.summary }}
+        run: |
+          gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "✅ Đã đăng ${SUMMARY} – ảnh hiện ở mục Cộng đồng của trang điểm đến sau vài phút. Cảm ơn bạn đã chia sẻ!"
+          gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --add-label da-dang --remove-label dang-dang || true
+          gh issue close "$ISSUE" --repo "$GITHUB_REPOSITORY" --reason completed
+
+      - name: Báo lỗi
+        if: failure()
+        env:
+          ERROR: ${{ steps.photo.outputs.error }}
+        run: |
+          gh issue comment "$ISSUE" --repo "$GITHUB_REPOSITORY" --body "⚠️ Chưa đăng được ảnh${ERROR:+: ${ERROR}}. Xem log: ${RUN_URL} – sửa rồi bấm Duyệt lại trong trang quản trị."
+          gh issue edit "$ISSUE" --repo "$GITHUB_REPOSITORY" --remove-label dang-dang || true

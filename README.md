@@ -106,7 +106,8 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 
 - Mỗi trang điểm đến có mục **Cộng đồng**: ảnh người đọc gửi (đã duyệt, ghi tên tác giả + giấy phép CC) và nút
   **Gửi ảnh của bạn** → form GitHub (`.github/ISSUE_TEMPLATE/gui-anh.yml`, điền sẵn điểm đến, cam kết là tác giả).
-- Duyệt ảnh: `npm run add-photo -- --dest hoi-an --src <URL ảnh trong Issue> --author "Tên" --caption "..." --caption-en "..." --issue <link>`
+- Duyệt ảnh: trang quản trị `/admin/` → **Ảnh người đọc** → Duyệt & đăng (tự động). Làm tay:
+  `npm run add-photo -- --dest hoi-an --src <URL ảnh trong Issue> --author "Tên" --caption "..." --caption-en "..." --issue <link>`
   → tạo WebP 480/960/1920 trong `assets/img/community/` (đã **xóa EXIF/GPS**), thêm vào `data/community-photos.json`; rồi `npm run build`.
 - Bình luận + **đánh giá bằng cảm xúc (reactions)** qua Giscus: xem mục Bình luận bên dưới để bật.
 
@@ -267,13 +268,22 @@ npm test                          # = npm run test:data && npm run test:e2e
 Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài gì: mở `https://viet-travel.congtan5918.workers.dev/admin/`.
 
 - **Đăng nhập** bằng *fine-grained token* GitHub: [Generate new token](https://github.com/settings/personal-access-tokens/new)
-  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents` và `Pull requests` = **Read and write**
-  (thêm `Commit statuses` = Read-only để xem PR đã kiểm tra xong chưa).
+  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents`, `Pull requests`, `Issues` = **Read and write**
+  (Issues để duyệt ảnh người đọc) và `Commit statuses` = Read-only (xem PR đã kiểm tra xong chưa).
   Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat, issue hay mã nguồn.
 - **Tổng quan**: số điểm đến, điểm thiếu bản dịch, món dùng ảnh minh họa, quán / điểm quá 12 tháng chưa kiểm tra,
   mùa đang chạy + mùa sắp tới, PR đang chờ và danh sách "cần chú ý". **Điểm đến**: lưới ảnh hoặc bảng, tìm, lọc, sắp xếp.
 - Trình sửa: số mục còn thiếu hiện ngay trên từng tab, danh sách dài thu gọn được, **tự lưu nháp** trên máy
   (đóng trang / chuyển trang không mất), `Ctrl + S` mở **xem lại thay đổi** (diff từng file) trước khi tạo PR.
+  - **🔍 Tìm ảnh** cạnh mỗi ô ảnh: tìm thẳng trên Wikimedia Commons (lọc ≥ 1200px, giấy phép tự do), bấm Chọn là điền tên file.
+  - **✓ Vẫn đúng** ở từng quán / điểm tham quan (hoặc "Tất cả vẫn đúng"): ghi tháng kiểm tra mà không phải sửa gì.
+  - **👁 Xem trước**: trang điểm đến dựng từ dữ liệu đang sửa (`destination.html?id=…&preview=1` + `assets/js/preview.js`),
+    xem dạng máy tính / điện thoại trước khi đăng.
+- **Lễ hội & sự kiện** (`data/events.json`): sửa / thêm lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết – theo ngày cố định
+  hoặc theo tháng (âm lịch), cả nước hoặc từng điểm đến.
+- **Ảnh người đọc**: các Issue "Gửi ảnh" hiện kèm ảnh, gợi ý sẵn điểm đến. **Duyệt & đăng** → bình luận duyệt vào Issue,
+  workflow `photo-approve.yml` (chỉ chạy với bình luận của người có quyền ghi repo) tải ảnh, xóa EXIF/GPS, nén WebP
+  (`tools/approve-photo.js` → `add-photo.js`), build, test, đẩy lên main rồi đóng Issue. **Từ chối** → gửi lời cảm ơn + lý do, đóng Issue.
 - **Sửa**: danh sách 37 điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
   Ẩm thực & hoạt động, Lịch trình 5 ngày, Quán & lưu trú, Điểm tham quan, Bản dịch (en bắt buộc; ko/zh/ja tùy chọn).
   Trang kiểm tra trước các lỗi thường gặp (thiếu quán, thiếu ngày, bản dịch dở dang…).
@@ -286,6 +296,8 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   Thêm **mùa / chiến dịch** (Tết, hè biển, lúa chín…): khoảng ngày `MM-DD` lặp hằng năm hoặc `YYYY-MM-DD` một lần;
   trong khoảng đó site tự đổi màu mọi trang, slogan, ảnh bìa, dải thông báo có liên kết và mục nổi bật –
   chọn theo ngày trên máy người xem nên không cần build lại. Xem thử bất kỳ mùa nào: `/?season=<mã>` (`?season=none` = mặc định).
+  Mỗi mùa có thể thêm **đếm ngược** trong dải thông báo ("Tết Đinh Mùi: còn 12 ngày") và **hiệu ứng trang trí** trên ảnh bìa
+  (hoa đào / hoa mai / lá vàng / tuyết rơi – người xem tắt được, tự tắt khi bật giảm chuyển động).
 - Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
 
 ## Thêm điểm đến mới

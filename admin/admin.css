@@ -574,3 +574,41 @@ input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--brand); 
 .tp__box--dark .tp__btn { background: hsl(var(--h), 64%, 30%); }
 .tp__issues .errors { margin: .6rem 0 0; }
 .tp__ok { color: var(--ok); margin: .5rem 0 0; }
+
+/*---------- Tìm ảnh Commons ----------*/
+.img-input { display: flex; gap: .5rem; align-items: center; }
+.img-input input { flex: 1; }
+.img-search { display: flex; gap: .5rem; margin: .8rem 0 .5rem; }
+.img-search input { flex: 1; }
+.img-search__opts { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.img-grid { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-top: .8rem; }
+.img-card { margin: 0; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--raised); }
+.img-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--line); display: block; }
+.img-card figcaption { display: grid; gap: .15rem; padding: .5rem .6rem; font-size: .8rem; min-width: 0; }
+.img-card figcaption strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .82rem; }
+.img-card__actions { display: flex; flex-wrap: wrap; gap: .3rem; padding: 0 .6rem .6rem; margin-top: auto; }
+.img-card--warn { opacity: .7; }
+.center { text-align: center; }
+
+/*---------- Đánh dấu đã kiểm tra ----------*/
+.verify { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; font-size: .85rem; }
+.verify-all { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; padding: .65rem .9rem; margin-bottom: 1rem; border-radius: 10px; background: var(--raised); border: 1px solid var(--line); font-size: .9rem; }
+
+/*---------- Xem trước ----------*/
+.modal__box--wide { width: min(1240px, 100%); height: calc(100vh - 2rem); display: flex; flex-direction: column; }
+.preview-tools { display: flex; align-items: center; gap: .5rem; }
+.preview-tools .seg { margin: 0; }
+.preview-frame { flex: 1; min-height: 360px; display: flex; justify-content: center; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--raised); }
+.preview-frame iframe { width: 100%; height: 100%; border: 0; background: #fff; transition: width .2s; }
+.preview-frame--phone iframe { width: 390px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+@media (max-width: 700px) { .modal__head { flex-wrap: wrap; gap: .5rem; } }
+
+/*---------- Ảnh người đọc ----------*/
+.photo__head { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; margin-bottom: .8rem; }
+.photo__head a { text-decoration: none; }
+.photo__imgs { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1rem; }
+.photo__img { position: relative; display: block; margin: 0; cursor: pointer; }
+.photo__img img { display: block; width: 220px; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 9px; border: 3px solid var(--brand); background: var(--line); }
+.photo__img input { position: absolute; top: .45rem; left: .45rem; width: 1.2rem; height: 1.2rem; }
+.photo__img input:not(:checked) + img { border-color: transparent; opacity: .45; }
+.photo__actions { display: flex; flex-wrap: wrap; gap: .5rem; }

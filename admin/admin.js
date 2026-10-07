@@ -23,6 +23,7 @@ const FILES = {
     zh: 'data/i18n/zh.json',
     ja: 'data/i18n/ja.json',
     site: 'data/site.json',
+    events: 'data/events.json',
 }
 const TR_LANGS = ['en', 'ko', 'zh', 'ja']
 const LANG_NAMES = { en: 'English', ko: '한국어 (Hàn)', zh: '中文 (Trung)', ja: '日本語 (Nhật)' }
@@ -471,6 +472,8 @@ function toEditableSite(site) {
                 useTheme: !!sea.theme, theme: { ...(sea.theme || site.theme) },
                 hero: { subtitle: langText(hero.subtitle), title: langText(hero.title), image: joinFiles(hero.image), alt: langText(hero.alt) },
                 banner: { text: langText(sea.banner && sea.banner.text), link: (sea.banner && sea.banner.link) || '' },
+                countdown: { date: (sea.banner && sea.banner.countdown && sea.banner.countdown.date) || '', label: langText(sea.banner && sea.banner.countdown && sea.banner.countdown.label) },
+                decor: sea.decor || '',
                 featured: [...(sea.featured || [])],
                 featuredTitle: langText(sea.featuredTitle),
             }
@@ -481,7 +484,7 @@ function toEditableSite(site) {
 const newSeason = () => ({
     id: '', name: '', enabled: true, from: '', to: '', useTheme: false, theme: { ...DEFAULT_THEME },
     hero: { subtitle: langText(), title: langText(), image: '', alt: langText() },
-    banner: { text: langText(), link: '' }, featured: [], featuredTitle: langText(),
+    banner: { text: langText(), link: '' }, countdown: { date: '', label: langText() }, decor: '', featured: [], featuredTitle: langText(),
 })
 
 /* Chữ theo ngôn ngữ: bỏ ô trống; cả khối trống → undefined */
@@ -512,11 +515,15 @@ function fromEditableSite(e) {
             }
             if (Object.keys(hero).length) out.hero = hero
             const text = cleanText(sea.banner.text)
-            if (text) out.banner = sea.banner.link.trim() ? { text, link: sea.banner.link.trim() } : { text }
+            if (text) {
+                out.banner = sea.banner.link.trim() ? { text, link: sea.banner.link.trim() } : { text }
+                if (sea.countdown.date.trim()) out.banner.countdown = { date: sea.countdown.date.trim(), label: cleanText(sea.countdown.label) }
+            }
             if (sea.featured.length) {
                 out.featured = sea.featured
                 out.featuredTitle = cleanText(sea.featuredTitle)
             }
+            if (sea.decor) out.decor = sea.decor
             return out
         }),
     }
@@ -565,6 +572,10 @@ function validateSite(site) {
         if (sea.banner) {
             text(`${w} – thông báo`, sea.banner.text)
             if (sea.banner.link && !LINK_RE.test(sea.banner.link)) e.push(`${w}: liên kết thông báo phải dạng diem-den/<mã>/index.html, thang/9/index.html… hoặc https://…`)
+            if (sea.banner.countdown) {
+                if (!DAY_RE.test(sea.banner.countdown.date)) e.push(`${w}: ngày đếm ngược dạng MM-DD hoặc YYYY-MM-DD`)
+                text(`${w} – tên sự kiện đếm ngược`, sea.banner.countdown.label, true)
+            }
         }
         if (sea.featured) {
             featured(w, sea.featured)
@@ -638,7 +649,8 @@ function field(spec) {
         case 'image': {
             const file = Array.isArray(v) ? v.join(' | ') : v || ''
             const first = file.split('|')[0].trim()
-            input = `<input type="text" ${attrs(spec.path, spec.multi ? 'files' : 'text')} value="${esc(file)}" placeholder="Tên file trên Wikimedia Commons, vd. Hoi An Ancient Town.jpg">
+            input = `<div class="img-input"><input type="text" ${attrs(spec.path, spec.multi ? 'files' : 'text')} value="${esc(file)}" placeholder="Tên file trên Wikimedia Commons, vd. Hoi An Ancient Town.jpg">
+                <button type="button" class="btn btn--ghost btn--sm" data-img-search="${esc(JSON.stringify(spec.path))}" data-multi="${spec.multi ? '1' : ''}" data-query="${esc(spec.query !== undefined ? spec.query : imageQuery(spec.path))}">🔍 Tìm ảnh</button></div>
                 ${first ? `<a href="${commonsPage(first)}" target="_blank" rel="noopener"><img class="thumb" src="${thumbUrl(first)}" alt="" loading="lazy" onerror="this.classList.add('thumb--missing');this.alt='Không tìm thấy ảnh trên Commons'"></a>` : ''}`
             break
         }
@@ -653,6 +665,12 @@ function field(spec) {
         case 'theme':
             input = themeField(spec.path, v)
             break
+        case 'verify': {
+            const old = monthsAgo(v) > 12
+            input = `<div class="verify"><span class="${old ? 'text-bad' : 'muted'}">${v ? `Kiểm tra lần cuối: ${esc(v)}${old ? ' (quá 12 tháng)' : ''}` : 'Chưa ghi tháng kiểm tra'}</span>
+                ${v === MONTH() ? '<span class="chip chip--ok">✓ Đã kiểm tra tháng này</span>' : `<button type="button" class="btn btn--ghost btn--sm" data-verify="${esc(JSON.stringify(spec.path))}">✓ Vẫn đúng – đánh dấu đã kiểm tra</button>`}</div>`
+            break
+        }
         case 'list':
             return listField(spec, v || [])
         case 'group':
@@ -669,15 +687,16 @@ function field(spec) {
 function listField(spec, items) {
     const path = spec.path
     const rows = items.map((item, i) => {
+        if (spec.filter && !spec.filter(item)) return ''
         const key = JSON.stringify([...path, i])
-        const open = state.open.has(key) ? state.open.get(key) : items.length <= 3
+        const open = state.open.has(key) ? state.open.get(key) : (spec.filter ? items.filter(spec.filter).length : items.length) <= 3
         return `
         <details class="list__item" data-key="${esc(key)}"${open ? ' open' : ''}>
             <summary class="list__head">
                 <span class="list__label"><span class="list__num">${i + 1}</span>${esc(spec.itemLabel ? spec.itemLabel(item, i) : `#${i + 1}`)}</span>
                 ${spec.fixed ? '' : `<span class="list__tools">
-                    <button type="button" class="icon-btn" data-op="up" ${attrs([...path, i], 'op')} title="Lên"${i === 0 ? ' disabled' : ''}>↑</button>
-                    <button type="button" class="icon-btn" data-op="down" ${attrs([...path, i], 'op')} title="Xuống"${i === items.length - 1 ? ' disabled' : ''}>↓</button>
+                    ${spec.filter ? '' : `<button type="button" class="icon-btn" data-op="up" ${attrs([...path, i], 'op')} title="Lên"${i === 0 ? ' disabled' : ''}>↑</button>
+                    <button type="button" class="icon-btn" data-op="down" ${attrs([...path, i], 'op')} title="Xuống"${i === items.length - 1 ? ' disabled' : ''}>↓</button>`}
                     <button type="button" class="icon-btn icon-btn--danger" data-op="del" ${attrs([...path, i], 'op')} title="Xóa">Xóa</button>
                 </span>`}
             </summary>
@@ -770,6 +789,9 @@ function seasonFields(i) {
         { type: 'langtext', path: [...base, 'hero', 'alt'], label: 'Mô tả ảnh bìa' },
         { type: 'langtext', path: [...base, 'banner', 'text'], label: 'Dải thông báo trên slogan (để trống = không hiện)' },
         { type: 'text', path: [...base, 'banner', 'link'], label: 'Liên kết của thông báo', list: 'link-list', help: LINK_HELP },
+        { type: 'text', path: [...base, 'countdown', 'date'], label: 'Đếm ngược tới ngày (tùy chọn)', placeholder: 'vd. 2027-02-06 hoặc 12-25', help: 'Hiện "Tên sự kiện: còn N ngày" cạnh dải thông báo (cần có thông báo); tự ẩn khi đã qua ngày.' },
+        { type: 'langtext', path: [...base, 'countdown', 'label'], label: 'Tên sự kiện đếm ngược', help: 'vd. Tết Đinh Mùi / Lunar New Year' },
+        { type: 'select', path: [...base, 'decor'], label: 'Hiệu ứng trang trí trên ảnh bìa', options: { '': 'Không có', 'hoa-dao': '🌸 Hoa đào rơi', 'hoa-mai': '🌼 Hoa mai rơi', 'la-vang': '🍂 Lá vàng rơi', tuyet: '❄ Tuyết rơi' }, help: 'Người xem tắt được; không hiện khi họ bật chế độ giảm chuyển động.' },
         { type: 'checks', path: [...base, 'featured'], label: 'Điểm đến nổi bật trong mùa (3 – 12, để trống = mặc định)', options: destOptions() },
         { type: 'langtext', path: [...base, 'featuredTitle'], label: 'Tiêu đề mục nổi bật trong mùa', multiline: true, rows: 2 },
     ]
@@ -784,7 +806,10 @@ function linkDatalist() {
 }
 
 function currentTabs() {
-    if (state.mode !== 'site') return TABS
+    return MODES[state.mode] ? MODES[state.mode].tabs() : TABS
+}
+
+function siteTabs() {
     const tabs = { general: { label: 'Mặc định', fields: siteGeneralFields } }
     const today = new Date().toISOString().slice(0, 10)
     state.bundle.site.seasons.forEach((sea, i) => {
@@ -792,6 +817,127 @@ function currentTabs() {
         tabs[`s${i}`] = { label: `${live ? '● ' : ''}${sea.name || 'Mùa mới'}`, fields: () => seasonFields(i) }
     })
     return tabs
+}
+
+/*==================== LỄ HỘI & SỰ KIỆN (data/events.json) ====================*/
+const EVENT_TYPES = () => Object.fromEntries(Object.entries(state.data.events.eventTypes).map(([k, v]) => [k, v.label[0]]))
+const MD_RE = /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+
+function toEditableEvents(data) {
+    return {
+        events: data.events.map(e => ({
+            id: e.id, type: e.type, whereAll: e.where === 'all', where: e.where === 'all' ? [] : [...e.where],
+            useDates: !!e.dates, dates: e.dates ? [...e.dates] : ['', ''], months: e.months ? [...e.months] : [], lunar: !!e.lunar,
+            name: [...e.name], desc: [...e.desc], tip: [...e.tip],
+        })),
+    }
+}
+
+const newEvent = () => ({ id: '', type: 'festival', whereAll: false, where: [], useDates: false, dates: ['', ''], months: [], lunar: false, name: ['', ''], desc: ['', ''], tip: ['', ''] })
+
+function fromEditableEvents(e) {
+    const data = {
+        $schema: state.data.events.$schema,
+        eventTypes: state.data.events.eventTypes,
+        events: e.events.map(x => {
+            const out = { id: x.id.trim(), where: x.whereAll ? 'all' : x.where, type: x.type }
+            if (x.useDates) out.dates = x.dates.map(d => String(d || '').trim())
+            else out.months = x.months
+            if (x.lunar && !x.useDates) out.lunar = true
+            for (const k of ['name', 'desc', 'tip']) out[k] = x[k].map(t => String(t || '').trim())
+            return out
+        }),
+    }
+    return ordered(data, state.data.events)
+}
+
+function validateEvents(data) {
+    const e = []
+    const ids = new Set(state.data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    data.events.forEach((x, i) => {
+        const w = `Sự kiện ${i + 1} (${x.name[0] || x.id || 'mới'})`
+        if (!ID_RE.test(x.id)) e.push(`${w}: mã chỉ gồm chữ thường không dấu, số, gạch nối`)
+        if (seen.has(x.id)) e.push(`${w}: mã bị trùng`)
+        seen.add(x.id)
+        if (x.where !== 'all' && !x.where.length) e.push(`${w}: chọn "Cả nước" hoặc ít nhất một điểm đến`)
+        if (x.where !== 'all') x.where.filter(id => !ids.has(id)).forEach(id => e.push(`${w}: điểm đến ${id} không tồn tại`))
+        if (x.dates) {
+            if (!x.dates.every(d => MD_RE.test(d))) e.push(`${w}: ngày dạng MM-DD (vd. 04-28)`)
+        } else if (!x.months.length) e.push(`${w}: chọn ít nhất một tháng`)
+        for (const [k, label] of [['name', 'tên'], ['desc', 'mô tả'], ['tip', 'lời khuyên']]) {
+            if (!pairFilled(x[k])) e.push(`${w}: thiếu ${label} (tiếng Việt và tiếng Anh)`)
+        }
+    })
+    return e
+}
+
+function buildEventsFiles(data) {
+    const text = `${JSON.stringify(data, null, 2)}\n`
+    return text === state.texts.events ? {} : { [FILES.events]: text }
+}
+
+function eventFields(i) {
+    const ev = state.bundle.events.events[i]
+    const base = ['events', 'events', i]
+    return [
+        { type: 'group', cols: 3, fields: [
+            { type: 'text', path: [...base, 'id'], label: 'Mã', placeholder: 'vd. le-hoi-hoa-ban' },
+            { type: 'select', path: [...base, 'type'], label: 'Loại', options: EVENT_TYPES() },
+            { type: 'bool', path: [...base, 'whereAll'], label: 'Nơi diễn ra', text: 'Cả nước (mọi điểm đến)' },
+        ] },
+        ...(ev.whereAll ? [] : [{ type: 'checks', path: [...base, 'where'], label: 'Điểm đến liên quan', options: destOptions() }]),
+        { type: 'bool', path: [...base, 'useDates'], label: 'Thời gian', text: 'Ngày dương lịch cố định (bỏ chọn = theo tháng, dùng cho lễ âm lịch và các mùa)' },
+        ...(ev.useDates ? [{ type: 'group', fields: [
+            { type: 'text', path: [...base, 'dates', 0], label: 'Từ ngày (MM-DD)', placeholder: '04-28' },
+            { type: 'text', path: [...base, 'dates', 1], label: 'Đến ngày (MM-DD)', placeholder: '05-03' },
+        ] }] : [
+            { type: 'checks', path: [...base, 'months'], label: 'Các tháng', options: MONTHS, numeric: true },
+            { type: 'bool', path: [...base, 'lunar'], text: 'Theo âm lịch (ngày dương thay đổi mỗi năm)' },
+        ]),
+        { type: 'pair', path: [...base, 'name'], label: 'Tên sự kiện' },
+        { type: 'pair', path: [...base, 'desc'], label: 'Mô tả', multiline: true },
+        { type: 'pair', path: [...base, 'tip'], label: 'Lời khuyên cho du khách', multiline: true },
+    ]
+}
+
+function eventsTabs() {
+    const list = state.bundle.events.events
+    const types = EVENT_TYPES()
+    const tab = type => () => [
+        { type: 'html', html: '<p class="muted small">Lễ hội, mùa cảnh sắc, nghỉ lễ và thời tiết cần lưu ý – hiện ở trang theo tháng, trang điểm đến (chọn tháng đi) và trình lập kế hoạch. Mỗi sự kiện có tên, mô tả, lời khuyên bằng tiếng Việt và tiếng Anh.</p>' },
+        { type: 'list', path: ['events', 'events'], label: types[type] || 'Sự kiện', addLabel: 'Thêm sự kiện',
+            newItem: () => ({ ...newEvent(), type }),
+            filter: item => item.type === type,
+            itemLabel: x => `${x.name[0] || 'Sự kiện mới'} · ${x.whereAll ? 'cả nước' : `${x.where.length} điểm`} · ${x.useDates ? `${x.dates[0]} → ${x.dates[1]}` : `tháng ${x.months.join(', ')}${x.lunar ? ' (âm lịch)' : ''}`}`,
+            fields: eventFields },
+    ]
+    return Object.fromEntries(Object.keys(types).map(type => [type, { label: `${types[type]} (${list.filter(x => x.type === type).length})`, fields: tab(type) }]))
+}
+
+/* Các loại dữ liệu không phải điểm đến: cách mở, kiểm tra, lưu và tab của từng loại */
+const MODES = {
+    site: {
+        route: '/site', label: 'Giao diện & mùa', firstTab: 'general',
+        desc: 'Màu giao diện, slogan, ảnh bìa trang chủ và các mùa / chiến dịch tự đổi theo ngày.',
+        open: () => ({ site: toEditableSite(state.data.site) }),
+        working: b => fromEditableSite(b.site), validate: validateSite, files: buildSiteFiles, tabs: siteTabs,
+        errorTab: msg => { const m = msg.match(/^Mùa (\d+)/); return m ? `s${Number(m[1]) - 1}` : 'general' },
+        extraTab: '<button type="button" class="tab--add" data-season-add>＋ Thêm mùa</button>',
+        datalist: () => linkDatalist(),
+        view: '<a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener">Xem trang chủ ↗</a>',
+        pr: w => ({ title: 'Cập nhật giao diện & mùa', slug: 'giao-dien', summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${w.seasons.length} mùa (${w.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).` }),
+    },
+    events: {
+        route: '/events', label: 'Lễ hội & sự kiện', firstTab: 'festival',
+        desc: 'Lễ hội, mùa cảnh sắc, kỳ nghỉ lễ đông khách và thời tiết cần lưu ý theo tháng.',
+        open: () => ({ events: toEditableEvents(state.data.events) }),
+        working: b => fromEditableEvents(b.events), validate: validateEvents, files: buildEventsFiles, tabs: eventsTabs,
+        errorTab: msg => { const m = msg.match(/^Sự kiện (\d+)/); const ev = m && state.bundle.events.events[Number(m[1]) - 1]; return ev ? ev.type : 'festival' },
+        extraTab: '', datalist: () => '',
+        view: `<a class="btn btn--ghost btn--sm" href="../thang/${new Date().getMonth() + 1}/index.html" target="_blank" rel="noopener">Xem trang tháng này ↗</a>`,
+        pr: w => ({ title: 'Cập nhật lễ hội & sự kiện', slug: 'su-kien', summary: `Cập nhật lễ hội & sự kiện (\`data/events.json\`) từ trang quản trị: ${w.events.length} sự kiện.` }),
+    },
 }
 
 /*---------- Đặc tả từng tab ----------*/
@@ -885,6 +1031,7 @@ const TABS = {
     places: {
         label: 'Quán & lưu trú',
         fields: () => [
+            { type: 'html', html: verifyAllHtml('places') },
             { type: 'group', cols: 3, fields: [
                 { type: 'text', path: ['place', 'city'], label: 'Thành phố (không dấu)', help: 'Dùng cho link tìm phòng, vd. Tam Dao' },
                 { type: 'text', path: ['place', 'airport'], label: 'Sân bay gần nhất (IATA)', placeholder: 'HAN' },
@@ -893,11 +1040,11 @@ const TABS = {
             { type: 'pair', path: ['place', 'getThere'], label: 'Cách đi tới', multiline: true },
             { type: 'list', path: ['place', 'eats'], label: 'Quán ăn (ít nhất 3, nên 8 để lịch theo giờ không lặp)', addLabel: 'Thêm quán ăn',
                 newItem: () => ({ name: '', dish: ['', ''], address: '', price: [0, 0], updated: MONTH() }),
-                itemLabel: e => e.name || 'Quán mới',
+                itemLabel: e => `${e.name || 'Quán mới'}${monthsAgo(e.updated) > 12 ? ' · ⚠ cần kiểm tra lại' : ''}`,
                 fields: i => placeFields('eats', i, 'dish', 'Món') },
             { type: 'list', path: ['place', 'cafes'], label: 'Quán cà phê / quán nước (ít nhất 3)', addLabel: 'Thêm quán nước',
                 newItem: () => ({ name: '', drink: ['', ''], address: '', price: [0, 0], updated: MONTH() }),
-                itemLabel: e => e.name || 'Quán mới',
+                itemLabel: e => `${e.name || 'Quán mới'}${monthsAgo(e.updated) > 12 ? ' · ⚠ cần kiểm tra lại' : ''}`,
                 fields: i => placeFields('cafes', i, 'drink', 'Đồ uống') },
             { type: 'list', path: ['place', 'stays'], label: 'Khu lưu trú (ít nhất 2)', addLabel: 'Thêm khu lưu trú',
                 newItem: () => ({ area: ['', ''], type: 'hotel', price: [0, 0], note: ['', ''] }),
@@ -916,10 +1063,11 @@ const TABS = {
         label: 'Điểm tham quan',
         fields: () => [
             { type: 'html', html: '<p class="muted small">Mỗi ngày của lịch trình gắn với các điểm tham quan (giá vé, giờ mở cửa, địa chỉ) và quán nước gần đó – cần ít nhất 6 quán nước trong cả 5 ngày. Giờ mở cửa: <code>all</code> (luôn mở) hoặc <code>07:00–17:00</code>.</p>' },
+            { type: 'html', html: verifyAllHtml('sights') },
             ...state.bundle.sights.map((_, day) => ({
                 type: 'list', path: ['sights', day], label: `Ngày ${day + 1}${state.bundle.plan.days[day]?.title ? ` – ${state.bundle.plan.days[day].title}` : ''}`, addLabel: 'Thêm điểm',
                 newItem: () => ({ at: 'm', name: ['', ''], price: 0, hours: 'all', address: '', note: ['', ''], cafe: { name: '', drink: ['', ''], price: [0, 0] } }),
-                itemLabel: s => `${AT[s.at] || ''} · ${s.name?.[0] || 'Điểm mới'}`,
+                itemLabel: s => `${AT[s.at] || ''} · ${s.name?.[0] || 'Điểm mới'}${monthsAgo(s.updated) > 12 ? ' · ⚠ cần kiểm tra lại' : ''}`,
                 fields: i => [
                     { type: 'group', cols: 3, fields: [
                         { type: 'select', path: ['sights', day, i, 'at'], label: 'Buổi', options: AT },
@@ -934,6 +1082,7 @@ const TABS = {
                         { type: 'range', path: ['sights', day, i, 'cafe', 'price'], label: 'Giá đồ uống (VND)' },
                     ] },
                     { type: 'pair', path: ['sights', day, i, 'cafe', 'drink'], label: 'Đồ uống của quán' },
+                    { type: 'verify', path: ['sights', day, i, 'updated'] },
                 ],
             })),
         ],
@@ -1000,11 +1149,27 @@ function placeFields(list, i, key, keyLabel) {
             { type: 'text', path: ['place', list, i, 'address'], label: 'Địa chỉ' },
         ] },
         { type: 'pair', path: ['place', list, i, key], label: keyLabel },
-        { type: 'group', fields: [
-            { type: 'range', path: ['place', list, i, 'price'], label: 'Giá / người (VND)' },
-            { type: 'text', path: ['place', list, i, 'updated'], label: 'Tháng cập nhật (YYYY-MM)' },
-        ] },
+        { type: 'range', path: ['place', list, i, 'price'], label: 'Giá / người (VND)' },
+        { type: 'verify', path: ['place', list, i, 'updated'] },
     ]
+}
+
+/* Gợi ý từ khóa tìm ảnh theo ô đang sửa: món ăn → tên món, còn lại → tên điểm đến */
+function imageQuery(path) {
+    const b = state.bundle
+    if (!b || path[0] !== 'dest') return ''
+    if (path[1] === 'foods') return (b.dest.foods[path[2]] || {}).name || ''
+    return b.dest.name || ''
+}
+
+/* Đánh dấu "đã kiểm tra tháng này" cho cả loạt quán / điểm tham quan */
+function verifyAllHtml(kind) {
+    const b = state.bundle
+    const list = kind === 'places' ? [...b.place.eats, ...b.place.cafes] : b.sights.flat()
+    const todo = list.filter(x => x.updated !== MONTH()).length
+    const old = list.filter(x => monthsAgo(x.updated) > 12).length
+    return `<div class="verify-all"><span>${todo ? `${todo} / ${list.length} mục chưa kiểm tra tháng này${old ? ` · <strong class="text-bad">${old} mục quá 12 tháng</strong>` : ''}` : `✓ Cả ${list.length} mục đã kiểm tra tháng này`}</span>
+        ${todo ? `<button type="button" class="btn btn--ghost btn--sm" data-verify-all="${kind}">✓ Tất cả vẫn đúng</button>` : ''}</div>`
 }
 
 /*==================== KHUNG TRANG ====================*/
@@ -1012,6 +1177,8 @@ const NAV = [
     ['/', 'Tổng quan', '▦'],
     ['/dest', 'Điểm đến', '◉'],
     ['/site', 'Giao diện & mùa', '◐'],
+    ['/events', 'Lễ hội & sự kiện', '✦'],
+    ['/photos', 'Ảnh người đọc', '▣'],
     ['/prs', 'Pull Request', '⇄'],
 ]
 const route = () => location.hash.replace(/^#/, '') || '/'
@@ -1022,7 +1189,7 @@ function renderShell(crumbs = [], actions = '') {
     $('#topbar').hidden = false
     const active = navOf(route().split('?')[0])
     $('#side-nav').innerHTML = NAV.map(([href, label, icon]) => `<a href="#${href}" class="side__link${active === href ? ' is-active' : ''}"${active === href ? ' aria-current="page"' : ''}>
-            <span class="side__icon" aria-hidden="true">${icon}</span>${label}${href === '/prs' && state.prs && state.prs.length ? `<span class="side__count">${state.prs.length}</span>` : ''}</a>`).join('') +
+            <span class="side__icon" aria-hidden="true">${icon}</span>${label}${navCount(href)}</a>`).join('') +
         '<a href="#/new" class="side__link side__link--add"><span class="side__icon" aria-hidden="true">＋</span>Thêm điểm đến</a>'
     $('#side-user').textContent = state.user ? `@${state.user}` : ''
     const avatar = $('#side-avatar')
@@ -1030,6 +1197,12 @@ function renderShell(crumbs = [], actions = '') {
     $('#crumbs').innerHTML = crumbs.map(([label, href], i) => (href && i < crumbs.length - 1 ? `<a href="${href}">${esc(label)}</a>` : `<span>${esc(label)}</span>`)).join('<span class="crumbs__sep">/</span>')
     $('#topbar-actions').innerHTML = actions
     closeNav()
+}
+
+/* Số việc đang chờ trên thanh bên: PR chờ đăng, ảnh chờ duyệt */
+function navCount(href) {
+    const n = href === '/prs' ? state.prs && state.prs.length : href === '/photos' ? state.photos && state.photos.filter(p => !p.processing).length : 0
+    return n ? `<span class="side__count">${n}</span>` : ''
 }
 
 function closeNav() {
@@ -1180,10 +1353,130 @@ function refreshPrs(target) {
 }
 
 function renderShellCount() {
-    const link = document.querySelector('.side__link[href="#/prs"]')
-    if (!link || !state.prs) return
-    link.querySelector('.side__count')?.remove()
-    if (state.prs.length) link.insertAdjacentHTML('beforeend', `<span class="side__count">${state.prs.length}</span>`)
+    for (const href of ['/prs', '/photos']) {
+        const link = document.querySelector(`.side__link[href="#${href}"]`)
+        if (!link) continue
+        link.querySelector('.side__count')?.remove()
+        link.insertAdjacentHTML('beforeend', navCount(href))
+    }
+}
+
+/*==================== ẢNH NGƯỜI ĐỌC GỬI (Issue "Gửi ảnh", nhãn anh-nguoi-doc) ====================*/
+/* Chỉ hiện ảnh đính kèm do GitHub lưu – giống tools/approve-photo.js */
+const ISSUE_IMAGE = /^https:\/\/(github\.com\/user-attachments\/assets\/[0-9a-f-]+|user-images\.githubusercontent\.com\/\S+|private-user-images\.githubusercontent\.com\/\S+)$/
+const plain = text => String(text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/gi, 'd').toLowerCase().trim()
+
+/* Issue tạo từ form: các mục "### Tiêu đề" → nội dung */
+function parseIssueForm(body) {
+    const sections = {}
+    String(body || '').split(/^### /m).slice(1).forEach(part => {
+        const nl = part.indexOf('\n')
+        sections[part.slice(0, nl).trim()] = part.slice(nl + 1).trim()
+    })
+    const pick = prefix => (Object.entries(sections).find(([k]) => k.startsWith(prefix)) || [])[1] || ''
+    const imagesText = pick('Ảnh')
+    const images = [...imagesText.matchAll(/!\[[^\]]*\]\((\S+?)\)|<img[^>]*\ssrc="([^"]+)"/g)].map(m => m[1] || m[2]).filter(u => ISSUE_IMAGE.test(u))
+    const consent = (pick('Giấy phép').match(/- \[x\]/gi) || []).length >= 2
+    return { dest: pick('Điểm đến').replace(/^_No response_$/, ''), caption: pick('Chú thích').replace(/^_No response_$/, ''), author: pick('Tên hiển thị').replace(/^_No response_$/, ''), images, consent }
+}
+
+function guessDest(text) {
+    const q = plain(text)
+    if (!q) return ''
+    const list = state.data.destinations.destinations
+    const exact = list.find(d => d.id === q || plain(d.name) === q)
+    if (exact) return exact.id
+    const hit = list.find(d => plain(d.name).includes(q) || q.includes(plain(d.name)) || q.includes(d.id.replace(/-/g, ' ')))
+    return hit ? hit.id : ''
+}
+
+async function loadPhotos() {
+    const issues = await gh(`/repos/${REPO}/issues?labels=anh-nguoi-doc&state=open&per_page=50`)
+    state.photos = issues.filter(i => !i.pull_request).map(i => {
+        const form = parseIssueForm(i.body)
+        return {
+            number: i.number, title: i.title, url: i.html_url, user: i.user && i.user.login, created: i.created_at,
+            processing: (i.labels || []).some(l => l.name === 'dang-dang'), ...form, guess: guessDest(form.dest),
+        }
+    })
+    return state.photos
+}
+
+function photoCard(p) {
+    const opts = state.data.destinations.destinations.map(d => `<option value="${d.id}"${d.id === p.guess ? ' selected' : ''}>${esc(d.name)}</option>`).join('')
+    return `<article class="card photo" data-photo="${p.number}">
+        <div class="photo__head">
+            <a href="${esc(p.url)}" target="_blank" rel="noopener"><strong>#${p.number}</strong> ${esc(p.title)}</a>
+            <span class="muted small">@${esc(p.user || '')} · ${ago(p.created)}</span>
+            ${p.processing ? '<span class="chip chip--info"><span class="spin"></span> Đang đăng</span>' : ''}
+        </div>
+        ${p.images.length ? `<div class="photo__imgs">${p.images.map(u => `<label class="photo__img"><input type="checkbox" data-photo-img value="${esc(u)}" checked><img src="${esc(u)}" alt="Ảnh gửi kèm" loading="lazy"></label>`).join('')}</div>`
+            : '<p class="errors">Issue không có ảnh đính kèm hợp lệ – yêu cầu người gửi kéo thả ảnh vào Issue.</p>'}
+        ${p.consent ? '' : '<p class="errors">Người gửi chưa tích đủ 2 ô đồng ý giấy phép – không nên đăng.</p>'}
+        <div class="grid grid--2">
+            <div class="field"><label>Điểm đến</label><select data-photo-field="dest"><option value="">— Chọn điểm đến —</option>${opts}</select>
+                <div class="field__help">Người gửi ghi: “${esc(p.dest)}”</div></div>
+            <div class="field"><label>Tác giả (ghi công)</label><input type="text" data-photo-field="author" value="${esc(p.author)}"></div>
+        </div>
+        <div class="grid grid--2">
+            <div class="field"><label>Chú thích (tiếng Việt)</label><input type="text" data-photo-field="caption" value="${esc(p.caption)}" maxlength="200"></div>
+            <div class="field"><label>Chú thích (English)</label><input type="text" data-photo-field="captionEn" placeholder="Để trống = dùng tiếng Việt" maxlength="200"></div>
+        </div>
+        <div class="photo__actions">
+            <button type="button" class="btn" data-photo-approve="${p.number}"${p.processing || !p.images.length ? ' disabled' : ''}>✓ Duyệt & đăng</button>
+            <button type="button" class="btn btn--ghost btn--danger" data-photo-reject="${p.number}"${p.processing ? ' disabled' : ''}>Từ chối</button>
+        </div>
+    </article>`
+}
+
+function renderPhotosPage() {
+    renderShell([['Tổng quan', '#/'], ['Ảnh người đọc']], '<button type="button" class="btn btn--ghost btn--sm" id="reload-photos">↻ Làm mới</button>')
+    $('#app').innerHTML = `
+        <div class="page-head"><div><h1>Ảnh người đọc gửi</h1>
+            <p class="muted">Ảnh gửi qua nút “Gửi ảnh của bạn” trên trang điểm đến (Issue có nhãn <code>anh-nguoi-doc</code>). Duyệt → GitHub tự tải ảnh, xóa thông tin vị trí, nén WebP và đăng vào mục Cộng đồng của điểm đến (khoảng 3 – 5 phút).</p></div></div>
+        <div id="photo-list"><div class="loading"><span class="spin"></span> Đang tải…</div></div>`
+    loadPhotos().then(list => {
+        const box = $('#photo-list')
+        if (!box) return
+        box.innerHTML = list.length ? list.map(photoCard).join('') : '<section class="card"><p class="empty">Không có ảnh nào đang chờ duyệt.</p></section>'
+        renderShellCount()
+        if (list.some(p => p.processing)) setTimeout(() => { if (route() === '/photos') renderPhotosPage() }, 30000)
+    }).catch(err => {
+        const box = $('#photo-list')
+        if (box) box.innerHTML = `<p class="errors">${err.status === 403 || err.status === 404 ? 'Token cần thêm quyền <strong>Issues: Read and write</strong> để duyệt ảnh.' : `Không tải được: ${esc(err.message)}`}</p>`
+    })
+}
+
+const toBase64 = text => btoa(String.fromCharCode(...new TextEncoder().encode(text)))
+
+async function approvePhoto(number) {
+    const card = document.querySelector(`[data-photo="${number}"]`)
+    const val = name => card.querySelector(`[data-photo-field="${name}"]`).value.trim()
+    const approval = {
+        dest: val('dest'), author: val('author'), caption: val('caption'), captionEn: val('captionEn'),
+        images: [...card.querySelectorAll('[data-photo-img]:checked')].map(x => x.value),
+    }
+    if (!approval.dest) throw new Error('Chọn điểm đến cho ảnh.')
+    if (!approval.author || !approval.caption) throw new Error('Cần tên tác giả và chú thích.')
+    if (!approval.images.length) throw new Error('Chọn ít nhất một ảnh.')
+    const dest = state.data.destinations.destinations.find(d => d.id === approval.dest)
+    if (!confirm(`Đăng ${approval.images.length} ảnh vào mục Cộng đồng của ${dest.name}?`)) return false
+    const body = `✅ Đã duyệt – đang đăng ${approval.images.length} ảnh vào trang ${dest.name} (workflow “Đăng ảnh người đọc”).\n\n<!-- duyet-anh:${toBase64(JSON.stringify(approval))} -->`
+    await gh(`/repos/${REPO}/issues/${number}/comments`, { method: 'POST', body: { body } })
+    await gh(`/repos/${REPO}/issues/${number}/labels`, { method: 'POST', body: { labels: ['dang-dang'] } }).catch(() => {})
+    toast('Đã duyệt – ảnh sẽ lên site sau vài phút.', 5000, 'ok')
+    return true
+}
+
+async function rejectPhoto(number) {
+    const reason = prompt('Lý do từ chối (gửi cho người gửi, có thể để trống):', 'ảnh chưa rõ nét hoặc không đúng điểm đến')
+    if (reason === null) return false
+    const body = `Cảm ơn bạn đã gửi ảnh! Lần này Việt Travel chưa đăng được${reason.trim() ? `: ${reason.trim()}` : ''}. Bạn có thể gửi ảnh khác bất cứ lúc nào.`
+    await gh(`/repos/${REPO}/issues/${number}/comments`, { method: 'POST', body: { body } })
+    await gh(`/repos/${REPO}/issues/${number}/labels`, { method: 'POST', body: { labels: ['tu-choi'] } }).catch(() => {})
+    await gh(`/repos/${REPO}/issues/${number}`, { method: 'PATCH', body: { state: 'closed', state_reason: 'not_planned' } })
+    toast(`Đã từ chối và đóng #${number}.`, 4000, 'ok')
+    return true
 }
 
 /*==================== TRANG ====================*/
@@ -1207,7 +1500,7 @@ function renderLogin(error) {
                     <ol class="steps">
                         <li>Mở <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens → Generate new token</a>.</li>
                         <li><strong>Repository access</strong>: Only select repositories → <code>travel</code>. Đặt thời hạn (vd. 90 ngày).</li>
-                        <li><strong>Permissions → Repository</strong>: <code>Contents</code> và <code>Pull requests</code> = Read and write; nên thêm <code>Commit statuses</code> = Read-only để xem PR đã kiểm tra xong chưa.</li>
+                        <li><strong>Permissions → Repository</strong>: <code>Contents</code>, <code>Pull requests</code> và <code>Issues</code> = Read and write (Issues để duyệt ảnh người đọc); <code>Commit statuses</code> = Read-only để xem PR đã kiểm tra xong chưa.</li>
                         <li>Bấm Generate, chép token (bắt đầu bằng <code>github_pat_</code>) và dán vào ô trên. Không gửi token cho ai khác.</li>
                     </ol>
                 </details>
@@ -1269,6 +1562,7 @@ function renderDashboard() {
             ${attention.length ? `<ul class="attention">${attention.map(({ x, h }) => `<li><a href="#/edit/${x.id}"><img src="${esc(thumbUrl(x.hero))}" alt="" loading="lazy"><span><strong>${esc(x.name)}</strong><span class="chips">${healthChips(h, { ok: false })}</span></span></a></li>`).join('')}</ul>` : '<p class="empty">Mọi điểm đến đều đủ bản dịch và dữ liệu mới.</p>'}
         </section>`
     refreshPrs('dash-prs')
+    loadPhotos().then(renderShellCount).catch(() => {})
 }
 
 const DEST_FILTERS = {
@@ -1356,10 +1650,7 @@ function iconDatalist() {
 
 /*---------- Trình sửa: lỗi theo tab ----------*/
 function errorTab(msg) {
-    if (state.mode === 'site') {
-        const m = msg.match(/^Mùa (\d+)/)
-        return m ? `s${Number(m[1]) - 1}` : 'general'
-    }
+    if (MODES[state.mode]) return MODES[state.mode].errorTab(msg)
     const rules = [[/^(Mã|Thông tin chung)/, 'info'], [/^Ảnh/, 'images'], [/^(Ẩm thực|Hoạt động)/, 'food'], [/^Lịch trình/, 'plan'],
         [/^(Quán|Lưu trú)/, 'places'], [/^Điểm tham quan/, 'sights'], [/^Bản dịch/, 'tr']]
     const hit = rules.find(([re]) => re.test(msg))
@@ -1367,7 +1658,7 @@ function errorTab(msg) {
 }
 
 function workingCopy() {
-    if (state.mode === 'site') return fromEditableSite(state.bundle.site)
+    if (MODES[state.mode]) return MODES[state.mode].working(state.bundle)
     const w = clone(state.bundle)
     cleanBundle(w)
     return w
@@ -1375,7 +1666,7 @@ function workingCopy() {
 
 function computeErrors() {
     const w = workingCopy()
-    return state.mode === 'site' ? validateSite(w) : validate(w)
+    return MODES[state.mode] ? MODES[state.mode].validate(w) : validate(w)
 }
 
 function errorsByTab(errors) {
@@ -1408,7 +1699,7 @@ function saveStatusHtml() {
 }
 
 /*---------- Trình sửa: bản nháp tự lưu trên trình duyệt ----------*/
-const draftKey = () => `vt-admin-draft:${state.mode === 'site' ? 'site' : state.isNew ? 'new' : `edit:${state.id}`}`
+const draftKey = () => `vt-admin-draft:${MODES[state.mode] ? state.mode : state.isNew ? 'new' : `edit:${state.id}`}`
 function readDraft() {
     try { return JSON.parse(localStorage.getItem(draftKey()) || 'null') } catch { return null }
 }
@@ -1438,7 +1729,7 @@ function markDirty() {
 /*---------- Trình sửa ----------*/
 function renderEditor() {
     const b = state.bundle
-    const isSite = state.mode === 'site'
+    const mode = MODES[state.mode]
     const allTabs = currentTabs()
     if (!allTabs[state.tab]) state.tab = Object.keys(allTabs)[0]
     state.errors = computeErrors()
@@ -1446,29 +1737,28 @@ function renderEditor() {
     const tabs = Object.entries(allTabs).map(([key, t]) => {
         const n = (by[key] || []).length
         return `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === state.tab}">${esc(t.label)}${n ? `<span class="tab__count${state.showErrors ? ' tab__count--bad' : ''}">${n}</span>` : ''}</button>`
-    }).join('') + (isSite ? '<button type="button" class="tab--add" data-season-add>＋ Thêm mùa</button>' : '')
-    const title = isSite ? 'Giao diện & mùa' : state.isNew ? 'Thêm điểm đến mới' : b.dest.name
+    }).join('') + (mode ? mode.extraTab : '')
+    const title = mode ? mode.label : state.isNew ? 'Thêm điểm đến mới' : b.dest.name
     const tabErrors = state.showErrors && by[state.tab] ? `<div class="errors"><strong>Cần sửa trong tab này:</strong><ul>${by[state.tab].map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : ''
     const others = state.showErrors ? Object.keys(by).filter(t => t !== state.tab && allTabs[t]) : []
     const draft = state.draft ? `<div class="notice">
             <span>Có bản nháp chưa đăng lưu lúc ${fmtDate(state.draft.savedAt)}${state.draft.baseSha !== state.baseSha ? ' (trên dữ liệu cũ hơn hiện tại)' : ''}.</span>
             <button type="button" class="btn btn--sm" data-draft="restore">Khôi phục nháp</button>
             <button type="button" class="btn btn--ghost btn--sm" data-draft="discard">Bỏ nháp</button></div>` : ''
-    const view = !isSite && !state.isNew ? `<a class="btn btn--ghost btn--sm" href="../diem-den/${esc(b.dest.id)}/index.html" target="_blank" rel="noopener">Xem trên site ↗</a>`
-        : isSite ? `<a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener">Xem trang chủ ↗</a>` : ''
-    renderShell(isSite ? [['Tổng quan', '#/'], ['Giao diện & mùa']] : [['Tổng quan', '#/'], ['Điểm đến', '#/dest'], [state.isNew ? 'Thêm mới' : b.dest.name]], view)
+    const view = mode ? mode.view : `${state.isNew ? '' : `<a class="btn btn--ghost btn--sm" href="../diem-den/${esc(b.dest.id)}/index.html" target="_blank" rel="noopener">Trang hiện tại ↗</a>`}<button type="button" class="btn btn--sm" data-preview>👁 Xem trước</button>`
+    renderShell(mode ? [['Tổng quan', '#/'], [mode.label]] : [['Tổng quan', '#/'], ['Điểm đến', '#/dest'], [state.isNew ? 'Thêm mới' : b.dest.name]], view)
     $('#app').innerHTML = `
         <div class="page-head page-head--editor">
-            ${!isSite && !state.isNew && b.dest.hero ? `<img class="page-head__img" src="${esc(thumbUrl(b.dest.hero))}" alt="">` : ''}
+            ${!mode && !state.isNew && b.dest.hero ? `<img class="page-head__img" src="${esc(thumbUrl(b.dest.hero))}" alt="">` : ''}
             <div><h1>${esc(title)}</h1>
-            <p class="muted">${isSite ? 'Màu giao diện, slogan, ảnh bìa trang chủ và các mùa / chiến dịch tự đổi theo ngày.' : state.isNew ? 'Điền đủ các tab – số đỏ trên tab là mục còn thiếu.' : `${esc(b.dest.id)} · ${esc(b.dest.province)}`}</p></div>
+            <p class="muted">${mode ? mode.desc : state.isNew ? 'Điền đủ các tab – số đỏ trên tab là mục còn thiếu.' : `${esc(b.dest.id)} · ${esc(b.dest.province)}`}</p></div>
         </div>
         ${draft}
         <div class="tabs" role="tablist">${tabs}</div>
         ${tabErrors}
         ${others.length ? `<p class="muted small">Còn lỗi ở: ${others.map(t => `<button type="button" class="link" data-tab="${t}">${esc(allTabs[t].label)} (${by[t].length})</button>`).join(', ')}</p>` : ''}
         <div class="card" id="tab-body">${allTabs[state.tab].fields().map(field).join('')}</div>
-        ${isSite ? linkDatalist() : iconDatalist()}
+        ${mode ? mode.datalist() : iconDatalist()}
         <div class="savebar">
             <span class="savebar__status" id="save-status">${saveStatusHtml()}</span>
             <span class="muted small savebar__hint">Ctrl + S</span>
@@ -1545,8 +1835,9 @@ function lineDiff(oldText, newText) {
     return { lines: out, added: ops.filter(o => o[0] === '+').length, removed: ops.filter(o => o[0] === '-').length }
 }
 
-function openModal(html) {
+function openModal(html, size = '') {
     $('#modal-box').innerHTML = html
+    $('#modal-box').className = `modal__box${size ? ` modal__box--${size}` : ''}`
     $('#modal').hidden = false
     document.body.classList.add('no-scroll')
     $('#modal-box').querySelector('textarea, button')?.focus()
@@ -1570,7 +1861,7 @@ function openReview() {
         return
     }
     const w = workingCopy()
-    const changed = state.mode === 'site' ? buildSiteFiles(w) : buildFiles(w)
+    const changed = MODES[state.mode] ? MODES[state.mode].files(w) : buildFiles(w)
     const files = Object.keys(changed)
     if (!files.length) {
         toast('Không có thay đổi nào so với dữ liệu hiện tại.', 4000)
@@ -1591,18 +1882,14 @@ function openReview() {
 }
 
 async function confirmSave(btn) {
-    const isSite = state.mode === 'site'
+    const mode = MODES[state.mode]
     const working = workingCopy()
     btn.disabled = true
     btn.innerHTML = '<span class="spin"></span> Đang tạo Pull Request…'
     try {
         const note = $('#save-note').value.trim()
-        const pr = isSite
-            ? await createPullRequest(buildSiteFiles(working), {
-                title: 'Cập nhật giao diện & mùa',
-                slug: 'giao-dien',
-                summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${working.seasons.length} mùa (${working.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).`,
-            }, note)
+        const pr = mode
+            ? await createPullRequest(mode.files(working), mode.pr(working), note)
             : await saveAsPullRequest(working, note)
         clearDraft()
         closeModal()
@@ -1616,11 +1903,150 @@ async function confirmSave(btn) {
     }
 }
 
+/*---------- Tìm ảnh trên Wikimedia Commons (gọi thẳng API từ trình duyệt, origin=*) ----------*/
+const COMMONS_API = 'https://commons.wikimedia.org/w/api.php'
+const MIN_WIDTH = 1200
+const FREE_LICENSE = /^(CC BY(-SA)?( \d\.\d)?|CC0|Public domain|PD.*)$/i
+const stripHtml = html => String(html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+
+async function commonsSearch(query, offset = 0) {
+    const params = new URLSearchParams({
+        action: 'query', format: 'json', origin: '*', generator: 'search', gsrsearch: `${query} filetype:bitmap`,
+        gsrnamespace: '6', gsrlimit: '40', gsroffset: String(offset), prop: 'imageinfo',
+        iiprop: 'size|url|extmetadata', iiurlwidth: '360', iiextmetadatafilter: 'LicenseShortName|ImageDescription|Artist',
+    })
+    const res = await fetch(`${COMMONS_API}?${params}`)
+    if (!res.ok) throw new Error(`Wikimedia Commons trả lỗi ${res.status}`)
+    const data = await res.json()
+    const items = Object.values(data.query?.pages || {}).sort((a, b) => a.index - b.index).map(p => {
+        const info = p.imageinfo?.[0] || {}
+        const meta = info.extmetadata || {}
+        const license = stripHtml(meta.LicenseShortName?.value)
+        return {
+            file: p.title.replace(/^File:/, ''), width: info.width, height: info.height, thumb: info.thumburl, license,
+            artist: stripHtml(meta.Artist?.value).slice(0, 60), desc: stripHtml(meta.ImageDescription?.value).slice(0, 120),
+            ok: info.width >= MIN_WIDTH && FREE_LICENSE.test(license),
+        }
+    })
+    return { items, next: data.continue?.gsroffset }
+}
+
+function imgCard(x) {
+    const s = state.imgSearch
+    return `<figure class="img-card${x.ok ? '' : ' img-card--warn'}">
+        <img src="${esc(x.thumb)}" alt="" loading="lazy">
+        <figcaption>
+            <strong title="${esc(x.file)}">${esc(x.file)}</strong>
+            <small>${x.width}×${x.height}px · ${esc(x.license || 'không rõ giấy phép')}${x.artist ? ` · ${esc(x.artist)}` : ''}</small>
+            ${x.desc ? `<small class="muted">${esc(x.desc)}</small>` : ''}
+            ${x.ok ? '' : `<small class="text-bad">${x.width < MIN_WIDTH ? 'Ảnh nhỏ hơn 1200px' : 'Giấy phép không tự do'} – không nên dùng</small>`}
+        </figcaption>
+        <div class="img-card__actions">
+            <button type="button" class="btn btn--sm" data-img-pick="${esc(x.file)}">Chọn</button>
+            ${s.multi ? `<button type="button" class="btn btn--ghost btn--sm" data-img-add="${esc(x.file)}" title="Thêm làm ảnh dự phòng">+ Dự phòng</button>` : ''}
+            <a class="btn btn--ghost btn--sm" href="${commonsPage(x.file)}" target="_blank" rel="noopener">↗</a>
+        </div>
+    </figure>`
+}
+
+function renderImgResults() {
+    const s = state.imgSearch
+    const shown = s.items.filter(x => !s.onlyGood || x.ok)
+    $('#img-results').innerHTML = s.loading && !s.items.length ? '<p class="loading"><span class="spin"></span> Đang tìm…</p>'
+        : s.error ? `<p class="errors">${esc(s.error)}</p>`
+            : shown.length ? shown.map(imgCard).join('') : '<p class="empty">Không có ảnh phù hợp – thử từ khóa tiếng Anh hoặc tên không dấu.</p>'
+    $('#img-more').hidden = !s.next || s.loading
+    $('#img-count').textContent = s.items.length ? `${shown.length} ảnh phù hợp / ${s.items.length} kết quả` : ''
+}
+
+async function runImgSearch(more = false) {
+    const s = state.imgSearch
+    if (!s.query.trim()) return
+    s.loading = true
+    s.error = ''
+    if (!more) { s.items = []; s.next = 0 }
+    renderImgResults()
+    try {
+        const { items, next } = await commonsSearch(s.query, more ? s.next : 0)
+        s.items.push(...items)
+        s.next = next
+    } catch (err) {
+        s.error = `Không tìm được: ${err.message}`
+    }
+    s.loading = false
+    renderImgResults()
+}
+
+function openImgSearch(path, multi, query) {
+    state.imgSearch = { path, multi, query, items: [], next: 0, onlyGood: true, loading: false, error: '' }
+    openModal(`
+        <div class="modal__head"><h2 id="modal-title">Tìm ảnh trên Wikimedia Commons</h2><button type="button" class="icon-btn" data-modal-close aria-label="Đóng">✕</button></div>
+        <form class="img-search" id="img-search-form">
+            <input type="search" id="img-q" value="${esc(query)}" placeholder="vd. Hoi An lantern, Bánh xèo" aria-label="Từ khóa">
+            <button type="submit" class="btn">Tìm</button>
+        </form>
+        <div class="img-search__opts">
+            <label class="checks"><input type="checkbox" id="img-good" checked> Chỉ ảnh ≥ 1200px, giấy phép tự do (CC BY / CC BY-SA / CC0)</label>
+            <span class="muted small" id="img-count"></span>
+        </div>
+        <p class="muted small">Chọn ảnh đúng nội dung (đúng món, đúng địa điểm). Sau khi đăng, ảnh được tự tải về site và ghi nguồn tác giả.</p>
+        <div class="img-grid" id="img-results"></div>
+        <p class="center"><button type="button" class="btn btn--ghost" id="img-more" hidden>Xem thêm kết quả</button></p>`)
+    $('#img-search-form').addEventListener('submit', e => {
+        e.preventDefault()
+        state.imgSearch.query = $('#img-q').value
+        runImgSearch()
+    })
+    $('#img-good').addEventListener('change', e => { state.imgSearch.onlyGood = e.target.checked; renderImgResults() })
+    $('#img-more').addEventListener('click', () => runImgSearch(true))
+    runImgSearch()
+}
+
+/* Chọn ảnh: ô một ảnh → thay; ô nhiều ảnh → đưa lên đầu (hoặc thêm cuối làm dự phòng) */
+function pickImage(file, asFallback) {
+    const { path, multi } = state.imgSearch
+    if (multi) {
+        const cur = get(state.bundle, path)
+        const list = (Array.isArray(cur) ? cur : String(cur || '').split('|')).map(x => x.trim()).filter(x => x && x !== file)
+        set(state.bundle, path, (asFallback ? [...list, file] : [file, ...list]).join(' | '))
+    } else set(state.bundle, path, file)
+    markDirty()
+    closeModal()
+    rerenderTab()
+    toast(asFallback ? 'Đã thêm ảnh dự phòng.' : 'Đã chọn ảnh.', 2500, 'ok')
+}
+
+/*---------- Xem trước trang điểm đến (destination.html dựng trang từ bản nháp – assets/js/preview.js) ----------*/
+function openPreview() {
+    const w = workingCopy()
+    if (!ID_RE.test(w.dest.id) || !w.dest.name) {
+        toast('Nhập mã và tên điểm đến (tab Thông tin chung) trước khi xem trước.', 4000, 'error')
+        return
+    }
+    try {
+        localStorage.setItem('vt-admin-preview', JSON.stringify({ dest: w.dest, plan: w.plan, place: w.place, sights: w.sights }))
+    } catch {
+        toast('Trình duyệt chặn lưu dữ liệu tạm – không xem trước được.', 5000, 'error')
+        return
+    }
+    const url = `../destination.html?id=${encodeURIComponent(w.dest.id)}&preview=1`
+    openModal(`
+        <div class="modal__head"><h2 id="modal-title">Xem trước: ${esc(w.dest.name)}</h2>
+            <div class="preview-tools">
+                <div class="seg" role="group" aria-label="Kích thước"><button type="button" data-device="desktop" aria-pressed="true">Máy tính</button><button type="button" data-device="phone" aria-pressed="false">Điện thoại</button></div>
+                <a class="btn btn--ghost btn--sm" href="${url}" target="_blank" rel="noopener">Mở tab mới ↗</a>
+                <button type="button" class="icon-btn" data-modal-close aria-label="Đóng">✕</button>
+            </div>
+        </div>
+        <p class="muted small">Trang dựng từ dữ liệu đang sửa (tiếng Việt). Ảnh mới hiện từ Wikimedia Commons cho tới khi được tải về site sau khi đăng.${state.errors.length ? ` Còn ${state.errors.length} mục cần điền – phần thiếu có thể hiện trống.` : ''}</p>
+        <div class="preview-frame" id="preview-frame"><iframe src="${url}" title="Xem trước trang điểm đến"></iframe></div>`, 'wide')
+}
+
 /*---------- Điều hướng ----------*/
 function openEditor(mode, id, isNew) {
     Object.assign(state, { mode, id, isNew, dirty: false, errors: [], showErrors: false, open: new Map(), draftSavedAt: null })
-    state.tab = mode === 'site' ? 'general' : 'info'
-    state.bundle = mode === 'site' ? { site: toEditableSite(state.data.site) } : isNew ? newBundle() : loadBundle(id)
+    state.tab = MODES[mode] ? MODES[mode].firstTab : 'info'
+    state.bundle = MODES[mode] ? MODES[mode].open() : isNew ? newBundle() : loadBundle(id)
     const draft = state.bundle && readDraft()
     state.draft = draft && JSON.stringify(draft.bundle) !== JSON.stringify(state.bundle) ? draft : null
 }
@@ -1639,8 +2065,9 @@ function render() {
     const r = route()
     const path = r.split('?')[0]
     const edit = path.match(/^\/edit\/([a-z0-9-]+)$/)
-    if (path === '/site') {
-        if (state.mode !== 'site' || !state.bundle) openEditor('site', null, false)
+    const modeKey = Object.keys(MODES).find(k => MODES[k].route === path)
+    if (modeKey) {
+        if (state.mode !== modeKey || !state.bundle) openEditor(modeKey, null, false)
         return renderEditor()
     }
     if (path === '/new' || edit) {
@@ -1656,6 +2083,7 @@ function render() {
     Object.assign(state, { bundle: null, mode: null, id: null })
     if (path === '/dest') return renderList()
     if (path === '/prs') return renderPrsPage()
+    if (path === '/photos') return renderPhotosPage()
     return renderDashboard()
 }
 
@@ -1749,6 +2177,20 @@ document.addEventListener('click', async e => {
         return
     }
     if (t.closest('#reload-prs')) { state.prs = null; renderPrsPage(); return }
+    if (t.closest('#reload-photos')) { renderPhotosPage(); return }
+    const photoBtn = t.closest('[data-photo-approve], [data-photo-reject]')
+    if (photoBtn) {
+        photoBtn.disabled = true
+        try {
+            const done = photoBtn.dataset.photoApprove ? await approvePhoto(Number(photoBtn.dataset.photoApprove)) : await rejectPhoto(Number(photoBtn.dataset.photoReject))
+            if (done) renderPhotosPage()
+            else photoBtn.disabled = false
+        } catch (err) {
+            photoBtn.disabled = false
+            toast(err.status === 403 ? 'Token cần thêm quyền Issues: Read and write.' : err.message, 6000, 'error')
+        }
+        return
+    }
     const merge = t.closest('[data-pr-merge]')
     const close = t.closest('[data-pr-close]')
     if (merge || close) {
@@ -1762,6 +2204,40 @@ document.addEventListener('click', async e => {
         }
         btn.disabled = false
         render()
+        return
+    }
+    if (t.closest('[data-preview]') && state.bundle) { openPreview(); return }
+    const device = t.closest('[data-device]')
+    if (device) {
+        $('#preview-frame').classList.toggle('preview-frame--phone', device.dataset.device === 'phone')
+        document.querySelectorAll('[data-device]').forEach(b => b.setAttribute('aria-pressed', String(b === device)))
+        return
+    }
+    const imgSearch = t.closest('[data-img-search]')
+    if (imgSearch && state.bundle) {
+        openImgSearch(JSON.parse(imgSearch.dataset.imgSearch), !!imgSearch.dataset.multi, imgSearch.dataset.query || '')
+        return
+    }
+    const imgPick = t.closest('[data-img-pick], [data-img-add]')
+    if (imgPick && state.imgSearch) {
+        pickImage(imgPick.dataset.imgPick || imgPick.dataset.imgAdd, !!imgPick.dataset.imgAdd)
+        return
+    }
+    const verify = t.closest('[data-verify]')
+    if (verify && state.bundle) {
+        set(state.bundle, JSON.parse(verify.dataset.verify), MONTH())
+        markDirty()
+        rerenderTab()
+        return
+    }
+    const verifyAll = t.closest('[data-verify-all]')
+    if (verifyAll && state.bundle) {
+        const b = state.bundle
+        const list = verifyAll.dataset.verifyAll === 'places' ? [...b.place.eats, ...b.place.cafes] : b.sights.flat()
+        list.forEach(x => { x.updated = MONTH() })
+        markDirty()
+        rerenderTab()
+        toast(`Đã đánh dấu ${list.length} mục là đã kiểm tra tháng ${MONTH()}.`, 3000, 'ok')
         return
     }
     const draftBtn = t.closest('[data-draft]')
@@ -1857,7 +2333,7 @@ window.addEventListener('hashchange', () => {
     if (state.dirty && state.bundle) {
         clearTimeout(saveDraftSoon.timer)
         try { localStorage.setItem(draftKey(), JSON.stringify({ bundle: state.bundle, savedAt: Date.now(), baseSha: state.baseSha })) } catch { /* bỏ qua */ }
-        const here = state.mode === 'site' ? '#/site' : state.isNew ? '#/new' : `#/edit/${state.id}`
+        const here = MODES[state.mode] ? `#${MODES[state.mode].route}` : state.isNew ? '#/new' : `#/edit/${state.id}`
         if (!location.hash.startsWith(here)) {
             state.dirty = false
             toast('Thay đổi chưa đăng đã được lưu nháp trên máy này.', 3500)

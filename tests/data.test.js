@@ -747,3 +747,16 @@ test('giao diện & mùa: màu đủ tương phản, chọn mùa theo ngày, tra
         else assert.ok(html.includes("classList.add('dark-theme')"), `${rel}: thiếu script chế độ tối`)
     }
 })
+
+test('duyệt ảnh người đọc: chỉ nhận bình luận duyệt hợp lệ, ảnh đính kèm của GitHub, tối đa 3 ảnh', () => {
+    const { parseApproval } = require('../tools/approve-photo')
+    const enc = o => `Đã duyệt\n<!-- duyet-anh:${Buffer.from(JSON.stringify(o)).toString('base64')} -->`
+    const img = n => `https://github.com/user-attachments/assets/0f1e2d3c-aaaa-bbbb-cccc-12345678900${n}`
+    const ok = parseApproval(enc({ dest: 'hoi-an', caption: ' Phố cổ --> tối ', author: 'An', images: [img(1), 'https://evil.example/a.jpg', img(2), img(3), img(4)] }))
+    assert.equal(ok.caption, 'Phố cổ --> tối')
+    assert.deepEqual(ok.images, [img(1), img(2), img(3)], 'bỏ ảnh ngoài GitHub, tối đa 3 ảnh')
+    assert.throws(() => parseApproval('bình luận thường'), /duyet-anh/)
+    assert.throws(() => parseApproval(enc({ dest: '../etc', caption: 'a', author: 'b', images: [img(1)] })), /điểm đến/)
+    assert.throws(() => parseApproval(enc({ dest: 'hoi-an', caption: '', author: 'b', images: [img(1)] })), /chú thích/)
+    assert.throws(() => parseApproval(enc({ dest: 'hoi-an', caption: 'a', author: 'b', images: ['http://x/y.jpg'] })), /ảnh hợp lệ/)
+})
