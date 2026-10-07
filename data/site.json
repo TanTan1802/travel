@@ -1,0 +1,245 @@
+{
+  "$schema": "./schema/site.schema.json",
+  "theme": {
+    "hue": 190,
+    "accentHue": 38
+  },
+  "hero": {
+    "subtitle": {
+      "vi": "Việt Nam – Vẻ đẹp bất tận",
+      "en": "Vietnam – Endless beauty",
+      "ko": "베트남 – 끝없는 아름다움",
+      "zh": "越南 – 美不胜收",
+      "ja": "ベトナム – 尽きない美しさ"
+    },
+    "title": {
+      "vi": "Khám Phá\nDanh Thắng *Tuyệt Đẹp\nCủa Việt Nam*",
+      "en": "Discover The\nMost *Stunning Wonders\nOf Vietnam*",
+      "ko": "만나 보세요\n베트남의 *가장 아름다운\n절경을*",
+      "zh": "探索\n越南 *最壮丽的\n名胜美景*",
+      "ja": "ベトナムの\n息をのむ *絶景を\n巡ろう*"
+    },
+    "image": [
+      "Halong Bay in Vietnam.jpg",
+      "Ha Long Bay, Vietnam, Islands.jpg",
+      "Ha Long Bay, sunset.jpg"
+    ],
+    "alt": {
+      "vi": "Vịnh Hạ Long",
+      "en": "Ha Long Bay",
+      "ko": "하롱베이",
+      "zh": "下龙湾",
+      "ja": "ハロン湾"
+    }
+  },
+  "featured": [
+    "vinh-ha-long",
+    "hoi-an",
+    "sa-pa",
+    "phu-quoc",
+    "ninh-binh",
+    "da-nang",
+    "ha-giang"
+  ],
+  "featuredTitle": {
+    "vi": "Những điểm đến\nnổi bật nhất",
+    "en": "The most\npopular destinations",
+    "ko": "가장\n인기 있는 여행지",
+    "zh": "最\n受欢迎的目的地",
+    "ja": "いちばん\n人気の旅行先"
+  },
+  "seasons": [
+    {
+      "id": "tet-2027",
+      "name": "Tết Đinh Mùi 2027",
+      "enabled": true,
+      "from": "2027-01-25",
+      "to": "2027-02-14",
+      "theme": {
+        "hue": 355,
+        "accentHue": 40
+      },
+      "hero": {
+        "subtitle": {
+          "vi": "Xuân Đinh Mùi 2027",
+          "en": "Lunar New Year 2027",
+          "ko": "2027 설날",
+          "zh": "2027 春节",
+          "ja": "2027 年テト（旧正月）"
+        },
+        "title": {
+          "vi": "Du Xuân\nĐón Tết *Khắp Ba Miền\nViệt Nam*",
+          "en": "Celebrate Tet\nAcross *All Three\nRegions*",
+          "ko": "설날 여행\n베트남 *세 지역의\n봄맞이*",
+          "zh": "春节出游\n走遍 *越南\n三大区域*",
+          "ja": "テトの旅\nベトナム *北・中・南の\n新春*"
+        },
+        "image": [
+          "Lanterns in Hoi An 4.jpg",
+          "Hội An, Ancient Town, 2020-01 CN-06.jpg"
+        ],
+        "alt": {
+          "vi": "Đèn lồng phố cổ Hội An",
+          "en": "Lanterns in Hoi An Ancient Town",
+          "ko": "호이안 구시가지의 등불",
+          "zh": "会安古城的灯笼",
+          "ja": "ホイアン旧市街のランタン"
+        }
+      },
+      "banner": {
+        "text": {
+          "vi": "Tết Đinh Mùi 6/2/2027 – xem lễ hội và lên kế hoạch du xuân sớm",
+          "en": "Tet falls on 6 Feb 2027 – see festivals and plan your spring trip early",
+          "ko": "2027년 설날은 2월 6일 – 축제를 보고 일찍 계획하세요",
+          "zh": "2027 年春节为 2 月 6 日 – 查看节庆，提早规划春游",
+          "ja": "2027 年のテトは 2 月 6 日 – 祭りをチェックして早めに計画を"
+        },
+        "link": "thang/2/index.html"
+      },
+      "featured": [
+        "ha-noi",
+        "hoi-an",
+        "hue",
+        "ninh-binh",
+        "da-lat",
+        "sai-gon",
+        "can-tho"
+      ],
+      "featuredTitle": {
+        "vi": "Du xuân\nđón Tết",
+        "en": "Where to go\nfor Tet",
+        "ko": "설날에\n가기 좋은 곳",
+        "zh": "春节\n好去处",
+        "ja": "テトに\nおすすめの旅先"
+      }
+    },
+    {
+      "id": "he-bien",
+      "name": "Mùa hè biển đảo",
+      "enabled": true,
+      "from": "05-15",
+      "to": "08-20",
+      "theme": {
+        "hue": 205,
+        "accentHue": 28
+      },
+      "hero": {
+        "subtitle": {
+          "vi": "Mùa hè rực nắng",
+          "en": "Sunny summer",
+          "ko": "햇살 가득한 여름",
+          "zh": "阳光夏日",
+          "ja": "太陽の夏"
+        },
+        "title": {
+          "vi": "Hè Này\nRa *Biển Đảo\nViệt Nam*",
+          "en": "This Summer\nHead To *Vietnam’s\nIslands*",
+          "ko": "이번 여름엔\n베트남 *바다와\n섬으로*",
+          "zh": "这个夏天\n去 *越南的\n海岛*",
+          "ja": "この夏は\nベトナムの *海と\n島へ*"
+        },
+        "image": [
+          "Nha Trang Beach, Vietnam.jpg",
+          "Pulo Condore island beach.jpg"
+        ],
+        "alt": {
+          "vi": "Biển Nha Trang",
+          "en": "Nha Trang beach",
+          "ko": "나트랑 해변",
+          "zh": "芽庄海滩",
+          "ja": "ニャチャンのビーチ"
+        }
+      },
+      "banner": {
+        "text": {
+          "vi": "Tháng 5 – 8 biển miền Trung và miền Bắc đẹp nhất – xem các điểm biển đảo",
+          "en": "May – August is best for the central and northern coast – see beach destinations",
+          "ko": "5 – 8월은 중부·북부 바다가 가장 아름다워요 – 바다 여행지 보기",
+          "zh": "5 – 8 月中部和北部海滨最美 – 查看海岛目的地",
+          "ja": "5 – 8 月は中部・北部の海がベスト – 海と島の旅先を見る"
+        },
+        "link": "chu-de/bien/index.html"
+      },
+      "featured": [
+        "nha-trang",
+        "quy-nhon",
+        "con-dao",
+        "co-to",
+        "cat-ba",
+        "ly-son",
+        "phu-yen"
+      ],
+      "featuredTitle": {
+        "vi": "Biển đảo\nđẹp nhất mùa hè",
+        "en": "Best beaches\nfor summer",
+        "ko": "여름에\n가장 좋은 바다",
+        "zh": "夏季\n最美海岛",
+        "ja": "夏に\nおすすめの海"
+      }
+    },
+    {
+      "id": "lua-chin",
+      "name": "Mùa lúa chín Tây Bắc",
+      "enabled": true,
+      "from": "09-01",
+      "to": "10-20",
+      "theme": {
+        "hue": 28,
+        "accentHue": 38
+      },
+      "hero": {
+        "subtitle": {
+          "vi": "Mùa vàng Tây Bắc",
+          "en": "Golden season in the northwest",
+          "ko": "서북부의 황금 계절",
+          "zh": "西北金秋",
+          "ja": "北西部の黄金の季節"
+        },
+        "title": {
+          "vi": "Ngắm\nMùa Lúa *Chín Vàng\nRuộng Bậc Thang*",
+          "en": "See The\nGolden *Rice Terraces\nAt Harvest*",
+          "ko": "황금빛\n*계단식 논의\n수확철*",
+          "zh": "欣赏\n金色 *梯田\n丰收季*",
+          "ja": "黄金色に輝く\n*棚田の\n稲刈りの季節*"
+        },
+        "image": [
+          "Mu Cang Chai 02.JPG",
+          "Mu Cang Chai.jpg"
+        ],
+        "alt": {
+          "vi": "Ruộng bậc thang Mù Cang Chải",
+          "en": "Mu Cang Chai rice terraces",
+          "ko": "무깡짜이 계단식 논",
+          "zh": "木康柴梯田",
+          "ja": "ムーカンチャイの棚田"
+        }
+      },
+      "banner": {
+        "text": {
+          "vi": "Lúa chín Mù Cang Chải, Hoàng Su Phì từ giữa tháng 9 đến đầu tháng 10 – xem lịch trình",
+          "en": "Rice ripens in Mu Cang Chai and Hoang Su Phi from mid-September to early October – see the itinerary",
+          "ko": "9월 중순 – 10월 초 무깡짜이 벼가 익어요 – 일정 보기",
+          "zh": "9 月中旬至 10 月初木康柴稻谷成熟 – 查看行程",
+          "ja": "9 月中旬 – 10 月上旬はムーカンチャイの稲刈り – 旅程を見る"
+        },
+        "link": "diem-den/mu-cang-chai/index.html"
+      },
+      "featured": [
+        "mu-cang-chai",
+        "ha-giang",
+        "sa-pa",
+        "mai-chau",
+        "pu-luong",
+        "ban-gioc",
+        "binh-lieu"
+      ],
+      "featuredTitle": {
+        "vi": "Mùa vàng\nđẹp nhất",
+        "en": "Best for\nthe golden season",
+        "ko": "황금 계절에\n가기 좋은 곳",
+        "zh": "金秋\n最美去处",
+        "ja": "黄金の季節に\nおすすめ"
+      }
+    }
+  ]
+}

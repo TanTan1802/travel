@@ -37,6 +37,11 @@ function collectWikiFiles() {
         d.foods.forEach(f => add(f.file, `${d.id} (món: ${f.name})`))
     }
 
+    /* Ảnh bìa trang chủ mặc định và theo mùa (data/site.json) */
+    const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'))
+    add(site.hero.image, 'trang chủ (ảnh bìa)')
+    site.seasons.forEach(s => s.hero && add(s.hero.image, `trang chủ (mùa ${s.id})`))
+
     const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
     for (const [, attr] of html.matchAll(/data-wiki="([^"]+)"/g)) {
         attr.split('|').forEach(f => add(f.replace(/&quot;/g, '"'), 'index.html'))

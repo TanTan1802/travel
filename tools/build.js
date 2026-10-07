@@ -18,6 +18,7 @@ const path = require('path')
 const crypto = require('crypto')
 const esbuild = require('esbuild')
 const { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts } = require('./lib')
+const { DEFAULT_THEME, pickText, sloganHtml } = require('./theme')
 
 const PAGE_DIR = 'diem-den'
 const PLANNER_DIR = 'ke-hoach'
@@ -70,6 +71,91 @@ const write = (rel, content) => {
 
 const escapeHtml = text => String(text)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/*==================== GIAO DIỆN & MÙA (data/site.json – đã kiểm tra bởi build-data.js) ====================*/
+const SITE_CONFIG = JSON.parse(read('data/site.json'))
+const DARK_THEME_SCRIPT = `<script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>`
+const inlineJson = value => JSON.stringify(value).replace(/</g, '\\u003c')
+
+/*
+ * Chạy ngay đầu <body> mọi trang (trước khi vẽ): chọn mùa theo ngày trên máy người xem
+ * (?season=<mã> để xem thử, ?season=none để tắt), đặt window.SEASON + màu của mùa.
+ * Mùa tắt (enabled: false) chỉ hiện khi xem thử. Mùa đứng trước được ưu tiên.
+ */
+function themeScript() {
+    const seasons = SITE_CONFIG.seasons.map(s => ({
+        i: s.id, f: s.from, t: s.to,
+        ...(s.enabled ? {} : { x: 1 }),
+        ...(s.theme ? { h: s.theme.hue, a: s.theme.accentHue } : {}),
+    }))
+    if (!seasons.length) return DARK_THEME_SCRIPT
+    return DARK_THEME_SCRIPT.replace('</script>', `\n(function(S){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},` +
+        `md=p(n.getMonth()+1)+'-'+p(n.getDate()),ymd=n.getFullYear()+'-'+md;for(var i=0;i<S.length;i++){var s=S[i];` +
+        `if(q?q[1]===s.i:!s.x&&(s.f.length>5?ymd>=s.f&&ymd<=s.t:s.f<=s.t?md>=s.f&&md<=s.t:md>=s.f||md<=s.t)){` +
+        `var r=document.documentElement,m;window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null){r.style.setProperty('--hue-color',s.h);` +
+        `r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)'}return}}})(${inlineJson(seasons)})</script>`)
+}
+
+/* Mọi trang: script màu theo mùa + màu thanh trình duyệt theo màu chủ đạo */
+function applyTheme(html) {
+    if (!html.includes(DARK_THEME_SCRIPT)) throw new Error('Mẫu HTML thiếu script chế độ tối ngay sau <body>')
+    html = html.replace(DARK_THEME_SCRIPT, themeScript())
+    const { hue } = SITE_CONFIG.theme
+    return hue === DEFAULT_THEME.hue ? html : html.replace(/(<meta name="theme-color" content=")[^"]*(">)/, `$1hsl(${hue}, 64%, 22%)$2`)
+}
+
+/* Màu mặc định khác màu gốc trong CSS (190 / 38) thì ghi đè ở cuối gói CSS */
+function themeCss() {
+    const { hue, accentHue } = SITE_CONFIG.theme
+    return hue === DEFAULT_THEME.hue && accentHue === DEFAULT_THEME.accentHue ? '' : `\n:root{--hue-color:${hue};--accent-hue:${accentHue}}`
+}
+
+/* Trang chủ: slogan, ảnh bìa, tiêu đề mục nổi bật mặc định theo ngôn ngữ */
+function applyHomeContent(html, lang) {
+    const hero = SITE_CONFIG.hero
+    const replaceOnce = (input, re, fn, what) => {
+        if (!re.test(input)) throw new Error(`home.html thiếu ${what}`)
+        return input.replace(re, fn)
+    }
+    html = replaceOnce(html, /(<span class="home__data-subtitle">)[^<]*(<\/span>)/, (m, a, b) => `${a}${escapeHtml(pickText(hero.subtitle, lang))}${b}`, 'home__data-subtitle')
+    html = replaceOnce(html, /(<h1 class="home__data-title">)[\s\S]*?(<\/h1>)/, (m, a, b) => `${a}${sloganHtml(pickText(hero.title, lang))}${b}`, 'home__data-title')
+    html = replaceOnce(html, /<img [^>]*class="home__img"[^>]*>/, tag => tag
+        .replace(/data-wiki="[^"]*"/, `data-wiki="${escapeHtml(hero.image.join('|'))}"`)
+        .replace(/alt="[^"]*"/, `alt="${escapeHtml(pickText(hero.alt, lang))}"`), 'ảnh bìa .home__img')
+    return replaceOnce(html, /(<section class="discover section" id="discover">\s*<h2 class="section__title">)[\s\S]*?(<\/h2>)/,
+        (m, a, b) => `${a}${sloganHtml(pickText(SITE_CONFIG.featuredTitle, lang))}${b}`, 'tiêu đề mục nổi bật')
+}
+
+/*
+ * Trang chủ: nội dung riêng của từng mùa (slogan, ảnh bìa, thông báo, điểm đến nổi bật) cho đúng ngôn ngữ,
+ * áp dụng ngay sau khối chữ đầu trang để không nháy nội dung mặc định. home.js đọc window.HOME_SEASON.
+ */
+function homeSeasonScript(lang, site, siteRoot) {
+    const langRoot = siteRoot + LANGS[lang].prefix
+    const seasons = {}
+    for (const s of SITE_CONFIG.seasons) {
+        const hero = s.hero || {}
+        const o = {}
+        if (hero.subtitle) o.sub = escapeHtml(pickText(hero.subtitle, lang))
+        if (hero.title) o.title = sloganHtml(pickText(hero.title, lang))
+        if (hero.image) {
+            const file = hero.image[0]
+            o.img = { wiki: hero.image.join('|'), src: site.wikiImg(file, 1920), srcset: site.wikiSrcset(file) || '', sizes: site.imageSizes(1920), alt: pickText(hero.alt || SITE_CONFIG.hero.alt, lang) }
+        }
+        if (s.banner) {
+            const link = s.banner.link || ''
+            o.promo = { text: pickText(s.banner.text, lang), href: link && (link.startsWith('https://') ? link : langRoot + link), ext: link.startsWith('https://') }
+        }
+        if (s.featured) Object.assign(o, { featured: s.featured, ft: sloganHtml(pickText(s.featuredTitle, lang)) })
+        seasons[s.id] = o
+    }
+    return `<script>window.HOME_FEATURED=${inlineJson(SITE_CONFIG.featured)};` +
+        `(function(H){var s=window.SEASON&&H[window.SEASON],q=function(c){return document.querySelector(c)},e;window.HOME_SEASON=s||null;if(!s)return;` +
+        `if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;` +
+        `if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}` +
+        `if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}` +
+        `})(${inlineJson(seasons)})</script>`
+}
 
 function truncate(text, max = 160) {
     return text.length <= max ? text : text.slice(0, text.lastIndexOf(' ', max - 1)) + '…'
@@ -327,6 +413,9 @@ function buildHome(template, lang, site) {
     const rel = homePath(lang)
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
     const cards = site.DESTINATIONS.map(d => site.destinationCard(d)).join('')
+    html = applyHomeContent(html, lang)
+        .replace('<!-- build:season --><!-- /build:season -->', `<!-- build:season -->${homeSeasonScript(lang, site, siteRoot)}<!-- /build:season -->`)
+    if (!html.includes('<!-- build:season --><script>')) throw new Error('home.html thiếu <!-- build:season --><!-- /build:season -->')
 
     html = setLangSwitch(html, lang, siteRoot, homePath)
         .replace(/<!-- build:grid -->[\s\S]*?<!-- \/build:grid -->/, `<!-- build:grid -->${cards}<!-- /build:grid -->`)
@@ -633,7 +722,7 @@ function bundleFile(files, site, pageFiles) {
 const isOwnFile = src => src.startsWith(`${DEST_DATA_DIR}/`)
 
 function bundleScripts(html, siteRoot, site) {
-    html = bundleStyles(html, siteRoot)
+    html = bundleStyles(applyTheme(html), siteRoot)
     const pageFiles = [...html.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => m[1].slice(siteRoot.length))
     /* Một chuỗi script liền nhau (cho phép chú thích HTML xen giữa – chú thích bị bỏ) */
     return html.replace(/(?:<script defer src="[^"]+"><\/script>\s*(?:<!--[\s\S]*?-->\s*)*)+/g, (run, offset) => {
@@ -664,7 +753,7 @@ function bundleStyles(html, siteRoot) {
         const trailing = run.match(/\s*$/)[0]
         const hrefs = [...run.matchAll(/href="([^"]+)"/g)].map(m => m[1])
         if (hrefs.length < 2 || !hrefs.every(h => h.startsWith(`${siteRoot}${CSS_DIR}/`))) return run
-        const code = hrefs.map(h => read(h.slice(siteRoot.length))).join('\n')
+        const code = hrefs.map(h => read(h.slice(siteRoot.length))).join('\n') + themeCss()
         const { code: min } = esbuild.transformSync(code, { loader: 'css', minify: true, legalComments: 'none', charset: 'utf8' })
         const rel = `${CSS_DIR}/site-${crypto.createHash('md5').update(min).digest('hex').slice(0, 10)}.css`
         bundles.set(rel, min)
@@ -723,6 +812,14 @@ function main() {
             explore++
         }
     }
+
+    /* Liên kết trong thông báo theo mùa phải trỏ tới trang có thật */
+    SITE_CONFIG.seasons.forEach(season => {
+        const link = season.banner && season.banner.link
+        if (link && !link.startsWith('https://') && !fs.existsSync(path.join(ROOT, link))) {
+            throw new Error(`data/site.json: mùa ${season.id} – liên kết ${link} không tồn tại`)
+        }
+    })
 
     bundles.forEach((code, rel) => write(rel, code))
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))

@@ -275,6 +275,11 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
 - **Lưu thành Pull Request**: tạo nhánh `admin/<mã>-<thời gian>` chỉ đổi đúng các file `data/*.json` liên quan.
   Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR;
   xem *Files changed* và **Merge** – Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
+- **Giao diện & mùa** (`#/site`, dữ liệu `data/site.json`): màu chủ đạo + màu nhấn (có bảng màu mẫu, xem trước sáng/tối,
+  chặn màu không đủ tương phản WCAG AA), slogan / dòng chữ nhỏ / ảnh bìa trang chủ theo 5 ngôn ngữ, danh sách điểm đến nổi bật.
+  Thêm **mùa / chiến dịch** (Tết, hè biển, lúa chín…): khoảng ngày `MM-DD` lặp hằng năm hoặc `YYYY-MM-DD` một lần;
+  trong khoảng đó site tự đổi màu mọi trang, slogan, ảnh bìa, dải thông báo có liên kết và mục nổi bật –
+  chọn theo ngày trên máy người xem nên không cần build lại. Xem thử bất kỳ mùa nào: `/?season=<mã>` (`?season=none` = mặc định).
 - Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
 
 ## Thêm điểm đến mới

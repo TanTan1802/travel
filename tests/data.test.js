@@ -722,3 +722,28 @@ test('không file nào còn sót dấu xung đột merge; sw.js và trang quản
     }
     assert.match(fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8'), /Disallow: \/admin\//, 'robots.txt phải chặn /admin/')
 })
+
+test('giao diện & mùa: màu đủ tương phản, chọn mùa theo ngày, trang chủ lấy slogan từ data/site.json, mọi trang có script mùa', () => {
+    const { contrastIssues, seasonActive, sloganHtml, pickText } = require('../tools/theme')
+    const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'))
+    for (const theme of [site.theme, ...site.seasons.filter(s => s.theme).map(s => s.theme)]) assert.deepEqual(contrastIssues(theme), [])
+    assert.ok(contrastIssues({ hue: 190, accentHue: 60 }).length > 0, 'màu nhấn vàng chanh phải bị chặn')
+
+    const wrap = { from: '12-20', to: '01-05' }
+    assert.ok(seasonActive(wrap, '2026-12-25') && seasonActive(wrap, '2027-01-03') && !seasonActive(wrap, '2027-01-06'))
+    const once = { from: '2027-01-25', to: '2027-02-14' }
+    assert.ok(seasonActive(once, '2027-02-01') && !seasonActive(once, '2028-02-01'))
+    assert.equal(sloganHtml('Khám Phá\nDanh Thắng *Tuyệt Đẹp\nCủa Việt Nam*'), 'Khám Phá <br> Danh Thắng <b>Tuyệt Đẹp <br> Của Việt Nam</b>')
+    assert.equal(sloganHtml('<script>'), '&lt;script&gt;')
+
+    for (const [lang, prefix] of [['vi', ''], ['en', 'en/'], ['ko', 'ko/'], ['zh', 'zh/'], ['ja', 'ja/']]) {
+        const html = fs.readFileSync(path.join(ROOT, `${prefix}index.html`), 'utf8')
+        assert.ok(html.includes(`<h1 class="home__data-title">${sloganHtml(pickText(site.hero.title, lang))}</h1>`), `${prefix}index.html: slogan`)
+        assert.match(html, /<!-- build:season --><script>window\.HOME_FEATURED=/, `${prefix}index.html: thiếu dữ liệu mùa`)
+    }
+    for (const rel of builtPages()) {
+        const html = fs.readFileSync(path.join(ROOT, rel), 'utf8')
+        if (site.seasons.length) assert.ok(html.includes("--hue-color',s.h)") && html.includes(`"i":"${site.seasons[0].id}"`), `${rel}: thiếu script màu theo mùa`)
+        else assert.ok(html.includes("classList.add('dark-theme')"), `${rel}: thiếu script chế độ tối`)
+    }
+})

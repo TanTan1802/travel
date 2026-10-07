@@ -12,7 +12,7 @@
         <link rel="preload" href="../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="stylesheet" href="../assets/css/site-a9cd15625d.css">
+        <link rel="stylesheet" href="../assets/css/site-bc765c7988.css">
 
         <link rel="canonical" href="https://viet-travel.congtan5918.workers.dev/ko/">
         <!-- build:alternate -->
@@ -39,7 +39,8 @@
     </head>
     <body>
         <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
-        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}
+(function(S){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},md=p(n.getMonth()+1)+'-'+p(n.getDate()),ymd=n.getFullYear()+'-'+md;for(var i=0;i<S.length;i++){var s=S[i];if(q?q[1]===s.i:!s.x&&(s.f.length>5?ymd>=s.f&&ymd<=s.t:s.f<=s.t?md>=s.f&&md<=s.t:md>=s.f||md<=s.t)){var r=document.documentElement,m;window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null){r.style.setProperty('--hue-color',s.h);r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)'}return}}})([{"i":"tet-2027","f":"2027-01-25","t":"2027-02-14","h":355,"a":40},{"i":"he-bien","f":"05-15","t":"08-20","h":205,"a":28},{"i":"lua-chin","f":"09-01","t":"10-20","h":28,"a":38}])</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../ko/index.html" class="nav__logo">Việt Travel</a>
@@ -102,6 +103,8 @@
 
                 <div class="home__container container grid">
                     <div class="home__data">
+                        <!-- Slogan, ảnh bìa, thông báo theo mùa: data/site.json (trang quản trị → Giao diện & mùa), build ghi vào đây -->
+                        <a class="home__promo" id="home-promo" hidden><i class="ri-calendar-event-line"></i> <span></span> <i class="ri-arrow-right-line"></i></a>
                         <span class="home__data-subtitle">베트남 – 끝없는 아름다움</span>
                         <h1 class="home__data-title">만나 보세요 <br> 베트남의 <b>가장 아름다운 <br> 절경을</b></h1>
                         <div class="home__actions">
@@ -109,6 +112,7 @@
                             <button type="button" class="button button--light button--flex" data-quiz-open><i class="ri-questionnaire-line"></i> 어디로 갈까요?</button>
                         </div>
                     </div>
+                    <!-- build:season --><script>window.HOME_FEATURED=["vinh-ha-long","hoi-an","sa-pa","phu-quoc","ninh-binh","da-nang","ha-giang"];(function(H){var s=window.SEASON&&H[window.SEASON],q=function(c){return document.querySelector(c)},e;window.HOME_SEASON=s||null;if(!s)return;if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}})({"tet-2027":{"sub":"2027 설날","title":"설날 여행 \u003cbr> 베트남 \u003cb>세 지역의 \u003cbr> 봄맞이\u003c/b>","img":{"wiki":"Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg","src":"../assets/img/wiki/lanterns-in-hoi-an-4-6750c0-1920.webp","srcset":"../assets/img/wiki/lanterns-in-hoi-an-4-6750c0-480.webp 480w, ../assets/img/wiki/lanterns-in-hoi-an-4-6750c0-960.webp 960w, ../assets/img/wiki/lanterns-in-hoi-an-4-6750c0-1920.webp 1920w","sizes":"100vw","alt":"호이안 구시가지의 등불"},"promo":{"text":"2027년 설날은 2월 6일 – 축제를 보고 일찍 계획하세요","href":"../ko/thang/2/index.html","ext":false},"featured":["ha-noi","hoi-an","hue","ninh-binh","da-lat","sai-gon","can-tho"],"ft":"설날에 \u003cbr> 가기 좋은 곳"},"he-bien":{"sub":"햇살 가득한 여름","title":"이번 여름엔 \u003cbr> 베트남 \u003cb>바다와 \u003cbr> 섬으로\u003c/b>","img":{"wiki":"Nha Trang Beach, Vietnam.jpg|Pulo Condore island beach.jpg","src":"../assets/img/wiki/nha-trang-beach-vietnam-4a1265-1920.webp","srcset":"../assets/img/wiki/nha-trang-beach-vietnam-4a1265-480.webp 480w, ../assets/img/wiki/nha-trang-beach-vietnam-4a1265-960.webp 960w, ../assets/img/wiki/nha-trang-beach-vietnam-4a1265-1920.webp 1920w","sizes":"100vw","alt":"나트랑 해변"},"promo":{"text":"5 – 8월은 중부·북부 바다가 가장 아름다워요 – 바다 여행지 보기","href":"../ko/chu-de/bien/index.html","ext":false},"featured":["nha-trang","quy-nhon","con-dao","co-to","cat-ba","ly-son","phu-yen"],"ft":"여름에 \u003cbr> 가장 좋은 바다"},"lua-chin":{"sub":"서북부의 황금 계절","title":"황금빛 \u003cbr> \u003cb>계단식 논의 \u003cbr> 수확철\u003c/b>","img":{"wiki":"Mu Cang Chai 02.JPG|Mu Cang Chai.jpg","src":"../assets/img/wiki/mu-cang-chai-02-8d192f-1920.webp","srcset":"../assets/img/wiki/mu-cang-chai-02-8d192f-480.webp 480w, ../assets/img/wiki/mu-cang-chai-02-8d192f-960.webp 960w, ../assets/img/wiki/mu-cang-chai-02-8d192f-1920.webp 1920w","sizes":"100vw","alt":"무깡짜이 계단식 논"},"promo":{"text":"9월 중순 – 10월 초 무깡짜이 벼가 익어요 – 일정 보기","href":"../ko/diem-den/mu-cang-chai/index.html","ext":false},"featured":["mu-cang-chai","ha-giang","sa-pa","mai-chau","pu-luong","ban-gioc","binh-lieu"],"ft":"황금 계절에 \u003cbr> 가기 좋은 곳"}})</script><!-- /build:season -->
 
                     <div class="home__social">
                         <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Facebook">
@@ -1396,6 +1400,6 @@
 
         <!--=============== DATA + PAGE JS ===============-->
         <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'ko'</script>
-        <script defer src="../assets/js/dist/6aed5e8d31.js"></script>
+        <script defer src="../assets/js/dist/be0d142856.js"></script>
     </body>
 </html>

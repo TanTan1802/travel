@@ -22,11 +22,13 @@ const FILES = {
     ko: 'data/i18n/ko.json',
     zh: 'data/i18n/zh.json',
     ja: 'data/i18n/ja.json',
+    site: 'data/site.json',
 }
 const TR_LANGS = ['en', 'ko', 'zh', 'ja']
 const LANG_NAMES = { en: 'English', ko: '한국어 (Hàn)', zh: '中文 (Trung)', ja: '日本語 (Nhật)' }
 const DAYS = 5
 const MONTH = () => new Date().toISOString().slice(0, 7)
+const SITE_URL = 'https://viet-travel.congtan5918.workers.dev/'
 
 const state = {
     token: null,
@@ -34,7 +36,8 @@ const state = {
     baseSha: null,
     texts: {},     // nội dung gốc từng file (để so sánh, chỉ commit file đổi)
     data: {},      // JSON đã parse
-    bundle: null,  // dữ liệu đang sửa của một điểm đến
+    bundle: null,  // dữ liệu đang sửa: { dest, plan, place, sights, tr } hoặc { site } (giao diện & mùa)
+    mode: null,    // 'dest' | 'site'
     id: null,
     isNew: false,
     tab: 'info',
@@ -355,7 +358,15 @@ function buildFiles(b) {
 }
 
 async function saveAsPullRequest(b, note) {
-    const changed = buildFiles(b)
+    const action = state.isNew ? 'Thêm' : 'Cập nhật'
+    return createPullRequest(buildFiles(b), {
+        title: `${action} điểm đến: ${b.dest.name}`,
+        slug: b.dest.id,
+        summary: `${action} dữ liệu điểm đến **${b.dest.name}** (\`${b.dest.id}\`) từ trang quản trị.`,
+    }, note)
+}
+
+async function createPullRequest(changed, { title, slug, summary }, note) {
     const paths = Object.keys(changed)
     if (!paths.length) throw new Error('Không có thay đổi nào so với dữ liệu hiện tại.')
     const baseCommit = await gh(`/repos/${REPO}/git/commits/${state.baseSha}`)
@@ -366,15 +377,13 @@ async function saveAsPullRequest(b, note) {
             tree: paths.map(path => ({ path, mode: '100644', type: 'blob', content: changed[path] })),
         },
     })
-    const action = state.isNew ? 'Thêm' : 'Cập nhật'
-    const title = `${action} điểm đến: ${b.dest.name}`
     const message = `${title}\n\nTạo từ trang quản trị dữ liệu (/admin) bởi ${state.user}.${note ? `\n\n${note}` : ''}`
     const commit = await gh(`/repos/${REPO}/git/commits`, { method: 'POST', body: { message, tree: tree.sha, parents: [state.baseSha] } })
     const stamp = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 12)
-    const branch = `admin/${b.dest.id}-${stamp}`
+    const branch = `admin/${slug}-${stamp}`
     await gh(`/repos/${REPO}/git/refs`, { method: 'POST', body: { ref: `refs/heads/${branch}`, sha: commit.sha } })
     const body = [
-        `${action} dữ liệu điểm đến **${b.dest.name}** (\`${b.dest.id}\`) từ trang quản trị.`,
+        summary,
         note ? `\n> ${note.replace(/\n/g, '\n> ')}` : '',
         '\n**File thay đổi:**',
         ...paths.map(p => `- \`${p}\``),
@@ -382,6 +391,182 @@ async function saveAsPullRequest(b, note) {
         'Khi kiểm tra xanh: xem lại thay đổi rồi merge – Cloudflare tự deploy, ảnh mới được tải về tự động.',
     ].join('\n')
     return gh(`/repos/${REPO}/pulls`, { method: 'POST', body: { title, head: branch, base: BASE_BRANCH, body } })
+}
+
+/*==================== GIAO DIỆN & MÙA (data/site.json) ====================*/
+const SITE_LANGS = ['vi', 'en', 'ko', 'zh', 'ja']
+const SITE_LANG_LABELS = { vi: 'Tiếng Việt *', en: 'English *', ko: '한국어', zh: '中文', ja: '日本語' }
+const DEFAULT_THEME = { hue: 190, accentHue: 38 }
+const THEME_PRESETS = [
+    ['Biển xanh (mặc định)', 190, 38], ['Tết đỏ – vàng', 355, 40], ['Hoa đào hồng', 340, 38], ['Hè biển xanh', 205, 28],
+    ['Lúa chín – thu vàng', 28, 38], ['Núi rừng xanh lá', 150, 38], ['Tím hoa sim', 270, 30], ['Giáng sinh', 145, 20],
+]
+
+/* Bản sao tools/theme.js (contrastIssues) – build kiểm tra lại khi mở PR */
+function hslToRgb(h, sat, l) {
+    h = ((h % 360) + 360) % 360
+    sat /= 100
+    l /= 100
+    const k = n => (n + h / 30) % 12
+    const a = sat * Math.min(l, 1 - l)
+    const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1))
+    return [f(0), f(8), f(4)]
+}
+const luminance = rgb => {
+    const [r, g, b] = rgb.map(v => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+function contrastRatio(a, b) {
+    const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p)
+    return (x + 0.05) / (y + 0.05)
+}
+function contrastIssues({ hue, accentHue }) {
+    const white = [1, 1, 1]
+    return [
+        ['Nút / chữ trắng trên màu chủ đạo', hslToRgb(hue, 64, 22), white],
+        ['Tiêu đề trên nền sáng', hslToRgb(hue, 64, 18), hslToRgb(hue, 100, 99)],
+        ['Chữ thường trên nền sáng', hslToRgb(hue, 24, 35), hslToRgb(hue, 100, 99)],
+        ['Chữ nhấn trên nền sáng', hslToRgb(accentHue - 5, 90, 31), hslToRgb(hue, 100, 99)],
+        ['Chữ nhấn trên thẻ trắng', hslToRgb(accentHue - 6, 90, 34), white],
+        ['Chữ nhấn trên nền tối', hslToRgb(accentHue, 92, 55), hslToRgb(hue, 29, 16)],
+        ['Chữ thường trên nền tối', hslToRgb(hue, 8, 75), hslToRgb(hue, 29, 12)],
+    ].map(([label, fg, bg]) => ({ label, ratio: contrastRatio(fg, bg) }))
+        .filter(p => p.ratio < 4.5)
+        .map(p => `${p.label}: ${p.ratio.toFixed(2)}:1 (cần ≥ 4.5:1)`)
+}
+
+/* Mùa đang có hiệu lực hôm nay (giống script trên site) */
+function seasonActive(season, iso) {
+    if (season.from.length > 5) return iso >= season.from && iso <= season.to
+    const md = iso.slice(5, 10)
+    return season.from <= season.to ? md >= season.from && md <= season.to : md >= season.from || md <= season.to
+}
+
+const joinFiles = files => (files || []).join(' | ')
+const splitFiles = text => String(text || '').split('|').map(x => x.trim()).filter(Boolean)
+const langText = map => Object.fromEntries(SITE_LANGS.map(l => [l, (map && map[l]) || '']))
+
+/* data/site.json → dạng dễ sửa trên form (mọi khối tùy chọn đều có sẵn, để trống = không dùng) */
+function toEditableSite(site) {
+    return {
+        theme: { ...site.theme },
+        hero: { subtitle: langText(site.hero.subtitle), title: langText(site.hero.title), image: joinFiles(site.hero.image), alt: langText(site.hero.alt) },
+        featured: [...site.featured],
+        featuredTitle: langText(site.featuredTitle),
+        seasons: site.seasons.map(sea => {
+            const hero = sea.hero || {}
+            return {
+                id: sea.id, name: sea.name, enabled: sea.enabled, from: sea.from, to: sea.to,
+                useTheme: !!sea.theme, theme: { ...(sea.theme || site.theme) },
+                hero: { subtitle: langText(hero.subtitle), title: langText(hero.title), image: joinFiles(hero.image), alt: langText(hero.alt) },
+                banner: { text: langText(sea.banner && sea.banner.text), link: (sea.banner && sea.banner.link) || '' },
+                featured: [...(sea.featured || [])],
+                featuredTitle: langText(sea.featuredTitle),
+            }
+        }),
+    }
+}
+
+const newSeason = () => ({
+    id: '', name: '', enabled: true, from: '', to: '', useTheme: false, theme: { ...DEFAULT_THEME },
+    hero: { subtitle: langText(), title: langText(), image: '', alt: langText() },
+    banner: { text: langText(), link: '' }, featured: [], featuredTitle: langText(),
+})
+
+/* Chữ theo ngôn ngữ: bỏ ô trống; cả khối trống → undefined */
+function cleanText(map) {
+    const out = {}
+    SITE_LANGS.forEach(l => { const v = String(map[l] || '').trim(); if (v) out[l] = v })
+    return Object.keys(out).length ? out : undefined
+}
+
+/* Dạng form → data/site.json (giữ thứ tự khóa như file gốc) */
+function fromEditableSite(e) {
+    const site = {
+        $schema: (state.data.site && state.data.site.$schema) || './schema/site.schema.json',
+        theme: { hue: Number(e.theme.hue), accentHue: Number(e.theme.accentHue) },
+        hero: { subtitle: cleanText(e.hero.subtitle), title: cleanText(e.hero.title), image: splitFiles(e.hero.image), alt: cleanText(e.hero.alt) },
+        featured: e.featured,
+        featuredTitle: cleanText(e.featuredTitle),
+        seasons: e.seasons.map(sea => {
+            const out = { id: sea.id.trim(), name: sea.name.trim(), enabled: !!sea.enabled, from: sea.from.trim(), to: sea.to.trim() }
+            if (sea.useTheme) out.theme = { hue: Number(sea.theme.hue), accentHue: Number(sea.theme.accentHue) }
+            const hero = {}
+            for (const k of ['subtitle', 'title']) { const t = cleanText(sea.hero[k]); if (t) hero[k] = t }
+            const image = splitFiles(sea.hero.image)
+            if (image.length) {
+                hero.image = image
+                const alt = cleanText(sea.hero.alt)
+                if (alt) hero.alt = alt
+            }
+            if (Object.keys(hero).length) out.hero = hero
+            const text = cleanText(sea.banner.text)
+            if (text) out.banner = sea.banner.link.trim() ? { text, link: sea.banner.link.trim() } : { text }
+            if (sea.featured.length) {
+                out.featured = sea.featured
+                out.featuredTitle = cleanText(sea.featuredTitle)
+            }
+            return out
+        }),
+    }
+    return ordered(site, state.data.site)
+}
+
+const DAY_RE = /^(20[0-9]{2}-)?(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+const LINK_RE = /^(https:\/\/\S+|[a-z0-9-]+(\/[a-z0-9-]+)*\/index\.html)$/
+
+/* Kiểm tra trước khi lưu (build kiểm tra lại theo data/schema/site.schema.json) */
+function validateSite(site) {
+    const e = []
+    const ids = new Set(state.data.destinations.destinations.map(d => d.id))
+    const text = (where, map, required) => {
+        if (!map) { if (required) e.push(`${where}: chưa nhập`); return }
+        if (!map.vi || !map.en) e.push(`${where}: cần ít nhất tiếng Việt và tiếng Anh`)
+    }
+    const images = (where, list) => list.forEach(f => { if (!IMAGE_RE.test(f)) e.push(`${where}: "${f}" không phải tên file ảnh .jpg/.png/.webp`) })
+    const featured = (where, list) => {
+        if (list.length < 3 || list.length > 12) e.push(`${where}: chọn 3 – 12 điểm đến nổi bật (đang chọn ${list.length})`)
+    }
+    const theme = (where, t) => contrastIssues(t).forEach(m => e.push(`${where}: màu chưa đủ tương phản – ${m}`))
+    theme('Mặc định', site.theme)
+    text('Mặc định – dòng chữ nhỏ', site.hero.subtitle, true)
+    text('Mặc định – slogan', site.hero.title, true)
+    text('Mặc định – mô tả ảnh', site.hero.alt, true)
+    if (!site.hero.image.length) e.push('Mặc định: cần ảnh bìa')
+    images('Mặc định – ảnh bìa', site.hero.image)
+    featured('Mặc định', site.featured)
+    text('Mặc định – tiêu đề mục nổi bật', site.featuredTitle, true)
+    const seen = new Set()
+    site.seasons.forEach((sea, i) => {
+        const w = `Mùa ${i + 1} (${sea.name || sea.id || 'chưa đặt tên'})`
+        if (!ID_RE.test(sea.id)) e.push(`${w}: mã chỉ gồm chữ thường không dấu, số, gạch nối (vd. tet-2027)`)
+        if (seen.has(sea.id)) e.push(`${w}: mã bị trùng`)
+        seen.add(sea.id)
+        if (!sea.name) e.push(`${w}: thiếu tên`)
+        if (!DAY_RE.test(sea.from) || !DAY_RE.test(sea.to)) e.push(`${w}: ngày dạng MM-DD (hằng năm) hoặc YYYY-MM-DD (một lần)`)
+        else if (sea.from.length !== sea.to.length) e.push(`${w}: ngày bắt đầu và kết thúc phải cùng dạng`)
+        else if (sea.from.length > 5 && sea.from > sea.to) e.push(`${w}: ngày bắt đầu sau ngày kết thúc`)
+        if (sea.theme) theme(w, sea.theme)
+        if (sea.hero) {
+            for (const k of ['subtitle', 'title', 'alt']) if (sea.hero[k]) text(`${w} – ${k === 'alt' ? 'mô tả ảnh' : k === 'title' ? 'slogan' : 'dòng chữ nhỏ'}`, sea.hero[k])
+            if (sea.hero.image) images(w, sea.hero.image)
+        }
+        if (sea.banner) {
+            text(`${w} – thông báo`, sea.banner.text)
+            if (sea.banner.link && !LINK_RE.test(sea.banner.link)) e.push(`${w}: liên kết thông báo phải dạng diem-den/<mã>/index.html, thang/9/index.html… hoặc https://…`)
+        }
+        if (sea.featured) {
+            featured(w, sea.featured)
+            text(`${w} – tiêu đề mục nổi bật`, sea.featuredTitle, true)
+            sea.featured.filter(id => !ids.has(id)).forEach(id => e.push(`${w}: điểm đến ${id} không tồn tại`))
+        }
+    })
+    return e
+}
+
+function buildSiteFiles(site) {
+    const text = `${JSON.stringify(site, null, 2)}\n`
+    return text === state.texts.site ? {} : { [FILES.site]: text }
 }
 
 /*==================== GIAO DIỆN ====================*/
@@ -446,6 +631,17 @@ function field(spec) {
                 ${first ? `<a href="${commonsPage(first)}" target="_blank" rel="noopener"><img class="thumb" src="${thumbUrl(first)}" alt="" loading="lazy" onerror="this.classList.add('thumb--missing');this.alt='Không tìm thấy ảnh trên Commons'"></a>` : ''}`
             break
         }
+        case 'langtext':
+            input = `<div class="grid grid--langs">${SITE_LANGS.map(l => `<div><span class="field__lang">${SITE_LANG_LABELS[l]}</span>${spec.multiline
+                ? `<textarea ${attrs([...spec.path, l], 'text')} rows="${spec.rows || 3}">${esc(v?.[l])}</textarea>`
+                : `<input type="text" ${attrs([...spec.path, l], 'text')} value="${esc(v?.[l])}">`}</div>`).join('')}</div>`
+            break
+        case 'bool':
+            input = `<label class="checks"><input type="checkbox" ${attrs(spec.path, 'bool')}${v ? ' checked' : ''}> ${esc(spec.text || '')}</label>`
+            break
+        case 'theme':
+            input = themeField(spec.path, v)
+            break
         case 'list':
             return listField(spec, v || [])
         case 'group':
@@ -478,6 +674,108 @@ function listField(spec, items) {
         <div class="list">${rows || '<p class="muted small">Chưa có mục nào.</p>'}</div>
         ${spec.fixed ? '' : `<p><button type="button" class="button button--ghost" data-op="add" data-template="${esc(JSON.stringify(spec.newItem()))}" ${attrs(path, 'op')}>+ ${esc(spec.addLabel || 'Thêm')}</button></p>`}
     </div>`
+}
+
+/*---------- Chọn màu (giao diện & mùa) ----------*/
+function themePreview({ hue, accentHue }) {
+    const issues = contrastIssues({ hue, accentHue })
+    return `<div class="tp" style="--h:${Number(hue)};--a:${Number(accentHue)}">
+            <div class="tp__box tp__box--light"><span class="tp__sub">Chữ nhấn</span><strong class="tp__title">Tiêu đề trang</strong><span class="tp__text">Chữ nội dung thường</span><span class="tp__btn">Nút bấm</span></div>
+            <div class="tp__box tp__box--dark"><span class="tp__sub">Chữ nhấn</span><strong class="tp__title">Chế độ tối</strong><span class="tp__text">Chữ nội dung thường</span><span class="tp__btn">Nút bấm</span></div>
+        </div>
+        <div class="tp__issues">${issues.length ? `<div class="errors">⚠ Chưa đủ tương phản (chữ khó đọc) – chọn màu khác:<ul>${issues.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : '<p class="small tp__ok">✔ Độ tương phản đạt chuẩn WCAG AA</p>'}</div>`
+}
+
+function themeField(path, t) {
+    const presets = THEME_PRESETS.map(([name, h, a]) => `<button type="button" class="preset" data-preset="${h},${a}" data-path="${esc(JSON.stringify(path))}" title="${esc(name)}">
+            <span class="preset__dot" style="background:hsl(${h}, 64%, 22%)"></span><span class="preset__dot" style="background:hsl(${a}, 92%, 55%)"></span>${esc(name)}</button>`).join('')
+    return `<div class="theme-field">
+        <div class="presets">${presets}</div>
+        <div class="grid grid--2">
+            <div><span class="field__lang">Màu chủ đạo (nút, tiêu đề, nền) – <output data-out="hue">${t.hue}</output></span>
+                <input type="range" class="hue-range" min="0" max="359" ${attrs([...path, 'hue'], 'number')} value="${t.hue}"></div>
+            <div><span class="field__lang">Màu nhấn (chữ nhỏ, sao đánh giá) – <output data-out="accentHue">${t.accentHue}</output></span>
+                <input type="range" class="hue-range" min="0" max="359" ${attrs([...path, 'accentHue'], 'number')} value="${t.accentHue}"></div>
+        </div>
+        <div class="theme-preview">${themePreview(t)}</div>
+    </div>`
+}
+
+/*---------- Tab của trang Giao diện & mùa ----------*/
+const destOptions = () => Object.fromEntries(state.data.destinations.destinations.map(d => [d.id, d.name]))
+const SLOGAN_HELP = 'Xuống dòng = xuống dòng trên trang; <code>*chữ*</code> = in đậm. Tiếng Việt và tiếng Anh bắt buộc; ngôn ngữ để trống sẽ hiện tiếng Anh.'
+const LINK_HELP = 'Trang trong site, vd. <code>diem-den/mu-cang-chai/index.html</code>, <code>thang/9/index.html</code>, <code>chu-de/bien/index.html</code>, <code>ke-hoach/index.html</code> – hoặc địa chỉ <code>https://…</code>. Để trống = chỉ hiện chữ.'
+
+function siteGeneralFields() {
+    return [
+        { type: 'html', html: '<p class="muted small">Áp dụng khi không có mùa nào đang chạy. Mỗi mùa (tab bên cạnh) có thể đổi màu, slogan, ảnh bìa, thêm dải thông báo và danh sách điểm đến nổi bật trong khoảng ngày của nó – site tự đổi theo ngày, không cần build lại.</p>' },
+        { type: 'theme', path: ['site', 'theme'], label: 'Màu giao diện' },
+        { type: 'langtext', path: ['site', 'hero', 'subtitle'], label: 'Dòng chữ nhỏ trên slogan' },
+        { type: 'langtext', path: ['site', 'hero', 'title'], label: 'Slogan (tiêu đề lớn trang chủ)', multiline: true, help: SLOGAN_HELP },
+        { type: 'image', path: ['site', 'hero', 'image'], label: 'Ảnh bìa trang chủ (ảnh ngang, nhiều ảnh dự phòng: ngăn cách bằng |)', multi: true },
+        { type: 'langtext', path: ['site', 'hero', 'alt'], label: 'Mô tả ảnh bìa' },
+        { type: 'langtext', path: ['site', 'featuredTitle'], label: 'Tiêu đề mục "điểm đến nổi bật"', multiline: true, rows: 2, help: SLOGAN_HELP },
+        { type: 'checks', path: ['site', 'featured'], label: 'Điểm đến nổi bật (3 – 12, hiện theo thứ tự tích chọn)', options: destOptions() },
+    ]
+}
+
+function seasonFields(i) {
+    const sea = state.bundle.site.seasons[i]
+    const n = state.bundle.site.seasons.length
+    const today = new Date().toISOString().slice(0, 10)
+    const live = DAY_RE.test(sea.from) && DAY_RE.test(sea.to) && sea.from.length === sea.to.length && sea.enabled && seasonActive(sea, today)
+    const base = ['site', 'seasons', i]
+    return [
+        { type: 'html', html: `<div class="toolbar">
+                <span class="badge ${live ? 'badge--ok' : 'badge--miss'}">${live ? 'Đang chạy hôm nay' : sea.enabled ? 'Chưa tới / đã qua' : 'Đang tắt'}</span>
+                ${ID_RE.test(sea.id) ? `<a href="${SITE_URL}?season=${sea.id}" target="_blank" rel="noopener">Xem thử trên site ↗</a><span class="muted small">(mùa mới / thay đổi chỉ thấy sau khi merge PR)</span>` : ''}
+                <span style="margin-left:auto"></span>
+                <button type="button" class="icon-btn" data-season-op="up" data-index="${i}"${i === 0 ? ' disabled' : ''} title="Ưu tiên hơn">↑ Ưu tiên</button>
+                <button type="button" class="icon-btn" data-season-op="down" data-index="${i}"${i === n - 1 ? ' disabled' : ''}>↓</button>
+                <button type="button" class="icon-btn icon-btn--danger" data-season-op="del" data-index="${i}">Xóa mùa</button>
+            </div>
+            <p class="muted small">Mùa đứng trước được ưu tiên khi trùng ngày. Ô nào để trống thì dùng nội dung mặc định.</p>` },
+        { type: 'group', fields: [
+            { type: 'text', path: [...base, 'name'], label: 'Tên mùa / chiến dịch (chỉ hiện ở đây)', placeholder: 'vd. Tết 2027' },
+            { type: 'text', path: [...base, 'id'], label: 'Mã (dùng để xem thử ?season=…)', placeholder: 'vd. tet-2027' },
+        ] },
+        { type: 'group', cols: 3, fields: [
+            { type: 'text', path: [...base, 'from'], label: 'Từ ngày', placeholder: 'MM-DD hoặc YYYY-MM-DD', help: 'MM-DD lặp lại hằng năm (vd. 12-20 → 01-05 vắt qua năm mới); YYYY-MM-DD chỉ một lần (Tết âm lịch).' },
+            { type: 'text', path: [...base, 'to'], label: 'Đến ngày', placeholder: 'MM-DD hoặc YYYY-MM-DD' },
+            { type: 'bool', path: [...base, 'enabled'], label: 'Trạng thái', text: 'Bật (tự chạy theo ngày)' },
+        ] },
+        { type: 'html', html: '<h3>Màu</h3>' },
+        { type: 'bool', path: [...base, 'useTheme'], text: 'Đổi màu giao diện trong mùa này (mọi trang)' },
+        ...(sea.useTheme ? [{ type: 'theme', path: [...base, 'theme'] }] : []),
+        { type: 'html', html: '<h3>Trang chủ</h3>' },
+        { type: 'langtext', path: [...base, 'hero', 'subtitle'], label: 'Dòng chữ nhỏ trên slogan' },
+        { type: 'langtext', path: [...base, 'hero', 'title'], label: 'Slogan', multiline: true, help: SLOGAN_HELP },
+        { type: 'image', path: [...base, 'hero', 'image'], label: 'Ảnh bìa (để trống = ảnh mặc định)', multi: true },
+        { type: 'langtext', path: [...base, 'hero', 'alt'], label: 'Mô tả ảnh bìa' },
+        { type: 'langtext', path: [...base, 'banner', 'text'], label: 'Dải thông báo trên slogan (để trống = không hiện)' },
+        { type: 'text', path: [...base, 'banner', 'link'], label: 'Liên kết của thông báo', list: 'link-list', help: LINK_HELP },
+        { type: 'checks', path: [...base, 'featured'], label: 'Điểm đến nổi bật trong mùa (3 – 12, để trống = mặc định)', options: destOptions() },
+        { type: 'langtext', path: [...base, 'featuredTitle'], label: 'Tiêu đề mục nổi bật trong mùa', multiline: true, rows: 2 },
+    ]
+}
+
+function linkDatalist() {
+    const links = ['ke-hoach/index.html', 'cam-nang/index.html',
+        ...Array.from({ length: 12 }, (_, i) => `thang/${i + 1}/index.html`),
+        ...Object.keys(state.data.destinations.categories).map(c => `chu-de/${c}/index.html`),
+        ...state.data.destinations.destinations.map(d => `diem-den/${d.id}/index.html`)]
+    return `<datalist id="link-list">${links.map(l => `<option value="${l}">`).join('')}</datalist>`
+}
+
+function currentTabs() {
+    if (state.mode !== 'site') return TABS
+    const tabs = { general: { label: 'Mặc định', fields: siteGeneralFields } }
+    const today = new Date().toISOString().slice(0, 10)
+    state.bundle.site.seasons.forEach((sea, i) => {
+        const live = sea.enabled && DAY_RE.test(sea.from) && DAY_RE.test(sea.to) && sea.from.length === sea.to.length && seasonActive(sea, today)
+        tabs[`s${i}`] = { label: `${live ? '● ' : ''}${sea.name || 'Mùa mới'}`, fields: () => seasonFields(i) }
+    })
+    return tabs
 }
 
 /*---------- Đặc tả từng tab ----------*/
@@ -747,6 +1045,7 @@ function renderList() {
         <div class="toolbar">
             <input type="search" id="search" placeholder="Tìm theo tên, mã, tỉnh…" aria-label="Tìm điểm đến">
             <a class="button" href="#/new">+ Thêm điểm đến</a>
+            <a class="button button--ghost" href="#/site">Giao diện & mùa</a>
             <button type="button" class="button button--ghost" id="reload">Tải lại dữ liệu</button>
             <span class="muted small">Dữ liệu nhánh main · commit ${esc(state.baseSha.slice(0, 7))}</span>
         </div>
@@ -776,15 +1075,19 @@ function iconDatalist() {
 
 function renderEditor() {
     const b = state.bundle
-    const tabs = Object.entries(TABS).map(([key, t]) => `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === state.tab}">${t.label}</button>`).join('')
+    const allTabs = currentTabs()
+    if (!allTabs[state.tab]) state.tab = Object.keys(allTabs)[0]
+    const tabs = Object.entries(allTabs).map(([key, t]) => `<button type="button" role="tab" data-tab="${key}" aria-selected="${key === state.tab}">${esc(t.label)}</button>`).join('') +
+        (state.mode === 'site' ? '<button type="button" data-season-add>+ Thêm mùa</button>' : '')
+    const heading = state.mode === 'site' ? 'Giao diện & mùa' : state.isNew ? 'Thêm điểm đến mới' : `Sửa: ${esc(b.dest.name)}`
     const errors = state.errors.length ? `<div class="errors"><strong>Chưa lưu được – cần sửa ${state.errors.length} chỗ:</strong><ul>${state.errors.slice(0, 25).map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : ''
     $('#app').innerHTML = `
         <p><a href="#/">← Danh sách điểm đến</a></p>
-        <h1>${state.isNew ? 'Thêm điểm đến mới' : `Sửa: ${esc(b.dest.name)}`}</h1>
+        <h1>${heading}</h1>
         ${errors}
         <div class="tabs" role="tablist">${tabs}</div>
-        <div class="card" id="tab-body">${TABS[state.tab].fields().map(field).join('')}</div>
-        ${iconDatalist()}
+        <div class="card" id="tab-body">${allTabs[state.tab].fields().map(field).join('')}</div>
+        ${state.mode === 'site' ? linkDatalist() : iconDatalist()}
         <div class="savebar">
             <span class="savebar__status">${state.dirty ? 'Có thay đổi chưa lưu' : 'Chưa có thay đổi'}</span>
             <input type="text" id="save-note" placeholder="Ghi chú cho người duyệt (tùy chọn)" style="max-width:320px">
@@ -819,9 +1122,17 @@ function render() {
     }
     const route = location.hash.replace(/^#/, '') || '/'
     const edit = route.match(/^\/edit\/([a-z0-9-]+)$/)
+    if (route === '/site') {
+        if (state.mode !== 'site' || !state.bundle) {
+            Object.assign(state, { mode: 'site', id: null, isNew: false, tab: 'general', dirty: false, errors: [] })
+            state.bundle = { site: toEditableSite(state.data.site) }
+        }
+        return renderEditor()
+    }
     if (route === '/new' || edit) {
         const id = edit ? edit[1] : null
-        if (state.id !== id || !state.bundle || state.isNew !== !edit) {
+        if (state.mode !== 'dest' || state.id !== id || !state.bundle || state.isNew !== !edit) {
+            state.mode = 'dest'
             state.isNew = !edit
             state.id = id
             state.bundle = edit ? loadBundle(id) : newBundle()
@@ -836,6 +1147,7 @@ function render() {
         return renderEditor()
     }
     state.bundle = null
+    state.mode = null
     state.id = null
     renderList()
 }
@@ -854,7 +1166,20 @@ document.addEventListener('input', e => {
     const kind = el.dataset.kind
     const b = state.bundle
     if (kind === 'text') set(b, path, el.value)
-    else if (kind === 'number') set(b, path, el.value === '' ? 0 : Number(el.value))
+    else if (kind === 'number') {
+        set(b, path, el.value === '' ? 0 : Number(el.value))
+        const box = el.closest('.theme-field')
+        if (box) {
+            const t = get(b, path.slice(0, -1))
+            box.querySelector(`[data-out="${path[path.length - 1]}"]`).textContent = el.value
+            box.querySelector('.theme-preview').innerHTML = themePreview(t)
+        }
+    } else if (kind === 'bool') {
+        set(b, path, el.checked)
+        state.dirty = true
+        rerenderTab()
+        return
+    }
     else if (kind === 'lines') set(b, path, el.value.split('\n'))
     else if (kind === 'files') set(b, path, el.value)
     else if (kind === 'check' || kind === 'check-number') {
@@ -884,6 +1209,38 @@ document.addEventListener('click', async e => {
     const tab = e.target.closest('[data-tab]')
     if (tab) {
         state.tab = tab.dataset.tab
+        renderEditor()
+        return
+    }
+    const preset = e.target.closest('[data-preset]')
+    if (preset && state.bundle) {
+        const [hue, accentHue] = preset.dataset.preset.split(',').map(Number)
+        set(state.bundle, JSON.parse(preset.dataset.path), { hue, accentHue })
+        state.dirty = true
+        rerenderTab()
+        return
+    }
+    if (e.target.closest('[data-season-add]') && state.mode === 'site') {
+        state.bundle.site.seasons.push(newSeason())
+        state.tab = `s${state.bundle.site.seasons.length - 1}`
+        state.dirty = true
+        renderEditor()
+        return
+    }
+    const seasonOp = e.target.closest('[data-season-op]')
+    if (seasonOp && state.mode === 'site') {
+        const list = state.bundle.site.seasons
+        const i = Number(seasonOp.dataset.index)
+        if (seasonOp.dataset.seasonOp === 'del') {
+            if (!confirm(`Xóa mùa "${list[i].name || list[i].id || 'mới'}"?`)) return
+            list.splice(i, 1)
+            state.tab = 'general'
+        } else {
+            const j = seasonOp.dataset.seasonOp === 'up' ? i - 1 : i + 1
+            ;[list[i], list[j]] = [list[j], list[i]]
+            state.tab = `s${j}`
+        }
+        state.dirty = true
         renderEditor()
         return
     }
@@ -922,9 +1279,10 @@ document.addEventListener('click', async e => {
     }
     if (e.target.id === 'save') {
         const btn = e.target
-        const working = clone(state.bundle)
-        cleanBundle(working)
-        state.errors = validate(working)
+        const isSite = state.mode === 'site'
+        const working = isSite ? fromEditableSite(state.bundle.site) : clone(state.bundle)
+        if (!isSite) cleanBundle(working)
+        state.errors = isSite ? validateSite(working) : validate(working)
         if (state.errors.length) {
             rerenderTab()
             window.scrollTo(0, 0)
@@ -933,9 +1291,17 @@ document.addEventListener('click', async e => {
         btn.disabled = true
         btn.textContent = 'Đang tạo Pull Request…'
         try {
-            const pr = await saveAsPullRequest(working, $('#save-note').value.trim())
+            const note = $('#save-note').value.trim()
+            const pr = isSite
+                ? await createPullRequest(buildSiteFiles(working), {
+                    title: 'Cập nhật giao diện & mùa',
+                    slug: 'giao-dien',
+                    summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${working.seasons.length} mùa (${working.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).`,
+                }, note)
+                : await saveAsPullRequest(working, note)
             state.dirty = false
             state.bundle = null
+            state.mode = null
             state.id = null
             state.baseSha = null // lần sau tải lại dữ liệu mới nhất
             renderDone(pr)
@@ -949,7 +1315,8 @@ document.addEventListener('click', async e => {
 
 window.addEventListener('hashchange', e => {
     if (state.dirty && state.bundle) {
-        const leaving = !location.hash.startsWith(state.isNew ? '#/new' : `#/edit/${state.id}`)
+        const here = state.mode === 'site' ? '#/site' : state.isNew ? '#/new' : `#/edit/${state.id}`
+        const leaving = !location.hash.startsWith(here)
         if (leaving && !confirm('Có thay đổi chưa lưu – rời trang sửa?')) {
             history.replaceState(null, '', new URL(e.oldURL).hash)
             return
