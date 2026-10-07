@@ -29,6 +29,11 @@ const TRANSLATION_EN = {
         'Chọn phương tiện': 'Choose transport',
         'gợi ý': 'suggested',
         'Đi từ {name}': 'Depart from {name}',
+        'Máy bay': 'Plane',
+        'Tàu hỏa': 'Train',
+        'Xe khách / ô tô': 'Bus / car',
+        'Tàu cao tốc': 'Fast boat',
+        'Điểm xuất phát': 'Starting point',
         'Về {name}': 'Back to {name}',
         /* Trợ lý hỏi đáp (assistant.js) */
         'Hỏi Việt Travel': 'Ask Viet Travel',

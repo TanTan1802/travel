@@ -153,6 +153,8 @@ Khi chưa cấu hình, mục bình luận được ẩn.
   Gợi ý mặc định: bay khi đường bộ ≥ 450 km (không có sân bay thì đi tàu), ra đảo bằng tàu nếu ≤ 4 giờ, còn lại xe khách;
   người dùng bấm để đổi phương tiện từng chặng (kể cả chặng đi / về từ Hà Nội, Đà Nẵng, Sài Gòn), lưu trong kế hoạch và URL (`&t=ha-noi.hue.t`).
   Trang điểm đến có bảng "Đi từ các thành phố lớn" với các phương án và giá. Thời gian, giá vé là ước tính tham khảo.
+- **Bản đồ lộ trình**: mỗi chặng vẽ theo phương tiện đã chọn – máy bay (cung nét chấm), tàu hỏa (nét gạch), xe (nét liền),
+  ra đảo (xe tới cảng + tàu); chặng đi / về từ điểm xuất phát vẽ nhạt hơn, rê chuột xem thời gian; chú giải dưới bản đồ.
 - Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.

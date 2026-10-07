@@ -311,6 +311,9 @@ test('lập kế hoạch: chọn phương tiện từng chặng (máy bay / tàu
     const hueDn = page.locator('.leg[aria-label="Di chuyển"]').first()
     assert.equal(await hueDn.locator('.leg__mode[data-mode="train"]').count(), 1)
     assert.equal(await hueDn.locator('.leg__mode[data-mode="flight"]').count(), 0)
+    /* Bản đồ lộ trình: nét theo phương tiện + chú giải dưới bản đồ */
+    await page.waitForFunction(() => /Tàu hỏa/.test(document.getElementById('planner-map-legend')?.textContent || ''))
+    assert.ok(await page.locator('#planner-map .map-pin--origin').count(), 'bản đồ có điểm xuất phát')
     /* Mở lại liên kết: giữ lựa chọn */
     await page.reload()
     await page.waitForSelector('.planner--ready')

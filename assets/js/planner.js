@@ -695,10 +695,45 @@ function renderBookings(plan, totals) {
 }
 
 /*---------- Bản đồ tuyến ----------*/
+/*---------- Bản đồ lộ trình ----------*/
+/* Nét vẽ theo phương tiện: máy bay = đường cong chấm, tàu hỏa = gạch, xe = liền, tàu ra đảo = gạch ngắn */
+const MAP_LEG_STYLE = {
+    flight: { color: '#2563eb', weight: 3, dashArray: '2 8' },
+    train: { color: '#15803d', weight: 4, dashArray: '12 6' },
+    road: { color: '#d9771f', weight: 4 },
+    boat: { color: '#0e7490', weight: 4, dashArray: '5 6' },
+}
+const MAP_MODE_NAMES = () => ({ flight: t('Máy bay'), train: t('Tàu hỏa'), road: t('Xe khách / ô tô'), boat: t('Tàu cao tốc') })
+
+/* Đường bay vẽ thành cung (đường cong bậc hai) để phân biệt với đường bộ */
+function arcPoints([x1, y1], [x2, y2], n = 24) {
+    const cx = (x1 + x2) / 2 - (y2 - y1) * 0.18
+    const cy = (y1 + y2) / 2 + (x2 - x1) * 0.18
+    return Array.from({ length: n + 1 }, (_, i) => {
+        const k = i / n
+        return [(1 - k) ** 2 * x1 + 2 * (1 - k) * k * cx + k * k * x2, (1 - k) ** 2 * y1 + 2 * (1 - k) * k * cy + k * k * y2]
+    })
+}
+
+/* Các đoạn vẽ của một chặng; ra đảo bằng tàu = (xe tới cảng) + tàu từ cảng ra đảo */
+function legSegments(a, b, leg) {
+    const A = [a.lat, a.lng]
+    const B = [b.lat, b.lng]
+    if (leg.mode === 'flight') return [{ mode: 'flight', points: arcPoints(A, B) }]
+    if (leg.mode === 'boat' && leg.port) {
+        const port = [leg.port.lat, leg.port.lng]
+        const [mainland, island] = leg.port.dest === b.id ? [A, B] : [B, A]
+        return [...(leg.direct ? [] : [{ mode: 'road', points: [mainland, port] }]), { mode: 'boat', points: [port, island] }]
+    }
+    return [{ mode: leg.mode, points: [A, B] }]
+}
+
 async function updatePlannerMap(plan, totals) {
     const el = document.getElementById('planner-map')
     if (!el) return
     el.hidden = !plan.stops.length
+    const oldLegend = document.getElementById('planner-map-legend')
+    if (oldLegend && !plan.stops.length) oldLegend.hidden = true
     if (!plan.stops.length) return
     if (!(await loadLeaflet())) return showMapUnavailable(el)
 
@@ -706,20 +741,47 @@ async function updatePlannerMap(plan, totals) {
     if (planner.layer) planner.layer.remove()
 
     const points = totals.dests.map(d => [d.lat, d.lng])
+    const legs = [
+        ...(totals.outbound ? [[totals.origin, totals.dests[0], totals.outbound, true]] : []),
+        ...totals.legs.map((leg, i) => [totals.dests[i], totals.dests[i + 1], leg, false]),
+        ...(totals.inbound ? [[totals.dests[totals.dests.length - 1], totals.origin, totals.inbound, true]] : []),
+    ]
+    const segments = legs.flatMap(([a, b, leg, outer]) => legSegments(a, b, leg).map(seg => ({ ...seg, a, b, leg, outer })))
     planner.layer = L.layerGroup([
-        L.polyline(points, { color: '#e8912d', weight: 3, dashArray: '6 8' }),
+        ...segments.map(seg => L.polyline(seg.points, { ...MAP_LEG_STYLE[seg.mode], opacity: seg.outer ? 0.55 : 0.9 })
+            .bindTooltip(`${seg.a.name} → ${seg.b.name}: ${modeLabel(seg.leg)}`, { sticky: true })),
+        ...(totals.origin && legs.some(l => l[3]) ? [L.marker([totals.origin.lat, totals.origin.lng], {
+            title: totals.origin.name,
+            icon: L.divIcon({ className: 'map-pin map-pin--origin', html: '<i class="ri-home-4-line"></i>', iconSize: [28, 28], iconAnchor: [14, 14] }),
+        }).bindTooltip(`${t('Điểm xuất phát')}: ${totals.origin.name}`)] : []),
         ...totals.dests.map((d, i) => bindDestinationPopup(L.marker([d.lat, d.lng], {
             title: d.name,
             icon: L.divIcon({ className: `map-pin map-pin--${d.region} map-pin--numbered`, html: `<span>${i + 1}</span>`, iconSize: [28, 28], iconAnchor: [14, 14] }),
         }), d)),
     ]).addTo(planner.map)
 
+    /* Chú giải dưới bản đồ (không che điểm dừng): chỉ các phương tiện có trong lộ trình */
+    let legend = document.getElementById('planner-map-legend')
+    if (!legend) {
+        legend = document.createElement('p')
+        legend.id = 'planner-map-legend'
+        legend.className = 'map-legend'
+        el.after(legend)
+    }
+    const used = MODES.filter(m => segments.some(s => s.mode === m))
+    legend.hidden = !used.length
+    legend.innerHTML = used.map(m => {
+        const s = MAP_LEG_STYLE[m]
+        return `<span class="map-legend__item"><svg width="28" height="8" aria-hidden="true"><line x1="2" y1="4" x2="26" y2="4" stroke="${s.color}" stroke-width="${s.weight}" stroke-dasharray="${s.dashArray || ''}" stroke-linecap="round"/></svg>${MAP_MODE_NAMES()[m]}</span>`
+    }).join('')
+
     planner.map.invalidateSize()
-    if (points.length === 1) planner.map.setView(points[0], 8)
-    else planner.map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 9 })
+    /* Khung nhìn gồm cả điểm xuất phát và cảng tàu (nếu có) */
+    const bounds = [...points, ...segments.flatMap(seg => [seg.points[0], seg.points[seg.points.length - 1]])]
+    if (bounds.length === 1) planner.map.setView(bounds[0], 8)
+    else planner.map.fitBounds(L.latLngBounds(bounds), { padding: [40, 40], maxZoom: 9 })
 }
 
-/*---------- Cập nhật ----------*/
 /*---------- Dữ liệu từng điểm đến ----------*/
 /*
  * Trang đã build không nạp sẵn quán / điểm tham quan / lịch trình của mọi điểm đến (giữ gói JS nhỏ):
@@ -751,6 +813,7 @@ function loadDestData(ids) {
     }))
 }
 
+/*---------- Cập nhật ----------*/
 function renderPlanner() {
     const plan = planner.plan
     const ids = plan.stops.map(s => s.id)
