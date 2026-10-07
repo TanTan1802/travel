@@ -14,6 +14,8 @@ const site = loadBrowserScripts(
     ['LOCAL_IMAGES', 'TRANSLATION_EN', 'DESTINATIONS', 'ITINERARIES', 'REGIONS', 'CATEGORIES', 'TOUR_LENGTHS', 'PLACES', 'STAY_TYPES', 'SIGHTS'],
 )
 const { DESTINATIONS, ITINERARIES, TRANSLATION_EN: EN, REGIONS, CATEGORIES } = site
+/* Tên một quán có thật trong dữ liệu – dùng để kiểm tra gói JS trang kế hoạch không nạp sẵn mọi quán */
+const PLACES_SAMPLE = site.PLACES['hoi-an'].eats[0].name
 
 test('mã điểm đến không trùng và đủ trường bắt buộc', () => {
     const ids = DESTINATIONS.map(d => d.id)
@@ -685,4 +687,21 @@ test('lập kế hoạch: quãng đường bộ thật (ROUTES), nhiều phươn
     const booking = new URL(measured.links.find(l => l.label === 'Booking.com').url)
     assert.equal(booking.searchParams.get('group_adults'), '5')
     assert.equal(booking.searchParams.get('no_rooms'), '3')
+})
+
+test('trang lập kế hoạch: gói JS không chứa dữ liệu mọi điểm đến, dữ liệu từng điểm tải riêng (data/plan/<lang>/<id>.json)', () => {
+    const langs = ['vi', 'en', 'ko', 'zh', 'ja']
+    for (const lang of langs) {
+        const rel = `${lang === 'vi' ? '' : `${lang}/`}ke-hoach/index.html`
+        const html = fs.readFileSync(path.join(ROOT, rel), 'utf8')
+        assert.match(html, new RegExp(`window.PLAN_DATA = '[./]*assets/js/data/plan/${lang}/'`), `${rel}: thiếu PLAN_DATA`)
+        const bundles = [...html.matchAll(/src="[./]*(assets\/js\/dist\/[0-9a-f]+\.js)"/g)].map(m => fs.readFileSync(path.join(ROOT, m[1]), 'utf8')).join('\n')
+        assert.ok(!bundles.includes(PLACES_SAMPLE), `${rel}: gói JS vẫn chứa quán ăn của mọi điểm đến`)
+        for (const d of DESTINATIONS) {
+            const file = path.join(ROOT, `assets/js/data/plan/${lang}/${d.id}.json`)
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+            assert.ok(data.places.eats.length && data.sights.length === 5 && data.itinerary.days.length === 5, `${lang}/${d.id}.json thiếu dữ liệu`)
+            if (lang !== 'vi') assert.equal(typeof data.places.eats[0].dish, 'string', `${lang}/${d.id}.json: dữ liệu phải một ngôn ngữ`)
+        }
+    }
 })

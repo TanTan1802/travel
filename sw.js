@@ -3,7 +3,11 @@
  * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
+<<<<<<< HEAD
+const VERSION = '03f9150bd6'
+=======
 const VERSION = 'd75fd3eb7f'
+>>>>>>> origin/main
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const PAGE_LIMIT = 80
@@ -24,7 +28,7 @@ const CORE_ASSETS = [
     './assets/fonts/open-sans-latin-400.woff2',
     './assets/fonts/open-sans-vietnamese-400.woff2',
     /* build:core-assets */
-    './assets/css/site-2303c79c15.css',
+    './assets/css/site-e3675f6967.css',
     './assets/js/dist/5c9412f427.js',
     /* /build:core-assets */
     './assets/img/favicon.png',

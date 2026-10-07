@@ -153,9 +153,14 @@ Khi chưa cấu hình, mục bình luận được ẩn.
   Gợi ý mặc định: bay khi đường bộ ≥ 450 km (không có sân bay thì đi tàu), ra đảo bằng tàu nếu ≤ 4 giờ, còn lại xe khách;
   người dùng bấm để đổi phương tiện từng chặng (kể cả chặng đi / về từ Hà Nội, Đà Nẵng, Sài Gòn), lưu trong kế hoạch và URL (`&t=ha-noi.hue.t`).
   Trang điểm đến có bảng "Đi từ các thành phố lớn" với các phương án và giá. Thời gian, giá vé là ước tính tham khảo.
+- **Bản đồ lộ trình**: mỗi chặng vẽ theo phương tiện đã chọn – máy bay (cung nét chấm), tàu hỏa (nét gạch), xe (nét liền),
+  ra đảo (xe tới cảng + tàu); chặng đi / về từ điểm xuất phát vẽ nhạt hơn, rê chuột xem thời gian; chú giải dưới bản đồ.
 - Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
+- Gói JS của trang không chứa quán / điểm tham quan / lịch trình của cả 34 điểm đến: `planner.js` tải
+  `assets/js/data/plan/<lang>/<id>.json` (một ngôn ngữ, lịch trình đã dịch – sinh khi build) của các điểm trong kế hoạch,
+  và đưa chúng vào bản lưu offline.
 
 ## Giao diện sáng / tối
 - Bấm nút mặt trăng / mặt trời trên menu; lựa chọn lưu trong trình duyệt (`selected-theme`).
@@ -198,6 +203,11 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - CSS `@media print` ở cuối `vietnam.css`: bỏ menu, bản đồ, nút bấm; luôn nền sáng; mỗi ngày/điểm dừng không bị cắt ngang trang; ghi kèm địa chỉ trang (`.print-url`).
 - Trang điểm đến: nút **In / PDF** ở lịch trình chỉ in tour đang chọn (đủ các ngày + chi phí); nút **Chia sẻ** dùng bảng chia sẻ của điện thoại hoặc sao chép liên kết `#itinerary`. In cả trang (Ctrl+P) vẫn gọn.
 - Trang kế hoạch: bản in gồm trang tóm tắt tuyến/chi phí và lịch từng ngày; nút **Sao chép dạng chữ** tạo lịch trình để dán vào Zalo/Messenger.
+
+## Google Search Console / Bing
+Xác minh địa chỉ site trong Search Console (*Thêm tài sản → Tiền tố URL* → `https://viet-travel.congtan5918.workers.dev/` →
+phương thức **Thẻ HTML**), chép giá trị `content="…"` vào `SITE_VERIFICATION.google` trong `tools/lib.js`, chạy `npm run build`
+và đẩy lên main; sau khi Cloudflare deploy, bấm *Xác minh* rồi gửi `sitemap.xml` ở mục *Sơ đồ trang web*. Bing: thẻ `msvalidate.01` (`SITE_VERIFICATION.bing`).
 
 ## Hiệu năng (Lighthouse)
 

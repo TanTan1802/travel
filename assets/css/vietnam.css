@@ -2164,6 +2164,13 @@ body:not(.dark-theme) .planner-hero .section__subtitle {
   visibility: hidden;
 }
 
+/* Đang tải dữ liệu điểm đến vừa thêm (planner.js loadDestData) */
+#planner-page[aria-busy="true"] .planner--ready {
+  opacity: .6;
+  cursor: progress;
+  transition: opacity .2s;
+}
+
 .planner__grid {
   display: grid;
   gap: 2rem;
@@ -2671,6 +2678,37 @@ body.dark-theme .stop__warn {
 
 .map-pin--numbered:hover span {
   transform: scale(1.15);
+}
+
+/* Điểm xuất phát + chú giải phương tiện trên bản đồ lộ trình */
+.map-pin--origin {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--title-color);
+  color: var(--container-color);
+  font-size: 1rem;
+  box-shadow: 0 0 0 3px var(--container-color);
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  margin: .6rem 0 0;
+  color: var(--text-color);
+  font-size: var(--smaller-font-size);
+}
+
+.map-legend[hidden] {
+  display: none;
+}
+
+.map-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
 }
 
 /* Lịch trình từng ngày */
