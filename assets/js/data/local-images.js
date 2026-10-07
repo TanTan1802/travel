@@ -14,6 +14,27 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "A Thai stilt house (4115406064).jpg": {
+        "xs": "assets/img/wiki/a-thai-stilt-house-4115406064-875a43-480.webp",
+        "sm": "assets/img/wiki/a-thai-stilt-house-4115406064-875a43-960.webp",
+        "lg": "assets/img/wiki/a-thai-stilt-house-4115406064-875a43-1920.webp",
+        "w": 1600,
+        "h": 1063
+    },
+    "A wooden fence in mudflats in Dat Mui.jpg": {
+        "xs": "assets/img/wiki/a-wooden-fence-in-mudflats-in-dat-mui-9ea9aa-480.webp",
+        "sm": "assets/img/wiki/a-wooden-fence-in-mudflats-in-dat-mui-9ea9aa-960.webp",
+        "lg": "assets/img/wiki/a-wooden-fence-in-mudflats-in-dat-mui-9ea9aa-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Alone front of Co To beach, Viet Nam (160620021).jpg": {
+        "xs": "assets/img/wiki/alone-front-of-co-to-beach-viet-nam-160620021-8091d4-480.webp",
+        "sm": "assets/img/wiki/alone-front-of-co-to-beach-viet-nam-160620021-8091d4-960.webp",
+        "lg": "assets/img/wiki/alone-front-of-co-to-beach-viet-nam-160620021-8091d4-1920.webp",
+        "w": 1920,
+        "h": 1278
+    },
     "Amazing beach on Phu Quoc island Vietnam (38647607275).jpg": {
         "xs": "assets/img/wiki/amazing-beach-on-phu-quoc-island-vietnam-38647607275-2d51b8-480.webp",
         "sm": "assets/img/wiki/amazing-beach-on-phu-quoc-island-vietnam-38647607275-2d51b8-960.webp",
@@ -357,12 +378,26 @@ const LOCAL_IMAGES = {
         "w": 1284,
         "h": 1710
     },
+    "Chợ Đất Mũi.jpg": {
+        "xs": "assets/img/wiki/cho-dat-mui-a9b337-480.webp",
+        "sm": "assets/img/wiki/cho-dat-mui-a9b337-960.webp",
+        "lg": "assets/img/wiki/cho-dat-mui-a9b337-1920.webp",
+        "w": 1920,
+        "h": 1089
+    },
     "Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg": {
         "xs": "assets/img/wiki/cliff-of-stone-plates-ghenh-da-dia-in-vietnam-29360e-480.webp",
         "sm": "assets/img/wiki/cliff-of-stone-plates-ghenh-da-dia-in-vietnam-29360e-960.webp",
         "lg": "assets/img/wiki/cliff-of-stone-plates-ghenh-da-dia-in-vietnam-29360e-1920.webp",
         "w": 600,
         "h": 343
+    },
+    "Co To Island Quang Ninh Viet Nam (160672609).jpeg": {
+        "xs": "assets/img/wiki/co-to-island-quang-ninh-viet-nam-160672609-27d966-480.webp",
+        "sm": "assets/img/wiki/co-to-island-quang-ninh-viet-nam-160672609-27d966-960.webp",
+        "lg": "assets/img/wiki/co-to-island-quang-ninh-viet-nam-160672609-27d966-1920.webp",
+        "w": 1920,
+        "h": 1278
     },
     "Coastal view from Nui Chua National Park.jpg": {
         "xs": "assets/img/wiki/coastal-view-from-nui-chua-national-park-a074c7-480.webp",
@@ -385,6 +420,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg": {
+        "xs": "assets/img/wiki/cua-ca-mau-ban-tren-duong-ns-ng30th7n2023-1-023c79-480.webp",
+        "sm": "assets/img/wiki/cua-ca-mau-ban-tren-duong-ns-ng30th7n2023-1-023c79-960.webp",
+        "lg": "assets/img/wiki/cua-ca-mau-ban-tren-duong-ns-ng30th7n2023-1-023c79-1920.webp",
+        "w": 1440,
+        "h": 1920
+    },
     "Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg": {
         "xs": "assets/img/wiki/cueva-paraiso-phong-nha-vietnam-36277324796-5af582-480.webp",
         "sm": "assets/img/wiki/cueva-paraiso-phong-nha-vietnam-36277324796-5af582-960.webp",
@@ -398,6 +440,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/cueva-phong-nha-vietnam-38652790530-ec4123-1920.webp",
         "w": 1920,
         "h": 1440
+    },
+    "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg": {
+        "xs": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-480.webp",
+        "sm": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-960.webp",
+        "lg": "assets/img/wiki/cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35-ec189e-1920.webp",
+        "w": 1920,
+        "h": 1280
     },
     "Cà phê trứng.jpg": {
         "xs": "assets/img/wiki/ca-phe-trung-3bae3f-480.webp",
@@ -517,6 +566,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/golden-bridge-at-ba-na-hills-20250718-dd01e1-1920.webp",
         "w": 1920,
         "h": 1242
+    },
+    "Grilled squid 001.jpg": {
+        "xs": "assets/img/wiki/grilled-squid-001-af89d8-480.webp",
+        "sm": "assets/img/wiki/grilled-squid-001-af89d8-960.webp",
+        "lg": "assets/img/wiki/grilled-squid-001-af89d8-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Gành Đá Đĩa - Phú Yên.jpg": {
         "xs": "assets/img/wiki/ganh-da-dia-phu-yen-ab88b4-480.webp",
@@ -763,6 +819,20 @@ const LOCAL_IMAGES = {
         "w": 924,
         "h": 1149
     },
+    "Kon Tum wooden catholic church.JPG": {
+        "xs": "assets/img/wiki/kon-tum-wooden-catholic-church-1af148-480.webp",
+        "sm": "assets/img/wiki/kon-tum-wooden-catholic-church-1af148-960.webp",
+        "lg": "assets/img/wiki/kon-tum-wooden-catholic-church-1af148-1920.webp",
+        "w": 1440,
+        "h": 1920
+    },
+    "Kontum wooden catholic church.jpg": {
+        "xs": "assets/img/wiki/kontum-wooden-catholic-church-890c05-480.webp",
+        "sm": "assets/img/wiki/kontum-wooden-catholic-church-890c05-960.webp",
+        "lg": "assets/img/wiki/kontum-wooden-catholic-church-890c05-1920.webp",
+        "w": 1920,
+        "h": 1273
+    },
     "Kênh đào Rạch Giá - Hà Tiên.jpg": {
         "xs": "assets/img/wiki/kenh-dao-rach-gia-ha-tien-47f288-480.webp",
         "sm": "assets/img/wiki/kenh-dao-rach-gia-ha-tien-47f288-960.webp",
@@ -840,6 +910,20 @@ const LOCAL_IMAGES = {
         "w": 1080,
         "h": 1920
     },
+    "Mai Chau 2008.jpg": {
+        "xs": "assets/img/wiki/mai-chau-2008-5f034c-480.webp",
+        "sm": "assets/img/wiki/mai-chau-2008-5f034c-960.webp",
+        "lg": "assets/img/wiki/mai-chau-2008-5f034c-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Mai Chau rice field.jpg": {
+        "xs": "assets/img/wiki/mai-chau-rice-field-86b0e8-480.webp",
+        "sm": "assets/img/wiki/mai-chau-rice-field-86b0e8-960.webp",
+        "lg": "assets/img/wiki/mai-chau-rice-field-86b0e8-1920.webp",
+        "w": 1920,
+        "h": 864
+    },
     "Marble Mountains, Vietnam.jpg": {
         "xs": "assets/img/wiki/marble-mountains-vietnam-285c3d-480.webp",
         "sm": "assets/img/wiki/marble-mountains-vietnam-285c3d-960.webp",
@@ -889,6 +973,20 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Mua ho dao o mang den tinh kon tum 005.jpg": {
+        "xs": "assets/img/wiki/mua-ho-dao-o-mang-den-tinh-kon-tum-005-8035d9-480.webp",
+        "sm": "assets/img/wiki/mua-ho-dao-o-mang-den-tinh-kon-tum-005-8035d9-960.webp",
+        "lg": "assets/img/wiki/mua-ho-dao-o-mang-den-tinh-kon-tum-005-8035d9-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Mui Ca Mau 005.JPG": {
+        "xs": "assets/img/wiki/mui-ca-mau-005-ade6f8-480.webp",
+        "sm": "assets/img/wiki/mui-ca-mau-005-ade6f8-960.webp",
+        "lg": "assets/img/wiki/mui-ca-mau-005-ade6f8-1920.webp",
+        "w": 1920,
+        "h": 1260
+    },
     "My Khe Beach Da Nang.jpg": {
         "xs": "assets/img/wiki/my-khe-beach-da-nang-ffc916-480.webp",
         "sm": "assets/img/wiki/my-khe-beach-da-nang-ffc916-960.webp",
@@ -896,12 +994,33 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Món cua Cà Mau ở nhà ng30th7n2023 (2).jpg": {
+        "xs": "assets/img/wiki/mon-cua-ca-mau-o-nha-ng30th7n2023-2-19a964-480.webp",
+        "sm": "assets/img/wiki/mon-cua-ca-mau-o-nha-ng30th7n2023-2-19a964-960.webp",
+        "lg": "assets/img/wiki/mon-cua-ca-mau-o-nha-ng30th7n2023-2-19a964-1920.webp",
+        "w": 1440,
+        "h": 1920
+    },
     "Măng chua ngâm quả móc mật.jpg": {
         "xs": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-480.webp",
         "sm": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-960.webp",
         "lg": "assets/img/wiki/mang-chua-ngam-qua-moc-mat-af3d06-1920.webp",
         "w": 1440,
         "h": 1920
+    },
+    "Măng Đen 1.jpg": {
+        "xs": "assets/img/wiki/mang-den-1-aad329-480.webp",
+        "sm": "assets/img/wiki/mang-den-1-aad329-960.webp",
+        "lg": "assets/img/wiki/mang-den-1-aad329-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "MũiCàMau.jpg": {
+        "xs": "assets/img/wiki/muicamau-45699a-480.webp",
+        "sm": "assets/img/wiki/muicamau-45699a-960.webp",
+        "lg": "assets/img/wiki/muicamau-45699a-1920.webp",
+        "w": 1920,
+        "h": 1056
     },
     "Mắm cá lóc.JPG": {
         "xs": "assets/img/wiki/mam-ca-loc-276ddd-480.webp",
@@ -1183,6 +1302,13 @@ const LOCAL_IMAGES = {
         "w": 1357,
         "h": 1920
     },
+    "Stilt-House-construction-Mai-Chau-Vietnam.jpg": {
+        "xs": "assets/img/wiki/stilt-house-construction-mai-chau-vietnam-3c1fa6-480.webp",
+        "sm": "assets/img/wiki/stilt-house-construction-mai-chau-vietnam-3c1fa6-960.webp",
+        "lg": "assets/img/wiki/stilt-house-construction-mai-chau-vietnam-3c1fa6-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Tam Coc, Ninh Binh ,Vietnam.jpg": {
         "xs": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-480.webp",
         "sm": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-960.webp",
@@ -1259,6 +1385,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/thap-nhan-tuy-hoa-phu-yen-ecea4d-1920.webp",
         "w": 1440,
         "h": 1920
+    },
+    "Thị trấn Măng Đen.jpg": {
+        "xs": "assets/img/wiki/thi-tran-mang-den-26631c-480.webp",
+        "sm": "assets/img/wiki/thi-tran-mang-den-26631c-960.webp",
+        "lg": "assets/img/wiki/thi-tran-mang-den-26631c-1920.webp",
+        "w": 1920,
+        "h": 1028
     },
     "Thị trấn Mộc Châu, Sơn La.jpg": {
         "xs": "assets/img/wiki/thi-tran-moc-chau-son-la-064c30-480.webp",
@@ -1439,6 +1572,13 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/xoi-xeo-35801e-480.webp",
         "sm": "assets/img/wiki/xoi-xeo-35801e-960.webp",
         "lg": "assets/img/wiki/xoi-xeo-35801e-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Đường đi trên đảo Cô Tô.jpg": {
+        "xs": "assets/img/wiki/duong-di-tren-dao-co-to-05a8f1-480.webp",
+        "sm": "assets/img/wiki/duong-di-tren-dao-co-to-05a8f1-960.webp",
+        "lg": "assets/img/wiki/duong-di-tren-dao-co-to-05a8f1-1920.webp",
         "w": 1920,
         "h": 1440
     },
