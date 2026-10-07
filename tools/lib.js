@@ -51,4 +51,10 @@ function slugify(text) {
         .slice(0, 80)
 }
 
-module.exports = { ROOT, SITE_URL, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }
+/*
+ * Mã xác minh quyền sở hữu site (để trống = không thêm): Google Search Console → Thêm tài sản → Tiền tố URL →
+ * phương thức "Thẻ HTML" → chép giá trị content="…"; Bing Webmaster Tools tương tự (thẻ msvalidate.01).
+ */
+const SITE_VERIFICATION = { google: '', bing: '' }
+
+module.exports = { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }

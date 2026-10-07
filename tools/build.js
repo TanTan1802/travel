@@ -17,7 +17,7 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 const esbuild = require('esbuild')
-const { ROOT, SITE_URL, loadBrowserScripts } = require('./lib')
+const { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts } = require('./lib')
 
 const PAGE_DIR = 'diem-den'
 const PLANNER_DIR = 'ke-hoach'
@@ -318,6 +318,11 @@ function buildDestinationPage(template, lang, d, site) {
     return html
 }
 
+/* Thẻ xác minh Google Search Console / Bing (chỉ cần ở trang chủ) – khai báo trong tools/lib.js */
+const verificationTags = () => [['google-site-verification', SITE_VERIFICATION.google], ['msvalidate.01', SITE_VERIFICATION.bing]]
+    .filter(([, code]) => code)
+    .map(([name, code]) => `    <meta name="${name}" content="${escapeHtml(code)}">\n`).join('')
+
 function buildHome(template, lang, site) {
     const rel = homePath(lang)
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
@@ -332,7 +337,7 @@ function buildHome(template, lang, site) {
         .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)
         .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${LANGS[lang].locale}$2`)
-        .replace('</head>', `    ${ldScript([{
+        .replace('</head>', `${verificationTags()}    ${ldScript([{
             '@type': 'WebSite',
             name: 'Việt Travel',
             url: pageUrl(rel),
