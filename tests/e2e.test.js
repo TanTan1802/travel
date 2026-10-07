@@ -39,6 +39,8 @@ async function openPage(url, { viewport = { width: 1280, height: 900 }, geolocat
         if (r.status() >= 400 && r.url().startsWith(server.url)) errors.push(`${r.status()} ${r.url().replace(server.url, '/')}`)
     })
     await page.goto(server.url + url)
+    /* Trang kế hoạch tải dữ liệu từng điểm đến sau khi mở (aria-busy) – chờ vẽ xong */
+    if (url.includes('ke-hoach/')) await page.waitForSelector('#planner-page:not([aria-busy])')
     return { page, errors, close: () => context.close() }
 }
 
@@ -223,7 +225,11 @@ test('bản đồ: Leaflet chỉ tải khi cần, hiện đủ điểm đến', 
 
 test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nhất, lưu và chia sẻ', async () => {
     const { page, errors, close } = await openPage('ke-hoach/index.html')
-    const stops = () => page.$$eval('.stop__name', a => a.map(x => x.textContent.trim()))
+    /* Dữ liệu từng điểm đến tải riêng khi cần (aria-busy trong lúc tải) – chờ vẽ xong rồi mới đọc */
+    const stops = async () => {
+        await page.waitForSelector('#planner-page:not([aria-busy])')
+        return page.$$eval('.stop__name', a => a.map(x => x.textContent.trim()))
+    }
 
     await page.click('.planner__route[data-route="1"]')
     assert.equal((await stops()).length, 4)
@@ -239,6 +245,7 @@ test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nh�
 
     /* Tuyến lộn xộn → sắp xếp lại theo địa lý */
     await page.goto(page.url().split('?')[0] + '?p=sa-pa.2,hoi-an.2,ha-noi.2,hue.2&m=7')
+    await stops()
     assert.equal(await page.$eval('#planner-month', s => s.value), '7')
     await page.click('[data-action="optimize"]')
     assert.deepEqual(await stops(), ['Sa Pa', 'Hà Nội', 'Cố đô Huế', 'Phố cổ Hội An'])

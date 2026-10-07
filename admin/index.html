@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Quản trị dữ liệu – Việt Travel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header class="bar">
+        <a href="#/" class="bar__brand">Việt Travel <span>· Quản trị dữ liệu</span></a>
+        <nav class="bar__nav" id="bar-nav" hidden>
+            <a href="#/">Điểm đến</a>
+            <a href="#/new">+ Thêm điểm đến</a>
+            <span class="bar__user" id="bar-user"></span>
+            <button type="button" class="link" id="logout">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <main id="app" class="app" aria-live="polite">
+        <p class="muted">Đang tải…</p>
+    </main>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

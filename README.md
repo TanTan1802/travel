@@ -54,17 +54,17 @@ Mỗi trang điểm đến có thẻ Open Graph (hiện ảnh xem trước khi c
 dữ liệu có cấu trúc schema.org `TouristDestination` và được liệt kê trong `sitemap.xml`.
 
 ## Đa ngôn ngữ
-- Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `assets/js/data/en.js`
+- Chuỗi giao diện trong JS dùng `t('Câu tiếng Việt')`; bản dịch nằm trong `data/i18n/en.json` (sinh ra `assets/js/data/en.js` khi build – không sửa tay file JS)
   (`ui`, `html`, `destinations`, `itineraries`).
 - Lịch trình nằm trong `data/itineraries.json`: mỗi điểm đến có 5 ngày nối tiếp, tour 3/4/5 ngày
   lấy lần lượt 3/4/5 ngày đầu; `fees` là vé tham quan & trải nghiệm mỗi ngày [tiết kiệm, thoải mái].
 - Chi phí tour tính theo từng khoản bằng `tripCost()` (components.js): lưu trú (phòng đôi chia 2, từ `places.js`), ăn uống (từ giá các quán), đi lại tại chỗ và vé tham quan. Mức thoải mái = khách sạn 3–4 sao, nhà hàng, Grab (≈ 1,7–1,9 lần mức tiết kiệm). Bấm vào mỗi mức để xem bảng chi tiết.
-- Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `en.js` rồi chạy `npm run build`
+- Khi thêm điểm đến mới, thêm bản dịch tương ứng vào `data/i18n/en.json` rồi chạy `npm run build` (build báo lỗi nếu điểm đến / lịch trình thiếu bản tiếng Anh)
   (các trường chưa dịch sẽ hiển thị tiếng Việt).
-- **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.js` –
+- **Hàn / Trung / Nhật** (`data/i18n/ko.json`, `zh.json`, `ja.json`): khóa là chuỗi tiếng Việt gốc giống `en.json` –
   `ui`, `html`, `regions`, `categories`, `destinations` (tên, tỉnh, khẩu hiệu, mùa đẹp, số ngày, điểm nổi bật, mô tả, chú thích ảnh, món ăn, trải nghiệm, kinh nghiệm)
   và `itineraries` (tên từng ngày). Bản dịch được phủ lên bản tiếng Anh, nên phần chưa dịch
-  (chi tiết lịch trình, quán ăn, điểm tham quan, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.js`
+  (chi tiết lịch trình, quán ăn, điểm tham quan, bài cẩm nang…) hiện tiếng Anh. `npm run build` báo lỗi nếu khóa không còn trong `en.json`
   hoặc biến `{…}` không khớp.
 - Thêm ngôn ngữ mới: tạo `data/i18n/<mã>.json`, khai báo trong `LANGS` (tools/build.js) và `SITE_LANGS` +
   tên tháng / thứ / định dạng ngày (assets/js/i18n.js, components.js, weather.js), rồi thêm thư mục `<mã>`
@@ -112,7 +112,7 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 
 - Món đặc sản đang dùng **ảnh minh họa** có liên kết "Có ảnh thật của món này?" mở cùng form gửi ảnh, điền sẵn mã điểm đến
   và tên món (tiêu đề `[Ảnh món] …`). Duyệt xong: tải ảnh lên Wikimedia Commons (hoặc thêm vào repo), đổi `file` của món trong
-  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `en.js` / `data/i18n`).
+  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `data/i18n/*.json`).
 
 ## Trợ lý hỏi đáp (Claude)
 
@@ -260,11 +260,26 @@ npm test                          # = npm run test:data && npm run test:e2e
 
 - `tests/data.test.js`: dữ liệu điểm đến, lịch trình 3/4/5 ngày, bản dịch tiếng Anh, manifest ảnh, trang tĩnh & sitemap, liên kết nội bộ.
 - `tests/e2e.test.js` (Playwright + Chromium): mọi trang không lỗi JS, tìm kiếm/lọc/yêu thích, chọn tour & ngày, chọn tháng, lightbox, chuyển ngôn ngữ, giao diện điện thoại. Tài nguyên ngoài (Wikimedia, Open-Meteo, bản đồ, giscus) được giả lập nên test chạy ổn định.
-- Workflow `.github/workflows/test.yml` chạy toàn bộ cho mỗi pull request và mỗi lần đẩy lên `main`, đồng thời báo lỗi nếu quên `npm run build` sau khi sửa dữ liệu.
+- Workflow `.github/workflows/test.yml` chạy toàn bộ cho mỗi pull request và mỗi lần đẩy lên `main`, đồng thời báo lỗi nếu quên `npm run build` sau khi sửa dữ liệu
+  (PR từ trang quản trị – nhánh `admin/*` – được `admin-build.yml` tự build và kiểm tra).
+
+## Trang quản trị dữ liệu (`/admin/`)
+Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài gì: mở `https://viet-travel.congtan5918.workers.dev/admin/`.
+
+- **Đăng nhập** bằng *fine-grained token* GitHub: [Generate new token](https://github.com/settings/personal-access-tokens/new)
+  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents` và `Pull requests` = **Read and write**.
+  Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat, issue hay mã nguồn.
+- **Sửa**: danh sách 37 điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
+  Ẩm thực & hoạt động, Lịch trình 5 ngày, Quán & lưu trú, Điểm tham quan, Bản dịch (en bắt buộc; ko/zh/ja tùy chọn).
+  Trang kiểm tra trước các lỗi thường gặp (thiếu quán, thiếu ngày, bản dịch dở dang…).
+- **Lưu thành Pull Request**: tạo nhánh `admin/<mã>-<thời gian>` chỉ đổi đúng các file `data/*.json` liên quan.
+  Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR;
+  xem *Files changed* và **Merge** – Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
+- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
 
 ## Thêm điểm đến mới
-Thêm một object vào mảng `DESTINATIONS` (mã `id`, tên, vùng, mô tả, ảnh, món ăn, hoạt động...)
-rồi chạy `npm run build`.
+Cách nhanh: trang quản trị `/admin/` → **+ Thêm điểm đến**. Sửa tay: xem [docs/du-lieu.md](docs/du-lieu.md)
+(dữ liệu ở `data/*.json`), rồi chạy `npm run build`.
 
 Ảnh chỉ cần khai báo **tên file trên Wikimedia Commons**; trang sẽ tự tải bản độ phân giải cao
 qua `Special:FilePath`, và mỗi ảnh trong lightbox có liên kết về trang bản quyền gốc.

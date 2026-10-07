@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 Sitemap: https://viet-travel.congtan5918.workers.dev/sitemap.xml

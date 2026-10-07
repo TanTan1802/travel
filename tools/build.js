@@ -727,7 +727,7 @@ function main() {
     bundles.forEach((code, rel) => write(rel, code))
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
     write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
-    write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
+    write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
     const n = Object.keys(LANGS).length
     console.log(`✅ Đã tạo ${count} trang điểm đến (${Object.keys(LANGS).join(' + ')}), ${n} trang chủ, ${n} trang kế hoạch, ${n * (1 + loadSite('vi', '').GUIDES.length)} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)

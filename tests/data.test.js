@@ -378,6 +378,9 @@ test('dữ liệu JSON hợp lệ theo schema và file JS sinh ra khớp với J
             assert.equal(JSON.stringify(generated[constName]), JSON.stringify(source[key]), `assets/js/data/${name}.js lệch với data/${name}.json – chạy npm run build`)
         }
     }
+    /* Bản tiếng Anh: assets/js/data/en.js sinh từ data/i18n/en.json */
+    const en = loadBrowserScripts(['assets/js/data/en.js'], ['TRANSLATION_EN']).TRANSLATION_EN
+    assert.equal(JSON.stringify(en), JSON.stringify(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/i18n/en.json'), 'utf8'))), 'assets/js/data/en.js lệch với data/i18n/en.json – chạy npm run build')
 
     /* Schema phải bắt được lỗi thường gặp */
     const Ajv2020 = require('ajv/dist/2020')
@@ -704,4 +707,18 @@ test('trang lập kế hoạch: gói JS không chứa dữ liệu mọi điểm 
             if (lang !== 'vi') assert.equal(typeof data.places.eats[0].dish, 'string', `${lang}/${d.id}.json: dữ liệu phải một ngôn ngữ`)
         }
     }
+})
+
+test('không file nào còn sót dấu xung đột merge; sw.js và trang quản trị là JS hợp lệ', () => {
+    const files = require('child_process').execFileSync('git', ['ls-files', '-co', '--exclude-standard'], { cwd: ROOT, encoding: 'utf8' })
+        .split('\n').filter(f => /\.(js|json|html|css|xml|txt|md|yml)$/.test(f) && fs.existsSync(path.join(ROOT, f)))
+    for (const f of files) {
+        const text = fs.readFileSync(path.join(ROOT, f), 'utf8')
+        assert.doesNotMatch(text, /^(<<<<<<< |>>>>>>> )/m, `${f}: còn dấu xung đột merge`)
+    }
+    const vm = require('vm')
+    for (const f of ['sw.js', 'admin/admin.js']) {
+        assert.doesNotThrow(() => new vm.Script(fs.readFileSync(path.join(ROOT, f), 'utf8'), { filename: f }), `${f}: lỗi cú pháp`)
+    }
+    assert.match(fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8'), /Disallow: \/admin\//, 'robots.txt phải chặn /admin/')
 })

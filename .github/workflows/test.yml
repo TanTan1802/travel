@@ -13,6 +13,8 @@ permissions:
 
 jobs:
   test:
+    # Nhánh admin/* (trang quản trị) được build + kiểm tra riêng trong admin-build.yml
+    if: ${{ !startsWith(github.head_ref, 'admin/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
