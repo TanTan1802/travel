@@ -110,6 +110,10 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
   → tạo WebP 480/960/1920 trong `assets/img/community/` (đã **xóa EXIF/GPS**), thêm vào `data/community-photos.json`; rồi `npm run build`.
 - Bình luận + **đánh giá bằng cảm xúc (reactions)** qua Giscus: xem mục Bình luận bên dưới để bật.
 
+- Món đặc sản đang dùng **ảnh minh họa** có liên kết "Có ảnh thật của món này?" mở cùng form gửi ảnh, điền sẵn mã điểm đến
+  và tên món (tiêu đề `[Ảnh món] …`). Duyệt xong: tải ảnh lên Wikimedia Commons (hoặc thêm vào repo), đổi `file` của món trong
+  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `en.js` / `data/i18n`).
+
 ## Trợ lý hỏi đáp (Claude)
 
 - Nút **"Hỏi Việt Travel"** (`assets/js/assistant.js`) mở khung chat; câu hỏi gửi tới Cloudflare Worker trong `worker/`,

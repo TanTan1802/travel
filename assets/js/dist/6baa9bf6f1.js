@@ -337,7 +337,7 @@ ${timelineEntryText(s)}`.trim(),location:timelineEntryLocation(s,a)}})}const ics
             <h2 class="section__title">${t("Món ngon phải thử")}</h2>
 
             <div class="food__grid container">
-                ${e.foods.map(foodCard).join("")}
+                ${e.foods.map(n=>foodCard(n,e)).join("")}
             </div>
             ${eatsBlock(e)}
         </section>
@@ -391,7 +391,7 @@ ${timelineEntryText(s)}`.trim(),location:timelineEntryLocation(s,a)}})}const ics
                 <p class="budget__note">${t("Giá phòng tham khảo cho 2 người/đêm, cao hơn vào lễ Tết và cuối tuần. Việt Travel không nhận hoa hồng từ các trang đặt chỗ.")}</p>
             </div>
         </section>
-    `}function foodCard(e){return`
+    `}function foodCard(e,n){return`
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>${t("Đặc sản")}</small>${e.name}</span>
@@ -402,7 +402,8 @@ ${timelineEntryText(s)}`.trim(),location:timelineEntryLocation(s,a)}})}const ics
             <div class="food-card__body">
                 <h3 class="food-card__title">${e.name}</h3>
                 <p class="food-card__desc">${e.desc}</p>
-                ${e.illustrative?`<span class="food-card__note"><i class="ri-information-line"></i> ${t("Ảnh minh họa")}: ${e.illustrative}</span>`:""}
+                ${e.illustrative?`<span class="food-card__note"><i class="ri-information-line"></i> ${t("Ảnh minh họa")}: ${e.illustrative}</span>
+                <a href="${foodPhotoSubmitUrl(e,n)}" target="_blank" rel="noopener" class="food-card__submit"><i class="ri-camera-line"></i> ${t("Có ảnh thật của món này? Gửi cho Việt Travel")}</a>`:""}
             </div>
         </article>
     `}function activitiesSection(e){return`
@@ -584,7 +585,7 @@ ${timelineEntryText(s)}`.trim(),location:timelineEntryLocation(s,a)}})}const ics
                 </div>
             </div>
         </section>
-    `}const photoSubmitUrl=e=>`https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({template:"gui-anh.yml",title:`[Ảnh] ${e.name}`,dest:e.name})}`;function communityPhotoHtml(e){const n=a=>`${SITE_ROOT}assets/img/community/${e.base}-${a}.webp`;return`
+    `}const photoSubmitUrl=e=>`https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({template:"gui-anh.yml",title:`[Ảnh] ${e.name}`,dest:e.name})}`,foodPhotoSubmitUrl=(e,n)=>`https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({template:"gui-anh.yml",title:`[Ảnh món] ${e.name} – ${n.name}`,dest:n.id,caption:e.name})}`;function communityPhotoHtml(e){const n=a=>`${SITE_ROOT}assets/img/community/${e.base}-${a}.webp`;return`
         <figure class="community-photo">
             <img src="${n(960)}" srcset="${n(480)} 480w, ${n(960)} 960w, ${n(1920)} 1920w"
                  sizes="(max-width: 576px) calc(100vw - 32px), 360px" width="${e.w}" height="${e.h}" alt="${pickLang(e.caption)}" loading="lazy">

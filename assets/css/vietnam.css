@@ -949,6 +949,23 @@ body.page-detail {
   display: none;
 }
 
+/* Mời gửi ảnh thật cho món đang dùng ảnh minh họa */
+.food-card__submit {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .3rem;
+  margin-top: .4rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text, var(--first-color));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.food-card__submit:hover {
+  text-decoration-thickness: 2px;
+}
+
 /*=============== BẢN ĐỒ ===============*/
 :root {
   --region-bac: hsl(190, 64%, 30%);

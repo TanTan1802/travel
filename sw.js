@@ -4,7 +4,7 @@
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
 <<<<<<< HEAD
-const VERSION = '26916bf039'
+const VERSION = '0730fe4062'
 =======
 const VERSION = 'd75fd3eb7f'
 >>>>>>> origin/main
@@ -28,7 +28,7 @@ const CORE_ASSETS = [
     './assets/fonts/open-sans-latin-400.woff2',
     './assets/fonts/open-sans-vietnamese-400.woff2',
     /* build:core-assets */
-    './assets/css/site-e3675f6967.css',
+    './assets/css/site-a9cd15625d.css',
     './assets/js/dist/03029f971a.js',
     /* /build:core-assets */
     './assets/img/favicon.png',

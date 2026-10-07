@@ -29,6 +29,7 @@ const TRANSLATION_EN = {
         'Chọn phương tiện': 'Choose transport',
         'gợi ý': 'suggested',
         'Đi từ {name}': 'Depart from {name}',
+        'Có ảnh thật của món này? Gửi cho Việt Travel': 'Have a real photo of this dish? Send it to Viet Travel',
         'Máy bay': 'Plane',
         'Tàu hỏa': 'Train',
         'Xe khách / ô tô': 'Bus / car',
