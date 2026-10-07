@@ -18,7 +18,16 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      STATUS_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
+      # Trang quản trị đọc trạng thái "Kiểm tra (admin)" để hiện tiến độ PR
+      - name: Báo đang kiểm tra
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state=pending -f context="Kiểm tra (admin)" \
+            -f description="Đang build và chạy test" -f target_url="$STATUS_URL" > /dev/null
+
       - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v5
@@ -58,8 +67,6 @@ jobs:
 
       # Commit bằng GITHUB_TOKEN không kích hoạt workflow khác, nên tự gắn trạng thái "đã kiểm tra" cho commit mới
       - name: Commit trang đã build vào nhánh
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -73,5 +80,11 @@ jobs:
           gh api "repos/${GITHUB_REPOSITORY}/statuses/$(git rev-parse HEAD)" \
             -f state=success -f context="Kiểm tra (admin)" \
             -f description="Đã build và qua toàn bộ test" \
-            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" > /dev/null
+            -f target_url="$STATUS_URL" > /dev/null
           echo "### Đã build và kiểm tra – Pull Request sẵn sàng merge" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Báo kiểm tra lỗi
+        if: failure()
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state=failure -f context="Kiểm tra (admin)" \
+            -f description="Build hoặc test lỗi – xem log" -f target_url="$STATUS_URL" > /dev/null

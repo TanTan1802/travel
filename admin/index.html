@@ -4,27 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#135059">
     <title>Quản trị dữ liệu – Việt Travel</title>
     <link rel="stylesheet" href="admin.css">
+    <!-- Giao diện tối / sáng đã chọn: gắn trước khi vẽ để không nháy -->
+    <script>try{var t=localStorage.getItem('vt-admin-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
-    <header class="bar">
-        <a href="#/" class="bar__brand">Việt Travel <span>· Quản trị dữ liệu</span></a>
-        <nav class="bar__nav" id="bar-nav" hidden>
-            <a href="#/">Điểm đến</a>
-            <a href="#/new">+ Thêm điểm đến</a>
-            <a href="#/site">Giao diện & mùa</a>
-            <span class="bar__user" id="bar-user"></span>
-            <button type="button" class="link" id="logout">Đăng xuất</button>
-        </nav>
-    </header>
+    <div class="shell" id="shell">
+        <!-- Thanh bên: hiện sau khi đăng nhập (admin.js) -->
+        <aside class="side" id="side" hidden>
+            <a href="#/" class="side__brand">
+                <span class="side__logo" aria-hidden="true">VT</span>
+                <span><strong>Việt Travel</strong><small>Quản trị dữ liệu</small></span>
+            </a>
+            <nav class="side__nav" id="side-nav" aria-label="Mục quản trị"></nav>
+            <div class="side__foot">
+                <a class="side__site" href="../" target="_blank" rel="noopener">Mở trang du lịch ↗</a>
+                <div class="side__user">
+                    <img id="side-avatar" alt="" width="32" height="32" hidden>
+                    <span id="side-user"></span>
+                </div>
+                <div class="side__actions">
+                    <button type="button" class="side__btn" id="theme-toggle" title="Đổi giao diện sáng / tối">◐ Giao diện</button>
+                    <button type="button" class="side__btn" id="logout">Đăng xuất</button>
+                </div>
+            </div>
+        </aside>
+        <div class="side-backdrop" id="side-backdrop" hidden></div>
 
-    <main id="app" class="app" aria-live="polite">
-        <p class="muted">Đang tải…</p>
-    </main>
+        <div class="main">
+            <header class="topbar" id="topbar" hidden>
+                <button type="button" class="topbar__menu" id="menu-toggle" aria-label="Mở menu" aria-controls="side" aria-expanded="false">☰</button>
+                <nav class="crumbs" id="crumbs" aria-label="Vị trí"></nav>
+                <div class="topbar__actions" id="topbar-actions"></div>
+            </header>
+            <main id="app" class="app" aria-live="polite">
+                <p class="muted">Đang tải…</p>
+            </main>
+        </div>
+    </div>
 
-    <div class="toast" id="toast" role="status" hidden></div>
+    <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal__box" id="modal-box"></div>
+    </div>
+    <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
+    <!-- Bản đồ ảnh đã tải về site: ảnh xem trước nhanh, không phải chờ Wikimedia Commons -->
+    <script src="../assets/js/data/local-images.js"></script>
     <script src="admin.js"></script>
 </body>
 </html>

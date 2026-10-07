@@ -267,14 +267,20 @@ npm test                          # = npm run test:data && npm run test:e2e
 Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài gì: mở `https://viet-travel.congtan5918.workers.dev/admin/`.
 
 - **Đăng nhập** bằng *fine-grained token* GitHub: [Generate new token](https://github.com/settings/personal-access-tokens/new)
-  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents` và `Pull requests` = **Read and write**.
+  → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents` và `Pull requests` = **Read and write**
+  (thêm `Commit statuses` = Read-only để xem PR đã kiểm tra xong chưa).
   Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat, issue hay mã nguồn.
+- **Tổng quan**: số điểm đến, điểm thiếu bản dịch, món dùng ảnh minh họa, quán / điểm quá 12 tháng chưa kiểm tra,
+  mùa đang chạy + mùa sắp tới, PR đang chờ và danh sách "cần chú ý". **Điểm đến**: lưới ảnh hoặc bảng, tìm, lọc, sắp xếp.
+- Trình sửa: số mục còn thiếu hiện ngay trên từng tab, danh sách dài thu gọn được, **tự lưu nháp** trên máy
+  (đóng trang / chuyển trang không mất), `Ctrl + S` mở **xem lại thay đổi** (diff từng file) trước khi tạo PR.
 - **Sửa**: danh sách 37 điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
   Ẩm thực & hoạt động, Lịch trình 5 ngày, Quán & lưu trú, Điểm tham quan, Bản dịch (en bắt buộc; ko/zh/ja tùy chọn).
   Trang kiểm tra trước các lỗi thường gặp (thiếu quán, thiếu ngày, bản dịch dở dang…).
 - **Lưu thành Pull Request**: tạo nhánh `admin/<mã>-<thời gian>` chỉ đổi đúng các file `data/*.json` liên quan.
-  Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR;
-  xem *Files changed* và **Merge** – Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
+  Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR và báo trạng thái
+  `Kiểm tra (admin)`; khi PR **Sẵn sàng đăng**, bấm **Đăng lên site** ngay trong trang quản trị (hoặc Merge trên GitHub) –
+  Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
 - **Giao diện & mùa** (`#/site`, dữ liệu `data/site.json`): màu chủ đạo + màu nhấn (có bảng màu mẫu, xem trước sáng/tối,
   chặn màu không đủ tương phản WCAG AA), slogan / dòng chữ nhỏ / ảnh bìa trang chủ theo 5 ngôn ngữ, danh sách điểm đến nổi bật.
   Thêm **mùa / chiến dịch** (Tết, hè biển, lúa chín…): khoảng ngày `MM-DD` lặp hằng năm hoặc `YYYY-MM-DD` một lần;
