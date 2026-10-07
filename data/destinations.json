@@ -374,7 +374,7 @@
           "name": "Thịt dê núi",
           "desc": "Dê chạy núi đá thịt săn chắc, chế biến tái chanh, nướng, hấp.",
           "price": "200.000đ",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "file": "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg",
           "illustrative": "Thịt nướng than hoa"
         },
         {
@@ -740,7 +740,7 @@
           "price": "900.000đ/kg",
           "file": [
             "Thịt trâu gác bếp Tả Phìn Hồ.jpg",
-            "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg"
+            "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg"
           ]
         },
         {
@@ -946,8 +946,8 @@
           "name": "Gà nướng Phong Nha",
           "desc": "Gà ta thả vườn nướng than, chấm muối tiêu chanh.",
           "price": "250.000đ/con",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
-          "illustrative": "Đồ nướng vỉ than"
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg",
+          "illustrative": "Gà nướng nguyên con"
         },
         {
           "name": "Bánh xèo",
@@ -1256,8 +1256,8 @@
           "name": "Nem nướng Ninh Hòa",
           "desc": "Nem nướng than cuốn bánh tráng, rau sống, chấm tương đặc biệt.",
           "price": "50.000đ",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
-          "illustrative": "Thịt nướng than hoa"
+          "file": "Bánh hỏi nem nướng ăn với bánh tráng tháng 6 năm 2018 (1).jpg",
+          "illustrative": "Nem nướng ăn với bánh tráng"
         },
         {
           "name": "Bánh căn",
@@ -2825,7 +2825,7 @@
           "name": "Bò tơ Tây Ninh",
           "desc": "Bò non thịt mềm, nướng ngói, hấp gừng hay làm gỏi – món nhậu nổi tiếng của vùng.",
           "price": "200.000đ",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "file": "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg",
           "illustrative": "Thịt nướng than hoa"
         }
       ],
@@ -2928,7 +2928,7 @@
           "name": "Thịt cừu nướng",
           "desc": "Cừu nuôi thả trên đồng cỏ khô, thịt thơm, nướng than hoặc nấu lẩu thuốc bắc.",
           "price": "250.000đ",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
+          "file": "Bún thịt nướng cảng Cát Lái, ng10th5n2022 (thịt nướng than khói) (1).jpg",
           "illustrative": "Thịt nướng than hoa"
         }
       ],
@@ -3019,7 +3019,7 @@
           "desc": "Loài cua đá thịt chắc, hấp hoặc rang me.",
           "price": "250.000đ/kg",
           "file": "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg",
-          "illustrative": "Cua biển tươi"
+          "illustrative": "Cua biển hấp"
         },
         {
           "name": "Bánh cuốn chả mực",
@@ -3096,7 +3096,7 @@
           "caption": "Thị trấn Măng Đen"
         },
         {
-          "file": "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg",
+          "file": "Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-26.jpg",
           "caption": "Cuộc sống ở làng Kon Pring"
         },
         {
@@ -3194,7 +3194,7 @@
         },
         {
           "file": "Stilt-House-construction-Mai-Chau-Vietnam.jpg",
-          "caption": "Dựng nhà sàn ở Mai Châu"
+          "caption": "Nhà sàn bày bán thổ cẩm ở Mai Châu"
         },
         {
           "file": "Mai Chau rice field.jpg",
@@ -3219,8 +3219,8 @@
           "name": "Gà đồi nướng",
           "desc": "Gà thả đồi nướng mật ong, da giòn thịt chắc.",
           "price": "250.000đ/con",
-          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản thịt nướng Tây Bắc, vỉ nướng than.jpg",
-          "illustrative": "Thịt nướng than hoa"
+          "file": "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg",
+          "illustrative": "Gà nướng nguyên con"
         }
       ],
       "activities": [
@@ -3304,8 +3304,7 @@
           "name": "Ba khía muối",
           "desc": "Ba khía muối trộn tỏi ớt, chanh đường – ăn với cơm trắng.",
           "price": "100.000đ/hũ",
-          "file": "Cua Cà Mau bán trên đường NS, ng30th7n2023 (1).jpg",
-          "illustrative": "Cua tươi bán ở Cà Mau"
+          "file": "Mam ba khia (Vietnamese).jpg"
         },
         {
           "name": "Lẩu mắm U Minh",

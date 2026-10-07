@@ -812,7 +812,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Quang Binh bánh bột lọc', desc: 'Translucent dumplings with braised river shrimp, dipped in chilli fish sauce.', price: '30,000 VND' },
-                { name: 'Phong Nha grilled chicken', desc: 'Free-range chicken grilled over charcoal, with salt, pepper and lime.', price: '250,000 VND/chicken', illustrative: 'Charcoal grill' },
+                { name: 'Phong Nha grilled chicken', desc: 'Free-range chicken grilled over charcoal, with salt, pepper and lime.', price: '250,000 VND/chicken', illustrative: 'Whole grilled chicken' },
                 { name: 'Bánh xèo', desc: 'Crispy pancakes with shrimp and pork, wrapped in wild greens.', price: '30,000 VND' },
             ],
             activities: [
@@ -897,7 +897,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Fish cake noodle soup', desc: 'Mackerel and flying-fish cakes, fried and steamed, in a light broth.', price: '35,000 VND' },
-                { name: 'Ninh Hoa grilled pork rolls', desc: 'Charcoal-grilled pork sausage wrapped in rice paper with herbs and a special dip.', price: '50,000 VND', illustrative: 'Charcoal-grilled meat' },
+                { name: 'Ninh Hoa grilled pork rolls', desc: 'Charcoal-grilled pork sausage wrapped in rice paper with herbs and a special dip.', price: '50,000 VND', illustrative: 'Grilled pork sausage with rice paper' },
                 { name: 'Bánh căn', desc: 'Mini rice cakes cooked in clay moulds with egg, squid or shrimp.', price: '30,000 VND' },
             ],
             activities: [
@@ -1354,7 +1354,7 @@ const TRANSLATION_EN = {
             foods: [
                 { name: 'Sá sùng (peanut worms)', desc: 'A prized local delicacy – stir-fried with garlic, grilled or dried as a gift.', price: '300,000 VND/plate', illustrative: 'Grilled seafood' },
                 { name: 'Line-caught squid', desc: 'Night-caught squid grilled, steamed with ginger or sun-dried for a day.', price: '350,000 VND/kg', illustrative: 'Grilled squid' },
-                { name: 'Cù kỳ (rock crab)', desc: 'Firm-fleshed rock crabs, steamed or fried with tamarind.', price: '250,000 VND/kg', illustrative: 'Fresh sea crabs' },
+                { name: 'Cù kỳ (rock crab)', desc: 'Firm-fleshed rock crabs, steamed or fried with tamarind.', price: '250,000 VND/kg', illustrative: 'Steamed sea crabs' },
                 { name: 'Rice rolls with squid cake', desc: 'The islanders\' favourite breakfast with hand-pounded squid cake.', price: '40,000 VND', illustrative: 'Steamed rice rolls' },
             ],
             activities: [
@@ -1403,13 +1403,13 @@ const TRANSLATION_EN = {
             duration: '2 days',
             gallery: [
                 { caption: 'A Thai stilt house in Mai Chau' },
-                { caption: 'Building a stilt house in Mai Chau' },
+                { caption: 'A stilt house selling brocade in Mai Chau' },
                 { caption: 'Mai Chau rice fields' },
             ],
             foods: [
                 { name: 'Bamboo rice', desc: 'Upland sticky rice cooked in bamboo tubes, dipped in sesame salt.', price: '20,000 VND/tube' },
                 { name: 'Grilled stream fish', desc: 'Stream fish rubbed with mac khen pepper and grilled in bamboo clamps.', price: '120,000 VND', illustrative: 'Grilled fish' },
-                { name: 'Grilled hill chicken', desc: 'Free-range chicken grilled with honey – crisp skin, firm meat.', price: '250,000 VND/chicken', illustrative: 'Charcoal-grilled meat' },
+                { name: 'Grilled hill chicken', desc: 'Free-range chicken grilled with honey – crisp skin, firm meat.', price: '250,000 VND/chicken', illustrative: 'Whole grilled chicken' },
             ],
             activities: [
                 { title: 'Cycle Lac – Pom Coong', desc: 'Small lanes through rice fields, stopping to watch brocade weaving.' },
@@ -1434,7 +1434,7 @@ const TRANSLATION_EN = {
             ],
             foods: [
                 { name: 'Ca Mau crab', desc: 'Roe-rich, firm crabs – steamed with beer, fried with tamarind or grilled with chilli salt.', price: '400,000 VND/kg' },
-                { name: 'Salted ba khía crab', desc: 'Small salted crabs mixed with garlic, chilli, lime and sugar – eaten with rice.', price: '100,000 VND/jar', illustrative: 'Fresh crabs for sale in Ca Mau' },
+                { name: 'Salted ba khía crab', desc: 'Small salted crabs mixed with garlic, chilli, lime and sugar – eaten with rice.', price: '100,000 VND/jar' },
                 { name: 'U Minh fermented-fish hotpot', desc: 'Fermented fish hotpot with dozens of field greens.', price: '250,000 VND/pot', illustrative: 'Fermented snakehead fish' },
             ],
             activities: [
