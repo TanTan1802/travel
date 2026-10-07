@@ -4,7 +4,7 @@ link: https://viet-travel.congtan5918.workers.dev/ (bản sao: https://tantan180
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 34 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 37 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
@@ -109,6 +109,10 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 - Duyệt ảnh: `npm run add-photo -- --dest hoi-an --src <URL ảnh trong Issue> --author "Tên" --caption "..." --caption-en "..." --issue <link>`
   → tạo WebP 480/960/1920 trong `assets/img/community/` (đã **xóa EXIF/GPS**), thêm vào `data/community-photos.json`; rồi `npm run build`.
 - Bình luận + **đánh giá bằng cảm xúc (reactions)** qua Giscus: xem mục Bình luận bên dưới để bật.
+
+- Món đặc sản đang dùng **ảnh minh họa** có liên kết "Có ảnh thật của món này?" mở cùng form gửi ảnh, điền sẵn mã điểm đến
+  và tên món (tiêu đề `[Ảnh món] …`). Duyệt xong: tải ảnh lên Wikimedia Commons (hoặc thêm vào repo), đổi `file` của món trong
+  `data/destinations.json` và bỏ `illustrative` (cả bản dịch ở `en.js` / `data/i18n`).
 
 ## Trợ lý hỏi đáp (Claude)
 

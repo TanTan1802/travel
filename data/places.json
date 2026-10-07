@@ -159,6 +159,20 @@
           250000,
           350000
         ]
+      },
+      {
+        "dest": "nam-du",
+        "name": [
+          "cảng Rạch Giá",
+          "Rach Gia port"
+        ],
+        "lat": 10.012,
+        "lng": 105.078,
+        "hours": 2.5,
+        "price": [
+          230000,
+          330000
+        ]
       }
     ]
   },
@@ -7026,6 +7040,597 @@
           "note": [
             "Điểm dừng giữa đường ra Đất Mũi.",
             "A stop halfway to Dat Mui."
+          ]
+        }
+      ]
+    },
+    "tam-dao": {
+      "city": "Tam Dao",
+      "airport": "HAN",
+      "getThere": [
+        "Từ Hà Nội đi xe khách / limousine khoảng 2 giờ (85 km) tới thị trấn Tam Đảo, hoặc thuê xe; xe máy đi qua Vĩnh Yên rồi lên đèo 13 km.",
+        "From Hanoi, a bus or limousine van takes about 2 h (85 km) to Tam Dao town, or hire a car; by motorbike go via Vinh Yen then 13 km up the pass."
+      ],
+      "eats": [
+        {
+          "name": "Quán su su chợ Tam Đảo",
+          "dish": [
+            "Su su xào tỏi, ngọn su su luộc",
+            "Chayote stir-fried with garlic, boiled chayote shoots"
+          ],
+          "address": "Chợ thị trấn Tam Đảo",
+          "price": [
+            40000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gà đồi nướng Tam Đảo",
+          "dish": [
+            "Gà đồi nướng, gà luộc lá chanh",
+            "Grilled hill chicken, chicken with lime leaves"
+          ],
+          "address": "Thị trấn Tam Đảo",
+          "price": [
+            150000,
+            350000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lợn cắp nách đầu dốc",
+          "dish": [
+            "Lợn cắp nách nướng, luộc",
+            "Grilled or boiled local pork"
+          ],
+          "address": "Đường lên thị trấn Tam Đảo",
+          "price": [
+            120000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Phố nướng đêm Tam Đảo",
+          "dish": [
+            "Xiên nướng, ngô khoai nướng",
+            "Grilled skewers, roasted corn and sweet potato"
+          ],
+          "address": "Quảng trường thị trấn Tam Đảo",
+          "price": [
+            30000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lẩu gà Tam Đảo",
+          "dish": [
+            "Lẩu gà đồi nấu nấm, su su",
+            "Hill-chicken hotpot with mushrooms and chayote"
+          ],
+          "address": "Thị trấn Tam Đảo",
+          "price": [
+            200000,
+            400000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán phở sáng Tam Đảo",
+          "dish": [
+            "Phở, bún, bánh cuốn buổi sáng",
+            "Pho, noodles and rice rolls for breakfast"
+          ],
+          "address": "Thị trấn Tam Đảo",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng chân núi Tây Thiên",
+          "dish": [
+            "Cơm chay, cơm gà, rau rừng",
+            "Vegetarian rice, chicken rice and wild greens"
+          ],
+          "address": "Khu du lịch Tây Thiên, Đại Đình",
+          "price": [
+            50000,
+            150000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cá hồ Đại Lải",
+          "dish": [
+            "Cá hồ nướng, lẩu cá",
+            "Grilled lake fish and fish hotpot"
+          ],
+          "address": "Hồ Đại Lải",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê view đèo Tam Đảo",
+          "drink": [
+            "Cà phê nóng, ca cao ngắm mây",
+            "Hot coffee and cocoa above the clouds"
+          ],
+          "address": "Đèo Tam Đảo",
+          "price": [
+            30000,
+            70000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê biệt thự cổ Tam Đảo",
+          "drink": [
+            "Cà phê, trà gừng trong biệt thự Pháp",
+            "Coffee and ginger tea in a French villa"
+          ],
+          "address": "Thị trấn Tam Đảo",
+          "price": [
+            30000,
+            65000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán trà nóng quảng trường Tam Đảo",
+          "drink": [
+            "Trà gừng, sữa đậu nành nóng",
+            "Ginger tea and hot soy milk"
+          ],
+          "address": "Quảng trường thị trấn Tam Đảo",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Thị trấn Tam Đảo",
+            "Tam Dao town"
+          ],
+          "type": "hotel",
+          "price": [
+            500000,
+            1500000
+          ],
+          "note": [
+            "Gần quảng trường, nhà thờ đá, quán ăn.",
+            "Near the square, the stone church and restaurants."
+          ]
+        },
+        {
+          "area": [
+            "Homestay sườn đồi",
+            "Hillside homestays"
+          ],
+          "type": "homestay",
+          "price": [
+            400000,
+            1000000
+          ],
+          "note": [
+            "Nhà gỗ view thung lũng, có lò sưởi.",
+            "Wooden houses with valley views and fireplaces."
+          ]
+        },
+        {
+          "area": [
+            "Resort Tam Đảo – Đại Lải",
+            "Tam Dao – Dai Lai resorts"
+          ],
+          "type": "resort",
+          "price": [
+            1500000,
+            4000000
+          ],
+          "note": [
+            "Hồ bơi, sân golf, yên tĩnh.",
+            "Pools, golf and peace and quiet."
+          ]
+        }
+      ]
+    },
+    "binh-lieu": {
+      "city": "Binh Lieu",
+      "airport": "VDO",
+      "getThere": [
+        "Từ Hà Nội đi xe khách khoảng 5 giờ qua Hạ Long – Tiên Yên (khoảng 250 km); từ Hạ Long khoảng 3 giờ. Gần nhất có sân bay Vân Đồn (VDO).",
+        "From Hanoi a bus takes about 5 h via Ha Long – Tien Yen (about 250 km); from Ha Long about 3 h. The nearest airport is Van Don (VDO)."
+      ],
+      "eats": [
+        {
+          "name": "Quán miến dong Bình Liêu",
+          "dish": [
+            "Miến dong xào, miến gà",
+            "Stir-fried arrowroot noodles, chicken noodle soup"
+          ],
+          "address": "Thị trấn Bình Liêu",
+          "price": [
+            40000,
+            80000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gà đồi Bình Liêu",
+          "dish": [
+            "Gà đồi luộc lá chanh, gà nướng",
+            "Hill chicken with lime leaves, grilled chicken"
+          ],
+          "address": "Thị trấn Bình Liêu",
+          "price": [
+            150000,
+            350000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán thịt trâu gác bếp",
+          "dish": [
+            "Thịt trâu gác bếp, lạp sườn hun khói",
+            "Smoked buffalo and smoked sausage"
+          ],
+          "address": "Thị trấn Bình Liêu",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh cuốn sáng Bình Liêu",
+          "dish": [
+            "Bánh cuốn, cháo bánh canh",
+            "Rice rolls and noodle porridge"
+          ],
+          "address": "Chợ Bình Liêu",
+          "price": [
+            25000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ phiên Bình Liêu",
+          "dish": [
+            "Bánh gio, bánh coóc mò, xôi màu",
+            "Ash cakes, coóc mò sticky-rice cakes and coloured sticky rice"
+          ],
+          "address": "Chợ trung tâm Bình Liêu",
+          "price": [
+            10000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lẩu cá suối Khe Vằn",
+          "dish": [
+            "Lẩu cá suối, rau rừng",
+            "Stream-fish hotpot and wild greens"
+          ],
+          "address": "Gần thác Khe Vằn, Húc Động",
+          "price": [
+            150000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà hàng Hoành Mô",
+          "dish": [
+            "Cơm bản, thịt lợn đen",
+            "Village-style rice and black pork"
+          ],
+          "address": "Hoành Mô, Bình Liêu",
+          "price": [
+            60000,
+            150000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gà Tiên Yên",
+          "dish": [
+            "Gà Tiên Yên luộc, chặt",
+            "Boiled Tien Yen chicken"
+          ],
+          "address": "Thị trấn Tiên Yên",
+          "price": [
+            150000,
+            350000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê đồi lau Bình Liêu",
+          "drink": [
+            "Cà phê, trà nóng ngắm đồi",
+            "Coffee and hot tea overlooking the hills"
+          ],
+          "address": "Đường lên cột mốc 1300",
+          "price": [
+            20000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán trà shan tuyết Bình Liêu",
+          "drink": [
+            "Trà shan tuyết, nước gừng",
+            "Shan tuyet tea and ginger drink"
+          ],
+          "address": "Thị trấn Bình Liêu",
+          "price": [
+            15000,
+            40000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê trung tâm Bình Liêu",
+          "drink": [
+            "Cà phê sữa, sinh tố",
+            "Milk coffee and smoothies"
+          ],
+          "address": "Thị trấn Bình Liêu",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Thị trấn Bình Liêu",
+            "Binh Lieu town"
+          ],
+          "type": "hotel",
+          "price": [
+            300000,
+            700000
+          ],
+          "note": [
+            "Nhà nghỉ, khách sạn nhỏ gần chợ.",
+            "Guesthouses and small hotels near the market."
+          ]
+        },
+        {
+          "area": [
+            "Homestay bản Dao, bản Tày",
+            "Dao and Tay village homestays"
+          ],
+          "type": "homestay",
+          "price": [
+            200000,
+            500000
+          ],
+          "note": [
+            "Ngủ nhà sàn, ăn cơm cùng gia đình.",
+            "Sleep in a stilt house and eat with the family."
+          ]
+        }
+      ]
+    },
+    "nam-du": {
+      "city": "Nam Du",
+      "airport": "VKG",
+      "getThere": [
+        "Tàu cao tốc từ cảng Rạch Giá khoảng 2,5 giờ (1 – 2 chuyến/ngày). Tới Rạch Giá: bay (VKG), hoặc xe khách từ Sài Gòn khoảng 6 giờ, từ Cần Thơ khoảng 3 giờ.",
+        "Fast boat from Rach Gia port, about 2.5 h (1 – 2 sailings a day). To Rach Gia: fly (VKG), or a bus from Saigon in about 6 h or from Can Tho in about 3 h."
+      ],
+      "eats": [
+        {
+          "name": "Quán gỏi cá trích Hòn Lớn",
+          "dish": [
+            "Gỏi cá trích, cá nướng",
+            "Raw herring salad and grilled fish"
+          ],
+          "address": "Bãi Ngự, Hòn Lớn",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Nhà bè hải sản Nam Du",
+          "dish": [
+            "Ghẹ, tôm, cá chọn tại bè",
+            "Crab, prawns and fish picked from the raft"
+          ],
+          "address": "Vịnh Hòn Lớn",
+          "price": [
+            200000,
+            500000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nướng bãi Cây Mến",
+          "dish": [
+            "Mực một nắng, sò điệp, nhum nướng",
+            "Grilled sun-dried squid, scallops and sea urchin"
+          ],
+          "address": "Bãi Cây Mến, Hòn Lớn",
+          "price": [
+            100000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bún kèn sáng Nam Du",
+          "dish": [
+            "Bún kèn, bánh canh cá",
+            "Coconut fish noodles and fish noodle soup"
+          ],
+          "address": "Chợ Hòn Lớn",
+          "price": [
+            25000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cơm gia đình Hòn Lớn",
+          "dish": [
+            "Cơm cá kho, canh chua",
+            "Braised fish rice and sour soup"
+          ],
+          "address": "Hòn Lớn, Nam Du",
+          "price": [
+            50000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ốc đêm Nam Du",
+          "dish": [
+            "Ốc hương, ốc mỡ xào",
+            "Stir-fried sea snails"
+          ],
+          "address": "Hòn Lớn, Nam Du",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán hải sản Củ Tron",
+          "dish": [
+            "Cá mú hấp, lẩu hải sản",
+            "Steamed grouper and seafood hotpot"
+          ],
+          "address": "Đảo Củ Tron",
+          "price": [
+            150000,
+            400000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ăn sáng cảng Rạch Giá",
+          "dish": [
+            "Bánh canh, hủ tiếu trước giờ tàu",
+            "Noodle soups before the boat"
+          ],
+          "address": "Cảng Rạch Giá",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê võng bãi Ngự",
+          "drink": [
+            "Cà phê, nước dừa nằm võng",
+            "Coffee and coconut water in a hammock"
+          ],
+          "address": "Bãi Ngự, Hòn Lớn",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán sinh tố cầu cảng Nam Du",
+          "drink": [
+            "Sinh tố, nước ép trái cây",
+            "Smoothies and fruit juice"
+          ],
+          "address": "Cầu cảng Hòn Lớn",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê sáng chợ Hòn Lớn",
+          "drink": [
+            "Cà phê phin, trà đá",
+            "Filter coffee and iced tea"
+          ],
+          "address": "Chợ Hòn Lớn",
+          "price": [
+            15000,
+            30000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Hòn Lớn (gần cầu cảng)",
+            "Hon Lon (near the pier)"
+          ],
+          "type": "homestay",
+          "price": [
+            250000,
+            600000
+          ],
+          "note": [
+            "Tiện tàu, chợ, quán ăn.",
+            "Handy for the boat, market and food."
+          ]
+        },
+        {
+          "area": [
+            "Bãi Ngự – bãi Cây Mến",
+            "Ngu – Cay Men beaches"
+          ],
+          "type": "homestay",
+          "price": [
+            400000,
+            900000
+          ],
+          "note": [
+            "Sát biển, yên tĩnh.",
+            "Right by the sea and quiet."
+          ]
+        },
+        {
+          "area": [
+            "Nhà nghỉ đảo Củ Tron",
+            "Cu Tron island guesthouses"
+          ],
+          "type": "homestay",
+          "price": [
+            200000,
+            500000
+          ],
+          "note": [
+            "Ngủ làng chài, rất ít khách.",
+            "Stay in the fishing village – very few visitors."
           ]
         }
       ]

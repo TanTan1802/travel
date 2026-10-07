@@ -1297,6 +1297,120 @@
         350000,
         650000
       ]
+    },
+    "tam-dao": {
+      "days": [
+        {
+          "title": "Lên thị trấn Tam Đảo",
+          "morning": "Từ Hà Nội đi xe khoảng 2 giờ, vượt đèo lên thị trấn, nhận phòng.",
+          "afternoon": "Dạo nhà thờ đá, quảng trường, các biệt thự cổ thời Pháp.",
+          "evening": "Ăn su su xào, gà đồi nướng, dạo chợ đêm trong sương."
+        },
+        {
+          "title": "Thác Bạc – Cột phát sóng",
+          "morning": "Đi bộ xuống Thác Bạc theo bậc đá, qua cầu treo.",
+          "afternoon": "Leo lên Cột phát sóng trên đỉnh Thiên Thị ngắm biển mây.",
+          "evening": "Cà phê ngắm hoàng hôn trên đèo, lợn cắp nách nướng."
+        },
+        {
+          "title": "Khu tâm linh Tây Thiên",
+          "morning": "Xuống chân núi viếng Thiền viện Trúc Lâm Tây Thiên.",
+          "afternoon": "Đi cáp treo hoặc leo bộ lên đền Thượng, đền Mẫu Tây Thiên, mộ tháp cổ.",
+          "evening": "Về thị trấn Tam Đảo nghỉ đêm."
+        },
+        {
+          "title": "Rừng quốc gia Tam Đảo",
+          "morning": "Đi bộ đường mòn trong Vườn quốc gia Tam Đảo, ngắm rừng nguyên sinh.",
+          "afternoon": "Thăm vườn su su, mua su su, măng làm quà.",
+          "evening": "Lẩu gà, nướng BBQ ở homestay."
+        },
+        {
+          "title": "Hồ Đại Lải – về Hà Nội",
+          "morning": "Rời Tam Đảo, ghé hồ Đại Lải dạo hồ, chèo thuyền.",
+          "afternoon": "Ăn trưa cá hồ rồi về Hà Nội.",
+          "evening": "Về tới Hà Nội."
+        }
+      ],
+      "fees": [
+        150000,
+        400000
+      ]
+    },
+    "binh-lieu": {
+      "days": [
+        {
+          "title": "Hạ Long – lên Bình Liêu",
+          "morning": "Từ Hà Nội hoặc Hạ Long đi xe khoảng 4 – 5 giờ qua Tiên Yên.",
+          "afternoon": "Nhận phòng ở thị trấn Bình Liêu, dạo phố chợ.",
+          "evening": "Ăn miến dong xào, gà đồi luộc lá chanh."
+        },
+        {
+          "title": "Sống lưng khủng long",
+          "morning": "Đi bộ cung đường tuần tra qua các đồi cỏ uốn lượn.",
+          "afternoon": "Leo bậc đá lên cột mốc 1300 ngắm toàn cảnh biên giới.",
+          "evening": "Về thị trấn ăn tối, nghỉ ngơi."
+        },
+        {
+          "title": "Thác Khe Vằn – bản Dao",
+          "morning": "Thác Khe Vằn nhiều tầng giữa rừng, tắm suối.",
+          "afternoon": "Thăm bản người Dao Thanh Phán, xem thêu thùa trang phục.",
+          "evening": "Thịt trâu gác bếp, rượu ngô bên bếp lửa."
+        },
+        {
+          "title": "Chợ phiên – làng miến dong",
+          "morning": "Chợ phiên Bình Liêu (đông nhất ngày Chủ nhật).",
+          "afternoon": "Xem làm miến dong ở Đồng Văn – Hoành Mô, mua miến làm quà.",
+          "evening": "Ngắm hoàng hôn trên đồi lau."
+        },
+        {
+          "title": "Về Hạ Long – Hà Nội",
+          "morning": "Ăn sáng bánh cuốn, rời Bình Liêu.",
+          "afternoon": "Dừng Tiên Yên ăn gà Tiên Yên rồi về Hạ Long hoặc Hà Nội.",
+          "evening": "Kết thúc hành trình."
+        }
+      ],
+      "fees": [
+        100000,
+        300000
+      ]
+    },
+    "nam-du": {
+      "days": [
+        {
+          "title": "Rạch Giá – ra đảo",
+          "morning": "Tàu cao tốc từ cảng Rạch Giá khoảng 2,5 giờ ra Hòn Lớn.",
+          "afternoon": "Nhận phòng, thuê xe máy, tắm biển bãi Cây Mến.",
+          "evening": "Ăn gỏi cá trích, ghẹ hấp ven biển."
+        },
+        {
+          "title": "Hải đăng – bãi Ngự",
+          "morning": "Leo lên ngọn hải đăng Nam Du ngắm toàn quần đảo.",
+          "afternoon": "Chạy xe vòng đảo, tắm biển bãi Ngự.",
+          "evening": "Mực một nắng nướng, ngắm hoàng hôn."
+        },
+        {
+          "title": "Đi thuyền quanh đảo",
+          "morning": "Thuê thuyền ra Hòn Mấu, Hòn Dầu, câu cá, lặn ngắm san hô.",
+          "afternoon": "Ăn trưa hải sản trên bè, tắm biển Hòn Mấu.",
+          "evening": "Về Hòn Lớn, hải sản nướng."
+        },
+        {
+          "title": "Đảo Củ Tron",
+          "morning": "Đi đò sang đảo Củ Tron, thăm làng chài.",
+          "afternoon": "Dạo cầu cảng, chụp ảnh nhà sàn ven biển.",
+          "evening": "Mua khô mực, khô cá làm quà."
+        },
+        {
+          "title": "Về đất liền",
+          "morning": "Ăn sáng, lên tàu về Rạch Giá.",
+          "afternoon": "Dạo Rạch Giá rồi đi tiếp Cần Thơ hoặc Sài Gòn.",
+          "evening": "Kết thúc hành trình."
+        }
+      ],
+      "fees": [
+        250000,
+        400000
+      ]
     }
   }
 }

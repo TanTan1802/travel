@@ -158,7 +158,7 @@ function foodSection(d) {
             <h2 class="section__title">${t('Món ngon phải thử')}</h2>
 
             <div class="food__grid container">
-                ${d.foods.map(foodCard).join('')}
+                ${d.foods.map(f => foodCard(f, d)).join('')}
             </div>
             ${eatsBlock(d)}
         </section>
@@ -245,7 +245,7 @@ function staySection(d) {
     `
 }
 
-function foodCard(f) {
+function foodCard(f, d) {
     /* Thẻ chữ kiểu thực đơn nằm dưới ảnh: hiện ra khi món chưa có ảnh hoặc ảnh tải lỗi */
     return `
         <article class="food-card">
@@ -258,7 +258,8 @@ function foodCard(f) {
             <div class="food-card__body">
                 <h3 class="food-card__title">${f.name}</h3>
                 <p class="food-card__desc">${f.desc}</p>
-                ${f.illustrative ? `<span class="food-card__note"><i class="ri-information-line"></i> ${t('Ảnh minh họa')}: ${f.illustrative}</span>` : ''}
+                ${f.illustrative ? `<span class="food-card__note"><i class="ri-information-line"></i> ${t('Ảnh minh họa')}: ${f.illustrative}</span>
+                <a href="${foodPhotoSubmitUrl(f, d)}" target="_blank" rel="noopener" class="food-card__submit"><i class="ri-camera-line"></i> ${t('Có ảnh thật của món này? Gửi cho Việt Travel')}</a>` : ''}
             </div>
         </article>
     `
@@ -509,6 +510,10 @@ function locationSection(d) {
 
 /* Form gửi ảnh (GitHub Issue form .github/ISSUE_TEMPLATE/gui-anh.yml), điền sẵn điểm đến */
 const photoSubmitUrl = d => `https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({ template: 'gui-anh.yml', title: `[Ảnh] ${d.name}`, dest: d.name })}`
+/* Món đang dùng ảnh minh họa: mời người đọc gửi ảnh thật, điền sẵn điểm đến + tên món (mã dest/món để duyệt nhanh) */
+const foodPhotoSubmitUrl = (f, d) => `https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({
+    template: 'gui-anh.yml', title: `[Ảnh món] ${f.name} – ${d.name}`, dest: d.id, caption: f.name,
+})}`
 
 function communityPhotoHtml(p) {
     const src = size => `${SITE_ROOT}assets/img/community/${p.base}-${size}.webp`

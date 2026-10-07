@@ -15,7 +15,7 @@ const PACKING_GROUPS = {
 /* Điểm đến vùng cao / khí hậu mát – cần áo ấm, nhất là tối và mùa đông */
 const COOL_DESTINATIONS = ['sa-pa', 'ha-giang', 'moc-chau', 'mu-cang-chai', 'pu-luong', 'ban-gioc', 'da-lat']
 /* Đi tàu, cano ra đảo */
-const BOAT_DESTINATIONS = ['vinh-ha-long', 'cat-ba', 'phu-quoc', 'con-dao', 'ly-son', 'ha-tien', 'nha-trang', 'quy-nhon', 'phu-yen', 'ninh-thuan', 'co-to', 'ca-mau']
+const BOAT_DESTINATIONS = ['vinh-ha-long', 'cat-ba', 'phu-quoc', 'con-dao', 'ly-son', 'ha-tien', 'nha-trang', 'quy-nhon', 'phu-yen', 'ninh-thuan', 'co-to', 'ca-mau', 'nam-du']
 /* Thường đi bằng xe máy qua đèo */
 const MOTORBIKE_DESTINATIONS = ['ha-giang', 'mu-cang-chai', 'ban-gioc', 'pu-luong']
 /* Có trekking / đi bộ đường dài */
