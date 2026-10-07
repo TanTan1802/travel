@@ -565,6 +565,23 @@ test('không có liên kết nội bộ hỏng trong các trang đã build', () 
     assert.deepEqual([...new Set(broken)], [], `liên kết hỏng:\n${[...new Set(broken)].join('\n')}`)
 })
 
+test('file mà trang đã build dùng tới không bị .gitignore bỏ qua (nếu không sẽ thiếu trên web)', t => {
+    if (!fs.existsSync(path.join(ROOT, '.git'))) return t.skip('không phải git repo')
+    const files = new Set()
+    for (const page of builtPages()) {
+        const html = fs.readFileSync(path.join(ROOT, page), 'utf8')
+        for (const [, url] of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+            if (/^(https?:|#|mailto:|data:|tel:)/.test(url) || url === '') continue
+            const file = path.relative(ROOT, path.join(ROOT, path.dirname(page), url.split(/[?#]/)[0]))
+            if (path.extname(file)) files.add(file)
+        }
+    }
+    const { spawnSync } = require('child_process')
+    const res = spawnSync('git', ['check-ignore', '--stdin'], { cwd: ROOT, input: [...files].join('\n'), encoding: 'utf8' })
+    const ignored = res.stdout.split('\n').filter(Boolean)
+    assert.deepEqual(ignored, [], `file bị .gitignore bỏ qua nên không được commit:\n${ignored.join('\n')}`)
+})
+
 test('mọi icon dùng trong mã đều có trong bộ icon rút gọn (npm run icons)', () => {
     const { usedIcons, remixCodepoints, CSS_OUT } = require('../tools/build-icons')
     const codepoints = remixCodepoints()

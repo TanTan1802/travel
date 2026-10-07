@@ -9,4 +9,4 @@ data/sheets/
 .lighthouseci/
 
 # Bản đóng gói để deploy (npm run build:dist)
-dist/
+/dist/
