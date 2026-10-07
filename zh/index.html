@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+    <html lang="zh-Hans">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="探索越南名胜——每个目的地的照片、美食与体验。">
+        <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/png">
+        <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
+        <link rel="manifest" href="../manifest.webmanifest">
+        <meta name="theme-color" content="#135059">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../assets/css/site-2303c79c15.css">
+
+        <link rel="canonical" href="https://tantan1802.github.io/travel/zh/">
+        <!-- build:alternate -->
+        <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/">
+        <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/">
+        <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/">
+        <!-- /build:alternate -->
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Việt Travel">
+        <meta property="og:locale" content="zh_CN">
+        <meta property="og:title" content="越南旅行 – 探索越南名胜">
+        <meta property="og:description" content="越南各地名胜的照片、美食与体验。">
+        <meta property="og:url" content="https://tantan1802.github.io/travel/zh/">
+        <meta property="og:image" content="https://tantan1802.github.io/travel/assets/img/og/vinh-ha-long.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <title>越南旅行 – 探索越南名胜</title>
+        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Việt Travel","url":"https://tantan1802.github.io/travel/zh/","inLanguage":"zh-Hans","description":"探索越南名胜——每个目的地的照片、美食与体验。"}]}</script>
+    </head>
+    <body>
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="../zh/index.html" class="nav__logo">Việt Travel</a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">首页</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">关于</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#discover" class="nav__link">精选</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#place" class="nav__link">目的地</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../zh/ke-hoach/index.html" class="nav__link">行程规划</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="../zh/cam-nang/index.html" class="nav__link">旅行指南</a>
+                        </li>
+                    </ul>
+
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> ZH</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../index.html" hreflang="vi" lang="vi" data-lang="vi">Tiếng Việt</a></li>
+                            <li><a href="../en/index.html" hreflang="en" lang="en" data-lang="en">English</a></li>
+                            <li><a href="../ko/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../zh/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh" aria-current="true">中文（简体）</a></li>
+                            <li><a href="../ja/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
+
+                    <div class="nav__dark">
+                        <!-- Theme change button -->
+                        <span class="change-theme-name">深色模式</span>
+                        <i class="ri-moon-line change-theme" id="theme-button"></i>
+                    </div>
+
+                    <i class="ri-close-line nav__close" id="nav-close"></i>
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-function-line"></i>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <!-- Nhắc chuyến đi đã lên kế hoạch: đang đi (hôm nay là ngày mấy) hoặc sắp đi (assets/js/home.js) -->
+            <aside class="trip-banner" id="trip-banner" hidden></aside>
+
+            <!--==================== HOME ====================-->
+            <section class="home" id="home">
+                <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg" data-width="1920" alt="下龙湾" class="home__img" data-priority src="../assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp" srcset="../assets/img/wiki/halong-bay-in-vietnam-363c5b-480.webp 480w, ../assets/img/wiki/halong-bay-in-vietnam-363c5b-960.webp 960w, ../assets/img/wiki/halong-bay-in-vietnam-363c5b-1920.webp 1600w" sizes="100vw" fetchpriority="high">
+
+                <div class="home__container container grid">
+                    <div class="home__data">
+                        <span class="home__data-subtitle">越南 – 美不胜收</span>
+                        <h1 class="home__data-title">探索 <br> 越南 <b>最壮丽的 <br> 名胜美景</b></h1>
+                        <div class="home__actions">
+                            <a href="#place" class="button">立即探索</a>
+                            <button type="button" class="button button--light button--flex" data-quiz-open><i class="ri-questionnaire-line"></i> 该去哪里？</button>
+                        </div>
+                    </div>
+
+                    <div class="home__social">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Facebook">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Instagram">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener" class="home__social-link" aria-label="Twitter">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+
+                    <div class="home__info">
+                        <div>
+                            <span class="home__info-title"><span id="dest-count">34</span> 个必去目的地</span>
+                            <a href="#place" class="button button--flex button--link home__info-button">
+                                查看更多 <i class="ri-arrow-right-line"></i>
+                            </a>
+                        </div>
+
+                        <a href="../zh/diem-den/hoi-an/index.html" class="home__info-overlay">
+                            <img data-wiki="Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|Hội An, Ancient Town, 2020-01 CN-06.jpg" data-width="500" data-sizes="(max-width: 1024px) 145px, 240px" alt="会安古镇" class="home__info-img">
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== ABOUT ====================-->
+            <section class="about section" id="about">
+                <div class="about__container container grid">
+                    <div class="about__data">
+                        <h2 class="section__title about__title">S 形的国度 <br> 千般风景</h2>
+                        <p class="about__description">从沙坝的梯田、壮丽的下龙湾，到灯笼璀璨的会安、湄公河三角洲的水上市场和珍珠岛富国岛——越南每个角落都有独特的美。选择一个目的地，看看照片、当地美食和等着你的体验。
+                        </p>
+                        <a href="#place" class="button">选择目的地</a>
+                    </div>
+
+                    <div class="about__img">
+                        <a href="../zh/diem-den/sa-pa/index.html" class="about__img-overlay">
+                            <img data-wiki="Rice terraces in Sa Pa 03.jpg|Rice terraces in Sa Pa 02.jpg|Terraced fields Sa Pa Vietnam.JPG" data-width="960" data-sizes="(max-width: 1024px) 130px, 230px" alt="沙坝梯田" class="about__img-one">
+                        </a>
+
+                        <a href="../zh/diem-den/hue/index.html" class="about__img-overlay">
+                            <img data-wiki="Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Hue Thien Mu-Pagoda.JPG|Vietnam, Hue, Imperial City of Hue.jpg" data-width="960" data-sizes="(max-width: 1024px) 180px, 290px" alt="天姥寺，顺化" class="about__img-two">
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== DISCOVER ====================-->
+            <section class="discover section" id="discover">
+                <h2 class="section__title">最 <br> 受欢迎的目的地</h2>
+
+                <div class="discover__container container hscroll-wrap">
+                    <button type="button" class="hscroll__btn hscroll__btn--prev" aria-label="上一组目的地"><i class="ri-arrow-left-s-line"></i></button>
+                    <!-- Các thẻ được tạo động từ dữ liệu (assets/js/home.js); vuốt ngang bằng CSS scroll-snap -->
+                    <div class="hscroll discover__track" id="discover-list"></div>
+                    <button type="button" class="hscroll__btn hscroll__btn--next" aria-label="下一组目的地"><i class="ri-arrow-right-s-line"></i></button>
+                </div>
+            </section>
+
+            <!--==================== EXPERIENCE ====================-->
+            <section class="experience section">
+                <h2 class="section__title">数字中的 <br> 越南</h2>
+
+                <div class="experience__container container grid">
+                    <div class="experience__content grid">
+                        <div class="experience__data">
+                            <h2 class="experience__number">8</h2>
+                            <span class="experience__description">UNESCO <br> 遗产</span>
+                        </div>
+
+                        <div class="experience__data">
+                            <h2 class="experience__number">3.260</h2>
+                            <span class="experience__description">公里 <br> 海岸线</span>
+                        </div>
+
+                        <div class="experience__data">
+                            <h2 class="experience__number">54</h2>
+                            <span class="experience__description">个 <br> 民族</span>
+                        </div>
+                    </div>
+
+                    <div class="experience__img grid">
+                        <a href="../zh/diem-den/ninh-binh/index.html" class="experience__overlay">
+                            <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg" data-width="960" alt="长安，宁平" class="experience__img-one">
+                        </a>
+
+                        <a href="../zh/diem-den/phong-nha/index.html" class="experience__overlay">
+                            <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Son Doong Cave 1.jpg|Phong Nha-Ke Bang cave3.jpg" data-width="500" alt="天堂洞" class="experience__img-two">
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== ĐI ĐÂU THÁNG NÀY ====================-->
+            <section class="season section" id="season">
+                <h2 class="section__title">Đi đâu <br> tháng này?</h2>
+
+                <div class="season__container container">
+                    <p class="season__description" id="season-lead">正值最佳季节的目的地——天气好，风景最美。</p>
+
+                    <!-- Các thẻ được chọn theo tháng hiện tại trên máy người xem (assets/js/home.js) -->
+                    <div class="dest__grid season__grid" id="season-list"></div>
+
+                    <div class="season__events" id="season-events" hidden></div>
+
+                    <div class="season__actions">
+                        <button type="button" class="button button--flex" id="season-more">查看本月所有推荐 <i class="ri-arrow-down-line"></i></button>
+                        <button type="button" class="button button--ghost button--flex" data-quiz-open>该去哪里？ <i class="ri-questionnaire-line"></i></button>
+                        <a href="../zh/thang/1/index.html" class="button button--ghost button--flex" id="season-month-link">每月去哪儿 <i class="ri-calendar-2-line"></i></a>
+                        <a href="../zh/ke-hoach/index.html" class="button button--ghost button--flex">规划你的行程 <i class="ri-route-line"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== PLACES ====================-->
+            <section class="place section" id="place">
+                <h2 class="section__title">探索每一处 <br> 名胜美景</h2>
+
+                <div class="container explore">
+                    <div class="filter-panel">
+                        <div class="explore__search">
+                            <i class="ri-search-line"></i>
+                            <input type="search" id="explore-search" class="explore__input" placeholder="搜索目的地、省份、美食...">
+                        </div>
+
+                        <div class="filter-panel__groups">
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-map-pin-2-line"></i> 地区</span>
+                                <div class="segmented" id="region-filters" role="group" aria-label="按地区筛选"></div>
+                            </div>
+                            <div class="filter-group">
+                                <span class="filter-group__label"><i class="ri-compass-3-line"></i> 类型</span>
+                                <div class="chip-row" id="category-filters" role="group" aria-label="按类型筛选"></div>
+                            </div>
+                            <div class="filter-group filter-group--inline">
+                                <label class="month-filter">
+                                    <i class="ri-calendar-event-line"></i>
+                                    <select id="month-filter" aria-label="按出行月份筛选"></select>
+                                </label>
+                                <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
+                                    <i class="ri-heart-3-fill"></i> 收藏 <span class="chip__count" id="fav-count">0</span>
+                                </button>
+                                <button type="button" class="chip chip--near" id="near-filter" aria-pressed="false">
+                                    <i class="ri-focus-3-line"></i> 我附近
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="filter-panel__footer">
+                            <div class="filter-panel__status">
+                                <p class="explore__result" id="explore-result"></p>
+                                <button type="button" class="filter-reset" id="filter-reset" hidden><i class="ri-refresh-line"></i> 清除筛选</button>
+                            </div>
+                            <div class="view-toggle" role="group" aria-label="显示方式">
+                                <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
+                                    <i class="ri-layout-grid-line"></i> 列表
+                                </button>
+                                <button type="button" class="view-toggle__btn" data-view="map" aria-pressed="false">
+                                    <i class="ri-map-2-line"></i> 地图
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="explore__tip" id="explore-tip" hidden></p>
+
+                    <div class="explore__map" id="explore-map" hidden></div>
+
+                    <div class="dest__grid" id="dest-grid"><!-- build:grid -->
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/vinh-ha-long/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Halong Bay in Vietnam.jpg|Ha Long Bay, Vietnam, Islands.jpg|Ha Long Bay, sunset.jpg|Ha Long Bay - North East Vietnam.JPG|Hạ Long Bay.jpg|Ha Long Bay - Bahía de Ha Long.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="下龙湾" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">下龙湾</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 广宁</span>
+                    
+                    <p class="dest-card__tagline">北部湾中的世界自然奇观</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="vinh-ha-long" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/sa-pa/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Rice terraces in Sa Pa 02.jpg|Rice terraces in Sa Pa 03.jpg|Terraced fields Sa Pa Vietnam.JPG|Fansipan-vietnam.jpg|Stairs to the Fansipan.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="沙坝" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">沙坝</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 老街</span>
+                    
+                    <p class="dest-card__tagline">雾中小镇与梯田</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="sa-pa" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ha-noi/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Turtle Tower, Hoan Kiem Lake, Hanoi 4G4A7301.jpg|Hoan Kiem lake Hanoi (39513889222).jpg|Temple of Literature, Hanoi by Xiquinho Silva 04.jpg|Well of Heavenly Clarity - Temple of Literature, Hanoi - DSC04565.JPG|Stelae of Doctors - Temple of Literature, Hanoi - DSC04563.JPG|Hoan Kiem Lake, Hanoi, Vietnam (8120855653).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="河内" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">河内</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 首都</span>
+                    
+                    <p class="dest-card__tagline">还剑湖畔的千年文化</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">城市</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ha-noi" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ninh-binh/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5313.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1419 5252.jpg|Trang An Landscape Complex, Ninh Binh Province, Vietnam, 20240202 1456 5316.jpg|Vietnam, Ninh Binh, Trang An Limestone Peaks.jpg|Tam Cốc-Bích Động in Ninh Binh province 2.jpg|Tam Coc, Ninh Binh ,Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="长安 – 宁平" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">长安 – 宁平</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 宁平</span>
+                    
+                    <p class="dest-card__tagline">雄伟喀斯特山峰间的“陆上下龙湾”</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">文化遗产</span><span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ninh-binh" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ha-giang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="MaPiLeng,HaGiang,Vietnam.jpg|Ma Pi Leng pass plateau in 2014.jpg|Le col de Ma Pi Leng (Dong Van-Meo Vac).jpg|Ha Giang Loop.jpg|SaPhin HaGiang Vietnam.JPG|Ha Giang rizieres bis.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="河江" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">河江</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 宣光（原河江）</span>
+                    
+                    <p class="dest-card__tagline">越南最壮观的山路</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ha-giang" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ban-gioc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 01 (48119813303).jpg|Ban Gioc Waterfall - Trung Kanh District - Cao Bang Province - Vietnam - 16 (48119888466).jpg|Thác Bản Giốc.jpg|Ban Gioc - Detian Falls2.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="板约瀑布" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">板约瀑布</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 高平</span>
+                    
+                    <p class="dest-card__tagline">东南亚最美的边境瀑布</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ban-gioc" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/cat-ba/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Lan Ha Bay 40.jpg|Lan Ha Bay.JPG|Cat Ba island fishing village.jpg|Beach in Cat Ba.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="吉婆岛 – 兰夏湾" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">吉婆岛 – 兰夏湾</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 海防</span>
+                    
+                    <p class="dest-card__tagline">原始兰夏湾旁的绿色海岛</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="cat-ba" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/mu-cang-chai/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Mu Cang Chai 02.JPG|Mu Cang Chai.jpg|Mu Cang Chai Town - Yen Bai - Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="木江界" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">木江界</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 老街（原安沛）</span>
+                    
+                    <p class="dest-card__tagline">西北最美的梯田</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mu-cang-chai" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/hue/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Hue, Imperial City of Hue.jpg|Vietnam, Hue, Imperial City of Hue, The Meridian Gate.jpg|Vietnam, Hue, Imperial City of Hue, Thế Miếu temple.jpg|Hue Vietnam Thien-Mu-Temple-and-Pagoda-01.jpg|Imperial City, Hue, Vietnam (6927420512).jpg|Vietnam, Hue, Imperial City of Hue, Enclosure.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="顺化皇城" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">顺化皇城</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 顺化市</span>
+                    
+                    <p class="dest-card__tagline">梦幻香江畔的阮朝皇城</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">文化遗产</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="hue" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/phong-nha/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Cueva Paraíso, Phong Nha, Vietnam (36277324796).jpg|Cueva Phong Nha, Vietnam (38652790530).jpg|Phong Nha-Ke Bang cave3.jpg|Hang Én Cave - 201505 - JB.jpg|Son Doong Cave by Daniel Burka.jpg|Son Doong Cave 1.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="风牙 – 者榜" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">风牙 – 者榜</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 广治（原广平）</span>
+                    
+                    <p class="dest-card__tagline">洞穴王国</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">洞穴</span><span class="tag">文化遗产</span><span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phong-nha" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/da-nang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="The Golden Bridge, Ba Na Hills, Vietnam.jpg|Golden Bridge at Ba Na Hills 20250718.jpg|Dragon Bridge, Da Nang at night - 20230819.jpg|My Khe Beach Da Nang.jpg|Marble Mountains, Vietnam.jpg|Dragon Marble Mountain Da Nang Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="岘港" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">岘港</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 岘港</span>
+                    
+                    <p class="dest-card__tagline">美溪海滩边的宜居城市</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">城市</span><span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-nang" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/hoi-an/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Hội An, Ancient Town, 2020-01 CN-06.jpg|Hội An, Ancient Town, 2020-01 CN-11.jpg|Lanterns in Hoi An 4.jpg|2024 Hội An - Japanese Covered Bridge (Chùa Cầu) after renovation - img 11.jpg|Hoi An, Japanese covered bridge (6223785067).jpg|Hội An, Ancient Town, 2020-01 CN-03.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="会安古镇" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.9</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">会安古镇</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 岘港（原广南）</span>
+                    
+                    <p class="dest-card__tagline">灯笼闪耀的古老商港</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">文化遗产</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="hoi-an" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/nha-trang/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Nha Trang Beach, Vietnam.jpg|Nha Trang Beach 1.jpg|Po Nagar Nha Trang Vietnam.JPG|Nha Trang, Po Nagar Cham, North Tower (6223880651).jpg|Nhatrang Beach at night.jpg|Beach at Nha Trang, Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="芽庄" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">芽庄</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 庆和</span>
+                    
+                    <p class="dest-card__tagline">东海明珠</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="nha-trang" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/da-lat/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Da Lat - Viet Nam.jpg|HoXuanHuong.JPG|Hồ Xuân Hương, Đà Lạt (2).JPG|Rail cars at Dalat Station.JPG|Xuan Huong Lake (31404267520).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="大叻" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">大叻</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 林同</span>
+                    
+                    <p class="dest-card__tagline">朗边高原上的万花之城</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="da-lat" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/mui-ne/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Mui Ne sand dunes.jpg|Đồi cát Mũi Né.jpg|Fishing Boats, Mui Ne.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="美奈" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">美奈</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 林同（原平顺）</span>
+                    
+                    <p class="dest-card__tagline">越南的“小撒哈拉”</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mui-ne" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/quy-nhon/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Quy-Nhon-morning-city-view-1300px.jpg|Skyline of Quy Nhon.jpg|Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg|0040323 Thap Doi Cham Hindu complex, Quy Nhon, Binh Dinh Vietnam 248.jpg|Xuan Dieu Avenue Quy Nhon 2.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="归仁" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">归仁</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 嘉莱（原平定）</span>
+                    
+                    <p class="dest-card__tagline">武术之乡的宁静海滨城市</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="quy-nhon" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/phu-yen/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Gành Đá Đĩa - Phú Yên.jpg|Gành Đá Đĩa.jpg|Xuan Dai Bay, Phu Yen, Vietnam.JPG|Tháp Nhạn, Tuy Hòa, Phú Yên.JPG|Cliff of Stone Plates - Ghenh Da Dia in Vietnam.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="富安 – 盘石滩" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">富安 – 盘石滩</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 多乐（原富安）</span>
+                    
+                    <p class="dest-card__tagline">拥有独特玄武岩海岸的“绿草黄花之地”</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-yen" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/sai-gon/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ho Chi Minh City Skyline at Night.jpg|Ho Chi Minh City Skyline 2022 (1).jpg|Notre Dame Cathedral Ho Chi Minh city (39543912241).jpg|Ben Thanh Market, 2023 (02).jpg|Saigon skyline night view.jpg|Ben Thanh Market, Saigon.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="胡志明市" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">胡志明市</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 西贡</span>
+                    
+                    <p class="dest-card__tagline">不夜的活力之城</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="sai-gon" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/can-tho/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Can Tho, Vietnam, Floating Market.jpg|Vietnam 08 - 112 - Cai Be floating market (3185044019).jpg|Cho noi (Cai Rang, Can Tho).JPG|CanThoFloatingMarket.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="芹苴 – 湄公河三角洲" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">芹苴 – 湄公河三角洲</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 芹苴</span>
+                    
+                    <p class="dest-card__tagline">水上市场、果园与河上生活</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="can-tho" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/phu-quoc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Bai-sao-phu-quoc-tuonglamphotos.jpg|Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg|Starfishes on the Starfish Beach, Phu Quoc, Vietnam.jpg|Amazing beach on Phu Quoc island Vietnam (38647607275).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="富国岛" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.8</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">富国岛</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 安江（原坚江）</span>
+                    
+                    <p class="dest-card__tagline">拥有越南最美日落的珍珠岛</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-quoc" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/vung-tau/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Một phần Vũng Tàu 2.JPG|Statue of Jesus in Vung Tau.jpg|Vung Tau Hon Ba.JPG|Ảnh đẹp Vũng Tàu - Biển bãi sau - Gần Hòn Bà.jpg|Cửa sổ Bạch Dinh nhìn ra biển.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="头顿" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">头顿</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 胡志明市（原巴地头顿）</span>
+                    
+                    <p class="dest-card__tagline">离西贡最近的海滨城市</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="vung-tau" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/chau-doc/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vietnam, Temple in Chau Doc 2.jpg|Miếu Bà Chúa Xứ Núi Sam.jpg|Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg|Chùa Tam Bửu ở Ba Chúc.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="朱笃 – 山姆山" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">朱笃 – 山姆山</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 安江</span>
+                    
+                    <p class="dest-card__tagline">灵地与洪水季的白千层林</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">文化遗产</span><span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="chau-doc" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/con-dao/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Pulo Condore island beach.jpg|Côn Đảo National Park.jpg|Con Dao Tiger Käfige.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="昆岛" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.7</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">昆岛</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 胡志明市（原巴地头顿）</span>
+                    
+                    <p class="dest-card__tagline">原始自然与动人历史</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="con-dao" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/moc-chau/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Nha san Moc Chau.jpg|Thị trấn Mộc Châu, Sơn La.jpg|Quốc lộ 6 qua địa phận thị trấn Mộc Châu.jpg|Quảng trường huyện Mộc Châu.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="木州高原" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">木州高原</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 山罗</span>
+                    
+                    <p class="dest-card__tagline">翠绿茶山与白色芥菜花</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="moc-chau" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/pu-luong/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Pu Luong 01.JPG|Pu Luong National Reserve (15179778663).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="普隆" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">普隆</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 清化</span>
+                    
+                    <p class="dest-card__tagline">梯田、水车与宁静的泰族村寨</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="pu-luong" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ly-son/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Ly Son Island 26 - panoramio.jpg|Ly Son Island 19 - panoramio.jpg|Tau danh ca tai Ly Son.jpg|Cổng chào trên Huyện Đảo Lý Sơn - Quảng Ngãi.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="李山岛" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">李山岛</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 广义</span>
+                    
+                    <p class="dest-card__tagline">大海中的大蒜王国</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">洞穴</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ly-son" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/buon-ma-thuot/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Buôn Ma Thuột banner Đray Nur waterfall.jpg|Buôn Ma Thuột city square.jpg|Ngã 6 và toàn cảnh Ban Mê Thuột -2015.jpg|Thác Dray Sap-Dak Nông - panoramio.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="邦美蜀" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">邦美蜀</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 多乐</span>
+                    
+                    <p class="dest-card__tagline">越南咖啡之都与西原</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span><span class="tag">城市</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="buon-ma-thuot" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ha-tien/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Kênh đào Rạch Giá - Hà Tiên.jpg|Beach, Thuận Yên commune, Hà Tiên city, Kiên Giang, Vietnam, at June-2022.jpg|Ha Tien Banner.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="河仙" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">河仙</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 安江（原坚江）</span>
+                    
+                    <p class="dest-card__tagline">泰国湾畔温柔的边境小城</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ha-tien" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/tay-ninh/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Tay Bo Da Son Bodhisattva statue above sea of clouds Ba Den Mountain Tay Ninh Vietnam.jpg|Caodaist Holy See - Tây-Ninh Province.jpg|Ba Den Mountain summit temple illuminated night fog Tay Ninh Vietnam.jpg|Cáp treo núi Bà Đen.JPG|Chùa Trung, Núi Bà Đen, 2025.jpg|Dau Tieng Reservoir (39748281134).jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="西宁 – 黑婆山" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">西宁 – 黑婆山</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 西宁</span>
+                    
+                    <p class="dest-card__tagline">南部屋脊与高台教圣座</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="tay-ninh" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ninh-thuan/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Vinh hy bay.jpg|Po Klong Garai Temple 4.jpg|Coastal view from Nui Chua National Park.jpg|Hang Rái in Ninh Thuan Province, Vietnam.jpg|Ninh Chu Beach (Bãi biển ninh chữ Ninh Thuận ) - panoramio.jpg|Gốm Bàu Trúc.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="宁顺 – 永熙" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">宁顺 – 永熙</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 庆和（原宁顺）</span>
+                    
+                    <p class="dest-card__tagline">阳光、海风、葡萄园与古占塔</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span><span class="tag">文化遗产</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ninh-thuan" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/co-to/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Co To Island Quang Ninh Viet Nam (160672609).jpeg|Alone front of Co To beach, Viet Nam (160620021).jpg|Đường đi trên đảo Cô Tô.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="姑苏岛" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.6</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">姑苏岛</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 广宁</span>
+                    
+                    <p class="dest-card__tagline">东北边陲未经雕琢的碧海</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="co-to" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/mang-den/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Mua ho dao o mang den tinh kon tum 005.jpg|Măng Đen 1.jpg|Thị trấn Măng Đen.jpg|Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg|Kontum wooden catholic church.jpg|Kon Tum wooden catholic church.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="芒登" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">芒登</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 广义（原昆嵩）</span>
+                    
+                    <p class="dest-card__tagline">西原林海中的“第二个大叻”</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mang-den" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/mai-chau/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Mai Chau 2008.jpg|A Thai stilt house (4115406064).jpg|Stilt-House-construction-Mai-Chau-Vietnam.jpg|Mai Chau rice field.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="梅州山谷" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南北部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">梅州山谷</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 富寿（原和平）</span>
+                    
+                    <p class="dest-card__tagline">稻田山谷中宁静的泰族村寨</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">山地与森林</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="mai-chau" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/ca-mau/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="A wooden fence in mudflats in Dat Mui.jpg|Chợ Đất Mũi.jpg|MũiCàMau.jpg|Mui Ca Mau 005.JPG" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="金瓯角" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南南部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.4</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">金瓯角</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 金瓯</span>
+                    
+                    <p class="dest-card__tagline">红树林伸向大海的最南端</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="ca-mau" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    <!-- /build:grid --></div>
+
+                    <div class="explore__more" id="explore-more-wrap" hidden>
+                        <button type="button" class="button button--flex" id="explore-more"></button>
+                        <button type="button" class="button button--ghost button--flex" id="explore-all">显示全部</button>
+                    </div>
+
+                    <div class="explore__empty" id="explore-empty" hidden>
+                        <i class="ri-map-pin-line"></i>
+                        <p id="explore-empty-text">没有匹配的目的地。换个关键词试试！</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- build:guides -->
+        <section class="guides-home section" id="guides">
+            <span class="section__subtitle">旅行指南</span>
+            <h2 class="section__title">提前准备</h2>
+            <div class="guides__grid container">
+                
+        <a href="../zh/cam-nang/thoi-diem-du-lich/index.html" class="guide-card">
+            <span class="guide-card__icon"><i class="ri-calendar-event-line"></i></span>
+            <h3 class="guide-card__title">When is the best time to visit Vietnam?</h3>
+            <p class="guide-card__summary">The three regions have very different climates – here is a month-by-month guide to the best places to go.</p>
+            <span class="guide-card__more">阅读更多 <i class="ri-arrow-right-line"></i></span>
+        </a>
+    
+        <a href="../zh/cam-nang/di-chuyen/index.html" class="guide-card">
+            <span class="guide-card__icon"><i class="ri-route-line"></i></span>
+            <h3 class="guide-card__title">Getting around Vietnam: planes, trains, buses or scooters?</h3>
+            <p class="guide-card__summary">How to travel between and within cities, with tips for booking cheaper tickets.</p>
+            <span class="guide-card__more">阅读更多 <i class="ri-arrow-right-line"></i></span>
+        </a>
+    
+        <a href="../zh/cam-nang/chi-phi-tien-te/index.html" class="guide-card">
+            <span class="guide-card__icon"><i class="ri-wallet-3-line"></i></span>
+            <h3 class="guide-card__title">Costs, money and paying</h3>
+            <p class="guide-card__summary">How much Vietnam costs per day, cash vs. cards, and useful money-saving tips.</p>
+            <span class="guide-card__more">阅读更多 <i class="ri-arrow-right-line"></i></span>
+        </a>
+    
+            </div>
+            <div class="guides-home__more">
+                <a href="../zh/cam-nang/index.html" class="button button--flex">查看所有指南 <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </section>
+    <!-- /build:guides -->
+
+            <!--==================== SUBSCRIBE ====================-->
+            <section class="subscribe section">
+                <div class="subscribe__bg">
+                    <div class="subscribe__container container">
+                        <h2 class="section__title subscribe__title">订阅 <br> 我们的电子报</h2>
+                        <p class="subscribe__description">获取越南旅行指南和最高 7 折的特别优惠。
+                        </p>
+
+                        <form action="" class="subscribe__form" novalidate>
+                            <label for="subscribe-email" class="visually-hidden">邮箱</label>
+                            <input type="email" id="subscribe-email" name="email" placeholder="输入你的邮箱" class="subscribe__input" required autocomplete="email">
+
+                            <button class="button">
+                                订阅
+                            </button>
+                        </form>
+                        <p class="subscribe__message" id="subscribe-message" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--==================== TRẮC NGHIỆM ĐI ĐÂU (assets/js/quiz.js) ====================-->
+        <dialog class="quiz" id="quiz" aria-labelledby="quiz-heading">
+            <div class="quiz__header">
+                <strong id="quiz-heading"><i class="ri-questionnaire-line"></i> 该去哪里？</strong>
+                <button type="button" class="quiz__close" data-quiz-close aria-label="关闭"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="quiz__body" id="quiz-body"></div>
+        </dialog>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <h3 class="footer__title">Việt Travel</h3>
+                        <p class="footer__description">你选目的地， <br> 我们为你带来 <br>
+                            完整的体验。
+                        </p>
+                        <div>
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Facebook">
+                                <i class="ri-facebook-box-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Twitter">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="footer__social" aria-label="Instagram">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="footer__social" aria-label="YouTube">
+                                <i class="ri-youtube-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">越南北部</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../zh/diem-den/vinh-ha-long/index.html" class="footer__link">下龙湾</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/sa-pa/index.html" class="footer__link">Sa Pa</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/ha-giang/index.html" class="footer__link">河江</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">越南中部</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../zh/diem-den/hoi-an/index.html" class="footer__link">会安</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/da-nang/index.html" class="footer__link">岘港</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/da-lat/index.html" class="footer__link">大叻</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">越南南部</h3>
+                        <ul>
+                            <li class="footer__item"><a href="../zh/diem-den/sai-gon/index.html" class="footer__link">胡志明市</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/can-tho/index.html" class="footer__link">芹苴</a></li>
+                            <li class="footer__item"><a href="../zh/diem-den/phu-quoc/index.html" class="footer__link">富国岛</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer__rights">
+                    <p class="footer__copy">&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. 照片：Wikimedia Commons (CC BY / CC BY-SA)。</p>
+                    <div class="footer__terms">
+                        <a href="../zh/ke-hoach/index.html" class="footer__terms-link">行程规划</a>
+                        <a href="../zh/cam-nang/index.html" class="footer__terms-link">旅行指南</a>
+                        <a href="#" class="footer__terms-link">条款</a>
+                        <a href="#" class="footer__terms-link">隐私政策</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+         <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up" aria-label="返回顶部">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+
+        <!--=============== SWIPER JS ===============-->
+
+        <!--=============== DATA + PAGE JS ===============-->
+        <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'zh'</script>
+        <script defer src="../assets/js/dist/71c92a65e5.js"></script>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+{
+  "$schema": "./schema/community-photos.schema.json",
+  "photos": []
+}

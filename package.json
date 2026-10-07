@@ -4,18 +4,31 @@
   "description": "Website khám phá danh lam thắng cảnh Việt Nam",
   "scripts": {
     "images": "node tools/download-images.js && node tools/optimize-images.js",
+    "icons": "node tools/build-icons.js",
     "check-images": "node tools/check-images.js",
-    "build": "node tools/build.js",
+    "build": "node tools/build-data.js && node tools/build.js && node tools/build-knowledge.js",
+    "check-data": "node tools/build-data.js --check",
     "serve": "python3 -m http.server 8000",
-    "test": "npm run test:data && npm run test:e2e",
+    "test": "npm run test:data && npm run test:worker && npm run test:e2e",
     "test:data": "node --test tests/data.test.js",
-    "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.js"
+    "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.js",
+    "check-links": "node tools/check-links.js",
+    "check-freshness": "node tools/check-freshness.js",
+    "add-photo": "node tools/add-photo.js",
+    "test:worker": "node --test tests/assistant.test.js",
+    "find-images": "node tools/find-images.js",
+    "build:dist": "node tools/dist.js",
+    "deploy:cf": "node tools/dist.js && npx wrangler@4 pages deploy dist --project-name viet-travel"
   },
   "engines": {
     "node": ">=18"
   },
   "devDependencies": {
+    "ajv": "^8.20.0",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.56.1",
+    "remixicon": "^2.5.0",
     "sharp": "^0.33.5",
-    "playwright": "^1.56.1"
+    "subset-font": "^2.9.0"
   }
 }

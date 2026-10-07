@@ -37,15 +37,36 @@ const WEATHER_MOCK = {
     },
 }
 
+/* Dự báo theo khoảng ngày (start_date → end_date) khi trang hỏi theo ngày đi, còn lại dùng mẫu cố định */
+function weatherMock(url) {
+    const start = url.searchParams.get('start_date')
+    const end = url.searchParams.get('end_date')
+    if (!start || !end) return WEATHER_MOCK
+    const time = []
+    for (let d = new Date(`${start}T00:00:00Z`); d <= new Date(`${end}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1)) {
+        time.push(d.toISOString().slice(0, 10))
+    }
+    const codes = [0, 2, 61, 95]
+    return {
+        daily: {
+            time,
+            weather_code: time.map((_, i) => codes[i % codes.length]),
+            temperature_2m_max: time.map((_, i) => 30 + (i % 3)),
+            temperature_2m_min: time.map((_, i) => 23 + (i % 2)),
+            precipitation_probability_max: time.map((_, i) => (i * 17) % 100),
+        },
+    }
+}
+
 /*
  * Chặn/giả lập tài nguyên bên ngoài để test ổn định:
  * - Wikimedia Commons: 404 (bắt buộc dùng ảnh trong repo), Open-Meteo: dữ liệu giả, Giscus: chặn.
- * - CDN (Leaflet, Remix Icon, Google Fonts): dùng mạng thật; nếu đặt LOCAL_CDN_DIR thì lấy bản cục bộ.
+ * - CDN (Leaflet, Google Fonts): dùng mạng thật; nếu đặt LOCAL_CDN_DIR thì lấy bản cục bộ (icon đã tự host).
  */
 async function setupRoutes(context) {
     await context.route('https://commons.wikimedia.org/**', r => r.fulfill({ status: 404, body: '' }))
     await context.route('https://api.open-meteo.com/**', r => r.fulfill({
-        status: 200, contentType: 'application/json', body: JSON.stringify(WEATHER_MOCK),
+        status: 200, contentType: 'application/json', body: JSON.stringify(weatherMock(new URL(r.request().url()))),
     }))
     await context.route('https://giscus.app/**', r => r.fulfill({ status: 404, body: '' }))
     await context.route('https://*.tile.openstreetmap.org/**', r => r.fulfill({
@@ -60,25 +81,25 @@ async function setupRoutes(context) {
             r.fulfill({ status: 200, contentType: css ? 'text/css' : 'application/javascript',
                 body: fs.readFileSync(path.join(local, 'leaflet/dist', css ? 'leaflet.css' : 'leaflet.js')) })
         })
-        await context.route('https://cdn.jsdelivr.net/npm/remixicon@2.5.0/**', r => {
-            const rel = r.request().url().split('remixicon@2.5.0/')[1].split('?')[0]
-            const file = path.join(local, 'remixicon', rel)
-            if (!fs.existsSync(file)) return r.fulfill({ status: 404, body: '' })
-            r.fulfill({ status: 200, body: fs.readFileSync(file) })
-        })
         await context.route('https://fonts.googleapis.com/**', r => r.fulfill({ status: 200, contentType: 'text/css', body: '' }))
     }
 }
 
+/* Tiền tố thư mục của các ngôn ngữ (tiếng Việt ở gốc site) */
+const LANG_PREFIXES = ['', 'en/', 'ko/', 'zh/', 'ja/']
+
 /* Danh sách mọi trang HTML đã build (tương đối với gốc repo) */
 function builtPages() {
-    const pages = ['index.html', 'en/index.html', 'ke-hoach/index.html', 'en/ke-hoach/index.html', 'cam-nang/index.html', 'en/cam-nang/index.html']
-    for (const dir of ['diem-den', 'en/diem-den', 'cam-nang', 'en/cam-nang']) {
+    const pages = LANG_PREFIXES.flatMap(p => [`${p}index.html`, `${p}ke-hoach/index.html`, `${p}cam-nang/index.html`])
+    for (const dir of LANG_PREFIXES.flatMap(p => ['diem-den', 'cam-nang', 'thang', 'chu-de'].map(d => p + d))) {
         for (const id of fs.readdirSync(path.join(ROOT, dir))) {
-            if (fs.statSync(path.join(ROOT, dir, id)).isDirectory()) pages.push(`${dir}/${id}/index.html`)
+            if (!fs.statSync(path.join(ROOT, dir, id)).isDirectory()) continue
+            pages.push(`${dir}/${id}/index.html`)
+            /* Trang giá vé của điểm đến: diem-den/<id>/gia-ve/ */
+            if (fs.existsSync(path.join(ROOT, dir, id, 'gia-ve', 'index.html'))) pages.push(`${dir}/${id}/gia-ve/index.html`)
         }
     }
     return pages
 }
 
-module.exports = { ROOT, startServer, setupRoutes, builtPages }
+module.exports = { ROOT, LANG_PREFIXES, startServer, setupRoutes, builtPages }

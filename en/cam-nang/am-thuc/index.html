@@ -8,24 +8,20 @@
         <link rel="apple-touch-icon" href="../../../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../../../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <!-- Font & icon tải không chặn hiển thị -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-        </noscript>
-        <link rel="stylesheet" href="../../../assets/css/styles.css">
-        <link rel="stylesheet" href="../../../assets/css/vietnam.css">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../../../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../../../assets/css/site-2303c79c15.css">
 
         <title>What to eat in Vietnam: a food guide by region – Việt Travel</title>
     
         <link rel="canonical" href="https://tantan1802.github.io/travel/en/cam-nang/am-thuc/">
         <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/cam-nang/am-thuc/">
         <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/cam-nang/am-thuc/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/cam-nang/am-thuc/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/cam-nang/am-thuc/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/cam-nang/am-thuc/">
         <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/cam-nang/am-thuc/">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
@@ -38,6 +34,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"What to eat in Vietnam: a food guide by region","description":"Must-try dishes in each region, how to eat street food safely and a few table manners.","inLanguage":"en","url":"https://tantan1802.github.io/travel/en/cam-nang/am-thuc/","dateModified":"2026-09","image":"https://tantan1802.github.io/travel/assets/img/og/hue.jpg","author":{"@type":"Organization","name":"Việt Travel","url":"https://tantan1802.github.io/travel/"},"publisher":{"@type":"Organization","name":"Việt Travel","url":"https://tantan1802.github.io/travel/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tantan1802.github.io/travel/en/"},{"@type":"ListItem","position":2,"name":"Travel guide","item":"https://tantan1802.github.io/travel/en/cam-nang/"},{"@type":"ListItem","position":3,"name":"What to eat in Vietnam: a food guide by region","item":"https://tantan1802.github.io/travel/en/cam-nang/am-thuc/"}]}]}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../../en/index.html" class="nav__logo">Việt Travel</a>
@@ -58,7 +56,16 @@
                         </li>
                     </ul>
 
-                    <a class="nav__lang" id="lang-switch" href="../../../cam-nang/am-thuc/index.html" hreflang="vi" lang="vi" title="Tiếng Việt">VI</a>
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> EN</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../../../cam-nang/am-thuc/index.html" hreflang="vi" lang="vi" data-lang="vi">Tiếng Việt</a></li>
+                            <li><a href="../../../en/cam-nang/am-thuc/index.html" hreflang="en" lang="en" data-lang="en" aria-current="true">English</a></li>
+                            <li><a href="../../../ko/cam-nang/am-thuc/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../../../zh/cam-nang/am-thuc/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../../../ja/cam-nang/am-thuc/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -353,19 +360,9 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'</script>
-        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="../../../assets/js/data/en.js"></script>
-        <script defer src="../../../assets/js/data/local-images.js"></script>
-        <script defer src="../../../assets/js/i18n.js"></script>
-        <script defer src="../../../assets/js/data/destinations.js"></script>
-        <script defer src="../../../assets/js/favorites.js"></script>
-        <script defer src="../../../assets/js/components.js"></script>
-        <script defer src="../../../assets/js/guide.js"></script>
-
-        <!--=============== MAIN JS ===============-->
-        <script defer src="../../../assets/js/main.js"></script>
+        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'</script>
+        <script defer src="../../../assets/js/dist/1838e89f07.js"></script>
     </body>
 </html>

@@ -55,7 +55,9 @@ function monthsWidget() {
                 const picks = DESTINATIONS.filter(d => d.bestMonths.includes(m))
                 return `
                     <div class="months-table__row">
-                        <strong class="months-table__month">${t('Tháng {m}', { m: monthLabel(m) })}</strong>
+                        <strong class="months-table__month">${typeof monthUrl === 'function'
+                            ? `<a href="${monthUrl(m)}">${t('Tháng {m}', { m: monthLabel(m) })}</a>`
+                            : t('Tháng {m}', { m: monthLabel(m) })}</strong>
                         <div class="months-table__places">
                             ${picks.map(d => `<a href="${destinationUrl(d.id)}" class="tag tag--${d.region}">${d.name}</a>`).join('')}
                         </div>

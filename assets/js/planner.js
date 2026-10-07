@@ -5,15 +5,7 @@
  * Kế hoạch lưu trên trình duyệt (TripPlan) và chia sẻ được qua URL: ?p=hue.2,hoi-an.3&m=3&b=c
  */
 
-/* Đảo chỉ đến được bằng máy bay / tàu cao tốc */
-const ISLAND_IDS = ['phu-quoc', 'con-dao']
-const ROAD_FACTOR = 1.3 // đường bộ dài hơn đường chim bay khoảng 30%
-const FLIGHT_FROM_KM = 450 // từ quãng đường bộ này trở lên gợi ý bay
-
-const TRANSPORT_COST = {
-    road: { saving: 900, comfort: 2200, min: 120000 }, // đ/km: xe khách / xe riêng ghép
-    flight: { saving: 1300000, comfort: 2800000 }, // vé một chiều phổ thông
-}
+/* Phương tiện giữa các điểm đến (máy bay, tàu hỏa, xe khách, tàu ra đảo): transportOptions() trong components.js */
 
 const SUGGESTED_ROUTES = [
     { title: 'Miền Bắc kinh điển', icon: 'ri-landscape-line', stops: [['ha-noi', 2], ['ninh-binh', 2], ['vinh-ha-long', 2], ['sa-pa', 3]] },
@@ -31,35 +23,54 @@ const planner = {
 }
 
 /*---------- Tính toán ----------*/
-function legInfo(a, b, tier) {
-    const km = Math.round(distanceKm(a, b) * ROAD_FACTOR)
-    const flight = km >= FLIGHT_FROM_KM || ISLAND_IDS.includes(a.id) || ISLAND_IDS.includes(b.id)
-    if (flight) {
-        return { km, mode: 'flight', hours: null, cost: TRANSPORT_COST.flight[tier] }
-    }
-    const hours = Math.max(1, Math.round(km / 45 * 2) / 2)
-    return { km, mode: 'road', hours, cost: Math.max(TRANSPORT_COST.road.min, Math.round(km * TRANSPORT_COST.road[tier] / 10000) * 10000) }
-}
+const legKey = (a, b) => `${a.id}>${b.id}`
 
-/* Chi phí lưu trú + ăn uống + vé tham quan tại một điểm cho n ngày (nội suy từ mức 3/4/5 ngày) */
-function stopCost(id, days, tier) {
-    const plan = ITINERARIES[id]
-    if (!plan) return 0
-    const [b3, b4, b5] = plan.budget[tier]
-    const perDay = Math.max((b5 - b3) / 2, b3 / 5)
-    if (days >= 3 && days <= 5) return [b3, b4, b5][days - 3]
-    if (days < 3) return Math.max(perDay, b3 - (3 - days) * perDay)
-    return b5 + (days - 5) * perDay
+/* Chặng a → b: phương tiện người dùng đã chọn (plan.modes), không thì phương án gợi ý */
+function legInfo(a, b, tier, modes = {}) {
+    const { options, recommended } = transportOptions(a, b, tier)
+    const chosen = options.find(o => o.mode === modes[legKey(a, b)]) || options.find(o => o.mode === recommended) || options[0]
+    return { ...chosen, key: legKey(a, b), options, recommended }
 }
 
 function planTotals(plan) {
     const dests = plan.stops.map(s => getDestination(s.id))
-    const legs = dests.slice(1).map((d, i) => legInfo(dests[i], d, plan.tier))
+    const modes = plan.modes || {}
+    const legs = dests.slice(1).map((d, i) => legInfo(dests[i], d, plan.tier, modes))
     const days = plan.stops.reduce((sum, s) => sum + s.days, 0)
-    const stay = plan.stops.reduce((sum, s) => sum + stopCost(s.id, s.days, plan.tier), 0)
+    /* Chi phí từng điểm dừng (lưu trú, ăn uống, đi lại, vé tham quan) – xem tripCost() trong components.js */
+    const nights = planStays(plan).map(s => s.nights)
+    const stopCosts = plan.stops.map((s, i) => tripCost(s.id, s.days, plan.tier, nights[i]))
+    const stay = stopCosts.reduce((sum, c) => sum + c.total, 0)
     const transport = legs.reduce((sum, l) => sum + l.cost, 0)
     const km = legs.reduce((sum, l) => sum + l.km, 0)
-    return { dests, legs, days, km, stay, transport, total: stay + transport }
+
+    /* Gộp các khoản của mọi điểm dừng để hiển thị chi tiết */
+    const byKey = {}
+    stopCosts.forEach(c => c.items.forEach(item => {
+        const acc = byKey[item.key] || (byKey[item.key] = { ...item, amount: 0, count: 0 })
+        acc.amount += item.amount
+        acc.count += item.count
+    }))
+    const breakdown = Object.values(byKey)
+    if (legs.length) breakdown.push({ key: 'legs', icon: 'ri-route-line', label: t('Di chuyển giữa các điểm'), amount: transport, count: legs.length, unit: t('chặng') })
+
+    /* Điểm xuất phát: thêm chặng đi và chặng về (bỏ qua nếu trùng điểm đầu / cuối) */
+    const origin = plan.origin && getDestination(plan.origin)
+    const outbound = origin && dests.length && origin.id !== dests[0].id ? legInfo(origin, dests[0], plan.tier, modes) : null
+    const inbound = origin && dests.length && origin.id !== dests[dests.length - 1].id ? legInfo(dests[dests.length - 1], origin, plan.tier, modes) : null
+    const originCost = (outbound ? outbound.cost : 0) + (inbound ? inbound.cost : 0)
+    if (originCost) {
+        breakdown.push({ key: 'origin', icon: 'ri-flight-takeoff-line', label: t('Đi và về {name}', { name: origin.name }), amount: originCost, count: [outbound, inbound].filter(Boolean).length, unit: t('chặng') })
+    }
+    const total = stay + transport + originCost
+    const stayPerPerson = byKey.stay ? byKey.stay.amount : 0
+    const people = plan.people || 2
+    return {
+        dests, legs, days, stay, stopCosts, breakdown, total, origin, outbound, inbound, people,
+        km: km + (outbound ? outbound.km : 0) + (inbound ? inbound.km : 0),
+        transport: transport + originCost,
+        groupTotal: groupCost(total, stayPerPerson, people),
+    }
 }
 
 /* Tuyến ngắn nhất (giữ điểm xuất phát): láng giềng gần nhất rồi cải thiện bằng 2-opt */
@@ -93,14 +104,6 @@ function optimizeStops(stops) {
 }
 
 /* Gộp lịch trình từng ngày của các điểm dừng */
-/* Chỗ nghỉ gợi ý theo mức chi tiêu: tiết kiệm → rẻ nhất, thoải mái → cao cấp nhất */
-function suggestedStay(id, tier) {
-    const places = placesOf(id)
-    if (!places) return null
-    const sorted = [...places.stays].sort((a, b) => a.price[0] - b.price[0])
-    return tier === 'comfort' ? sorted[sorted.length - 1] : sorted[0]
-}
-
 /* Lịch nghỉ từng điểm dừng: ngày nhận phòng (nếu đã chọn ngày khởi hành) và số đêm */
 function planStays(plan) {
     let offset = 0
@@ -111,7 +114,7 @@ function planStays(plan) {
             dayIndex: offset,
             checkin: plan.start ? addDays(plan.start, offset) : '',
             nights: last ? Math.max(1, stop.days - 1) : stop.days,
-            stay: suggestedStay(stop.id, plan.tier),
+            stay: tierStay(stop.id, plan.tier),
         }
         offset += stop.days
         return item
@@ -124,16 +127,16 @@ function planDays(plan, totals) {
     plan.stops.forEach((stop, si) => {
         const d = totals.dests[si]
         const source = (ITINERARIES[d.id] || { days: [] }).days
-        const eats = (placesOf(d.id) || {}).eats || []
         for (let i = 0; i < stop.days; i++) {
             out.push({
                 dest: d,
                 stopIndex: si,
                 date: plan.start ? addDays(plan.start, stays[si].dayIndex + i) : '',
                 day: source[i] || null,
-                meals: eats.length ? { lunch: eats[(2 * i) % eats.length], dinner: eats[(2 * i + 1) % eats.length] } : null,
+                dayOfStop: i,
                 checkin: i === 0 ? stays[si] : null,
-                arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] } : null,
+                arrival: i === 0 && si > 0 ? { from: totals.dests[si - 1], leg: totals.legs[si - 1] }
+                    : i === 0 && si === 0 && totals.outbound ? { from: totals.origin, leg: totals.outbound } : null,
                 departure: i === stop.days - 1 && si === plan.stops.length - 1,
             })
         }
@@ -148,6 +151,12 @@ function planToQuery(plan) {
     if (plan.start) params.set('d', plan.start)
     else if (plan.month) params.set('m', plan.month)
     if (plan.tier === 'comfort') params.set('b', 'c')
+    if (plan.origin) params.set('o', plan.origin)
+    if (plan.people && plan.people !== 2) params.set('n', plan.people)
+    if (plan.style) params.set('s', plan.style)
+    /* Phương tiện tự chọn từng chặng: t=ha-noi.da-nang.t,hue.hoi-an.r */
+    const modes = Object.entries(plan.modes || {}).filter(([, m]) => MODES.includes(m))
+    if (modes.length) params.set('t', modes.map(([key, m]) => `${key.replace('>', '.')}.${m[0]}`).join(','))
     return `?${params.toString().replace(/%2C/g, ',')}`
 }
 
@@ -163,15 +172,45 @@ function planFromQuery(search) {
     })
     const start = /^\d{4}-\d{2}-\d{2}$/.test(params.get('d') || '') ? params.get('d') : ''
     const month = start ? Number(start.slice(5, 7)) : parseInt(params.get('m'), 10)
-    return { stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {} }
+    const people = parseInt(params.get('n'), 10)
+    const modes = {}
+    ;(params.get('t') || '').split(',').forEach(part => {
+        const [a, b, m] = part.split('.')
+        const mode = MODES.find(x => x[0] === m)
+        if (getDestination(a) && getDestination(b) && mode) modes[`${a}>${b}`] = mode
+    })
+    return {
+        stops, start, month: month >= 1 && month <= 12 ? month : 0, tier: params.get('b') === 'c' ? 'comfort' : 'saving', booked: {},
+        origin: ORIGIN_IDS.includes(params.get('o')) ? params.get('o') : '',
+        people: people >= 1 && people <= PEOPLE_MAX ? people : 2,
+        style: TRAVEL_STYLES[params.get('s')] ? params.get('s') : '',
+        modes,
+    }
 }
 
 /*---------- Giao diện ----------*/
-const legMode = leg => (leg.mode === 'flight'
-    ? t('Máy bay / tàu cao tốc')
-    : t('Xe khách / ô tô ~{h} giờ', { h: LANG === 'en' ? leg.hours : String(leg.hours).replace('.', ',') }))
+const legMode = leg => modeLabel(leg)
 
-const legLabel = leg => `<i class="${leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line'}"></i> ${legMode(leg)}`
+/* Một chặng trong danh sách điểm dừng: chọn phương tiện (giá / người, ghi chú ga – cảng) */
+function legItem(leg, title = '') {
+    const options = MODES.map(m => leg.options.find(o => o.mode === m)).filter(Boolean)
+    const note = modeNote(leg)
+    return `
+        <li class="leg" aria-label="${title || t('Di chuyển')}">
+            ${title ? `<span class="leg__title">${title}</span>` : ''}
+            <div class="leg__modes" role="group" aria-label="${t('Chọn phương tiện')}">
+                ${options.map(o => `
+                    <button type="button" class="leg__mode${o.mode === leg.mode ? ' leg__mode--active' : ''}" data-action="leg-mode" data-leg="${leg.key}" data-mode="${o.mode}" aria-pressed="${o.mode === leg.mode}"${options.length < 2 ? ' disabled' : ''}>
+                        <i class="${MODE_ICONS[o.mode]}"></i>
+                        <span>${modeLabel(o)}</span>
+                        <small>${formatVnd(o.cost)}${o.mode === leg.recommended && options.length > 1 ? ` · ${t('gợi ý')}` : ''}</small>
+                    </button>
+                `).join('')}
+            </div>
+            <span class="leg__meta">~${leg.km} km${note ? ` · ${note}` : ''}</span>
+        </li>
+    `
+}
 
 function destinationOptions(plan) {
     return Object.keys(REGIONS).map(region => `
@@ -238,6 +277,7 @@ function renderStops(plan, totals) {
             <p class="print-url"></p>
         </div>
         <ol class="planner__stops">
+            ${totals.outbound ? legItem(totals.outbound, t('Đi từ {name}', { name: totals.origin.name })) : ''}
             ${plan.stops.map((stop, i) => {
                 const d = totals.dests[i]
                 const offSeason = plan.month && !d.bestMonths.includes(plan.month)
@@ -248,8 +288,9 @@ function renderStops(plan, totals) {
                         <img data-wiki="${wikiAttr(heroCandidates(d))}" data-width="500" data-sizes="96px" alt="" class="stop__img">
                         <div class="stop__info">
                             <a href="${destinationUrl(d.id)}" class="stop__name">${d.name}</a>
-                            <span class="stop__meta">${d.province} · ${formatVnd(stopCost(d.id, stop.days, plan.tier))}</span>
+                            <span class="stop__meta">${d.province} · ${formatVnd(totals.stopCosts[i].total)}</span>
                             ${offSeason ? `<span class="stop__warn"><i class="ri-error-warning-line"></i> ${t('Tháng {m} không phải mùa đẹp nhất', { m: monthLabel(plan.month) })}</span>` : ''}
+                            ${plan.style && TRAVEL_STYLES[plan.style].caution.includes(d.id) ? `<span class="stop__warn"><i class="ri-alert-line"></i> ${t('Nhiều đường đèo, leo dốc hoặc đi tàu xa – cân nhắc với {style}', { style: pickLang(TRAVEL_STYLES[plan.style].label).toLowerCase() })}</span>` : ''}
                         </div>
                         <div class="stop__days" role="group" aria-label="${t('Số ngày tại {name}', { name: d.name })}">
                             <button type="button" data-action="days" data-delta="-1" aria-label="${t('Bớt một ngày')}"${stop.days <= 1 ? ' disabled' : ''}><i class="ri-subtract-line"></i></button>
@@ -262,14 +303,10 @@ function renderStops(plan, totals) {
                             <button type="button" data-action="remove" aria-label="${t('Xóa {name}', { name: d.name })}"><i class="ri-close-line"></i></button>
                         </div>
                     </li>
-                    ${leg ? `
-                        <li class="leg" aria-label="${t('Di chuyển')}">
-                            <span>${legLabel(leg)}</span>
-                            <span>~${leg.km} km · ${formatVnd(leg.cost)}</span>
-                        </li>
-                    ` : ''}
+                    ${leg ? legItem(leg) : ''}
                 `
             }).join('')}
+            ${totals.inbound ? legItem(totals.inbound, t('Về {name}', { name: totals.origin.name })) : ''}
         </ol>
     `
 }
@@ -287,6 +324,29 @@ function renderSettings(plan) {
                 <option value="0">${t('Chưa chọn')}</option>
                 ${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}"${plan.month === i + 1 ? ' selected' : ''}>${t('Tháng {m}', { m: monthLabel(i + 1) })}</option>`).join('')}
             </select>
+        </div>
+        <div class="planner__setting planner__setting--row">
+            <div>
+                <label class="planner__label" for="planner-origin">${t('Xuất phát từ')}</label>
+                <select id="planner-origin" class="planner__select">
+                    <option value="">${t('Không tính chặng đi/về')}</option>
+                    ${ORIGIN_IDS.map(id => `<option value="${id}"${plan.origin === id ? ' selected' : ''}>${getDestination(id).name}</option>`).join('')}
+                </select>
+            </div>
+            <div>
+                <label class="planner__label" for="planner-people">${t('Số người')}</label>
+                <input type="number" id="planner-people" class="planner__select" min="1" max="${PEOPLE_MAX}" value="${plan.people || 2}">
+            </div>
+        </div>
+        <div class="planner__setting">
+            <span class="planner__label" id="planner-style-label">${t('Phong cách chuyến đi')}</span>
+            <div class="chip-row planner__styles" role="group" aria-labelledby="planner-style-label">
+                ${Object.entries(TRAVEL_STYLES).map(([id, st]) => `
+                    <button type="button" class="chip${plan.style === id ? ' chip--active' : ''}" data-action="style" data-style="${id}" aria-pressed="${plan.style === id}">
+                        <i class="${st.icon}"></i> ${pickLang(st.label)}
+                    </button>
+                `).join('')}
+            </div>
         </div>
         <div class="planner__setting">
             <span class="planner__label" id="planner-tier-label">${t('Mức chi tiêu')}</span>
@@ -307,20 +367,188 @@ function renderSummary(plan, totals) {
         <div class="planner__stats">
             <div class="planner__stat"><i class="ri-calendar-2-line"></i><strong>${totals.days}</strong><span>${t('ngày')}</span></div>
             <div class="planner__stat"><i class="ri-map-pin-2-line"></i><strong>${plan.stops.length}</strong><span>${t('điểm đến')}</span></div>
-            <div class="planner__stat"><i class="ri-road-map-line"></i><strong>~${totals.km.toLocaleString(LANG === 'en' ? 'en-US' : 'vi-VN')}</strong><span>km</span></div>
+            <div class="planner__stat"><i class="ri-road-map-line"></i><strong>~${totals.km.toLocaleString(LANG === 'vi' ? 'vi-VN' : 'en-US')}</strong><span>km</span></div>
         </div>
         <div class="planner__cost">
             <span>${t('Chi phí ước tính / người')}</span>
             <strong>${formatVnd(totals.total)}</strong>
-            <small>${t('Lưu trú & ăn chơi {stay} · Di chuyển giữa các điểm {move}', { stay: formatVnd(totals.stay), move: formatVnd(totals.transport) })}</small>
+            <small>${plan.tier === 'comfort' ? t('Khách sạn 3–4 sao, nhà hàng, Grab') : t('Homestay, ăn quán địa phương, xe máy')}</small>
+            <p class="planner__group" id="planner-group"><i class="ri-group-line"></i> ${t('Cả nhóm {n} người: {total}', { n: totals.people, total: formatVnd(totals.groupTotal) })}${totals.people === 1 ? ` · ${t('ở một mình trả trọn giá phòng')}` : totals.people % 2 ? ` · ${t('lẻ người nên tính thêm 1 phòng')}` : ''}</p>
         </div>
-        <p class="budget__note">${t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
+        ${plan.style ? `
+            <details class="cost-details style-tips" open>
+                <summary><i class="${TRAVEL_STYLES[plan.style].icon}"></i> ${t('Gợi ý cho {style}', { style: pickLang(TRAVEL_STYLES[plan.style].label).toLowerCase() })}</summary>
+                <ul class="style-tips__list">${TRAVEL_STYLES[plan.style].tips.map(tip => `<li>${pickLang(tip)}</li>`).join('')}</ul>
+            </details>
+        ` : ''}
+        <details class="cost-details"${planner.costOpen ? ' open' : ''}>
+            <summary>${t('Xem chi tiết chi phí')}</summary>
+            <ul class="cost-list">
+                ${totals.breakdown.map(item => `
+                    <li class="cost-item">
+                        <span class="cost-item__icon"><i class="${item.icon}"></i></span>
+                        <div class="cost-item__text">
+                            <strong>${item.label}</strong>
+                            <small>${item.count} ${item.unit}</small>
+                        </div>
+                        <div class="cost-item__amount"><strong>${formatVnd(item.amount)}</strong></div>
+                    </li>
+                `).join('')}
+            </ul>
+        </details>
+        <p class="budget__note">${totals.origin ? t('Đã gồm chặng đi và về {name}. Giá tham khảo, thay đổi theo mùa.', { name: totals.origin.name }) : t('Chưa gồm vé tới điểm đầu tiên và về từ điểm cuối. Giá tham khảo, thay đổi theo mùa.')}</p>
         <div class="planner__share">
             <button type="button" class="button button--flex" data-action="share"><i class="ri-share-line"></i> ${t('Chia sẻ kế hoạch')}</button>
             <button type="button" class="button button--flex button--ghost" data-action="copy-text"><i class="ri-file-copy-line"></i> ${t('Sao chép dạng chữ')}</button>
             <button type="button" class="button button--flex button--ghost" data-action="print"><i class="ri-printer-line"></i> ${t('In / lưu PDF')}</button>
         </div>
+        <div class="planner__share planner__export">
+            <button type="button" class="button button--flex button--ghost" data-action="ics"><i class="ri-calendar-2-line"></i> ${t('Thêm vào lịch (.ics)')}</button>
+            ${totals.dests.length > 1 ? `<a href="${tripRouteUrl(totals.dests)}" target="_blank" rel="noopener" class="button button--flex button--ghost"><i class="ri-route-line"></i> ${t('Cả tuyến trên Google Maps')}</a>` : ''}
+            ${offlineSupported() ? `<button type="button" class="button button--flex button--ghost" data-action="offline"><i class="ri-download-cloud-2-line"></i> ${t('Tải về dùng offline')}</button>` : ''}
+        </div>
+        ${offlineStatusHtml(plan)}
+        ${plan.start ? '' : `<p class="budget__note">${t('Chọn ngày khởi hành để thêm lịch trình vào lịch và xem dự báo thời tiết từng ngày.')}</p>`}
     `
+}
+
+/* Đã lưu offline chưa (và có đúng tuyến hiện tại không) */
+function offlineStatusHtml(plan) {
+    const info = offlineSupported() ? offlineInfo() : null
+    if (!info) return ''
+    const same = info.route === plan.stops.map(s => s.id).join(',')
+    const when = new Date(info.time)
+    const stamp = `${formatDate(`${when.getFullYear()}-${String(when.getMonth() + 1).padStart(2, '0')}-${String(when.getDate()).padStart(2, '0')}`)} ${String(when.getHours()).padStart(2, '0')}:${String(when.getMinutes()).padStart(2, '0')}`
+    return `<p class="offline-status${same ? '' : ' offline-status--stale'}" id="offline-status"><i class="${same ? 'ri-checkbox-circle-line' : 'ri-error-warning-line'}"></i> ${same
+        ? t('Đã lưu offline {n} tệp lúc {time}', { n: info.count, time: stamp })
+        : t('Bản offline đã lưu là của tuyến cũ – bấm tải lại để cập nhật.')}</p>`
+}
+
+async function downloadOffline(plan, btn) {
+    const totals = planTotals(plan)
+    const pages = [location.href, ...totals.dests.map(d => destinationUrl(d.id))]
+    btn.disabled = true
+    const label = btn.innerHTML
+    try {
+        const result = await saveTripOffline(plan, pages, (done, total) => {
+            btn.innerHTML = `<i class="ri-loader-4-line"></i> ${t('Đang lưu {done}/{total}', { done, total })}`
+        })
+        showToast(result.failed
+            ? t('Đã lưu {n} tệp để dùng offline ({failed} tệp lỗi)', { n: result.saved, failed: result.failed })
+            : t('Đã lưu {n} tệp – mở lại trang này khi mất mạng vẫn xem được', { n: result.saved }))
+    } catch {
+        showToast(t('Không lưu được bản offline trên trình duyệt này'))
+    }
+    btn.innerHTML = label
+    btn.disabled = false
+    const status = document.getElementById('offline-status')
+    const html = offlineStatusHtml(plan)
+    if (status) status.outerHTML = html
+    else btn.closest('.planner__export').insertAdjacentHTML('afterend', html)
+}
+
+/*---------- Chế độ "Hôm nay": ngày đang đi, mốc hiện tại / kế tiếp, chỉ đường ----------*/
+function renderToday(plan, totals) {
+    const status = tripStatus(plan)
+    if (!status) return ''
+    if (status.kind === 'upcoming') {
+        if (status.inDays > 60) return ''
+        return `
+            <div class="today today--upcoming">
+                <i class="ri-suitcase-3-line today__icon"></i>
+                <div>
+                    <strong>${status.inDays === 1 ? t('Ngày mai khởi hành!') : t('Còn {n} ngày nữa là tới chuyến đi', { n: status.inDays })}</strong>
+                    <p>${planRoute(plan)} · ${formatDate(status.trip.start)} – ${formatDate(status.trip.end)}</p>
+                </div>
+            </div>
+        `
+    }
+    const days = planDays(plan, totals)
+    const item = days[status.dayIndex]
+    const entries = planDayTimeline(item)
+    const { current, next, minutesToNext } = currentAndNext(entries)
+    const hm = m => {
+        if (m < 60) return t('{m} phút', { m })
+        return m % 60 ? t('{h} giờ {m} phút', { h: Math.floor(m / 60), m: m % 60 }) : t('{h} giờ', { h: m / 60 })
+    }
+    const line = (e, cls) => {
+        if (!e) return ''
+        const where = entryDestination(e, item.dest.name)
+        const what = e.place ? e.place.name : (e.sights && e.sights.length ? e.sights.map(x => pickLang(x.name)).join(', ') : e.text)
+        return `
+            <div class="today__entry today__entry--${cls}">
+                <span class="today__label">${cls === 'now' ? t('Đang diễn ra') : t('Tiếp theo – còn {time}', { time: hm(minutesToNext) })}</span>
+                <strong><time>${e.time}</time> ${e.title}</strong>
+                <p>${what}</p>
+                ${where ? `<a href="${directionsToUrl(where)}" target="_blank" rel="noopener" class="button button--flex today__go"><i class="ri-direction-line"></i> ${t('Chỉ đường')}</a>` : ''}
+            </div>
+        `
+    }
+    return `
+        <section class="today" id="today" aria-live="polite">
+            <div class="today__head">
+                <span class="today__badge"><i class="ri-map-pin-time-line"></i> ${t('Hôm nay')}</span>
+                <h2 class="today__title">${t('Ngày {n}/{total}', { n: status.dayIndex + 1, total: status.trip.days })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}</h2>
+                <span class="day-tools__forecast" data-forecast-dest="${item.dest.id}" data-forecast-date="${item.date}"></span>
+            </div>
+            <div class="today__entries">
+                ${line(current, 'now')}
+                ${line(next, 'next')}
+                ${!current && !next ? `<p>${t('Chưa có hoạt động nào cho hôm nay.')}</p>` : ''}
+                ${current && !next ? `<p class="today__done"><i class="ri-moon-clear-line"></i> ${t('Đã hết các hoạt động hôm nay – nghỉ ngơi nhé!')}</p>` : ''}
+            </div>
+            ${nearbyLinksHtml()}
+            <a href="#plan-day-${status.dayIndex + 1}" class="today__all"><i class="ri-list-check-2"></i> ${t('Xem cả lịch hôm nay')}</a>
+        </section>
+    `
+}
+
+/* Chi tiết một ngày trong kế hoạch dùng cho timeline, lịch và Google Calendar */
+function planDayTimeline(item) {
+    return dayTimeline(item.dest.id, item.dayOfStop, item.day, {
+        arrival: item.arrival ? { text: `${legMode(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}` } : null,
+        last: item.departure,
+    })
+}
+
+const planDayLabel = (item, i) => `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}`
+
+function planDayToolsHtml(item, i, entries) {
+    const route = item.day ? dayRouteUrl(item.dest.id, item.dayOfStop, { skipMorning: Boolean(item.arrival) }) : ''
+    const gcal = item.date ? googleCalendarDayUrl({
+        title: planDayLabel(item, i),
+        date: item.date,
+        details: `${dayDetailsText(entries)}\n\n${planShareUrl(planner.plan)}`,
+        location: `${item.dest.name}, ${item.dest.province}`,
+    }) : ''
+    if (!route && !gcal && !item.date) return ''
+    return `
+        <div class="day-tools">
+            ${item.date ? `<span class="day-tools__forecast" data-forecast-dest="${item.dest.id}" data-forecast-date="${item.date}"></span>` : ''}
+            <span class="day-tools__links">
+                ${route ? `<a href="${route}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> ${t('Lộ trình trên Google Maps')}</a>` : ''}
+                ${gcal ? `<a href="${gcal}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-calendar-event-line"></i> ${t('Thêm ngày này vào Google Calendar')}</a>` : ''}
+            </span>
+        </div>
+    `
+}
+
+/* File .ics cho cả kế hoạch – cần ngày khởi hành */
+function exportPlanIcs(plan) {
+    if (!plan.start) {
+        const input = document.getElementById('planner-start')
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        input.focus()
+        showToast(t('Chọn ngày khởi hành trước để thêm vào lịch'))
+        return
+    }
+    const totals = planTotals(plan)
+    const events = planDays(plan, totals).flatMap((item, i) => timelineToEvents(planDayTimeline(item), {
+        date: item.date, destName: item.dest.name, dayLabel: planDayLabel(item, i),
+    }))
+    const name = t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) })
+    downloadTextFile(`${safeFileName(planRoute(plan))}-${plan.start}.ics`, buildIcs({ name, events }))
+    showToast(t('Đã tải file lịch – mở file để thêm vào Google Calendar, Apple Calendar hoặc Outlook'))
 }
 
 function renderDays(plan, totals) {
@@ -330,44 +558,67 @@ function renderDays(plan, totals) {
         <h2 class="section__title">${t('Lịch trình {n} ngày', { n: days.length })}</h2>
         <ol class="plan-days">
             ${days.map((item, i) => `
-                <li class="plan-day${item.arrival ? ' plan-day--travel' : ''}">
+                <li class="plan-day${item.arrival ? ' plan-day--travel' : ''}" id="plan-day-${i + 1}">
                     <div class="plan-day__head">
                         <span class="plan-day__number">${t('Ngày {n}', { n: i + 1 })}</span>
                         ${item.date ? `<span class="plan-day__date">${formatDate(item.date)}</span>` : ''}
                         <h3 class="plan-day__title">${item.dest.name}${item.day ? ` – ${item.day.title}` : ''}</h3>
                     </div>
-                    ${item.arrival ? `
-                        <p class="plan-day__travel">
-                            ${legLabel(item.arrival.leg)} · ${t('Từ {from} đến {to} (~{km} km). Nên đi sớm để kịp tham quan buổi chiều.', { from: item.arrival.from.name, to: item.dest.name, km: item.arrival.leg.km })}
-                        </p>
-                    ` : ''}
-                    ${item.day ? `
-                        <ul class="plan-day__slots">
-                            ${DAY_SLOTS.map(slot => `
-                                <li><span><i class="${slot.icon}"></i> ${slot.label()}</span><p>${item.day[slot.key]}</p></li>
-                            `).join('')}
-                        </ul>
-                    ` : `<p class="plan-day__free"><i class="ri-cup-line"></i> ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}</p>`}
-                    ${item.meals ? `
-                        <ul class="plan-day__meals">
-                            ${[['lunch', t('Ăn trưa'), 'ri-restaurant-line'], ['dinner', t('Ăn tối'), 'ri-restaurant-2-line']].map(([key, label, icon]) => `
-                                <li>
-                                    <span><i class="${icon}"></i> ${label}</span>
-                                    <p><a href="${mapsSearchUrl(`${item.meals[key].name}, ${item.meals[key].address}`)}" target="_blank" rel="noopener"><strong>${item.meals[key].name}</strong></a> – ${pickLang(item.meals[key].dish)} <small>(${item.meals[key].address} · ${priceRange(item.meals[key].price)})</small></p>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    ` : ''}
+                    ${(entries => `${planDayToolsHtml(item, i, entries)}${dayTimelineHtml(entries)}`)(planDayTimeline(item))}
                     ${item.checkin && item.checkin.stay ? `
                         <div class="plan-day__stay">
                             <p><i class="ri-hotel-bed-line"></i> <strong>${t('Nghỉ đêm')}:</strong> ${pickLang(item.checkin.stay.area)} · ${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')} · ${t('{n} đêm', { n: item.checkin.nights })}</p>
-                            <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights))}</div>
+                            <div class="book-links">${linkButtons(stayLinks(placesOf(item.dest.id).city, pickLang(item.checkin.stay.area), item.checkin.checkin, item.checkin.nights, planner.plan.people))}</div>
                         </div>
                     ` : ''}
-                    ${item.departure ? `<p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> ${t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.')}</p>` : ''}
                 </li>
             `).join('')}
         </ol>
+    `
+}
+
+/* Ngày (ISO) của từng điểm dừng khi đã chọn ngày khởi hành */
+function stopDates(plan) {
+    return planStays(plan).map((s, i) => (plan.start
+        ? Array.from({ length: plan.stops[i].days }, (_, k) => addDays(plan.start, s.dayIndex + k))
+        : []))
+}
+
+/* Lễ hội, nghỉ lễ, thời tiết cần lưu ý trùng ngày (hoặc tháng) đi của từng điểm dừng */
+function renderNotes(plan, totals) {
+    if (!plan.stops.length || (!plan.start && !plan.month)) return ''
+    const dates = stopDates(plan)
+    const seen = new Set()
+    const notes = []
+    totals.dests.forEach((d, i) => {
+        eventsForTrip(d.id, { dates: dates[i], month: plan.month }).forEach(e => {
+            const key = e.where === 'all' ? e.id : `${e.id}:${d.id}`
+            if (seen.has(key)) return
+            seen.add(key)
+            notes.push({ e, destName: e.where === 'all' ? '' : d.name })
+        })
+    })
+    if (!notes.length) return ''
+    return `
+        <section class="planner__block">
+            <h2 class="planner__block-title"><i class="ri-alarm-warning-line"></i> ${t('Lưu ý theo ngày đi')}</h2>
+            <p class="budget__note">${plan.start ? t('Lễ hội, nghỉ lễ và thời tiết trùng những ngày bạn có mặt ở từng nơi.') : t('Theo tháng khởi hành – chọn ngày cụ thể để lọc chính xác hơn.')}</p>
+            <ul class="events__list">${notes.map(n => eventCardHtml(n.e, { destName: n.destName })).join('')}</ul>
+        </section>
+    `
+}
+
+/* Danh sách đồ gộp cho cả chuyến theo điểm đến và tháng đi */
+function renderPackingBlock(plan, totals) {
+    if (!plan.stops.length) return ''
+    const dates = stopDates(plan)
+    const months = totals.dests.map((_, i) => (dates[i].length ? Number(dates[i][0].slice(5, 7)) : plan.month || 0))
+    return `
+        <section class="planner__block">
+            <h2 class="planner__block-title"><i class="ri-luggage-cart-line"></i> ${t('Chuẩn bị hành lý')}</h2>
+            ${months.some(Boolean) ? '' : `<p class="budget__note">${t('Chọn tháng hoặc ngày khởi hành để thêm đồ theo thời tiết (áo ấm, áo mưa...).')}</p>`}
+            ${packingHtml(packingList(totals.dests, months, { style: plan.style }), 'plan')}
+        </section>
     `
 }
 
@@ -375,6 +626,14 @@ function renderDays(plan, totals) {
 function bookingItems(plan, totals) {
     const stays = planStays(plan)
     const items = []
+    const originItem = (from, to, leg, date, key) => ({
+        key,
+        icon: MODE_ICONS[leg.mode],
+        title: `${from.name} → ${to.name}`,
+        detail: `${legMode(leg)}${date ? ` · ${formatDate(date)}` : ''}`,
+        links: transportLinks(from, to, leg.mode, date),
+    })
+    if (totals.outbound) items.push(originItem(totals.origin, totals.dests[0], totals.outbound, plan.start, `go:${totals.origin.id}>${totals.dests[0].id}`))
     stays.forEach((s, i) => {
         const d = totals.dests[i]
         if (i > 0) {
@@ -382,7 +641,7 @@ function bookingItems(plan, totals) {
             const from = totals.dests[i - 1]
             items.push({
                 key: `leg:${from.id}>${d.id}`,
-                icon: leg.mode === 'flight' ? 'ri-plane-line' : 'ri-bus-2-line',
+                icon: MODE_ICONS[leg.mode],
                 title: `${from.name} → ${d.name}`,
                 detail: `${legMode(leg)}${s.checkin ? ` · ${formatDate(s.checkin)}` : ''}`,
                 links: transportLinks(from, d, leg.mode, s.checkin),
@@ -394,11 +653,16 @@ function bookingItems(plan, totals) {
                 key: `stay:${d.id}`,
                 icon: 'ri-hotel-bed-line',
                 title: t('Phòng tại {name}', { name: d.name }),
-                detail: `${pickLang(s.stay.area)} · ${t('{n} đêm', { n: s.nights })}${s.checkin ? ` · ${formatDate(s.checkin)} → ${formatDate(addDays(s.checkin, s.nights))}` : ''}`,
-                links: stayLinks(places.city, pickLang(s.stay.area), s.checkin, s.nights),
+                detail: `${pickLang(s.stay.area)} · ${t('{n} đêm', { n: s.nights })}${(plan.people || 2) > 2 ? ` · ${t('{rooms} phòng cho {n} người', { rooms: Math.ceil(plan.people / 2), n: plan.people })}` : ''}${s.checkin ? ` · ${formatDate(s.checkin)} → ${formatDate(addDays(s.checkin, s.nights))}` : ''}`,
+                links: stayLinks(places.city, pickLang(s.stay.area), s.checkin, s.nights, plan.people),
             })
         }
     })
+    if (totals.inbound) {
+        const last = totals.dests[totals.dests.length - 1]
+        const end = plan.start ? addDays(plan.start, totals.days - 1) : ''
+        items.push(originItem(last, totals.origin, totals.inbound, end, `back:${last.id}>${totals.origin.id}`))
+    }
     return items
 }
 
@@ -458,15 +722,22 @@ async function updatePlannerMap(plan, totals) {
 function renderPlanner() {
     const plan = planner.plan
     const totals = planTotals(plan)
+    document.getElementById('planner-today').innerHTML = renderToday(plan, totals)
     document.getElementById('planner-controls').innerHTML = renderControls(plan)
     document.getElementById('planner-stops').innerHTML = renderStops(plan, totals)
     document.getElementById('planner-settings').innerHTML = renderSettings(plan)
     document.getElementById('planner-summary').innerHTML = renderSummary(plan, totals)
     document.getElementById('planner-bookings').innerHTML = renderBookings(plan, totals)
+    document.getElementById('planner-notes').innerHTML = renderNotes(plan, totals)
+    document.getElementById('planner-packing').innerHTML = renderPackingBlock(plan, totals)
     document.getElementById('planner-days').innerHTML = renderDays(plan, totals)
     document.getElementById('planner-page').classList.toggle('planner--empty', !plan.stops.length)
     hydrateWikiImages(document.getElementById('planner-stops'))
     updatePlannerMap(plan, totals)
+    if (plan.start) {
+        fillForecasts(document.getElementById('planner-days'))
+        fillForecasts(document.getElementById('planner-today'))
+    }
 }
 
 function commit(plan, { scroll = false } = {}) {
@@ -501,23 +772,25 @@ function planAsText(plan) {
     const lines = [
         t('Kế hoạch chuyến đi: {route}', { route: planRoute(plan) }),
         `${t('{n} ngày', { n: totals.days })} · ~${totals.km} km · ${t('Chi phí ước tính / người')}: ${formatVnd(totals.total)} (${plan.tier === 'comfort' ? t('Thoải mái') : t('Tiết kiệm')})`,
+        t('Cả nhóm {n} người: {total}', { n: totals.people, total: formatVnd(totals.groupTotal) }),
     ]
+    if (totals.origin) lines.push(`${t('Xuất phát từ')}: ${totals.origin.name}`)
     if (plan.month) lines.push(`${t('Tháng khởi hành')}: ${t('Tháng {m}', { m: monthLabel(plan.month) })}`)
     planDays(plan, totals).forEach((item, i) => {
-        lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}`)
-        if (item.arrival) {
-            lines.push(`  ${t('Di chuyển')}: ${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})`)
-        }
-        if (item.date) lines[lines.length - 1] += ` (${formatDate(item.date)})`
-        if (item.day) DAY_SLOTS.forEach(slot => lines.push(`  ${slot.label()}: ${item.day[slot.key]}`))
-        if (item.meals) {
-            lines.push(`  ${t('Ăn trưa')}: ${item.meals.lunch.name} – ${item.meals.lunch.address}`)
-            lines.push(`  ${t('Ăn tối')}: ${item.meals.dinner.name} – ${item.meals.dinner.address}`)
-        }
+        lines.push('', `${t('Ngày {n}', { n: i + 1 })} – ${item.dest.name}${item.day ? `: ${item.day.title}` : ''}${item.date ? ` (${formatDate(item.date)})` : ''}`)
+        const arrival = item.arrival
+            ? { text: `${item.arrival.from.name} → ${item.dest.name} (~${item.arrival.leg.km} km, ${legMode(item.arrival.leg)})` }
+            : null
+        dayTimeline(item.dest.id, item.dayOfStop, item.day, { arrival, last: item.departure }).forEach(e => {
+            const detail = e.place ? `${e.place.name} – ${e.place.address}` : e.text
+            lines.push(`  ${e.time} ${e.title}: ${detail}`)
+            ;(e.sights || []).forEach(s => {
+                lines.push(`      • ${pickLang(s.name)} – ${sightPriceText(s.price)} – ${sightHours(s.hours)}`)
+            })
+        })
         if (item.checkin && item.checkin.stay) {
             lines.push(`  ${t('Nghỉ đêm')}: ${pickLang(item.checkin.stay.area)} (${pickLang(STAY_TYPES[item.checkin.stay.type])} ${priceRange(item.checkin.stay.price)}/${t('đêm')}, ${t('{n} đêm', { n: item.checkin.nights })})`)
         }
-        else lines.push(`  ${t('Ngày tự do: nghỉ ngơi, khám phá theo sở thích hoặc đi thêm các điểm lân cận.')}`)
     })
     lines.push('', `${t('Xem kế hoạch')}: ${planShareUrl(plan)}`)
     return lines.join('\n')
@@ -557,12 +830,24 @@ function handlePlannerClick(e) {
             return commit({ ...plan, stops: plan.stops.filter((_, i) => i !== index) })
         case 'tier':
             return commit({ ...plan, tier: btn.dataset.tier })
+        case 'leg-mode':
+            return commit({ ...plan, modes: { ...(plan.modes || {}), [btn.dataset.leg]: btn.dataset.mode } })
+        case 'style': {
+            const style = plan.style === btn.dataset.style ? '' : btn.dataset.style
+            const suggested = style && TRAVEL_STYLES[style].tier
+            if (suggested && suggested !== plan.tier) showToast(t('Đã chuyển sang mức chi tiêu gợi ý cho phong cách này'))
+            return commit({ ...plan, style, tier: suggested || plan.tier })
+        }
         case 'share':
             return sharePlan()
         case 'copy-text':
             return copyText(planAsText(plan), t('Đã sao chép lịch trình dạng chữ'))
         case 'print':
             return window.print()
+        case 'ics':
+            return exportPlanIcs(plan)
+        case 'offline':
+            return downloadOffline(plan, btn)
     }
 }
 
@@ -579,6 +864,9 @@ function initPlanner() {
     if (location.search && planner.plan.stops.length) TripPlan.save(planner.plan)
 
     root.addEventListener('click', handlePlannerClick)
+    root.addEventListener('toggle', e => {
+        if (e.target.classList && e.target.classList.contains('cost-details')) planner.costOpen = e.target.open
+    }, true)
     root.addEventListener('submit', e => {
         if (e.target.id !== 'planner-add') return
         e.preventDefault()
@@ -587,6 +875,11 @@ function initPlanner() {
     })
     root.addEventListener('change', e => {
         if (e.target.id === 'planner-month') commit({ ...planner.plan, month: Number(e.target.value) })
+        if (e.target.id === 'planner-origin') commit({ ...planner.plan, origin: e.target.value })
+        if (e.target.id === 'planner-people') {
+            const people = Math.min(PEOPLE_MAX, Math.max(1, parseInt(e.target.value, 10) || 2))
+            commit({ ...planner.plan, people })
+        }
         if (e.target.id === 'planner-start') {
             const start = e.target.value
             commit({ ...planner.plan, start, month: start ? Number(start.slice(5, 7)) : planner.plan.month })
@@ -597,6 +890,15 @@ function initPlanner() {
         }
     })
     renderPlanner()
+    root.querySelector('.planner')?.classList.add('planner--ready')
+
+    /* Cập nhật mốc "đang diễn ra / tiếp theo" mỗi phút */
+    setInterval(() => {
+        const box = document.getElementById('planner-today')
+        if (!box || !box.firstElementChild || box.firstElementChild.classList.contains('today--upcoming')) return
+        box.innerHTML = renderToday(planner.plan, planTotals(planner.plan))
+        fillForecasts(box)
+    }, 60000)
 }
 
 initPlanner()

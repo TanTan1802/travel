@@ -1,6 +1,7 @@
 /*
  * Chuyển ảnh đã tải (assets/img/wiki) sang WebP ở 3 kích thước 480 / 960 / 1920px
  * để trình duyệt chọn ảnh vừa đủ theo màn hình (srcset). Xóa file JPG/PNG gốc sau khi chuyển.
+ * Kích thước tính theo CẠNH DÀI (ảnh dọc 1920 không cao tới 3000px+); srcset dùng chiều rộng thật (core.js).
  * Chạy:  npm run images   (tự gọi sau bước tải ảnh)
  */
 const fs = require('fs')
@@ -32,7 +33,7 @@ async function encodeWebp(input, width, key) {
     let quality = QUALITY
     let buf
     do {
-        buf = await sharp(input).rotate().resize({ width, withoutEnlargement: true }).webp({ quality, effort: 5 }).toBuffer()
+        buf = await sharp(input).rotate().resize({ width, height: width, fit: 'inside', withoutEnlargement: true }).webp({ quality, effort: 5 }).toBuffer()
         quality -= 7
     } while (MAX_BYTES[key] && buf.length > MAX_BYTES[key] && quality >= MIN_QUALITY)
     return buf
@@ -63,14 +64,17 @@ async function optimizeEntry(entry) {
     const target = Object.fromEntries(Object.entries(SIZES).map(([k, w]) => [k, `${base}-${w}.webp`]))
     const done = Object.values(target).every(rel => fs.existsSync(abs(rel)))
     if (done) {
-        /* Đã tối ưu từ trước: chỉ nén lại ảnh vượt ngưỡng dung lượng, còn lại giữ nguyên */
-        const shrunk = await shrinkOversized(target)
+        /* Đã tối ưu từ trước: không tạo lại (tránh giảm chất lượng), chỉ nén lại ảnh vượt ngưỡng dung lượng –
+           trừ ảnh dọc tạo theo quy tắc cũ (chỉ giới hạn chiều rộng) còn vượt khung thì tạo lại bên dưới */
         const { width, height } = await sharp(abs(target.lg)).metadata()
-        return { entry: { ...target, w: width, h: height }, converted: shrunk }
+        if (Math.max(width, height) <= SIZES.lg) {
+            const shrunk = await shrinkOversized(target)
+            return { entry: { ...target, w: width, h: height }, converted: shrunk }
+        }
     }
 
     /* Nguồn: ảnh lớn nhất đang có (JPG gốc hoặc WebP 1920) */
-    const source = [entry.lg, entry.sm].find(rel => rel && fs.existsSync(abs(rel)))
+    const source = [entry.lg, target.lg, entry.sm].find(rel => rel && fs.existsSync(abs(rel)))
     if (!source) throw new Error('không tìm thấy file nguồn')
     const input = fs.readFileSync(abs(source))
     const meta = await sharp(input).metadata()

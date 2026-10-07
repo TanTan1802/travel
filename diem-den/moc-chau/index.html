@@ -8,24 +8,20 @@
         <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <!-- Font & icon tải không chặn hiển thị -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-        </noscript>
-        <link rel="stylesheet" href="../../assets/css/styles.css">
-        <link rel="stylesheet" href="../../assets/css/vietnam.css">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../../assets/css/site-2303c79c15.css">
 
         <title>Cao nguyên Mộc Châu – Việt Travel</title>
     
         <link rel="canonical" href="https://tantan1802.github.io/travel/diem-den/moc-chau/">
         <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/diem-den/moc-chau/">
         <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/diem-den/moc-chau/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/diem-den/moc-chau/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/diem-den/moc-chau/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/diem-den/moc-chau/">
         <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/diem-den/moc-chau/">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
@@ -40,6 +36,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TouristDestination","name":"Cao nguyên Mộc Châu","description":"Cao nguyên ở độ cao hơn 1.000m quanh năm mát mẻ, nổi tiếng với những đồi chè trái tim, thung lũng mận, mùa hoa cải trắng tháng 11 – 12 và hoa mận, hoa đào đầu xuân. Mộc Châu cách Hà Nội chỉ khoảng 200 km – điểm đi cuối tuần lý tưởng.","url":"https://tantan1802.github.io/travel/diem-den/moc-chau/","inLanguage":"vi","image":["https://tantan1802.github.io/travel/assets/img/wiki/nha-san-moc-chau-12cabe-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/thi-tran-moc-chau-son-la-064c30-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/quoc-lo-6-qua-dia-phan-thi-tran-moc-chau-e65659-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/quang-truong-huyen-moc-chau-8ca11c-1920.webp"],"address":{"@type":"PostalAddress","addressRegion":"Sơn La","addressCountry":"VN"},"touristType":["Núi rừng"],"geo":{"@type":"GeoCoordinates","latitude":20.849,"longitude":104.683}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://tantan1802.github.io/travel/"},{"@type":"ListItem","position":2,"name":"Cao nguyên Mộc Châu","item":"https://tantan1802.github.io/travel/diem-den/moc-chau/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Thời điểm nào đẹp nhất để đi Cao nguyên Mộc Châu?","acceptedAnswer":{"@type":"Answer","text":"Tháng 10 – 3."}},{"@type":"Question","name":"Nên đi Cao nguyên Mộc Châu mấy ngày?","acceptedAnswer":{"@type":"Answer","text":"Khoảng 2 – 3 ngày."}},{"@type":"Question","name":"Cao nguyên Mộc Châu có gì nổi bật?","acceptedAnswer":{"@type":"Answer","text":"Đồi chè trái tim, Thác Dải Yếm, Rừng thông bản Áng, Cầu kính Bạch Long."}},{"@type":"Question","name":"Đi Cao nguyên Mộc Châu bằng cách nào?","acceptedAnswer":{"@type":"Answer","text":"Xe khách/limousine Hà Nội – Mộc Châu ~4 giờ theo QL6 (200 km), nhiều chuyến từ bến xe Mỹ Đình."}}]}]}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../index.html" class="nav__logo">Việt Travel</a>
@@ -66,7 +64,16 @@
                         </li>
                     </ul>
 
-                    <a class="nav__lang" id="lang-switch" href="../../en/diem-den/moc-chau/index.html" hreflang="en" lang="en" title="English">EN</a>
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> VI</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../../diem-den/moc-chau/index.html" hreflang="vi" lang="vi" data-lang="vi" aria-current="true">Tiếng Việt</a></li>
+                            <li><a href="../../en/diem-den/moc-chau/index.html" hreflang="en" lang="en" data-lang="en">English</a></li>
+                            <li><a href="../../ko/diem-den/moc-chau/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../../zh/diem-den/moc-chau/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../../ja/diem-den/moc-chau/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -215,6 +222,37 @@
                     <p class="season__status" data-season-status="1,2,3,10,11,12" aria-live="polite"></p>
                     <div class="season__others" id="season-others"></div>
                 </div>
+                
+        <div class="climate__card events-card">
+            <h3 class="season__title"><i class="ri-flag-2-line"></i> Lễ hội & mùa đặc sắc</h3>
+            <ul class="events__list" id="dest-events">
+        <li class="event event--nature" data-event-months="1,2">
+            <span class="event__icon" title="Mùa cảnh sắc"><i class="ri-plant-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Mùa hoa mận, hoa đào</strong>
+                    <span class="event__when">Tháng 1 – 2</span>
+                </div>
+                <p class="event__desc">Thung lũng Nà Ka trắng hoa mận, xen hoa đào hồng dịp Tết.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Trời lạnh và có sương – mang áo ấm.</p>
+            </div>
+        </li>
+    
+        <li class="event event--nature" data-event-months="11,12">
+            <span class="event__icon" title="Mùa cảnh sắc"><i class="ri-plant-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Mùa hoa cải trắng</strong>
+                    <span class="event__when">Tháng 11 – 12</span>
+                </div>
+                <p class="event__desc">Đồi cải trắng trải dài ở Chiềng Đi, Nà Ka.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Một số vườn thu phí chụp ảnh 20.000–30.000đ.</p>
+            </div>
+        </li>
+    </ul>
+            <p class="budget__note">Lễ theo âm lịch đổi ngày dương mỗi năm – kiểm tra lịch chính thức trước khi đi.</p>
+        </div>
+    
             </div>
         </section>
     
@@ -256,56 +294,56 @@
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Bê chao Mộc Châu</span>
-                
-                
+                <img data-wiki="Lợn mán mẹt.jpg" data-width="960" alt="Bê chao Mộc Châu" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Món thịt đặc sản vùng cao">Ảnh minh họa</span>
                 <span class="food-card__price">200.000đ/đĩa</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Bê chao Mộc Châu</h3>
                 <p class="food-card__desc">Thịt bê non luộc rồi chao giòn, chấm chẩm chéo cay nồng.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Món thịt đặc sản vùng cao</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Cá suối nướng</span>
-                
-                
+                <img data-wiki="Cá lóc nướng trui.JPG" data-width="960" alt="Cá suối nướng" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Cá nướng">Ảnh minh họa</span>
                 <span class="food-card__price">150.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Cá suối nướng</h3>
                 <p class="food-card__desc">Cá suối nhỏ kẹp tre nướng than hoa, thơm mùi mắc khén.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Cá nướng</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Sữa và bánh sữa Mộc Châu</span>
-                
-                
+                <img data-wiki="Holstein dairy cows.jpg" data-width="960" alt="Sữa và bánh sữa Mộc Châu" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Bò sữa – giống bò nuôi ở Mộc Châu">Ảnh minh họa</span>
                 <span class="food-card__price">30.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Sữa và bánh sữa Mộc Châu</h3>
                 <p class="food-card__desc">Sữa tươi, sữa chua, bánh sữa từ các trang trại bò trên cao nguyên.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Bò sữa – giống bò nuôi ở Mộc Châu</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Xôi nếp nương</span>
-                
-                
+                <img data-wiki="Xôi xéo.jpg|Xôi ngũ sắc.JPG" data-width="960" alt="Xôi nếp nương" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Xôi nếp">Ảnh minh họa</span>
                 <span class="food-card__price">30.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Xôi nếp nương</h3>
                 <p class="food-card__desc">Xôi nếp nương dẻo thơm ăn cùng muối vừng, thịt trâu gác bếp.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Xôi nếp</span>
             </div>
         </article>
     
@@ -323,6 +361,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20b%C3%AA%20chao%20Th%E1%BA%A3o%20Nguy%C3%AAn%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20N%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Thị trấn Nông Trường Mộc Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Nh%C3%A0+h%C3%A0ng+b%C3%AA+chao+Th%E1%BA%A3o+Nguy%C3%AAn&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Nh%C3%A0+h%C3%A0ng+b%C3%AA+chao+Th%E1%BA%A3o+Nguy%C3%AAn%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Th%E1%BB%8B+tr%E1%BA%A5n+N%C3%B4ng+Tr%C6%B0%E1%BB%9Dng+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+150k%E2%80%93300k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Nhà hàng bê chao Thảo Nguyên" data-report-details="Thị trấn Nông Trường Mộc Châu · 150k–300k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -334,6 +375,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=S%E1%BB%AFa%20%26%20b%C3%A1nh%20s%E1%BB%AFa%20M%E1%BB%99c%20Ch%C3%A2u%20(c%E1%BB%ADa%20h%C3%A0ng%20n%C3%B4ng%20tr%C6%B0%E1%BB%9Dng)%2C%20QL6%2C%20th%E1%BB%8B%20tr%E1%BA%A5n%20N%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> QL6, thị trấn Nông Trường Mộc Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+S%E1%BB%AFa+%26+b%C3%A1nh+s%E1%BB%AFa+M%E1%BB%99c+Ch%C3%A2u+%28c%E1%BB%ADa+h%C3%A0ng+n%C3%B4ng+tr%C6%B0%E1%BB%9Dng%29&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+S%E1%BB%AFa+%26+b%C3%A1nh+s%E1%BB%AFa+M%E1%BB%99c+Ch%C3%A2u+%28c%E1%BB%ADa+h%C3%A0ng+n%C3%B4ng+tr%C6%B0%E1%BB%9Dng%29%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+QL6%2C+th%E1%BB%8B+tr%E1%BA%A5n+N%C3%B4ng+Tr%C6%B0%E1%BB%9Dng+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+20k%E2%80%9380k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Sữa &amp; bánh sữa Mộc Châu (cửa hàng nông trường)" data-report-details="QL6, thị trấn Nông Trường Mộc Châu · 20k–80k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -345,6 +389,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=L%E1%BA%A9u%20c%C3%A1%20h%E1%BB%93i%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ti%E1%BB%83u%20khu%2019%2F5%2C%20th%E1%BB%8B%20tr%E1%BA%A5n%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Tiểu khu 19/5, thị trấn Mộc Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+L%E1%BA%A9u+c%C3%A1+h%E1%BB%93i+M%E1%BB%99c+Ch%C3%A2u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%E1%BA%A9u+c%C3%A1+h%E1%BB%93i+M%E1%BB%99c+Ch%C3%A2u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ti%E1%BB%83u+khu+19%2F5%2C+th%E1%BB%8B+tr%E1%BA%A5n+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+200k%E2%80%93400k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Lẩu cá hồi Mộc Châu" data-report-details="Tiểu khu 19/5, thị trấn Mộc Châu · 200k–400k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -356,8 +403,73 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ch%E1%BB%A3%20trung%20t%C3%A2m%20th%E1%BB%8B%20tr%E1%BA%A5n%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Chợ trung tâm thị trấn Mộc Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Ch%E1%BB%A3+M%E1%BB%99c+Ch%C3%A2u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%E1%BB%A3+M%E1%BB%99c+Ch%C3%A2u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ch%E1%BB%A3+trung+t%C3%A2m+th%E1%BB%8B+tr%E1%BA%A5n+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+30k%E2%80%93100k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Chợ Mộc Châu" data-report-details="Chợ trung tâm thị trấn Mộc Châu · 30k–100k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     </ul>
+            
+                <details class="eats__more">
+                    <summary class="button button--ghost button--flex">Xem thêm 4 quán <i class="ri-arrow-down-s-line"></i></summary>
+                    <ul class="eats__list">
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Phở – bún chợ Mộc Châu</h4>
+                <span class="eat__price">30k–50k</span>
+            </div>
+            <p class="eat__dish">Phở bò, bún mọc buổi sáng</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%9F%20%E2%80%93%20b%C3%BAn%20ch%E1%BB%A3%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ch%E1%BB%A3%20th%E1%BB%8B%20tr%E1%BA%A5n%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Chợ thị trấn Mộc Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Ph%E1%BB%9F+%E2%80%93+b%C3%BAn+ch%E1%BB%A3+M%E1%BB%99c+Ch%C3%A2u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ph%E1%BB%9F+%E2%80%93+b%C3%BAn+ch%E1%BB%A3+M%E1%BB%99c+Ch%C3%A2u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ch%E1%BB%A3+th%E1%BB%8B+tr%E1%BA%A5n+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+30k%E2%80%9350k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Phở – bún chợ Mộc Châu" data-report-details="Chợ thị trấn Mộc Châu · 30k–50k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Quán cá suối nướng bản Áng</h4>
+                <span class="eat__price">100k–200k</span>
+            </div>
+            <p class="eat__dish">Cá suối nướng, rau rừng</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20c%C3%A1%20su%E1%BB%91i%20n%C6%B0%E1%BB%9Bng%20b%E1%BA%A3n%20%C3%81ng%2C%20B%E1%BA%A3n%20%C3%81ng%2C%20%C4%90%C3%B4ng%20Sang" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Bản Áng, Đông Sang
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Qu%C3%A1n+c%C3%A1+su%E1%BB%91i+n%C6%B0%E1%BB%9Bng+b%E1%BA%A3n+%C3%81ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+c%C3%A1+su%E1%BB%91i+n%C6%B0%E1%BB%9Bng+b%E1%BA%A3n+%C3%81ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+B%E1%BA%A3n+%C3%81ng%2C+%C4%90%C3%B4ng+Sang+%C2%B7+100k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Quán cá suối nướng bản Áng" data-report-details="Bản Áng, Đông Sang · 100k–200k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Quán lợn bản nướng Mộc Châu</h4>
+                <span class="eat__price">100k–200k</span>
+            </div>
+            <p class="eat__dish">Lợn bản nướng, xôi nếp nương</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20l%E1%BB%A3n%20b%E1%BA%A3n%20n%C6%B0%E1%BB%9Bng%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ti%E1%BB%83u%20khu%2070%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Tiểu khu 70, Mộc Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Qu%C3%A1n+l%E1%BB%A3n+b%E1%BA%A3n+n%C6%B0%E1%BB%9Bng+M%E1%BB%99c+Ch%C3%A2u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+l%E1%BB%A3n+b%E1%BA%A3n+n%C6%B0%E1%BB%9Bng+M%E1%BB%99c+Ch%C3%A2u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ti%E1%BB%83u+khu+70%2C+M%E1%BB%99c+Ch%C3%A2u+%C2%B7+100k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Quán lợn bản nướng Mộc Châu" data-report-details="Tiểu khu 70, Mộc Châu · 100k–200k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Bếp homestay bản Thái Nà Ka</h4>
+                <span class="eat__price">100k–200k</span>
+            </div>
+            <p class="eat__dish">Cơm nhà người Thái, cá nướng pa pỉnh tộp</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp%20homestay%20b%E1%BA%A3n%20Th%C3%A1i%20N%C3%A0%20Ka%2C%20B%E1%BA%A3n%20N%C3%A0%20Ka" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Bản Nà Ka
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+B%E1%BA%BFp+homestay+b%E1%BA%A3n+Th%C3%A1i+N%C3%A0+Ka&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%E1%BA%BFp+homestay+b%E1%BA%A3n+Th%C3%A1i+N%C3%A0+Ka%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+B%E1%BA%A3n+N%C3%A0+Ka+%C2%B7+100k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Bếp homestay bản Thái Nà Ka" data-report-details="Bản Nà Ka · 100k–200k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                </details>
+            
             <p class="budget__note">Giá tham khảo mỗi người. Bấm địa chỉ để mở Google Maps xem giờ mở cửa và đánh giá mới nhất.</p>
         </div>
     
@@ -402,6 +514,18 @@
                     <li class="tip-item">Cuối tuần và lễ Tết rất đông – nên đặt phòng trước.</li><li class="tip-item">Mang áo ấm, đêm trên cao nguyên có thể xuống dưới 10°C vào mùa đông.</li>
                 </ul>
             </div>
+
+            <div class="packing-block container" id="packing" data-dest="moc-chau">
+                <h3 class="tips__title"><i class="ri-luggage-cart-line"></i> <span data-packing-title>Đồ cần mang</span></h3>
+                <p class="packing-block__hint">Tự gợi ý theo điểm đến và tháng đi (chọn ngày khởi hành ở phần Lịch trình để đổi tháng). Đánh dấu để ghi nhớ món đã chuẩn bị.</p>
+                <div data-packing-slot></div>
+            </div>
+
+            <p class="report-page container">
+                <i class="ri-feedback-line"></i> Thấy giá vé, giờ mở cửa hay quán đã thay đổi?
+                <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Th%C3%B4ng+tin+chung&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%B4ng+tin+chung%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Thông tin chung" data-report-details=""><i class="ri-flag-line"></i> Báo sai</a>
+            </p>
         </section>
     
         <section class="stay section" id="stay">
@@ -456,6 +580,60 @@
                 <div class="getthere">
                     <h3 class="getthere__title"><i class="ri-map-2-line"></i> Cách đi tới Cao nguyên Mộc Châu</h3>
                     <p>Xe khách/limousine Hà Nội – Mộc Châu ~4 giờ theo QL6 (200 km), nhiều chuyến từ bến xe Mỹ Đình.</p>
+                    
+        <div class="hub-transport">
+            <h4 class="hub-transport__title">Đi từ các thành phố lớn</h4>
+            <table class="hub-transport__table">
+            <tr>
+                <th scope="row">Từ Hà Nội</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="">
+                                <i class="ri-bus-2-line"></i> Xe khách / ô tô ~3 giờ 30 phút <span>· 140.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">Từ Đà Nẵng</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Chưa gồm thời gian ra sân bay">
+                                <i class="ri-plane-line"></i> Máy bay ~1 giờ 20 phút <span>· 1.300.000đ</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="">
+                                <i class="ri-bus-2-line"></i> Xe khách / ô tô ~19 giờ <span>· 760.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">Từ TP. Hồ Chí Minh</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Chưa gồm thời gian ra sân bay">
+                                <i class="ri-plane-line"></i> Máy bay ~2 giờ <span>· 1.300.000đ</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="">
+                                <i class="ri-bus-2-line"></i> Xe khách / ô tô ~33 giờ <span>· 1.330.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        </table>
+            <p class="budget__note">Thời gian ước tính lúc di chuyển, giá một chiều / người mức tiết kiệm – tham khảo. Phương án in đậm là gợi ý.</p>
+        </div>
+    
                     <div class="book-links">
     <a href="https://www.google.com/travel/flights?q=Flights%20to%20HAN" target="_blank" rel="noopener" class="book-link"><i class="ri-plane-line"></i> Vé máy bay tới HAN</a>
 
@@ -476,422 +654,89 @@
                     <p>Việt Travel · Sơn La · Thời điểm đẹp: Tháng 10 – 3</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                    <ul class="trip-alerts events__list" id="tour-alerts" hidden></ul>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
-                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                                aria-selected="true" aria-controls="tour-plan" data-tour="3">
                             <strong>3 ngày 2 đêm</strong>
-                            <small>từ 1.800.000đ</small>
+                            <small>từ 1.730.000đ</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="4">
                             <strong>4 ngày 3 đêm</strong>
-                            <small>từ 2.400.000đ</small>
+                            <small>từ 2.350.000đ</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="5">
                             <strong>5 ngày 4 đêm</strong>
-                            <small>từ 3.000.000đ</small>
+                            <small>từ 2.970.000đ</small>
                         </button>
                     
                 </div>
 
-                
-                    <div class="tour" id="tour-3" data-tour="3">
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 3 ngày 2 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="tour" id="tour-plan" data-tour="3">
+                    <div class="tour__toolbar">
                         
-        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
-                    <span>Ngày 1</span>
-                    <small>Đồi chè và thác Dải Yếm</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
-                    <span>Ngày 2</span>
-                    <small>Rừng thông và cầu kính</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
-                    <span>Ngày 3</span>
-                    <small>Thung lũng Nà Ka</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
-                <h3 class="itinerary__day-title">Ngày 1: Đồi chè và thác Dải Yếm</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Từ Hà Nội theo QL6 (~4 giờ), dừng đèo Thung Khe ngắm thung lũng Mai Châu.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Dạo đồi chè trái tim, thưởng trà shan tuyết, thăm thác Dải Yếm.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn bê chao, cá suối nướng ở thị trấn Nông Trường.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
-                <h3 class="itinerary__day-title">Ngày 2: Rừng thông và cầu kính</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Săn bình minh rừng thông bản Áng, chèo thuyền hồ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đi cầu kính Bạch Long, ngắm vực sâu giữa núi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Uống sữa tươi, mua bánh sữa, mận khô làm quà.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
-                <h3 class="itinerary__day-title">Ngày 3: Thung lũng Nà Ka</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Thung lũng mận Nà Ka (hoa trắng tháng 1 – 2, quả chín tháng 5 – 6).</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đồi cải trắng Chiềng Đi (tháng 11 – 12), trang trại bò sữa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Giao lưu văn nghệ, ăn cơm lam tại homestay bản Thái.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>1.800.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>4.500.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
+                            <p class="tour__summary" data-tour-len="3"><i class="ri-route-line"></i> 3 ngày 2 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka</p>
+                        
+                            <p class="tour__summary" data-tour-len="4" hidden><i class="ri-route-line"></i> 4 ngày 3 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka → Bản Hua Tạt</p>
+                        
+                            <p class="tour__summary" data-tour-len="5" hidden><i class="ri-route-line"></i> 5 ngày 4 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka → Bản Hua Tạt → Mai Châu trên đường về</p>
+                        
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
+                                <i class="ri-printer-line"></i> <span>In / PDF</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
+                                <i class="ri-share-line"></i> <span>Chia sẻ</span>
+                            </button>
                         </div>
                     </div>
-                
-                    <div class="tour" id="tour-4" data-tour="4" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 4 ngày 3 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka → Bản Hua Tạt</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
 
-                        
+                    
         <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
             
                 <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                        id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-day="0">
                     <span>Ngày 1</span>
                     <small>Đồi chè và thác Dải Yếm</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                        id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-day="1">
                     <span>Ngày 2</span>
                     <small>Rừng thông và cầu kính</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                        id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-day="2">
                     <span>Ngày 3</span>
                     <small>Thung lũng Nà Ka</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
-                    <span>Ngày 4</span>
-                    <small>Bản Hua Tạt</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
-                <h3 class="itinerary__day-title">Ngày 1: Đồi chè và thác Dải Yếm</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Từ Hà Nội theo QL6 (~4 giờ), dừng đèo Thung Khe ngắm thung lũng Mai Châu.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Dạo đồi chè trái tim, thưởng trà shan tuyết, thăm thác Dải Yếm.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn bê chao, cá suối nướng ở thị trấn Nông Trường.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
-                <h3 class="itinerary__day-title">Ngày 2: Rừng thông và cầu kính</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Săn bình minh rừng thông bản Áng, chèo thuyền hồ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đi cầu kính Bạch Long, ngắm vực sâu giữa núi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Uống sữa tươi, mua bánh sữa, mận khô làm quà.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
-                <h3 class="itinerary__day-title">Ngày 3: Thung lũng Nà Ka</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Thung lũng mận Nà Ka (hoa trắng tháng 1 – 2, quả chín tháng 5 – 6).</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đồi cải trắng Chiềng Đi (tháng 11 – 12), trang trại bò sữa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Giao lưu văn nghệ, ăn cơm lam tại homestay bản Thái.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
-                <h3 class="itinerary__day-title">Ngày 4: Bản Hua Tạt</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Đi bộ vào bản Hua Tạt của người H'Mông giữa rừng núi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Thác Chiềng Khoa và hang Dơi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Nướng BBQ, lẩu gà đen tại homestay.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>2.400.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>6.000.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="tour" id="tour-5" data-tour="5" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 5 ngày 4 đêm · Đồi chè và thác Dải Yếm → Rừng thông và cầu kính → Thung lũng Nà Ka → Bản Hua Tạt → Mai Châu trên đường về</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
-                    <span>Ngày 1</span>
-                    <small>Đồi chè và thác Dải Yếm</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
-                    <span>Ngày 2</span>
-                    <small>Rừng thông và cầu kính</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
-                    <span>Ngày 3</span>
-                    <small>Thung lũng Nà Ka</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                        id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-day="3" hidden>
                     <span>Ngày 4</span>
                     <small>Bản Hua Tạt</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                        id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-day="4" hidden>
                     <span>Ngày 5</span>
                     <small>Mai Châu trên đường về</small>
                 </button>
@@ -899,187 +744,1254 @@
         </div>
 
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Đồi chè và thác Dải Yếm</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Từ Hà Nội theo QL6 (~4 giờ), dừng đèo Thung Khe ngắm thung lũng Mai Châu.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Dạo đồi chè trái tim, thưởng trà shan tuyết, thăm thác Dải Yếm.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn bê chao, cá suối nướng ở thị trấn Nông Trường.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="moc-chau"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+Thung+Khe%2C+QL6%2C+Mai+Ch%C3%A2u&destination=Th%C3%A1c+D%E1%BA%A3i+Y%E1%BA%BFm%2C+M%C6%B0%E1%BB%9Dng+Sang%2C+M%E1%BB%99c+Ch%C3%A2u&waypoints=%C4%90%E1%BB%93i+ch%C3%A8+tr%C3%A1i+tim%2C+Ti%E1%BB%83u+khu+34%2C+M%E1%BB%99c+Ch%C3%A2u" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>40.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>205.000đ – 465.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ch%E1%BB%A3%20trung%20t%C3%A2m%20th%E1%BB%8B%20tr%E1%BA%A5n%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Chợ Mộc Châu</a>
+        <span class="day-tl__what">Xôi nếp nương, thịt trâu gác bếp, mận</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ trung tâm thị trấn Mộc Châu · 30k–100k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Từ Hà Nội theo QL6 (~4 giờ), dừng đèo Thung Khe ngắm thung lũng Mai Châu.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A8o%20Thung%20Khe%2C%20QL6%2C%20Mai%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Đèo Thung Khe</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> QL6, Mai Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+%C4%90%C3%A8o+Thung+Khe&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%C3%A8o+Thung+Khe%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+QL6%2C+Mai+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Đèo Thung Khe" data-report-details="Miễn phí · Mở cả ngày · QL6, Mai Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20b%C3%AA%20chao%20Th%E1%BA%A3o%20Nguy%C3%AAn%2C%20Th%E1%BB%8B%20tr%E1%BA%A5n%20N%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng bê chao Thảo Nguyên</a>
+        <span class="day-tl__what">Bê chao, bê hấp, cá suối nướng</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Thị trấn Nông Trường Mộc Châu · 150k–300k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20ng%C3%B4%20n%C6%B0%E1%BB%9Bng%20%E2%80%93%20tr%C3%A0%20n%C3%B3ng%20%C4%91%C3%A8o%20Thung%20Khe%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán ngô nướng – trà nóng đèo Thung Khe</a>
+        <span class="day-tl__what">Trà nóng, ngô nướng ngắm Mai Châu</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Đèo Thung Khe · 10k–30k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Dạo đồi chè trái tim, thưởng trà shan tuyết, thăm thác Dải Yếm.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%93i%20ch%C3%A8%20tr%C3%A1i%20tim%2C%20Ti%E1%BB%83u%20khu%2034%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Đồi chè trái tim</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Tiểu khu 34, Mộc Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+%C4%90%E1%BB%93i+ch%C3%A8+tr%C3%A1i+tim&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%E1%BB%93i+ch%C3%A8+tr%C3%A1i+tim%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20.000%C4%91+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+Ti%E1%BB%83u+khu+34%2C+M%E1%BB%99c+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Đồi chè trái tim" data-report-details="20.000đ · 06:00–18:00 · Tiểu khu 34, Mộc Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20D%E1%BA%A3i%20Y%E1%BA%BFm%2C%20M%C6%B0%E1%BB%9Dng%20Sang%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Thác Dải Yếm</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Mường Sang, Mộc Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Th%C3%A1c+D%E1%BA%A3i+Y%E1%BA%BFm&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%A1c+D%E1%BA%A3i+Y%E1%BA%BFm%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20.000%C4%91+%C2%B7+07%3A00%E2%80%9318%3A00+%C2%B7+M%C6%B0%E1%BB%9Dng+Sang%2C+M%E1%BB%99c+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Thác Dải Yếm" data-report-details="20.000đ · 07:00–18:00 · Mường Sang, Mộc Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20th%C3%A1c%20D%E1%BA%A3i%20Y%E1%BA%BFm%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân thác Dải Yếm</a>
+        <span class="day-tl__what">Sữa tươi Mộc Châu, trà shan</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Thác Dải Yếm · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối & buổi tối</h4>
+                        <ul class="day-tl__list"><li>Ăn bê chao</li><li>Cá suối nướng ở thị trấn Nông Trường</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Rừng thông và cầu kính</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Săn bình minh rừng thông bản Áng, chèo thuyền hồ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đi cầu kính Bạch Long, ngắm vực sâu giữa núi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Uống sữa tươi, mua bánh sữa, mận khô làm quà.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="moc-chau"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=R%E1%BB%ABng+th%C3%B4ng+b%E1%BA%A3n+%C3%81ng%2C+%C4%90%C3%B4ng+Sang%2C+M%E1%BB%99c+Ch%C3%A2u&destination=C%E1%BA%A7u+k%C3%ADnh+B%E1%BA%A1ch+Long%2C+M%E1%BB%99c+Ch%C3%A2u+Island%2C+M%C6%B0%E1%BB%9Dng+Sang" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>320.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>340.000đ – 690.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=X%C3%B4i%20n%E1%BA%BFp%20n%C6%B0%C6%A1ng%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Món đặc sản: Xôi nếp nương</a>
+        <span class="day-tl__what">Xôi nếp nương dẻo thơm ăn cùng muối vừng, thịt trâu gác bếp.</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Quán địa phương ở Cao nguyên Mộc Châu · 30.000đ</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Săn bình minh rừng thông bản Áng, chèo thuyền hồ.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=R%E1%BB%ABng%20th%C3%B4ng%20b%E1%BA%A3n%20%C3%81ng%2C%20%C4%90%C3%B4ng%20Sang%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Rừng thông bản Áng</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Đông Sang, Mộc Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+R%E1%BB%ABng+th%C3%B4ng+b%E1%BA%A3n+%C3%81ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+R%E1%BB%ABng+th%C3%B4ng+b%E1%BA%A3n+%C3%81ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20.000%C4%91+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+%C4%90%C3%B4ng+Sang%2C+M%E1%BB%99c+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Rừng thông bản Áng" data-report-details="20.000đ · 06:00–18:00 · Đông Sang, Mộc Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=L%E1%BA%A9u%20c%C3%A1%20h%E1%BB%93i%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ti%E1%BB%83u%20khu%2019%2F5%2C%20th%E1%BB%8B%20tr%E1%BA%A5n%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Lẩu cá hồi Mộc Châu</a>
+        <span class="day-tl__what">Lẩu cá hồi, cá tầm nuôi suối lạnh</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Tiểu khu 19/5, thị trấn Mộc Châu · 200k–400k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20h%E1%BB%93%20b%E1%BA%A3n%20%C3%81ng%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước hồ bản Áng</a>
+        <span class="day-tl__what">Trà nóng, sữa chua nếp cẩm</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Rừng thông bản Áng · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Đi cầu kính Bạch Long, ngắm vực sâu giữa núi.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BA%A7u%20k%C3%ADnh%20B%E1%BA%A1ch%20Long%2C%20M%E1%BB%99c%20Ch%C3%A2u%20Island%2C%20M%C6%B0%E1%BB%9Dng%20Sang" target="_blank" rel="noopener" class="sight__name">Cầu kính Bạch Long</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 300.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:30–17:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Mộc Châu Island, Mường Sang</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+C%E1%BA%A7u+k%C3%ADnh+B%E1%BA%A1ch+Long&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BA%A7u+k%C3%ADnh+B%E1%BA%A1ch+Long%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+300.000%C4%91+%C2%B7+07%3A30%E2%80%9317%3A30+%C2%B7+M%E1%BB%99c+Ch%C3%A2u+Island%2C+M%C6%B0%E1%BB%9Dng+Sang%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Cầu kính Bạch Long" data-report-details="300.000đ · 07:30–17:30 · Mộc Châu Island, Mường Sang"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20c%E1%BA%A7u%20k%C3%ADnh%20B%E1%BA%A1ch%20Long%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng cầu kính Bạch Long</a>
+        <span class="day-tl__what">Cà phê, sữa tươi</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Cầu kính Bạch Long · 25k–55k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20l%E1%BB%A3n%20b%E1%BA%A3n%20n%C6%B0%E1%BB%9Bng%20M%E1%BB%99c%20Ch%C3%A2u%2C%20Ti%E1%BB%83u%20khu%2070%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Quán lợn bản nướng Mộc Châu</a>
+        <span class="day-tl__what">Lợn bản nướng, xôi nếp nương</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Tiểu khu 70, Mộc Châu · 100k–200k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <ul class="day-tl__list"><li>Uống sữa tươi</li><li>Mua bánh sữa</li><li>Mận khô làm quà</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Thung lũng Nà Ka</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Thung lũng mận Nà Ka (hoa trắng tháng 1 – 2, quả chín tháng 5 – 6).</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Đồi cải trắng Chiềng Đi (tháng 11 – 12), trang trại bò sữa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Giao lưu văn nghệ, ăn cơm lam tại homestay bản Thái.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="moc-chau"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Thung+l%C5%A9ng+m%E1%BA%ADn+N%C3%A0+Ka%2C+N%C3%A0+Ka%2C+M%E1%BB%99c+Ch%C3%A2u&destination=%C4%90%E1%BB%93i+c%E1%BA%A3i+tr%E1%BA%AFng+%E2%80%93+trang+tr%E1%BA%A1i+b%C3%B2+s%E1%BB%AFa%2C+Chi%E1%BB%81ng+%C4%90i+%2F+Ti%E1%BB%83u+khu+70%2C+M%E1%BB%99c+Ch%C3%A2u" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>20.000đ – 70.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>130.000đ – 270.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Mang theo bánh mì, xôi nếu khởi hành sớm</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Thung lũng mận Nà Ka (hoa trắng tháng 1 – 2, quả chín tháng 5 – 6).</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Thung%20l%C5%A9ng%20m%E1%BA%ADn%20N%C3%A0%20Ka%2C%20N%C3%A0%20Ka%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Thung lũng mận Nà Ka</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> Miễn phí – 20.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Nà Ka, Mộc Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Hoa tháng 1 – 2, quả tháng 5 – 6</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Thung+l%C5%A9ng+m%E1%BA%ADn+N%C3%A0+Ka&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Thung+l%C5%A9ng+m%E1%BA%ADn+N%C3%A0+Ka%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%E2%80%93+20.000%C4%91+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+N%C3%A0+Ka%2C+M%E1%BB%99c+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Thung lũng mận Nà Ka" data-report-details="Miễn phí – 20.000đ · 06:00–18:00 · Nà Ka, Mộc Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp%20homestay%20b%E1%BA%A3n%20Th%C3%A1i%20N%C3%A0%20Ka%2C%20B%E1%BA%A3n%20N%C3%A0%20Ka" target="_blank" rel="noopener" class="day-tl__place">Bếp homestay bản Thái Nà Ka</a>
+        <span class="day-tl__what">Cơm nhà người Thái, cá nướng pa pỉnh tộp</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Bản Nà Ka · 100k–200k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20v%C6%B0%E1%BB%9Dn%20m%E1%BA%ADn%20N%C3%A0%20Ka%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước vườn mận Nà Ka</a>
+        <span class="day-tl__what">Nước mận, trà nóng</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Thung lũng mận Nà Ka · 15k–30k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Đồi cải trắng Chiềng Đi (tháng 11 – 12), trang trại bò sữa.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%93i%20c%E1%BA%A3i%20tr%E1%BA%AFng%20%E2%80%93%20trang%20tr%E1%BA%A1i%20b%C3%B2%20s%E1%BB%AFa%2C%20Chi%E1%BB%81ng%20%C4%90i%20%2F%20Ti%E1%BB%83u%20khu%2070%2C%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Đồi cải trắng – trang trại bò sữa</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20.000đ – 50.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Chiềng Đi / Tiểu khu 70, Mộc Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Đồi cải tháng 11 – 12</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+%C4%90%E1%BB%93i+c%E1%BA%A3i+tr%E1%BA%AFng+%E2%80%93+trang+tr%E1%BA%A1i+b%C3%B2+s%E1%BB%AFa&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%E1%BB%93i+c%E1%BA%A3i+tr%E1%BA%AFng+%E2%80%93+trang+tr%E1%BA%A1i+b%C3%B2+s%E1%BB%AFa%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20.000%C4%91+%E2%80%93+50.000%C4%91+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+Chi%E1%BB%81ng+%C4%90i+%2F+Ti%E1%BB%83u+khu+70%2C+M%E1%BB%99c+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Đồi cải trắng – trang trại bò sữa" data-report-details="20.000đ – 50.000đ · 07:00–17:30 · Chiềng Đi / Tiểu khu 70, Mộc Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20s%E1%BB%AFa%20t%C6%B0%C6%A1i%20trang%20tr%E1%BA%A1i%20b%C3%B2%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán sữa tươi trang trại bò</a>
+        <span class="day-tl__what">Sữa tươi, sữa chua, bánh sữa</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Đồi cải trắng – trang trại bò sữa · 15k–40k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối & buổi tối</h4>
+                        <ul class="day-tl__list"><li>Giao lưu văn nghệ</li><li>Ăn cơm lam tại homestay bản Thái</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more" hidden>
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Bản Hua Tạt</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Đi bộ vào bản Hua Tạt của người H'Mông giữa rừng núi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Thác Chiềng Khoa và hang Dơi.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Nướng BBQ, lẩu gà đen tại homestay.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="moc-chau"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=B%E1%BA%A3n+Hua+T%E1%BA%A1t%2C+V%C3%A2n+H%E1%BB%93%2C+S%C6%A1n+La&destination=Th%C3%A1c+Chi%E1%BB%81ng+Khoa+%E2%80%93+hang+D%C6%A1i%2C+Chi%E1%BB%81ng+Khoa%2C+V%C3%A2n+H%E1%BB%93" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>10.000đ – 30.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>20.000đ – 55.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Ăn sáng tại nơi ở (thường đã gồm trong giá phòng)</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Đi bộ vào bản Hua Tạt của người H'Mông giữa rừng núi.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%A3n%20Hua%20T%E1%BA%A1t%2C%20V%C3%A2n%20H%E1%BB%93%2C%20S%C6%A1n%20La" target="_blank" rel="noopener" class="sight__name">Bản Hua Tạt</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> Vân Hồ, Sơn La</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+B%E1%BA%A3n+Hua+T%E1%BA%A1t&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%E1%BA%A3n+Hua+T%E1%BA%A1t%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+V%C3%A2n+H%E1%BB%93%2C+S%C6%A1n+La%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Bản Hua Tạt" data-report-details="Miễn phí · Mở cả ngày · Vân Hồ, Sơn La"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%AA%20chao%20M%E1%BB%99c%20Ch%C3%A2u%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Món đặc sản: Bê chao Mộc Châu</a>
+        <span class="day-tl__what">Thịt bê non luộc rồi chao giòn, chấm chẩm chéo cay nồng.</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Quán địa phương ở Cao nguyên Mộc Châu · 200.000đ/đĩa</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20b%E1%BA%A3n%20Hua%20T%E1%BA%A1t%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước bản Hua Tạt</a>
+        <span class="day-tl__what">Trà nóng, rượu ngô</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Bản Hua Tạt · 10k–30k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Thác Chiềng Khoa và hang Dơi.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Th%C3%A1c%20Chi%E1%BB%81ng%20Khoa%20%E2%80%93%20hang%20D%C6%A1i%2C%20Chi%E1%BB%81ng%20Khoa%2C%20V%C3%A2n%20H%E1%BB%93" target="_blank" rel="noopener" class="sight__name">Thác Chiềng Khoa – hang Dơi</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 10.000đ – 30.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Chiềng Khoa, Vân Hồ</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+Th%C3%A1c+Chi%E1%BB%81ng+Khoa+%E2%80%93+hang+D%C6%A1i&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%A1c+Chi%E1%BB%81ng+Khoa+%E2%80%93+hang+D%C6%A1i%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+10.000%C4%91+%E2%80%93+30.000%C4%91+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+Chi%E1%BB%81ng+Khoa%2C+V%C3%A2n+H%E1%BB%93%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Thác Chiềng Khoa – hang Dơi" data-report-details="10.000đ – 30.000đ · 07:00–17:30 · Chiềng Khoa, Vân Hồ"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20th%C3%A1c%20Chi%E1%BB%81ng%20Khoa%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân thác Chiềng Khoa</a>
+        <span class="day-tl__what">Nước mía, trà đá</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Thác Chiềng Khoa – hang Dơi · 10k–25k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối & buổi tối</h4>
+                        <ul class="day-tl__list"><li>Nướng BBQ</li><li>Lẩu gà đen tại homestay</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last" hidden>
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Mai Châu trên đường về</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Rẽ qua Mai Châu (Hòa Bình), đạp xe bản Lác, bản Pom Coọng.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Ăn cơm lam, gà nướng Mai Châu rồi về Hà Nội.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Về tới Hà Nội khoảng 20h.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="moc-chau"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%A3n%20L%C3%A1c%20%E2%80%93%20b%E1%BA%A3n%20Pom%20Co%E1%BB%8Dng%2C%20Chi%E1%BB%81ng%20Ch%C3%A2u%2C%20Mai%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>Miễn phí</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>40.000đ – 125.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Ăn sáng quán bình dân đông người địa phương gần nơi ở</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Rẽ qua Mai Châu (Hòa Bình), đạp xe bản Lác, bản Pom Coọng.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=B%E1%BA%A3n%20L%C3%A1c%20%E2%80%93%20b%E1%BA%A3n%20Pom%20Co%E1%BB%8Dng%2C%20Chi%E1%BB%81ng%20Ch%C3%A2u%2C%20Mai%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Bản Lác – bản Pom Coọng</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> Chiềng Châu, Mai Châu</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Thuê xe đạp ~50.000đ</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u+%E2%80%93+B%E1%BA%A3n+L%C3%A1c+%E2%80%93+b%E1%BA%A3n+Pom+Co%E1%BB%8Dng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%E1%BA%A3n+L%C3%A1c+%E2%80%93+b%E1%BA%A3n+Pom+Co%E1%BB%8Dng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+Chi%E1%BB%81ng+Ch%C3%A2u%2C+Mai+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Cao nguyên Mộc Châu" data-report-item="Bản Lác – bản Pom Coọng" data-report-details="Miễn phí · Mở cả ngày · Chiềng Châu, Mai Châu"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        <p class="day-tl__text">Cơm trưa bình dân gần điểm tham quan</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20nh%C3%A0%20s%C3%A0n%20b%E1%BA%A3n%20L%C3%A1c%20Moc%20Chau" target="_blank" rel="noopener" class="day-tl__place">Cà phê nhà sàn bản Lác</a>
+        <span class="day-tl__what">Cà phê, trà nhìn đồng lúa</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Bản Lác – bản Pom Coọng · 20k–45k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <ul class="day-tl__list"><li>Ăn cơm lam</li><li>Gà nướng Mai Châu rồi về Hà Nội</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=S%E1%BB%AFa%20%26%20b%C3%A1nh%20s%E1%BB%AFa%20M%E1%BB%99c%20Ch%C3%A2u%20(c%E1%BB%ADa%20h%C3%A0ng%20n%C3%B4ng%20tr%C6%B0%E1%BB%9Dng)%2C%20QL6%2C%20th%E1%BB%8B%20tr%E1%BA%A5n%20N%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20M%E1%BB%99c%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Sữa & bánh sữa Mộc Châu (cửa hàng nông trường)</a>
+        <span class="day-tl__what">Sữa tươi, sữa chua, bánh sữa</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> QL6, thị trấn Nông Trường Mộc Châu · 20k–80k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        <p class="day-tl__text">Ăn tối gần nơi ở – chọn quán đông khách địa phương</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <p class="day-tl__text">Về tới Hà Nội khoảng 20h.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>3.000.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>7.500.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+        <div class="budget" data-tour-len="3">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
                 
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>1.730.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>3.140.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Bản Áng – Đông Sang (250k–700k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>260.000đ</strong>
+                        <small>2 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Nhà hàng bê chao Thảo Nguyên, Sữa & bánh sữa Mộc Châu (cửa hàng nông trường)</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>660.000đ</strong>
+                        <small>3 ngày × 220.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180.000đ</strong>
+                        <small>3 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>630.000đ</strong>
+                        <small>3 ngày × 210.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>620.000đ</strong>
+                        <small>2 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.200.000đ</strong>
+                        <small>3 ngày × 400.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450.000đ</strong>
+                        <small>3 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>870.000đ</strong>
+                        <small>3 ngày × 290.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="4" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>2.350.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>4.290.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Bản Áng – Đông Sang (250k–700k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>390.000đ</strong>
+                        <small>3 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Nhà hàng bê chao Thảo Nguyên, Sữa & bánh sữa Mộc Châu (cửa hàng nông trường)</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>880.000đ</strong>
+                        <small>4 ngày × 220.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240.000đ</strong>
+                        <small>4 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>840.000đ</strong>
+                        <small>4 ngày × 210.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>930.000đ</strong>
+                        <small>3 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.600.000đ</strong>
+                        <small>4 ngày × 400.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600.000đ</strong>
+                        <small>4 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.160.000đ</strong>
+                        <small>4 ngày × 290.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="5" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>2.970.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>5.440.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Bản Áng – Đông Sang (250k–700k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>520.000đ</strong>
+                        <small>4 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Nhà hàng bê chao Thảo Nguyên, Sữa & bánh sữa Mộc Châu (cửa hàng nông trường)</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.100.000đ</strong>
+                        <small>5 ngày × 220.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>300.000đ</strong>
+                        <small>5 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.050.000đ</strong>
+                        <small>5 ngày × 210.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.240.000đ</strong>
+                        <small>4 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2.000.000đ</strong>
+                        <small>5 ngày × 400.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>750.000đ</strong>
+                        <small>5 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.450.000đ</strong>
+                        <small>5 ngày × 290.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+                </div>
 
                 <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Cao nguyên Mộc Châu. Giá tham khảo, thay đổi theo mùa.</p>
+
+                <p class="budget__note"><i class="ri-ticket-2-line"></i> <a href="../../diem-den/moc-chau/gia-ve/index.html">Bảng giá vé & giờ mở cửa các điểm tham quan ở Cao nguyên Mộc Châu</a></p>
 
                 <div class="plan-cta">
                     <p><i class="ri-route-line"></i> Muốn đi nhiều nơi trong một chuyến? Ghép Cao nguyên Mộc Châu với các điểm đến khác.</p>
@@ -1104,7 +2016,7 @@
                             <li>
                                 <a href="../../diem-den/mai-chau/index.html" class="nearby-item">
                                     <span class="nearby-item__media">
-                                        <img data-wiki="Mai Chau 2008.jpg|A Thai stilt house (4115406064).jpg|Stilt-House-construction-Mai-Chau-Vietnam.jpg" data-width="500" alt="Thung lũng Mai Châu" loading="lazy">
+                                        <img data-wiki="Mai Chau 2008.jpg|A Thai stilt house (4115406064).jpg|Stilt-House-construction-Mai-Chau-Vietnam.jpg|Mai Chau rice field.jpg" data-width="500" alt="Thung lũng Mai Châu" loading="lazy">
                                     </span>
                                     <span class="nearby-item__body">
                                         <strong>Thung lũng Mai Châu</strong>
@@ -1145,6 +2057,19 @@
                         <i class="ri-direction-line"></i> Chỉ đường Google Maps
                     </a>
                 </div>
+            </div>
+        </section>
+    
+        <section class="comments section" id="comments">
+            <span class="section__subtitle">Cộng đồng</span>
+            <h2 class="section__title">Chia sẻ trải nghiệm của bạn</h2>
+            <div class="comments__container container">
+                <h3 class="community__title"><i class="ri-camera-3-line"></i> Ảnh từ người đọc</h3>
+                <p class="comments__intro">Chưa có ảnh nào – hãy là người đầu tiên chia sẻ khoảnh khắc ở Cao nguyên Mộc Châu!</p>
+                <a href="https://github.com/TanTan1802/travel/issues/new?template=gui-anh.yml&title=%5B%E1%BA%A2nh%5D+Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u&dest=Cao+nguy%C3%AAn+M%E1%BB%99c+Ch%C3%A2u" target="_blank" rel="noopener" class="button button--flex community__submit">
+                    <i class="ri-image-add-line"></i> Gửi ảnh của bạn
+                </a>
+                
             </div>
         </section>
     
@@ -1325,24 +2250,11 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'vi'; window.DEST_ID = 'moc-chau'</script>
-        <script defer src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="../../assets/js/data/local-images.js"></script>
-        <script defer src="../../assets/js/i18n.js"></script>
-        <script defer src="../../assets/js/data/destinations.js"></script>
-        <script defer src="../../assets/js/data/itineraries.js"></script>
-        <script defer src="../../assets/js/data/places.js"></script>
-        <script defer src="../../assets/js/favorites.js"></script>
-        <script defer src="../../assets/js/components.js"></script>
-        <script defer src="../../assets/js/config.js"></script>
-        <script defer src="../../assets/js/map.js"></script>
-        <script defer src="../../assets/js/weather.js"></script>
-        <script defer src="../../assets/js/destination-render.js"></script>
-        <script defer src="../../assets/js/destination.js"></script>
-
-        <!--=============== MAIN JS ===============-->
-        <script defer src="../../assets/js/main.js"></script>
+        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'vi'; window.DEST_ID = 'moc-chau'</script>
+        <script defer src="../../assets/js/dist/da835ad707.js"></script>
+        <script defer src="../../assets/js/data/dest/moc-chau.js"></script>
+        <script defer src="../../assets/js/dist/1bc8e5a571.js"></script>
     </body>
 </html>

@@ -113,8 +113,22 @@ function climateSection(d) {
                     <p class="season__status" data-season-status="${d.bestMonths.join(',')}" aria-live="polite"></p>
                     <div class="season__others" id="season-others"></div>
                 </div>
+                ${eventsCardHtml(d)}
             </div>
         </section>
+    `
+}
+
+/* Lễ hội & mùa đặc sắc của điểm đến – bấm tháng trên thanh 12 tháng để làm nổi sự kiện của tháng đó */
+function eventsCardHtml(d) {
+    const events = destinationEvents(d.id)
+    if (!events.length) return ''
+    return `
+        <div class="climate__card events-card">
+            <h3 class="season__title"><i class="ri-flag-2-line"></i> ${t('Lễ hội & mùa đặc sắc')}</h3>
+            <ul class="events__list" id="dest-events">${events.map(e => eventCardHtml(e)).join('')}</ul>
+            <p class="budget__note">${t('Lễ theo âm lịch đổi ngày dương mỗi năm – kiểm tra lịch chính thức trước khi đi.')}</p>
+        </div>
     `
 }
 
@@ -163,9 +177,14 @@ function eatCard(e, d) {
             <a href="${mapsSearchUrl(`${e.name}, ${e.address}`)}" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> ${e.address}
             </a>
+            ${e.updated ? `<small class="eat__updated"><i class="ri-refresh-line"></i> ${updatedText(e.updated)}</small>` : ''}
+            ${reportLinkHtml({ dest: d.name, item: e.name, details: `${e.address} · ${priceRange(e.price)}` })}
         </li>
     `
 }
+
+/* Hiện trước 4 quán, phần còn lại mở khi cần để trang không quá dài */
+const EATS_VISIBLE = 4
 
 function eatsBlock(d) {
     const places = placesOf(d.id)
@@ -173,7 +192,13 @@ function eatsBlock(d) {
     return `
         <div class="eats container">
             <h3 class="eats__title"><i class="ri-restaurant-2-line"></i> ${t('Quán nên ghé ở {name}', { name: d.name })}</h3>
-            <ul class="eats__list">${places.eats.map(e => eatCard(e, d)).join('')}</ul>
+            <ul class="eats__list">${places.eats.slice(0, EATS_VISIBLE).map(e => eatCard(e, d)).join('')}</ul>
+            ${places.eats.length > EATS_VISIBLE ? `
+                <details class="eats__more">
+                    <summary class="button button--ghost button--flex">${t('Xem thêm {n} quán', { n: places.eats.length - EATS_VISIBLE })} <i class="ri-arrow-down-s-line"></i></summary>
+                    <ul class="eats__list">${places.eats.slice(EATS_VISIBLE).map(e => eatCard(e, d)).join('')}</ul>
+                </details>
+            ` : ''}
             <p class="budget__note">${t('Giá tham khảo mỗi người. Bấm địa chỉ để mở Google Maps xem giờ mở cửa và đánh giá mới nhất.')}</p>
         </div>
     `
@@ -211,6 +236,7 @@ function staySection(d) {
                 <div class="getthere">
                     <h3 class="getthere__title"><i class="ri-map-2-line"></i> ${t('Cách đi tới {name}', { name: d.name })}</h3>
                     <p>${pickLang(places.getThere)}</p>
+                    ${hubTransportTable(d)}
                     <div class="book-links">${linkButtons(travel)}</div>
                 </div>
                 <p class="budget__note">${t('Giá phòng tham khảo cho 2 người/đêm, cao hơn vào lễ Tết và cuối tuần. Việt Travel không nhận hoa hồng từ các trang đặt chỗ.')}</p>
@@ -261,19 +287,54 @@ function activitiesSection(d) {
                     ${d.tips.map(t => `<li class="tip-item">${t}</li>`).join('')}
                 </ul>
             </div>` : ''}
+
+            <div class="packing-block container" id="packing" data-dest="${d.id}">
+                <h3 class="tips__title"><i class="ri-luggage-cart-line"></i> <span data-packing-title>${t('Đồ cần mang')}</span></h3>
+                <p class="packing-block__hint">${t('Tự gợi ý theo điểm đến và tháng đi (chọn ngày khởi hành ở phần Lịch trình để đổi tháng). Đánh dấu để ghi nhớ món đã chuẩn bị.')}</p>
+                <div data-packing-slot></div>
+            </div>
+
+            <p class="report-page container">
+                <i class="ri-feedback-line"></i> ${t('Thấy giá vé, giờ mở cửa hay quán đã thay đổi?')}
+                ${reportLinkHtml({ dest: d.name, item: t('Thông tin chung') })}
+            </p>
         </section>
     `
 }
 
 const tourLabel = n => t('{n} ngày {m} đêm', { n, m: n - 1 })
 
-function tourDaysHtml(d, plan, n) {
-    const days = plan.days.slice(0, n)
+/*
+ * Công cụ của một ngày: lộ trình trên Google Maps (luôn có) + ngày, dự báo thời tiết và link
+ * Google Calendar (hiện khi người dùng chọn ngày khởi hành – điền bởi destination.js).
+ */
+function dayToolsHtml(d, dayIndex) {
+    const route = dayRouteUrl(d.id, dayIndex)
+    return `
+        <div class="day-tools" data-day-offset="${dayIndex}">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="${d.id}"></span>
+            <span class="day-tools__links">
+                ${route ? `<a href="${route}" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> ${t('Lộ trình trên Google Maps')}</a>` : ''}
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> ${t('Thêm ngày này vào Google Calendar')}</a>
+            </span>
+        </div>
+    `
+}
+
+/*
+ * Các ngày của mọi tour dùng chung một bộ (tour 3/4 ngày = 3/4 ngày đầu của tour dài nhất) nên chỉ
+ * render một lần: ngày ngoài tour đang chọn được ẩn (itinerary__panel--off). Mục cuối ngày có hai
+ * dạng – "Về nghỉ" hoặc "Kết thúc tour" (data-end) – khi ngày đó là ngày cuối của một tour ngắn hơn.
+ * n: tour hiển thị mặc định; lengths: các tour có thể chọn. destination.js chuyển tour bằng setTourLength().
+ */
+function tourDaysHtml(d, plan, n, lengths = [n]) {
+    const days = plan.days.slice(0, Math.max(n, ...lengths))
     return `
         <div class="itinerary__tabs" role="tablist" aria-label="${t('Chọn ngày')}">
             ${days.map((day, i) => `
                 <button type="button" class="itinerary__tab${i === 0 ? ' itinerary__tab--active' : ''}" role="tab"
-                        id="tour${n}-tab-${i}" aria-controls="tour${n}-panel-${i}" aria-selected="${i === 0}" data-day="${i}">
+                        id="tour-tab-${i}" aria-controls="tour-panel-${i}" aria-selected="${i === 0}" data-day="${i}"${i < n ? '' : ' hidden'}>
                     <span>${t('Ngày {n}', { n: i + 1 })}</span>
                     <small>${day.title}</small>
                 </button>
@@ -281,22 +342,55 @@ function tourDaysHtml(d, plan, n) {
         </div>
 
         ${days.map((day, i) => `
-            <div class="itinerary__panel" role="tabpanel" id="tour${n}-panel-${i}" aria-labelledby="tour${n}-tab-${i}"${i === 0 ? '' : ' hidden'}>
+            <div class="itinerary__panel${i < n ? '' : ' itinerary__panel--off'}" role="tabpanel" id="tour-panel-${i}" aria-labelledby="tour-tab-${i}"${i === 0 ? '' : ' hidden'}>
                 <h3 class="itinerary__day-title">${t('Ngày {n}', { n: i + 1 })}: ${day.title}</h3>
-                <ol class="timeline">
-                    ${DAY_SLOTS.map(slot => `
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="${slot.icon}"></i></span>
-                            <div>
-                                <h4 class="timeline__label">${slot.label()}</h4>
-                                <p>${day[slot.key]}</p>
-                            </div>
-                        </li>
-                    `).join('')}
-                </ol>
-                ${i === n - 1 ? `<p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> ${t('Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.')}</p>` : ''}
+                ${dayToolsHtml(d, i)}
+                ${dayTimelineHtml(tourDayEntries(d, i, day, n, lengths))}
             </div>
         `).join('')}
+    `
+}
+
+/* Timeline một ngày trong khối tour dùng chung: kèm cả hai dạng mục cuối ngày nếu cần */
+function tourDayEntries(d, i, day, n, lengths) {
+    const endsTour = lengths.includes(i + 1)
+    const continues = lengths.some(len => len > i + 1)
+    const entries = dayTimeline(d.id, i, day, { last: !continues })
+    if (!endsTour || !continues) return entries
+    const end = dayTimeline(d.id, i, day, { last: true }).pop()
+    const rest = entries.pop()
+    const isLast = i === n - 1
+    return [...entries, { ...rest, end: 'more', hidden: isLast }, { ...end, end: 'last', hidden: !isLast }]
+}
+
+/* Chi phí tour: hai mức chọn được, mỗi mức có bảng chi tiết từng khoản */
+const BUDGET_TIERS = [
+    { tier: 'saving', label: () => t('Tiết kiệm'), desc: () => t('Homestay, ăn quán địa phương, xe máy') },
+    { tier: 'comfort', label: () => t('Thoải mái'), desc: () => t('Khách sạn 3–4 sao, nhà hàng, Grab') },
+]
+
+function budgetBlock(d, n, hidden = false) {
+    const costs = Object.fromEntries(BUDGET_TIERS.map(({ tier }) => [tier, tripCost(d.id, n, tier)]))
+    return `
+        <div class="budget" data-tour-len="${n}"${hidden ? ' hidden' : ''}>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')} – ${tourLabel(n)}</h3>
+            <div class="budget__options" role="group" aria-label="${t('Mức chi tiêu')}">
+                ${BUDGET_TIERS.map(({ tier, label, desc }, i) => `
+                    <button type="button" class="budget__option${i === 0 ? ' budget__option--active' : ''}" data-budget-tier="${tier}" aria-pressed="${i === 0}">
+                        <span>${label()}</span>
+                        <strong>${formatVnd(costs[tier].total)}</strong>
+                        <small>${desc()}</small>
+                        <em class="budget__more">${t('Xem chi tiết')} <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                `).join('')}
+            </div>
+            ${BUDGET_TIERS.map(({ tier, label }, i) => `
+                <div class="budget__detail" data-budget-detail="${tier}"${i === 0 ? '' : ' hidden'}>
+                    <p class="budget__detail-title">${t('Chi tiết mức {tier}', { tier: label().toLowerCase() })}</p>
+                    ${costBreakdownHtml(costs[tier])}
+                </div>
+            `).join('')}
+        </div>
     `
 }
 
@@ -305,6 +399,7 @@ function itinerarySection(d) {
     if (!plan) return ''
     const lengths = (typeof TOUR_LENGTHS !== 'undefined' ? TOUR_LENGTHS : [plan.days.length])
         .filter(n => n <= plan.days.length)
+    const first = lengths[0]
 
     return `
         <section class="itinerary section" id="itinerary">
@@ -317,54 +412,52 @@ function itinerarySection(d) {
                     <p>Việt Travel · ${d.province} · ${t('Thời điểm đẹp')}: ${d.bestTime}</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> ${t('Ngày khởi hành')}</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">${t('Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.')}</small>
+                    <ul class="trip-alerts events__list" id="tour-alerts" hidden></ul>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="${t('Chọn tour')}">
                     ${lengths.map((n, i) => `
                         <button type="button" class="tour-picker__btn${i === 0 ? ' tour-picker__btn--active' : ''}" role="tab"
-                                aria-selected="${i === 0}" aria-controls="tour-${n}" data-tour="${n}">
+                                aria-selected="${i === 0}" aria-controls="tour-plan" data-tour="${n}">
                             <strong>${tourLabel(n)}</strong>
-                            <small>${t('từ {price}', { price: formatVnd(plan.budget.saving[i]) })}</small>
+                            <small>${t('từ {price}', { price: formatVnd(tripCost(d.id, n, 'saving').total) })}</small>
                         </button>
                     `).join('')}
                 </div>
 
-                ${lengths.map((n, i) => `
-                    <div class="tour" id="tour-${n}" data-tour="${n}"${i === 0 ? '' : ' hidden'}>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> ${tourLabel(n)} · ${plan.days.slice(0, n).map(day => day.title).join(' → ')}</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>${t('Xem tất cả các ngày')}</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="${t('In lịch trình {tour}', { tour: tourLabel(n) })}">
-                                    <i class="ri-printer-line"></i> <span>${t('In / PDF')}</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="${t('Chia sẻ lịch trình')}">
-                                    <i class="ri-share-line"></i> <span>${t('Chia sẻ')}</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        ${tourDaysHtml(d, plan, n)}
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')} – ${tourLabel(n)}</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>${t('Tiết kiệm')}</span>
-                                    <strong>${formatVnd(plan.budget.saving[i])}</strong>
-                                    <small>${t('Homestay, ăn quán địa phương')}</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>${t('Thoải mái')}</span>
-                                    <strong>${formatVnd(plan.budget.comfort[i])}</strong>
-                                    <small>${t('Khách sạn 3–4 sao, tour trọn gói')}</small>
-                                </div>
-                            </div>
+                <div class="tour" id="tour-plan" data-tour="${first}">
+                    <div class="tour__toolbar">
+                        ${lengths.map(n => `
+                            <p class="tour__summary" data-tour-len="${n}"${n === first ? '' : ' hidden'}><i class="ri-route-line"></i> ${tourLabel(n)} · ${plan.days.slice(0, n).map(day => day.title).join(' → ')}</p>
+                        `).join('')}
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>${t('Xem tất cả các ngày')}</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="${t('In lịch trình {tour}', { tour: tourLabel(first) })}">
+                                <i class="ri-printer-line"></i> <span>${t('In / PDF')}</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="${t('Thêm lịch trình {tour} vào lịch (.ics)', { tour: tourLabel(first) })}">
+                                <i class="ri-calendar-2-line"></i> <span>${t('Thêm vào lịch')}</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="${t('Chia sẻ lịch trình')}">
+                                <i class="ri-share-line"></i> <span>${t('Chia sẻ')}</span>
+                            </button>
                         </div>
                     </div>
-                `).join('')}
+
+                    ${tourDaysHtml(d, plan, first, lengths)}
+
+                    ${lengths.map(n => budgetBlock(d, n, n !== first)).join('')}
+                </div>
 
                 <p class="budget__note">${t('Chưa gồm vé máy bay/tàu xe tới {name}. Giá tham khảo, thay đổi theo mùa.', { name: d.name })}</p>
+
+                <p class="budget__note"><i class="ri-ticket-2-line"></i> <a href="${SITE_ROOT}${LANG_PREFIX}diem-den/${d.id}/gia-ve/index.html">${t('Bảng giá vé & giờ mở cửa các điểm tham quan ở {name}', { name: d.name })}</a></p>
 
                 <div class="plan-cta">
                     <p><i class="ri-route-line"></i> ${t('Muốn đi nhiều nơi trong một chuyến? Ghép {name} với các điểm đến khác.', { name: d.name })}</p>
@@ -414,15 +507,41 @@ function locationSection(d) {
     `
 }
 
+/* Form gửi ảnh (GitHub Issue form .github/ISSUE_TEMPLATE/gui-anh.yml), điền sẵn điểm đến */
+const photoSubmitUrl = d => `https://github.com/TanTan1802/travel/issues/new?${new URLSearchParams({ template: 'gui-anh.yml', title: `[Ảnh] ${d.name}`, dest: d.name })}`
+
+function communityPhotoHtml(p) {
+    const src = size => `${SITE_ROOT}assets/img/community/${p.base}-${size}.webp`
+    return `
+        <figure class="community-photo">
+            <img src="${src(960)}" srcset="${src(480)} 480w, ${src(960)} 960w, ${src(1920)} 1920w"
+                 sizes="(max-width: 576px) calc(100vw - 32px), 360px" width="${p.w}" height="${p.h}" alt="${pickLang(p.caption)}" loading="lazy">
+            <figcaption>${pickLang(p.caption)} <small>· ${t('Ảnh: {author}', { author: p.author })} (${p.license})</small></figcaption>
+        </figure>
+    `
+}
+
+/* Cộng đồng: ảnh người đọc gửi (đã duyệt) + bình luận/đánh giá bằng Giscus (khi đã cấu hình) */
 function commentsSection(d) {
-    if (typeof giscusEnabled === 'undefined' || !giscusEnabled()) return ''
+    const photos = (typeof COMMUNITY_PHOTOS !== 'undefined' ? COMMUNITY_PHOTOS : []).filter(p => p.dest === d.id)
+    const comments = typeof giscusEnabled !== 'undefined' && giscusEnabled()
     return `
         <section class="comments section" id="comments">
             <span class="section__subtitle">${t('Cộng đồng')}</span>
             <h2 class="section__title">${t('Chia sẻ trải nghiệm của bạn')}</h2>
             <div class="comments__container container">
-                <p class="comments__intro">${t('Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!', { name: d.name })}</p>
-                <div class="giscus" id="giscus" data-term="${d.id}"></div>
+                <h3 class="community__title"><i class="ri-camera-3-line"></i> ${t('Ảnh từ người đọc')}</h3>
+                ${photos.length
+                    ? `<div class="community__photos">${photos.map(communityPhotoHtml).join('')}</div>`
+                    : `<p class="comments__intro">${t('Chưa có ảnh nào – hãy là người đầu tiên chia sẻ khoảnh khắc ở {name}!', { name: d.name })}</p>`}
+                <a href="${photoSubmitUrl(d)}" target="_blank" rel="noopener" class="button button--flex community__submit">
+                    <i class="ri-image-add-line"></i> ${t('Gửi ảnh của bạn')}
+                </a>
+                ${comments ? `
+                    <h3 class="community__title"><i class="ri-chat-smile-2-line"></i> ${t('Cảm nhận & đánh giá')}</h3>
+                    <p class="comments__intro">${t('Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi – và thả cảm xúc để đánh giá nhé!', { name: d.name })}</p>
+                    <div class="giscus" id="giscus" data-term="${d.id}"></div>
+                ` : ''}
             </div>
         </section>
     `

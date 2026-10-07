@@ -8,24 +8,20 @@
         <link rel="apple-touch-icon" href="../../../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../../../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <!-- Font & icon tải không chặn hiển thị -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-        </noscript>
-        <link rel="stylesheet" href="../../../assets/css/styles.css">
-        <link rel="stylesheet" href="../../../assets/css/vietnam.css">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../../../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../../../assets/css/site-2303c79c15.css">
 
         <title>Da Nang – Việt Travel</title>
     
         <link rel="canonical" href="https://tantan1802.github.io/travel/en/diem-den/da-nang/">
         <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/diem-den/da-nang/">
         <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/diem-den/da-nang/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/diem-den/da-nang/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/diem-den/da-nang/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/diem-den/da-nang/">
         <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/diem-den/da-nang/">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
@@ -40,6 +36,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TouristDestination","name":"Da Nang","description":"Da Nang combines sea, mountains and a modern city. My Khe beach has been named one of the most attractive beaches on the planet, the Golden Bridge at Ba Na Hills is world-famous and the Dragon Bridge breathes fire every weekend.","url":"https://tantan1802.github.io/travel/en/diem-den/da-nang/","inLanguage":"en","image":["https://tantan1802.github.io/travel/assets/img/wiki/the-golden-bridge-ba-na-hills-vietnam-ddfb9d-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/golden-bridge-at-ba-na-hills-20250718-dd01e1-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/dragon-bridge-da-nang-at-night-20230819-a97408-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/my-khe-beach-da-nang-ffc916-1920.webp"],"address":{"@type":"PostalAddress","addressRegion":"Da Nang","addressCountry":"VN"},"touristType":["Cities","Beaches & islands"],"geo":{"@type":"GeoCoordinates","latitude":16.0544,"longitude":108.2022}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tantan1802.github.io/travel/en/"},{"@type":"ListItem","position":2,"name":"Da Nang","item":"https://tantan1802.github.io/travel/en/diem-den/da-nang/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to visit Da Nang?","acceptedAnswer":{"@type":"Answer","text":"March – August."}},{"@type":"Question","name":"How many days do you need in Da Nang?","acceptedAnswer":{"@type":"Answer","text":"About 3 – 4 days."}},{"@type":"Question","name":"What are the highlights of Da Nang?","acceptedAnswer":{"@type":"Answer","text":"Golden Bridge – Ba Na Hills, My Khe beach, Marble Mountains, Dragon Bridge."}},{"@type":"Question","name":"How do you get to Da Nang?","acceptedAnswer":{"@type":"Answer","text":"Da Nang Airport (DAD) is just ~3 km from the centre, taxi/Grab ~80–120k VND. Da Nang Station is on the North–South line."}}]}]}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../../en/index.html" class="nav__logo">Việt Travel</a>
@@ -66,7 +64,16 @@
                         </li>
                     </ul>
 
-                    <a class="nav__lang" id="lang-switch" href="../../../diem-den/da-nang/index.html" hreflang="vi" lang="vi" title="Tiếng Việt">VI</a>
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> EN</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../../../diem-den/da-nang/index.html" hreflang="vi" lang="vi" data-lang="vi">Tiếng Việt</a></li>
+                            <li><a href="../../../en/diem-den/da-nang/index.html" hreflang="en" lang="en" data-lang="en" aria-current="true">English</a></li>
+                            <li><a href="../../../ko/diem-den/da-nang/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../../../zh/diem-den/da-nang/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../../../ja/diem-den/da-nang/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -215,6 +222,49 @@
                     <p class="season__status" data-season-status="3,4,5,6,7,8" aria-live="polite"></p>
                     <div class="season__others" id="season-others"></div>
                 </div>
+                
+        <div class="climate__card events-card">
+            <h3 class="season__title"><i class="ri-flag-2-line"></i> Festivals & seasonal highlights</h3>
+            <ul class="events__list" id="dest-events">
+        <li class="event event--holiday" data-event-months="6,7,8">
+            <span class="event__icon" title="Public holiday – busy"><i class="ri-group-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Summer peak season</strong>
+                    <span class="event__when">June – August</span>
+                </div>
+                <p class="event__desc">School holidays make beaches their busiest of the year.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Travel midweek and book early for better prices.</p>
+            </div>
+        </li>
+    
+        <li class="event event--festival" data-event-months="6,7">
+            <span class="event__icon" title="Festival"><i class="ri-flag-2-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Da Nang International Fireworks Festival</strong>
+                    <span class="event__when">June – July</span>
+                </div>
+                <p class="event__desc">International teams put on shows over the Han River on weekend nights.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Buy stand tickets or grab a riverside spot early; rooms get pricey.</p>
+            </div>
+        </li>
+    
+        <li class="event event--weather" data-event-months="9,10,11">
+            <span class="event__icon" title="Weather alert"><i class="ri-thunderstorms-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Central Vietnam storm season</strong>
+                    <span class="event__when">September – November</span>
+                </div>
+                <p class="event__desc">Heavy rain, possible floods and typhoons; Hoi An and Hue may flood.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Watch forecasts and book flexible tickets/rooms; island boats may be suspended.</p>
+            </div>
+        </li>
+    </ul>
+            <p class="budget__note">Lunar-calendar festivals move each year – check the official dates before you go.</p>
+        </div>
+    
             </div>
         </section>
     
@@ -333,6 +383,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=M%C3%AC%20Qu%E1%BA%A3ng%20B%C3%A0%20Mua%2C%2019%E2%80%9321%20Tr%E1%BA%A7n%20B%C3%ACnh%20Tr%E1%BB%8Dng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> 19–21 Trần Bình Trọng, Hải Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+M%C3%AC+Qu%E1%BA%A3ng+B%C3%A0+Mua&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+M%C3%AC+Qu%E1%BA%A3ng+B%C3%A0+Mua%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+19%E2%80%9321+Tr%E1%BA%A7n+B%C3%ACnh+Tr%E1%BB%8Dng%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+35k%E2%80%9360k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Mì Quảng Bà Mua" data-report-details="19–21 Trần Bình Trọng, Hải Châu · 35k–60k"><i class="ri-flag-line"></i> Report</a>
         </li>
     
         <li class="eat">
@@ -344,6 +397,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20Tr%E1%BA%A7n%2C%204%20L%C3%AA%20Du%E1%BA%A9n%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> 4 Lê Duẩn, Hải Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Nh%C3%A0+h%C3%A0ng+Tr%E1%BA%A7n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Nh%C3%A0+h%C3%A0ng+Tr%E1%BA%A7n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+4+L%C3%AA+Du%E1%BA%A9n%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+100k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Nhà hàng Trần" data-report-details="4 Lê Duẩn, Hải Châu · 100k–200k"><i class="ri-flag-line"></i> Report</a>
         </li>
     
         <li class="eat">
@@ -355,6 +411,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=H%E1%BA%A3i%20s%E1%BA%A3n%20B%C3%A9%20M%E1%BA%B7n%2C%20V%C3%B5%20Nguy%C3%AAn%20Gi%C3%A1p%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Võ Nguyên Giáp, Sơn Trà
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+H%E1%BA%A3i+s%E1%BA%A3n+B%C3%A9+M%E1%BA%B7n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+H%E1%BA%A3i+s%E1%BA%A3n+B%C3%A9+M%E1%BA%B7n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p%2C+S%C6%A1n+Tr%C3%A0+%C2%B7+250k%E2%80%93500k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Hải sản Bé Mặn" data-report-details="Võ Nguyên Giáp, Sơn Trà · 250k–500k"><i class="ri-flag-line"></i> Report</a>
         </li>
     
         <li class="eat">
@@ -366,8 +425,73 @@
             <a href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20ch%E1%BA%A3%20c%C3%A1%20B%C3%A0%20L%E1%BB%AF%2C%20319%20H%C3%B9ng%20V%C6%B0%C6%A1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> 319 Hùng Vương, Hải Châu
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+B%C3%BAn+ch%E1%BA%A3+c%C3%A1+B%C3%A0+L%E1%BB%AF&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%BAn+ch%E1%BA%A3+c%C3%A1+B%C3%A0+L%E1%BB%AF%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+319+H%C3%B9ng+V%C6%B0%C6%A1ng%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+30k%E2%80%9350k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Bún chả cá Bà Lữ" data-report-details="319 Hùng Vương, Hải Châu · 30k–50k"><i class="ri-flag-line"></i> Report</a>
         </li>
     </ul>
+            
+                <details class="eats__more">
+                    <summary class="button button--ghost button--flex">Show 4 more places <i class="ri-arrow-down-s-line"></i></summary>
+                    <ul class="eats__list">
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Bánh xèo Bà Dưỡng</h4>
+                <span class="eat__price">50k–100k</span>
+            </div>
+            <p class="eat__dish">Banh xeo and lemongrass skewers</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20x%C3%A8o%20B%C3%A0%20D%C6%B0%E1%BB%A1ng%2C%20Ho%C3%A0ng%20Di%E1%BB%87u%20(ki%E1%BB%87t%20280)%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Hoàng Diệu (kiệt 280), Hải Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+B%C3%A1nh+x%C3%A8o+B%C3%A0+D%C6%B0%E1%BB%A1ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%A1nh+x%C3%A8o+B%C3%A0+D%C6%B0%E1%BB%A1ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ho%C3%A0ng+Di%E1%BB%87u+%28ki%E1%BB%87t+280%29%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+50k%E2%80%93100k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Bánh xèo Bà Dưỡng" data-report-details="Hoàng Diệu (kiệt 280), Hải Châu · 50k–100k"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Bún mắm nêm Bà Thanh</h4>
+                <span class="eat__price">30k–50k</span>
+            </div>
+            <p class="eat__dish">Fermented-anchovy noodles with roast pork</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20m%E1%BA%AFm%20n%C3%AAm%20B%C3%A0%20Thanh%2C%20Ki%E1%BB%87t%2023%20Tr%E1%BA%A7n%20K%E1%BA%BF%20X%C6%B0%C6%A1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Kiệt 23 Trần Kế Xương, Hải Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+B%C3%BAn+m%E1%BA%AFm+n%C3%AAm+B%C3%A0+Thanh&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%BAn+m%E1%BA%AFm+n%C3%AAm+B%C3%A0+Thanh%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ki%E1%BB%87t+23+Tr%E1%BA%A7n+K%E1%BA%BF+X%C6%B0%C6%A1ng%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+30k%E2%80%9350k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Bún mắm nêm Bà Thanh" data-report-details="Kiệt 23 Trần Kế Xương, Hải Châu · 30k–50k"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Chợ Cồn</h4>
+                <span class="eat__price">30k–80k</span>
+            </div>
+            <p class="eat__dish">Snacks: banh beo, snails, sweet soups</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20C%E1%BB%93n%2C%20Ch%E1%BB%A3%20C%E1%BB%93n%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Chợ Cồn, Hải Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Ch%E1%BB%A3+C%E1%BB%93n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%E1%BB%A3+C%E1%BB%93n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ch%E1%BB%A3+C%E1%BB%93n%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+30k%E2%80%9380k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Chợ Cồn" data-report-details="Chợ Cồn, Hải Châu · 30k–80k"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Phố ăn đêm Helio</h4>
+                <span class="eat__price">80k–200k</span>
+            </div>
+            <p class="eat__dish">Grills, seafood and snacks by the river</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20%C4%83n%20%C4%91%C3%AAm%20Helio%2C%20Ch%E1%BB%A3%20%C4%91%C3%AAm%20Helio%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Chợ đêm Helio, Hải Châu
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Updated 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Ph%E1%BB%91+%C4%83n+%C4%91%C3%AAm+Helio&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ph%E1%BB%91+%C4%83n+%C4%91%C3%AAm+Helio%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ch%E1%BB%A3+%C4%91%C3%AAm+Helio%2C+H%E1%BA%A3i+Ch%C3%A2u+%C2%B7+80k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Phố ăn đêm Helio" data-report-details="Chợ đêm Helio, Hải Châu · 80k–200k"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                </details>
+            
             <p class="budget__note">Indicative prices per person. Tap an address to open Google Maps for opening hours and the latest reviews.</p>
         </div>
     
@@ -412,6 +536,18 @@
                     <li class="tip-item">Combine Da Nang – Hoi An – Hue for a complete Central Vietnam trip.</li><li class="tip-item">The storm season runs from September to December.</li>
                 </ul>
             </div>
+
+            <div class="packing-block container" id="packing" data-dest="da-nang">
+                <h3 class="tips__title"><i class="ri-luggage-cart-line"></i> <span data-packing-title>What to pack</span></h3>
+                <p class="packing-block__hint">Suggested for this destination and month (pick a start date in the Itinerary section to change the month). Tick items to remember what you have packed.</p>
+                <div data-packing-slot></div>
+            </div>
+
+            <p class="report-page container">
+                <i class="ri-feedback-line"></i> Spotted a changed price, opening time or closed shop?
+                <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+General+information&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+General+information%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="General information" data-report-details=""><i class="ri-flag-line"></i> Report</a>
+            </p>
         </section>
     
         <section class="stay section" id="stay">
@@ -466,6 +602,55 @@
                 <div class="getthere">
                     <h3 class="getthere__title"><i class="ri-map-2-line"></i> Getting to Da Nang</h3>
                     <p>Da Nang Airport (DAD) is just ~3 km from the centre, taxi/Grab ~80–120k VND. Da Nang Station is on the North–South line.</p>
+                    
+        <div class="hub-transport">
+            <h4 class="hub-transport__title">Getting here from major cities</h4>
+            <table class="hub-transport__table">
+            <tr>
+                <th scope="row">From Hanoi</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Excludes getting to the airport">
+                                <i class="ri-plane-line"></i> Flight ~1 h 20 min <span>· 1,300,000 VND</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="Hà Nội → Đà Nẵng station">
+                                <i class="ri-train-line"></i> Train ~16 h <span>· 630,000 VND</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="">
+                                <i class="ri-bus-2-line"></i> Bus / car ~17 h 30 min <span>· 710,000 VND</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">From Ho Chi Minh City</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Excludes getting to the airport">
+                                <i class="ri-plane-line"></i> Flight ~1 h 20 min <span>· 1,300,000 VND</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="Sài Gòn → Đà Nẵng station">
+                                <i class="ri-train-line"></i> Train ~18 h 30 min <span>· 750,000 VND</span>
+                            </li>
+                        
+                            <li class="hub-modes__item" title="">
+                                <i class="ri-bus-2-line"></i> Bus / car ~17 h 30 min <span>· 710,000 VND</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        </table>
+            <p class="budget__note">Estimated travel time; one-way budget fare per person – for reference. The option in bold is our suggestion.</p>
+        </div>
+    
                     <div class="book-links">
     <a href="https://www.google.com/travel/flights?q=Flights%20to%20DAD" target="_blank" rel="noopener" class="book-link"><i class="ri-plane-line"></i> Flights to DAD</a>
 
@@ -488,422 +673,89 @@
                     <p>Việt Travel · Da Nang · Best time: March – August</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Start date</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Pick a date to see the daily weather forecast and add the itinerary to your calendar.</small>
+                    <ul class="trip-alerts events__list" id="tour-alerts" hidden></ul>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Choose a tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
-                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                                aria-selected="true" aria-controls="tour-plan" data-tour="3">
                             <strong>3 days 2 nights</strong>
-                            <small>from 2,200,000 VND</small>
+                            <small>from 2,020,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="4">
                             <strong>4 days 3 nights</strong>
-                            <small>from 2,900,000 VND</small>
+                            <small>from 2,760,000 VND</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="5">
                             <strong>5 days 4 nights</strong>
-                            <small>from 3,700,000 VND</small>
+                            <small>from 3,500,000 VND</small>
                         </button>
                     
                 </div>
 
-                
-                    <div class="tour" id="tour-3" data-tour="3">
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 3 days 2 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="tour" id="tour-plan" data-tour="3">
+                    <div class="tour__toolbar">
                         
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Ba Na Hills – Golden Bridge</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Son Tra – Marble Mountains</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Hai Van pass</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Ba Na Hills – Golden Bridge</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Take the cable car up Ba Na and visit the Golden Bridge early.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>French Village, Le Jardin flower garden and Fantasy Park.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Back down for mì Quảng and seaside seafood.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Son Tra – Marble Mountains</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Swim at My Khe and visit Linh Ung Pagoda on Son Tra.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Marble Mountains and Non Nuoc stone village.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Hai Van pass</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Ride the Hai Van pass by motorbike and stop in Lang Co.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Pork rolled in rice paper and coffee overlooking the Han river.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Han river cruise as the city lights up.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>2,200,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>6,000,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
+                            <p class="tour__summary" data-tour-len="3"><i class="ri-route-line"></i> 3 days 2 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass</p>
+                        
+                            <p class="tour__summary" data-tour-len="4" hidden><i class="ri-route-line"></i> 4 days 3 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass → Hoi An Ancient Town</p>
+                        
+                            <p class="tour__summary" data-tour-len="5" hidden><i class="ri-route-line"></i> 5 days 4 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass → Hoi An Ancient Town → Cu Lao Cham islands</p>
+                        
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Show all days</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 3 days 2 nights itinerary">
+                                <i class="ri-printer-line"></i> <span>Print / PDF</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Add the 3 days 2 nights itinerary to your calendar (.ics)">
+                                <i class="ri-calendar-2-line"></i> <span>Add to calendar</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
+                                <i class="ri-share-line"></i> <span>Share</span>
+                            </button>
                         </div>
                     </div>
-                
-                    <div class="tour" id="tour-4" data-tour="4" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 4 days 3 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass → Hoi An Ancient Town</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 4 days 3 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
 
-                        
+                    
         <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
             
                 <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                        id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-day="0">
                     <span>Day 1</span>
                     <small>Ba Na Hills – Golden Bridge</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                        id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-day="1">
                     <span>Day 2</span>
                     <small>Son Tra – Marble Mountains</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                        id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-day="2">
                     <span>Day 3</span>
                     <small>Hai Van pass</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
-                    <span>Day 4</span>
-                    <small>Hoi An Ancient Town</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
-                <h3 class="itinerary__day-title">Day 1: Ba Na Hills – Golden Bridge</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Take the cable car up Ba Na and visit the Golden Bridge early.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>French Village, Le Jardin flower garden and Fantasy Park.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Back down for mì Quảng and seaside seafood.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
-                <h3 class="itinerary__day-title">Day 2: Son Tra – Marble Mountains</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Swim at My Khe and visit Linh Ung Pagoda on Son Tra.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Marble Mountains and Non Nuoc stone village.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
-                <h3 class="itinerary__day-title">Day 3: Hai Van pass</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Ride the Hai Van pass by motorbike and stop in Lang Co.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Pork rolled in rice paper and coffee overlooking the Han river.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Han river cruise as the city lights up.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
-                <h3 class="itinerary__day-title">Day 4: Hoi An Ancient Town</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Head to Hoi An: Tra Que vegetable village and Bay Mau coconut forest.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>The Covered Bridge, Fujian Assembly Hall and Tan Ky house.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Release lanterns on the Hoai river and eat cao lầu.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>2,900,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>8,000,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="tour" id="tour-5" data-tour="5" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 5 days 4 nights · Ba Na Hills – Golden Bridge → Son Tra – Marble Mountains → Hai Van pass → Hoi An Ancient Town → Cu Lao Cham islands</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Show all days</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="Print the 5 days 4 nights itinerary">
-                                    <i class="ri-printer-line"></i> <span>Print / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Share itinerary">
-                                    <i class="ri-share-line"></i> <span>Share</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Choose a day">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
-                    <span>Day 1</span>
-                    <small>Ba Na Hills – Golden Bridge</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
-                    <span>Day 2</span>
-                    <small>Son Tra – Marble Mountains</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
-                    <span>Day 3</span>
-                    <small>Hai Van pass</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                        id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-day="3" hidden>
                     <span>Day 4</span>
                     <small>Hoi An Ancient Town</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                        id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-day="4" hidden>
                     <span>Day 5</span>
                     <small>Cu Lao Cham islands</small>
                 </button>
@@ -911,187 +763,1374 @@
         </div>
 
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0">
                 <h3 class="itinerary__day-title">Day 1: Ba Na Hills – Golden Bridge</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Take the cable car up Ba Na and visit the Golden Bridge early.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>French Village, Le Jardin flower garden and Fantasy Park.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Back down for mì Quảng and seaside seafood.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="da-nang"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=B%C3%A0+N%C3%A0+Hills+%E2%80%93+C%E1%BA%A7u+V%C3%A0ng%2C+H%C3%B2a+Ninh%2C+H%C3%B2a+Vang&destination=L%C3%A0ng+Ph%C3%A1p+%E2%80%93+v%C6%B0%E1%BB%9Dn+hoa+Le+Jardin+D%27Amour%2C+%C4%90%E1%BB%89nh+B%C3%A0+N%C3%A0" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
+            <span class="day-cost__item">Tickets: <strong>950,000 VND</strong></span>
+            <span class="day-cost__item">Food & coffee: <strong>220,000 VND – 430,000 VND</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Breakfast</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20ch%E1%BA%A3%20c%C3%A1%20B%C3%A0%20L%E1%BB%AF%2C%20319%20H%C3%B9ng%20V%C6%B0%C6%A1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Bún chả cá Bà Lữ</a>
+        <span class="day-tl__what">Da Nang fish-cake noodle soup</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> 319 Hùng Vương, Hải Châu · 30k–50k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Morning sightseeing</h4>
+                        <p class="day-tl__text">Take the cable car up Ba Na and visit the Golden Bridge early.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A0%20N%C3%A0%20Hills%20%E2%80%93%20C%E1%BA%A7u%20V%C3%A0ng%2C%20H%C3%B2a%20Ninh%2C%20H%C3%B2a%20Vang" target="_blank" rel="noopener" class="sight__name">Ba Na Hills – Golden Bridge</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 950,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–22:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Hòa Ninh, Hòa Vang</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Includes cable car and Fantasy Park; lunch buffet extra</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+B%C3%A0+N%C3%A0+Hills+%E2%80%93+C%E1%BA%A7u+V%C3%A0ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%A0+N%C3%A0+Hills+%E2%80%93+C%E1%BA%A7u+V%C3%A0ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+950%2C000+VND+%C2%B7+07%3A00%E2%80%9322%3A00+%C2%B7+H%C3%B2a+Ninh%2C+H%C3%B2a+Vang%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Bà Nà Hills – Cầu Vàng" data-report-details="950,000 VND · 07:00–22:00 · Hòa Ninh, Hòa Vang"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Lunch</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20Tr%E1%BA%A7n%2C%204%20L%C3%AA%20Du%E1%BA%A9n%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng Trần</a>
+        <span class="day-tl__what">Rice paper rolls with boiled pork</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> 4 Lê Duẩn, Hải Châu · 100k–200k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Coffee & midday break</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20l%C3%A0ng%20Ph%C3%A1p%20B%C3%A0%20N%C3%A0%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Cà phê làng Pháp Bà Nà</a>
+        <span class="day-tl__what">Coffee and hot chocolate on the mountain</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Ba Na Hills – Golden Bridge · 50k–100k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
+                        <p class="day-tl__text">French Village, Le Jardin flower garden and Fantasy Park.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng%20Ph%C3%A1p%20%E2%80%93%20v%C6%B0%E1%BB%9Dn%20hoa%20Le%20Jardin%20D'Amour%2C%20%C4%90%E1%BB%89nh%20B%C3%A0%20N%C3%A0" target="_blank" rel="noopener" class="sight__name">French Village – Le Jardin D'Amour</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 08:00–21:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Đỉnh Bà Nà</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Included in the Ba Na ticket</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+L%C3%A0ng+Ph%C3%A1p+%E2%80%93+v%C6%B0%E1%BB%9Dn+hoa+Le+Jardin+D%27Amour&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%C3%A0ng+Ph%C3%A1p+%E2%80%93+v%C6%B0%E1%BB%9Dn+hoa+Le+Jardin+D%27Amour%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+08%3A00%E2%80%9321%3A00+%C2%B7+%C4%90%E1%BB%89nh+B%C3%A0+N%C3%A0%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Làng Pháp – vườn hoa Le Jardin D'Amour" data-report-details="Free · 08:00–21:00 · Đỉnh Bà Nà"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Drinks & snacks</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20v%C6%B0%E1%BB%9Dn%20Le%20Jardin%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước vườn Le Jardin</a>
+        <span class="day-tl__what">Tea and juice among the flowers</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near French Village – Le Jardin D'Amour · 40k–80k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Dinner & evening</h4>
+                        <p class="day-tl__text">Back down for mì Quảng and seaside seafood.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Back to your stay</h4>
+                        <p class="day-tl__text">A short night stroll, then back to rest</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" hidden>
                 <h3 class="itinerary__day-title">Day 2: Son Tra – Marble Mountains</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Swim at My Khe and visit Linh Ung Pagoda on Son Tra.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Marble Mountains and Non Nuoc stone village.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="da-nang"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Bi%E1%BB%83n+M%E1%BB%B9+Kh%C3%AA%2C+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p%2C+S%C6%A1n+Tr%C3%A0&destination=Ch%E1%BB%A3+%C4%91%C3%AAm+S%C6%A1n+Tr%C3%A0%2C+Mai+H%E1%BA%AFc+%C4%90%E1%BA%BF%2C+S%C6%A1n+Tr%C3%A0&waypoints=Ch%C3%B9a+Linh+%E1%BB%A8ng+S%C6%A1n+Tr%C3%A0%2C+B%C3%A3i+B%E1%BB%A5t%2C+S%C6%A1n+Tr%C3%A0%7CNg%C5%A9+H%C3%A0nh+S%C6%A1n%2C+81+Huy%E1%BB%81n+Tr%C3%A2n+C%C3%B4ng+Ch%C3%BAa%2C+Ng%C5%A9+H%C3%A0nh+S%C6%A1n%7CL%C3%A0ng+%C4%91%C3%A1+m%E1%BB%B9+ngh%E1%BB%87+Non+N%C6%B0%E1%BB%9Bc%2C+Huy%E1%BB%81n+Tr%C3%A2n+C%C3%B4ng+Ch%C3%BAa%2C+Ng%C5%A9+H%C3%A0nh+S%C6%A1n%7CC%E1%BA%A7u+R%E1%BB%93ng%2C+Nguy%E1%BB%85n+V%C4%83n+Linh%2C+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
+            <span class="day-cost__item">Tickets: <strong>40,000 VND</strong></span>
+            <span class="day-cost__item">Food & coffee: <strong>410,000 VND – 875,000 VND</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Breakfast</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20x%C3%A8o%20B%C3%A0%20D%C6%B0%E1%BB%A1ng%2C%20Ho%C3%A0ng%20Di%E1%BB%87u%20(ki%E1%BB%87t%20280)%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Bánh xèo Bà Dưỡng</a>
+        <span class="day-tl__what">Banh xeo and lemongrass skewers</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Hoàng Diệu (kiệt 280), Hải Châu · 50k–100k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Morning sightseeing</h4>
+                        <p class="day-tl__text">Swim at My Khe and visit Linh Ung Pagoda on Son Tra.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Bi%E1%BB%83n%20M%E1%BB%B9%20Kh%C3%AA%2C%20V%C3%B5%20Nguy%C3%AAn%20Gi%C3%A1p%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="sight__name">My Khe beach</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Open all day</span>
+                <span><i class="ri-map-pin-2-line"></i> Võ Nguyên Giáp, Sơn Trà</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Bi%E1%BB%83n+M%E1%BB%B9+Kh%C3%AA&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Bi%E1%BB%83n+M%E1%BB%B9+Kh%C3%AA%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+V%C3%B5+Nguy%C3%AAn+Gi%C3%A1p%2C+S%C6%A1n+Tr%C3%A0%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Biển Mỹ Khê" data-report-details="Free · Open all day · Võ Nguyên Giáp, Sơn Trà"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%B9a%20Linh%20%E1%BB%A8ng%20S%C6%A1n%20Tr%C3%A0%2C%20B%C3%A3i%20B%E1%BB%A5t%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="sight__name">Linh Ung Pagoda, Son Tra</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–21:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Bãi Bụt, Sơn Trà</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Ch%C3%B9a+Linh+%E1%BB%A8ng+S%C6%A1n+Tr%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%C3%B9a+Linh+%E1%BB%A8ng+S%C6%A1n+Tr%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+06%3A00%E2%80%9321%3A30+%C2%B7+B%C3%A3i+B%E1%BB%A5t%2C+S%C6%A1n+Tr%C3%A0%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Chùa Linh Ứng Sơn Trà" data-report-details="Free · 06:00–21:30 · Bãi Bụt, Sơn Trà"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Lunch</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=H%E1%BA%A3i%20s%E1%BA%A3n%20B%C3%A9%20M%E1%BA%B7n%2C%20V%C3%B5%20Nguy%C3%AAn%20Gi%C3%A1p%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="day-tl__place">Hải sản Bé Mặn</a>
+        <span class="day-tl__what">Seafood by My Khe beach</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Võ Nguyên Giáp, Sơn Trà · 250k–500k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Coffee & midday break</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20ch%C3%B9a%20Linh%20%E1%BB%A8ng%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân chùa Linh Ứng</a>
+        <span class="day-tl__what">Sugarcane juice, coconut water</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Linh Ung Pagoda, Son Tra · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
+                        <p class="day-tl__text">Marble Mountains and Non Nuoc stone village.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ng%C5%A9%20H%C3%A0nh%20S%C6%A1n%2C%2081%20Huy%E1%BB%81n%20Tr%C3%A2n%20C%C3%B4ng%20Ch%C3%BAa%2C%20Ng%C5%A9%20H%C3%A0nh%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Marble Mountains</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 40,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:30</span>
+                <span><i class="ri-map-pin-2-line"></i> 81 Huyền Trân Công Chúa, Ngũ Hành Sơn</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Elevator +15,000đ each way</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Ng%C5%A9+H%C3%A0nh+S%C6%A1n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ng%C5%A9+H%C3%A0nh+S%C6%A1n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+40%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+81+Huy%E1%BB%81n+Tr%C3%A2n+C%C3%B4ng+Ch%C3%BAa%2C+Ng%C5%A9+H%C3%A0nh+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Ngũ Hành Sơn" data-report-details="40,000 VND · 07:00–17:30 · 81 Huyền Trân Công Chúa, Ngũ Hành Sơn"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng%20%C4%91%C3%A1%20m%E1%BB%B9%20ngh%E1%BB%87%20Non%20N%C6%B0%E1%BB%9Bc%2C%20Huy%E1%BB%81n%20Tr%C3%A2n%20C%C3%B4ng%20Ch%C3%BAa%2C%20Ng%C5%A9%20H%C3%A0nh%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Non Nuoc stone-carving village</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Huyền Trân Công Chúa, Ngũ Hành Sơn</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+L%C3%A0ng+%C4%91%C3%A1+m%E1%BB%B9+ngh%E1%BB%87+Non+N%C6%B0%E1%BB%9Bc&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%C3%A0ng+%C4%91%C3%A1+m%E1%BB%B9+ngh%E1%BB%87+Non+N%C6%B0%E1%BB%9Bc%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9318%3A00+%C2%B7+Huy%E1%BB%81n+Tr%C3%A2n+C%C3%B4ng+Ch%C3%BAa%2C+Ng%C5%A9+H%C3%A0nh+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Làng đá mỹ nghệ Non Nước" data-report-details="Free · 07:00–18:00 · Huyền Trân Công Chúa, Ngũ Hành Sơn"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Drinks & snacks</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20n%C3%BAi%20Th%E1%BB%A7y%20S%C6%A1n%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân núi Thủy Sơn</a>
+        <span class="day-tl__what">Coconut water, iced coffee</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Marble Mountains · 15k–40k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Dinner</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Ph%E1%BB%91%20%C4%83n%20%C4%91%C3%AAm%20Helio%2C%20Ch%E1%BB%A3%20%C4%91%C3%AAm%20Helio%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Phố ăn đêm Helio</a>
+        <span class="day-tl__what">Grills, seafood and snacks by the river</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ đêm Helio, Hải Châu · 80k–200k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Evening</h4>
+                        <p class="day-tl__text">Watch the Dragon Bridge breathe fire (weekend evenings) and Son Tra night market.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BA%A7u%20R%E1%BB%93ng%2C%20Nguy%E1%BB%85n%20V%C4%83n%20Linh%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng" target="_blank" rel="noopener" class="sight__name">Dragon Bridge</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Fire show 9pm Sat & Sun</span>
+                <span><i class="ri-map-pin-2-line"></i> Nguyễn Văn Linh, Đà Nẵng</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+C%E1%BA%A7u+R%E1%BB%93ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BA%A7u+R%E1%BB%93ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Fire+show+9pm+Sat+%26+Sun+%C2%B7+Nguy%E1%BB%85n+V%C4%83n+Linh%2C+%C4%90%C3%A0+N%E1%BA%B5ng%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Cầu Rồng" data-report-details="Free · Fire show 9pm Sat &amp; Sun · Nguyễn Văn Linh, Đà Nẵng"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20%C4%91%C3%AAm%20S%C6%A1n%20Tr%C3%A0%2C%20Mai%20H%E1%BA%AFc%20%C4%90%E1%BA%BF%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="sight__name">Son Tra night market</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 17:00–23:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Mai Hắc Đế, Sơn Trà</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Ch%E1%BB%A3+%C4%91%C3%AAm+S%C6%A1n+Tr%C3%A0&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%E1%BB%A3+%C4%91%C3%AAm+S%C6%A1n+Tr%C3%A0%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+17%3A00%E2%80%9323%3A30+%C2%B7+Mai+H%E1%BA%AFc+%C4%90%E1%BA%BF%2C+S%C6%A1n+Tr%C3%A0%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Chợ đêm Sơn Trà" data-report-details="Free · 17:00–23:30 · Mai Hắc Đế, Sơn Trà"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Back to your stay</h4>
+                        <p class="day-tl__text">A short night stroll, then back to rest</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" hidden>
                 <h3 class="itinerary__day-title">Day 3: Hai Van pass</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Ride the Hai Van pass by motorbike and stop in Lang Co.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Pork rolled in rice paper and coffee overlooking the Han river.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Han river cruise as the city lights up.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="da-nang"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%C3%A8o+H%E1%BA%A3i+V%C3%A2n%2C+QL1A%2C+Li%C3%AAn+Chi%E1%BB%83u&destination=Du+thuy%E1%BB%81n+s%C3%B4ng+H%C3%A0n%2C+B%E1%BA%BFn+du+thuy%E1%BB%81n+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+H%E1%BA%A3i+Ch%C3%A2u&waypoints=V%E1%BB%8Bnh+L%C4%83ng+C%C3%B4%2C+L%C4%83ng+C%C3%B4%2C+Ph%C3%BA+L%E1%BB%99c%2C+Hu%E1%BA%BF" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
+            <span class="day-cost__item">Tickets: <strong>150,000 VND – 200,000 VND</strong></span>
+            <span class="day-cost__item">Food & coffee: <strong>120,000 VND – 245,000 VND</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Breakfast</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20m%E1%BA%AFm%20n%C3%AAm%20B%C3%A0%20Thanh%2C%20Ki%E1%BB%87t%2023%20Tr%E1%BA%A7n%20K%E1%BA%BF%20X%C6%B0%C6%A1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Bún mắm nêm Bà Thanh</a>
+        <span class="day-tl__what">Fermented-anchovy noodles with roast pork</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Kiệt 23 Trần Kế Xương, Hải Châu · 30k–50k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Morning sightseeing</h4>
+                        <p class="day-tl__text">Ride the Hai Van pass by motorbike and stop in Lang Co.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%C3%A8o%20H%E1%BA%A3i%20V%C3%A2n%2C%20QL1A%2C%20Li%C3%AAn%20Chi%E1%BB%83u" target="_blank" rel="noopener" class="sight__name">Hai Van pass</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Open all day</span>
+                <span><i class="ri-map-pin-2-line"></i> QL1A, Liên Chiểu</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+%C4%90%C3%A8o+H%E1%BA%A3i+V%C3%A2n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%C3%A8o+H%E1%BA%A3i+V%C3%A2n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+QL1A%2C+Li%C3%AAn+Chi%E1%BB%83u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Đèo Hải Vân" data-report-details="Free · Open all day · QL1A, Liên Chiểu"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=V%E1%BB%8Bnh%20L%C4%83ng%20C%C3%B4%2C%20L%C4%83ng%20C%C3%B4%2C%20Ph%C3%BA%20L%E1%BB%99c%2C%20Hu%E1%BA%BF" target="_blank" rel="noopener" class="sight__name">Lang Co bay</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Open all day</span>
+                <span><i class="ri-map-pin-2-line"></i> Lăng Cô, Phú Lộc, Huế</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+V%E1%BB%8Bnh+L%C4%83ng+C%C3%B4&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+V%E1%BB%8Bnh+L%C4%83ng+C%C3%B4%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+L%C4%83ng+C%C3%B4%2C+Ph%C3%BA+L%E1%BB%99c%2C+Hu%E1%BA%BF%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Vịnh Lăng Cô" data-report-details="Free · Open all day · Lăng Cô, Phú Lộc, Huế"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Lunch</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20C%E1%BB%93n%2C%20Ch%E1%BB%A3%20C%E1%BB%93n%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Chợ Cồn</a>
+        <span class="day-tl__what">Snacks: banh beo, snails, sweet soups</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ Cồn, Hải Châu · 30k–80k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Coffee & midday break</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20%C4%91%E1%BB%89nh%20%C4%91%C3%A8o%20H%E1%BA%A3i%20V%C3%A2n%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước đỉnh đèo Hải Vân</a>
+        <span class="day-tl__what">Coffee, coconut water, grilled corn</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Hai Van pass · 20k–50k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
+                        <p class="day-tl__text">Pork rolled in rice paper and coffee overlooking the Han river.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Drinks & snacks</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99ng%20C%C3%A0%20Ph%C3%AA%20B%E1%BA%A1ch%20%C4%90%E1%BA%B1ng%2C%20%C4%90%C6%B0%E1%BB%9Dng%20B%E1%BA%A1ch%20%C4%90%E1%BA%B1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="day-tl__place">Cộng Cà Phê Bạch Đằng</a>
+        <span class="day-tl__what">Coconut coffee over the Han River</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Đường Bạch Đằng, Hải Châu · 40k–65k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Dinner</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20b%C3%A8o%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Local specialty: Bánh bèo</a>
+        <span class="day-tl__what">Soft Da Nang rice cakes with sweet fish sauce and dried shrimp.</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Local eateries in Da Nang · 25,000 VND</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Evening</h4>
+                        <p class="day-tl__text">Han river cruise as the city lights up.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Du%20thuy%E1%BB%81n%20s%C3%B4ng%20H%C3%A0n%2C%20B%E1%BA%BFn%20du%20thuy%E1%BB%81n%20B%E1%BA%A1ch%20%C4%90%E1%BA%B1ng%2C%20H%E1%BA%A3i%20Ch%C3%A2u" target="_blank" rel="noopener" class="sight__name">Han river cruise</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 150,000 VND – 200,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 18:00–22:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Bến du thuyền Bạch Đằng, Hải Châu</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Du+thuy%E1%BB%81n+s%C3%B4ng+H%C3%A0n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Du+thuy%E1%BB%81n+s%C3%B4ng+H%C3%A0n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+150%2C000+VND+%E2%80%93+200%2C000+VND+%C2%B7+18%3A00%E2%80%9322%3A00+%C2%B7+B%E1%BA%BFn+du+thuy%E1%BB%81n+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng%2C+H%E1%BA%A3i+Ch%C3%A2u%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Du thuyền sông Hàn" data-report-details="150,000 VND – 200,000 VND · 18:00–22:00 · Bến du thuyền Bạch Đằng, Hải Châu"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more" hidden>
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Back to your stay</h4>
+                        <p class="day-tl__text">A short night stroll, then back to rest</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" hidden>
                 <h3 class="itinerary__day-title">Day 4: Hoi An Ancient Town</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Head to Hoi An: Tra Que vegetable village and Bay Mau coconut forest.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>The Covered Bridge, Fujian Assembly Hall and Tan Ky house.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Release lanterns on the Hoai river and eat cao lầu.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="da-nang"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=L%C3%A0ng+rau+Tr%C3%A0+Qu%E1%BA%BF%2C+C%E1%BA%A9m+H%C3%A0%2C+H%E1%BB%99i+An&destination=Th%E1%BA%A3+hoa+%C4%91%C4%83ng+s%C3%B4ng+Ho%C3%A0i%2C+B%E1%BA%BFn+s%C3%B4ng+Ho%C3%A0i%2C+H%E1%BB%99i+An&waypoints=R%E1%BB%ABng+d%E1%BB%ABa+B%E1%BA%A3y+M%E1%BA%ABu+%E2%80%93+thuy%E1%BB%81n+th%C3%BAng%2C+C%E1%BA%A9m+Thanh%2C+H%E1%BB%99i+An%7CV%C3%A9+tham+quan+ph%E1%BB%91+c%E1%BB%95+H%E1%BB%99i+An+%E2%80%93+Ch%C3%B9a+C%E1%BA%A7u%2C+Nguy%E1%BB%85n+Th%E1%BB%8B+Minh+Khai%2C+H%E1%BB%99i+An" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
+            <span class="day-cost__item">Tickets: <strong>240,000 VND – 320,000 VND</strong></span>
+            <span class="day-cost__item">Food & coffee: <strong>45,000 VND – 95,000 VND</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Breakfast</h4>
+                        <p class="day-tl__text">Breakfast at your stay (often included in the room rate)</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Morning sightseeing</h4>
+                        <p class="day-tl__text">Head to Hoi An: Tra Que vegetable village and Bay Mau coconut forest.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=L%C3%A0ng%20rau%20Tr%C3%A0%20Qu%E1%BA%BF%2C%20C%E1%BA%A9m%20H%C3%A0%2C%20H%E1%BB%99i%20An" target="_blank" rel="noopener" class="sight__name">Tra Que vegetable village</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Cẩm Hà, Hội An</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Farming experience ~150,000đ</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+L%C3%A0ng+rau+Tr%C3%A0+Qu%E1%BA%BF&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%C3%A0ng+rau+Tr%C3%A0+Qu%E1%BA%BF%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+C%E1%BA%A9m+H%C3%A0%2C+H%E1%BB%99i+An%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Làng rau Trà Quế" data-report-details="Free · 07:00–17:00 · Cẩm Hà, Hội An"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=R%E1%BB%ABng%20d%E1%BB%ABa%20B%E1%BA%A3y%20M%E1%BA%ABu%20%E2%80%93%20thuy%E1%BB%81n%20th%C3%BAng%2C%20C%E1%BA%A9m%20Thanh%2C%20H%E1%BB%99i%20An" target="_blank" rel="noopener" class="sight__name">Bay Mau coconut forest – basket boat</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 100,000 VND – 150,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Cẩm Thanh, Hội An</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Per person</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+R%E1%BB%ABng+d%E1%BB%ABa+B%E1%BA%A3y+M%E1%BA%ABu+%E2%80%93+thuy%E1%BB%81n+th%C3%BAng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+R%E1%BB%ABng+d%E1%BB%ABa+B%E1%BA%A3y+M%E1%BA%ABu+%E2%80%93+thuy%E1%BB%81n+th%C3%BAng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+100%2C000+VND+%E2%80%93+150%2C000+VND+%C2%B7+07%3A00%E2%80%9317%3A30+%C2%B7+C%E1%BA%A9m+Thanh%2C+H%E1%BB%99i+An%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Rừng dừa Bảy Mẫu – thuyền thúng" data-report-details="100,000 VND – 150,000 VND · 07:00–17:30 · Cẩm Thanh, Hội An"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Lunch</h4>
+                        <p class="day-tl__text">Lunch at the morning sight – plenty of eateries by the pier or gate</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Coffee & midday break</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%ABa%20r%E1%BB%ABng%20d%E1%BB%ABa%20B%E1%BA%A3y%20M%E1%BA%ABu%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước dừa rừng dừa Bảy Mẫu</a>
+        <span class="day-tl__what">Fresh coconut, sugarcane juice</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Bay Mau coconut forest – basket boat · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
+                        <p class="day-tl__text">The Covered Bridge, Fujian Assembly Hall and Tan Ky house.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=V%C3%A9%20tham%20quan%20ph%E1%BB%91%20c%E1%BB%95%20H%E1%BB%99i%20An%20%E2%80%93%20Ch%C3%B9a%20C%E1%BA%A7u%2C%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20H%E1%BB%99i%20An" target="_blank" rel="noopener" class="sight__name">Hoi An Old Town ticket – Japanese Bridge</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 120,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–21:30</span>
+                <span><i class="ri-map-pin-2-line"></i> Nguyễn Thị Minh Khai, Hội An</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Entry to 5 sites: Phuc Kien hall, Tan Ky house…</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+V%C3%A9+tham+quan+ph%E1%BB%91+c%E1%BB%95+H%E1%BB%99i+An+%E2%80%93+Ch%C3%B9a+C%E1%BA%A7u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+V%C3%A9+tham+quan+ph%E1%BB%91+c%E1%BB%95+H%E1%BB%99i+An+%E2%80%93+Ch%C3%B9a+C%E1%BA%A7u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+120%2C000+VND+%C2%B7+07%3A00%E2%80%9321%3A30+%C2%B7+Nguy%E1%BB%85n+Th%E1%BB%8B+Minh+Khai%2C+H%E1%BB%99i+An%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Vé tham quan phố cổ Hội An – Chùa Cầu" data-report-details="120,000 VND · 07:00–21:30 · Nguyễn Thị Minh Khai, Hội An"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Drinks & snacks</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20g%C3%A1c%20g%E1%BB%97%20ph%E1%BB%91%20Nguy%E1%BB%85n%20Th%C3%A1i%20H%E1%BB%8Dc%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Cà phê gác gỗ phố Nguyễn Thái Học</a>
+        <span class="day-tl__what">Salted coffee, lotus tea upstairs</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Hoi An Old Town ticket – Japanese Bridge · 30k–60k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Dinner & evening</h4>
+                        <p class="day-tl__text">Release lanterns on the Hoai river and eat cao lầu.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Th%E1%BA%A3%20hoa%20%C4%91%C4%83ng%20s%C3%B4ng%20Ho%C3%A0i%2C%20B%E1%BA%BFn%20s%C3%B4ng%20Ho%C3%A0i%2C%20H%E1%BB%99i%20An" target="_blank" rel="noopener" class="sight__name">Lanterns on the Hoai river</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 20,000 VND – 50,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 17:30–22:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Bến sông Hoài, Hội An</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Boat ~150,000đ per boat</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Th%E1%BA%A3+hoa+%C4%91%C4%83ng+s%C3%B4ng+Ho%C3%A0i&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%E1%BA%A3+hoa+%C4%91%C4%83ng+s%C3%B4ng+Ho%C3%A0i%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+20%2C000+VND+%E2%80%93+50%2C000+VND+%C2%B7+17%3A30%E2%80%9322%3A00+%C2%B7+B%E1%BA%BFn+s%C3%B4ng+Ho%C3%A0i%2C+H%E1%BB%99i+An%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Thả hoa đăng sông Hoài" data-report-details="20,000 VND – 50,000 VND · 17:30–22:00 · Bến sông Hoài, Hội An"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Back to your stay</h4>
+                        <p class="day-tl__text">A short night stroll, then back to rest</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last" hidden>
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" hidden>
                 <h3 class="itinerary__day-title">Day 5: Cu Lao Cham islands</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Morning</h4>
-                                <p>Speedboat to Cu Lao Cham for snorkelling.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Afternoon</h4>
-                                <p>Swim at Chong beach and visit Bai Lang fishing village.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Evening</h4>
-                                <p>Back in Da Nang, buy beef sausage and dried squid as gifts.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> End of tour: check out, shop for local specialties and head home.</p>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="da-nang"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Tour+cano+C%C3%B9+Lao+Ch%C3%A0m+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4%2C+C%E1%BA%A3ng+C%E1%BB%ADa+%C4%90%E1%BA%A1i%2C+H%E1%BB%99i+An&destination=B%C3%A3i+Ch%E1%BB%93ng+%E2%80%93+l%C3%A0ng+ch%C3%A0i+B%C3%A3i+L%C3%A0ng%2C+C%C3%B9+Lao+Ch%C3%A0m" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Route on Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Add this day to Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Estimated per person today</span>
+            <span class="day-cost__item">Tickets: <strong>650,000 VND – 800,000 VND</strong></span>
+            <span class="day-cost__item">Food & coffee: <strong>40,000 VND – 90,000 VND</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Breakfast</h4>
+                        <p class="day-tl__text">Breakfast at a busy local eatery near your stay</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Morning sightseeing</h4>
+                        <p class="day-tl__text">Speedboat to Cu Lao Cham for snorkelling.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Tour%20cano%20C%C3%B9%20Lao%20Ch%C3%A0m%20%E2%80%93%20l%E1%BA%B7n%20san%20h%C3%B4%2C%20C%E1%BA%A3ng%20C%E1%BB%ADa%20%C4%90%E1%BA%A1i%2C%20H%E1%BB%99i%20An" target="_blank" rel="noopener" class="sight__name">Cu Lao Cham speedboat & snorkelling</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 650,000 VND – 800,000 VND</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Boats leave ~8am</span>
+                <span><i class="ri-map-pin-2-line"></i> Cảng Cửa Đại, Hội An</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Includes boat, island fee, snorkelling, lunch</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+Tour+cano+C%C3%B9+Lao+Ch%C3%A0m+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Tour+cano+C%C3%B9+Lao+Ch%C3%A0m+%E2%80%93+l%E1%BA%B7n+san+h%C3%B4%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+650%2C000+VND+%E2%80%93+800%2C000+VND+%C2%B7+Boats+leave+%7E8am+%C2%B7+C%E1%BA%A3ng+C%E1%BB%ADa+%C4%90%E1%BA%A1i%2C+H%E1%BB%99i+An%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Tour cano Cù Lao Chàm – lặn san hô" data-report-details="650,000 VND – 800,000 VND · Boats leave ~8am · Cảng Cửa Đại, Hội An"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Lunch</h4>
+                        <p class="day-tl__text">A simple rice lunch near the sights</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Coffee & midday break</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%ABa%20B%C3%A3i%20L%C3%A0ng%20Da%20Nang" target="_blank" rel="noopener" class="day-tl__place">Quán nước dừa Bãi Làng</a>
+        <span class="day-tl__what">Coconut water, cold beer</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Near Bai Chong beach – Bai Lang village · 20k–45k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Afternoon sightseeing</h4>
+                        <p class="day-tl__text">Swim at Chong beach and visit Bai Lang fishing village.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A3i%20Ch%E1%BB%93ng%20%E2%80%93%20l%C3%A0ng%20ch%C3%A0i%20B%C3%A3i%20L%C3%A0ng%2C%20C%C3%B9%20Lao%20Ch%C3%A0m" target="_blank" rel="noopener" class="sight__name">Bai Chong beach – Bai Lang village</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Free</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Open all day</span>
+                <span><i class="ri-map-pin-2-line"></i> Cù Lao Chàm</span>
+                <span title="Month this information was last updated or re-checked"><i class="ri-refresh-line"></i> Updated 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+Da+Nang+%E2%80%93+B%C3%A3i+Ch%E1%BB%93ng+%E2%80%93+l%C3%A0ng+ch%C3%A0i+B%C3%A3i+L%C3%A0ng&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+Da+Nang%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%A3i+Ch%E1%BB%93ng+%E2%80%93+l%C3%A0ng+ch%C3%A0i+B%C3%A3i+L%C3%A0ng%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Free+%C2%B7+Open+all+day+%C2%B7+C%C3%B9+Lao+Ch%C3%A0m%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Report incorrect information"
+        data-report-dest="Da Nang" data-report-item="Bãi Chồng – làng chài Bãi Làng" data-report-details="Free · Open all day · Cù Lao Chàm"><i class="ri-flag-line"></i> Report</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Drinks & snacks</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20sinh%20t%E1%BB%91%20%E2%80%93%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%ABa%20M%E1%BB%B9%20Kh%C3%AA%2C%20V%C3%B5%20Nguy%C3%AAn%20Gi%C3%A1p%2C%20S%C6%A1n%20Tr%C3%A0" target="_blank" rel="noopener" class="day-tl__place">Quán sinh tố – nước dừa Mỹ Khê</a>
+        <span class="day-tl__what">Smoothies and coconut water after a swim</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Võ Nguyên Giáp, Sơn Trà · 20k–45k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Dinner</h4>
+                        <p class="day-tl__text">Dinner near your stay – pick a place busy with locals</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Evening</h4>
+                        <ul class="day-tl__list"><li>Back in Da Nang</li><li>Buy beef sausage and dried squid as gifts</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">End of tour</h4>
+                        <p class="day-tl__text">End of tour: check out, shop for local specialties and head home.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Budget</span>
-                                    <strong>3,700,000 VND</strong>
-                                    <small>Homestays, local eateries</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Comfort</span>
-                                    <strong>10,000,000 VND</strong>
-                                    <small>3–4 star hotels, guided tours</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+        <div class="budget" data-tour-len="3">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 3 days 2 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
                 
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>2,020,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>3,700,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Hotel in Han River centre (400k–1.5M/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>400,000 VND</strong>
+                        <small>2 night × 200,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Mì Quảng Bà Mua, Nhà hàng Trần</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>570,000 VND</strong>
+                        <small>3 days × 190,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180,000 VND</strong>
+                        <small>3 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>870,000 VND</strong>
+                        <small>3 days × 290,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,000,000 VND</strong>
+                        <small>2 night × 500,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,020,000 VND</strong>
+                        <small>3 days × 340,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450,000 VND</strong>
+                        <small>3 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,230,000 VND</strong>
+                        <small>3 days × 410,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="4" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 4 days 3 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>2,760,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>5,100,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Hotel in Han River centre (400k–1.5M/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>3 night × 200,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Mì Quảng Bà Mua, Nhà hàng Trần</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>760,000 VND</strong>
+                        <small>4 days × 190,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240,000 VND</strong>
+                        <small>4 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,160,000 VND</strong>
+                        <small>4 days × 290,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,500,000 VND</strong>
+                        <small>3 night × 500,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,360,000 VND</strong>
+                        <small>4 days × 340,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600,000 VND</strong>
+                        <small>4 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,640,000 VND</strong>
+                        <small>4 days × 410,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="5" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Estimated cost per person – 5 days 4 nights</h3>
+            <div class="budget__options" role="group" aria-label="Budget level">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Budget</span>
+                        <strong>3,500,000 VND</strong>
+                        <small>Homestays, local eateries, scooters</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Comfort</span>
+                        <strong>6,500,000 VND</strong>
+                        <small>3–4 star hotels, restaurants, Grab</small>
+                        <em class="budget__more">View details <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Breakdown: budget</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>Hotel in Han River centre (400k–1.5M/room), shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>800,000 VND</strong>
+                        <small>4 night × 200,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Cheap breakfasts and local spots like Mì Quảng Bà Mua, Nhà hàng Trần</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>950,000 VND</strong>
+                        <small>5 days × 190,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Scooter rental or buses, shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>300,000 VND</strong>
+                        <small>5 days × 60,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>Entrance fees, boats and cable cars per itinerary</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,450,000 VND</strong>
+                        <small>5 days × 290,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Breakdown: comfort</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Accommodation</strong>
+                        <small>3–4 star hotel, double room shared by 2</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,000,000 VND</strong>
+                        <small>4 night × 500,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Food & drink</strong>
+                        <small>Mid-range restaurants, specialties and seafood</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1,700,000 VND</strong>
+                        <small>5 days × 340,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Local transport</strong>
+                        <small>Grab, taxis or short private rides</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>750,000 VND</strong>
+                        <small>5 days × 150,000 VND</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Tickets & activities</strong>
+                        <small>As per itinerary, plus guided tours/shows</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2,050,000 VND</strong>
+                        <small>5 days × 410,000 VND</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+                </div>
 
                 <p class="budget__note">Excludes flights/transport to Da Nang. Prices are indicative and vary by season.</p>
+
+                <p class="budget__note"><i class="ri-ticket-2-line"></i> <a href="../../../en/diem-den/da-nang/gia-ve/index.html">Entrance fees & opening hours for sights in Da Nang</a></p>
 
                 <div class="plan-cta">
                     <p><i class="ri-route-line"></i> Visiting more than one place? Combine Da Nang with other destinations.</p>
@@ -1157,6 +2196,19 @@
                         <i class="ri-direction-line"></i> Directions on Google Maps
                     </a>
                 </div>
+            </div>
+        </section>
+    
+        <section class="comments section" id="comments">
+            <span class="section__subtitle">Community</span>
+            <h2 class="section__title">Share your experience</h2>
+            <div class="comments__container container">
+                <h3 class="community__title"><i class="ri-camera-3-line"></i> Reader photos</h3>
+                <p class="comments__intro">No photos yet – be the first to share a moment in Da Nang!</p>
+                <a href="https://github.com/TanTan1802/travel/issues/new?template=gui-anh.yml&title=%5B%E1%BA%A2nh%5D+Da+Nang&dest=Da+Nang" target="_blank" rel="noopener" class="button button--flex community__submit">
+                    <i class="ri-image-add-line"></i> Share your photo
+                </a>
+                
             </div>
         </section>
     
@@ -1337,25 +2389,11 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'da-nang'</script>
-        <script defer src="../../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="../../../assets/js/data/en.js"></script>
-        <script defer src="../../../assets/js/data/local-images.js"></script>
-        <script defer src="../../../assets/js/i18n.js"></script>
-        <script defer src="../../../assets/js/data/destinations.js"></script>
-        <script defer src="../../../assets/js/data/itineraries.js"></script>
-        <script defer src="../../../assets/js/data/places.js"></script>
-        <script defer src="../../../assets/js/favorites.js"></script>
-        <script defer src="../../../assets/js/components.js"></script>
-        <script defer src="../../../assets/js/config.js"></script>
-        <script defer src="../../../assets/js/map.js"></script>
-        <script defer src="../../../assets/js/weather.js"></script>
-        <script defer src="../../../assets/js/destination-render.js"></script>
-        <script defer src="../../../assets/js/destination.js"></script>
-
-        <!--=============== MAIN JS ===============-->
-        <script defer src="../../../assets/js/main.js"></script>
+        <script>window.SITE_ROOT = '../../../'; window.SITE_LANG = 'en'; window.DEST_ID = 'da-nang'</script>
+        <script defer src="../../../assets/js/dist/348212fba3.js"></script>
+        <script defer src="../../../assets/js/data/dest/da-nang.js"></script>
+        <script defer src="../../../assets/js/dist/1bc8e5a571.js"></script>
     </body>
 </html>

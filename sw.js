@@ -1,48 +1,38 @@
 /*
  * Service worker – cho phép cài website như ứng dụng và xem lại trang đã mở khi mất mạng.
+ * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '8cc87c2f3d'
+const VERSION = 'aa327b9746'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
+const PAGE_LIMIT = 80
 const MEDIA_CACHE = 'media'
 const MEDIA_LIMIT = 250
 
-/* Tài nguyên tải sẵn khi cài đặt (đường dẫn tương đối với sw.js) */
+/*
+ * Tài nguyên tải sẵn khi cài đặt (đường dẫn tương đối với sw.js): trang offline + đủ để mở lại trang chủ.
+ * Mã/dữ liệu của trang điểm đến, kế hoạch, bản tiếng Anh được lưu dần khi người dùng mở các trang đó
+ * (không bắt mọi người tải ~450 KB ngay lần đầu); "Tải về dùng offline" (today.js) lưu trọn chuyến đi.
+ */
 const CORE_ASSETS = [
     './',
     './index.html',
     './offline.html',
     './manifest.webmanifest',
-    './assets/css/styles.css',
-    './assets/css/vietnam.css',
-    './assets/css/swiper-bundle.min.css',
-    './assets/js/data/local-images.js',
-    './assets/js/i18n.js',
-    './assets/js/data/en.js',
-    './assets/js/data/destinations.js',
-    './assets/js/data/itineraries.js',
-    './assets/js/data/places.js',
-    './assets/js/favorites.js',
-    './assets/js/components.js',
-    './assets/js/map.js',
-    './assets/js/weather.js',
-    './assets/js/home.js',
-    './assets/js/destination-render.js',
-    './assets/js/destination.js',
-    './assets/js/planner.js',
-    './assets/js/guide.js',
-    './assets/js/config.js',
-    './assets/js/newsletter.js',
-    './assets/js/main.js',
-    './assets/js/scrollreveal.min.js',
-    './assets/js/swiper-bundle.min.js',
+    './assets/fonts/remixicon.woff2',
+    './assets/fonts/open-sans-latin-400.woff2',
+    './assets/fonts/open-sans-vietnamese-400.woff2',
+    /* build:core-assets */
+    './assets/css/site-2303c79c15.css',
+    './assets/js/dist/819d140ade.js',
+    /* /build:core-assets */
     './assets/img/favicon.png',
     './assets/img/icons/icon-192.png',
 ]
 
-/* Thư viện/phông chữ bên ngoài: lưu lại để dùng offline */
-const CDN_HOSTS = ['cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com']
+/* Thư viện bên ngoài (Leaflet): lưu lại để dùng offline */
+const CDN_HOSTS = ['cdnjs.cloudflare.com']
 /* Ảnh và ô bản đồ: lưu có giới hạn */
 const MEDIA_HOSTS = ['commons.wikimedia.org', 'upload.wikimedia.org', 'tile.openstreetmap.org']
 
@@ -65,11 +55,13 @@ async function trimCache(name, limit) {
 }
 
 /* Trang HTML: ưu tiên mạng để luôn mới nhất, mất mạng thì dùng bản đã lưu */
-async function networkFirst(request, cacheName = PAGE_CACHE) {
+async function networkFirst(request, cacheName = PAGE_CACHE, limit = 0) {
     const cache = await caches.open(cacheName)
     try {
         const response = await fetch(request)
-        if (response.ok) cache.put(request, response.clone())
+        if (response.ok) {
+            cache.put(request, response.clone()).then(() => limit && trimCache(cacheName, limit))
+        }
         return response
     } catch {
         return (await cache.match(request, { ignoreSearch: false }))
@@ -84,11 +76,10 @@ async function staleWhileRevalidate(request, cacheName, limit) {
     const cached = await cache.match(request)
     const network = fetch(request).then(response => {
         if (response.ok || response.type === 'opaque') {
-            cache.put(request, response.clone())
-            if (limit) trimCache(cacheName, limit)
+            cache.put(request, response.clone()).then(() => limit && trimCache(cacheName, limit))
         }
         return response
-    }).catch(() => cached || Response.error())
+    }).catch(async () => cached || (await caches.match(request)) || Response.error())
     return cached || network
 }
 
@@ -98,10 +89,13 @@ self.addEventListener('fetch', event => {
     const url = new URL(request.url)
 
     if (request.mode === 'navigate') {
-        event.respondWith(networkFirst(request))
+        event.respondWith(networkFirst(request, PAGE_CACHE, PAGE_LIMIT))
     } else if (url.origin === self.location.origin && /\.(?:js|css|webmanifest)$/.test(url.pathname)) {
         /* Mã nguồn: luôn lấy bản mới nhất để khớp với HTML vừa deploy, mất mạng mới dùng bản lưu */
         event.respondWith(networkFirst(request, CORE_CACHE))
+    } else if (url.origin === self.location.origin && url.pathname.includes('/assets/img/wiki/')) {
+        /* Ảnh địa danh (tới vài trăm KB/ảnh): bộ nhớ có giới hạn, không bị xóa mỗi lần cập nhật phiên bản */
+        event.respondWith(staleWhileRevalidate(request, MEDIA_CACHE, MEDIA_LIMIT))
     } else if (url.origin === self.location.origin) {
         event.respondWith(staleWhileRevalidate(request, CORE_CACHE))
     } else if (CDN_HOSTS.includes(url.hostname)) {

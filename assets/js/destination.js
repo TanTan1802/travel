@@ -14,12 +14,17 @@ const isPrerendered = destRoot.hasAttribute('data-prerendered')
  * Ảnh nổi bật chiếm 2x2 ô. Vùng bên cạnh nó rộng (số cột - 2) và cao 2 hàng;
  * phần còn lại xếp thành các hàng đầy đủ. Nới rộng vài ảnh cuối để không còn ô trống.
  */
+let galleryLayout = ''
 function balanceGallery() {
     const grid = document.querySelector('.gallery__grid')
     if (!grid) return
 
     const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length
     const items = [...grid.querySelectorAll('.gallery__item:not(.is-broken)')]
+    /* Khi đổi kích thước cửa sổ: chỉ sắp lại nếu số cột hoặc số ảnh thay đổi */
+    const layout = `${cols}:${items.length}`
+    if (layout === galleryLayout) return
+    galleryLayout = layout
     items.forEach(item => {
         item.classList.remove('is-wide', 'is-full')
         item.style.gridColumn = item.style.gridRow = ''
@@ -127,6 +132,7 @@ function initLightbox(photos) {
 }
 
 /*==================== LỊCH TRÌNH: CHỌN TOUR + CHUYỂN NGÀY ====================*/
+/* Các tour 3/4/5 ngày dùng chung một khối .tour (xem tourDaysHtml); ngày ngoài tour mang class --off */
 function initDayTabs(tour) {
     const tabs = [...tour.querySelectorAll('.itinerary__tab')]
     const select = tab => {
@@ -137,33 +143,71 @@ function initDayTabs(tour) {
             document.getElementById(t.getAttribute('aria-controls')).hidden = !active
         })
     }
-    tabs.forEach((tab, i) => {
+    tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tour.classList.remove('tour--expanded')
+            syncExpandButton(tour)
             select(tab)
         })
         tab.addEventListener('keydown', e => {
             const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0
             if (!step) return
-            const next = tabs[(i + step + tabs.length) % tabs.length]
+            const shown = tabs.filter(t => !t.hidden)
+            const next = shown[(shown.indexOf(tab) + step + shown.length) % shown.length]
             next.focus()
             next.click()
         })
     })
+    tour.selectDay = select
 
     /* Xem tất cả các ngày một lúc (tiện đọc/in) */
     const expand = tour.querySelector('.tour__expand')
     if (expand) {
         expand.addEventListener('click', () => {
-            const expanded = !tour.classList.contains('tour--expanded')
-            tour.classList.toggle('tour--expanded', expanded)
-            expand.dataset.expanded = expanded
-            expand.querySelector('span').textContent = expanded ? t('Xem từng ngày') : t('Xem tất cả các ngày')
-            tour.querySelectorAll('.itinerary__panel').forEach((panel, i) => {
-                panel.hidden = expanded ? false : !tabs[i].classList.contains('itinerary__tab--active')
-            })
+            tour.classList.toggle('tour--expanded')
+            syncExpandButton(tour)
+            syncPanels(tour)
         })
     }
+}
+
+function syncExpandButton(tour) {
+    const expand = tour.querySelector('.tour__expand')
+    if (!expand) return
+    const expanded = tour.classList.contains('tour--expanded')
+    expand.dataset.expanded = expanded
+    expand.querySelector('span').textContent = expanded ? t('Xem từng ngày') : t('Xem tất cả các ngày')
+}
+
+/* Hiện ngày đang chọn (hoặc mọi ngày của tour khi xem tất cả), luôn ẩn ngày ngoài tour */
+function syncPanels(tour) {
+    const expanded = tour.classList.contains('tour--expanded')
+    tour.querySelectorAll('.itinerary__tab').forEach(tab => {
+        const panel = document.getElementById(tab.getAttribute('aria-controls'))
+        panel.hidden = panel.classList.contains('itinerary__panel--off') || !(expanded || tab.classList.contains('itinerary__tab--active'))
+    })
+}
+
+/* Đổi số ngày của tour: ẩn/hiện ngày, mục cuối ngày, tóm tắt và bảng chi phí tương ứng */
+function setTourLength(tour, n) {
+    tour.dataset.tour = n
+    tour.querySelectorAll('.itinerary__tab').forEach((tab, i) => {
+        const off = i >= n
+        tab.hidden = off
+        document.getElementById(tab.getAttribute('aria-controls')).classList.toggle('itinerary__panel--off', off)
+    })
+    tour.querySelectorAll('.itinerary__panel').forEach((panel, i) => {
+        panel.querySelectorAll('[data-end]').forEach(item => {
+            item.hidden = (item.dataset.end === 'last') !== (i === n - 1)
+        })
+    })
+    tour.querySelectorAll('[data-tour-len]').forEach(el => { el.hidden = Number(el.dataset.tourLen) !== n })
+    const label = tourLabel(n)
+    tour.querySelector('[data-tour-action="print"]')?.setAttribute('aria-label', t('In lịch trình {tour}', { tour: label }))
+    tour.querySelector('[data-tour-action="ics"]')?.setAttribute('aria-label', t('Thêm lịch trình {tour} vào lịch (.ics)', { tour: label }))
+    const active = tour.querySelector('.itinerary__tab--active')
+    if (active?.hidden) tour.selectDay(tour.querySelector('.itinerary__tab'))
+    syncPanels(tour)
 }
 
 function initItineraryTabs() {
@@ -178,17 +222,32 @@ function initItineraryTabs() {
                 b.classList.toggle('tour-picker__btn--active', active)
                 b.setAttribute('aria-selected', active)
             })
-            tours.forEach(tour => { tour.hidden = tour.dataset.tour !== btn.dataset.tour })
+            tours.forEach(tour => setTourLength(tour, Number(btn.dataset.tour)))
         })
     })
 }
+
+/* Chọn mức chi tiêu để xem chi tiết từng khoản */
+document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-budget-tier]')
+    if (!btn) return
+    const box = btn.closest('.budget')
+    box.querySelectorAll('[data-budget-tier]').forEach(b => {
+        const active = b === btn
+        b.classList.toggle('budget__option--active', active)
+        b.setAttribute('aria-pressed', active)
+    })
+    box.querySelectorAll('[data-budget-detail]').forEach(el => { el.hidden = el.dataset.budgetDetail !== btn.dataset.budgetTier })
+})
 
 /* In chỉ phần lịch trình (tour đang chọn, đủ các ngày) hoặc chia sẻ trang */
 function initTourActions(d) {
     document.addEventListener('click', e => {
         const btn = e.target.closest('[data-tour-action]')
         if (!btn) return
-        if (btn.dataset.tourAction === 'print') {
+        if (btn.dataset.tourAction === 'ics') {
+            exportTourIcs(d, Number(btn.closest('.tour').dataset.tour))
+        } else if (btn.dataset.tourAction === 'print') {
             document.body.classList.add('print-itinerary')
             window.addEventListener('afterprint', () => document.body.classList.remove('print-itinerary'), { once: true })
             window.print()
@@ -201,6 +260,120 @@ function initTourActions(d) {
             })
         }
     })
+}
+
+/*==================== NGÀY KHỞI HÀNH: DỰ BÁO THỜI TIẾT + XUẤT LỊCH ====================*/
+const TOUR_START_KEY = 'viet-travel:tour-start'
+
+function tourStart() {
+    return document.getElementById('tour-start')?.value || ''
+}
+
+/* Điền ngày, dự báo và link Google Calendar cho từng ngày của mọi tour */
+function applyTourStart(d) {
+    updateDayTools(d)
+    if (tourStart()) fillForecasts(document.getElementById('itinerary'))
+    renderTourAlerts(d)
+    renderPacking(d)
+}
+
+/* Ngày cụ thể + link Google Calendar từng ngày (ngày cuối theo số ngày của tour đang chọn) */
+function updateDayTools(d) {
+    const start = tourStart()
+    const plan = ITINERARIES[d.id]
+    document.querySelectorAll('.tour').forEach(tour => {
+        const n = Number(tour.dataset.tour)
+        tour.querySelectorAll('.day-tools').forEach(tools => {
+            const i = Number(tools.dataset.dayOffset)
+            const date = start ? addDays(start, i) : ''
+            const dateEl = tools.querySelector('[data-day-date]')
+            const forecast = tools.querySelector('[data-forecast-dest]')
+            const gcal = tools.querySelector('[data-gcal]')
+            dateEl.hidden = !date
+            dateEl.innerHTML = date ? `<i class="ri-calendar-line"></i> ${formatDate(date)}` : ''
+            gcal.hidden = !date
+            if (date) {
+                forecast.dataset.forecastDate = date
+                const entries = dayTimeline(d.id, i, plan.days[i], { last: i === n - 1 })
+                gcal.href = googleCalendarDayUrl({
+                    title: `${d.name} – ${t('Ngày {n}', { n: i + 1 })}: ${plan.days[i].title}`,
+                    date,
+                    details: `${dayDetailsText(entries)}\n\n${location.href.split('#')[0]}#itinerary`,
+                    location: `${d.name}, ${d.province}`,
+                })
+            } else {
+                delete forecast.dataset.forecastDate
+                forecast.innerHTML = ''
+            }
+        })
+    })
+}
+
+/* Lễ hội, nghỉ lễ, thời tiết cần lưu ý trùng các ngày của tour đang chọn */
+function renderTourAlerts(d) {
+    const box = document.getElementById('tour-alerts')
+    if (!box) return
+    const start = tourStart()
+    const tour = document.querySelector('.tour:not([hidden])')
+    const n = tour ? Number(tour.dataset.tour) : 3
+    const events = start ? eventsForTrip(d.id, { dates: Array.from({ length: n }, (_, i) => addDays(start, i)) }) : []
+    box.hidden = !events.length
+    box.innerHTML = events.length
+        ? `<li class="trip-alerts__title"><i class="ri-alarm-warning-line"></i> ${t('Lưu ý trong những ngày bạn đi')}</li>${events.map(e => eventCardHtml(e)).join('')}`
+        : ''
+}
+
+/* Danh sách đồ cần mang theo tháng đi (ngày khởi hành hoặc tháng hiện tại) */
+function renderPacking(d) {
+    const block = document.getElementById('packing')
+    if (!block) return
+    const start = tourStart()
+    const month = start ? Number(start.slice(5, 7)) : new Date().getMonth() + 1
+    block.querySelector('[data-packing-title]').textContent = t('Đồ cần mang – tháng {m}', { m: monthLabel(month) })
+    block.querySelector('[data-packing-slot]').innerHTML = packingHtml(packingList([d], [month]), d.id)
+}
+
+function initTourStart(d) {
+    const input = document.getElementById('tour-start')
+    if (!input) return
+    input.min = todayIso()
+    try {
+        const saved = localStorage.getItem(TOUR_START_KEY)
+        if (saved && saved >= todayIso()) input.value = saved
+    } catch { /* bỏ qua */ }
+    input.addEventListener('change', () => {
+        try {
+            if (input.value) localStorage.setItem(TOUR_START_KEY, input.value)
+            else localStorage.removeItem(TOUR_START_KEY)
+        } catch { /* bỏ qua */ }
+        applyTourStart(d)
+    })
+    /* Đổi tour 3/4/5 ngày → cập nhật lưu ý theo số ngày */
+    document.querySelectorAll('.tour-picker__btn').forEach(btn => btn.addEventListener('click', () => {
+        updateDayTools(d)
+        renderTourAlerts(d)
+    }))
+    applyTourStart(d)
+}
+
+/* Tải file .ics của tour đang chọn: mỗi mốc timeline là một sự kiện có giờ */
+function exportTourIcs(d, n) {
+    const start = tourStart()
+    if (!start) {
+        const input = document.getElementById('tour-start')
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        input.focus()
+        showToast(t('Chọn ngày khởi hành trước để thêm vào lịch'))
+        return
+    }
+    const plan = ITINERARIES[d.id]
+    const events = plan.days.slice(0, n).flatMap((day, i) => timelineToEvents(
+        dayTimeline(d.id, i, day, { last: i === n - 1 }),
+        { date: addDays(start, i), destName: d.name, dayLabel: `${t('Ngày {n}', { n: i + 1 })}: ${day.title}` },
+    ))
+    const name = `${d.name} – ${tourLabel(n)}`
+    downloadTextFile(`${safeFileName(name)}-${start}.ics`, buildIcs({ name, events }))
+    showToast(t('Đã tải file lịch – mở file để thêm vào Google Calendar, Apple Calendar hoặc Outlook'))
 }
 
 /*==================== THANH 12 THÁNG: BẤM CHỌN THÁNG ====================*/
@@ -221,6 +394,13 @@ function initSeasonPicker(d) {
             ? t('Tháng {m} là thời điểm đẹp để đi!', { m: monthLabel(month) })
             : t('Tháng {m} chưa phải mùa đẹp nhất – cân nhắc các tháng được tô màu.', { m: monthLabel(month) })
         status.classList.toggle('season__status--good', good)
+
+        /* Làm nổi lễ hội / mùa đặc sắc diễn ra trong tháng đang xem */
+        document.querySelectorAll('#dest-events .event').forEach(el => {
+            const inMonth = el.dataset.eventMonths.split(',').map(Number).includes(month)
+            el.classList.toggle('event--active', inMonth)
+            el.classList.toggle('event--dim', !inMonth)
+        })
 
         /* Gợi ý các điểm đến khác đẹp vào tháng này */
         const picks = DESTINATIONS.filter(x => x.id !== d.id && x.bestMonths.includes(month)).slice(0, 6)
@@ -286,7 +466,7 @@ function initComments() {
             'emit-metadata': '0',
             'input-position': 'top',
             theme: giscusTheme(),
-            lang: LANG,
+            lang: LANG === 'zh' ? 'zh-CN' : LANG,
             loading: 'lazy',
         }).forEach(([key, value]) => script.setAttribute(`data-${key}`, value))
         el.appendChild(script)
@@ -316,17 +496,23 @@ if (dest) {
         canonical.href = new URL(destinationUrl(dest.id).replace('index.html', ''), location.href).href
         document.head.appendChild(canonical)
 
-        /* Nút chuyển ngôn ngữ trỏ tới trang tiếng Anh tương ứng */
-        const langSwitch = document.querySelector('.nav__lang')
-        if (langSwitch) langSwitch.href = `${SITE_ROOT}en/diem-den/${dest.id}/index.html`
+        /* Menu ngôn ngữ trỏ tới trang tĩnh tương ứng của từng ngôn ngữ */
+        document.querySelectorAll('.nav__lang a[hreflang]').forEach(a => {
+            a.href = `${SITE_ROOT}${langPrefix(a.hreflang)}diem-den/${dest.id}/index.html`
+        })
     }
     initLightbox([{ file: dest.hero, caption: dest.name }, ...dest.gallery])
     balanceGallery()
-    window.addEventListener('resize', balanceGallery)
+    let galleryFrame = 0
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(galleryFrame)
+        galleryFrame = requestAnimationFrame(balanceGallery)
+    }, { passive: true })
     syncFavoriteButtons()
     syncPlanButtons()
     initItineraryTabs()
     initTourActions(dest)
+    initTourStart(dest)
     initLocationMap(dest)
     initWeather(document.getElementById('weather'), dest.lat, dest.lng)
     initComments()

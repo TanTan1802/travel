@@ -8,24 +8,20 @@
         <link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <!-- Font & icon tải không chặn hiển thị -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-        </noscript>
-        <link rel="stylesheet" href="../assets/css/styles.css">
-        <link rel="stylesheet" href="../assets/css/vietnam.css">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../assets/css/site-2303c79c15.css">
 
         <title>Cẩm nang du lịch – Việt Travel</title>
     
         <link rel="canonical" href="https://tantan1802.github.io/travel/cam-nang/">
         <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/cam-nang/">
         <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/cam-nang/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/cam-nang/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/cam-nang/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/cam-nang/">
         <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/cam-nang/">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Việt Travel">
@@ -38,6 +34,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://tantan1802.github.io/travel/"},{"@type":"ListItem","position":2,"name":"Cẩm nang","item":"https://tantan1802.github.io/travel/cam-nang/"}]}]}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../index.html" class="nav__logo">Việt Travel</a>
@@ -58,7 +56,16 @@
                         </li>
                     </ul>
 
-                    <a class="nav__lang" id="lang-switch" href="../en/cam-nang/index.html" hreflang="en" lang="en" title="English">EN</a>
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> VI</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../cam-nang/index.html" hreflang="vi" lang="vi" data-lang="vi" aria-current="true">Tiếng Việt</a></li>
+                            <li><a href="../en/cam-nang/index.html" hreflang="en" lang="en" data-lang="en">English</a></li>
+                            <li><a href="../ko/cam-nang/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../zh/cam-nang/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../ja/cam-nang/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -128,6 +135,18 @@
             <span class="guide-card__more">Đọc bài <i class="ri-arrow-right-line"></i></span>
         </a>
     </div>
+        </section>
+    
+        <section class="section container explore-hub">
+            <h2 class="section__title">Khám phá theo tháng & chủ đề</h2>
+            <div class="explore-hub__group">
+                <strong>Đi đâu theo tháng</strong>
+                <div class="month-nav"><a href="../thang/1/index.html" class="chip">Tháng 1</a><a href="../thang/2/index.html" class="chip">Tháng 2</a><a href="../thang/3/index.html" class="chip">Tháng 3</a><a href="../thang/4/index.html" class="chip">Tháng 4</a><a href="../thang/5/index.html" class="chip">Tháng 5</a><a href="../thang/6/index.html" class="chip">Tháng 6</a><a href="../thang/7/index.html" class="chip">Tháng 7</a><a href="../thang/8/index.html" class="chip">Tháng 8</a><a href="../thang/9/index.html" class="chip">Tháng 9</a><a href="../thang/10/index.html" class="chip">Tháng 10</a><a href="../thang/11/index.html" class="chip">Tháng 11</a><a href="../thang/12/index.html" class="chip">Tháng 12</a></div>
+            </div>
+            <div class="explore-hub__group">
+                <strong>Theo chủ đề</strong>
+                <div class="month-nav"><a href="../chu-de/bien/index.html" class="chip">Biển đảo</a><a href="../chu-de/nui/index.html" class="chip">Núi rừng</a><a href="../chu-de/di-san/index.html" class="chip">Di sản</a><a href="../chu-de/thanh-pho/index.html" class="chip">Thành phố</a><a href="../chu-de/hang-dong/index.html" class="chip">Hang động</a><a href="../chu-de/mien-bac/index.html" class="chip">Miền Bắc</a><a href="../chu-de/mien-trung/index.html" class="chip">Miền Trung</a><a href="../chu-de/mien-nam/index.html" class="chip">Miền Nam</a></div>
+            </div>
         </section>
     </main>
 
@@ -202,18 +221,9 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'vi'</script>
-        <script defer src="../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="../assets/js/data/local-images.js"></script>
-        <script defer src="../assets/js/i18n.js"></script>
-        <script defer src="../assets/js/data/destinations.js"></script>
-        <script defer src="../assets/js/favorites.js"></script>
-        <script defer src="../assets/js/components.js"></script>
-        <script defer src="../assets/js/guide.js"></script>
-
-        <!--=============== MAIN JS ===============-->
-        <script defer src="../assets/js/main.js"></script>
+        <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'vi'</script>
+        <script defer src="../assets/js/dist/0647cf06e3.js"></script>
     </body>
 </html>

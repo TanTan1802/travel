@@ -8,24 +8,20 @@
         <link rel="apple-touch-icon" href="../../assets/img/icons/apple-touch-icon.png">
         <link rel="manifest" href="../../manifest.webmanifest">
         <meta name="theme-color" content="#135059">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-        <!-- Font & icon tải không chặn hiển thị -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" media="print" onload="this.media='all'">
-        <noscript>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-        </noscript>
-        <link rel="stylesheet" href="../../assets/css/styles.css">
-        <link rel="stylesheet" href="../../assets/css/vietnam.css">
+        <!-- Font chữ + icon tự host (assets/fonts, xem assets/css/fonts.css và tools/build-icons.js) -->
+        <link rel="preload" href="../../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="../../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="stylesheet" href="../../assets/css/site-2303c79c15.css">
 
         <title>Đảo Lý Sơn – Việt Travel</title>
     
         <link rel="canonical" href="https://tantan1802.github.io/travel/diem-den/ly-son/">
         <link rel="alternate" hreflang="vi" href="https://tantan1802.github.io/travel/diem-den/ly-son/">
         <link rel="alternate" hreflang="en" href="https://tantan1802.github.io/travel/en/diem-den/ly-son/">
+        <link rel="alternate" hreflang="ko" href="https://tantan1802.github.io/travel/ko/diem-den/ly-son/">
+        <link rel="alternate" hreflang="zh-Hans" href="https://tantan1802.github.io/travel/zh/diem-den/ly-son/">
+        <link rel="alternate" hreflang="ja" href="https://tantan1802.github.io/travel/ja/diem-den/ly-son/">
         <link rel="alternate" hreflang="x-default" href="https://tantan1802.github.io/travel/diem-den/ly-son/">
         <meta property="og:type" content="article">
         <meta property="og:site_name" content="Việt Travel">
@@ -40,6 +36,8 @@
         <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TouristDestination","name":"Đảo Lý Sơn","description":"Hòn đảo núi lửa với những cánh đồng tỏi xanh mướt, vách đá bazan dựng đứng và nước biển trong vắt ở Đảo Bé. Lý Sơn còn là nơi lưu giữ lễ Khao lề thế lính Hoàng Sa – ký ức thiêng liêng về những người lính bảo vệ biển đảo.","url":"https://tantan1802.github.io/travel/diem-den/ly-son/","inLanguage":"vi","image":["https://tantan1802.github.io/travel/assets/img/wiki/ly-son-island-26-panoramio-d063c8-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/ly-son-island-19-panoramio-ade4fa-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/tau-danh-ca-tai-ly-son-743b78-1920.webp","https://tantan1802.github.io/travel/assets/img/wiki/cong-chao-tren-huyen-dao-ly-son-quang-ngai-221281-1920.webp"],"address":{"@type":"PostalAddress","addressRegion":"Quảng Ngãi","addressCountry":"VN"},"touristType":["Biển đảo","Hang động"],"geo":{"@type":"GeoCoordinates","latitude":15.38,"longitude":109.12}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://tantan1802.github.io/travel/"},{"@type":"ListItem","position":2,"name":"Đảo Lý Sơn","item":"https://tantan1802.github.io/travel/diem-den/ly-son/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Thời điểm nào đẹp nhất để đi Đảo Lý Sơn?","acceptedAnswer":{"@type":"Answer","text":"Tháng 3 – 8."}},{"@type":"Question","name":"Nên đi Đảo Lý Sơn mấy ngày?","acceptedAnswer":{"@type":"Answer","text":"Khoảng 2 – 3 ngày."}},{"@type":"Question","name":"Đảo Lý Sơn có gì nổi bật?","acceptedAnswer":{"@type":"Answer","text":"Cổng Tò Vò, Đỉnh Thới Lới, Chùa Hang, Đảo Bé."}},{"@type":"Question","name":"Đi Đảo Lý Sơn bằng cách nào?","acceptedAnswer":{"@type":"Answer","text":"Bay tới sân bay Chu Lai (VCL) hoặc tàu hỏa tới ga Quảng Ngãi, đi xe ~40 phút ra cảng Sa Kỳ, rồi tàu cao tốc ~30 phút ra đảo."}}]}]}</script>
     </head>
     <body class="page-detail">
+        <!-- Gắn chế độ tối trước khi vẽ trang (tránh nháy nền sáng) -->
+        <script>try{if(localStorage.getItem('selected-theme')==='dark')document.body.classList.add('dark-theme')}catch(e){}</script>
         <header class="header" id="header">
             <nav class="nav container">
                 <a href="../../index.html" class="nav__logo">Việt Travel</a>
@@ -66,7 +64,16 @@
                         </li>
                     </ul>
 
-                    <a class="nav__lang" id="lang-switch" href="../../en/diem-den/ly-son/index.html" hreflang="en" lang="en" title="English">EN</a>
+                    <details class="nav__lang" id="lang-menu">
+                        <summary class="nav__lang-btn" title="Ngôn ngữ / Language"><i class="ri-global-line"></i> VI</summary>
+                        <ul class="nav__lang-list">
+                            <li><a href="../../diem-den/ly-son/index.html" hreflang="vi" lang="vi" data-lang="vi" aria-current="true">Tiếng Việt</a></li>
+                            <li><a href="../../en/diem-den/ly-son/index.html" hreflang="en" lang="en" data-lang="en">English</a></li>
+                            <li><a href="../../ko/diem-den/ly-son/index.html" hreflang="ko" lang="ko" data-lang="ko">한국어</a></li>
+                            <li><a href="../../zh/diem-den/ly-son/index.html" hreflang="zh-Hans" lang="zh-Hans" data-lang="zh">中文（简体）</a></li>
+                            <li><a href="../../ja/diem-den/ly-son/index.html" hreflang="ja" lang="ja" data-lang="ja">日本語</a></li>
+                        </ul>
+                    </details>
 
                     <div class="nav__dark">
                         <!-- Theme change button -->
@@ -215,6 +222,37 @@
                     <p class="season__status" data-season-status="3,4,5,6,7,8" aria-live="polite"></p>
                     <div class="season__others" id="season-others"></div>
                 </div>
+                
+        <div class="climate__card events-card">
+            <h3 class="season__title"><i class="ri-flag-2-line"></i> Lễ hội & mùa đặc sắc</h3>
+            <ul class="events__list" id="dest-events">
+        <li class="event event--holiday" data-event-months="6,7,8">
+            <span class="event__icon" title="Nghỉ lễ – đông khách"><i class="ri-group-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Cao điểm du lịch hè</strong>
+                    <span class="event__when">Tháng 6 – 8</span>
+                </div>
+                <p class="event__desc">Học sinh nghỉ hè, các bãi biển đông nhất năm.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Đi giữa tuần và đặt phòng sớm để có giá tốt.</p>
+            </div>
+        </li>
+    
+        <li class="event event--weather" data-event-months="9,10,11">
+            <span class="event__icon" title="Thời tiết cần lưu ý"><i class="ri-thunderstorms-line"></i></span>
+            <div class="event__body">
+                <div class="event__head">
+                    <strong class="event__name">Mùa mưa bão miền Trung</strong>
+                    <span class="event__when">Tháng 9 – 11</span>
+                </div>
+                <p class="event__desc">Mưa lớn, có thể ngập lụt và bão; phố cổ Hội An, Huế có thể ngập.</p>
+                <p class="event__tip"><i class="ri-lightbulb-line"></i> Theo dõi dự báo, chọn vé/phòng hủy linh hoạt; tàu ra đảo có thể tạm dừng.</p>
+            </div>
+        </li>
+    </ul>
+            <p class="budget__note">Lễ theo âm lịch đổi ngày dương mỗi năm – kiểm tra lịch chính thức trước khi đi.</p>
+        </div>
+    
             </div>
         </section>
     
@@ -256,56 +294,56 @@
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Gỏi tỏi Lý Sơn</span>
-                
-                
+                <img data-wiki="Single clove garlic.jpg" data-width="960" alt="Gỏi tỏi Lý Sơn" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Tỏi cô đơn (tỏi một nhánh)">Ảnh minh họa</span>
                 <span class="food-card__price">80.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Gỏi tỏi Lý Sơn</h3>
                 <p class="food-card__desc">Lá tỏi non trộn tôm, thịt ba chỉ và đậu phộng – món chỉ có trên đảo.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Tỏi cô đơn (tỏi một nhánh)</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Ốc cừ, ốc đá</span>
-                
-                
+                <img data-wiki="Cooked snails.JPG" data-width="960" alt="Ốc cừ, ốc đá" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Ốc luộc">Ảnh minh họa</span>
                 <span class="food-card__price">100.000đ/đĩa</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Ốc cừ, ốc đá</h3>
                 <p class="food-card__desc">Ốc bắt trên rạn đá núi lửa, luộc sả hoặc nướng mỡ hành.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Ốc luộc</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Rong biển Lý Sơn</span>
-                
-                
+                <img data-wiki="Seaweed M0010165.jpg" data-width="960" alt="Rong biển Lý Sơn" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Rong biển">Ảnh minh họa</span>
                 <span class="food-card__price">30.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Rong biển Lý Sơn</h3>
                 <p class="food-card__desc">Rong mứt trộn gỏi hoặc nấu chè mát lành.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Rong biển</span>
             </div>
         </article>
     
         <article class="food-card">
             <div class="food-card__media">
                 <span class="food-card__menu"><small>Đặc sản</small>Cháo nhum</span>
-                
-                
+                <img data-wiki="Sea urchin 01.jpg" data-width="960" alt="Cháo nhum" class="food-card__img" loading="lazy">
+                <span class="food-card__badge" title="Nhum biển (cầu gai)">Ảnh minh họa</span>
                 <span class="food-card__price">50.000đ</span>
             </div>
             <div class="food-card__body">
                 <h3 class="food-card__title">Cháo nhum</h3>
                 <p class="food-card__desc">Nhum (cầu gai) tươi nấu cháo ngọt béo.</p>
-                
+                <span class="food-card__note"><i class="ri-information-line"></i> Ảnh minh họa: Nhum biển (cầu gai)</span>
             </div>
         </article>
     
@@ -323,6 +361,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Ch%E1%BB%A3%20%C4%91%C3%AAm%20L%C3%BD%20S%C6%A1n%2C%20Trung%20t%C3%A2m%20x%C3%A3%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Trung tâm xã An Vĩnh, Lý Sơn
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Ch%E1%BB%A3+%C4%91%C3%AAm+L%C3%BD+S%C6%A1n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%E1%BB%A3+%C4%91%C3%AAm+L%C3%BD+S%C6%A1n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Trung+t%C3%A2m+x%C3%A3+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n+%C2%B7+50k%E2%80%93200k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Chợ đêm Lý Sơn" data-report-details="Trung tâm xã An Vĩnh, Lý Sơn · 50k–200k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -334,6 +375,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20h%E1%BA%A3i%20s%E1%BA%A3n%20b%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20%C4%90%C6%B0%E1%BB%9Dng%20b%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Đường bờ kè An Vĩnh, Lý Sơn
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Qu%C3%A1n+h%E1%BA%A3i+s%E1%BA%A3n+b%E1%BB%9D+k%C3%A8+An+V%C4%A9nh&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+h%E1%BA%A3i+s%E1%BA%A3n+b%E1%BB%9D+k%C3%A8+An+V%C4%A9nh%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+%C4%90%C6%B0%E1%BB%9Dng+b%E1%BB%9D+k%C3%A8+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n+%C2%B7+200k%E2%80%93500k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Quán hải sản bờ kè An Vĩnh" data-report-details="Đường bờ kè An Vĩnh, Lý Sơn · 200k–500k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -345,6 +389,9 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20%E1%BB%91c%20%C4%90%E1%BA%A3o%20B%C3%A9%2C%20%C4%90%E1%BA%A3o%20B%C3%A9%20(x%C3%A3%20An%20B%C3%ACnh)" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Đảo Bé (xã An Bình)
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Qu%C3%A1n+%E1%BB%91c+%C4%90%E1%BA%A3o+B%C3%A9&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+%E1%BB%91c+%C4%90%E1%BA%A3o+B%C3%A9%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+%C4%90%E1%BA%A3o+B%C3%A9+%28x%C3%A3+An+B%C3%ACnh%29+%C2%B7+100k%E2%80%93250k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Quán ốc Đảo Bé" data-report-details="Đảo Bé (xã An Bình) · 100k–250k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     
         <li class="eat">
@@ -356,8 +403,73 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A8%20rong%20bi%E1%BB%83n%20L%C3%BD%20S%C6%A1n%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
                 <i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn
             </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Ch%C3%A8+rong+bi%E1%BB%83n+L%C3%BD+S%C6%A1n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%C3%A8+rong+bi%E1%BB%83n+L%C3%BD+S%C6%A1n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+X%C3%A3+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n+%C2%B7+15k%E2%80%9330k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Chè rong biển Lý Sơn" data-report-details="Xã An Hải, Lý Sơn · 15k–30k"><i class="ri-flag-line"></i> Báo sai</a>
         </li>
     </ul>
+            
+                <details class="eats__more">
+                    <summary class="button button--ghost button--flex">Xem thêm 4 quán <i class="ri-arrow-down-s-line"></i></summary>
+                    <ul class="eats__list">
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Bánh mì – cháo sáng An Vĩnh</h4>
+                <span class="eat__price">25k–45k</span>
+            </div>
+            <p class="eat__dish">Bánh mì, cháo cá bữa sáng</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20m%C3%AC%20%E2%80%93%20ch%C3%A1o%20s%C3%A1ng%20An%20V%C4%A9nh%2C%20Ch%E1%BB%A3%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Chợ An Vĩnh, Lý Sơn
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+B%C3%A1nh+m%C3%AC+%E2%80%93+ch%C3%A1o+s%C3%A1ng+An+V%C4%A9nh&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+B%C3%A1nh+m%C3%AC+%E2%80%93+ch%C3%A1o+s%C3%A1ng+An+V%C4%A9nh%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Ch%E1%BB%A3+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n+%C2%B7+25k%E2%80%9345k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Bánh mì – cháo sáng An Vĩnh" data-report-details="Chợ An Vĩnh, Lý Sơn · 25k–45k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Quán cua huỳnh đế Lý Sơn</h4>
+                <span class="eat__price">300k–700k</span>
+            </div>
+            <p class="eat__dish">Cua huỳnh đế, tôm hùm</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20cua%20hu%E1%BB%B3nh%20%C4%91%E1%BA%BF%20L%C3%BD%20S%C6%A1n%2C%20B%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Bờ kè An Vĩnh, Lý Sơn
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Qu%C3%A1n+cua+hu%E1%BB%B3nh+%C4%91%E1%BA%BF+L%C3%BD+S%C6%A1n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+cua+hu%E1%BB%B3nh+%C4%91%E1%BA%BF+L%C3%BD+S%C6%A1n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+B%E1%BB%9D+k%C3%A8+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n+%C2%B7+300k%E2%80%93700k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Quán cua huỳnh đế Lý Sơn" data-report-details="Bờ kè An Vĩnh, Lý Sơn · 300k–700k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Quán bánh xèo mực An Hải</h4>
+                <span class="eat__price">30k–60k</span>
+            </div>
+            <p class="eat__dish">Bánh xèo mực, bánh căn</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20b%C3%A1nh%20x%C3%A8o%20m%E1%BB%B1c%20An%20H%E1%BA%A3i%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Qu%C3%A1n+b%C3%A1nh+x%C3%A8o+m%E1%BB%B1c+An+H%E1%BA%A3i&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Qu%C3%A1n+b%C3%A1nh+x%C3%A8o+m%E1%BB%B1c+An+H%E1%BA%A3i%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+X%C3%A3+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n+%C2%B7+30k%E2%80%9360k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Quán bánh xèo mực An Hải" data-report-details="Xã An Hải, Lý Sơn · 30k–60k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="eat">
+            <div class="eat__head">
+                <h4 class="eat__name">Nhà hàng cá mú nướng An Hải</h4>
+                <span class="eat__price">200k–400k</span>
+            </div>
+            <p class="eat__dish">Cá mú nướng, gỏi cá</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C3%A1%20m%C3%BA%20n%C6%B0%E1%BB%9Bng%20An%20H%E1%BA%A3i%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="eat__address">
+                <i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn
+            </a>
+            <small class="eat__updated"><i class="ri-refresh-line"></i> Cập nhật 09/2026</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Nh%C3%A0+h%C3%A0ng+c%C3%A1+m%C3%BA+n%C6%B0%E1%BB%9Bng+An+H%E1%BA%A3i&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Nh%C3%A0+h%C3%A0ng+c%C3%A1+m%C3%BA+n%C6%B0%E1%BB%9Bng+An+H%E1%BA%A3i%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+X%C3%A3+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n+%C2%B7+200k%E2%80%93400k%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Nhà hàng cá mú nướng An Hải" data-report-details="Xã An Hải, Lý Sơn · 200k–400k"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                </details>
+            
             <p class="budget__note">Giá tham khảo mỗi người. Bấm địa chỉ để mở Google Maps xem giờ mở cửa và đánh giá mới nhất.</p>
         </div>
     
@@ -402,6 +514,18 @@
                     <li class="tip-item">Tàu cao tốc từ cảng Sa Kỳ có thể tạm ngừng khi biển động – theo dõi thời tiết, dự phòng thêm 1 ngày.</li><li class="tip-item">Thuê xe máy trên đảo để chủ động đi các điểm.</li>
                 </ul>
             </div>
+
+            <div class="packing-block container" id="packing" data-dest="ly-son">
+                <h3 class="tips__title"><i class="ri-luggage-cart-line"></i> <span data-packing-title>Đồ cần mang</span></h3>
+                <p class="packing-block__hint">Tự gợi ý theo điểm đến và tháng đi (chọn ngày khởi hành ở phần Lịch trình để đổi tháng). Đánh dấu để ghi nhớ món đã chuẩn bị.</p>
+                <div data-packing-slot></div>
+            </div>
+
+            <p class="report-page container">
+                <i class="ri-feedback-line"></i> Thấy giá vé, giờ mở cửa hay quán đã thay đổi?
+                <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Th%C3%B4ng+tin+chung&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Th%C3%B4ng+tin+chung%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Thông tin chung" data-report-details=""><i class="ri-flag-line"></i> Báo sai</a>
+            </p>
         </section>
     
         <section class="stay section" id="stay">
@@ -456,6 +580,52 @@
                 <div class="getthere">
                     <h3 class="getthere__title"><i class="ri-map-2-line"></i> Cách đi tới Đảo Lý Sơn</h3>
                     <p>Bay tới sân bay Chu Lai (VCL) hoặc tàu hỏa tới ga Quảng Ngãi, đi xe ~40 phút ra cảng Sa Kỳ, rồi tàu cao tốc ~30 phút ra đảo.</p>
+                    
+        <div class="hub-transport">
+            <h4 class="hub-transport__title">Đi từ các thành phố lớn</h4>
+            <table class="hub-transport__table">
+            <tr>
+                <th scope="row">Từ Hà Nội</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Qua cảng Sa Kỳ (Quảng Ngãi)">
+                                <i class="ri-ship-line"></i> Xe + tàu cao tốc ~21 giờ 30 phút <span>· 1.000.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">Từ Đà Nẵng</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Qua cảng Sa Kỳ (Quảng Ngãi)">
+                                <i class="ri-ship-line"></i> Xe + tàu cao tốc ~4 giờ <span>· 290.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        
+            <tr>
+                <th scope="row">Từ TP. Hồ Chí Minh</th>
+                <td>
+                    <ul class="hub-modes">
+                        
+                            <li class="hub-modes__item hub-modes__item--best" title="Qua cảng Sa Kỳ (Quảng Ngãi)">
+                                <i class="ri-ship-line"></i> Xe + tàu cao tốc ~16 giờ 30 phút <span>· 790.000đ</span>
+                            </li>
+                        
+                    </ul>
+                </td>
+            </tr>
+        </table>
+            <p class="budget__note">Thời gian ước tính lúc di chuyển, giá một chiều / người mức tiết kiệm – tham khảo. Phương án in đậm là gợi ý.</p>
+        </div>
+    
                     <div class="book-links">
     <a href="https://www.google.com/travel/flights?q=Flights%20to%20VCL" target="_blank" rel="noopener" class="book-link"><i class="ri-plane-line"></i> Vé máy bay tới VCL</a>
 
@@ -478,422 +648,89 @@
                     <p>Việt Travel · Quảng Ngãi · Thời điểm đẹp: Tháng 3 – 8</p>
                     <p class="print-url"></p>
                 </div>
+                <div class="trip-date">
+                    <label class="trip-date__label" for="tour-start"><i class="ri-calendar-event-line"></i> Ngày khởi hành</label>
+                    <input type="date" id="tour-start" class="planner__select trip-date__input">
+                    <small class="trip-date__hint">Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.</small>
+                    <ul class="trip-alerts events__list" id="tour-alerts" hidden></ul>
+                </div>
+
                 <div class="tour-picker" role="tablist" aria-label="Chọn tour">
                     
                         <button type="button" class="tour-picker__btn tour-picker__btn--active" role="tab"
-                                aria-selected="true" aria-controls="tour-3" data-tour="3">
+                                aria-selected="true" aria-controls="tour-plan" data-tour="3">
                             <strong>3 ngày 2 đêm</strong>
-                            <small>từ 2.200.000đ</small>
+                            <small>từ 2.360.000đ</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-4" data-tour="4">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="4">
                             <strong>4 ngày 3 đêm</strong>
-                            <small>từ 2.900.000đ</small>
+                            <small>từ 3.190.000đ</small>
                         </button>
                     
                         <button type="button" class="tour-picker__btn" role="tab"
-                                aria-selected="false" aria-controls="tour-5" data-tour="5">
+                                aria-selected="false" aria-controls="tour-plan" data-tour="5">
                             <strong>5 ngày 4 đêm</strong>
-                            <small>từ 3.600.000đ</small>
+                            <small>từ 4.020.000đ</small>
                         </button>
                     
                 </div>
 
-                
-                    <div class="tour" id="tour-3" data-tour="3">
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 3 ngày 2 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-
+                <div class="tour" id="tour-plan" data-tour="3">
+                    <div class="tour__toolbar">
                         
-        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour3-tab-0" aria-controls="tour3-panel-0" aria-selected="true" data-day="0">
-                    <span>Ngày 1</span>
-                    <small>Ra đảo lớn</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-1" aria-controls="tour3-panel-1" aria-selected="false" data-day="1">
-                    <span>Ngày 2</span>
-                    <small>Đỉnh Thới Lới</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour3-tab-2" aria-controls="tour3-panel-2" aria-selected="false" data-day="2">
-                    <span>Ngày 3</span>
-                    <small>Đảo Bé</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-0" aria-labelledby="tour3-tab-0">
-                <h3 class="itinerary__day-title">Ngày 1: Ra đảo lớn</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Tàu cao tốc từ cảng Sa Kỳ (~30 phút), nhận phòng, thuê xe máy.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Chùa Hang, cổng Tò Vò – chờ hoàng hôn.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn gỏi tỏi, ốc cừ ở chợ đêm Lý Sơn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-1" aria-labelledby="tour3-tab-1" hidden>
-                <h3 class="itinerary__day-title">Ngày 2: Đỉnh Thới Lới</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Leo đỉnh Thới Lới ngắm bình minh và miệng núi lửa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Âm Linh Tự, Nhà trưng bày Hải đội Hoàng Sa kiêm quản Bắc Hải.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Hải sản tươi và cháo nhum.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour3-panel-2" aria-labelledby="tour3-tab-2" hidden>
-                <h3 class="itinerary__day-title">Ngày 3: Đảo Bé</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Đi cano ra Đảo Bé, tắm biển bãi Hang.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Lặn ngắm san hô, đi bộ vòng đảo nhỏ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Về đảo lớn, dạo cánh đồng tỏi lúc chiều muộn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>2.200.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>5.000.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
+                            <p class="tour__summary" data-tour-len="3"><i class="ri-route-line"></i> 3 ngày 2 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé</p>
+                        
+                            <p class="tour__summary" data-tour-len="4" hidden><i class="ri-route-line"></i> 4 ngày 3 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé → Hang Câu và vách đá</p>
+                        
+                            <p class="tour__summary" data-tour-len="5" hidden><i class="ri-route-line"></i> 5 ngày 4 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé → Hang Câu và vách đá → Về đất liền</p>
+                        
+                        <div class="tour__buttons">
+                            <button type="button" class="tour__expand" data-expanded="false">
+                                <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 3 ngày 2 đêm">
+                                <i class="ri-printer-line"></i> <span>In / PDF</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="ics" aria-label="Thêm lịch trình 3 ngày 2 đêm vào lịch (.ics)">
+                                <i class="ri-calendar-2-line"></i> <span>Thêm vào lịch</span>
+                            </button>
+                            <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
+                                <i class="ri-share-line"></i> <span>Chia sẻ</span>
+                            </button>
                         </div>
                     </div>
-                
-                    <div class="tour" id="tour-4" data-tour="4" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 4 ngày 3 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé → Hang Câu và vách đá</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 4 ngày 3 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
 
-                        
+                    
         <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
             
                 <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour4-tab-0" aria-controls="tour4-panel-0" aria-selected="true" data-day="0">
+                        id="tour-tab-0" aria-controls="tour-panel-0" aria-selected="true" data-day="0">
                     <span>Ngày 1</span>
                     <small>Ra đảo lớn</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-1" aria-controls="tour4-panel-1" aria-selected="false" data-day="1">
+                        id="tour-tab-1" aria-controls="tour-panel-1" aria-selected="false" data-day="1">
                     <span>Ngày 2</span>
                     <small>Đỉnh Thới Lới</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-2" aria-controls="tour4-panel-2" aria-selected="false" data-day="2">
+                        id="tour-tab-2" aria-controls="tour-panel-2" aria-selected="false" data-day="2">
                     <span>Ngày 3</span>
                     <small>Đảo Bé</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour4-tab-3" aria-controls="tour4-panel-3" aria-selected="false" data-day="3">
-                    <span>Ngày 4</span>
-                    <small>Hang Câu và vách đá</small>
-                </button>
-            
-        </div>
-
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-0" aria-labelledby="tour4-tab-0">
-                <h3 class="itinerary__day-title">Ngày 1: Ra đảo lớn</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Tàu cao tốc từ cảng Sa Kỳ (~30 phút), nhận phòng, thuê xe máy.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Chùa Hang, cổng Tò Vò – chờ hoàng hôn.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn gỏi tỏi, ốc cừ ở chợ đêm Lý Sơn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-1" aria-labelledby="tour4-tab-1" hidden>
-                <h3 class="itinerary__day-title">Ngày 2: Đỉnh Thới Lới</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Leo đỉnh Thới Lới ngắm bình minh và miệng núi lửa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Âm Linh Tự, Nhà trưng bày Hải đội Hoàng Sa kiêm quản Bắc Hải.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Hải sản tươi và cháo nhum.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-2" aria-labelledby="tour4-tab-2" hidden>
-                <h3 class="itinerary__day-title">Ngày 3: Đảo Bé</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Đi cano ra Đảo Bé, tắm biển bãi Hang.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Lặn ngắm san hô, đi bộ vòng đảo nhỏ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Về đảo lớn, dạo cánh đồng tỏi lúc chiều muộn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                
-            </div>
-        
-            <div class="itinerary__panel" role="tabpanel" id="tour4-panel-3" aria-labelledby="tour4-tab-3" hidden>
-                <h3 class="itinerary__day-title">Ngày 4: Hang Câu và vách đá</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Hang Câu với vách đá núi lửa nhiều lớp.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Cột cờ Tổ quốc, mua tỏi cô đơn làm quà.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Nướng hải sản bên bờ kè.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
-            </div>
-        
-    
-
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>2.900.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>6.700.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="tour" id="tour-5" data-tour="5" hidden>
-                        <div class="tour__toolbar">
-                            <p class="tour__summary"><i class="ri-route-line"></i> 5 ngày 4 đêm · Ra đảo lớn → Đỉnh Thới Lới → Đảo Bé → Hang Câu và vách đá → Về đất liền</p>
-                            <div class="tour__buttons">
-                                <button type="button" class="tour__expand" data-expanded="false">
-                                    <i class="ri-list-check-2"></i> <span>Xem tất cả các ngày</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="print" aria-label="In lịch trình 5 ngày 4 đêm">
-                                    <i class="ri-printer-line"></i> <span>In / PDF</span>
-                                </button>
-                                <button type="button" class="tour__expand" data-tour-action="share" aria-label="Chia sẻ lịch trình">
-                                    <i class="ri-share-line"></i> <span>Chia sẻ</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        
-        <div class="itinerary__tabs" role="tablist" aria-label="Chọn ngày">
-            
-                <button type="button" class="itinerary__tab itinerary__tab--active" role="tab"
-                        id="tour5-tab-0" aria-controls="tour5-panel-0" aria-selected="true" data-day="0">
-                    <span>Ngày 1</span>
-                    <small>Ra đảo lớn</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-1" aria-controls="tour5-panel-1" aria-selected="false" data-day="1">
-                    <span>Ngày 2</span>
-                    <small>Đỉnh Thới Lới</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-2" aria-controls="tour5-panel-2" aria-selected="false" data-day="2">
-                    <span>Ngày 3</span>
-                    <small>Đảo Bé</small>
-                </button>
-            
-                <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-3" aria-controls="tour5-panel-3" aria-selected="false" data-day="3">
+                        id="tour-tab-3" aria-controls="tour-panel-3" aria-selected="false" data-day="3" hidden>
                     <span>Ngày 4</span>
                     <small>Hang Câu và vách đá</small>
                 </button>
             
                 <button type="button" class="itinerary__tab" role="tab"
-                        id="tour5-tab-4" aria-controls="tour5-panel-4" aria-selected="false" data-day="4">
+                        id="tour-tab-4" aria-controls="tour-panel-4" aria-selected="false" data-day="4" hidden>
                     <span>Ngày 5</span>
                     <small>Về đất liền</small>
                 </button>
@@ -901,187 +738,1280 @@
         </div>
 
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-0" aria-labelledby="tour5-tab-0">
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-0" aria-labelledby="tour-tab-0">
                 <h3 class="itinerary__day-title">Ngày 1: Ra đảo lớn</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Tàu cao tốc từ cảng Sa Kỳ (~30 phút), nhận phòng, thuê xe máy.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Chùa Hang, cổng Tò Vò – chờ hoàng hôn.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Ăn gỏi tỏi, ốc cừ ở chợ đêm Lý Sơn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="0">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="ly-son"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Ch%C3%B9a+Hang%2C+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n&destination=C%E1%BB%95ng+T%C3%B2+V%C3%B2%2C+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>Miễn phí</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>255.000đ – 610.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20m%C3%AC%20%E2%80%93%20ch%C3%A1o%20s%C3%A1ng%20An%20V%C4%A9nh%2C%20Ch%E1%BB%A3%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Bánh mì – cháo sáng An Vĩnh</a>
+        <span class="day-tl__what">Bánh mì, cháo cá bữa sáng</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Chợ An Vĩnh, Lý Sơn · 25k–45k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <ul class="day-tl__list"><li>Tàu cao tốc từ cảng Sa Kỳ (~30 phút)</li><li>Nhận phòng</li><li>Thuê xe máy</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20h%E1%BA%A3i%20s%E1%BA%A3n%20b%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20%C4%90%C6%B0%E1%BB%9Dng%20b%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Quán hải sản bờ kè An Vĩnh</a>
+        <span class="day-tl__what">Cá mú, tôm hùm, cháo nhum</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Đường bờ kè An Vĩnh, Lý Sơn · 200k–500k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%ABa%20ch%C3%B9a%20Hang%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước dừa chùa Hang</a>
+        <span class="day-tl__what">Nước dừa, nước mía</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Chùa Hang · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Chùa Hang, cổng Tò Vò – chờ hoàng hôn.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%B9a%20Hang%2C%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Chùa Hang</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> An Hải, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Ch%C3%B9a+Hang&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Ch%C3%B9a+Hang%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Chùa Hang" data-report-details="Miễn phí · 06:00–18:00 · An Hải, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%95ng%20T%C3%B2%20V%C3%B2%2C%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Cổng Tò Vò</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> An Vĩnh, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+C%E1%BB%95ng+T%C3%B2+V%C3%B2&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%95ng+T%C3%B2+V%C3%B2%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Cổng Tò Vò" data-report-details="Miễn phí · Mở cả ngày · An Vĩnh, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Ch%C3%A8%20rong%20bi%E1%BB%83n%20L%C3%BD%20S%C6%A1n%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Chè rong biển Lý Sơn</a>
+        <span class="day-tl__what">Chè rong biển mát lạnh</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn · 15k–30k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối & buổi tối</h4>
+                        <ul class="day-tl__list"><li>Ăn gỏi tỏi</li><li>Ốc cừ ở chợ đêm Lý Sơn</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-1" aria-labelledby="tour5-tab-1" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-1" aria-labelledby="tour-tab-1" hidden>
                 <h3 class="itinerary__day-title">Ngày 2: Đỉnh Thới Lới</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Leo đỉnh Thới Lới ngắm bình minh và miệng núi lửa.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Âm Linh Tự, Nhà trưng bày Hải đội Hoàng Sa kiêm quản Bắc Hải.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Hải sản tươi và cháo nhum.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="1">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="ly-son"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=%C4%90%E1%BB%89nh+Th%E1%BB%9Bi+L%E1%BB%9Bi%2C+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n&destination=Nh%C3%A0+tr%C6%B0ng+b%C3%A0y+H%E1%BA%A3i+%C4%91%E1%BB%99i+Ho%C3%A0ng+Sa%2C+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n&waypoints=%C3%82m+Linh+T%E1%BB%B1%2C+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>Miễn phí</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>355.000đ – 770.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20b%C3%A1nh%20x%C3%A8o%20m%E1%BB%B1c%20An%20H%E1%BA%A3i%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Quán bánh xèo mực An Hải</a>
+        <span class="day-tl__what">Bánh xèo mực, bánh căn</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn · 30k–60k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Leo đỉnh Thới Lới ngắm bình minh và miệng núi lửa.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C4%90%E1%BB%89nh%20Th%E1%BB%9Bi%20L%E1%BB%9Bi%2C%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Đỉnh Thới Lới</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> An Hải, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+%C4%90%E1%BB%89nh+Th%E1%BB%9Bi+L%E1%BB%9Bi&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C4%90%E1%BB%89nh+Th%E1%BB%9Bi+L%E1%BB%9Bi%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Đỉnh Thới Lới" data-report-details="Miễn phí · Mở cả ngày · An Hải, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20%E1%BB%91c%20%C4%90%E1%BA%A3o%20B%C3%A9%2C%20%C4%90%E1%BA%A3o%20B%C3%A9%20(x%C3%A3%20An%20B%C3%ACnh)" target="_blank" rel="noopener" class="day-tl__place">Quán ốc Đảo Bé</a>
+        <span class="day-tl__what">Ốc, rong biển, cá nướng trên Đảo Bé</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Đảo Bé (xã An Bình) · 100k–250k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20%C4%91%E1%BB%89nh%20Th%E1%BB%9Bi%20L%E1%BB%9Bi%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước đỉnh Thới Lới</a>
+        <span class="day-tl__what">Nước dừa, cà phê đá</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Đỉnh Thới Lới · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Âm Linh Tự, Nhà trưng bày Hải đội Hoàng Sa kiêm quản Bắc Hải.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=%C3%82m%20Linh%20T%E1%BB%B1%2C%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Âm Linh Tự</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 06:00–18:00</span>
+                <span><i class="ri-map-pin-2-line"></i> An Vĩnh, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+%C3%82m+Linh+T%E1%BB%B1&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+%C3%82m+Linh+T%E1%BB%B1%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+06%3A00%E2%80%9318%3A00+%C2%B7+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Âm Linh Tự" data-report-details="Miễn phí · 06:00–18:00 · An Vĩnh, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20tr%C6%B0ng%20b%C3%A0y%20H%E1%BA%A3i%20%C4%91%E1%BB%99i%20Ho%C3%A0ng%20Sa%2C%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Nhà trưng bày Hải đội Hoàng Sa</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:00</span>
+                <span><i class="ri-map-pin-2-line"></i> An Vĩnh, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Nh%C3%A0+tr%C6%B0ng+b%C3%A0y+H%E1%BA%A3i+%C4%91%E1%BB%99i+Ho%C3%A0ng+Sa&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Nh%C3%A0+tr%C6%B0ng+b%C3%A0y+H%E1%BA%A3i+%C4%91%E1%BB%99i+Ho%C3%A0ng+Sa%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+An+V%C4%A9nh%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Nhà trưng bày Hải đội Hoàng Sa" data-report-details="Miễn phí · 07:00–17:00 · An Vĩnh, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20%C3%82m%20Linh%20T%E1%BB%B1%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước Âm Linh Tự</a>
+        <span class="day-tl__what">Trà đá, nước mía</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Nhà trưng bày Hải đội Hoàng Sa · 10k–25k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20c%C3%A1%20m%C3%BA%20n%C6%B0%E1%BB%9Bng%20An%20H%E1%BA%A3i%2C%20X%C3%A3%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Nhà hàng cá mú nướng An Hải</a>
+        <span class="day-tl__what">Cá mú nướng, gỏi cá</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Xã An Hải, Lý Sơn · 200k–400k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <p class="day-tl__text">Hải sản tươi và cháo nhum.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-2" aria-labelledby="tour5-tab-2" hidden>
+            <div class="itinerary__panel" role="tabpanel" id="tour-panel-2" aria-labelledby="tour-tab-2" hidden>
                 <h3 class="itinerary__day-title">Ngày 3: Đảo Bé</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Đi cano ra Đảo Bé, tắm biển bãi Hang.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Lặn ngắm san hô, đi bộ vòng đảo nhỏ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Về đảo lớn, dạo cánh đồng tỏi lúc chiều muộn.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="2">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="ly-son"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Cano+%C4%90%E1%BA%A3o+B%C3%A9+%E2%80%93+b%C3%A3i+Hang%2C+C%E1%BA%A3ng+L%C3%BD+S%C6%A1n&destination=L%E1%BA%B7n+ng%E1%BA%AFm+san+h%C3%B4+%C4%90%E1%BA%A3o+B%C3%A9%2C+%C4%90%E1%BA%A3o+B%C3%A9%2C+L%C3%BD+S%C6%A1n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>130.000đ – 250.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>330.000đ – 775.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Mang theo bánh mì, xôi nếu khởi hành sớm</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Đi cano ra Đảo Bé, tắm biển bãi Hang.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Cano%20%C4%90%E1%BA%A3o%20B%C3%A9%20%E2%80%93%20b%C3%A3i%20Hang%2C%20C%E1%BA%A3ng%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Cano Đảo Bé – bãi Hang</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 80.000đ – 150.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–16:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Cảng Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Khứ hồi</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Cano+%C4%90%E1%BA%A3o+B%C3%A9+%E2%80%93+b%C3%A3i+Hang&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Cano+%C4%90%E1%BA%A3o+B%C3%A9+%E2%80%93+b%C3%A3i+Hang%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+80.000%C4%91+%E2%80%93+150.000%C4%91+%C2%B7+07%3A00%E2%80%9316%3A00+%C2%B7+C%E1%BA%A3ng+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Cano Đảo Bé – bãi Hang" data-report-details="80.000đ – 150.000đ · 07:00–16:00 · Cảng Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20cua%20hu%E1%BB%B3nh%20%C4%91%E1%BA%BF%20L%C3%BD%20S%C6%A1n%2C%20B%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Quán cua huỳnh đế Lý Sơn</a>
+        <span class="day-tl__what">Cua huỳnh đế, tôm hùm</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Bờ kè An Vĩnh, Lý Sơn · 300k–700k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20b%C3%A3i%20Hang%20%C4%90%E1%BA%A3o%20B%C3%A9%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước bãi Hang Đảo Bé</a>
+        <span class="day-tl__what">Nước dừa, bia lạnh</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Cano Đảo Bé – bãi Hang · 15k–40k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Lặn ngắm san hô, đi bộ vòng đảo nhỏ.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=L%E1%BA%B7n%20ng%E1%BA%AFm%20san%20h%C3%B4%20%C4%90%E1%BA%A3o%20B%C3%A9%2C%20%C4%90%E1%BA%A3o%20B%C3%A9%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Lặn ngắm san hô Đảo Bé</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 50.000đ – 100.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 08:00–16:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Đảo Bé, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            <small class="sight__note"><i class="ri-information-line"></i> Thuê đồ lặn</small>
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+L%E1%BA%B7n+ng%E1%BA%AFm+san+h%C3%B4+%C4%90%E1%BA%A3o+B%C3%A9&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+L%E1%BA%B7n+ng%E1%BA%AFm+san+h%C3%B4+%C4%90%E1%BA%A3o+B%C3%A9%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+50.000%C4%91+%E2%80%93+100.000%C4%91+%C2%B7+08%3A00%E2%80%9316%3A00+%C2%B7+%C4%90%E1%BA%A3o+B%C3%A9%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Lặn ngắm san hô Đảo Bé" data-report-details="50.000đ – 100.000đ · 08:00–16:00 · Đảo Bé, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20d%E1%BB%ABa%20%C4%90%E1%BA%A3o%20B%C3%A9%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước dừa Đảo Bé</a>
+        <span class="day-tl__what">Nước dừa, chè rong biển</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Lặn ngắm san hô Đảo Bé · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=G%E1%BB%8Fi%20t%E1%BB%8Fi%20L%C3%BD%20S%C6%A1n%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Món đặc sản: Gỏi tỏi Lý Sơn</a>
+        <span class="day-tl__what">Lá tỏi non trộn tôm, thịt ba chỉ và đậu phộng – món chỉ có trên đảo.</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Quán địa phương ở Đảo Lý Sơn · 80.000đ</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <ul class="day-tl__list"><li>Về đảo lớn</li><li>Dạo cánh đồng tỏi lúc chiều muộn</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more" hidden>
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-3" aria-labelledby="tour5-tab-3" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-3" aria-labelledby="tour-tab-3" hidden>
                 <h3 class="itinerary__day-title">Ngày 4: Hang Câu và vách đá</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Hang Câu với vách đá núi lửa nhiều lớp.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Cột cờ Tổ quốc, mua tỏi cô đơn làm quà.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Nướng hải sản bên bờ kè.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
                 
+        <div class="day-tools" data-day-offset="3">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="ly-son"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/dir/?api=1&origin=Hang+C%C3%A2u%2C+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n&destination=C%E1%BB%99t+c%E1%BB%9D+T%E1%BB%95+qu%E1%BB%91c+L%C3%BD+S%C6%A1n%2C+N%C3%BAi+Th%E1%BB%9Bi+L%E1%BB%9Bi%2C+L%C3%BD+S%C6%A1n" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>Miễn phí</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>25.000đ – 60.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Ăn sáng tại nơi ở (thường đã gồm trong giá phòng)</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <p class="day-tl__text">Hang Câu với vách đá núi lửa nhiều lớp.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Hang%20C%C3%A2u%2C%20An%20H%E1%BA%A3i%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Hang Câu</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> An Hải, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Hang+C%C3%A2u&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Hang+C%C3%A2u%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+An+H%E1%BA%A3i%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Hang Câu" data-report-details="Miễn phí · Mở cả ngày · An Hải, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=%E1%BB%90c%20c%E1%BB%AB%2C%20%E1%BB%91c%20%C4%91%C3%A1%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Món đặc sản: Ốc cừ, ốc đá</a>
+        <span class="day-tl__what">Ốc bắt trên rạn đá núi lửa, luộc sả hoặc nướng mỡ hành.</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Quán địa phương ở Đảo Lý Sơn · 100.000đ/đĩa</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20Hang%20C%C3%A2u%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước Hang Câu</a>
+        <span class="day-tl__what">Nước dừa, nước ngọt</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Hang Câu · 15k–35k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Cột cờ Tổ quốc, mua tỏi cô đơn làm quà.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=C%E1%BB%99t%20c%E1%BB%9D%20T%E1%BB%95%20qu%E1%BB%91c%20L%C3%BD%20S%C6%A1n%2C%20N%C3%BAi%20Th%E1%BB%9Bi%20L%E1%BB%9Bi%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="sight__name">Cột cờ Tổ quốc Lý Sơn</a>
+                <span class="sight__price sight__price--free"><i class="ri-ticket-2-line"></i> Miễn phí</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> Mở cả ngày</span>
+                <span><i class="ri-map-pin-2-line"></i> Núi Thới Lới, Lý Sơn</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+C%E1%BB%99t+c%E1%BB%9D+T%E1%BB%95+qu%E1%BB%91c+L%C3%BD+S%C6%A1n&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+C%E1%BB%99t+c%E1%BB%9D+T%E1%BB%95+qu%E1%BB%91c+L%C3%BD+S%C6%A1n%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+Mi%E1%BB%85n+ph%C3%AD+%C2%B7+M%E1%BB%9F+c%E1%BA%A3+ng%C3%A0y+%C2%B7+N%C3%BAi+Th%E1%BB%9Bi+L%E1%BB%9Bi%2C+L%C3%BD+S%C6%A1n%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Cột cờ Tổ quốc Lý Sơn" data-report-details="Miễn phí · Mở cả ngày · Núi Thới Lới, Lý Sơn"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20ch%C3%A2n%20c%E1%BB%99t%20c%E1%BB%9D%20L%C3%BD%20S%C6%A1n%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước chân cột cờ Lý Sơn</a>
+        <span class="day-tl__what">Trà đá, nước chanh</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Cột cờ Tổ quốc Lý Sơn · 10k–25k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        <p class="day-tl__text">Dạo chợ đêm hoặc phố ẩm thực để chọn món ăn tối</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <p class="day-tl__text">Nướng hải sản bên bờ kè.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="more">
+                    <time class="day-tl__time">21:30</time>
+                    <span class="day-tl__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Về nghỉ</h4>
+                        <p class="day-tl__text">Dạo phố đêm một chút rồi về nơi ở nghỉ ngơi</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest" data-end="last" hidden>
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
-            <div class="itinerary__panel" role="tabpanel" id="tour5-panel-4" aria-labelledby="tour5-tab-4" hidden>
+            <div class="itinerary__panel itinerary__panel--off" role="tabpanel" id="tour-panel-4" aria-labelledby="tour-tab-4" hidden>
                 <h3 class="itinerary__day-title">Ngày 5: Về đất liền</h3>
-                <ol class="timeline">
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-foggy-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Sáng</h4>
-                                <p>Ngắm bình minh trên cầu cảng, lên tàu về Sa Kỳ.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-sun-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Chiều</h4>
-                                <p>Thăm khu chứng tích Sơn Mỹ, ăn cá bống sông Trà.</p>
-                            </div>
-                        </li>
-                    
-                        <li class="timeline__item">
-                            <span class="timeline__icon"><i class="ri-moon-clear-line"></i></span>
-                            <div>
-                                <h4 class="timeline__label">Tối</h4>
-                                <p>Về Quảng Ngãi hoặc Đà Nẵng.</p>
-                            </div>
-                        </li>
-                    
-                </ol>
-                <p class="itinerary__farewell"><i class="ri-luggage-cart-line"></i> Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                
+        <div class="day-tools" data-day-offset="4">
+            <span class="day-tools__date" data-day-date hidden></span>
+            <span class="day-tools__forecast" data-forecast-dest="ly-son"></span>
+            <span class="day-tools__links">
+                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20ch%E1%BB%A9ng%20t%C3%ADch%20S%C6%A1n%20M%E1%BB%B9%2C%20T%E1%BB%8Bnh%20Kh%C3%AA%2C%20Qu%E1%BA%A3ng%20Ng%C3%A3i" target="_blank" rel="noopener" class="day-tools__link"><i class="ri-route-line"></i> Lộ trình trên Google Maps</a>
+                <a href="#" target="_blank" rel="noopener" class="day-tools__link" data-gcal hidden><i class="ri-calendar-event-line"></i> Thêm ngày này vào Google Calendar</a>
+            </span>
+        </div>
+    
+                
+        
+        <div class="day-cost">
+            <span class="day-cost__label"><i class="ri-wallet-3-line"></i> Ước tính mỗi người hôm nay</span>
+            <span class="day-cost__item">Vé tham quan: <strong>10.000đ</strong></span>
+            <span class="day-cost__item">Ăn uống, cà phê: <strong>30.000đ – 70.000đ</strong></span>
+        </div>
+    
+        <ol class="day-tl">
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">06:30</time>
+                    <span class="day-tl__icon"><i class="ri-sun-foggy-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn sáng</h4>
+                        <p class="day-tl__text">Ăn sáng quán bình dân đông người địa phương gần nơi ở</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">07:30</time>
+                    <span class="day-tl__icon"><i class="ri-map-pin-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi sáng</h4>
+                        <ul class="day-tl__list"><li>Ngắm bình minh trên cầu cảng</li><li>Lên tàu về Sa Kỳ</li></ul>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">11:30</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn trưa</h4>
+                        <p class="day-tl__text">Cơm trưa bình dân gần điểm tham quan</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--cafe">
+                    <time class="day-tl__time">13:00</time>
+                    <span class="day-tl__icon"><i class="ri-cup-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Cà phê & nghỉ trưa</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20n%C6%B0%E1%BB%9Bc%20c%E1%BB%95ng%20khu%20ch%E1%BB%A9ng%20t%C3%ADch%20S%C6%A1n%20M%E1%BB%B9%20Ly%20Son" target="_blank" rel="noopener" class="day-tl__place">Quán nước cổng khu chứng tích Sơn Mỹ</a>
+        <span class="day-tl__what">Nước mía, trà đá</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Gần Khu chứng tích Sơn Mỹ · 10k–25k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">14:30</time>
+                    <span class="day-tl__icon"><i class="ri-camera-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Tham quan buổi chiều</h4>
+                        <p class="day-tl__text">Thăm khu chứng tích Sơn Mỹ, ăn cá bống sông Trà.</p>
+                        <ul class="day-tl__sights">
+        <li class="sight">
+            <div class="sight__head">
+                <a href="https://www.google.com/maps/search/?api=1&query=Khu%20ch%E1%BB%A9ng%20t%C3%ADch%20S%C6%A1n%20M%E1%BB%B9%2C%20T%E1%BB%8Bnh%20Kh%C3%AA%2C%20Qu%E1%BA%A3ng%20Ng%C3%A3i" target="_blank" rel="noopener" class="sight__name">Khu chứng tích Sơn Mỹ</a>
+                <span class="sight__price"><i class="ri-ticket-2-line"></i> 10.000đ</span>
+            </div>
+            <small class="sight__meta">
+                <span><i class="ri-time-line"></i> 07:00–17:00</span>
+                <span><i class="ri-map-pin-2-line"></i> Tịnh Khê, Quảng Ngãi</span>
+                <span title="Tháng thông tin được cập nhật hoặc kiểm tra lại gần nhất"><i class="ri-refresh-line"></i> Cập nhật 09/2026</span>
+            </small>
+            
+            <a href="https://github.com/TanTan1802/travel/issues/new?title=%5BS%E1%BB%ADa+th%C3%B4ng+tin%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n+%E2%80%93+Khu+ch%E1%BB%A9ng+t%C3%ADch+S%C6%A1n+M%E1%BB%B9&body=**%C4%90i%E1%BB%83m+%C4%91%E1%BA%BFn%3A**+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n%0A**M%E1%BB%A5c+c%E1%BA%A7n+s%E1%BB%ADa%3A**+Khu+ch%E1%BB%A9ng+t%C3%ADch+S%C6%A1n+M%E1%BB%B9%0A**Th%C3%B4ng+tin+hi%E1%BB%87n+t%E1%BA%A1i%3A**+10.000%C4%91+%C2%B7+07%3A00%E2%80%9317%3A00+%C2%B7+T%E1%BB%8Bnh+Kh%C3%AA%2C+Qu%E1%BA%A3ng+Ng%C3%A3i%0A%0A**Th%C3%B4ng+tin+%C4%91%C3%BAng+%2F+g%C3%B3p+%C3%BD%3A**%0A%0A%0A**Ngu%E1%BB%93n+%28link%2C+%E1%BA%A3nh+ch%E1%BB%A5p+b%E1%BA%A3ng+gi%C3%A1...%29%3A**%0A&labels=sua-thong-tin" target="_blank" rel="noopener" class="report-link" title="Báo sai thông tin"
+        data-report-dest="Đảo Lý Sơn" data-report-item="Khu chứng tích Sơn Mỹ" data-report-details="10.000đ · 07:00–17:00 · Tịnh Khê, Quảng Ngãi"><i class="ri-flag-line"></i> Báo sai</a>
+        </li>
+    </ul>
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--drink">
+                    <time class="day-tl__time">16:30</time>
+                    <span class="day-tl__icon"><i class="ri-goblet-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Quán nước, ăn vặt</h4>
+                        
+                        
+                        
+        <a href="https://www.google.com/maps/search/?api=1&query=C%C3%A0%20ph%C3%AA%20view%20bi%E1%BB%83n%20An%20V%C4%A9nh%2C%20B%E1%BB%9D%20k%C3%A8%20An%20V%C4%A9nh%2C%20L%C3%BD%20S%C6%A1n" target="_blank" rel="noopener" class="day-tl__place">Cà phê view biển An Vĩnh</a>
+        <span class="day-tl__what">Cà phê, nước dừa nhìn ra cảng</span>
+        <small class="day-tl__meta"><i class="ri-map-pin-2-line"></i> Bờ kè An Vĩnh, Lý Sơn · 20k–45k</small>
+    
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--meal">
+                    <time class="day-tl__time">18:00</time>
+                    <span class="day-tl__icon"><i class="ri-restaurant-2-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Ăn tối</h4>
+                        <p class="day-tl__text">Ăn tối gần nơi ở – chọn quán đông khách địa phương</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--visit">
+                    <time class="day-tl__time">19:30</time>
+                    <span class="day-tl__icon"><i class="ri-moon-clear-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Buổi tối</h4>
+                        <p class="day-tl__text">Về Quảng Ngãi hoặc Đà Nẵng.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+                <li class="day-tl__item day-tl__item--rest">
+                    <time class="day-tl__time">21:00</time>
+                    <span class="day-tl__icon"><i class="ri-luggage-cart-line"></i></span>
+                    <div class="day-tl__body">
+                        <h4 class="day-tl__title">Kết thúc tour</h4>
+                        <p class="day-tl__text">Kết thúc tour: trả phòng, mua đặc sản và di chuyển về.</p>
+                        
+                        
+                    </div>
+                </li>
+            
+        </ol>
+    
             </div>
         
     
 
-                        <div class="budget">
-                            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
-                            <div class="budget__options">
-                                <div class="budget__option">
-                                    <span>Tiết kiệm</span>
-                                    <strong>3.600.000đ</strong>
-                                    <small>Homestay, ăn quán địa phương</small>
-                                </div>
-                                <div class="budget__option budget__option--comfort">
-                                    <span>Thoải mái</span>
-                                    <strong>8.400.000đ</strong>
-                                    <small>Khách sạn 3–4 sao, tour trọn gói</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+        <div class="budget" data-tour-len="3">
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 3 ngày 2 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
                 
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>2.360.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>4.100.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Đảo Bé (250k–500k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>260.000đ</strong>
+                        <small>2 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Chợ đêm Lý Sơn, Quán hải sản bờ kè An Vĩnh</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>810.000đ</strong>
+                        <small>3 ngày × 270.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>180.000đ</strong>
+                        <small>3 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.110.000đ</strong>
+                        <small>3 ngày × 370.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>620.000đ</strong>
+                        <small>2 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.470.000đ</strong>
+                        <small>3 ngày × 490.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>450.000đ</strong>
+                        <small>3 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.560.000đ</strong>
+                        <small>3 ngày × 520.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="4" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 4 ngày 3 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>3.190.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>5.570.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Đảo Bé (250k–500k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>390.000đ</strong>
+                        <small>3 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Chợ đêm Lý Sơn, Quán hải sản bờ kè An Vĩnh</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.080.000đ</strong>
+                        <small>4 ngày × 270.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>240.000đ</strong>
+                        <small>4 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.480.000đ</strong>
+                        <small>4 ngày × 370.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>930.000đ</strong>
+                        <small>3 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.960.000đ</strong>
+                        <small>4 ngày × 490.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>600.000đ</strong>
+                        <small>4 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2.080.000đ</strong>
+                        <small>4 ngày × 520.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+        <div class="budget" data-tour-len="5" hidden>
+            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> Chi phí ước tính / người – 5 ngày 4 đêm</h3>
+            <div class="budget__options" role="group" aria-label="Mức chi tiêu">
+                
+                    <button type="button" class="budget__option budget__option--active" data-budget-tier="saving" aria-pressed="true">
+                        <span>Tiết kiệm</span>
+                        <strong>4.020.000đ</strong>
+                        <small>Homestay, ăn quán địa phương, xe máy</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+                    <button type="button" class="budget__option" data-budget-tier="comfort" aria-pressed="false">
+                        <span>Thoải mái</span>
+                        <strong>7.040.000đ</strong>
+                        <small>Khách sạn 3–4 sao, nhà hàng, Grab</small>
+                        <em class="budget__more">Xem chi tiết <i class="ri-arrow-down-s-line"></i></em>
+                    </button>
+                
+            </div>
+            
+                <div class="budget__detail" data-budget-detail="saving">
+                    <p class="budget__detail-title">Chi tiết mức tiết kiệm</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Homestay Đảo Bé (250k–500k/phòng), chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>520.000đ</strong>
+                        <small>4 đêm × 130.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Ăn sáng bình dân, quán địa phương như Chợ đêm Lý Sơn, Quán hải sản bờ kè An Vĩnh</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.350.000đ</strong>
+                        <small>5 ngày × 270.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Thuê xe máy hoặc xe buýt, chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>300.000đ</strong>
+                        <small>5 ngày × 60.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Vé vào cổng, thuyền, cáp treo theo lịch trình</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.850.000đ</strong>
+                        <small>5 ngày × 370.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+                <div class="budget__detail" data-budget-detail="comfort" hidden>
+                    <p class="budget__detail-title">Chi tiết mức thoải mái</p>
+                    
+        <ul class="cost-list">
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-hotel-bed-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Lưu trú</strong>
+                        <small>Khách sạn 3–4 sao, phòng đôi chia 2 người</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>1.240.000đ</strong>
+                        <small>4 đêm × 310.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-restaurant-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Ăn uống</strong>
+                        <small>Nhà hàng tầm trung, đặc sản và hải sản</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2.450.000đ</strong>
+                        <small>5 ngày × 490.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-motorbike-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Đi lại tại chỗ</strong>
+                        <small>Grab, taxi hoặc xe riêng quãng ngắn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>750.000đ</strong>
+                        <small>5 ngày × 150.000đ</small>
+                    </div>
+                </li>
+            
+                <li class="cost-item">
+                    <span class="cost-item__icon"><i class="ri-ticket-2-line"></i></span>
+                    <div class="cost-item__text">
+                        <strong>Vé tham quan & trải nghiệm</strong>
+                        <small>Theo lịch trình, thêm tour/show có hướng dẫn</small>
+                    </div>
+                    <div class="cost-item__amount">
+                        <strong>2.600.000đ</strong>
+                        <small>5 ngày × 520.000đ</small>
+                    </div>
+                </li>
+            
+        </ul>
+    
+                </div>
+            
+        </div>
+    
+                </div>
 
                 <p class="budget__note">Chưa gồm vé máy bay/tàu xe tới Đảo Lý Sơn. Giá tham khảo, thay đổi theo mùa.</p>
+
+                <p class="budget__note"><i class="ri-ticket-2-line"></i> <a href="../../diem-den/ly-son/gia-ve/index.html">Bảng giá vé & giờ mở cửa các điểm tham quan ở Đảo Lý Sơn</a></p>
 
                 <div class="plan-cta">
                     <p><i class="ri-route-line"></i> Muốn đi nhiều nơi trong một chuyến? Ghép Đảo Lý Sơn với các điểm đến khác.</p>
@@ -1119,7 +2049,7 @@
                             <li>
                                 <a href="../../diem-den/mang-den/index.html" class="nearby-item">
                                     <span class="nearby-item__media">
-                                        <img data-wiki="Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-33.jpg|Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-40.jpg|Kontum wooden catholic church.jpg|Kon Tum wooden catholic church.JPG" data-width="500" alt="Măng Đen" loading="lazy">
+                                        <img data-wiki="Mua ho dao o mang den tinh kon tum 005.jpg|Măng Đen 1.jpg|Thị trấn Măng Đen.jpg|Cuoc-song-nguoi-dong-bao-tai-lang-kon-pring-thi-tran-mang-den-kon-tum-35.jpg|Kontum wooden catholic church.jpg|Kon Tum wooden catholic church.JPG" data-width="500" alt="Măng Đen" loading="lazy">
                                     </span>
                                     <span class="nearby-item__body">
                                         <strong>Măng Đen</strong>
@@ -1147,6 +2077,19 @@
                         <i class="ri-direction-line"></i> Chỉ đường Google Maps
                     </a>
                 </div>
+            </div>
+        </section>
+    
+        <section class="comments section" id="comments">
+            <span class="section__subtitle">Cộng đồng</span>
+            <h2 class="section__title">Chia sẻ trải nghiệm của bạn</h2>
+            <div class="comments__container container">
+                <h3 class="community__title"><i class="ri-camera-3-line"></i> Ảnh từ người đọc</h3>
+                <p class="comments__intro">Chưa có ảnh nào – hãy là người đầu tiên chia sẻ khoảnh khắc ở Đảo Lý Sơn!</p>
+                <a href="https://github.com/TanTan1802/travel/issues/new?template=gui-anh.yml&title=%5B%E1%BA%A2nh%5D+%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n&dest=%C4%90%E1%BA%A3o+L%C3%BD+S%C6%A1n" target="_blank" rel="noopener" class="button button--flex community__submit">
+                    <i class="ri-image-add-line"></i> Gửi ảnh của bạn
+                </a>
+                
             </div>
         </section>
     
@@ -1327,24 +2270,11 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'vi'; window.DEST_ID = 'ly-son'</script>
-        <script defer src="../../assets/js/scrollreveal.min.js"></script>
 
         <!--=============== DATA + PAGE JS ===============-->
-        <script defer src="../../assets/js/data/local-images.js"></script>
-        <script defer src="../../assets/js/i18n.js"></script>
-        <script defer src="../../assets/js/data/destinations.js"></script>
-        <script defer src="../../assets/js/data/itineraries.js"></script>
-        <script defer src="../../assets/js/data/places.js"></script>
-        <script defer src="../../assets/js/favorites.js"></script>
-        <script defer src="../../assets/js/components.js"></script>
-        <script defer src="../../assets/js/config.js"></script>
-        <script defer src="../../assets/js/map.js"></script>
-        <script defer src="../../assets/js/weather.js"></script>
-        <script defer src="../../assets/js/destination-render.js"></script>
-        <script defer src="../../assets/js/destination.js"></script>
-
-        <!--=============== MAIN JS ===============-->
-        <script defer src="../../assets/js/main.js"></script>
+        <script>window.SITE_ROOT = '../../'; window.SITE_LANG = 'vi'; window.DEST_ID = 'ly-son'</script>
+        <script defer src="../../assets/js/dist/da835ad707.js"></script>
+        <script defer src="../../assets/js/data/dest/ly-son.js"></script>
+        <script defer src="../../assets/js/dist/1bc8e5a571.js"></script>
     </body>
 </html>

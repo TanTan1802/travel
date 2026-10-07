@@ -7,10 +7,11 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/**'
       - 'assets/js/data/destinations.js'
       - 'assets/js/data/itineraries.js'
       - 'assets/js/data/en.js'
-      - 'index.html'
+      - 'home.html'
       - 'destination.html'
       - 'planner.html'
       - 'guide.html'
@@ -30,20 +31,21 @@ jobs:
   images:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
+          cache: npm
 
       - name: Cài thư viện xử lý ảnh (sharp)
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Kiểm tra ảnh trên Wikimedia Commons
         run: npm run check-images
         continue-on-error: true
 
-      # Build trước để danh sách ảnh trong index.html khớp dữ liệu mới nhất
+      # Build trước để danh sách ảnh trong trang chủ khớp dữ liệu mới nhất
       - name: Build trước khi tải ảnh
         run: npm run build
 
@@ -57,7 +59,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/img/wiki assets/img/og assets/js/data/local-images.js diem-den ke-hoach cam-nang en index.html sitemap.xml robots.txt sw.js
+          git add -A assets/img/wiki assets/img/og assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de en ko zh ja index.html sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có thay đổi."
           else
