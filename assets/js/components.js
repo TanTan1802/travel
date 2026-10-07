@@ -107,20 +107,178 @@ function stayLinks(city, area = '', checkin = '', nights = 0, people = 2) {
     ]
 }
 
+/*==================== PHƯƠNG TIỆN GIỮA HAI ĐIỂM ĐẾN ====================*/
+/*
+ * Mỗi chặng có thể có: máy bay (flight), tàu hỏa (train), xe khách / ô tô (road), xe + tàu cao tốc ra đảo (boat).
+ * transportOptions() trả về các phương án (thời gian, chi phí / người) và phương án gợi ý.
+ * Dữ liệu tàu hỏa + cảng ra đảo: TRANSPORT (data/places.json → transport), quãng đường bộ: ROUTES nếu có.
+ */
+const ROAD_FACTOR = 1.3 // đường bộ dài hơn đường chim bay khoảng 30%
+const COACH_FACTOR = 1.25 // xe khách / limousine chậm hơn ô tô riêng (dừng đón trả, nghỉ giữa đường)
+const FLIGHT_FROM_KM = 450 // từ quãng đường bộ này trở lên gợi ý bay (hoặc tàu nếu không có chuyến bay)
+const FLIGHT_MIN_KM = 200 // đường chim bay ngắn hơn thì không có chuyến bay thẳng
+const AIRPORT_ISLANDS = ['phu-quoc', 'con-dao'] // đảo có sân bay riêng
+const MODES = ['flight', 'train', 'road', 'boat']
+const MODE_ICONS = { flight: 'ri-plane-line', train: 'ri-train-line', road: 'ri-bus-2-line', boat: 'ri-ship-line' }
+
+const TRANSPORT_COST = {
+    road: { saving: 900, comfort: 2200, min: 120000 }, // đ/km: xe khách / xe riêng ghép
+    flight: { saving: 1300000, comfort: 2800000 }, // vé một chiều phổ thông
+}
+
+const transportData = () => (typeof TRANSPORT !== 'undefined' && TRANSPORT) || { rail: { lines: [], fare: {} }, ports: [], stations: {} }
+const stationOf = id => transportData().stations[id] || placesOf(id) || {}
+const roundTo = (n, step) => Math.round(n / step) * step
+const roadCost = (km, tier) => Math.max(TRANSPORT_COST.road.min, roundTo(km * TRANSPORT_COST.road[tier], 10000))
+
+/*
+ * Quãng đường + thời gian đường bộ thật giữa hai điểm đến từ bảng ROUTES (OSRM, data/routes.json – xem
+ * tools/build-routes.js); chưa có bảng (hoặc là cảng, không có trong bảng) thì ước tính theo đường chim bay × ROAD_FACTOR, 45 km/h.
+ */
+function roadRoute(a, b) {
+    const table = typeof ROUTES !== 'undefined' && ROUTES
+    const i = table && a.id ? table.ids.indexOf(a.id) : -1
+    const j = table && b.id ? table.ids.indexOf(b.id) : -1
+    if (i >= 0 && j >= 0 && table.km[i][j] != null) {
+        return { km: table.km[i][j], hours: table.hours[i][j] * COACH_FACTOR, measured: true }
+    }
+    const km = Math.round(distanceKm(a, b) * ROAD_FACTOR)
+    return { km, hours: km / 45, measured: false }
+}
+
+/* Tàu hỏa: hai ga trên cùng một tuyến, quãng đường theo km lý trình */
+function railRoute(a, b) {
+    const ra = stationOf(a.id).rail
+    const rb = stationOf(b.id).rail
+    if (!ra || !rb || ra === rb) return null
+    const line = transportData().rail.lines.find(l => ra in l.stations && rb in l.stations)
+    if (!line) return null
+    const km = Math.abs(line.stations[ra] - line.stations[rb])
+    return { km, hours: km / line.kmh, from: ra, to: rb }
+}
+
+/* Ra đảo: đường bộ tới cảng gần nhất (tính theo thời gian tổng) rồi đi tàu cao tốc */
+function boatRoute(from, island) {
+    const ports = transportData().ports.filter(p => p.dest === island.id)
+    return ports.map(port => {
+        const road = distanceKm(from, port) < 15 ? { km: 0, hours: 0 } : roadRoute(from, port)
+        return { port, road, hours: road.hours + port.hours, km: road.km }
+    }).sort((x, y) => x.hours - y.hours)[0] || null
+}
+
+function transportOptions(a, b, tier = 'saving') {
+    const road = roadRoute(a, b)
+    const crow = distanceKm(a, b)
+    const pa = stationOf(a.id)
+    const pb = stationOf(b.id)
+    const isIsland = id => AIRPORT_ISLANDS.includes(id) || transportData().ports.some(p => p.dest === id)
+    const islands = [a.id, b.id].filter(isIsland)
+    const islandId = islands[0]
+    const options = []
+
+    const airIsland = islands.every(id => AIRPORT_ISLANDS.includes(id))
+    if (pa.airport && pb.airport && pa.airport !== pb.airport && airIsland && (crow >= FLIGHT_MIN_KM || islandId)) {
+        options.push({ mode: 'flight', km: road.km, hours: roundTo(0.5 + crow / 750, 1 / 6), cost: TRANSPORT_COST.flight[tier] })
+    }
+    const rail = !islandId && railRoute(a, b)
+    if (rail) {
+        const fare = transportData().rail.fare
+        options.push({ mode: 'train', km: rail.km, hours: roundTo(rail.hours, 0.5), cost: Math.max(fare.min, roundTo(rail.km * fare[tier], 10000)), stations: [rail.from, rail.to] })
+    }
+    if (islands.length === 1) {
+        const mainland = islandId === a.id ? b : a
+        const boat = boatRoute(mainland, getDestination(islandId))
+        if (boat) {
+            options.push({
+                mode: 'boat', km: boat.km, hours: roundTo(boat.hours, 0.5), port: boat.port,
+                cost: (boat.road.km ? roadCost(boat.road.km, tier) : 0) + boat.port.price[tier === 'comfort' ? 1 : 0],
+                direct: boat.road.km === 0,
+            })
+        }
+    } else if (!islands.length) {
+        options.push({ mode: 'road', km: road.km, hours: Math.max(1, roundTo(road.hours, 0.5)), cost: roadCost(road.km, tier) })
+    }
+    if (!options.length) options.push({ mode: 'road', km: road.km, hours: Math.max(1, roundTo(road.hours, 0.5)), cost: roadCost(road.km, tier) })
+
+    const has = mode => options.find(o => o.mode === mode)
+    let recommended
+    if (islandId) recommended = (has('boat') && (has('boat').hours <= 4 || !has('flight'))) ? 'boat' : (has('flight') ? 'flight' : options[0].mode)
+    else if (road.km >= FLIGHT_FROM_KM) recommended = has('flight') ? 'flight' : has('train') ? 'train' : 'road'
+    else recommended = 'road'
+    return { options, recommended, km: road.km }
+}
+
+/* Thời lượng dạng chữ: 1,33 → "1 giờ 20 phút" */
+function formatHours(hours) {
+    const m = Math.round(hours * 60 / 10) * 10
+    if (m < 60) return t('{m} phút', { m })
+    return m % 60 ? t('{h} giờ {m} phút', { h: Math.floor(m / 60), m: m % 60 }) : t('{h} giờ', { h: m / 60 })
+}
+
+/* Tên phương tiện + thời gian, vd. "Tàu hỏa ~16 giờ 30 phút" */
+function modeLabel(option) {
+    const time = formatHours(option.hours)
+    if (option.mode === 'flight') return t('Máy bay ~{time}', { time })
+    if (option.mode === 'train') return t('Tàu hỏa ~{time}', { time })
+    if (option.mode === 'boat') return option.direct ? t('Tàu cao tốc ~{time}', { time }) : t('Xe + tàu cao tốc ~{time}', { time })
+    return t('Xe khách / ô tô ~{time}', { time })
+}
+
+/* Ghi chú thêm: ga đi – ga đến, cảng ra đảo */
+function modeNote(option) {
+    if (option.mode === 'train') return t('Ga {from} → {to}', { from: option.stations[0], to: option.stations[1] })
+    if (option.mode === 'boat') return t('Qua {port}', { port: pickLang(option.port.name) })
+    if (option.mode === 'flight') return t('Chưa gồm thời gian ra sân bay')
+    return ''
+}
+
+/* Hà Nội, Đà Nẵng, Sài Gòn: cách đi tới một điểm đến từ ba thành phố lớn (trang điểm đến) */
+const HUB_IDS = ['ha-noi', 'da-nang', 'sai-gon']
+
+function hubTransportTable(d) {
+    const rows = HUB_IDS.filter(id => id !== d.id && getDestination(id)).map(id => {
+        const hub = getDestination(id)
+        const { options, recommended } = transportOptions(hub, d)
+        return `
+            <tr>
+                <th scope="row">${t('Từ {name}', { name: hub.name })}</th>
+                <td>
+                    <ul class="hub-modes">
+                        ${MODES.map(mode => options.find(o => o.mode === mode)).filter(Boolean).map(o => `
+                            <li class="hub-modes__item${o.mode === recommended ? ' hub-modes__item--best' : ''}" title="${modeNote(o)}">
+                                <i class="${MODE_ICONS[o.mode]}"></i> ${modeLabel(o)} <span>· ${formatVnd(o.cost)}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </td>
+            </tr>
+        `
+    })
+    if (!rows.length) return ''
+    return `
+        <div class="hub-transport">
+            <h4 class="hub-transport__title">${t('Đi từ các thành phố lớn')}</h4>
+            <table class="hub-transport__table">${rows.join('')}</table>
+            <p class="budget__note">${t('Thời gian ước tính lúc di chuyển, giá một chiều / người mức tiết kiệm – tham khảo. Phương án in đậm là gợi ý.')}</p>
+        </div>
+    `
+}
+
 /* Link tìm vé giữa hai điểm đến theo phương tiện gợi ý */
 function transportLinks(a, b, mode, date = '') {
-    const pa = placesOf(a.id) || {}
-    const pb = placesOf(b.id) || {}
+    const pa = stationOf(a.id)
+    const pb = stationOf(b.id)
     const links = []
-    if (mode === 'flight' && pa.airport && pb.airport && pa.airport !== pb.airport) {
-        links.push({ label: t('Vé máy bay'), icon: 'ri-plane-line', url: `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights from ${pa.airport} to ${pb.airport}${date ? ` on ${date}` : ''}`)}` })
+    if (pa.airport && pb.airport && pa.airport !== pb.airport && (mode === 'flight' || distanceKm(a, b) >= FLIGHT_MIN_KM)) {
+        links.push({ mode: 'flight', label: t('Vé máy bay'), icon: MODE_ICONS.flight, url: `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights from ${pa.airport} to ${pb.airport}${date ? ` on ${date}` : ''}`)}` })
     }
-    if (pa.rail && pb.rail && pa.rail !== pb.rail) {
-        links.push({ label: t('Vé tàu {from} – {to}', { from: pa.rail, to: pb.rail }), icon: 'ri-train-line', url: 'https://dsvn.vn/' })
-    }
-    links.push({ label: t('Vé xe khách / limousine'), icon: 'ri-bus-2-line', url: 'https://vexere.com/' })
+    const rail = railRoute(a, b)
+    if (rail) links.push({ mode: 'train', label: t('Vé tàu {from} – {to}', { from: rail.from, to: rail.to }), icon: MODE_ICONS.train, url: 'https://dsvn.vn/' })
+    if (mode === 'boat') links.push({ mode: 'boat', label: t('Vé tàu cao tốc'), icon: MODE_ICONS.boat, url: 'https://vexere.com/' })
+    links.push({ mode: 'road', label: t('Vé xe khách / limousine'), icon: MODE_ICONS.road, url: 'https://vexere.com/' })
     links.push({ label: t('Chỉ đường'), icon: 'ri-route-line', url: mapsDirectionsUrl(a, b) })
-    return links
+    /* Phương tiện đang chọn lên đầu */
+    return [...links.filter(l => l.mode === mode), ...links.filter(l => l.mode !== mode)]
 }
 
 const linkButtons = links => links.map(l => `
