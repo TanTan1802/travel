@@ -427,7 +427,9 @@
     "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "조건에 맞는 행사가 없습니다 – 필터를 줄여 보세요.",
     "Lịch lễ hội cả năm ({count})": "연간 축제 달력 ({count})",
     "Xem lịch lễ hội cả năm": "연간 축제 달력 보기",
-    "Vẫn đang diễn ra:": "계속 진행 중:"
+    "Vẫn đang diễn ra:": "계속 진행 중:",
+    "Chi phí ước tính": "예상 비용",
+    "Mỗi người": "1인 기준"
   },
   "html": {
     "Vùng miền": "지역",

@@ -16,6 +16,13 @@ function formatVnd(amount) {
     return LANG === 'vi' ? `${grouped}đ` : `${grouped} VND`
 }
 
+/* Số tiền dạng HTML: đơn vị (đ / VND) nhỏ hơn con số – dùng cho số tiền nổi bật */
+function priceHtml(amount) {
+    const text = formatVnd(amount)
+    const unit = LANG === 'vi' ? 'đ' : ' VND'
+    return `${text.slice(0, -unit.length)}<span class="price__unit">${unit.trim()}</span>`
+}
+
 /* Thẻ điểm đến – dùng ở trang chủ và mục "Điểm đến cùng vùng" */
 function favoriteButton(id, { withLabel = false } = {}) {
     return `

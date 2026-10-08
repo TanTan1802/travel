@@ -374,13 +374,16 @@ function budgetBlock(d, n, hidden = false) {
     const costs = Object.fromEntries(BUDGET_TIERS.map(({ tier }) => [tier, tripCost(d.id, n, tier)]))
     return `
         <div class="budget" data-tour-len="${n}"${hidden ? ' hidden' : ''}>
-            <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính / người')} – ${tourLabel(n)}</h3>
+            <div class="budget__head">
+                <h3 class="budget__title"><i class="ri-wallet-3-line"></i> ${t('Chi phí ước tính')}</h3>
+                <span class="budget__meta">${t('Mỗi người')} · ${tourLabel(n)}</span>
+            </div>
             <div class="budget__options" role="group" aria-label="${t('Mức chi tiêu')}">
                 ${BUDGET_TIERS.map(({ tier, label, desc }, i) => `
                     <button type="button" class="budget__option${i === 0 ? ' budget__option--active' : ''}" data-budget-tier="${tier}" aria-pressed="${i === 0}">
-                        <span>${label()}</span>
-                        <strong>${formatVnd(costs[tier].total)}</strong>
-                        <small>${desc()}</small>
+                        <span class="budget__label">${label()}</span>
+                        <strong class="budget__price">${priceHtml(costs[tier].total)}</strong>
+                        <small class="budget__desc">${desc()}</small>
                         <em class="budget__more">${t('Xem chi tiết')} <i class="ri-arrow-down-s-line"></i></em>
                     </button>
                 `).join('')}
