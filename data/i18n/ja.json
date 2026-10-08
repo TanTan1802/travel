@@ -427,7 +427,9 @@
     "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "該当するイベントがありません。絞り込みを減らしてみてください。",
     "Lịch lễ hội cả năm ({count})": "年間祭りカレンダー（{count}）",
     "Xem lịch lễ hội cả năm": "年間の祭りカレンダーを見る",
-    "Vẫn đang diễn ra:": "開催中："
+    "Vẫn đang diễn ra:": "開催中：",
+    "Chi phí ước tính": "費用の目安",
+    "Mỗi người": "1 人あたり"
   },
   "html": {
     "Vùng miền": "地域",

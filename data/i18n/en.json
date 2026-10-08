@@ -427,7 +427,9 @@
     "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "No matching events – try removing a filter.",
     "Lịch lễ hội cả năm ({count})": "Year-round festival calendar ({count})",
     "Xem lịch lễ hội cả năm": "See the full-year festival calendar",
-    "Vẫn đang diễn ra:": "Still on:"
+    "Vẫn đang diễn ra:": "Still on:",
+    "Chi phí ước tính": "Estimated cost",
+    "Mỗi người": "Per person"
   },
   "html": {
     "Vùng miền": "Region",

@@ -1294,15 +1294,31 @@ body.page-detail {
   margin-top: var(--mb-2);
 }
 
+.budget__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem .75rem;
+  margin-bottom: var(--mb-1);
+}
+
 .budget__title {
   display: flex;
   align-items: center;
   column-gap: .5rem;
   font-size: var(--h3-font-size);
-  margin-bottom: var(--mb-1);
 }
 
 .budget__title i { color: var(--accent-color); }
+
+.budget__meta {
+  padding: .2rem .65rem;
+  border-radius: 999px;
+  background-color: var(--input-color);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color);
+}
 
 .budget__options {
   display: grid;
@@ -1313,7 +1329,7 @@ body.page-detail {
 .budget__option {
   display: flex;
   flex-direction: column;
-  row-gap: .25rem;
+  row-gap: .3rem;
   padding: 1.25rem 1.5rem;
   border-radius: var(--radius);
   border: 2px solid transparent;
@@ -1328,20 +1344,37 @@ body.page-detail {
   border-color: var(--first-color);
 }
 
-.budget__option span {
-  font-size: var(--small-font-size);
-  font-weight: var(--font-semi-bold);
-  color: var(--title-color);
-}
-
-.budget__option strong {
-  font-family: var(--title-font);
-  font-size: var(--h2-font-size);
-  color: var(--title-color);
-}
-
-.budget__option small {
+/* Nhãn mức chi tiêu: chữ hoa nhỏ, giãn chữ */
+.budget__label {
   font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+/* Số tiền: chữ số thẳng hàng, đơn vị nhỏ hơn */
+.budget__price {
+  font-family: var(--body-font);
+  font-size: 1.75rem;
+  font-weight: var(--font-semi-bold);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--title-color);
+}
+
+.price__unit {
+  margin-left: .1em;
+  font-size: .6em;
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 0;
+  vertical-align: .35em;
+}
+
+.budget__desc {
+  font-size: var(--small-font-size);
+  line-height: 1.45;
   color: var(--text-color-light);
 }
 
@@ -1356,16 +1389,21 @@ body.page-detail {
   color: var(--first-color-text);
 }
 
-/* Mức đang chọn */
+/* Mức đang chọn: nền theo màu chủ đạo của theme */
 .budget__option--active {
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 50%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 52%, 34%));
 }
 
-.budget__option--active span,
-.budget__option--active strong,
-.budget__option--active small,
+.budget__option--active .budget__label,
+.budget__option--active .budget__price,
+.budget__option--active .budget__desc,
 .budget__option--active .budget__more {
   color: var(--white-color);
+}
+
+.budget__option--active .budget__label,
+.budget__option--active .budget__desc {
+  opacity: .85;
 }
 
 .budget__option--active .budget__more i {
@@ -1437,6 +1475,25 @@ body.page-detail {
 
 .cost-item__amount {
   text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Điện thoại: số tiền xuống dưới phần mô tả để chữ không bị ép thành cột hẹp */
+@media screen and (max-width: 480px) {
+  .cost-item {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+
+  .cost-item__amount {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .15rem .5rem;
+    text-align: left;
+  }
 }
 
 .cost-details {
@@ -1455,7 +1512,6 @@ body.page-detail {
   margin-top: var(--mb-0-75);
   font-size: var(--smaller-font-size);
   color: var(--text-color-light);
-  font-style: italic;
 }
 
 /*=============== YÊU THÍCH ===============*/

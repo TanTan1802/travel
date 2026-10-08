@@ -427,7 +427,9 @@
     "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "没有符合条件的活动——试着减少筛选条件。",
     "Lịch lễ hội cả năm ({count})": "全年节庆日历（{count}）",
     "Xem lịch lễ hội cả năm": "查看全年节庆日历",
-    "Vẫn đang diễn ra:": "仍在进行："
+    "Vẫn đang diễn ra:": "仍在进行：",
+    "Chi phí ước tính": "估算费用",
+    "Mỗi người": "每人"
   },
   "html": {
     "Vùng miền": "地区",
