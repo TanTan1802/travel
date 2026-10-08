@@ -93,7 +93,7 @@ onScroll() // cập nhật ngay khi tải lại trang ở vị trí đã cuộn
  */
 const REVEAL_GROUPS = [
     { from: 'top', stagger: true, selector: `.home__data, .home__social-link, .home__info,
-        .discover__container, .experience__data, .experience__overlay,
+        .discover__container, .numbers__item,
         .explore__search, .explore__filters, .dest-hero__content, .dest-facts,
         .food-card, .activity-card, .tip-item, .footer__data, .footer__rights` },
     { from: 'left', stagger: false, selector: '.about__data, .season__description, .subscribe__description, .overview__data' },

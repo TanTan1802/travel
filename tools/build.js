@@ -448,6 +448,7 @@ function buildHome(template, lang, site) {
         .replace(/<!-- build:grid -->[\s\S]*?<!-- \/build:grid -->/, `<!-- build:grid -->${cards}<!-- /build:grid -->`)
         .replace(/<!-- build:guides -->[\s\S]*?<!-- \/build:guides -->/, `<!-- build:guides -->${site.homeGuidesSection()}<!-- /build:guides -->`)
         .replace(/(<span id="dest-count">)\d+(<\/span>)/, `$1${site.DESTINATIONS.length}$2`)
+        .replace(/(data-dest-count>)\d+/g, `$1${site.DESTINATIONS.length}`)
         .replace(/<!-- build:alternate -->[\s\S]*?<!-- \/build:alternate -->/,
             `<!-- build:alternate -->${alternateLinks(homePath)}\n        <!-- /build:alternate -->`)
         .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${pageUrl(rel)}$2`)

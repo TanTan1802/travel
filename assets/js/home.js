@@ -408,8 +408,9 @@ function initExplore() {
 }
 
 /*==================== ĐI ĐÂU THÁNG NÀY ====================*/
-/* Chọn theo tháng trên máy người xem (không render sẵn khi build để luôn đúng tháng) */
-const SEASON_COUNT = 4
+/* Chọn theo tháng trên máy người xem (không render sẵn khi build để luôn đúng tháng).
+ * 6 thẻ = đủ hàng ở lưới 3 cột (máy tính) và 2 cột (máy tính bảng); điện thoại vuốt ngang */
+const SEASON_COUNT = 6
 
 function renderSeason() {
     const list = document.getElementById('season-list')
