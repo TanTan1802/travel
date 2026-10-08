@@ -42,12 +42,33 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Ba Be Lake 2.jpg": {
+        "xs": "assets/img/wiki/ba-be-lake-2-ea3855-480.webp",
+        "sm": "assets/img/wiki/ba-be-lake-2-ea3855-960.webp",
+        "lg": "assets/img/wiki/ba-be-lake-2-ea3855-1920.webp",
+        "w": 1280,
+        "h": 960
+    },
     "Ba Den Mountain summit temple illuminated night fog Tay Ninh Vietnam.jpg": {
         "xs": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-480.webp",
         "sm": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-960.webp",
         "lg": "assets/img/wiki/ba-den-mountain-summit-temple-illuminated-night-fog-tay-ninh-vietnam-9330f0-1920.webp",
         "w": 1920,
         "h": 1279
+    },
+    "Ba-Be-Lake- Then-singing.jpg": {
+        "xs": "assets/img/wiki/ba-be-lake-then-singing-60b1fd-480.webp",
+        "sm": "assets/img/wiki/ba-be-lake-then-singing-60b1fd-960.webp",
+        "lg": "assets/img/wiki/ba-be-lake-then-singing-60b1fd-1920.webp",
+        "w": 1920,
+        "h": 1244
+    },
+    "Babenp 2007 01 3.jpg": {
+        "xs": "assets/img/wiki/babenp-2007-01-3-b1f6d5-480.webp",
+        "sm": "assets/img/wiki/babenp-2007-01-3-b1f6d5-960.webp",
+        "lg": "assets/img/wiki/babenp-2007-01-3-b1f6d5-1920.webp",
+        "w": 1728,
+        "h": 1152
     },
     "Bai Cay Men,Dao nam du.Xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg": {
         "xs": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-480.webp",
@@ -553,6 +574,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1080
     },
+    "Dau Dank Waterfall 2014.jpg": {
+        "xs": "assets/img/wiki/dau-dank-waterfall-2014-067eaa-480.webp",
+        "sm": "assets/img/wiki/dau-dank-waterfall-2014-067eaa-960.webp",
+        "lg": "assets/img/wiki/dau-dank-waterfall-2014-067eaa-1920.webp",
+        "w": 1920,
+        "h": 1279
+    },
     "Dau Tieng Reservoir (39748281134).jpg": {
         "xs": "assets/img/wiki/dau-tieng-reservoir-39748281134-48b568-480.webp",
         "sm": "assets/img/wiki/dau-tieng-reservoir-39748281134-48b568-960.webp",
@@ -797,6 +825,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/hu-tieu-trieu-chau-e1a37c-1920.webp",
         "w": 1600,
         "h": 1233
+    },
+    "Hua-Ma-Cave.png": {
+        "xs": "assets/img/wiki/hua-ma-cave-77a567-480.webp",
+        "sm": "assets/img/wiki/hua-ma-cave-77a567-960.webp",
+        "lg": "assets/img/wiki/hua-ma-cave-77a567-1920.webp",
+        "w": 1600,
+        "h": 1066
     },
     "Hue Thien Mu-Pagoda.JPG": {
         "xs": "assets/img/wiki/hue-thien-mu-pagoda-b85f51-480.webp",
@@ -1169,6 +1204,20 @@ const LOCAL_IMAGES = {
         "w": 1000,
         "h": 1333
     },
+    "Pac Ngoi homestay.JPG": {
+        "xs": "assets/img/wiki/pac-ngoi-homestay-c6b438-480.webp",
+        "sm": "assets/img/wiki/pac-ngoi-homestay-c6b438-960.webp",
+        "lg": "assets/img/wiki/pac-ngoi-homestay-c6b438-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Pac Ngoi rice field.JPG": {
+        "xs": "assets/img/wiki/pac-ngoi-rice-field-5e7683-480.webp",
+        "sm": "assets/img/wiki/pac-ngoi-rice-field-5e7683-960.webp",
+        "lg": "assets/img/wiki/pac-ngoi-rice-field-5e7683-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
     "Phong Nha-Ke Bang cave3.jpg": {
         "xs": "assets/img/wiki/phong-nha-ke-bang-cave3-171876-480.webp",
         "sm": "assets/img/wiki/phong-nha-ke-bang-cave3-171876-960.webp",
@@ -1224,6 +1273,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/pulo-condore-island-beach-ca7da5-1920.webp",
         "w": 1920,
         "h": 1080
+    },
+    "Puong Cave, Ba Be.jpg": {
+        "xs": "assets/img/wiki/puong-cave-ba-be-96109e-480.webp",
+        "sm": "assets/img/wiki/puong-cave-ba-be-96109e-960.webp",
+        "lg": "assets/img/wiki/puong-cave-ba-be-96109e-1920.webp",
+        "w": 1536,
+        "h": 1920
     },
     "Quy Nhơn, tp. Quy Nhơn, Vietnam (Unsplash).jpg": {
         "xs": "assets/img/wiki/quy-nhon-tp-quy-nhon-vietnam-unsplash-8b8edf-480.webp",
