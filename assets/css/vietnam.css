@@ -5756,76 +5756,63 @@ a.home__promo[href]:hover {
   }
 }
 
-/*=============== LOGO: NÓN LÁ + CHỮ "VIỆT TRAVEL" ===============*/
+/*=============== TÊN TRANG "VIỆT TRAVEL": MÀU THEO THEME / MÙA ===============*/
+/* "Việt" theo màu chủ đạo (--hue-color), "Travel" theo màu nhấn (--accent-hue), vạch dưới chuyển giữa hai màu */
 .nav__logo {
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
   text-decoration: none;
 }
 
-.nav__logo-mark {
-  width: 2.1rem;
-  height: 2.1rem;
-  flex: none;
-  filter: drop-shadow(0 2px 6px hsla(0, 0%, 0%, .25));
-  transition: transform .3s;
-}
-
-.nav__logo:hover .nav__logo-mark {
-  transform: rotate(-8deg) scale(1.05);
-}
-
-/* Nền logo chuyển từ màu chủ đạo sang màu nhấn: đổi theo theme / mùa (--hue-color, --accent-hue) */
-.nav__logo-stop {
-  stop-color: hsl(var(--hue-color), 64%, 30%);
-}
-
-.nav__logo-stop--accent {
-  stop-color: hsl(var(--accent-hue), 90%, 50%);
-}
-
-.nav__logo-line {
-  fill: none;
-  stroke: hsl(var(--hue-color), 55%, 40%);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  opacity: .7;
-}
-
-.nav__logo-brim {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-}
-
-.nav__logo-wave {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  opacity: .85;
-}
-
 .nav__logo-text {
+  position: relative;
+  padding-bottom: .3rem;
   font-family: var(--title-font);
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -.01em;
   line-height: 1;
+  color: hsl(var(--hue-color), 70%, 94%);
+  text-shadow: 0 1px 8px hsla(var(--hue-color), 60%, 10%, .45);
+}
+
+.nav__logo-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.2rem;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, hsl(var(--hue-color), 64%, 45%), hsl(var(--accent-hue), 92%, 55%));
+  transition: width .3s;
+}
+
+.nav__logo:hover .nav__logo-text::after {
+  width: 100%;
 }
 
 .nav__logo-accent {
-  margin-left: .2rem;
+  margin-left: .25rem;
   font-weight: 500;
   color: hsl(var(--accent-hue), 92%, 62%);
 }
 
-/* Đầu trang nền sáng (đã cuộn / trang không có ảnh bìa): chữ nhấn đậm hơn cho đủ tương phản */
+/* Đầu trang nền sáng (đã cuộn / trang không có ảnh bìa): màu đậm cho đủ tương phản */
+.scroll-header .nav__logo-text,
+.header--solid .nav__logo-text {
+  color: hsl(var(--hue-color), 64%, 26%);
+  text-shadow: none;
+}
+
 .scroll-header .nav__logo-accent,
 .header--solid .nav__logo-accent {
   color: var(--accent-color-text);
+}
+
+body.dark-theme .scroll-header .nav__logo-text,
+body.dark-theme .header--solid .nav__logo-text {
+  color: hsl(var(--hue-color), 60%, 82%);
 }
 
 body.dark-theme .scroll-header .nav__logo-accent,
@@ -5834,13 +5821,8 @@ body.dark-theme .header--solid .nav__logo-accent {
 }
 
 @media screen and (min-width: 968px) {
-  .nav__logo-mark {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
   .nav__logo-text {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
   }
 }
 
