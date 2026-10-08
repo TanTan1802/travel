@@ -534,22 +534,39 @@ input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--brand); 
 .timeline li.is-active::before { border-color: var(--info); }
 
 /*---------- Giao diện & mùa ----------*/
-.presets { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .8rem; }
-.preset {
-  display: inline-flex;
-  align-items: center;
-  gap: .25rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--input);
+.presets { margin-bottom: 1rem; }
+.presets > summary { cursor: pointer; font-weight: 600; font-size: .9rem; color: var(--brand); margin-bottom: .6rem; }
+.pgroup { margin-bottom: .9rem; }
+.pgroup__title { display: flex; align-items: center; gap: .5rem; margin: .2rem 0 .45rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.pgroup__list { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.pcard {
+  display: grid;
+  gap: .3rem;
+  padding: .45rem .45rem .55rem;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
   color: var(--text);
-  padding: .22rem .65rem .22rem .3rem;
   font: inherit;
-  font-size: .8rem;
+  text-align: left;
   cursor: pointer;
+  transition: border-color .15s, transform .15s, box-shadow .15s;
 }
-.preset:hover { border-color: var(--brand); }
-.preset__dot { width: .95rem; height: .95rem; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .15); }
+.pcard:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow); }
+.pcard.is-on { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.pcard__mock { display: grid; grid-template-columns: 1fr 34%; grid-template-rows: auto 1fr; overflow: hidden; border-radius: 8px; border: 1px solid var(--line); background: hsl(var(--h), 100%, 99%); height: 82px; }
+.pcard__bar { grid-column: 1 / -1; display: flex; align-items: center; gap: .3rem; padding: .25rem .4rem; background: hsl(var(--h), 64%, 22%); }
+.pcard__logo { width: .6rem; height: .6rem; border-radius: 50%; background: hsl(var(--a), 92%, 55%); }
+.pcard__nav { height: .25rem; width: 45%; border-radius: 2px; background: hsla(0, 0%, 100%, .55); }
+.pcard__body { display: grid; align-content: center; justify-items: start; gap: .12rem; padding: .25rem .4rem; }
+.pcard__sub { font-size: .5rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: hsl(calc(var(--a) - 5), 90%, 31%); }
+.pcard__title { font-size: .72rem; font-weight: 700; color: hsl(var(--h), 64%, 18%); line-height: 1.1; }
+.pcard__btn { margin-top: .1rem; padding: .08rem .35rem; border-radius: 3px; background: hsl(var(--h), 64%, 22%); color: #fff; font-size: .5rem; font-weight: 600; }
+.pcard__dark { display: grid; align-content: center; justify-items: center; gap: .1rem; background: hsl(var(--h), 29%, 12%); }
+.pcard__dark-sub { font-size: .5rem; font-weight: 700; color: hsl(var(--a), 92%, 55%); }
+.pcard__dark-text { font-size: .6rem; color: hsl(var(--h), 8%, 75%); }
+.pcard__name { font-size: .82rem; font-weight: 600; line-height: 1.25; }
+.pcard__ratio { font-size: .72rem; color: var(--ok); }
 .hue-range {
   width: 100%;
   height: 1.1rem;
