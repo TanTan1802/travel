@@ -760,3 +760,13 @@ test('duyệt ảnh người đọc: chỉ nhận bình luận duyệt hợp l�
     assert.throws(() => parseApproval(enc({ dest: 'hoi-an', caption: '', author: 'b', images: [img(1)] })), /chú thích/)
     assert.throws(() => parseApproval(enc({ dest: 'hoi-an', caption: 'a', author: 'b', images: ['http://x/y.jpg'] })), /ảnh hợp lệ/)
 })
+
+test('bảng màu mẫu trong trang quản trị: mọi mẫu đủ tương phản theo đúng kiểm tra của build', () => {
+    const { contrastIssues } = require('../tools/theme')
+    const src = fs.readFileSync(path.join(ROOT, 'admin/admin.js'), 'utf8')
+    const block = src.slice(src.indexOf('const THEME_GROUPS'), src.indexOf('function seasonGroupOf'))
+    const presets = [...block.matchAll(/\['([^']+)', (\d+), (\d+)\]/g)].map(m => ({ name: m[1], hue: Number(m[2]), accentHue: Number(m[3]) }))
+    assert.ok(presets.length >= 15, `cần đủ mẫu (đang có ${presets.length})`)
+    for (const p of presets) assert.deepEqual(contrastIssues(p), [], `${p.name}: chưa đủ tương phản`)
+    assert.equal(new Set(presets.map(p => `${p.hue},${p.accentHue}`)).size, presets.length, 'không có hai mẫu trùng màu')
+})

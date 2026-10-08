@@ -409,10 +409,24 @@ async function createPullRequest(changed, { title, slug, summary }, note) {
 const SITE_LANGS = ['vi', 'en', 'ko', 'zh', 'ja']
 const SITE_LANG_LABELS = { vi: 'Tiếng Việt *', en: 'English *', ko: '한국어', zh: '中文', ja: '日本語' }
 const DEFAULT_THEME = { hue: 190, accentHue: 38 }
-const THEME_PRESETS = [
-    ['Biển xanh (mặc định)', 190, 38], ['Tết đỏ – vàng', 355, 40], ['Hoa đào hồng', 340, 38], ['Hè biển xanh', 205, 28],
-    ['Lúa chín – thu vàng', 28, 38], ['Núi rừng xanh lá', 150, 38], ['Tím hoa sim', 270, 30], ['Giáng sinh', 145, 20],
+/*
+ * Bảng màu mẫu theo mùa: [tên, màu chủ đạo, màu nhấn]. Mọi cặp đã kiểm tra độ tương phản ≥ 5:1
+ * (chuẩn WCAG AA là 4.5:1) ở cả nền sáng lẫn nền tối – xem contrastIssues / minContrast.
+ */
+const THEME_GROUPS = [
+    ['quanh-nam', 'Quanh năm', [['Biển xanh ngọc (mặc định)', 190, 38], ['Biển đêm – vàng đồng', 225, 34], ['Rừng thông Đà Lạt', 160, 30], ['Cà phê sữa', 22, 32]]],
+    ['xuan', 'Xuân – Tết', [['Tết đỏ son – vàng kim', 355, 34], ['Hoa đào', 340, 30], ['Lộc xuân xanh non', 145, 34]]],
+    ['he', 'Hè', [['Hè biển xanh', 205, 30], ['Sen hồng', 335, 26], ['Nhiệt đới', 175, 30]]],
+    ['thu', 'Thu', [['Lúa chín vàng', 28, 34], ['Thu Hà Nội', 15, 30], ['Cốm làng Vòng', 95, 32]]],
+    ['dong', 'Đông', [['Đông sương lạnh', 220, 205], ['Tam giác mạch', 322, 30], ['Tím hoa sim', 270, 28], ['Giáng sinh', 150, 28]]],
+    ['le', 'Lễ hội', [['Đèn lồng Hội An', 8, 32], ['Trung thu', 25, 36]]],
 ]
+/* Nhóm mẫu hợp với tháng bắt đầu của mùa (MM-DD hoặc YYYY-MM-DD) */
+function seasonGroupOf(day) {
+    const m = Number(String(day || '').slice(-5, -3))
+    if (!m) return ''
+    return m <= 3 ? 'xuan' : m <= 8 ? 'he' : m <= 11 ? 'thu' : 'dong'
+}
 
 /* Bản sao tools/theme.js (contrastIssues) – build kiểm tra lại khi mở PR */
 function hslToRgb(h, sat, l) {
@@ -432,7 +446,7 @@ function contrastRatio(a, b) {
     const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p)
     return (x + 0.05) / (y + 0.05)
 }
-function contrastIssues({ hue, accentHue }) {
+function contrastPairs({ hue, accentHue }) {
     const white = [1, 1, 1]
     return [
         ['Nút / chữ trắng trên màu chủ đạo', hslToRgb(hue, 64, 22), white],
@@ -443,9 +457,12 @@ function contrastIssues({ hue, accentHue }) {
         ['Chữ nhấn trên nền tối', hslToRgb(accentHue, 92, 55), hslToRgb(hue, 29, 16)],
         ['Chữ thường trên nền tối', hslToRgb(hue, 8, 75), hslToRgb(hue, 29, 12)],
     ].map(([label, fg, bg]) => ({ label, ratio: contrastRatio(fg, bg) }))
-        .filter(p => p.ratio < 4.5)
-        .map(p => `${p.label}: ${p.ratio.toFixed(2)}:1 (cần ≥ 4.5:1)`)
 }
+function contrastIssues(theme) {
+    return contrastPairs(theme).filter(p => p.ratio < 4.5).map(p => `${p.label}: ${p.ratio.toFixed(2)}:1 (cần ≥ 4.5:1)`)
+}
+/* Độ tương phản thấp nhất trong các cặp chữ / nền – càng cao càng dễ đọc */
+const minContrast = theme => Math.min(...contrastPairs(theme).map(p => p.ratio))
 
 /* Mùa đang có hiệu lực hôm nay (giống script trên site) */
 function seasonActive(season, iso) {
@@ -721,11 +738,35 @@ function themePreview({ hue, accentHue }) {
         <div class="tp__issues">${issues.length ? `<div class="errors">⚠ Chưa đủ tương phản (chữ khó đọc) – chọn màu khác:<ul>${issues.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : '<p class="small tp__ok">✔ Độ tương phản đạt chuẩn WCAG AA</p>'}</div>`
 }
 
+/* Thẻ mẫu màu: mô phỏng thu nhỏ đầu trang + tiêu đề + nút + chữ nhấn, kèm điểm tương phản */
+function presetCard([name, h, a], path, current) {
+    const ratio = minContrast({ hue: h, accentHue: a })
+    const on = current.hue === h && current.accentHue === a
+    return `<button type="button" class="pcard${on ? ' is-on' : ''}" data-preset="${h},${a}" data-path="${esc(JSON.stringify(path))}" aria-pressed="${on}" title="${esc(name)} – màu ${h} / nhấn ${a}">
+        <span class="pcard__mock" style="--h:${h};--a:${a}" aria-hidden="true">
+            <span class="pcard__bar"><span class="pcard__logo"></span><span class="pcard__nav"></span></span>
+            <span class="pcard__body"><span class="pcard__sub">Mùa đẹp</span><span class="pcard__title">Việt Travel</span><span class="pcard__btn">Khám phá</span></span>
+            <span class="pcard__dark"><span class="pcard__dark-sub">Nhấn</span><span class="pcard__dark-text">Tối</span></span>
+        </span>
+        <span class="pcard__name">${esc(name)}</span>
+        <span class="pcard__ratio">${on ? '✓ Đang dùng · ' : ''}Tương phản ${ratio.toFixed(1).replace('.', ',')}:1</span>
+    </button>`
+}
+
 function themeField(path, t) {
-    const presets = THEME_PRESETS.map(([name, h, a]) => `<button type="button" class="preset" data-preset="${h},${a}" data-path="${esc(JSON.stringify(path))}" title="${esc(name)}">
-            <span class="preset__dot" style="background:hsl(${h}, 64%, 22%)"></span><span class="preset__dot" style="background:hsl(${a}, 92%, 55%)"></span>${esc(name)}</button>`).join('')
+    /* Đang sửa một mùa: đưa nhóm mẫu hợp với tháng của mùa đó lên đầu */
+    const season = path[1] === 'seasons' ? state.bundle.site.seasons[path[2]] : null
+    const hint = season ? seasonGroupOf(season.from) : ''
+    const groups = [...THEME_GROUPS].sort((x, y) => (y[0] === hint) - (x[0] === hint))
+    const presets = groups.map(([key, label, list]) => `<div class="pgroup">
+            <h4 class="pgroup__title">${esc(label)}${key === hint ? ' <span class="chip chip--info">Gợi ý cho mùa này</span>' : ''}</h4>
+            <div class="pgroup__list">${list.map(p => presetCard(p, path, t)).join('')}</div>
+        </div>`).join('')
     return `<div class="theme-field">
-        <div class="presets">${presets}</div>
+        <details class="presets"${season && !season.useTheme ? '' : ' open'}>
+            <summary>Bảng màu mẫu theo mùa – bấm để áp dụng (mọi mẫu đều dễ đọc ở nền sáng lẫn tối)</summary>
+            ${presets}
+        </details>
         <div class="grid grid--2">
             <div><span class="field__lang">Màu chủ đạo (nút, tiêu đề, nền) – <output data-out="hue">${t.hue}</output></span>
                 <input type="range" class="hue-range" min="0" max="359" ${attrs([...path, 'hue'], 'number')} value="${t.hue}"></div>
