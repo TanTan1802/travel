@@ -5598,3 +5598,311 @@ a.home__promo[href]:hover {
     display: none;
   }
 }
+
+/* Đi đâu tháng này: 6 thẻ luôn đủ hàng – 3 cột máy tính, 2 cột máy tính bảng (điện thoại vuốt ngang, xem phía trên) */
+@media screen and (min-width: 577px) {
+  .season__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .season__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*=============== VIỆT NAM QUA NHỮNG CON SỐ (trang chủ) ===============*/
+/* Dải ảnh nền tối, 4 con số lớn – nền màu đặc làm dự phòng khi ảnh chưa tải (và để chữ trắng luôn đủ tương phản) */
+.numbers {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0;
+  margin-block: 2rem;
+  background-color: hsl(var(--hue-color), 64%, 12%);
+  color: var(--white-color);
+}
+
+.numbers__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.numbers__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.numbers__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, hsla(var(--hue-color), 64%, 9%, .94) 0%, hsla(var(--hue-color), 64%, 12%, .82) 50%, hsla(var(--hue-color), 64%, 14%, .6) 100%);
+}
+
+.numbers__container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.numbers__subtitle {
+  display: block;
+  margin-bottom: .75rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: hsl(var(--accent-hue), 92%, 68%);
+}
+
+.numbers__title {
+  font-size: calc(var(--h1-font-size) + .25rem);
+  font-weight: var(--font-semi-bold);
+  line-height: 1.25;
+  color: var(--white-color);
+}
+
+.numbers__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.numbers__item {
+  display: grid;
+  align-content: start;
+  gap: .4rem;
+  padding: 1.25rem 1.1rem;
+  border-radius: 1rem;
+  background-color: hsla(0, 0%, 100%, .08);
+  border: 1px solid hsla(0, 0%, 100%, .16);
+  backdrop-filter: blur(4px);
+}
+
+.numbers__icon {
+  font-size: 1.6rem;
+  color: hsl(var(--accent-hue), 92%, 68%);
+}
+
+.numbers__value {
+  font-family: var(--title-font);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white-color);
+}
+
+.numbers__label {
+  font-size: var(--small-font-size);
+  line-height: 1.4;
+  color: hsla(0, 0%, 100%, .88);
+}
+
+@media screen and (min-width: 768px) {
+  .numbers {
+    padding: 6.5rem 0;
+  }
+
+  .numbers__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .numbers__item {
+    padding: 1.6rem 1.4rem;
+  }
+
+  .numbers__value {
+    font-size: 3.1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .numbers__container {
+    grid-template-columns: 1fr 1.7fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .numbers__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*=============== LOGO: NÓN LÁ + CHỮ "VIỆT TRAVEL" ===============*/
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  text-decoration: none;
+}
+
+.nav__logo-mark {
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: none;
+  filter: drop-shadow(0 2px 6px hsla(0, 0%, 0%, .25));
+  transition: transform .3s;
+}
+
+.nav__logo:hover .nav__logo-mark {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.nav__logo-bg {
+  fill: hsl(var(--accent-hue), 92%, 52%);
+}
+
+.nav__logo-line {
+  fill: none;
+  stroke: hsl(calc(var(--accent-hue) - 8), 75%, 45%);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: .7;
+}
+
+.nav__logo-brim {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.nav__logo-wave {
+  fill: none;
+  stroke: hsl(var(--hue-color), 64%, 22%);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.nav__logo-text {
+  font-family: var(--title-font);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+
+.nav__logo-accent {
+  margin-left: .2rem;
+  font-weight: 500;
+  color: hsl(var(--accent-hue), 92%, 62%);
+}
+
+/* Đầu trang nền sáng (đã cuộn / trang không có ảnh bìa): chữ nhấn đậm hơn cho đủ tương phản */
+.scroll-header .nav__logo-accent,
+.header--solid .nav__logo-accent {
+  color: var(--accent-color-text);
+}
+
+body.dark-theme .scroll-header .nav__logo-accent,
+body.dark-theme .header--solid .nav__logo-accent {
+  color: var(--accent-color);
+}
+
+@media screen and (min-width: 968px) {
+  .nav__logo-mark {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .nav__logo-text {
+    font-size: 1.45rem;
+  }
+}
+
+/*=============== TRANG ĐIỂM ĐẾN: TIÊU ĐỀ & NỘI DUNG RÕ HƠN, CÁC MỤC TÁCH BẠCH ===============*/
+#destination {
+  --section-alt: hsl(var(--hue-color), 45%, 96.5%);
+}
+
+body:not(.dark-theme) #destination {
+  --text-color: hsl(var(--hue-color), 24%, 27%);
+}
+
+body.dark-theme #destination {
+  --section-alt: hsl(var(--hue-color), 26%, 14%);
+  --text-color: hsl(var(--hue-color), 10%, 82%);
+}
+
+#destination .section__title {
+  font-size: calc(var(--h2-font-size) + .4rem);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+/* Gạch nhấn dưới tiêu đề mục căn giữa */
+#destination section > .section__title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin: .9rem auto 0;
+  border-radius: 3px;
+  background-color: var(--accent-color);
+}
+
+#destination .overview__title {
+  font-size: calc(var(--h2-font-size) + .55rem);
+}
+
+#destination .overview__description {
+  font-size: calc(var(--normal-font-size) + .1rem);
+  line-height: 1.75;
+  color: var(--text-color);
+}
+
+/* Chữ nội dung trong thẻ: cỡ thường thay vì cỡ nhỏ, dòng thoáng hơn */
+#destination .activity-card__desc,
+#destination .tip-item,
+#destination .food-card__desc,
+#destination .stay-card__note,
+#destination .getthere p,
+#destination .packing__item,
+#destination .eat__dish,
+#destination .eat__address,
+#destination .overview__highlights li {
+  font-size: var(--normal-font-size);
+  line-height: 1.6;
+}
+
+#destination .activity-card__title,
+#destination .stay-card__area,
+#destination .tips__title {
+  font-size: calc(var(--h3-font-size) + .1rem);
+  font-weight: 600;
+}
+
+/* Nền xen kẽ: mỗi mục một khối rõ ràng, thẻ trắng nổi trên nền */
+#destination .climate,
+#destination .food,
+#destination .activities,
+#destination .location,
+#destination .related {
+  background-color: var(--section-alt);
+  padding-block: 4.5rem;
+}
+
+@media screen and (min-width: 968px) {
+  #destination .section__title {
+    font-size: calc(var(--h2-font-size) + .6rem);
+  }
+
+  #destination .overview__title {
+    font-size: calc(var(--h2-font-size) + .75rem);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Cột tiêu đề hẹp: bỏ ngắt dòng cứng để chữ tự xuống dòng tự nhiên */
+  .numbers__title br {
+    display: none;
+  }
+}
