@@ -3,7 +3,7 @@
  * Bộ nhớ 'trip-offline' do nút "Tải về dùng offline" (today.js) tạo – không bị xóa khi cập nhật.
  * VERSION được `npm run build` cập nhật tự động mỗi khi mã nguồn thay đổi.
  */
-const VERSION = '75e4678929'
+const VERSION = '53492a2607'
 const CORE_CACHE = `core-${VERSION}`
 const PAGE_CACHE = 'pages'
 const PAGE_LIMIT = 80

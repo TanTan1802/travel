@@ -5,7 +5,7 @@
  * danh sách (list) hoặc widget tự sinh từ dữ liệu: 'months' (điểm đến đẹp theo tháng).
  * related: các điểm đến liên quan hiện ở cuối bài.
  */
-const GUIDE_UPDATED = '2026-09'
+const GUIDE_UPDATED = '2026-10'
 
 const GUIDES = [
     {
@@ -45,6 +45,48 @@ const GUIDES = [
             },
         ],
         related: ['sa-pa', 'hoi-an', 'da-lat', 'phu-quoc'],
+    },
+    {
+        slug: 'nghi-le-2027',
+        icon: 'ri-calendar-check-line',
+        title: ['Lịch nghỉ lễ, Tết 2027 và nên đi đâu mỗi kỳ nghỉ', 'Vietnam public holidays 2027 and where to go'],
+        summary: ['Tết Đinh Mùi nghỉ 7 ngày, 30/4 và Quốc khánh nghỉ 4 ngày – lịch từng kỳ nghỉ, điểm đến hợp thời tiết và mẹo đặt vé đông khách.', 'Seven days off for Tet, four for 30 April and National Day – every 2027 holiday, where the weather is good and how to book in peak season.'],
+        sections: [
+            {
+                heading: ['Các kỳ nghỉ năm 2027', 'The 2027 holidays'],
+                list: [
+                    ['Tết Dương lịch: Thứ Sáu 1/1 – Chủ nhật 3/1/2027 (3 ngày).', 'New Year: Friday 1 – Sunday 3 January 2027 (3 days).'],
+                    ['Tết Nguyên đán Đinh Mùi: Thứ Năm 4/2 – Thứ Tư 10/2/2027 (28 tháng Chạp – mùng 5 tháng Giêng, 7 ngày); mùng 1 Tết là Thứ Bảy 6/2.', 'Lunar New Year (Tet, year of the Goat): Thursday 4 – Wednesday 10 February 2027 (7 days); the first day of Tet is Saturday 6 February.'],
+                    ['Giỗ Tổ Hùng Vương (10/3 âm lịch): Thứ Sáu 16/4 – Chủ nhật 18/4/2027 (3 ngày).', 'Hung Kings Commemoration Day (10th day of the 3rd lunar month): Friday 16 – Sunday 18 April 2027 (3 days).'],
+                    ['30/4 – 1/5: Thứ Sáu 30/4 – Thứ Hai 3/5/2027 (4 ngày – 1/5 trùng Thứ Bảy nên được nghỉ bù Thứ Hai; chờ thông báo chính thức).', '30 April – 1 May: Friday 30 April – Monday 3 May 2027 (4 days – 1 May falls on a Saturday so Monday is a day in lieu; awaiting official confirmation).'],
+                    ['Quốc khánh: Thứ Năm 2/9 – Chủ nhật 5/9/2027 (4 ngày với cán bộ, công chức; doanh nghiệp chọn nghỉ thêm 1/9 hoặc 3/9).', 'National Day: Thursday 2 – Sunday 5 September 2027 (4 days for civil servants; businesses add either 1 or 3 September).'],
+                    ['Ngày Văn hóa Việt Nam 24/11 (Thứ Tư): dự kiến nghỉ 1 ngày.', 'Vietnamese Culture Day, 24 November (Wednesday): one day off expected.'],
+                ],
+                paragraphs: [
+                    ['Lịch Tết và Quốc khánh dưới đây là phương án đã được duyệt cho cán bộ, công chức, viên chức; doanh nghiệp có thể chọn lịch khác theo Bộ luật Lao động. Lịch cập nhật tháng 10/2026 – hãy đối chiếu thông báo chính thức trước khi đặt vé.', 'The Tet and National Day dates below are the schedules approved for civil servants; private companies may choose different days under the Labour Code. Updated October 2026 – check the official announcement before booking.'],
+                ],
+            },
+            {
+                heading: ['Nên đi đâu mỗi kỳ nghỉ', 'Where to go for each holiday'],
+                list: [
+                    ['Tết Dương lịch (đầu tháng 1): miền Nam đang mùa khô – Phú Quốc, Côn Đảo, Cần Thơ; thích lạnh thì Sa Pa, Đà Lạt.', 'New Year (early January): the South is in its dry season – Phu Quoc, Con Dao, Can Tho; for cool weather try Sa Pa or Da Lat.'],
+                    ['Tết Nguyên đán (tháng 2): Mộc Châu, Hà Giang mùa hoa mận, hoa đào nhưng trời lạnh; miền Trung và miền Nam nắng đẹp – Hội An, Quy Nhơn, Phú Quốc. Nhiều quán đóng cửa mùng 1 – 3.', 'Tet (February): plum and peach blossom in Moc Chau and Ha Giang, but it is cold; the Centre and South are sunny – Hoi An, Quy Nhon, Phu Quoc. Many eateries close for the first three days.'],
+                    ['Giỗ Tổ (giữa tháng 4): thời tiết miền Bắc dễ chịu, ít đông hơn dịp 30/4 – Ninh Bình, Mai Châu, hồ Ba Bể, Hạ Long.', 'Hung Kings Day (mid-April): pleasant weather in the North and fewer crowds than 30 April – Ninh Binh, Mai Chau, Ba Be Lake, Ha Long.'],
+                    ['30/4 – 1/5 (4 ngày): đông nhất năm ở biển gần Hà Nội, Sài Gòn (Vũng Tàu, Cát Bà, Sầm Sơn). Đi xa hơn một chút để thoáng hơn: Quy Nhơn, Phú Yên, Lý Sơn, Côn Đảo.', '30 April – 1 May (4 days): the busiest time of year at beaches near Hanoi and Saigon (Vung Tau, Cat Ba, Sam Son). Go a little further for space: Quy Nhon, Phu Yen, Ly Son, Con Dao.'],
+                    ['Quốc khánh (đầu tháng 9): mùa lúa chín Mù Cang Chải, Sa Pa, Hà Giang; miền Trung bắt đầu vào mùa mưa bão – theo dõi dự báo.', 'National Day (early September): rice harvest season in Mu Cang Chai, Sa Pa and Ha Giang; Central Vietnam enters the typhoon season – watch the forecast.'],
+                ],
+            },
+            {
+                heading: ['Mẹo đặt vé dịp lễ, Tết', 'Booking tips for peak holidays'],
+                list: [
+                    ['Đặt vé máy bay, tàu Tết càng sớm càng tốt – giá tăng nhanh khi gần ngày và chặng về quê thường hết vé trước.', 'Book Tet flights and trains as early as possible – fares rise fast and routes home sell out first.'],
+                    ['Đi sớm hoặc về muộn hơn kỳ nghỉ 1 – 2 ngày giúp vé rẻ hơn hẳn và tránh kẹt xe ở cửa ngõ thành phố.', 'Leaving a day or two before (or returning after) the holiday is much cheaper and avoids traffic jams out of the cities.'],
+                    ['Chọn phòng có hủy miễn phí, đặt trước rồi đổi khi chốt lịch.', 'Choose rooms with free cancellation – book now and change once your plans are fixed.'],
+                    ['Điểm biển, điểm núi gần thành phố lớn kín phòng từ sớm dịp 30/4 và 2/9; homestay vùng cao thường chỉ nhận chuyển khoản đặt cọc.', 'Beaches and mountains near the big cities fill up early for 30 April and 2 September; highland homestays usually ask for a bank-transfer deposit.'],
+                ],
+            },
+        ],
+        related: ['phu-quoc', 'ba-be', 'quy-nhon', 'mu-cang-chai'],
     },
     {
         slug: 'di-chuyen',
