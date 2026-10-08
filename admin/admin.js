@@ -782,8 +782,33 @@ const destOptions = () => Object.fromEntries(state.data.destinations.destination
 const SLOGAN_HELP = 'Xuống dòng = xuống dòng trên trang; <code>*chữ*</code> = in đậm. Tiếng Việt và tiếng Anh bắt buộc; ngôn ngữ để trống sẽ hiện tiếng Anh.'
 const LINK_HELP = 'Trang trong site, vd. <code>diem-den/mu-cang-chai/index.html</code>, <code>thang/9/index.html</code>, <code>chu-de/bien/index.html</code>, <code>le-hoi/index.html</code>, <code>ke-hoach/index.html</code> – hoặc địa chỉ <code>https://…</code>. Để trống = chỉ hiện chữ.'
 
+/* Mùa đang chạy hôm nay che những phần nào của nội dung mặc định (màu, slogan, ảnh bìa…) */
+function seasonOverrideNotice() {
+    const today = new Date().toISOString().slice(0, 10)
+    const i = state.bundle.site.seasons.findIndex(sea => sea.enabled && DAY_RE.test(sea.from) && DAY_RE.test(sea.to)
+        && sea.from.length === sea.to.length && seasonActive(sea, today))
+    if (i < 0) return ''
+    const sea = state.bundle.site.seasons[i]
+    const filled = v => (typeof v === 'string' ? v.trim() : v && Object.values(v).some(x => String(x || '').trim()))
+    const parts = [
+        sea.useTheme && 'màu giao diện',
+        filled(sea.hero.title) && 'slogan',
+        filled(sea.hero.subtitle) && 'dòng chữ nhỏ',
+        filled(sea.hero.image) && 'ảnh bìa',
+        sea.featured.length && 'điểm đến nổi bật',
+        filled(sea.featuredTitle) && 'tiêu đề mục nổi bật',
+    ].filter(Boolean)
+    if (!parts.length) return ''
+    return `<div class="notice notice--warn"><span><b>Mùa "${esc(sea.name || sea.id)}" đang chạy hôm nay (${esc(sea.from)} → ${esc(sea.to)})</b>
+        nên site đang hiện <b>${parts.join(', ')}</b> của mùa này, không phải phần mặc định bên dưới.
+        Sửa ở đây chỉ thấy khi hết mùa – muốn đổi ngay thì sửa trong tab của mùa (hoặc bỏ phần đó / tắt mùa).</span>
+        <button type="button" class="btn btn--ghost btn--sm" data-tab="s${i}">Sửa mùa "${esc(sea.name || sea.id)}"</button>
+        <a href="${SITE_URL}?season=none" target="_blank" rel="noopener">Xem bản mặc định trên site ↗</a></div>`
+}
+
 function siteGeneralFields() {
     return [
+        { type: 'html', html: seasonOverrideNotice() },
         { type: 'html', html: '<p class="muted small">Áp dụng khi không có mùa nào đang chạy. Mỗi mùa (tab bên cạnh) có thể đổi màu, slogan, ảnh bìa, thêm dải thông báo và danh sách điểm đến nổi bật trong khoảng ngày của nó – site tự đổi theo ngày, không cần build lại.</p>' },
         { type: 'theme', path: ['site', 'theme'], label: 'Màu giao diện' },
         { type: 'langtext', path: ['site', 'hero', 'subtitle'], label: 'Dòng chữ nhỏ trên slogan' },
