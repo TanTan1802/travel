@@ -151,7 +151,7 @@ function siteChecks(site, idSet) {
         seen.add(s.id)
         if (s.from.length !== s.to.length) errors.push(`${where}: from và to phải cùng dạng (MM-DD hoặc YYYY-MM-DD)`)
         else if (s.from.length > 5 && s.from > s.to) errors.push(`${where}: ngày bắt đầu sau ngày kết thúc`)
-        for (const day of [s.from, s.to]) {
+        for (const day of [s.from, s.to, ...(s.banner && s.banner.countdown ? [s.banner.countdown.date] : [])]) {
             const [y, m, d] = (day.length > 5 ? day : `2024-${day}`).split('-').map(Number)
             const date = new Date(Date.UTC(y, m - 1, d))
             if (date.getUTCMonth() !== m - 1) errors.push(`${where}: ngày ${day} không có thật`)

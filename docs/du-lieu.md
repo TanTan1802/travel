@@ -51,7 +51,8 @@ Sửa bằng trang quản trị `/admin/` → **Giao diện & mùa**, hoặc tr�
   Chữ theo ngôn ngữ `{ vi, en, ko?, zh?, ja? }` – thiếu ko/zh/ja thì dùng tiếng Anh.
 - `featured` + `featuredTitle` – mục "điểm đến nổi bật" trên trang chủ.
 - `seasons` – mỗi mùa: `id`, `name`, `enabled`, `from` / `to` (`MM-DD` lặp hằng năm, được vắt qua năm mới; hoặc `YYYY-MM-DD`),
-  tùy chọn `theme`, `hero`, `banner` (`text` + `link` tới trang trong site hoặc `https://`), `featured` + `featuredTitle`.
+  tùy chọn `theme`, `hero`, `banner` (`text` + `link` tới trang trong site hoặc `https://` + `countdown` { `date`, `label` }
+  để đếm ngược), `featured` + `featuredTitle`, `decor` (`hoa-dao` | `hoa-mai` | `la-vang` | `tuyet`).
   Mùa đứng trước được ưu tiên. Script đầu mỗi trang chọn mùa theo ngày của người xem; xem thử bằng `?season=<id>`.
 
 ## Độ mới của dữ liệu

@@ -5528,3 +5528,73 @@ a.home__promo[href]:hover {
 .home__container {
   z-index: 2;
 }
+
+/* Đếm ngược trong dải thông báo theo mùa */
+.home__countdown {
+  padding: .05rem .5rem;
+  border-radius: 999px;
+  background-color: hsl(var(--accent-hue), 92%, 55%);
+  color: hsl(calc(var(--accent-hue) - 10), 80%, 14%);
+  font-weight: var(--font-semi-bold);
+  white-space: nowrap;
+}
+
+.home__countdown[hidden] {
+  display: none;
+}
+
+/*=============== HIỆU ỨNG TRANG TRÍ THEO MÙA (ảnh bìa trang chủ – data/site.json: decor) ===============*/
+.decor {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decor i {
+  position: absolute;
+  top: -24px;
+  left: var(--x);
+  width: var(--s);
+  height: calc(var(--s) * .8);
+  opacity: .85;
+  border-radius: 70% 0 70% 0;
+  animation: decor-fall var(--d) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+.decor--hoa-dao i { background: radial-gradient(circle at 30% 30%, hsl(340, 90%, 92%), hsl(340, 75%, 76%)); }
+.decor--hoa-mai i { background: radial-gradient(circle at 30% 30%, hsl(50, 100%, 80%), hsl(44, 95%, 55%)); }
+.decor--la-vang i { background: linear-gradient(135deg, hsl(38, 90%, 58%), hsl(22, 80%, 42%)); border-radius: 0 80% 0 80%; }
+.decor--tuyet i { background: hsla(0, 0%, 100%, .92); border-radius: 50%; height: calc(var(--s) * .7); width: calc(var(--s) * .7); }
+
+@keyframes decor-fall {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(var(--dx), 760px, 0) rotate(540deg); }
+}
+
+.decor__off {
+  position: absolute;
+  right: 1rem;
+  top: calc(var(--header-height) + 1.5rem);
+  z-index: 3;
+  padding: .3rem .75rem;
+  border: 1px solid hsla(0, 0%, 100%, .45);
+  border-radius: 999px;
+  background-color: hsla(0, 0%, 0%, .35);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  cursor: pointer;
+}
+
+.decor__off:hover {
+  background-color: hsla(0, 0%, 0%, .55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decor,
+  .decor__off {
+    display: none;
+  }
+}

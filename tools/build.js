@@ -130,6 +130,15 @@ function applyHomeContent(html, lang) {
  * Trang chủ: nội dung riêng của từng mùa (slogan, ảnh bìa, thông báo, điểm đến nổi bật) cho đúng ngôn ngữ,
  * áp dụng ngay sau khối chữ đầu trang để không nháy nội dung mặc định. home.js đọc window.HOME_SEASON.
  */
+/* Chữ đếm ngược + nút tắt hiệu ứng theo ngôn ngữ ({label} = tên sự kiện, {n} = số ngày) */
+const COUNTDOWN_TEXT = {
+    vi: { left: '{label}: còn {n} ngày', today: '{label}: hôm nay!', decorOff: 'Tắt hiệu ứng' },
+    en: { left: '{label}: {n} days to go', today: '{label}: today!', decorOff: 'Turn off effect' },
+    ko: { left: '{label}: {n}일 남음', today: '{label}: 오늘!', decorOff: '효과 끄기' },
+    zh: { left: '{label}：还有 {n} 天', today: '{label}：就在今天！', decorOff: '关闭特效' },
+    ja: { left: '{label}：あと{n}日', today: '{label}：今日！', decorOff: '効果をオフ' },
+}
+
 function homeSeasonScript(lang, site, siteRoot) {
     const langRoot = siteRoot + LANGS[lang].prefix
     const seasons = {}
@@ -145,15 +154,30 @@ function homeSeasonScript(lang, site, siteRoot) {
         if (s.banner) {
             const link = s.banner.link || ''
             o.promo = { text: pickText(s.banner.text, lang), href: link && (link.startsWith('https://') ? link : langRoot + link), ext: link.startsWith('https://') }
+            if (s.banner.countdown) o.promo.cd = { date: s.banner.countdown.date, label: pickText(s.banner.countdown.label, lang) }
         }
+        if (s.decor) o.decor = s.decor
         if (s.featured) Object.assign(o, { featured: s.featured, ft: sloganHtml(pickText(s.featuredTitle, lang)) })
         seasons[s.id] = o
     }
+    const T = COUNTDOWN_TEXT[lang] || COUNTDOWN_TEXT.en
+    /* Đếm ngược: số ngày từ hôm nay (máy người xem) tới ngày sự kiện; MM-DD → lần tới gần nhất; đã qua → ẩn */
+    const countdown = `function cd(c){var n=new Date();n.setHours(0,0,0,0);var t=new Date((c.date.length>5?c.date:n.getFullYear()+'-'+c.date)+'T00:00:00');` +
+        `if(c.date.length<=5&&t<n)t.setFullYear(t.getFullYear()+1);var d=Math.round((t-n)/864e5);if(d<0)return'';` +
+        `return(d?${inlineJson(T.left)}.replace('{n}',d):${inlineJson(T.today)}).replace('{label}',c.label)}`
+    /* Hiệu ứng rơi nhẹ trên ảnh bìa: không hiện khi người xem bật giảm chuyển động hoặc đã tắt */
+    const decor = `function decor(kind){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches||localStorage.getItem('vt-decor-off'))return}catch(x){}` +
+        `var h=q('.home');if(!h)return;var box=document.createElement('div');box.className='decor decor--'+kind;box.setAttribute('aria-hidden','true');` +
+        `for(var i=0;i<18;i++){var p=document.createElement('i');p.style.cssText='--x:'+(i*5.5+(i*37%11))%100+'%;--d:'+(9+i*7%8)+'s;--delay:-'+(i*13%17)+'s;--s:'+(9+i*5%9)+'px;--dx:'+((i%2?1:-1)*(20+i*11%60))+'px';box.appendChild(p)}` +
+        `var b=document.createElement('button');b.type='button';b.className='decor__off';b.textContent=${inlineJson(T.decorOff)};` +
+        `b.onclick=function(){box.remove();b.remove();try{localStorage.setItem('vt-decor-off','1')}catch(x){}};h.appendChild(box);h.appendChild(b)}`
     return `<script>window.HOME_FEATURED=${inlineJson(SITE_CONFIG.featured)};` +
         `(function(H){var s=window.SEASON&&H[window.SEASON],q=function(c){return document.querySelector(c)},e;window.HOME_SEASON=s||null;if(!s)return;` +
         `if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;` +
         `if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}` +
-        `if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}` +
+        `if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;var c=s.promo.cd&&cd(s.promo.cd),k=e.querySelector('.home__countdown');if(c&&k){k.textContent=c;k.hidden=false}` +
+        `if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}` +
+        `if(s.decor)decor(s.decor);${countdown}${decor}` +
         `})(${inlineJson(seasons)})</script>`
 }
 
@@ -366,6 +390,8 @@ const DEST_DATA_DIR = 'assets/js/data/dest'
 const DEST_DATA_SCRIPTS = /(\s*)<script defer src="assets\/js\/data\/places\.js"><\/script>\s*<script defer src="assets\/js\/data\/sights\.js"><\/script>/
 const ITINERARIES_SCRIPT = /\s*<script defer src="assets\/js\/data\/itineraries\.js"><\/script>/
 const PHOTOS_SCRIPT = /\s*<script defer src="assets\/js\/data\/community-photos\.js"><\/script>/
+/* Xem trước từ trang quản trị chỉ dùng cho destination.html?id=…&preview=1 – không đưa vào trang tĩnh */
+const PREVIEW_SCRIPT = /\s*<script defer src="assets\/js\/preview\.js"><\/script>/
 
 function destDataFile(d, site, enSite) {
     const pick = (obj, key) => JSON.stringify(obj && obj[key] ? { [key]: obj[key] } : {})
@@ -387,6 +413,7 @@ function buildDestinationPage(template, lang, d, site) {
     template = template.replace(DEST_DATA_SCRIPTS, `$1<script defer src="${DEST_DATA_DIR}/${d.id}.js"></script>`)
         .replace(ITINERARIES_SCRIPT, '')
         .replace(PHOTOS_SCRIPT, '')
+        .replace(PREVIEW_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
 
     html = setLangSwitch(html, lang, siteRoot, l => destPath(l, d.id))

@@ -39,16 +39,20 @@ async function readSource(src) {
     return fs.readFileSync(path.resolve(src))
 }
 
-async function main() {
-    const args = parseArgs(process.argv.slice(2))
-    for (const key of ['dest', 'src', 'author', 'caption']) {
+/*
+ * Thêm một ảnh: { dest, src, author, caption, captionEn?, license?, issue?, input? (Buffer đã tải) }.
+ * Dùng chung cho dòng lệnh và tools/approve-photo.js (duyệt ảnh từ trang quản trị).
+ */
+async function addPhoto(args) {
+    for (const key of ['dest', 'author', 'caption']) {
         if (!args[key] || args[key] === true) throw new Error(`Thiếu --${key}`)
     }
+    if (!args.src && !args.input) throw new Error('Thiếu --src')
     const { destinations } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/destinations.json'), 'utf8'))
     if (!destinations.some(d => d.id === args.dest)) throw new Error(`Không có điểm đến "${args.dest}"`)
 
     const sharp = require('sharp')
-    const input = await readSource(args.src)
+    const input = args.input || await readSource(args.src)
     const base = `${args.dest}-${slug(args.caption)}-${crypto.createHash('md5').update(input).digest('hex').slice(0, 6)}`
     fs.mkdirSync(path.join(ROOT, OUT_DIR), { recursive: true })
     let lg
@@ -65,7 +69,7 @@ async function main() {
         base,
         w: lg.width,
         h: lg.height,
-        caption: [args.caption, args['caption-en'] || args.caption],
+        caption: [args.caption, args.captionEn || args['caption-en'] || args.caption],
         author: args.author,
         license: args.license || 'CC BY 4.0',
         date: new Date().toISOString().slice(0, 7),
@@ -73,9 +77,14 @@ async function main() {
     })
     fs.writeFileSync(DATA, JSON.stringify(json, null, 2) + '\n')
     console.log(`✅ Đã thêm ${OUT_DIR}/${base}-{480,960,1920}.webp – chạy npm run build`)
+    return base
 }
 
-main().catch(err => {
-    console.error(`❌ ${err.message}`)
-    process.exitCode = 1
-})
+if (require.main === module) {
+    addPhoto(parseArgs(process.argv.slice(2))).catch(err => {
+        console.error(`❌ ${err.message}`)
+        process.exitCode = 1
+    })
+}
+
+module.exports = { addPhoto }

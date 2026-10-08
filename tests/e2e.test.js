@@ -707,6 +707,28 @@ test('giao diện & mùa (data/site.json): mỗi mùa đổi màu, slogan, ảnh
     }
 })
 
+test('mùa có đếm ngược và hiệu ứng trang trí: hiện đúng, tắt được, không chạy khi giảm chuyển động', async () => {
+    const site = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/site.json'), 'utf8'))
+    const season = site.seasons.find(s => s.decor && s.banner?.countdown)
+    if (!season) return
+    let { page, errors, close } = await openPage(`index.html?season=${season.id}`)
+    const cd = await page.evaluate(() => { const el = document.querySelector('.home__countdown'); return el && !el.hidden ? el.textContent : null })
+    const target = season.banner.countdown.date
+    const passed = target.length > 5 && new Date(`${target}T00:00:00`) < new Date(new Date().toDateString())
+    if (passed) assert.equal(cd, null, 'đã qua ngày thì ẩn đếm ngược')
+    else assert.match(cd, new RegExp(`^${season.banner.countdown.label.vi}: (còn \\d+ ngày|hôm nay!)$`))
+    assert.ok(await page.$$eval(`.decor--${season.decor} i`, a => a.length) > 5, 'có hiệu ứng trang trí')
+    await page.click('.decor__off')
+    assert.equal(await page.$('.decor'), null)
+    await page.reload()
+    assert.equal(await page.$('.decor'), null, 'nhớ lựa chọn tắt hiệu ứng')
+    assert.deepEqual(errors, [])
+    await close()
+    ;({ page, close } = await openPage(`index.html?season=${season.id}`, { theme: 'light' })) // theme → reducedMotion: 'reduce'
+    assert.equal(await page.$('.decor'), null, 'giảm chuyển động thì không có hiệu ứng')
+    await close()
+})
+
 test('trang quản trị /admin/: tải không lỗi, hiện form đăng nhập', async () => {
     const { page, errors, close } = await openPage('admin/index.html')
     await page.waitForSelector('#login-form')
