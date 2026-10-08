@@ -241,6 +241,9 @@ function modeNote(option) {
 
 /* Hà Nội, Đà Nẵng, Sài Gòn: cách đi tới một điểm đến từ ba thành phố lớn (trang điểm đến) */
 const HUB_IDS = ['ha-noi', 'da-nang', 'sai-gon']
+/* Trang "Hà Nội đi Sa Pa" (duong-di/ha-noi-sa-pa/) – build sinh cho mọi cặp thành phố lớn → điểm đến (seo-render.js) */
+const ROUTE_DIR = 'duong-di'
+const routeUrl = (fromId, toId) => `${SITE_ROOT}${LANG_PREFIX}${ROUTE_DIR}/${fromId}-${toId}/index.html`
 
 function hubTransportTable(d) {
     const rows = HUB_IDS.filter(id => id !== d.id && getDestination(id)).map(id => {
@@ -248,7 +251,7 @@ function hubTransportTable(d) {
         const { options, recommended } = transportOptions(hub, d)
         return `
             <tr>
-                <th scope="row">${t('Từ {name}', { name: hub.name })}</th>
+                <th scope="row"><a href="${routeUrl(id, d.id)}">${t('Từ {name}', { name: hub.name })}</a></th>
                 <td>
                     <ul class="hub-modes">
                         ${MODES.map(mode => options.find(o => o.mode === mode)).filter(Boolean).map(o => `

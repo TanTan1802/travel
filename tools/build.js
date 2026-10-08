@@ -26,6 +26,7 @@ const GUIDE_DIR = 'cam-nang'
 const PRICES_DIR = 'gia-ve'
 const MONTH_DIR = 'thang'
 const THEME_DIR = 'chu-de'
+const ROUTE_DIR = 'duong-di'
 const FESTIVAL_DIR = 'le-hoi'
 
 /* code: mã trong SITE_LANG / thư mục; html: thuộc tính lang + hreflang; label: tên trong menu ngôn ngữ */
@@ -46,6 +47,7 @@ const SCRIPTS = [
     'assets/js/core.js',
     'assets/js/data/itineraries.js',
     'assets/js/data/places.js',
+    'assets/js/data/routes.js',
     'assets/js/data/sights.js',
     'assets/js/data/events.js',
     'assets/js/data/community-photos.js',
@@ -63,7 +65,8 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'TRANSLATION_LOCAL', 'GUIDES', 'GUIDE_UPDATED', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
-    'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription']
+    'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
+    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -210,6 +213,7 @@ const pricesPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/${PRICE
 const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.html`
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
+const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -611,6 +615,19 @@ function explorePages(template, lang) {
                 itemListElement: picks.map((d, i) => ({ '@type': 'ListItem', position: i + 1, url: pageUrl(destPath(lang, d.id)), name: d.name })) }],
             crumbs: [home],
         }), themeSite])
+    }
+    /* Đường đi từ Hà Nội / Đà Nẵng / Sài Gòn tới từng điểm đến */
+    const routeSite = loadSite(lang, rootFor(routePath(lang, 'x', 'y')))
+    for (const [a, b] of routeSite.routePairs()) {
+        const rel = routePath(lang, a.id, b.id)
+        pages.push([rel, () => buildContentPage(template, lang, l => routePath(l, a.id, b.id), routeSite, {
+            title: routeSite.routeTitle(a, b),
+            description: routeSite.routeDescription(a, b),
+            main: routeSite.routePage(a, b),
+            image: ogImage(routeSite, b),
+            jsonLd: [{ '@type': 'FAQPage', mainEntity: routeSite.routeFaq(a, b).map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }],
+            crumbs: [home, [b.name, pageUrl(destPath(lang, b.id))]],
+        }), routeSite])
     }
     const festSite = loadSite(lang, rootFor(festivalPath(lang)))
     const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
