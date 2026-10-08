@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 146 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 147 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -36,6 +36,7 @@
 .ri-calendar-check-line:before { content: "\eb23"; }
 .ri-calendar-event-line:before { content: "\eb25"; }
 .ri-calendar-line:before { content: "\eb27"; }
+.ri-calendar-todo-line:before { content: "\eb29"; }
 .ri-camera-3-line:before { content: "\eb2d"; }
 .ri-camera-lens-line:before { content: "\eb30"; }
 .ri-camera-line:before { content: "\eb31"; }

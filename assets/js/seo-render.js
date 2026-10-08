@@ -379,3 +379,161 @@ function exploreHubHtml() {
         </section>
     `
 }
+
+/*---------- Tiêu đề & mô tả trang điểm đến (thẻ <title>, meta description) ----------*/
+/* Số tiền gọn cho tiêu đề: 2,1 triệu (vi) / 2.1M VND (ngôn ngữ khác) – làm tròn xuống 100.000đ */
+function compactVnd(amount) {
+    const millions = Math.floor(amount / 100000) / 10
+    return LANG === 'vi' ? `${String(millions).replace('.', ',')} ${t('triệu')}` : `${millions}M VND`
+}
+
+/* "Du lịch Đà Lạt: lịch trình 3 ngày 2 đêm, chi phí từ 2,1 triệu" – đúng cụm từ người đọc hay tìm */
+function destinationSeoTitle(d) {
+    const cost = tripCost(d.id, 3, 'saving').total
+    return cost
+        ? t('Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}', { name: d.name, cost: compactVnd(cost) })
+        : t('Du lịch {name}: lịch trình 3 ngày 2 đêm', { name: d.name })
+}
+
+/* Mô tả nêu con số cụ thể của trang (lịch trình, chi phí, số quán, số điểm tham quan, mùa đẹp) */
+function destinationSeoDescription(d) {
+    const places = (typeof PLACES !== 'undefined' && PLACES[d.id]) || {}
+    const eats = (places.eats || []).length + (places.cafes || []).length
+    const sights = destinationSights(d.id).flatMap(g => g.sights).length
+    const cost = tripCost(d.id, 3, 'saving').total
+    return t('Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.',
+        { name: d.name, cost: formatVnd(cost), eats, sights, season: d.bestTime })
+}
+
+/*---------- Đường đi: "Hà Nội đi Sa Pa" (duong-di/<từ>-<đến>/) ----------*/
+/*
+ * Một trang cho mỗi cặp thành phố lớn (HUB_IDS) → điểm đến: các phương án máy bay / tàu / xe / tàu ra đảo
+ * (transportOptions – thời gian, giá hai mức chi tiêu, link đặt vé), cách đi chi tiết (places.getThere),
+ * câu hỏi thường gặp (cũng là FAQPage JSON-LD) và liên kết sang lịch trình, trình lập kế hoạch, các tuyến lân cận.
+ */
+const routePairs = () => HUB_IDS.filter(id => getDestination(id))
+    .flatMap(from => DESTINATIONS.filter(d => d.id !== from).map(d => [getDestination(from), d]))
+
+function routeInfo(a, b) {
+    const saving = transportOptions(a, b, 'saving')
+    const comfort = transportOptions(a, b, 'comfort')
+    const options = MODES.map(mode => saving.options.find(o => o.mode === mode)).filter(Boolean)
+        .map(o => ({ ...o, comfortCost: comfort.options.find(c => c.mode === o.mode).cost }))
+    const fastest = [...options].sort((x, y) => x.hours - y.hours)[0]
+    const cheapest = [...options].sort((x, y) => x.cost - y.cost)[0]
+    const road = options.find(o => o.mode === 'road')
+    return { options, recommended: saving.recommended, fastest, cheapest, km: road ? road.km : Math.round(distanceKm(a, b)), byRoad: Boolean(road) }
+}
+
+const routeTitle = (a, b) => t('{from} đi {to} bằng gì? Thời gian & giá vé', { from: a.name, to: b.name })
+
+function routeDescription(a, b) {
+    const r = routeInfo(a, b)
+    return t('Các cách đi từ {from} đến {to}: {modes}. Giá một chiều từ {cost}/người, kèm kinh nghiệm và lịch trình {to}.',
+        { from: a.name, to: b.name, modes: r.options.map(modeLabel).join(', '), cost: formatVnd(r.cheapest.cost) })
+}
+
+/* Câu hỏi thường gặp – hiện trên trang và đưa vào FAQPage */
+function routeFaq(a, b) {
+    const r = routeInfo(a, b)
+    const vars = { from: a.name, to: b.name }
+    return [
+        [t('{from} đi {to} bao xa?', vars),
+            r.byRoad ? t('Khoảng {km} km đường bộ.', { km: r.km }) : t('Khoảng {km} km đường chim bay.', { km: r.km })],
+        [t('{from} đi {to} mất bao lâu?', vars),
+            `${r.options.map(modeLabel).join('; ')}.`],
+        [t('Đi từ {from} đến {to} bằng gì rẻ nhất?', vars),
+            t('{mode}, khoảng {cost} một chiều mỗi người.', { mode: modeLabel(r.cheapest), cost: formatVnd(r.cheapest.cost) })],
+        [t('Thời điểm nào đẹp nhất để đi {name}?', { name: b.name }), `${b.bestTime}.`],
+    ]
+}
+
+function routePage(a, b) {
+    const r = routeInfo(a, b)
+    const vars = { from: a.name, to: b.name }
+    const place = placesOf(b.id)
+    /* Cách đi chi tiết chỉ có tiếng Việt / Anh */
+    const howTo = place && (LANG === 'vi' || LANG === 'en') ? pickLang(place.getThere) : ''
+    const faq = routeFaq(a, b)
+    const others = HUB_IDS.filter(id => id !== a.id && id !== b.id && getDestination(id))
+    const nextFromHub = nearestDestinations(b, 7).map(x => x.d).filter(d => d.id !== a.id).slice(0, 6)
+    const sections = [
+        ['phuong-tien', t('Các cách đi từ {from} đến {to}', vars)],
+        ...(howTo ? [['kinh-nghiem', t('Kinh nghiệm đi {name}', { name: b.name })]] : []),
+        ['hoi-dap', t('Câu hỏi thường gặp')],
+    ]
+    return `
+        <section class="planner-hero guide-hero">
+            <div class="container">
+                ${breadcrumbHtml([[t('Trang chủ'), homeUrl()], [b.name, destinationUrl(b.id)]])}
+                <span class="guide-hero__icon"><i class="ri-route-line"></i></span>
+                <h1 class="planner-hero__title">${routeTitle(a, b)}</h1>
+                <p class="planner-hero__text">${r.byRoad ? t('Khoảng {km} km đường bộ.', { km: r.km }) : t('Khoảng {km} km đường chim bay.', { km: r.km })}
+                    ${t('Nhanh nhất: {mode}. Rẻ nhất từ {cost}/người.', { mode: modeLabel(r.fastest), cost: formatVnd(r.cheapest.cost) })}</p>
+            </div>
+        </section>
+
+        <div class="guide container">
+            <aside class="guide__toc">
+                <strong>${t('Nội dung')}</strong>
+                <ol>${sections.map(([id, title]) => `<li><a href="#${id}">${title}</a></li>`).join('')}</ol>
+            </aside>
+            <article class="guide__body">
+                <section class="guide-section" id="phuong-tien">
+                    <h2 class="guide-section__title">${sections[0][1]}</h2>
+                    <div class="route-options">
+                        ${r.options.map(o => `
+                            <div class="route-option${o.mode === r.recommended ? ' route-option--best' : ''}">
+                                <h3 class="route-option__title"><i class="${MODE_ICONS[o.mode]}"></i> ${modeLabel(o)}</h3>
+                                ${o.mode === r.recommended ? `<span class="route-option__badge">${t('Gợi ý')}</span>` : ''}
+                                <dl class="route-option__facts">
+                                    <div><dt>${t('Tiết kiệm')}</dt><dd>${formatVnd(o.cost)}</dd></div>
+                                    <div><dt>${t('Thoải mái')}</dt><dd>${formatVnd(o.comfortCost)}</dd></div>
+                                </dl>
+                                ${modeNote(o) ? `<p class="route-option__note">${modeNote(o)}</p>` : ''}
+                                <div class="book-links">${linkButtons(transportLinks(a, b, o.mode).filter(l => l.mode === o.mode))}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <p class="budget__note">${t('Giá một chiều / người, thời gian lúc di chuyển – ước tính để tham khảo, hãy kiểm tra khi đặt vé.')}</p>
+                    <div class="book-links">${linkButtons(transportLinks(a, b, '').filter(l => !l.mode))}</div>
+                </section>
+                ${howTo ? `
+                    <section class="guide-section" id="kinh-nghiem">
+                        <h2 class="guide-section__title">${sections[1][1]}</h2>
+                        <p>${howTo}</p>
+                    </section>
+                ` : ''}
+                <section class="guide-section" id="hoi-dap">
+                    <h2 class="guide-section__title">${t('Câu hỏi thường gặp')}</h2>
+                    <dl class="route-faq">
+                        ${faq.map(([q, ans]) => `<dt>${q}</dt><dd>${ans}</dd>`).join('')}
+                    </dl>
+                </section>
+                <section class="guide-section">
+                    <p class="book-links route-cta">
+                        <a href="${destinationUrl(b.id)}#itinerary" class="button button--flex">${t('Xem lịch trình {name}', { name: b.name })} <i class="ri-arrow-right-line"></i></a>
+                        <a href="${plannerUrl(`?p=${b.id}.3&o=${a.id}`)}" class="book-link"><i class="ri-calendar-todo-line"></i> ${t('Lên kế hoạch từ {from}', vars)}</a>
+                    </p>
+                </section>
+                <section class="guide-section explore-hub">
+                    ${others.length ? `
+                        <div class="explore-hub__group">
+                            <strong>${t('Đi {name} từ thành phố khác', { name: b.name })}</strong>
+                            <div class="month-nav">${others.map(id => `<a href="${routeUrl(id, b.id)}" class="chip">${t('{from} đi {to}', { from: getDestination(id).name, to: b.name })}</a>`).join('')}</div>
+                        </div>
+                    ` : ''}
+                    <div class="explore-hub__group">
+                        <strong>${t('Từ {from} đi các điểm gần {to}', vars)}</strong>
+                        <div class="month-nav">${nextFromHub.map(d => `<a href="${routeUrl(a.id, d.id)}" class="chip">${t('{from} đi {to}', { from: a.name, to: d.name })}</a>`).join('')}</div>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <section class="section">
+            <h2 class="section__title">${t('Điểm đến gần {name}', { name: b.name })}</h2>
+            <div class="dest__grid container">${nearestDestinations(b, 3).map(x => destinationCard(x.d)).join('')}</div>
+        </section>
+    `
+}

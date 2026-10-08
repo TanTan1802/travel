@@ -429,7 +429,28 @@
     "Xem lịch lễ hội cả năm": "See the full-year festival calendar",
     "Vẫn đang diễn ra:": "Still on:",
     "Chi phí ước tính": "Estimated cost",
-    "Mỗi người": "Per person"
+    "Mỗi người": "Per person",
+    "triệu": "million",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}": "{name} travel guide: 3-day itinerary, budget from {cost}",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm": "{name} travel guide: 3-day itinerary",
+    "Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.": "{name} itineraries for 3–5 days, budget from {cost}/person, {eats} places to eat, fees for {sights} sights. Best time: {season}.",
+    "{from} đi {to} bằng gì? Thời gian & giá vé": "{from} to {to}: how to get there, travel time & fares",
+    "Các cách đi từ {from} đến {to}: {modes}. Giá một chiều từ {cost}/người, kèm kinh nghiệm và lịch trình {to}.": "Ways to travel from {from} to {to}: {modes}. One-way fares from {cost} per person, plus travel tips and a {to} itinerary.",
+    "{from} đi {to} bao xa?": "How far is {to} from {from}?",
+    "Khoảng {km} km đường bộ.": "About {km} km by road.",
+    "Khoảng {km} km đường chim bay.": "About {km} km as the crow flies.",
+    "{from} đi {to} mất bao lâu?": "How long does it take from {from} to {to}?",
+    "Đi từ {from} đến {to} bằng gì rẻ nhất?": "What is the cheapest way from {from} to {to}?",
+    "{mode}, khoảng {cost} một chiều mỗi người.": "{mode}, about {cost} one way per person.",
+    "Các cách đi từ {from} đến {to}": "Ways to get from {from} to {to}",
+    "Kinh nghiệm đi {name}": "Getting to {name}: tips",
+    "Câu hỏi thường gặp": "Frequently asked questions",
+    "Nhanh nhất: {mode}. Rẻ nhất từ {cost}/người.": "Fastest: {mode}. Cheapest from {cost} per person.",
+    "Giá một chiều / người, thời gian lúc di chuyển – ước tính để tham khảo, hãy kiểm tra khi đặt vé.": "One-way fares per person and travel times are estimates for reference – check when you book.",
+    "Lên kế hoạch từ {from}": "Plan a trip from {from}",
+    "Đi {name} từ thành phố khác": "Getting to {name} from other cities",
+    "{from} đi {to}": "{from} to {to}",
+    "Từ {from} đi các điểm gần {to}": "From {from} to places near {to}"
   },
   "html": {
     "Vùng miền": "Region",
@@ -3128,6 +3149,84 @@
         "Combine Ha Tien with Phu Quoc (fast ferry ~1.5 h) in one trip.",
         "In the rainy season (May – Oct) seas can be rough and island boats may be cancelled."
       ]
+    },
+    "ba-be": {
+      "name": "Ba Be Lake",
+      "province": "Thai Nguyen (formerly Bac Kan)",
+      "tagline": "Vietnam's largest natural freshwater lake in the northeastern mountains",
+      "description": "Ba Be Lake lies inside Ba Be National Park and is the largest natural freshwater lake in Vietnam. Its three arms – Pe Lam, Pe Lu and Pe Leng – form a stretch of water about 8 km long between limestone peaks and primary forest. Take a boat up the Nang River through Puong cave to Dau Dang waterfall, paddle a kayak in the morning mist, then stay in Tay stilt houses at Pac Ngoi or Bo Lu – the area is a Ramsar site and an ASEAN Heritage Park.",
+      "highlights": [
+        "Boat trip on the lake",
+        "Puong cave",
+        "Dau Dang waterfall",
+        "Pac Ngoi village"
+      ],
+      "bestTime": "March – June, September – October",
+      "duration": "2 – 3 days",
+      "gallery": [
+        {
+          "caption": "Ba Be Lake among the mountains"
+        },
+        {
+          "caption": "Puong cave – the Nang River flows right through the mountain"
+        },
+        {
+          "caption": "Dau Dang waterfall on the Nang River"
+        },
+        {
+          "caption": "Rice fields and the Tay village of Pac Ngoi"
+        },
+        {
+          "caption": "A Tay stilt house on the riverbank"
+        },
+        {
+          "caption": "Stalactites in Hua Ma cave"
+        },
+        {
+          "caption": "Then singing with the tinh lute, a Tay tradition"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Grilled lake fish",
+          "desc": "Fish from the lake, marinated with mac khen pepper and doi seeds and grilled over charcoal.",
+          "price": "100,000 VND/plate",
+          "illustrative": "Fish grilled over charcoal"
+        },
+        {
+          "name": "Five-colour sticky rice",
+          "desc": "Sticky rice dyed five colours with forest leaves – a must at every Tay feast.",
+          "price": "20,000 VND"
+        },
+        {
+          "name": "Roast pork with mac mat leaves",
+          "desc": "Crackling-skinned roast pork stuffed with fragrant mac mat leaves, a northeastern mountain speciality.",
+          "price": "300,000 VND/kg",
+          "illustrative": "Village pork"
+        }
+      ],
+      "activities": [
+        {
+          "title": "Boat trip on Ba Be Lake",
+          "desc": "Pass Ba Goa islet, Ao Tien pond and An Ma temple between the three arms of the lake."
+        },
+        {
+          "title": "Puong cave",
+          "desc": "Boats glide through the mountain along the Nang River under roosting bats."
+        },
+        {
+          "title": "Dau Dang waterfall",
+          "desc": "A multi-step forest waterfall that can only be reached by boat."
+        },
+        {
+          "title": "Tay village homestay",
+          "desc": "Sleep in a stilt house at Pac Ngoi or Bo Lu and listen to Then singing."
+        }
+      ],
+      "tips": [
+        "Share one boat (up to about 12 people) to split the cost, and carry cash – there are very few ATMs around the lake.",
+        "Dau Dang waterfall is reachable only by boat; in the rainy season (July – August) the Nang River runs high, so check with the boatman first."
+      ]
     }
   },
   "itineraries": {
@@ -4386,6 +4485,40 @@
           "morning": "Fast ferry Ha Tien – Phu Quoc (~1.5 h) or back to Rach Gia.",
           "afternoon": "Check in and start your island adventure.",
           "evening": "Phu Quoc night market."
+        }
+      ]
+    },
+    "ba-be": {
+      "days": [
+        {
+          "title": "Hanoi – up to Ba Be",
+          "morning": "About 5 hours (230 km) by bus or limousine van from Hanoi via Thai Nguyen.",
+          "afternoon": "Check in to a stilt-house homestay at Pac Ngoi and stroll the lakeside village.",
+          "evening": "Grilled lake fish, five-colour sticky rice and Then singing."
+        },
+        {
+          "title": "Lake boat trip – Puong cave – Dau Dang waterfall",
+          "morning": "Hire a boat at the pier: Ba Goa islet, Ao Tien pond and An Ma temple.",
+          "afternoon": "Follow the Nang River through Puong cave to Dau Dang waterfall, then walk about 500 m to the best tier.",
+          "evening": "Dinner back in the village and the lake at dusk."
+        },
+        {
+          "title": "Kayaking – Bo Lu and Coc Toc villages",
+          "morning": "Kayak or take a dugout canoe on the lake in the morning mist.",
+          "afternoon": "Cycle or walk round the lake via Bo Lu, Coc Toc and Po Lu villages.",
+          "evening": "Roast pork with mac mat leaves and corn wine by the fire."
+        },
+        {
+          "title": "Hua Ma cave – Cho Ra market",
+          "morning": "Climb up to Hua Ma cave and its tiers of stalactites.",
+          "afternoon": "Cho Ra market: dried bamboo shoots, arrowroot noodles and coóc mò cakes to take home.",
+          "evening": "Dinner in Cho Ra town and a quiet evening."
+        },
+        {
+          "title": "Back to Hanoi via the Tan Cuong tea hills",
+          "morning": "Leave Ba Be early – about 3 hours by road to Thai Nguyen city and the Museum of Cultures of Vietnam's Ethnic Groups.",
+          "afternoon": "Tan Cuong tea hills: taste and buy tea, then on to Hanoi (about 1.5 h).",
+          "evening": "End of the trip."
         }
       ]
     }

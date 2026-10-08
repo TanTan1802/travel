@@ -7634,6 +7634,208 @@
           ]
         }
       ]
+    },
+    "ba-be": {
+      "city": "Ba Be",
+      "airport": "HAN",
+      "getThere": [
+        "Từ Hà Nội đi xe khách hoặc limousine khoảng 5 giờ (khoảng 230 km) qua Thái Nguyên, giá khoảng 200.000 – 300.000đ; nhiều nhà xe đón trả ở bến thuyền hồ hoặc thị trấn Chợ Rã. Sân bay gần nhất là Nội Bài (HAN).",
+        "From Hanoi a bus or limousine van takes about 5 h (about 230 km) via Thai Nguyen, around 200,000 – 300,000 VND; many operators stop at the lake boat pier or Cho Ra town. The nearest airport is Noi Bai (HAN)."
+      ],
+      "eats": [
+        {
+          "name": "Nhà hàng cá hồ bến thuyền",
+          "dish": [
+            "Cá hồ nướng, cá chiên giòn, tôm hồ",
+            "Grilled lake fish, crispy fried fish and lake shrimp"
+          ],
+          "address": "Khu bến thuyền hồ Ba Bể",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Bữa cơm nhà sàn Pác Ngòi",
+          "dish": [
+            "Cá nướng, gà đồi, rau rừng – đặt trước với homestay",
+            "Grilled fish, hill chicken and wild greens – book with your homestay"
+          ],
+          "address": "Bản Pác Ngòi",
+          "price": [
+            100000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lợn quay Chợ Rã",
+          "dish": [
+            "Lợn quay lá mắc mật, vịt quay",
+            "Roast pork with mac mat leaves and roast duck"
+          ],
+          "address": "Thị trấn Chợ Rã",
+          "price": [
+            100000,
+            250000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán phở chua, bánh cuốn sáng Chợ Rã",
+          "dish": [
+            "Phở chua, bánh cuốn nóng",
+            "Sour pho and steamed rice rolls"
+          ],
+          "address": "Thị trấn Chợ Rã",
+          "price": [
+            30000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Chợ Chợ Rã",
+          "dish": [
+            "Bánh coóc mò, khẩu sli, xôi ngũ sắc",
+            "Coóc mò sticky-rice cakes, khẩu sli sweets and five-colour sticky rice"
+          ],
+          "address": "Chợ trung tâm Chợ Rã",
+          "price": [
+            10000,
+            40000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cơm bản Bó Lù",
+          "dish": [
+            "Cơm lam, gà nướng, măng xào",
+            "Bamboo-tube rice, grilled chicken and stir-fried bamboo shoots"
+          ],
+          "address": "Bản Bó Lù",
+          "price": [
+            100000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ăn cổng vườn quốc gia",
+          "dish": [
+            "Cơm suất, phở, mì xào",
+            "Rice plates, pho and fried noodles"
+          ],
+          "address": "Gần cổng Vườn quốc gia Ba Bể",
+          "price": [
+            40000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cơm gà đồi Tân Cương",
+          "dish": [
+            "Gà đồi luộc, cơm, trà Tân Cương",
+            "Boiled hill chicken, rice and Tan Cuong tea"
+          ],
+          "address": "Tân Cương, Thái Nguyên",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê ven hồ Pác Ngòi",
+          "drink": [
+            "Cà phê, trà nóng ngắm hồ",
+            "Coffee and hot tea overlooking the lake"
+          ],
+          "address": "Bản Pác Ngòi",
+          "price": [
+            20000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nước bến thuyền Ba Bể",
+          "drink": [
+            "Nước dừa, nước mía, trà đá",
+            "Coconut water, sugarcane juice and iced tea"
+          ],
+          "address": "Bến thuyền hồ Ba Bể",
+          "price": [
+            10000,
+            30000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê thị trấn Chợ Rã",
+          "drink": [
+            "Cà phê sữa, sinh tố",
+            "Milk coffee and smoothies"
+          ],
+          "address": "Thị trấn Chợ Rã",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Homestay bản Pác Ngòi",
+            "Pac Ngoi village homestays"
+          ],
+          "type": "homestay",
+          "price": [
+            200000,
+            500000
+          ],
+          "note": [
+            "Nhà sàn ven hồ, gần bến thuyền; phòng tập thể khoảng 70.000 – 100.000đ/người.",
+            "Stilt houses by the lake near the boat pier; dorm beds about 70,000 – 100,000 VND per person."
+          ]
+        },
+        {
+          "area": [
+            "Homestay bản Bó Lù, Cốc Tộc",
+            "Bo Lu and Coc Toc village homestays"
+          ],
+          "type": "homestay",
+          "price": [
+            200000,
+            450000
+          ],
+          "note": [
+            "Yên tĩnh hơn, nhiều nhà có kayak và xe đạp cho thuê.",
+            "Quieter, and many houses rent kayaks and bicycles."
+          ]
+        },
+        {
+          "area": [
+            "Thị trấn Chợ Rã",
+            "Cho Ra town"
+          ],
+          "type": "hotel",
+          "price": [
+            300000,
+            600000
+          ],
+          "note": [
+            "Khách sạn, nhà nghỉ gần chợ, cách hồ khoảng 15 km.",
+            "Hotels and guesthouses near the market, about 15 km from the lake."
+          ]
+        }
+      ]
     }
   }
 }

@@ -70,10 +70,12 @@ function applyTranslations() {
     Object.assign(CATEGORIES, TRANSLATION_EN.categories)
     DESTINATIONS.forEach(d => mergeTranslation(d, TRANSLATION_EN.destinations[d.id]))
     if (typeof ITINERARIES !== 'undefined') {
-        /* Trang điểm đến đã build: bản dịch lịch trình nằm trong data/dest/<id>.js (ITINERARIES_EN) */
+        /* Trang điểm đến đã build: bản dịch lịch trình nằm trong data/dest/<id>.js (ITINERARIES_EN)
+           và data/dest/<lang>/<id>.js (ITINERARIES_LOCAL – sáng / chiều / tối tiếng Hàn / Trung / Nhật) */
         const plans = { ...TRANSLATION_EN.itineraries, ...(typeof ITINERARIES_EN !== 'undefined' ? ITINERARIES_EN : {}) }
         const local = typeof TRANSLATION_LOCAL !== 'undefined' ? TRANSLATION_LOCAL.itineraries || {} : {}
-        ;[plans, local].forEach(set => Object.entries(set).forEach(([id, plan]) => {
+        const localPlans = typeof ITINERARIES_LOCAL !== 'undefined' ? ITINERARIES_LOCAL : {}
+        ;[plans, local, localPlans].forEach(set => Object.entries(set).forEach(([id, plan]) => {
             if (ITINERARIES[id]) mergeTranslation(ITINERARIES[id], plan)
         }))
     }

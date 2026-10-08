@@ -213,7 +213,7 @@ function generate(name, json) {
  *   assets/js/data/en.js (TRANSLATION_EN). Mọi điểm đến / lịch trình phải có bản tiếng Anh.
  * data/i18n/<lang>.json (ko, zh, ja) – khóa là chuỗi tiếng Việt gốc (giống en.json):
  *   ui, html, regions, categories, destinations (chữ của điểm đến: thông tin, chú thích ảnh, món ăn,
- *   trải nghiệm, kinh nghiệm), itineraries (tên từng ngày).
+ *   trải nghiệm, kinh nghiệm), itineraries (tên ngày + sáng / chiều / tối).
  * Sinh assets/js/data/i18n/<lang>.js (TRANSLATION_LOCAL) – i18n.js phủ lên bản tiếng Anh,
  * chuỗi chưa dịch sẽ hiện tiếng Anh. Thêm ngôn ngữ: tạo file JSON + khai báo trong LANGS của tools/build.js.
  */

@@ -10,7 +10,7 @@ Toàn bộ nội dung (điểm đến, lịch trình, quán ăn, điểm tham qu
 
 | File | Nội dung | Schema |
 |---|---|---|
-| `data/destinations.json` | 28 điểm đến: thông tin, ảnh Wikimedia Commons, món đặc sản, trải nghiệm, kinh nghiệm | `destinations.schema.json` |
+| `data/destinations.json` | Điểm đến: thông tin, ảnh Wikimedia Commons, món đặc sản, trải nghiệm, kinh nghiệm | `destinations.schema.json` |
 | `data/itineraries.json` | Lịch trình 5 ngày mỗi điểm đến + phí tham quan trung bình | `itineraries.schema.json` |
 | `data/places.json` | Quán ăn, quán nước, khu lưu trú, cách đi tới | `places.schema.json` |
 | `data/sights.json` | Điểm tham quan theo từng ngày (giá vé, giờ mở cửa, địa chỉ) + quán nước gần điểm | `sights.schema.json` |

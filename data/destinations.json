@@ -3623,6 +3623,116 @@
         "Tàu cao tốc Rạch Giá – Nam Du nghỉ khi biển động (tháng 6 – 9) – xem lịch tàu và dự báo trước.",
         "Trên đảo ít ATM, điện có thể cắt theo giờ – mang tiền mặt và sạc dự phòng."
       ]
+    },
+    {
+      "id": "ba-be",
+      "name": "Hồ Ba Bể",
+      "province": "Thái Nguyên (Bắc Kạn cũ)",
+      "region": "bac",
+      "categories": [
+        "nui",
+        "hang-dong"
+      ],
+      "rating": 4.5,
+      "lat": 22.4105,
+      "lng": 105.6247,
+      "bestMonths": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "tagline": "Hồ nước ngọt tự nhiên lớn nhất Việt Nam giữa núi rừng Đông Bắc",
+      "description": "Hồ Ba Bể nằm giữa Vườn quốc gia Ba Bể, là hồ nước ngọt tự nhiên lớn nhất Việt Nam. Ba nhánh hồ Pé Lầm, Pé Lù, Pé Lèng nối thành mặt nước dài khoảng 8 km giữa núi đá vôi và rừng nguyên sinh. Đi thuyền theo sông Năng xuyên qua động Puông tới thác Đầu Đẳng, chèo kayak lúc sương sớm, rồi nghỉ nhà sàn người Tày ở bản Pác Ngòi, Bó Lù – nơi đây là khu Ramsar và vườn di sản ASEAN.",
+      "highlights": [
+        "Đi thuyền trên hồ",
+        "Động Puông",
+        "Thác Đầu Đẳng",
+        "Bản Pác Ngòi"
+      ],
+      "bestTime": "Tháng 3 – 6, 9 – 10",
+      "duration": "2 – 3 ngày",
+      "hero": "Babenp 2007 01 3.jpg",
+      "gallery": [
+        {
+          "file": "Ba Be Lake 2.jpg",
+          "caption": "Mặt hồ Ba Bể giữa núi rừng"
+        },
+        {
+          "file": "Puong Cave, Ba Be.jpg",
+          "caption": "Động Puông – sông Năng chảy xuyên lòng núi"
+        },
+        {
+          "file": "Dau Dank Waterfall 2014.jpg",
+          "caption": "Thác Đầu Đẳng trên sông Năng"
+        },
+        {
+          "file": "Pac Ngoi rice field.JPG",
+          "caption": "Đồng lúa và bản Pác Ngòi của người Tày"
+        },
+        {
+          "file": "Pac Ngoi homestay.JPG",
+          "caption": "Nhà sàn người Tày bên bờ sông"
+        },
+        {
+          "file": "Hua-Ma-Cave.png",
+          "caption": "Nhũ đá trong động Hua Mạ"
+        },
+        {
+          "file": "Ba-Be-Lake- Then-singing.jpg",
+          "caption": "Hát Then, đàn tính của người Tày"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Cá hồ nướng",
+          "desc": "Cá đánh bắt trên hồ, ướp mắc khén, hạt dổi rồi nướng trên than hồng.",
+          "price": "100.000đ/đĩa",
+          "file": "Cá lóc nướng trui.JPG",
+          "illustrative": "Cá nướng trên than"
+        },
+        {
+          "name": "Xôi ngũ sắc",
+          "desc": "Xôi nhuộm năm màu từ lá cây rừng, món không thể thiếu trong mâm cỗ người Tày.",
+          "price": "20.000đ",
+          "file": "Xôi ngũ sắc.JPG"
+        },
+        {
+          "name": "Lợn quay lá mắc mật",
+          "desc": "Lợn quay giòn bì, nhồi lá mắc mật thơm, đặc sản vùng núi Đông Bắc.",
+          "price": "300.000đ/kg",
+          "file": "Lợn mán mẹt.jpg",
+          "illustrative": "Thịt lợn bản"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Thuyền trên hồ Ba Bể",
+          "desc": "Qua đảo Bà Góa, Ao Tiên, đền An Mã giữa ba nhánh hồ."
+        },
+        {
+          "icon": "ri-flashlight-line",
+          "title": "Động Puông",
+          "desc": "Thuyền đi xuyên lòng núi theo sông Năng, trần động có đàn dơi."
+        },
+        {
+          "icon": "ri-drop-line",
+          "title": "Thác Đầu Đẳng",
+          "desc": "Thác nhiều bậc giữa rừng, chỉ tới được bằng thuyền."
+        },
+        {
+          "icon": "ri-home-4-line",
+          "title": "Homestay bản Tày",
+          "desc": "Ngủ nhà sàn Pác Ngòi, Bó Lù, nghe hát Then đàn tính."
+        }
+      ],
+      "tips": [
+        "Thuê chung một thuyền (tối đa khoảng 12 khách) để chia tiền; mang tiền mặt vì quanh hồ rất ít cây ATM.",
+        "Thác Đầu Đẳng chỉ tới được bằng thuyền; mùa mưa (tháng 7 – 8) nước sông Năng lớn, hỏi chủ thuyền trước khi đi."
+      ]
     }
   ]
 }

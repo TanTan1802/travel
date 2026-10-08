@@ -26,6 +26,7 @@ const GUIDE_DIR = 'cam-nang'
 const PRICES_DIR = 'gia-ve'
 const MONTH_DIR = 'thang'
 const THEME_DIR = 'chu-de'
+const ROUTE_DIR = 'duong-di'
 const FESTIVAL_DIR = 'le-hoi'
 
 /* code: mã trong SITE_LANG / thư mục; html: thuộc tính lang + hreflang; label: tên trong menu ngôn ngữ */
@@ -46,6 +47,7 @@ const SCRIPTS = [
     'assets/js/core.js',
     'assets/js/data/itineraries.js',
     'assets/js/data/places.js',
+    'assets/js/data/routes.js',
     'assets/js/data/sights.js',
     'assets/js/data/events.js',
     'assets/js/data/community-photos.js',
@@ -63,7 +65,8 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'TRANSLATION_LOCAL', 'GUIDES', 'GUIDE_UPDATED', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
-    'festivalPage', 'festivalTitle', 'festivalGroups']
+    'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
+    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -210,6 +213,7 @@ const pricesPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/${PRICE
 const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.html`
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
+const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -411,20 +415,30 @@ function destDataFile(d, site, enSite) {
         `const COMMUNITY_PHOTOS = ${JSON.stringify((site.COMMUNITY_PHOTOS || []).filter(p => p.dest === d.id))}\n`
 }
 
+/*
+ * Lịch trình sáng / chiều / tối đã dịch (ko/zh/ja) của một điểm đến → data/dest/<lang>/<id>.js (ITINERARIES_LOCAL),
+ * để gói bản dịch dùng chung của mọi trang chỉ mang tên ngày (xem scriptSource) mà không phình theo số điểm đến.
+ */
+const localItinerary = (site, id) => site.TRANSLATION_LOCAL && site.TRANSLATION_LOCAL.itineraries && site.TRANSLATION_LOCAL.itineraries[id]
+const localDataPath = (lang, id) => `${DEST_DATA_DIR}/${lang}/${id}.js`
+const localDataFile = (site, id) => '/* Sinh tự động bởi tools/build.js từ data/i18n – không sửa tay. */\n' +
+    `const ITINERARIES_LOCAL = ${JSON.stringify({ [id]: localItinerary(site, id) })}\n`
+
 function buildDestinationPage(template, lang, d, site) {
     const rel = destPath(lang, d.id)
     if (!DEST_DATA_SCRIPTS.test(template)) throw new Error('destination.html thiếu thẻ script places.js + sights.js')
     if (!ITINERARIES_SCRIPT.test(template)) throw new Error('destination.html thiếu thẻ script itineraries.js')
-    template = template.replace(DEST_DATA_SCRIPTS, `$1<script defer src="${DEST_DATA_DIR}/${d.id}.js"></script>`)
+    const ownScripts = [`${DEST_DATA_DIR}/${d.id}.js`, ...(localItinerary(site, d.id) ? [localDataPath(lang, d.id)] : [])]
+    template = template.replace(DEST_DATA_SCRIPTS, ownScripts.map(src => `$1<script defer src="${src}"></script>`).join(''))
         .replace(ITINERARIES_SCRIPT, '')
         .replace(PHOTOS_SCRIPT, '')
         .replace(PREVIEW_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
 
     html = setLangSwitch(html, lang, siteRoot, l => destPath(l, d.id))
-        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(d.name)} – Việt Travel</title>`)
+        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(site.destinationSeoTitle(d))} – Việt Travel</title>`)
         .replace(/<meta name="description" content="[^"]*">/,
-            `<meta name="description" content="${escapeHtml(truncate(d.description))}">`)
+            `<meta name="description" content="${escapeHtml(truncate(site.destinationSeoDescription(d)))}">`)
         .replace('</head>', `${headTags(site, d, lang)}</head>`)
         .replace(/(\s*)<script defer src="/,
             `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'; window.DEST_ID = '${d.id}'</script>$1<script defer src="`)
@@ -612,6 +626,19 @@ function explorePages(template, lang) {
             crumbs: [home],
         }), themeSite])
     }
+    /* Đường đi từ Hà Nội / Đà Nẵng / Sài Gòn tới từng điểm đến */
+    const routeSite = loadSite(lang, rootFor(routePath(lang, 'x', 'y')))
+    for (const [a, b] of routeSite.routePairs()) {
+        const rel = routePath(lang, a.id, b.id)
+        pages.push([rel, () => buildContentPage(template, lang, l => routePath(l, a.id, b.id), routeSite, {
+            title: routeSite.routeTitle(a, b),
+            description: routeSite.routeDescription(a, b),
+            main: routeSite.routePage(a, b),
+            image: ogImage(routeSite, b),
+            jsonLd: [{ '@type': 'FAQPage', mainEntity: routeSite.routeFaq(a, b).map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }],
+            crumbs: [home, [b.name, pageUrl(destPath(lang, b.id))]],
+        }), routeSite])
+    }
     const festSite = loadSite(lang, rootFor(festivalPath(lang)))
     const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
     /* Menu: đánh dấu "Lễ hội" thay cho "Cẩm nang" (mẫu guide.html) */
@@ -751,9 +778,11 @@ function scriptSource(file, site, pageFiles) {
         return `const TRANSLATION_EN = ${JSON.stringify({ ...en, itineraries: withPlans ? itineraries : {} })}`
     }
     if (file.startsWith('assets/js/data/i18n/')) {
-        /* Giữ tên ngày của lịch trình (nhỏ) – trang điểm đến cần nó, bỏ bảng dịch HTML tĩnh */
+        /* Giữ tên ngày của lịch trình (nhỏ); sáng / chiều / tối nằm trong data/dest/<lang>/<id>.js của từng trang điểm đến.
+           Bỏ bảng dịch HTML tĩnh */
         const { html, ...local } = site.TRANSLATION_LOCAL
-        return `const TRANSLATION_LOCAL = ${JSON.stringify(local)}`
+        const titles = mapValues(local.itineraries || {}, plan => ({ days: plan.days.map(day => ({ title: day.title })) }))
+        return `const TRANSLATION_LOCAL = ${JSON.stringify({ ...local, itineraries: titles })}`
     }
     return read(file)
 }
@@ -842,6 +871,7 @@ function main() {
         for (const d of pageSite.DESTINATIONS) {
             write(destPath(lang, d.id), bundleScripts(buildDestinationPage(destTemplate, lang, d, pageSite), rootFor(destPath(lang, d.id)), pageSite))
             if (lang === 'vi') write(`${DEST_DATA_DIR}/${d.id}.js`, destDataFile(d, pageSite, loadSite('en', '')))
+            if (localItinerary(pageSite, d.id)) write(localDataPath(lang, d.id), localDataFile(pageSite, d.id))
             count++
         }
         const page = (rel, build) => {
