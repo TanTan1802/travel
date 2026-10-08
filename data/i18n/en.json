@@ -416,7 +416,18 @@
     "Đi vào tháng {m}": "Travel in {m}",
     "Cộng đồng": "Community",
     "Chia sẻ trải nghiệm của bạn": "Share your experience",
-    "Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!": "Been to {name}? Leave your impressions, tips or questions for other travellers!"
+    "Bạn đã đến {name}? Hãy để lại cảm nhận, mẹo hay câu hỏi cho mọi người nhé!": "Been to {name}? Leave your impressions, tips or questions for other travellers!",
+    "Lịch lễ hội & sự kiện Việt Nam: {count} lễ hội, mùa hoa, mùa lúa theo tháng": "Vietnam festival & events calendar: {count} festivals, flower and harvest seasons by month",
+    "Lễ hội & sự kiện": "Festivals & events",
+    "Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.": "Traditional festivals, flower seasons, golden rice, busy public holidays and weather to watch – sorted by month so you can pick the perfect time to go.",
+    "Loại sự kiện": "Event type",
+    "Cả nước": "Whole country",
+    "Toàn quốc": "Nationwide",
+    "Quanh năm": "All year",
+    "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "No matching events – try removing a filter.",
+    "Lịch lễ hội cả năm ({count})": "Year-round festival calendar ({count})",
+    "Xem lịch lễ hội cả năm": "See the full-year festival calendar",
+    "Vẫn đang diễn ra:": "Still on:"
   },
   "html": {
     "Vùng miền": "Region",
@@ -529,7 +540,8 @@
     "3.260": "3,260",
     "km bờ biển": "km of coastline",
     "dân tộc anh em": "ethnic groups",
-    "điểm đến trên Việt Travel": "destinations on Việt Travel"
+    "điểm đến trên Việt Travel": "destinations on Việt Travel",
+    "Lễ hội": "Festivals"
   },
   "regions": {
     "bac": "Northern Vietnam",

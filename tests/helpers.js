@@ -90,7 +90,7 @@ const LANG_PREFIXES = ['', 'en/', 'ko/', 'zh/', 'ja/']
 
 /* Danh sách mọi trang HTML đã build (tương đối với gốc repo) */
 function builtPages() {
-    const pages = LANG_PREFIXES.flatMap(p => [`${p}index.html`, `${p}ke-hoach/index.html`, `${p}cam-nang/index.html`])
+    const pages = LANG_PREFIXES.flatMap(p => [`${p}index.html`, `${p}ke-hoach/index.html`, `${p}cam-nang/index.html`, `${p}le-hoi/index.html`])
     for (const dir of LANG_PREFIXES.flatMap(p => ['diem-den', 'cam-nang', 'thang', 'chu-de'].map(d => p + d))) {
         for (const id of fs.readdirSync(path.join(ROOT, dir))) {
             if (!fs.statSync(path.join(ROOT, dir, id)).isDirectory()) continue

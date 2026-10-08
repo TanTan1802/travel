@@ -2818,7 +2818,7 @@ body.dark-theme .stop__warn {
   }
 }
 
-/* Menu nhiều mục (có "Lên kế hoạch"): thu khoảng cách trên màn hình vừa */
+/* Menu nhiều mục (có "Lên kế hoạch", "Lễ hội"): thu khoảng cách trên màn hình vừa, logo và menu luôn cách nhau */
 @media screen and (min-width: 768px) {
   .nav__link {
     white-space: nowrap;
@@ -2827,7 +2827,11 @@ body.dark-theme .stop__warn {
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .nav__list {
-    column-gap: 1.1rem;
+    column-gap: .65rem;
+  }
+
+  .nav__menu {
+    margin-left: .9rem;
   }
 
   .nav__link {
@@ -2837,13 +2841,21 @@ body.dark-theme .stop__warn {
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .nav__list {
-    column-gap: 2rem;
+    column-gap: 1.35rem;
+  }
+
+  .nav__menu {
+    margin-left: 1.5rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .nav__list {
-    column-gap: 3rem;
+    column-gap: 2.25rem;
+  }
+
+  .nav__menu {
+    margin-left: 2rem;
   }
 }
 
@@ -4613,6 +4625,15 @@ body.dark-theme .day-tools__link {
   gap: .3rem;
 }
 
+.season__events-more {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text);
+}
+
 /*=============== DANH SÁCH ĐỒ CẦN MANG ===============*/
 .packing-block {
   margin-top: 2rem;
@@ -5735,70 +5756,63 @@ a.home__promo[href]:hover {
   }
 }
 
-/*=============== LOGO: NÓN LÁ + CHỮ "VIỆT TRAVEL" ===============*/
+/*=============== TÊN TRANG "VIỆT TRAVEL": MÀU THEO THEME / MÙA ===============*/
+/* "Việt" theo màu chủ đạo (--hue-color), "Travel" theo màu nhấn (--accent-hue), vạch dưới chuyển giữa hai màu */
 .nav__logo {
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
   text-decoration: none;
 }
 
-.nav__logo-mark {
-  width: 2.1rem;
-  height: 2.1rem;
-  flex: none;
-  filter: drop-shadow(0 2px 6px hsla(0, 0%, 0%, .25));
-  transition: transform .3s;
-}
-
-.nav__logo:hover .nav__logo-mark {
-  transform: rotate(-8deg) scale(1.05);
-}
-
-.nav__logo-bg {
-  fill: hsl(var(--accent-hue), 92%, 52%);
-}
-
-.nav__logo-line {
-  fill: none;
-  stroke: hsl(calc(var(--accent-hue) - 8), 75%, 45%);
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  opacity: .7;
-}
-
-.nav__logo-brim {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-}
-
-.nav__logo-wave {
-  fill: none;
-  stroke: hsl(var(--hue-color), 64%, 22%);
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
 .nav__logo-text {
+  position: relative;
+  padding-bottom: .3rem;
   font-family: var(--title-font);
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -.01em;
   line-height: 1;
+  color: hsl(var(--hue-color), 70%, 94%);
+  text-shadow: 0 1px 8px hsla(var(--hue-color), 60%, 10%, .45);
+}
+
+.nav__logo-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.2rem;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, hsl(var(--hue-color), 64%, 45%), hsl(var(--accent-hue), 92%, 55%));
+  transition: width .3s;
+}
+
+.nav__logo:hover .nav__logo-text::after {
+  width: 100%;
 }
 
 .nav__logo-accent {
-  margin-left: .2rem;
+  margin-left: .25rem;
   font-weight: 500;
   color: hsl(var(--accent-hue), 92%, 62%);
 }
 
-/* Đầu trang nền sáng (đã cuộn / trang không có ảnh bìa): chữ nhấn đậm hơn cho đủ tương phản */
+/* Đầu trang nền sáng (đã cuộn / trang không có ảnh bìa): màu đậm cho đủ tương phản */
+.scroll-header .nav__logo-text,
+.header--solid .nav__logo-text {
+  color: hsl(var(--hue-color), 64%, 26%);
+  text-shadow: none;
+}
+
 .scroll-header .nav__logo-accent,
 .header--solid .nav__logo-accent {
   color: var(--accent-color-text);
+}
+
+body.dark-theme .scroll-header .nav__logo-text,
+body.dark-theme .header--solid .nav__logo-text {
+  color: hsl(var(--hue-color), 60%, 82%);
 }
 
 body.dark-theme .scroll-header .nav__logo-accent,
@@ -5807,13 +5821,8 @@ body.dark-theme .header--solid .nav__logo-accent {
 }
 
 @media screen and (min-width: 968px) {
-  .nav__logo-mark {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
   .nav__logo-text {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -5904,5 +5913,138 @@ body.dark-theme #destination {
   /* Cột tiêu đề hẹp: bỏ ngắt dòng cứng để chữ tự xuống dòng tự nhiên */
   .numbers__title br {
     display: none;
+  }
+}
+
+/*=============== LỊCH LỄ HỘI & SỰ KIỆN (le-hoi/) ===============*/
+.festival-filter {
+  display: grid;
+  gap: .6rem;
+  margin-top: 1.5rem;
+}
+
+.festival-filter__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.festival-filter .chip i {
+  margin-right: .15rem;
+}
+
+.festival-nav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 5;
+  margin-top: 1rem;
+  padding-block: .6rem;
+  background-color: var(--body-color);
+}
+
+.festival {
+  display: grid;
+  gap: 2.25rem;
+  padding-block: 1.5rem 3rem;
+}
+
+.festival__month,
+.festival .event {
+  scroll-margin-top: calc(var(--header-height) + 4.5rem);
+}
+
+.festival .event:target {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px hsla(var(--accent-hue), 92%, 55%, .25);
+}
+
+.festival__title {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--accent-color);
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+}
+
+.festival__count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding-inline: .4rem;
+  border-radius: 999px;
+  background-color: var(--first-color);
+  color: #fff;
+  font-size: var(--smaller-font-size);
+}
+
+.festival__list {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+
+.festival .event__name a {
+  color: var(--first-color-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.festival__more {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: 1rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text);
+}
+
+.festival__more a {
+  color: inherit;
+}
+
+.festival__ongoing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .9rem;
+  font-size: var(--small-font-size);
+}
+
+.festival__ongoing span {
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.festival__ongoing[hidden],
+.festival__count[hidden],
+.festival__ongoing a[hidden],
+.festival__month[hidden],
+.festival .event[hidden],
+.festival-nav .chip[hidden],
+.festival-filter[hidden],
+.festival__empty[hidden] {
+  display: none;
+}
+
+.festival__empty {
+  text-align: center;
+  color: var(--text-color-light);
+}
+
+/* Điện thoại: thanh chọn tháng một hàng, vuốt ngang (không chiếm nửa màn hình khi dính trên đầu) */
+@media screen and (max-width: 767px) {
+  .festival-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .festival-nav .chip {
+    flex: none;
   }
 }
