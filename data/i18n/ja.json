@@ -429,7 +429,11 @@
     "Xem lịch lễ hội cả năm": "年間の祭りカレンダーを見る",
     "Vẫn đang diễn ra:": "開催中：",
     "Chi phí ước tính": "費用の目安",
-    "Mỗi người": "1 人あたり"
+    "Mỗi người": "1 人あたり",
+    "triệu": "百万",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}": "{name}旅行ガイド：2泊3日モデルコース、費用{cost}から",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm": "{name}旅行ガイド：2泊3日モデルコース",
+    "Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.": "{name}の3・4・5日間の時間別モデルコース、1人{cost}から、グルメ{eats}軒、観光スポット{sights}か所の入場料。ベストシーズン：{season}。"
   },
   "html": {
     "Vùng miền": "地域",

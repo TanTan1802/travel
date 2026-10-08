@@ -429,7 +429,11 @@
     "Xem lịch lễ hội cả năm": "연간 축제 달력 보기",
     "Vẫn đang diễn ra:": "계속 진행 중:",
     "Chi phí ước tính": "예상 비용",
-    "Mỗi người": "1인 기준"
+    "Mỗi người": "1인 기준",
+    "triệu": "백만",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}": "{name} 여행: 2박 3일 일정, 경비 {cost}부터",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm": "{name} 여행: 2박 3일 일정",
+    "Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.": "{name} 3·4·5일 시간대별 일정, 1인 경비 {cost}부터, 맛집 {eats}곳, 관광지 {sights}곳 입장료. 추천 시기: {season}."
   },
   "html": {
     "Vùng miền": "지역",

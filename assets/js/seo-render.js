@@ -379,3 +379,28 @@ function exploreHubHtml() {
         </section>
     `
 }
+
+/*---------- Tiêu đề & mô tả trang điểm đến (thẻ <title>, meta description) ----------*/
+/* Số tiền gọn cho tiêu đề: 2,1 triệu (vi) / 2.1M VND (ngôn ngữ khác) – làm tròn xuống 100.000đ */
+function compactVnd(amount) {
+    const millions = Math.floor(amount / 100000) / 10
+    return LANG === 'vi' ? `${String(millions).replace('.', ',')} ${t('triệu')}` : `${millions}M VND`
+}
+
+/* "Du lịch Đà Lạt: lịch trình 3 ngày 2 đêm, chi phí từ 2,1 triệu" – đúng cụm từ người đọc hay tìm */
+function destinationSeoTitle(d) {
+    const cost = tripCost(d.id, 3, 'saving').total
+    return cost
+        ? t('Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}', { name: d.name, cost: compactVnd(cost) })
+        : t('Du lịch {name}: lịch trình 3 ngày 2 đêm', { name: d.name })
+}
+
+/* Mô tả nêu con số cụ thể của trang (lịch trình, chi phí, số quán, số điểm tham quan, mùa đẹp) */
+function destinationSeoDescription(d) {
+    const places = (typeof PLACES !== 'undefined' && PLACES[d.id]) || {}
+    const eats = (places.eats || []).length + (places.cafes || []).length
+    const sights = destinationSights(d.id).flatMap(g => g.sights).length
+    const cost = tripCost(d.id, 3, 'saving').total
+    return t('Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.',
+        { name: d.name, cost: formatVnd(cost), eats, sights, season: d.bestTime })
+}

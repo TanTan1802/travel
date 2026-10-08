@@ -63,7 +63,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'TRANSLATION_LOCAL', 'GUIDES', 'GUIDE_UPDATED', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
-    'festivalPage', 'festivalTitle', 'festivalGroups']
+    'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -422,9 +422,9 @@ function buildDestinationPage(template, lang, d, site) {
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
 
     html = setLangSwitch(html, lang, siteRoot, l => destPath(l, d.id))
-        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(d.name)} – Việt Travel</title>`)
+        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(site.destinationSeoTitle(d))} – Việt Travel</title>`)
         .replace(/<meta name="description" content="[^"]*">/,
-            `<meta name="description" content="${escapeHtml(truncate(d.description))}">`)
+            `<meta name="description" content="${escapeHtml(truncate(site.destinationSeoDescription(d)))}">`)
         .replace('</head>', `${headTags(site, d, lang)}</head>`)
         .replace(/(\s*)<script defer src="/,
             `$1<script>window.SITE_ROOT = '${siteRoot}'; window.SITE_LANG = '${lang}'; window.DEST_ID = '${d.id}'</script>$1<script defer src="`)

@@ -429,7 +429,11 @@
     "Xem lịch lễ hội cả năm": "See the full-year festival calendar",
     "Vẫn đang diễn ra:": "Still on:",
     "Chi phí ước tính": "Estimated cost",
-    "Mỗi người": "Per person"
+    "Mỗi người": "Per person",
+    "triệu": "million",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}": "{name} travel guide: 3-day itinerary, budget from {cost}",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm": "{name} travel guide: 3-day itinerary",
+    "Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.": "{name} itineraries for 3–5 days, budget from {cost}/person, {eats} places to eat, fees for {sights} sights. Best time: {season}."
   },
   "html": {
     "Vùng miền": "Region",

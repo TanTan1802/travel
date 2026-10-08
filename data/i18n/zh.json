@@ -429,7 +429,11 @@
     "Xem lịch lễ hội cả năm": "查看全年节庆日历",
     "Vẫn đang diễn ra:": "仍在进行：",
     "Chi phí ước tính": "估算费用",
-    "Mỗi người": "每人"
+    "Mỗi người": "每人",
+    "triệu": "百万",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm, chi phí từ {cost}": "{name}旅游攻略：三天两夜行程，花费{cost}起",
+    "Du lịch {name}: lịch trình 3 ngày 2 đêm": "{name}旅游攻略：三天两夜行程",
+    "Lịch trình {name} 3, 4, 5 ngày theo từng giờ, chi phí từ {cost}/người, {eats} quán ngon, giá vé {sights} điểm tham quan. Mùa đẹp: {season}.": "{name}三、四、五天逐时行程，人均花费{cost}起，{eats}家美食店，{sights}个景点门票。最佳季节：{season}。"
   },
   "html": {
     "Vùng miền": "地区",
