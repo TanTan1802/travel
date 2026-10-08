@@ -1622,8 +1622,9 @@ body.page-detail {
   text-align: center;
 }
 
+/* Nền tối hơn nền chip (không sáng hơn): chữ trắng luôn đủ tương phản với mọi màu chủ đạo của theme / mùa */
 .chip--active .chip__count {
-  background-color: hsla(0, 0%, 100%, .25);
+  background-color: hsla(0, 0%, 0%, .22);
 }
 
 /* Thông báo */
