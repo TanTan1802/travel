@@ -1,8 +1,8 @@
 {
   "$schema": "./schema/site.schema.json",
   "theme": {
-    "hue": 190,
-    "accentHue": 38
+    "hue": 355,
+    "accentHue": 40
   },
   "hero": {
     "subtitle": {
