@@ -416,7 +416,18 @@
     "Nên đi {name} mấy ngày?": "{name}には何日くらい必要ですか？",
     "Khoảng {duration}.": "{duration}ほど。",
     "{name} có gì nổi bật?": "{name}の見どころは？",
-    "Đi {name} bằng cách nào?": "{name}への行き方は？"
+    "Đi {name} bằng cách nào?": "{name}への行き方は？",
+    "Lịch lễ hội & sự kiện Việt Nam: {count} lễ hội, mùa hoa, mùa lúa theo tháng": "ベトナムの祭り・イベントカレンダー：月別の祭り、花と収穫の季節 {count} 件",
+    "Lễ hội & sự kiện": "祭り・イベント",
+    "Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.": "伝統的な祭り、花の季節、黄金の稲穂、混雑する祝日、注意したい天気を月別にまとめました。最高のタイミング選びにどうぞ。",
+    "Loại sự kiện": "イベントの種類",
+    "Cả nước": "全国",
+    "Toàn quốc": "全国",
+    "Quanh năm": "通年",
+    "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "該当するイベントがありません。絞り込みを減らしてみてください。",
+    "Lịch lễ hội cả năm ({count})": "年間祭りカレンダー（{count}）",
+    "Xem lịch lễ hội cả năm": "年間の祭りカレンダーを見る",
+    "Vẫn đang diễn ra:": "開催中："
   },
   "html": {
     "Vùng miền": "地域",
@@ -529,7 +540,8 @@
     "3.260": "3,260",
     "km bờ biển": "km の海岸線",
     "dân tộc anh em": "民族",
-    "điểm đến trên Việt Travel": "Việt Travel の旅行先"
+    "điểm đến trên Việt Travel": "Việt Travel の旅行先",
+    "Lễ hội": "祭り"
   },
   "regions": {
     "bac": "北部ベトナム",

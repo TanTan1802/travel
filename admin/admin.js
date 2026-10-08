@@ -780,7 +780,7 @@ function themeField(path, t) {
 /*---------- Tab của trang Giao diện & mùa ----------*/
 const destOptions = () => Object.fromEntries(state.data.destinations.destinations.map(d => [d.id, d.name]))
 const SLOGAN_HELP = 'Xuống dòng = xuống dòng trên trang; <code>*chữ*</code> = in đậm. Tiếng Việt và tiếng Anh bắt buộc; ngôn ngữ để trống sẽ hiện tiếng Anh.'
-const LINK_HELP = 'Trang trong site, vd. <code>diem-den/mu-cang-chai/index.html</code>, <code>thang/9/index.html</code>, <code>chu-de/bien/index.html</code>, <code>ke-hoach/index.html</code> – hoặc địa chỉ <code>https://…</code>. Để trống = chỉ hiện chữ.'
+const LINK_HELP = 'Trang trong site, vd. <code>diem-den/mu-cang-chai/index.html</code>, <code>thang/9/index.html</code>, <code>chu-de/bien/index.html</code>, <code>le-hoi/index.html</code>, <code>ke-hoach/index.html</code> – hoặc địa chỉ <code>https://…</code>. Để trống = chỉ hiện chữ.'
 
 function siteGeneralFields() {
     return [
@@ -839,7 +839,7 @@ function seasonFields(i) {
 }
 
 function linkDatalist() {
-    const links = ['ke-hoach/index.html', 'cam-nang/index.html',
+    const links = ['ke-hoach/index.html', 'cam-nang/index.html', 'le-hoi/index.html',
         ...Array.from({ length: 12 }, (_, i) => `thang/${i + 1}/index.html`),
         ...Object.keys(state.data.destinations.categories).map(c => `chu-de/${c}/index.html`),
         ...state.data.destinations.destinations.map(d => `diem-den/${d.id}/index.html`)]

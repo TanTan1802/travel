@@ -4,17 +4,20 @@
  * - diem-den/<id>/gia-ve/   : bảng giá vé + giờ mở cửa mọi điểm tham quan của một điểm đến (mỗi điểm có anchor riêng)
  * - thang/<1..12>/          : tháng N nên đi đâu (điểm đến đúng mùa, lễ hội, lưu ý thời tiết)
  * - chu-de/<chủ đề | miền>/ : điểm đến theo loại hình (biển, núi…) hoặc theo miền
+ * - le-hoi/                 : lịch lễ hội & sự kiện cả năm theo tháng (lọc theo loại, miền bằng guide.js)
  * Nội dung lấy từ dữ liệu sẵn có (destinations, itineraries, sights, events) nên tự cập nhật khi dữ liệu đổi.
  */
 const PRICES_DIR = 'gia-ve'
 const MONTH_DIR = 'thang'
 const THEME_DIR = 'chu-de'
+const FESTIVAL_DIR = 'le-hoi'
 
 const REGION_SLUGS = { bac: 'mien-bac', trung: 'mien-trung', nam: 'mien-nam' }
 
 const pricesUrl = id => `${SITE_ROOT}${LANG_PREFIX}diem-den/${id}/${PRICES_DIR}/index.html`
 const monthUrl = m => `${SITE_ROOT}${LANG_PREFIX}${MONTH_DIR}/${m}/index.html`
 const themeUrl = slug => `${SITE_ROOT}${LANG_PREFIX}${THEME_DIR}/${slug}/index.html`
+const festivalUrl = (hash = '') => `${SITE_ROOT}${LANG_PREFIX}${FESTIVAL_DIR}/index.html${hash}`
 
 /* Mã anchor không dấu: "Hang Sửng Sốt" → "hang-sung-sot" */
 function slugify(text) {
@@ -200,6 +203,7 @@ function monthPage(m) {
                     <section class="guide-section" id="le-hoi">
                         <h2 class="guide-section__title">${t('Lễ hội & lưu ý trong tháng {m}', { m: monthLabel(m) })}</h2>
                         <ul class="events__list">${events.map(e => eventCardHtml(e, { destName: e.where === 'all' ? '' : e.where.map(id => getDestination(id)?.name).filter(Boolean).join(', ') })).join('')}</ul>
+                        <p class="festival__more"><a href="${festivalUrl(`#thang-${m}`)}"><i class="ri-calendar-event-line"></i> ${t('Xem lịch lễ hội cả năm')}</a></p>
                     </section>
                 ` : ''}
                 <p class="month-nav__prevnext">
@@ -287,6 +291,74 @@ function themePage(theme) {
     `
 }
 
+/*---------- Lịch lễ hội & sự kiện cả năm ----------*/
+const EVENT_TYPE_ORDER = ['festival', 'nature', 'holiday', 'weather']
+const yearRound = e => eventMonths(e).length === 12
+/* Miền của sự kiện để lọc ('all' = toàn quốc, hợp mọi miền) */
+const eventRegions = e => (e.where === 'all' ? ['all'] : [...new Set(e.where.map(id => getDestination(id)?.region).filter(Boolean))])
+
+/* Mỗi sự kiện xuất hiện một lần, ở tháng bắt đầu; sự kiện quanh năm gom riêng */
+function festivalGroups() {
+    const sorted = [...EVENTS].sort((a, b) => EVENT_TYPE_ORDER.indexOf(a.type) - EVENT_TYPE_ORDER.indexOf(b.type))
+    return [
+        ...Array.from({ length: 12 }, (_, i) => [i + 1, sorted.filter(e => !yearRound(e) && eventMonths(e)[0] === i + 1)]),
+        [0, sorted.filter(yearRound)],
+    ]
+}
+
+function festivalTitle() {
+    return t('Lịch lễ hội & sự kiện Việt Nam: {count} lễ hội, mùa hoa, mùa lúa theo tháng', { count: EVENTS.length })
+}
+
+function festivalPage() {
+    const groups = festivalGroups().filter(([m, list]) => list.length || m)
+    const groupId = m => (m ? `thang-${m}` : 'quanh-nam')
+    const groupLabel = m => (m ? t('Tháng {m}', { m: monthLabel(m) }) : t('Quanh năm'))
+    const places = e => (e.where === 'all' ? t('Toàn quốc')
+        : e.where.map(getDestination).filter(Boolean).map(d => `<a href="${destinationUrl(d.id)}">${d.name}</a>`).join(', '))
+    const card = e => eventCardHtml(e, { destName: places(e), attrs: ` id="su-kien-${e.id}" data-type="${e.type}" data-regions="${eventRegions(e).join(' ')}"` })
+    /* Sự kiện bắt đầu từ tháng trước nhưng vẫn đang diễn ra trong tháng m */
+    const ongoing = m => (m ? EVENTS.filter(e => !yearRound(e) && eventMonths(e)[0] !== m && eventMonths(e).includes(m)) : [])
+    const chip = (filter, value, label, count, active) => `<button type="button" class="chip${active ? ' chip--active' : ''}" data-filter="${filter}" data-value="${value}" aria-pressed="${active}">${label}${count == null ? '' : ` <span class="chip__count">${count}</span>`}</button>`
+    return `
+        <section class="planner-hero guide-hero">
+            <div class="container">
+                ${breadcrumbHtml([[t('Trang chủ'), homeUrl()], [t('Lễ hội & sự kiện'), festivalUrl()]])}
+                <span class="guide-hero__icon"><i class="ri-flag-2-line"></i></span>
+                <h1 class="planner-hero__title">${festivalTitle()}</h1>
+                <p class="planner-hero__text">${t('Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.')}</p>
+            </div>
+        </section>
+
+        <div class="festival-filter container" id="festival-filter" hidden>
+            <div class="festival-filter__row" role="group" aria-label="${t('Loại sự kiện')}">
+                ${chip('type', '', t('Tất cả'), EVENTS.length, true)}
+                ${EVENT_TYPE_ORDER.map(k => chip('type', k, `<i class="${EVENT_TYPES[k].icon}"></i> ${pickLang(EVENT_TYPES[k].label)}`, EVENTS.filter(e => e.type === k).length, false)).join('')}
+            </div>
+            <div class="festival-filter__row" role="group" aria-label="${t('Vùng miền')}">
+                ${chip('region', '', t('Cả nước'), null, true)}
+                ${Object.entries(REGIONS).map(([k, name]) => chip('region', k, name, null, false)).join('')}
+            </div>
+        </div>
+
+        <nav class="month-nav festival-nav container" aria-label="${t('Chọn tháng')}">
+            ${groups.map(([m]) => `<a href="#${groupId(m)}" class="chip" data-month="${m}">${m ? monthShort(m) : t('Quanh năm')}</a>`).join('')}
+        </nav>
+
+        <div class="festival container">
+            ${groups.map(([m, list]) => `
+                <section class="festival__month" id="${groupId(m)}" data-month-group="${m}">
+                    <h2 class="festival__title">${groupLabel(m)}${list.length ? ` <span class="festival__count">${list.length}</span>` : ''}</h2>
+                    ${list.length ? `<ul class="events__list festival__list">${list.map(card).join('')}</ul>` : ''}
+                    ${ongoing(m).length ? `<p class="festival__ongoing"><span>${t('Vẫn đang diễn ra:')}</span> ${ongoing(m).map(e => `<a href="#su-kien-${e.id}" class="tag" data-type="${e.type}" data-regions="${eventRegions(e).join(' ')}">${pickLang(e.name)}</a>`).join('')}</p>` : ''}
+                    ${m ? `<a class="festival__more" href="${monthUrl(m)}">${t('Điểm đến đẹp nhất tháng {m}', { m: monthLabel(m) })} <i class="ri-arrow-right-line"></i></a>` : ''}
+                </section>
+            `).join('')}
+            <p class="festival__empty" hidden>${t('Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.')}</p>
+        </div>
+    `
+}
+
 /* Khối liên kết tới các trang khám phá (đặt ở trang cẩm nang) */
 function exploreHubHtml() {
     return `
@@ -295,6 +367,10 @@ function exploreHubHtml() {
             <div class="explore-hub__group">
                 <strong>${t('Đi đâu theo tháng')}</strong>
                 <div class="month-nav">${Array.from({ length: 12 }, (_, i) => i + 1).map(m => `<a href="${monthUrl(m)}" class="chip">${t('Tháng {m}', { m: monthLabel(m) })}</a>`).join('')}</div>
+            </div>
+            <div class="explore-hub__group">
+                <strong>${t('Lễ hội & sự kiện')}</strong>
+                <div class="month-nav"><a href="${festivalUrl()}" class="chip"><i class="ri-flag-2-line"></i> ${t('Lịch lễ hội cả năm ({count})', { count: EVENTS.length })}</a></div>
             </div>
             <div class="explore-hub__group">
                 <strong>${t('Theo chủ đề')}</strong>

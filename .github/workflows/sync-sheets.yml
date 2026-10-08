@@ -70,6 +70,8 @@ jobs:
             cam-nang
             thang
             chu-de
+            le-hoi
+            assets/img/favicon.svg
             index.html
             sitemap.xml
             sw.js

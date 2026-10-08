@@ -70,7 +70,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de en ko zh ja index.html sitemap.xml robots.txt sw.js
+          git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có gì cần build thêm."
           else

@@ -680,7 +680,7 @@ function dayTimelineHtml(entries) {
 function eventWhenText(e) {
     if (e.dates) {
         const fmt = md => `${md.slice(3)}/${md.slice(0, 2)}`
-        return `${fmt(e.dates[0])} – ${fmt(e.dates[1])}`
+        return e.dates[0] === e.dates[1] ? fmt(e.dates[0]) : `${fmt(e.dates[0])} – ${fmt(e.dates[1])}`
     }
     if (e.months.length === 12) return t('Hằng tháng')
     const months = e.months
@@ -688,10 +688,10 @@ function eventWhenText(e) {
     return t('Tháng {m}', { m: label })
 }
 
-function eventCardHtml(e, { destName = '' } = {}) {
+function eventCardHtml(e, { destName = '', attrs = '' } = {}) {
     const type = EVENT_TYPES[e.type]
     return `
-        <li class="event event--${e.type}" data-event-months="${eventMonths(e).join(',')}">
+        <li class="event event--${e.type}" data-event-months="${eventMonths(e).join(',')}"${attrs}>
             <span class="event__icon" title="${pickLang(type.label)}"><i class="${type.icon}"></i></span>
             <div class="event__body">
                 <div class="event__head">

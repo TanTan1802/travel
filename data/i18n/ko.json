@@ -416,7 +416,18 @@
     "Nên đi {name} mấy ngày?": "{name}은(는) 며칠 여행하면 좋나요?",
     "Khoảng {duration}.": "약 {duration}.",
     "{name} có gì nổi bật?": "{name}의 볼거리는 무엇인가요?",
-    "Đi {name} bằng cách nào?": "{name}에는 어떻게 가나요?"
+    "Đi {name} bằng cách nào?": "{name}에는 어떻게 가나요?",
+    "Lịch lễ hội & sự kiện Việt Nam: {count} lễ hội, mùa hoa, mùa lúa theo tháng": "베트남 축제·행사 달력: 월별 축제, 꽃·수확 시즌 {count}가지",
+    "Lễ hội & sự kiện": "축제 & 행사",
+    "Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.": "전통 축제, 꽃 시즌, 황금 들판, 붐비는 공휴일과 주의할 날씨를 월별로 정리해 여행하기 가장 좋은 때를 고를 수 있습니다.",
+    "Loại sự kiện": "행사 유형",
+    "Cả nước": "전국",
+    "Toàn quốc": "전국",
+    "Quanh năm": "연중",
+    "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "조건에 맞는 행사가 없습니다 – 필터를 줄여 보세요.",
+    "Lịch lễ hội cả năm ({count})": "연간 축제 달력 ({count})",
+    "Xem lịch lễ hội cả năm": "연간 축제 달력 보기",
+    "Vẫn đang diễn ra:": "계속 진행 중:"
   },
   "html": {
     "Vùng miền": "지역",
@@ -529,7 +540,8 @@
     "3.260": "3,260",
     "km bờ biển": "km 해안선",
     "dân tộc anh em": "민족",
-    "điểm đến trên Việt Travel": "Việt Travel 여행지"
+    "điểm đến trên Việt Travel": "Việt Travel 여행지",
+    "Lễ hội": "축제"
   },
   "regions": {
     "bac": "북부 베트남",

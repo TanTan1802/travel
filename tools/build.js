@@ -18,7 +18,7 @@ const path = require('path')
 const crypto = require('crypto')
 const esbuild = require('esbuild')
 const { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts } = require('./lib')
-const { DEFAULT_THEME, pickText, sloganHtml } = require('./theme')
+const { DEFAULT_THEME, logoSvg, pickText, sloganHtml } = require('./theme')
 
 const PAGE_DIR = 'diem-den'
 const PLANNER_DIR = 'ke-hoach'
@@ -26,6 +26,7 @@ const GUIDE_DIR = 'cam-nang'
 const PRICES_DIR = 'gia-ve'
 const MONTH_DIR = 'thang'
 const THEME_DIR = 'chu-de'
+const FESTIVAL_DIR = 'le-hoi'
 
 /* code: mã trong SITE_LANG / thư mục; html: thuộc tính lang + hreflang; label: tên trong menu ngôn ngữ */
 const LANGS = {
@@ -61,7 +62,8 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
     'TRANSLATION_LOCAL', 'GUIDES', 'GUIDE_UPDATED', 'guidesIndexPage', 'guideArticlePage', 'homeGuidesSection', 'pickLang',
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
-    'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel']
+    'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
+    'festivalPage', 'festivalTitle', 'festivalGroups']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -89,11 +91,13 @@ function themeScript() {
         ...(s.theme ? { h: s.theme.hue, a: s.theme.accentHue } : {}),
     }))
     if (!seasons.length) return DARK_THEME_SCRIPT
-    return DARK_THEME_SCRIPT.replace('</script>', `\n(function(S){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},` +
+    return DARK_THEME_SCRIPT.replace('</script>', `\n(function(S,F){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},` +
         `md=p(n.getMonth()+1)+'-'+p(n.getDate()),ymd=n.getFullYear()+'-'+md;for(var i=0;i<S.length;i++){var s=S[i];` +
         `if(q?q[1]===s.i:!s.x&&(s.f.length>5?ymd>=s.f&&ymd<=s.t:s.f<=s.t?md>=s.f&&md<=s.t:md>=s.f||md<=s.t)){` +
         `var r=document.documentElement,m;window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null){r.style.setProperty('--hue-color',s.h);` +
-        `r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)'}return}}})(${inlineJson(seasons)})</script>`)
+        `r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)';` +
+        `if(m=document.querySelector('link[rel=icon]'))m.href='data:image/svg+xml,'+encodeURIComponent(F.replace(/\\{h\\}/g,s.h).replace(/\\{a\\}/g,s.a))}return}}})(` +
+        `${inlineJson(seasons)},${inlineJson(logoSvg('{h}', '{a}'))})</script>`)
 }
 
 /* Mọi trang: script màu theo mùa + màu thanh trình duyệt theo màu chủ đạo */
@@ -205,6 +209,7 @@ const guidePath = (lang, slug = '') => `${LANGS[lang].prefix}${GUIDE_DIR}/${slug
 const pricesPath = (lang, id) => `${LANGS[lang].prefix}${PAGE_DIR}/${id}/${PRICES_DIR}/index.html`
 const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.html`
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
+const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -227,7 +232,7 @@ function absoluteImage(site, file) {
  */
 function prefixPaths(html, siteRoot, langRoot) {
     return html.replace(/(href|src)="(?!https?:|#|mailto:|data:|\/)([^"]+)"/g, (m, attr, url) => {
-        const isPage = url.startsWith('index.html') || [PAGE_DIR, PLANNER_DIR, GUIDE_DIR, MONTH_DIR, THEME_DIR].some(dir => url.startsWith(`${dir}/`))
+        const isPage = url.startsWith('index.html') || [PAGE_DIR, PLANNER_DIR, GUIDE_DIR, MONTH_DIR, THEME_DIR, FESTIVAL_DIR].some(dir => url.startsWith(`${dir}/`))
         return `${attr}="${isPage ? langRoot : siteRoot}${url}"`
     })
 }
@@ -607,6 +612,20 @@ function explorePages(template, lang) {
             crumbs: [home],
         }), themeSite])
     }
+    const festSite = loadSite(lang, rootFor(festivalPath(lang)))
+    const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
+    /* Menu: đánh dấu "Lễ hội" thay cho "Cẩm nang" (mẫu guide.html) */
+    const festTemplate = template.replace(' class="nav__link active-link"', ' class="nav__link"')
+        .replace('href="le-hoi/index.html" class="nav__link"', 'href="le-hoi/index.html" class="nav__link active-link"')
+    pages.push([festivalPath(lang), () => buildContentPage(festTemplate, lang, festivalPath, festSite, {
+        title: festSite.festivalTitle(),
+        description: festSite.t('Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.'),
+        main: festSite.festivalPage(),
+        image: `${SITE_URL}assets/img/og/hoi-an.jpg`,
+        jsonLd: [{ '@type': 'ItemList', name: festSite.festivalTitle(),
+            itemListElement: festPicks.map((e, i) => ({ '@type': 'ListItem', position: i + 1, name: festSite.pickLang(e.name) })) }],
+        crumbs: [home],
+    }), festSite])
     return pages
 }
 
@@ -811,6 +830,7 @@ function main() {
     fs.rmSync(path.join(ROOT, GUIDE_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, MONTH_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, THEME_DIR), { recursive: true, force: true })
+    fs.rmSync(path.join(ROOT, FESTIVAL_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
     fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).forEach(f => fs.rmSync(path.join(ROOT, CSS_DIR, f)))
@@ -852,10 +872,12 @@ function main() {
     bundles.forEach((code, rel) => write(rel, code))
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
     write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
+    /* Biểu tượng tab trình duyệt theo màu mặc định (mùa có màu riêng thì script đầu trang thay bằng bản cùng màu) */
+    write('assets/img/favicon.svg', `${logoSvg(SITE_CONFIG.theme.hue, SITE_CONFIG.theme.accentHue)}\n`)
     write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: ${SITE_URL}sitemap.xml\n`)
 
     const n = Object.keys(LANGS).length
-    console.log(`✅ Đã tạo ${count} trang điểm đến (${Object.keys(LANGS).join(' + ')}), ${n} trang chủ, ${n} trang kế hoạch, ${n * (1 + loadSite('vi', '').GUIDES.length)} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
+    console.log(`✅ Đã tạo ${count} trang điểm đến (${Object.keys(LANGS).join(' + ')}), ${n} trang chủ, ${n} trang kế hoạch, ${n * (1 + loadSite('vi', '').GUIDES.length)} trang cẩm nang, ${explore} trang khám phá (giá vé, theo tháng, chủ đề, lịch lễ hội), ${bundles.size} bundle JS/CSS, sitemap.xml, robots.txt`)
 }
 
 main()

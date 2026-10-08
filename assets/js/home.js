@@ -457,6 +457,7 @@ function renderSeasonEvents(month) {
                 <i class="${EVENT_TYPES[e.type].icon}"></i> ${pickLang(e.name)} · ${d.name}
             </a>`
         }).join('')}
+        <a href="${SITE_ROOT}${LANG_PREFIX}le-hoi/index.html#thang-${month}" class="season__events-more">${t('Xem lịch lễ hội cả năm')} <i class="ri-arrow-right-line"></i></a>
     ` : ''
 }
 

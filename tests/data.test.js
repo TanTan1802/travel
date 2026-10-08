@@ -621,6 +621,24 @@ test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề �
     assert.ok(hue.includes('id="dai-noi-hue-ngo-mon-tu-cam-thanh"'))
 })
 
+test('lịch lễ hội (le-hoi/): mọi sự kiện xuất hiện đúng một lần, có bộ lọc loại / miền, có trong sitemap', () => {
+    const EVENTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/events.json'), 'utf8')).events
+    const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
+    for (const p of LANG_PREFIXES) assert.ok(sitemap.includes(`${SITE_URL}${p}le-hoi/<`), `sitemap thiếu ${p}le-hoi/`)
+    const html = fs.readFileSync(path.join(ROOT, 'le-hoi/index.html'), 'utf8')
+    const cards = [...html.matchAll(/<li class="event event--(\w+)"[^>]*data-type="(\w+)" data-regions="([a-z ]+)"/g)]
+    assert.equal(cards.length, EVENTS.length, 'số thẻ sự kiện khác số sự kiện trong data/events.json')
+    cards.forEach(([, cls, type]) => assert.equal(cls, type))
+    for (const type of ['festival', 'nature', 'holiday', 'weather']) assert.ok(html.includes(`data-filter="type" data-value="${type}"`), `thiếu bộ lọc ${type}`)
+    for (const region of ['bac', 'trung', 'nam']) assert.ok(html.includes(`data-filter="region" data-value="${region}"`), `thiếu bộ lọc miền ${region}`)
+    const graph = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m => JSON.parse(m[1])['@graph'] || [])
+    assert.equal(graph.find(n => n['@type'] === 'ItemList').itemListElement.length, EVENTS.length)
+    /* Đủ lễ hội cho cả năm: tháng nào cũng có ít nhất một lễ hội hoặc mùa cảnh sắc */
+    for (let m = 1; m <= 12; m++) {
+        assert.ok(EVENTS.some(e => ['festival', 'nature'].includes(e.type) && (e.months ? e.months.includes(m) : Number(e.dates[0].slice(0, 2)) <= m && m <= Number(e.dates[1].slice(0, 2)))), `tháng ${m} chưa có lễ hội / mùa cảnh sắc`)
+    }
+})
+
 test('lập kế hoạch: quãng đường bộ thật (ROUTES), nhiều phương tiện (bay / tàu hỏa / xe / tàu ra đảo), chọn phương tiện từng chặng', () => {
     const vm = require('vm')
     const noop = () => {}

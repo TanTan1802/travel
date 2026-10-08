@@ -727,6 +727,844 @@
         "Xem ngày cụ thể của tỉnh trước khi đi; tôn trọng nghi lễ, không chen vào đoàn rước.",
         "Check the official dates first; respect the rites and don't cut into the procession."
       ]
+    },
+    {
+      "id": "countdown-nam-moi",
+      "where": [
+        "ha-noi",
+        "sai-gon",
+        "da-nang"
+      ],
+      "type": "festival",
+      "dates": [
+        "12-31",
+        "12-31"
+      ],
+      "name": [
+        "Đêm Countdown đón năm mới",
+        "New Year's Eve countdown"
+      ],
+      "desc": [
+        "Đêm 31/12: sân khấu ca nhạc ngoài trời và pháo hoa lúc 0 giờ ở hồ Hoàn Kiếm, phố đi bộ Nguyễn Huệ và ven sông Hàn.",
+        "On 31 December: open-air concerts and midnight fireworks at Hoan Kiem Lake, Nguyen Hue walking street and along the Han River."
+      ],
+      "tip": [
+        "Đến trước 21 giờ để có chỗ đứng; gửi xe xa trung tâm và đi bộ vào vì nhiều tuyến phố bị cấm xe.",
+        "Arrive before 9 pm for a good spot; park well outside the centre and walk in, as many streets close to traffic."
+      ]
+    },
+    {
+      "id": "duong-hoa-nguyen-hue",
+      "where": [
+        "sai-gon"
+      ],
+      "type": "festival",
+      "months": [
+        1,
+        2
+      ],
+      "lunar": true,
+      "name": [
+        "Đường hoa Nguyễn Huệ",
+        "Nguyen Hue Tet flower street"
+      ],
+      "desc": [
+        "Khoảng một tuần quanh Tết, phố đi bộ Nguyễn Huệ thành con đường hoa với linh vật của năm, tiểu cảnh và đèn trang trí rực rỡ về đêm.",
+        "For about a week around Tết, Nguyen Hue walking street becomes a flower avenue with the zodiac mascot of the year and dazzling lights at night."
+      ],
+      "tip": [
+        "Đi sáng sớm (6–8 giờ) để chụp ảnh vắng người; buổi tối rất đông.",
+        "Go early in the morning (6–8 am) for photos without crowds; evenings are packed."
+      ]
+    },
+    {
+      "id": "giang-sinh",
+      "where": [
+        "sai-gon",
+        "ha-noi",
+        "da-lat"
+      ],
+      "type": "festival",
+      "dates": [
+        "12-20",
+        "12-25"
+      ],
+      "name": [
+        "Mùa Giáng sinh",
+        "Christmas season"
+      ],
+      "desc": [
+        "Nhà thờ Đức Bà, nhà thờ Tân Định (Sài Gòn), nhà thờ Lớn Hà Nội và nhà thờ Con Gà Đà Lạt trang hoàng hang đá, đèn sao; đêm 24/12 phố xá rất nhộn nhịp.",
+        "Notre-Dame and Tan Dinh churches in Saigon, St Joseph's Cathedral in Hanoi and Da Lat's Rooster Church put up nativity scenes and star lights; the streets are buzzing on the night of the 24th."
+      ],
+      "tip": [
+        "Đêm 24/12 kẹt xe nặng quanh các nhà thờ lớn – nên đi bộ hoặc đi sớm; giữ trật tự khi lễ đang diễn ra.",
+        "Traffic jams around the big churches on the 24th – walk or go early, and keep quiet during mass."
+      ]
+    },
+    {
+      "id": "gio-to",
+      "where": "all",
+      "type": "holiday",
+      "months": [
+        4
+      ],
+      "lunar": true,
+      "name": [
+        "Giỗ Tổ Hùng Vương (10/3 âm lịch)",
+        "Hung Kings' Commemoration (10th day of the 3rd lunar month)"
+      ],
+      "desc": [
+        "Ngày nghỉ lễ toàn quốc; nếu sát cuối tuần hoặc kỳ nghỉ 30/4 thì thành kỳ nghỉ dài, điểm du lịch gần Hà Nội rất đông.",
+        "A national public holiday; when it falls next to a weekend or the 30 April break it becomes a long weekend and places near Hanoi get crowded."
+      ],
+      "tip": [
+        "Xem lịch nghỉ chính thức mỗi năm và đặt phòng sớm nếu trùng cuối tuần.",
+        "Check the official holiday dates each year and book early if it falls next to a weekend."
+      ]
+    },
+    {
+      "id": "vu-lan",
+      "where": "all",
+      "type": "festival",
+      "months": [
+        8,
+        9
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ Vu Lan báo hiếu (rằm tháng 7 âm lịch)",
+        "Vu Lan – Buddhist filial piety festival (15th day of the 7th lunar month)"
+      ],
+      "desc": [
+        "Các chùa lớn tổ chức lễ cài hoa hồng, thả hoa đăng, cầu siêu; không khí trang nghiêm, ấm áp.",
+        "Big pagodas hold rose-pinning ceremonies, lantern releases and prayers; the mood is solemn yet warm."
+      ],
+      "tip": [
+        "Mặc kín đáo khi vào chùa; tối rằm các chùa rất đông.",
+        "Dress modestly at pagodas; they are very busy on the full-moon evening."
+      ]
+    },
+    {
+      "id": "hoi-giong",
+      "where": [
+        "ha-noi"
+      ],
+      "type": "festival",
+      "months": [
+        2
+      ],
+      "lunar": true,
+      "name": [
+        "Hội Gióng đền Sóc",
+        "Giong Festival at Soc Temple"
+      ],
+      "desc": [
+        "Mùng 6 tháng Giêng ở Sóc Sơn: rước voi tre, lễ dâng hoa tre – lễ hội được UNESCO ghi danh di sản văn hóa phi vật thể.",
+        "On the 6th day of the lunar new year in Soc Son: bamboo-elephant processions and bamboo-flower offerings – a UNESCO-listed intangible heritage festival."
+      ],
+      "tip": [
+        "Cách trung tâm Hà Nội khoảng 40 km; đi sớm vì đông, cẩn thận đồ đạc khi tranh lộc hoa tre.",
+        "About 40 km from central Hanoi; go early and mind your belongings in the scramble for lucky bamboo flowers."
+      ]
+    },
+    {
+      "id": "thu-ha-noi",
+      "where": [
+        "ha-noi"
+      ],
+      "type": "nature",
+      "dates": [
+        "09-15",
+        "11-15"
+      ],
+      "name": [
+        "Mùa thu Hà Nội",
+        "Hanoi autumn"
+      ],
+      "desc": [
+        "Trời hanh, nắng vàng nhẹ, hoa sữa thơm các phố Nguyễn Du, Quang Trung; cốm làng Vòng và gánh hoa cúc họa mi (cuối tháng 10–11) trên phố.",
+        "Dry air and soft golden light, milk-flower scent on Nguyen Du and Quang Trung streets; green rice flakes from Vong village and street bicycles of daisies (late October–November)."
+      ],
+      "tip": [
+        "Đẹp nhất buổi sáng quanh hồ Gươm, hồ Tây; mua cốm ở hàng gánh hoặc phố Hàng Than.",
+        "Best in the morning around Hoan Kiem and West Lake; buy com (green rice flakes) from street vendors or Hang Than street."
+      ]
+    },
+    {
+      "id": "loa-ken",
+      "where": [
+        "ha-noi"
+      ],
+      "type": "nature",
+      "dates": [
+        "04-01",
+        "04-30"
+      ],
+      "name": [
+        "Mùa hoa loa kèn",
+        "Easter lily season"
+      ],
+      "desc": [
+        "Cả tháng 4, hoa loa kèn trắng theo những xe đạp hàng hoa khắp phố cổ – nét đặc trưng chuyển mùa của Hà Nội.",
+        "Throughout April, white Easter lilies ride on flower-sellers' bicycles across the Old Quarter – Hanoi's signature sign of the changing season."
+      ],
+      "tip": [
+        "Mua theo bó ở chợ hoa Quảng An hoặc xe đạp hàng hoa, rẻ và tươi hơn cửa hàng.",
+        "Buy bunches at Quang An flower market or from bicycle vendors – cheaper and fresher than shops."
+      ]
+    },
+    {
+      "id": "nom-am",
+      "where": [
+        "ha-noi",
+        "ninh-binh",
+        "vinh-ha-long",
+        "tam-dao"
+      ],
+      "type": "weather",
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "name": [
+        "Nồm ẩm miền Bắc",
+        "Northern 'nồm' humidity"
+      ],
+      "desc": [
+        "Độ ẩm gần 100%: nền nhà, tường đọng nước, trời mù sương, quần áo lâu khô; tầm nhìn trên vịnh và núi có thể kém.",
+        "Humidity near 100%: floors and walls sweat, the sky is hazy and laundry won't dry; visibility on the bay and mountains can be poor."
+      ],
+      "tip": [
+        "Mang giày đế bám, chọn phòng có máy hút ẩm hoặc điều hòa; xem dự báo trước khi lên lịch đi thuyền ngắm cảnh.",
+        "Bring grippy shoes, pick rooms with a dehumidifier or air-con, and check the forecast before a scenic cruise."
+      ]
+    },
+    {
+      "id": "chua-bai-dinh",
+      "where": [
+        "ninh-binh"
+      ],
+      "type": "festival",
+      "months": [
+        2,
+        3,
+        4
+      ],
+      "lunar": true,
+      "name": [
+        "Mùa hành hương chùa Bái Đính – Tràng An",
+        "Bai Dinh – Trang An pilgrimage season"
+      ],
+      "desc": [
+        "Từ mùng 6 tháng Giêng đến hết tháng 3 âm lịch, chùa Bái Đính khai hội; lễ hội Tràng An, Hoa Lư (tháng 3 âm lịch) rước kiệu, diễn xướng.",
+        "From the 6th day of the lunar new year to the end of the 3rd lunar month Bai Dinh pagoda holds its festival; Trang An and Hoa Lu festivals bring palanquin processions and folk performances."
+      ],
+      "tip": [
+        "Cuối tuần và đầu xuân rất đông – đi ngày thường, buổi sáng sớm; thuyền Tràng An có thể phải chờ lâu.",
+        "Weekends and the first weeks of spring are packed – go on a weekday, early in the morning; expect queues for Trang An boats."
+      ]
+    },
+    {
+      "id": "lua-chin-tam-coc",
+      "where": [
+        "ninh-binh"
+      ],
+      "type": "nature",
+      "dates": [
+        "05-15",
+        "06-10"
+      ],
+      "name": [
+        "Mùa lúa chín Tam Cốc",
+        "Golden rice at Tam Coc"
+      ],
+      "desc": [
+        "Lúa chín vàng hai bên sông Ngô Đồng giữa núi đá vôi – cảnh đẹp nhất năm khi đi thuyền Tam Cốc.",
+        "Golden rice lines the Ngo Dong River between limestone peaks – the year's prettiest moment for the Tam Coc boat ride."
+      ],
+      "tip": [
+        "Đi thuyền sáng sớm hoặc sau 15 giờ cho đỡ nắng; leo Hang Múa để ngắm toàn cảnh.",
+        "Take the boat early or after 3 pm to avoid the heat; climb Hang Mua for the panorama."
+      ]
+    },
+    {
+      "id": "gau-tao",
+      "where": [
+        "sa-pa",
+        "ha-giang"
+      ],
+      "type": "festival",
+      "months": [
+        1,
+        2
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Gầu Tào của người H'Mông",
+        "H'Mong Gau Tao festival"
+      ],
+      "desc": [
+        "Dịp đầu xuân: dựng cây nêu, thổi khèn, ném pao, đánh quay, đua ngựa – lễ hội cầu phúc lớn nhất của người H'Mông.",
+        "In early spring: a ceremonial pole, khen pipes, pao ball throwing, top spinning and horse racing – the biggest blessing festival of the H'Mong."
+      ],
+      "tip": [
+        "Hỏi chủ homestay ngày mở hội ở từng bản; xin phép trước khi chụp ảnh cận người dân.",
+        "Ask your homestay host which village holds it and when; ask before taking close-up photos of people."
+      ]
+    },
+    {
+      "id": "do-quyen-fansipan",
+      "where": [
+        "sa-pa"
+      ],
+      "type": "nature",
+      "months": [
+        3,
+        4
+      ],
+      "name": [
+        "Mùa hoa đỗ quyên Fansipan",
+        "Rhododendrons on Fansipan"
+      ],
+      "desc": [
+        "Đỗ quyên đỏ, hồng, trắng nở dọc đường trekking và quanh đỉnh Fansipan; trời quang, ít mưa – mùa trekking đẹp.",
+        "Red, pink and white rhododendrons bloom along the trails and around Fansipan's summit; clear, dry weather makes it great trekking season."
+      ],
+      "tip": [
+        "Trekking cần hướng dẫn viên địa phương; đi cáp treo thì nên lên sớm trước khi mây kéo đến.",
+        "Trekking requires a local guide; if you take the cable car, go up early before the clouds roll in."
+      ]
+    },
+    {
+      "id": "cho-phien",
+      "where": [
+        "ha-giang",
+        "sa-pa"
+      ],
+      "type": "festival",
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "name": [
+        "Chợ phiên vùng cao",
+        "Highland market days"
+      ],
+      "desc": [
+        "Chợ họp theo phiên: Đồng Văn, Mèo Vạc (Hà Giang), Bắc Hà, Cán Cấu (gần Sa Pa) – người dân mặc trang phục rực rỡ, mua bán gia súc, thổ cẩm, thắng cố.",
+        "Rotating markets: Dong Van and Meo Vac (Ha Giang), Bac Ha and Can Cau (near Sa Pa) – colourful costumes, livestock trading, brocade and thang co stew."
+      ],
+      "tip": [
+        "Phần lớn họp sáng Chủ nhật (Cán Cấu: thứ Bảy) và tan trước trưa – sắp lịch trình để có mặt từ 7–8 giờ.",
+        "Most run on Sunday mornings (Can Cau: Saturday) and wind down by noon – plan to arrive by 7–8 am."
+      ]
+    },
+    {
+      "id": "hoa-dao-ha-giang",
+      "where": [
+        "ha-giang"
+      ],
+      "type": "nature",
+      "months": [
+        2,
+        3
+      ],
+      "name": [
+        "Mùa hoa đào, hoa mận cao nguyên đá",
+        "Peach and plum blossom on the stone plateau"
+      ],
+      "desc": [
+        "Đào hồng, mận trắng nở bên tường đá và nhà trình tường ở Lũng Cú, Sủng Là, Phố Cáo, Lao Xa.",
+        "Pink peach and white plum blossom against stone walls and rammed-earth houses in Lung Cu, Sung La, Pho Cao and Lao Xa."
+      ],
+      "tip": [
+        "Trời còn lạnh và có thể mưa phùn – mang áo ấm, đi xe máy phải có kinh nghiệm đèo dốc.",
+        "It's still cold with drizzle – pack warm layers; ride a motorbike only if you're used to mountain passes."
+      ]
+    },
+    {
+      "id": "bay-mua-vang",
+      "where": [
+        "mu-cang-chai"
+      ],
+      "type": "festival",
+      "months": [
+        9
+      ],
+      "name": [
+        "Lễ hội dù lượn \"Bay trên mùa vàng\"",
+        "\"Flying over the golden season\" paragliding festival"
+      ],
+      "desc": [
+        "Dịp lúa chín, các phi công dù lượn cất cánh từ đỉnh đèo Khau Phạ bay trên thung lũng ruộng bậc thang; du khách có thể bay đôi cùng phi công.",
+        "When the rice ripens, paragliders launch from the top of Khau Pha Pass over the terraced valleys; visitors can fly tandem with a pilot."
+      ],
+      "tip": [
+        "Ngày tổ chức thay đổi theo năm và thời tiết – xem thông báo của huyện; đặt bay đôi trước và chọn buổi sáng ít gió.",
+        "Dates change each year and depend on the weather – check local announcements; book tandem flights ahead and prefer calm mornings."
+      ]
+    },
+    {
+      "id": "man-chin-moc-chau",
+      "where": [
+        "moc-chau"
+      ],
+      "type": "nature",
+      "months": [
+        5,
+        6
+      ],
+      "name": [
+        "Mùa mận chín Mộc Châu",
+        "Moc Chau plum harvest"
+      ],
+      "desc": [
+        "Vườn mận hậu trĩu quả đỏ tím, du khách được vào vườn tự hái và mua tại gốc.",
+        "Orchards hang heavy with purple-red plums; visitors can pick their own and buy straight from the trees."
+      ],
+      "tip": [
+        "Hỏi giá trước khi hái; đi buổi sáng mát, mang mũ nón.",
+        "Agree on the price before picking; go in the cool morning and bring a hat."
+      ]
+    },
+    {
+      "id": "ban-gioc-mua-nuoc",
+      "where": [
+        "ban-gioc"
+      ],
+      "type": "nature",
+      "months": [
+        8,
+        9,
+        10
+      ],
+      "name": [
+        "Thác Bản Giốc mùa nhiều nước",
+        "Ban Gioc Falls at full flow"
+      ],
+      "desc": [
+        "Thác đổ trắng xóa nhiều tầng nhất trong năm, cuối tháng 9 có thêm ruộng lúa chín vàng dưới chân thác.",
+        "The falls are at their fullest and whitest, and in late September golden rice fields frame the base."
+      ],
+      "tip": [
+        "Sau mưa lớn nước đục và bè ra gần thác có thể tạm dừng – xem thời tiết trước khi đi.",
+        "After heavy rain the water turns muddy and rafts near the falls may stop – check the weather first."
+      ]
+    },
+    {
+      "id": "hoa-so-binh-lieu",
+      "where": [
+        "binh-lieu"
+      ],
+      "type": "nature",
+      "months": [
+        11,
+        12
+      ],
+      "name": [
+        "Mùa hoa sở Bình Liêu",
+        "Tea-oil camellia blossom in Binh Lieu"
+      ],
+      "desc": [
+        "Hoa sở trắng phủ các đồi, cùng lau sậy trắng dọc đường cột mốc biên giới – Bình Liêu thường tổ chức lễ hội hoa sở dịp này.",
+        "White tea-oil camellias cover the hills and reeds line the border-marker road – Binh Lieu often holds its camellia festival at this time."
+      ],
+      "tip": [
+        "Trời se lạnh, sáng có sương – mang áo khoác; đường cột mốc dốc, cần xe chắc và tay lái vững.",
+        "Cool, misty mornings – bring a jacket; the border-marker road is steep, so you need a solid vehicle and steady hands."
+      ]
+    },
+    {
+      "id": "quan-the-am",
+      "where": [
+        "da-nang"
+      ],
+      "type": "festival",
+      "months": [
+        3,
+        4
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Quán Thế Âm Ngũ Hành Sơn",
+        "Quan The Am Festival at the Marble Mountains"
+      ],
+      "desc": [
+        "Ngày 17–19 tháng 2 âm lịch: rước tượng Bồ Tát, hội hoa đăng, trình diễn võ thuật, thi đấu cờ người dưới chân Ngũ Hành Sơn.",
+        "On the 17th–19th days of the 2nd lunar month: Bodhisattva processions, lantern displays, martial arts and human chess at the foot of the Marble Mountains."
+      ],
+      "tip": [
+        "Leo núi Thủy Sơn vào sáng sớm, mang giày đế bám vì bậc đá trơn.",
+        "Climb Thuy Son early in the morning in grippy shoes – the stone steps are slippery."
+      ]
+    },
+    {
+      "id": "khao-le-ly-son",
+      "where": [
+        "ly-son"
+      ],
+      "type": "festival",
+      "months": [
+        4,
+        5
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ Khao lề thế lính Hoàng Sa",
+        "Ly Son Feast for the Hoang Sa soldiers"
+      ],
+      "desc": [
+        "Giữa tháng 3 âm lịch: nghi lễ tưởng nhớ những người lính Hoàng Sa xưa, thả thuyền giấy ra biển – di sản văn hóa phi vật thể quốc gia.",
+        "In mid-3rd lunar month: a ceremony honouring the historic Hoang Sa flotilla, with paper boats released to the sea – a national intangible heritage."
+      ],
+      "tip": [
+        "Tàu ra đảo thường kín chỗ dịp lễ – đặt vé trước và theo dõi thông báo tạm dừng tàu khi biển động.",
+        "Ferries fill up during the festival – book ahead and watch for cancellations in rough seas."
+      ]
+    },
+    {
+      "id": "thap-ba-ponagar",
+      "where": [
+        "nha-trang"
+      ],
+      "type": "festival",
+      "months": [
+        4,
+        5
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Tháp Bà Ponagar",
+        "Po Nagar Tower Festival"
+      ],
+      "desc": [
+        "Ngày 20–23 tháng 3 âm lịch: lễ tắm tượng, múa bóng dâng hoa của người Việt và người Chăm tại tháp Chăm cổ bên sông Cái.",
+        "On the 20th–23rd days of the 3rd lunar month: statue bathing and offering dances by Viet and Cham communities at the ancient Cham towers by the Cai River."
+      ],
+      "tip": [
+        "Mặc lịch sự che vai, gối; đi buổi sáng để tránh nắng gắt.",
+        "Wear clothes covering shoulders and knees; go in the morning to avoid the harsh sun."
+      ]
+    },
+    {
+      "id": "cau-ngu",
+      "where": [
+        "quy-nhon",
+        "phu-yen",
+        "ly-son",
+        "vung-tau"
+      ],
+      "type": "festival",
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Cầu ngư của làng chài",
+        "Fishing villages' Cau Ngu (whale worship) festival"
+      ],
+      "desc": [
+        "Các làng chài miền Trung tế cá Ông (cá voi), cầu mùa biển bình an: rước thuyền, hát bả trạo, đua thuyền thúng.",
+        "Central-coast fishing villages honour the whale god for a safe season at sea: boat processions, ba trao rowing songs and basket-boat races."
+      ],
+      "tip": [
+        "Mỗi làng tổ chức một ngày riêng – hỏi chủ nhà hoặc ủy ban xã để đi đúng ngày.",
+        "Each village has its own date – ask your host or the commune office to get it right."
+      ]
+    },
+    {
+      "id": "phuong-tim-da-lat",
+      "where": [
+        "da-lat"
+      ],
+      "type": "nature",
+      "months": [
+        3,
+        4,
+        5
+      ],
+      "name": [
+        "Mùa phượng tím Đà Lạt",
+        "Purple jacaranda in Da Lat"
+      ],
+      "desc": [
+        "Phượng tím nở dọc đường Yersin, Trần Phú, Hùng Vương và quanh hồ Xuân Hương – tiết trời mùa khô nắng đẹp.",
+        "Jacarandas bloom along Yersin, Tran Phu and Hung Vuong streets and around Xuan Huong Lake – sunny dry-season weather."
+      ],
+      "tip": [
+        "Đẹp nhất buổi sáng khi trời trong; mang áo khoác vì sáng tối vẫn lạnh.",
+        "Best on clear mornings; bring a jacket, as mornings and evenings are still cold."
+      ]
+    },
+    {
+      "id": "co-hong-da-lat",
+      "where": [
+        "da-lat"
+      ],
+      "type": "nature",
+      "months": [
+        11,
+        12
+      ],
+      "name": [
+        "Mùa cỏ hồng Đà Lạt",
+        "Pink grass season in Da Lat"
+      ],
+      "desc": [
+        "Những đồi cỏ hồng ở Trại Mát, Langbiang, hồ Tuyền Lâm chuyển màu hồng phớt khi vào mùa khô.",
+        "Grassy hills at Trai Mat, Langbiang and Tuyen Lam Lake turn soft pink as the dry season begins."
+      ],
+      "tip": [
+        "Chụp lúc bình minh hoặc hoàng hôn; nhiều đồi là đất tư – hỏi trước và không giẫm nát cỏ.",
+        "Shoot at sunrise or sunset; many hills are private land – ask first and don't trample the grass."
+      ]
+    },
+    {
+      "id": "hoa-ca-phe",
+      "where": [
+        "buon-ma-thuot"
+      ],
+      "type": "nature",
+      "months": [
+        2,
+        3
+      ],
+      "name": [
+        "Mùa hoa cà phê nở trắng",
+        "Coffee blossom season"
+      ],
+      "desc": [
+        "Sau đợt tưới đầu mùa khô, những vườn cà phê nở trắng, thơm ngát cả vùng trong vài ngày.",
+        "After the first dry-season watering, coffee farms burst into white, fragrant blossom for a few days."
+      ],
+      "tip": [
+        "Hoa chỉ nở 3–5 ngày mỗi đợt – hỏi chủ vườn hoặc homestay để canh đúng lúc.",
+        "Each bloom lasts only 3–5 days – ask a farmer or your homestay to time it."
+      ]
+    },
+    {
+      "id": "mai-anh-dao-mang-den",
+      "where": [
+        "mang-den"
+      ],
+      "type": "nature",
+      "months": [
+        1,
+        2
+      ],
+      "name": [
+        "Mùa mai anh đào Măng Đen",
+        "Cherry blossom in Mang Den"
+      ],
+      "desc": [
+        "Mai anh đào nở hồng thị trấn và ven rừng thông, thường kèm hội mai anh đào và chợ phiên dịp đầu năm.",
+        "Cherry blossoms paint the town and pine-forest edges pink, often with a blossom festival and fair at the start of the year."
+      ],
+      "tip": [
+        "Hoa nở theo thời tiết từng năm, mỗi đợt 1–2 tuần – theo dõi tin địa phương trước khi đặt phòng.",
+        "Timing varies with the weather and lasts 1–2 weeks – follow local news before booking."
+      ]
+    },
+    {
+      "id": "dieu-luot-mui-ne",
+      "where": [
+        "mui-ne"
+      ],
+      "type": "nature",
+      "months": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "name": [
+        "Mùa gió lướt ván diều",
+        "Kitesurfing season"
+      ],
+      "desc": [
+        "Gió mùa đông bắc thổi đều – Mũi Né thành điểm lướt ván diều nổi tiếng châu Á; bãi biển rực rỡ cánh diều.",
+        "Steady north-east monsoon winds make Mui Ne one of Asia's best-known kitesurfing spots; the beach fills with colourful kites."
+      ],
+      "tip": [
+        "Người mới nên học tại trường có chứng chỉ (khoảng 3 buổi); biển nhiều sóng, không hợp tắm cho trẻ nhỏ.",
+        "Beginners should learn at a certified school (about 3 sessions); the sea is choppy and not ideal for small children."
+      ]
+    },
+    {
+      "id": "tham-hiem-hang",
+      "where": [
+        "phong-nha"
+      ],
+      "type": "nature",
+      "months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "name": [
+        "Mùa thám hiểm hang động",
+        "Cave expedition season"
+      ],
+      "desc": [
+        "Mùa khô, các tour thám hiểm Sơn Đoòng, Hang Én, Tú Làn hoạt động; sông ngầm, hang Phong Nha, Thiên Đường mở cửa đầy đủ.",
+        "In the dry season, expeditions to Son Doong, Hang En and Tu Lan run, and Phong Nha and Paradise caves are fully open."
+      ],
+      "tip": [
+        "Tour Sơn Đoòng, Hang Én cần đặt trước nhiều tháng và kiểm tra sức khỏe; từ tháng 9 nhiều tour tạm nghỉ vì mưa lũ.",
+        "Son Doong and Hang En tours must be booked months ahead with a fitness check; many pause from September for the flood season."
+      ]
+    },
+    {
+      "id": "nghinh-ong",
+      "where": [
+        "sai-gon",
+        "vung-tau"
+      ],
+      "type": "festival",
+      "months": [
+        9,
+        10
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội Nghinh Ông Cần Giờ – Thắng Tam",
+        "Nghinh Ong whale festival at Can Gio and Thang Tam"
+      ],
+      "desc": [
+        "Giữa tháng 8 âm lịch: hàng trăm ghe thuyền kết hoa rước cá Ông trên biển, hát bội, múa lân – lễ hội lớn nhất của ngư dân Nam Bộ.",
+        "Mid-8th lunar month: hundreds of decorated boats escort the whale god at sea, with hat boi opera and lion dances – the biggest fishermen's festival in the south."
+      ],
+      "tip": [
+        "Đường về Cần Giờ dễ kẹt ngày chính hội – đi sớm; muốn lên ghe rước phải hỏi ban tổ chức trước.",
+        "The road to Can Gio jams on the main day – leave early; ask the organisers beforehand if you want to join a boat."
+      ]
+    },
+    {
+      "id": "hoi-yen-dieu-tri",
+      "where": [
+        "tay-ninh"
+      ],
+      "type": "festival",
+      "months": [
+        9,
+        10
+      ],
+      "lunar": true,
+      "name": [
+        "Hội Yến Diêu Trì Cung – Tòa Thánh Cao Đài",
+        "Dieu Tri Palace Banquet – Cao Dai Holy See"
+      ],
+      "desc": [
+        "Rằm tháng 8 âm lịch: đại lễ lớn của đạo Cao Đài, hàng trăm nghìn tín đồ áo trắng về Tòa Thánh Tây Ninh, có rước kiệu và cúng lễ trang nghiêm.",
+        "On the 15th day of the 8th lunar month: a major Cao Dai rite drawing hundreds of thousands of white-clad followers to the Tay Ninh Holy See, with processions and ceremonies."
+      ],
+      "tip": [
+        "Du khách được xem từ khu vực quy định – ăn mặc kín đáo, giữ yên lặng trong lúc hành lễ.",
+        "Visitors watch from designated areas – dress modestly and stay quiet during the rites."
+      ]
+    },
+    {
+      "id": "dua-bo-bay-nui",
+      "where": [
+        "chau-doc"
+      ],
+      "type": "festival",
+      "months": [
+        9,
+        10
+      ],
+      "lunar": true,
+      "name": [
+        "Lễ hội đua bò Bảy Núi",
+        "Bay Nui bull racing"
+      ],
+      "desc": [
+        "Dịp lễ Sen Dolta của người Khmer: từng đôi bò kéo bừa lao trên ruộng sình ở Tri Tôn, Tịnh Biên – cuộc đua náo nhiệt, độc đáo.",
+        "During the Khmer Sen Dolta festival: pairs of bulls dragging harrows race across muddy fields in Tri Ton and Tinh Bien – a wild, unique spectacle."
+      ],
+      "tip": [
+        "Đứng sau hàng rào an toàn, bùn bắn nhiều – mặc đồ cũ, bọc máy ảnh.",
+        "Stay behind the safety barriers and expect mud – wear old clothes and protect your camera."
+      ]
+    },
+    {
+      "id": "trai-cay-mien-tay",
+      "where": [
+        "can-tho",
+        "chau-doc"
+      ],
+      "type": "nature",
+      "months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "name": [
+        "Mùa trái cây miệt vườn",
+        "Mekong orchard fruit season"
+      ],
+      "desc": [
+        "Sầu riêng, chôm chôm, măng cụt, xoài chín rộ – nhiều vườn ở Phong Điền, Cái Răng mở cửa cho khách ăn tại vườn.",
+        "Durian, rambutan, mangosteen and mango are all in season – many orchards in Phong Dien and Cai Rang let you eat straight from the trees."
+      ],
+      "tip": [
+        "Hỏi giá vé vào vườn (thường đã gồm ăn tại chỗ), mua mang về tính riêng; mang thuốc chống muỗi.",
+        "Ask the entry price (usually covers eating on site; take-away is extra) and bring mosquito repellent."
+      ]
+    },
+    {
+      "id": "mua-mua-mien-nam",
+      "where": [
+        "sai-gon",
+        "can-tho",
+        "phu-quoc",
+        "nam-du",
+        "ha-tien",
+        "ca-mau"
+      ],
+      "type": "weather",
+      "months": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "name": [
+        "Mùa mưa miền Nam",
+        "Southern rainy season"
+      ],
+      "desc": [
+        "Mưa rào chiều tối, thường ngắn rồi tạnh; một số tuyến đường Sài Gòn ngập khi mưa lớn và triều cường; các đảo phía Nam có sóng lớn.",
+        "Short afternoon downpours that pass quickly; some Saigon streets flood in heavy rain and high tides; seas around the southern islands get rough."
+      ],
+      "tip": [
+        "Sắp hoạt động ngoài trời vào buổi sáng, luôn mang áo mưa; tàu ra Nam Du, Phú Quốc có thể hủy khi biển động.",
+        "Plan outdoor activities in the morning and always carry a raincoat; boats to Nam Du and Phu Quoc may be cancelled in rough seas."
+      ]
     }
   ]
 }

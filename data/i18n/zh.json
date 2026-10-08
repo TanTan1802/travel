@@ -416,7 +416,18 @@
     "Nên đi {name} mấy ngày?": "{name}玩几天合适？",
     "Khoảng {duration}.": "大约{duration}。",
     "{name} có gì nổi bật?": "{name}有什么亮点？",
-    "Đi {name} bằng cách nào?": "怎么去{name}？"
+    "Đi {name} bằng cách nào?": "怎么去{name}？",
+    "Lịch lễ hội & sự kiện Việt Nam: {count} lễ hội, mùa hoa, mùa lúa theo tháng": "越南节庆与活动日历：按月份整理的 {count} 个节日、花季和丰收季",
+    "Lễ hội & sự kiện": "节庆与活动",
+    "Lễ hội truyền thống, mùa hoa, mùa lúa chín, dịp nghỉ lễ đông khách và thời tiết cần lưu ý – sắp theo tháng để bạn chọn đúng thời điểm vui chơi.": "传统节日、花季、稻谷成熟季、人多的假期和需要注意的天气——按月份整理，帮你选对出游时间。",
+    "Loại sự kiện": "活动类型",
+    "Cả nước": "全国",
+    "Toàn quốc": "全国",
+    "Quanh năm": "全年",
+    "Không có sự kiện phù hợp – thử bỏ bớt bộ lọc.": "没有符合条件的活动——试着减少筛选条件。",
+    "Lịch lễ hội cả năm ({count})": "全年节庆日历（{count}）",
+    "Xem lịch lễ hội cả năm": "查看全年节庆日历",
+    "Vẫn đang diễn ra:": "仍在进行："
   },
   "html": {
     "Vùng miền": "地区",
@@ -529,7 +540,8 @@
     "3.260": "3,260",
     "km bờ biển": "公里海岸线",
     "dân tộc anh em": "民族",
-    "điểm đến trên Việt Travel": "Việt Travel 目的地"
+    "điểm đến trên Việt Travel": "Việt Travel 目的地",
+    "Lễ hội": "节庆"
   },
   "regions": {
     "bac": "越南北部",
