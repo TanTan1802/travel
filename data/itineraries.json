@@ -1411,6 +1411,44 @@
         250000,
         400000
       ]
+    },
+    "ba-be": {
+      "days": [
+        {
+          "title": "Hà Nội – lên Ba Bể",
+          "morning": "Đi xe khách hoặc limousine từ Hà Nội khoảng 5 giờ (230 km) qua Thái Nguyên.",
+          "afternoon": "Nhận phòng nhà sàn ở bản Pác Ngòi, dạo bản ven hồ.",
+          "evening": "Cá hồ nướng, xôi ngũ sắc, nghe hát Then đàn tính."
+        },
+        {
+          "title": "Thuyền trên hồ – động Puông – thác Đầu Đẳng",
+          "morning": "Thuê thuyền ở bến hồ: đảo Bà Góa, Ao Tiên, đền An Mã.",
+          "afternoon": "Theo sông Năng xuyên động Puông tới thác Đầu Đẳng, đi bộ khoảng 500 m lên tầng thác đẹp nhất.",
+          "evening": "Về bản ăn tối, ngắm hồ lúc chạng vạng."
+        },
+        {
+          "title": "Kayak – bản Bó Lù, Cốc Tộc",
+          "morning": "Chèo kayak hoặc thuyền độc mộc trên hồ lúc sương sớm.",
+          "afternoon": "Đạp xe hoặc đi bộ quanh hồ qua bản Bó Lù, Cốc Tộc, Pò Lù.",
+          "evening": "Lợn quay lá mắc mật, rượu ngô bên bếp lửa."
+        },
+        {
+          "title": "Động Hua Mạ – chợ Chợ Rã",
+          "morning": "Leo dốc lên động Hua Mạ ngắm nhũ đá nhiều tầng.",
+          "afternoon": "Chợ Chợ Rã: mua măng khô, miến dong, bánh coóc mò làm quà.",
+          "evening": "Ăn tối ở thị trấn Chợ Rã, nghỉ ngơi."
+        },
+        {
+          "title": "Về Hà Nội qua đồi chè Tân Cương",
+          "morning": "Rời Ba Bể sớm, xe khoảng 3 giờ về TP Thái Nguyên, ghé Bảo tàng Văn hóa các dân tộc Việt Nam.",
+          "afternoon": "Đồi chè Tân Cương: thưởng trà, mua chè rồi về Hà Nội (khoảng 1,5 giờ).",
+          "evening": "Kết thúc hành trình."
+        }
+      ],
+      "fees": [
+        100000,
+        250000
+      ]
     }
   }
 }

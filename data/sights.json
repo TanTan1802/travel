@@ -10161,6 +10161,313 @@
           "updated": "2026-10"
         }
       ]
+    ],
+    "ba-be": [
+      [
+        {
+          "at": "a",
+          "name": [
+            "Khu du lịch hồ Ba Bể",
+            "Ba Be Lake tourist area"
+          ],
+          "price": 70000,
+          "note": [
+            "Vé vào cổng người lớn; trẻ 6 – 16 tuổi 40.000đ, dưới 6 tuổi miễn phí",
+            "Adult entry; children 6 – 16: 40,000 VND, under 6 free"
+          ],
+          "hours": "all",
+          "address": "Xã Ba Bể, Thái Nguyên",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bản Pác Ngòi",
+            "Pac Ngoi village"
+          ],
+          "price": 0,
+          "note": [
+            "Bản nhà sàn người Tày, hỏi ý trước khi chụp ảnh người dân",
+            "A Tay stilt-house village – ask before photographing people"
+          ],
+          "hours": "all",
+          "address": "Bản Pác Ngòi, ven hồ Ba Bể",
+          "cafe": {
+            "name": "Cà phê ven hồ Pác Ngòi",
+            "drink": [
+              "Cà phê, trà nóng",
+              "Coffee and hot tea"
+            ],
+            "price": [
+              20000,
+              50000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Thuyền tham quan hồ Ba Bể",
+            "Ba Be Lake boat trip"
+          ],
+          "price": [
+            60000,
+            150000
+          ],
+          "note": [
+            "Thuê nguyên thuyền 200.000 – 750.000đ/chuyến tùy tuyến (tối đa khoảng 12 khách), chia theo số người",
+            "Whole-boat hire 200,000 – 750,000 VND per trip depending on the route (up to about 12 people), split per person"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Bến thuyền hồ Ba Bể",
+          "cafe": {
+            "name": "Quán nước bến thuyền",
+            "drink": [
+              "Nước dừa, trà đá",
+              "Coconut water and iced tea"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "m",
+          "name": [
+            "Đảo Bà Góa – Ao Tiên",
+            "Ba Goa islet – Ao Tien pond"
+          ],
+          "price": 0,
+          "note": [
+            "Đã gồm trong chuyến thuyền",
+            "Included in the boat trip"
+          ],
+          "hours": "all",
+          "address": "Giữa hồ Ba Bể",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Động Puông",
+            "Puong cave"
+          ],
+          "price": 0,
+          "note": [
+            "Thuyền đi xuyên động, trần động có đàn dơi",
+            "Boats pass right through the cave; bats roost on the ceiling"
+          ],
+          "hours": "all",
+          "address": "Sông Năng, Ba Bể",
+          "cafe": {
+            "name": "Quán nước bến động Puông",
+            "drink": [
+              "Nước dừa, trà đá",
+              "Coconut water and iced tea"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Thác Đầu Đẳng",
+            "Dau Dang waterfall"
+          ],
+          "price": 0,
+          "note": [
+            "Chỉ tới được bằng thuyền; từ bến đi bộ khoảng 500 m",
+            "Reachable only by boat; about 500 m on foot from the landing"
+          ],
+          "hours": "all",
+          "address": "Sông Năng, Ba Bể",
+          "cafe": {
+            "name": "Quán nước chân thác Đầu Đẳng",
+            "drink": [
+              "Nước suối, ngô nướng",
+              "Bottled water and grilled corn"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chèo kayak trên hồ Ba Bể",
+            "Kayaking on Ba Be Lake"
+          ],
+          "price": [
+            75000,
+            150000
+          ],
+          "note": [
+            "Khoảng 150.000đ/giờ/thuyền 2 người; thuyền độc mộc khoảng 250.000đ/giờ",
+            "About 150,000 VND per hour for a 2-person kayak; dugout canoes about 250,000 VND per hour"
+          ],
+          "hours": "06:00–17:00",
+          "address": "Homestay ven hồ Ba Bể",
+          "cafe": {
+            "name": "Quán nước homestay ven hồ",
+            "drink": [
+              "Trà nóng, nước chanh",
+              "Hot tea and lime juice"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bản Bó Lù – Cốc Tộc",
+            "Bo Lu – Coc Toc villages"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Ven hồ Ba Bể",
+          "cafe": {
+            "name": "Quán trà bản Bó Lù",
+            "drink": [
+              "Trà nóng, nước gừng",
+              "Hot tea and ginger drink"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Động Hua Mạ",
+            "Hua Ma cave"
+          ],
+          "price": 45000,
+          "note": [
+            "Trẻ em 25.000đ; leo dốc bậc đá lên cửa động – mang giày bám và đèn pin",
+            "Children 25,000 VND; a steep stone stairway up to the entrance – wear grippy shoes and bring a torch"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Quảng Khê, Ba Bể",
+          "cafe": {
+            "name": "Quán nước chân động Hua Mạ",
+            "drink": [
+              "Nước suối, nước mía",
+              "Bottled water and sugarcane juice"
+            ],
+            "price": [
+              10000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Chợ Chợ Rã",
+            "Cho Ra market"
+          ],
+          "price": 0,
+          "note": [
+            "Đông nhất buổi sáng",
+            "Busiest in the morning"
+          ],
+          "hours": "06:00–17:00",
+          "address": "Thị trấn Chợ Rã",
+          "cafe": {
+            "name": "Cà phê thị trấn Chợ Rã",
+            "drink": [
+              "Cà phê sữa, sinh tố",
+              "Milk coffee and smoothies"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Bảo tàng Văn hóa các dân tộc Việt Nam",
+            "Museum of Cultures of Vietnam's Ethnic Groups"
+          ],
+          "price": 20000,
+          "note": [
+            "Hiện vật của 54 dân tộc; giá vé theo quy định, nên kiểm tra lại",
+            "Collections from all 54 ethnic groups; check the current ticket price"
+          ],
+          "hours": [
+            "Giờ hành chính – nên gọi trước",
+            "Office hours – call ahead"
+          ],
+          "address": "Đường Đội Cấn, TP Thái Nguyên",
+          "cafe": {
+            "name": "Cà phê phố Đội Cấn",
+            "drink": [
+              "Cà phê, trà Thái Nguyên",
+              "Coffee and Thai Nguyen tea"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Đồi chè Tân Cương",
+            "Tan Cuong tea hills"
+          ],
+          "price": 0,
+          "note": [
+            "Nhiều hộ mời khách thử trà miễn phí",
+            "Many tea farms offer free tastings"
+          ],
+          "hours": "all",
+          "address": "Tân Cương, Thái Nguyên",
+          "cafe": {
+            "name": "Quán trà Tân Cương",
+            "drink": [
+              "Trà xanh Tân Cương",
+              "Tan Cuong green tea"
+            ],
+            "price": [
+              15000,
+              40000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
     ]
   }
 }

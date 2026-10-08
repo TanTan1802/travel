@@ -4,7 +4,7 @@ link: https://viet-travel.congtan5918.workers.dev/ (bản sao: https://tantan180
 Website du lịch khám phá danh lam thắng cảnh Việt Nam.
 
 ## Tính năng
-- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 37 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
+- **Trang chủ** (mẫu `home.html` → build ra `index.html`): 38 danh lam thắng cảnh trên cả 3 miền, tìm kiếm thông minh,
   lọc theo vùng miền / loại hình / yêu thích, xem dạng **danh sách hoặc bản đồ**.
 - **Landing page động** (`destination.html?id=<mã-điểm-đến>`): khi bấm vào một điểm đến, trang được
   tạo tự động từ dữ liệu, gồm ảnh bìa, thông tin nhanh, tổng quan, thư viện ảnh (có lightbox),
@@ -163,7 +163,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 - Lịch trình từng ngày gộp từ `ITINERARIES`, có ghi chú ngày di chuyển; cảnh báo điểm đến ngoài mùa đẹp theo tháng khởi hành.
 - Kế hoạch lưu trong trình duyệt (`TripPlan` ở `favorites.js`) và chia sẻ qua URL: `ke-hoach/index.html?p=hue.2,hoi-an.3&m=3&b=c`.
 - Trang điểm đến có nút "Thêm vào kế hoạch chuyến đi" dưới phần lịch trình.
-- Gói JS của trang không chứa quán / điểm tham quan / lịch trình của cả 34 điểm đến: `planner.js` tải
+- Gói JS của trang không chứa quán / điểm tham quan / lịch trình của mọi điểm đến: `planner.js` tải
   `assets/js/data/plan/<lang>/<id>.json` (một ngôn ngữ, lịch trình đã dịch – sinh khi build) của các điểm trong kế hoạch,
   và đưa chúng vào bản lưu offline.
 
@@ -284,7 +284,7 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
 - **Ảnh người đọc**: các Issue "Gửi ảnh" hiện kèm ảnh, gợi ý sẵn điểm đến. **Duyệt & đăng** → bình luận duyệt vào Issue,
   workflow `photo-approve.yml` (chỉ chạy với bình luận của người có quyền ghi repo) tải ảnh, xóa EXIF/GPS, nén WebP
   (`tools/approve-photo.js` → `add-photo.js`), build, test, đẩy lên main rồi đóng Issue. **Từ chối** → gửi lời cảm ơn + lý do, đóng Issue.
-- **Sửa**: danh sách 37 điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
+- **Sửa**: danh sách điểm đến (tìm theo tên/tỉnh) → các tab Thông tin chung, Ảnh (xem trước ảnh Wikimedia Commons),
   Ẩm thực & hoạt động, Lịch trình 5 ngày, Quán & lưu trú, Điểm tham quan, Bản dịch (en bắt buộc; ko/zh/ja tùy chọn).
   Trang kiểm tra trước các lỗi thường gặp (thiếu quán, thiếu ngày, bản dịch dở dang…).
 - **Lưu thành Pull Request**: tạo nhánh `admin/<mã>-<thời gian>` chỉ đổi đúng các file `data/*.json` liên quan.

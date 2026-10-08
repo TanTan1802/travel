@@ -1,6 +1,6 @@
 /*==================== TRẮC NGHIỆM "ĐI ĐÂU HỢP VỚI BẠN?" ====================*/
 /*
- * 6 câu hỏi → chấm điểm 28 điểm đến theo sở thích, tháng đi, vùng miền, người đi cùng
+ * 6 câu hỏi → chấm điểm mọi điểm đến theo sở thích, tháng đi, vùng miền, người đi cùng
  * → gợi ý tuyến 1–4 điểm gần nhau, mở thẳng trong trình lập kế hoạch.
  */
 const QUIZ_TRIP_LENGTHS = [
