@@ -85,7 +85,7 @@ body:not(.dark-theme) .itinerary__tab--active span {
 /* Khung thay thế khi ảnh lỗi hoặc món ăn chưa có ảnh */
 .img-fallback {
   position: relative;
-  background: linear-gradient(135deg, hsl(var(--hue-color), 64%, 22%), hsl(160, 50%, 32%));
+  background: linear-gradient(135deg, hsl(var(--hue-color), 64%, 22%), hsl(var(--hue-color), 50%, 26%));
 }
 
 .img-fallback::after {
@@ -754,7 +754,7 @@ body.page-detail {
   border-radius: 50%;
   font-size: 1.4rem;
   color: var(--white-color);
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 50%, 36%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
   margin-bottom: var(--mb-1);
 }
 
@@ -2008,7 +2008,7 @@ body.dark-theme .season__status--good {
 
 .tour-picker__btn--active {
   border-color: var(--first-color);
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 50%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
 }
 
 .tour-picker__btn--active strong,
@@ -2207,13 +2207,13 @@ button.season__month:hover {
 .planner-hero {
   padding: 7.5rem 0 3rem;
   text-align: center;
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
   color: var(--white-color);
 }
 
 .planner-hero .section__subtitle,
 body:not(.dark-theme) .planner-hero .section__subtitle {
-  color: hsl(40, 95%, 68%);
+  color: hsl(45, 100%, 76%);
 }
 
 .planner-hero__title {
@@ -2795,7 +2795,7 @@ body.dark-theme .stop__warn {
   gap: .25rem;
   padding: 1.1rem 1.25rem;
   border-radius: .75rem;
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
   color: var(--white-color);
 }
 
@@ -4126,7 +4126,7 @@ body.dark-theme .filter-reset {
 
 .day-tl__item--rest .day-tl__icon,
 .day-tl__item--travel .day-tl__icon {
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
 }
 
 .day-tl__body {
@@ -5579,7 +5579,7 @@ body.dark-theme .month-nav__prevnext a {
   padding: .75rem 1.1rem;
   border: none;
   border-radius: 2rem;
-  background: linear-gradient(135deg, var(--first-color), hsl(160, 45%, 30%));
+  background: linear-gradient(135deg, var(--first-color), hsl(var(--hue-color), 50%, 26%));
   color: var(--white-color);
   font-weight: var(--font-semi-bold);
   box-shadow: 0 8px 24px hsla(0, 0%, 0%, .2);
@@ -5916,12 +5916,51 @@ a.home__promo[href]:hover {
   }
 }
 
-/*=============== TÊN TRANG "VIỆT TRAVEL": MÀU THEO THEME / MÙA ===============*/
+/*=============== LOGO + TÊN TRANG "VIỆT TRAVEL": MÀU THEO THEME / MÙA ===============*/
 /* "Việt" theo màu chủ đạo (--hue-color), "Travel" theo màu nhấn (--accent-hue), vạch dưới chuyển giữa hai màu */
 .nav__logo {
   display: inline-flex;
   align-items: center;
+  gap: .55rem;
   text-decoration: none;
+}
+
+/* Logo: hoa sen (quốc hoa) + ngôi sao vàng trên nền tròn chuyển từ màu chủ đạo sang màu nhấn */
+.nav__logo-mark {
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: none;
+  filter: drop-shadow(0 2px 6px hsla(0, 0%, 0%, .25));
+  transition: transform .3s;
+}
+
+.nav__logo:hover .nav__logo-mark {
+  transform: scale(1.07) rotate(-4deg);
+}
+
+.nav__logo-stop {
+  stop-color: hsl(var(--hue-color), 64%, 30%);
+}
+
+.nav__logo-stop--accent {
+  stop-color: hsl(var(--accent-hue), 90%, 50%);
+}
+
+.nav__logo-petal {
+  fill: #fff;
+}
+
+.nav__logo-petal--inner {
+  opacity: .9;
+}
+
+.nav__logo-petal--outer {
+  opacity: .72;
+}
+
+/* Sao vàng như cờ – giữ màu cố định với mọi theme */
+.nav__logo-star {
+  fill: hsl(50, 100%, 62%);
 }
 
 .nav__logo-text {
@@ -5981,6 +6020,11 @@ body.dark-theme .header--solid .nav__logo-accent {
 }
 
 @media screen and (min-width: 968px) {
+  .nav__logo-mark {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
   .nav__logo-text {
     font-size: 1.6rem;
   }

@@ -49,16 +49,17 @@ function contrastIssues({ hue, accentHue }) {
 }
 
 /*
- * Logo nón lá dạng SVG độc lập (favicon): nền chuyển từ màu chủ đạo sang màu nhấn – cùng hình với logo
+ * Logo hoa sen + sao vàng dạng SVG độc lập (favicon): nền chuyển từ màu chủ đạo sang màu nhấn – cùng hình với logo
  * trên thanh menu (home.html…, màu lấy từ CSS). hue/accentHue là số hoặc chuỗi giữ chỗ ('{h}', '{a}').
  */
 function logoSvg(hue, accentHue) {
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">` +
         `<stop offset="0" stop-color="hsl(${hue},64%,30%)"/><stop offset="1" stop-color="hsl(${accentHue},90%,50%)"/></linearGradient></defs>` +
-        `<circle cx="20" cy="20" r="20" fill="url(#g)"/><path d="M7.5 23.5 20 8.5l12.5 15z" fill="#fff"/>` +
-        `<path d="M14 23.5 20 8.5l6 15M10.5 19.8h19M13.3 16.4h13.4" fill="none" stroke="hsl(${hue},55%,40%)" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>` +
-        `<path d="M5.5 23.8q14.5 6.4 29 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>` +
-        `<path d="M9 30.5q2.75-2 5.5 0t5.5 0 5.5 0 5.5 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/></svg>`
+        `<circle cx="20" cy="20" r="20" fill="url(#g)"/>` +
+        `<path d="M20 28C15 29.1 10 27.1 7.8 23.1c3.6-.6 8.2 1 12.2 4.9zm0 0c5 1.1 10-.9 12.2-4.9-3.6-.6-8.2 1-12.2 4.9z" fill="#fff" opacity=".72"/>` +
+        `<path d="M20 27.5c-4.2-.9-7.6-4.6-8-9.6 3.8 1 6.8 4.3 8 9.6zm0 0c4.2-.9 7.6-4.6 8-9.6-3.8 1-6.8 4.3-8 9.6z" fill="#fff" opacity=".9"/>` +
+        `<path d="M20 12c3.6 4 3.6 10.6 0 15.5-3.6-4.9-3.6-11.5 0-15.5z" fill="#fff"/>` +
+        `<path d="M20 4.4l1.25 3.75h3.95l-3.2 2.3 1.25 3.75L20 11.9l-3.25 2.3 1.25-3.75-3.2-2.3h3.95z" fill="hsl(50,100%,62%)"/></svg>`
 }
 
 /* Mùa có hiệu lực vào ngày iso (YYYY-MM-DD)? from/to dạng MM-DD (lặp lại hằng năm, được vắt qua năm mới) hoặc YYYY-MM-DD */
