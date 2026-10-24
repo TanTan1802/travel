@@ -131,8 +131,8 @@
       "from": "05-15",
       "to": "08-20",
       "theme": {
-        "hue": 205,
-        "accentHue": 28
+        "hue": 160,
+        "accentHue": 30
       },
       "hero": {
         "subtitle": {
