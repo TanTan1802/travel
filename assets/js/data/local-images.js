@@ -399,6 +399,13 @@ const LOCAL_IMAGES = {
         "w": 800,
         "h": 600
     },
+    "Chualinhsonphuquy.jpg": {
+        "xs": "assets/img/wiki/chualinhsonphuquy-6a48f6-480.webp",
+        "sm": "assets/img/wiki/chualinhsonphuquy-6a48f6-960.webp",
+        "lg": "assets/img/wiki/chualinhsonphuquy-6a48f6-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Chùa Tam Bửu ở Ba Chúc.jpg": {
         "xs": "assets/img/wiki/chua-tam-buu-o-ba-chuc-92e167-480.webp",
         "sm": "assets/img/wiki/chua-tam-buu-o-ba-chuc-92e167-960.webp",
@@ -888,6 +895,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/hoi-an-ancient-town-2020-01-cn-11-597179-1920.webp",
         "w": 1920,
         "h": 1575
+    },
+    "ISS047-E-2328 - View of Vietnam.jpg": {
+        "xs": "assets/img/wiki/iss047-e-2328-view-of-vietnam-a58166-480.webp",
+        "sm": "assets/img/wiki/iss047-e-2328-view-of-vietnam-a58166-960.webp",
+        "lg": "assets/img/wiki/iss047-e-2328-view-of-vietnam-a58166-1920.webp",
+        "w": 1278,
+        "h": 1920
     },
     "Imperial City, Hue, Vietnam (6927420512).jpg": {
         "xs": "assets/img/wiki/imperial-city-hue-vietnam-6927420512-d4399e-480.webp",
