@@ -98,6 +98,7 @@ const exploreState = {
     visible: 0,
     region: 'all',
     category: 'all',
+    beach: 'all',
     query: '',
     view: 'grid',
     favoritesOnly: false,
@@ -156,10 +157,26 @@ const CATEGORY_ICONS = {
     'hang-dong': 'ri-moon-foggy-line',
 }
 
+/* Bộ lọc riêng cho biển (data/destinations.json → beachTypes); tên icon viết đủ để tools/build-icons.js nhận ra */
+const BEACH_ICONS = {
+    all: 'ri-sun-line',
+    dao: 'ri-ship-2-line',
+    'du-thuyen': 'ri-anchor-line',
+    'gan-thanh-pho': 'ri-building-4-line',
+    'gia-dinh': 'ri-parent-line',
+    'lan-bien': 'ri-drop-line',
+    'the-thao': 'ri-windy-line',
+    'hoang-so': 'ri-leaf-line',
+}
+
+const matchesFilter = (key, value, d) => (key === 'region' ? d.region === value
+    : key === 'beach' ? (d.beach || []).includes(value)
+        : d.categories.includes(value))
+
 /* Số điểm đến của mỗi lựa chọn (hiện cạnh tên bộ lọc) */
 function optionCount(key, value) {
-    if (value === 'all') return DESTINATIONS.length
-    return DESTINATIONS.filter(d => (key === 'region' ? d.region === value : d.categories.includes(value))).length
+    if (value === 'all') return key === 'beach' ? DESTINATIONS.filter(d => d.beach).length : DESTINATIONS.length
+    return DESTINATIONS.filter(d => matchesFilter(key, value, d)).length
 }
 
 function syncChips(containerId, key) {
@@ -187,19 +204,29 @@ function renderChips(containerId, options, key, { icons = null } = {}) {
         const chip = e.target.closest('.chip')
         if (!chip) return
         exploreState[key] = chip.dataset.value
+        /* Chọn kiểu biển thì loại hình tự chuyển sang "Biển đảo" (và ngược lại bỏ kiểu biển khi đổi loại hình khác) */
+        if (key === 'beach' && exploreState.beach !== 'all' && exploreState.category !== 'bien') {
+            exploreState.category = 'bien'
+            syncChips('category-filters', 'category')
+        }
+        if (key === 'category' && exploreState.category !== 'bien' && exploreState.beach !== 'all') {
+            exploreState.beach = 'all'
+            syncChips('beach-filters', 'beach')
+        }
         syncChips(containerId, key)
         renderGrid()
     })
 }
 
 /* Có bộ lọc nào đang bật không (để hiện nút "Xóa bộ lọc") */
-const filtersActive = () => exploreState.region !== 'all' || exploreState.category !== 'all'
+const filtersActive = () => exploreState.region !== 'all' || exploreState.category !== 'all' || exploreState.beach !== 'all'
     || exploreState.month > 0 || exploreState.favoritesOnly || exploreState.query.trim() !== ''
 
 function resetFilters() {
-    Object.assign(exploreState, { region: 'all', category: 'all', month: 0, favoritesOnly: false, query: '' })
+    Object.assign(exploreState, { region: 'all', category: 'all', beach: 'all', month: 0, favoritesOnly: false, query: '' })
     syncChips('region-filters', 'region')
     syncChips('category-filters', 'category')
+    syncChips('beach-filters', 'beach')
     const search = document.getElementById('explore-search')
     if (search) search.value = ''
     const month = document.getElementById('month-filter')
@@ -297,6 +324,7 @@ function renderGrid({ more = false } = {}) {
         .filter(d =>
             (exploreState.region === 'all' || d.region === exploreState.region) &&
             (exploreState.category === 'all' || d.categories.includes(exploreState.category)) &&
+            (exploreState.beach === 'all' || (d.beach || []).includes(exploreState.beach)) &&
             (!exploreState.favoritesOnly || Favorites.has(d.id)) &&
             (!exploreState.month || d.bestMonths.includes(exploreState.month)))
         .map(d => ({ d, match: tokens.length ? scoreDestination(d, tokens) : { score: 0, hint: '' } }))
@@ -374,9 +402,12 @@ function initMonthFilter() {
 function initExplore() {
     const params = new URLSearchParams(location.search)
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
+    /* ?beach=<kiểu> (liên kết từ trang chủ đề Biển): lọc sẵn kiểu biển */
+    if (BEACH_TYPES[params.get('beach')]) Object.assign(exploreState, { beach: params.get('beach'), category: 'bien' })
 
     renderChips('region-filters', { all: t('Tất cả'), ...REGIONS }, 'region')
     renderChips('category-filters', { all: t('Mọi loại hình'), ...CATEGORIES }, 'category', { icons: CATEGORY_ICONS })
+    renderChips('beach-filters', { all: t('Mọi bãi biển'), ...Object.fromEntries(Object.entries(BEACH_TYPES).map(([k, v]) => [k, t(v)])) }, 'beach', { icons: BEACH_ICONS })
     document.getElementById('filter-reset')?.addEventListener('click', resetFilters)
 
     const search = document.getElementById('explore-search')

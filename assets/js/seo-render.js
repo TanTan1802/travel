@@ -259,6 +259,23 @@ function themeTitle(theme) {
         : t('Du lịch {label} Việt Nam: {count} điểm đến nên đi', { label: theme.label.toLowerCase(), count })
 }
 
+/* Trang chủ đề Biển: điểm đến theo từng kiểu biển (data/destinations.json → beachTypes), mỗi kiểu có liên kết
+   sang bộ lọc "Kiểu biển" của trang chủ (index.html?beach=<mã>) */
+function beachTypesHtml(picks) {
+    const groups = Object.entries(BEACH_TYPES).map(([key, label]) => [key, label, picks.filter(d => (d.beach || []).includes(key))])
+        .filter(([, , list]) => list.length)
+    return `
+        <section class="guide-section" id="kieu-bien">
+            <h2 class="guide-section__title">${t('Chọn biển theo sở thích')}</h2>
+            ${groups.map(([key, label, list]) => `
+                <h3 class="beach-type__title">${t(label)} <small>(${list.length})</small></h3>
+                <p class="beach-type__list">${list.map(d => `<a href="${destinationUrl(d.id)}">${d.name}</a>`).join(' · ')}
+                    – <a href="${homeUrl(`?beach=${key}#place`)}">${t('Lọc trên trang chủ')} <i class="ri-arrow-right-line"></i></a></p>
+            `).join('')}
+        </section>
+    `
+}
+
 function themePage(theme) {
     const picks = themeDestinations(theme)
     return `
@@ -282,6 +299,7 @@ function themePage(theme) {
                         ${picks.map(d => `<li><a href="${destinationUrl(d.id)}"><strong>${d.name}</strong></a> (${d.province}) – ${d.tagline}. ${t('Thời điểm đẹp: {time}.', { time: d.bestTime })} <a href="${pricesUrl(d.id)}">${t('Giá vé tham quan')}</a></li>`).join('')}
                     </ul>
                 </section>
+                ${theme.key === 'bien' ? beachTypesHtml(picks) : ''}
             </article>
         </div>
 

@@ -209,6 +209,9 @@ function cleanBundle(b) {
     }).filter(f => f.name || f.desc)
     d.activities = d.activities.map(a => ({ icon: trim(a.icon), title: trim(a.title), desc: trim(a.desc) })).filter(a => a.title || a.desc)
     d.categories = [...new Set(d.categories)]
+    /* Kiểu biển chỉ giữ cho điểm đến loại hình Biển đảo (bộ lọc biển ở trang chủ) */
+    if (d.categories.includes('bien') && (d.beach || []).length) d.beach = [...new Set(d.beach)]
+    else delete d.beach
     d.bestMonths = [...new Set(d.bestMonths)]
 
     const cleanPrice = p => (Array.isArray(p) ? (p[1] ? [Number(p[0]) || 0, Number(p[1])] : Number(p[0]) || 0) : Number(p) || 0)
@@ -264,6 +267,7 @@ function validate(b) {
     for (const [k, label] of [['name', 'Tên'], ['province', 'Tỉnh'], ['tagline', 'Câu giới thiệu ngắn'], ['bestTime', 'Thời điểm đẹp'], ['duration', 'Số ngày nên đi']]) need(filled(d[k]), `Thông tin chung: thiếu ${label}`)
     need(d.description.length >= 20, 'Thông tin chung: mô tả cần ít nhất 20 ký tự')
     need(d.categories.length > 0, 'Thông tin chung: chọn ít nhất một loại hình')
+    need(!d.categories.includes('bien') || (d.beach || []).length > 0, 'Thông tin chung: điểm đến biển cần chọn ít nhất một kiểu biển')
     need(d.bestMonths.length > 0, 'Thông tin chung: chọn ít nhất một tháng đẹp')
     need(d.highlights.length > 0, 'Thông tin chung: cần ít nhất một điểm nổi bật')
     need(d.rating > 0 && d.rating <= 5, 'Thông tin chung: đánh giá trong khoảng 0–5')
@@ -1024,6 +1028,7 @@ const TABS = {
                 { type: 'select', path: ['dest', 'region'], label: 'Vùng miền', options: state.data.destinations.regions },
                 { type: 'checks', path: ['dest', 'categories'], label: 'Loại hình', options: state.data.destinations.categories },
             ] },
+            { type: 'checks', path: ['dest', 'beach'], label: 'Kiểu biển (chỉ với loại hình Biển đảo)', options: state.data.destinations.beachTypes || {}, help: 'Dùng cho bộ lọc "Kiểu biển" ở trang chủ – chọn mọi kiểu đúng với điểm đến.' },
             { type: 'group', cols: 3, fields: [
                 { type: 'number', path: ['dest', 'rating'], label: 'Đánh giá (0–5)', step: '0.1' },
                 { type: 'number', path: ['dest', 'lat'], label: 'Vĩ độ', step: '0.0001' },

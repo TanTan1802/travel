@@ -1449,6 +1449,44 @@
         100000,
         250000
       ]
+    },
+    "phu-quy": {
+      "days": [
+        {
+          "title": "Phan Thiết – ra đảo",
+          "morning": "Tàu cao tốc từ cảng Phan Thiết khoảng 2,5 – 3 giờ ra Phú Quý.",
+          "afternoon": "Nhận phòng, thuê xe máy, tắm biển bãi Nhỏ.",
+          "evening": "Ăn hải sản tươi ở khu cảng."
+        },
+        {
+          "title": "Chùa Linh Sơn – Gành Hang",
+          "morning": "Lên chùa Linh Sơn trên núi Cấm, ngắm toàn cảnh biển và làng chài.",
+          "afternoon": "Dạo ghềnh đá Gành Hang, chụp ảnh và chờ hoàng hôn.",
+          "evening": "Gỏi cá trích, ốc vú nàng."
+        },
+        {
+          "title": "Lặn biển Hòn Tranh",
+          "morning": "Đi thuyền ra Hòn Tranh, lặn ngắm san hô.",
+          "afternoon": "Tắm biển, nghỉ võng trên đảo nhỏ rồi về Phú Quý.",
+          "evening": "Nhum nướng mỡ hành, mực một nắng."
+        },
+        {
+          "title": "Vòng đảo – làng chài",
+          "morning": "Thăm lăng Vạn An Thạnh thờ cá Ông và di tích mộ Thầy Nại.",
+          "afternoon": "Chạy xe vòng đảo qua cánh đồng điện gió, tắm biển.",
+          "evening": "Dạo chợ đêm, mua khô mực làm quà."
+        },
+        {
+          "title": "Về đất liền",
+          "morning": "Ăn sáng, lên tàu về Phan Thiết.",
+          "afternoon": "Dạo biển Đồi Dương rồi đi tiếp Mũi Né hoặc Sài Gòn.",
+          "evening": "Kết thúc hành trình."
+        }
+      ],
+      "fees": [
+        250000,
+        450000
+      ]
     }
   }
 }

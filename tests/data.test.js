@@ -621,6 +621,24 @@ test('trang khám phá: giá vé từng điểm đến, 12 tháng, chủ đề �
     assert.ok(hue.includes('id="dai-noi-hue-ngo-mon-tu-cam-thanh"'))
 })
 
+test('bộ lọc biển: mọi điểm đến biển có kiểu biển, tên kiểu biển đủ bản dịch, trang chủ đề Biển liên kết sang bộ lọc', () => {
+    const { destinations, beachTypes } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/destinations.json'), 'utf8'))
+    for (const d of destinations) {
+        if (d.categories.includes('bien')) assert.ok(d.beach && d.beach.length, `${d.id}: thiếu kiểu biển`)
+        else assert.equal(d.beach, undefined, `${d.id}: không phải điểm đến biển mà có kiểu biển`)
+    }
+    for (const key of Object.keys(beachTypes)) assert.ok(destinations.some(d => (d.beach || []).includes(key)), `kiểu biển ${key} chưa có điểm đến nào`)
+    for (const lang of ['en', 'ko', 'zh', 'ja']) {
+        const ui = JSON.parse(fs.readFileSync(path.join(ROOT, `data/i18n/${lang}.json`), 'utf8')).ui
+        const missing = Object.values(beachTypes).filter(label => !ui[label])
+        assert.deepEqual(missing, [], `${lang}: chưa dịch kiểu biển ${missing.join(', ')}`)
+    }
+    const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
+    assert.ok(home.includes('id="beach-filters"'), 'trang chủ thiếu bộ lọc kiểu biển')
+    const theme = fs.readFileSync(path.join(ROOT, 'chu-de/bien/index.html'), 'utf8')
+    for (const key of Object.keys(beachTypes)) assert.ok(theme.includes(`index.html?beach=${key}#place`), `chu-de/bien thiếu liên kết lọc ${key}`)
+})
+
 test('lịch lễ hội (le-hoi/): mọi sự kiện xuất hiện đúng một lần, có bộ lọc loại / miền, có trong sitemap', () => {
     const EVENTS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/events.json'), 'utf8')).events
     const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')

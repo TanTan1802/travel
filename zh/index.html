@@ -13,7 +13,7 @@
         <link rel="preload" href="../assets/fonts/open-sans-vietnamese-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="../assets/fonts/open-sans-latin-400.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="../assets/fonts/remixicon.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="stylesheet" href="../assets/css/site-2f04fe689b.css">
+        <link rel="stylesheet" href="../assets/css/site-c5a8850a47.css">
 
         <link rel="canonical" href="https://viet-travel.congtan5918.workers.dev/zh/">
         <!-- build:alternate -->
@@ -133,7 +133,7 @@
 
                     <div class="home__info">
                         <div>
-                            <span class="home__info-title"><span id="dest-count">38</span> 个必去目的地</span>
+                            <span class="home__info-title"><span id="dest-count">39</span> 个必去目的地</span>
                             <a href="#place" class="button button--flex button--link home__info-button">
                                 查看更多 <i class="ri-arrow-right-line"></i>
                             </a>
@@ -210,7 +210,7 @@
                         </li>
                         <li class="numbers__item">
                             <i class="ri-map-pin-2-line numbers__icon" aria-hidden="true"></i>
-                            <b class="numbers__value" data-dest-count>38</b>
+                            <b class="numbers__value" data-dest-count>39</b>
                             <span class="numbers__label">Việt Travel 目的地</span>
                         </li>
                     </ul>
@@ -257,6 +257,10 @@
                             <div class="filter-group">
                                 <span class="filter-group__label"><i class="ri-compass-3-line"></i> 类型</span>
                                 <div class="chip-row" id="category-filters" role="group" aria-label="按类型筛选"></div>
+                            </div>
+                            <div class="filter-group filter-group--beach">
+                                <span class="filter-group__label"><i class="ri-sun-line"></i> 海滩类型</span>
+                                <div class="chip-row" id="beach-filters" role="group" aria-label="按海滩类型筛选"></div>
                             </div>
                             <div class="filter-group filter-group--inline">
                                 <label class="month-filter">
@@ -676,6 +680,32 @@
             </a>
             
         <button type="button" class="fav-btn" data-favorite="mui-ne" aria-pressed="false" title="收藏">
+            <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
+            
+        </button>
+    
+        </div>
+    
+        <div class="dest-card-wrap">
+            <a href="../zh/diem-den/phu-quy/index.html" class="dest-card">
+                <div class="dest-card__media">
+                    <img data-wiki="Chualinhsonphuquy.jpg|ISS047-E-2328 - View of Vietnam.jpg|Chualinhsonphuquy.jpg" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="富贵岛" class="dest-card__img" loading="lazy">
+                    <span class="dest-card__region">越南中部</span>
+                    <span class="dest-card__rating"><i class="ri-star-fill"></i> 4.5</span>
+                </div>
+                <div class="dest-card__body">
+                    <h3 class="dest-card__title">富贵岛</h3>
+                    <span class="dest-card__province"><i class="ri-map-pin-2-line"></i> 林同省（原平顺省）</span>
+                    
+                    <p class="dest-card__tagline">东海中碧蓝的前哨海岛</p>
+                    <div class="dest-card__tags">
+                        <span class="tag">海滩与海岛</span>
+                    </div>
+                </div>
+                <span class="dest-card__button" aria-hidden="true"><i class="ri-arrow-right-line"></i></span>
+            </a>
+            
+        <button type="button" class="fav-btn" data-favorite="phu-quy" aria-pressed="false" title="收藏">
             <i class="ri-heart-3-line fav-btn__off"></i><i class="ri-heart-3-fill fav-btn__on"></i>
             
         </button>
@@ -1434,6 +1464,6 @@
 
         <!--=============== DATA + PAGE JS ===============-->
         <script>window.SITE_ROOT = '../'; window.SITE_LANG = 'zh'</script>
-        <script defer src="../assets/js/dist/31755766c5.js"></script>
+        <script defer src="../assets/js/dist/9bc26e2093.js"></script>
     </body>
 </html>

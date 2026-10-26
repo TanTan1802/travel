@@ -19,7 +19,7 @@ const OUT_DIR = path.join(ROOT, 'assets/js/data')
 /* Tên bộ dữ liệu → các biến toàn cục sinh ra (khóa JSON → tên hằng JS) + mô tả đầu file */
 const DATASETS = {
     destinations: {
-        vars: { regions: 'REGIONS', categories: 'CATEGORIES', destinations: 'DESTINATIONS' },
+        vars: { regions: 'REGIONS', categories: 'CATEGORIES', beachTypes: 'BEACH_TYPES', destinations: 'DESTINATIONS' },
         doc: 'Điểm đến: thông tin, ảnh Wikimedia Commons, món đặc sản, trải nghiệm, kinh nghiệm.\n * Hàm dùng chung (getDestination, wikiImg, ...) nằm ở assets/js/core.js.',
     },
     itineraries: {
@@ -80,10 +80,15 @@ function crossChecks(data) {
     sameIds('places', Object.keys(data.places.places))
     sameIds('sights', Object.keys(data.sights.sights))
 
-    const { regions, categories } = data.destinations
+    const { regions, categories, beachTypes } = data.destinations
     data.destinations.destinations.forEach(d => {
         if (!regions[d.region]) errors.push(`${d.id}: vùng ${d.region} chưa khai báo trong regions`)
         d.categories.filter(c => !categories[c]).forEach(c => errors.push(`${d.id}: loại hình ${c} chưa khai báo`))
+        /* Bộ lọc biển: điểm đến biển phải có kiểu biển, điểm đến khác thì không */
+        const isBeach = d.categories.includes('bien')
+        if (isBeach && !d.beach) errors.push(`${d.id}: điểm đến biển cần ít nhất một kiểu biển (beach)`)
+        if (!isBeach && d.beach) errors.push(`${d.id}: có kiểu biển nhưng không thuộc loại hình bien`)
+        ;(d.beach || []).filter(b => !beachTypes[b]).forEach(b => errors.push(`${d.id}: kiểu biển ${b} chưa khai báo trong beachTypes`))
     })
     Object.entries(data.itineraries.itineraries).forEach(([id, plan]) => {
         if (plan.fees[0] > plan.fees[1]) errors.push(`itineraries.${id}: phí tiết kiệm lớn hơn thoải mái`)

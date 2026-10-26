@@ -4051,14 +4051,16 @@ body.dark-theme .filter-reset {
     grid-template-columns: minmax(300px, 400px) 1fr;
     grid-template-areas:
       "region inline"
-      "type type";
+      "type type"
+      "beach beach";
     align-items: end;
     column-gap: 1.5rem;
   }
 
   .filter-panel__groups > .filter-group:nth-child(1) { grid-area: region; }
   .filter-panel__groups > .filter-group:nth-child(2) { grid-area: type; }
-  .filter-panel__groups > .filter-group:nth-child(3) { grid-area: inline; justify-content: flex-end; }
+  .filter-panel__groups > .filter-group:nth-child(3) { grid-area: beach; }
+  .filter-panel__groups > .filter-group:nth-child(4) { grid-area: inline; justify-content: flex-end; }
 
   .chip-row {
     flex-wrap: wrap;
@@ -6251,4 +6253,22 @@ body.dark-theme #destination {
   .festival-nav .chip {
     flex: none;
   }
+}
+
+/*=============== TRANG CHỦ ĐỀ BIỂN: THEO KIỂU BIỂN ===============*/
+.beach-type__title {
+  margin: 1.1rem 0 .35rem;
+  font-size: var(--h3-font-size);
+  color: var(--title-color);
+}
+
+.beach-type__title small {
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color-light);
+}
+
+.beach-type__list a {
+  color: var(--first-color-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
