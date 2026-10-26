@@ -779,8 +779,8 @@ test('giao diện & mùa: màu đủ tương phản, chọn mùa theo ngày, tra
     }
     for (const rel of builtPages()) {
         const html = fs.readFileSync(path.join(ROOT, rel), 'utf8')
-        if (site.seasons.length) assert.ok(html.includes("--hue-color',s.h)") && html.includes(`"i":"${site.seasons[0].id}"`), `${rel}: thiếu script màu theo mùa`)
-        else assert.ok(html.includes("classList.add('dark-theme')"), `${rel}: thiếu script chế độ tối`)
+        assert.ok(html.includes("classList.add('dark-theme')"), `${rel}: thiếu script chế độ tối`)
+        assert.ok(html.includes("--hue-color',h)") && html.includes('preview=site') && (!site.seasons.length || html.includes(`"i":"${site.seasons[0].id}"`)), `${rel}: thiếu script màu theo mùa`)
     }
 })
 
@@ -805,4 +805,23 @@ test('bảng màu mẫu trong trang quản trị: mọi mẫu đủ tương ph�
     assert.ok(presets.length >= 15, `cần đủ mẫu (đang có ${presets.length})`)
     for (const p of presets) assert.deepEqual(contrastIssues(p), [], `${p.name}: chưa đủ tương phản`)
     assert.equal(new Set(presets.map(p => `${p.hue},${p.accentHue}`)).size, presets.length, 'không có hai mẫu trùng màu')
+})
+
+test('tóm tắt lỗi CI cho trang quản trị: lấy dòng lỗi chính, một dòng ngắn cho trạng thái', () => {
+    const { summarize, shortReason } = require('../tools/ci-summary')
+    const log = [
+        '2026-10-26T07:07:05.1234567Z \u001b[32m✅ Dữ liệu hợp lệ\u001b[0m',
+        'not ok 13 - giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)',
+        '  error: |-',
+        '    chữ khó đọc:',
+        '    [he-bien light] index.html?season=he-bien: small.chip__count "38" 4.27 < 4.5',
+        '    + actual - expected',
+        '# pass 19',
+    ].join('\n')
+    const lines = summarize(log)
+    assert.deepEqual(lines, ['not ok 13 - giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', 'chữ khó đọc:', '[he-bien light] index.html?season=he-bien: small.chip__count "38" 4.27 < 4.5'])
+    assert.equal(shortReason(lines), '[he-bien light] index.html?season=he-bien: small.chip__count "38" 4.27 < 4.5')
+    assert.equal(shortReason(summarize('❌ Xung đột dữ liệu với main: data/site.json')), 'Xung đột dữ liệu với main: data/site.json')
+    assert.equal(shortReason([]), 'Build hoặc test lỗi – xem log')
+    assert.ok(shortReason([`❌ ${'x'.repeat(300)}`]).length <= 140)
 })

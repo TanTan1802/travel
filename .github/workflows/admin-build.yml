@@ -1,15 +1,34 @@
 # Nhánh admin/* do trang quản trị (/admin/) tạo ra chỉ chứa file dữ liệu data/*.json.
 # Workflow này sinh lại trang tĩnh, chạy toàn bộ test rồi commit phần đã build vào chính nhánh đó,
 # để Pull Request sẵn sàng merge (test.yml bỏ qua các nhánh admin/*).
+# - Lỗi: ghi lý do ngắn vào trạng thái "Kiểm tra (admin)" + bình luận tóm tắt lỗi vào PR (trang quản trị hiện ra).
+# - Nhánh cũ hơn main: tự gộp main vào trước khi build (file sinh tự động bị xung đột → lấy bản main rồi build lại;
+#   xung đột trong data/ → báo lỗi). Nút "Cập nhật nhánh" / "Cập nhật & đăng" trong trang quản trị chạy lại workflow này.
+# - Xanh và PR có dấu <!-- tu-dang --> (ô "Tự đăng khi kiểm tra xong" trong trang quản trị) hoặc chạy với publish=true:
+#   tự merge vào main rồi chạy workflow tải ảnh (merge bằng GITHUB_TOKEN không tự kích hoạt workflow khác).
 name: Kiểm tra PR từ trang quản trị
 
 on:
   push:
     branches: ['admin/**']
+  # Trang quản trị gọi khi bấm "Cập nhật nhánh" (chạy trên chính nhánh admin/…)
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Tự đăng lên site khi kiểm tra xanh
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   statuses: write
+  pull-requests: write
+  actions: write
+
+defaults:
+  run:
+    # bash -eo pipefail: lệnh "| tee" vẫn báo lỗi khi build / test lỗi
+    shell: bash
 
 concurrency:
   group: admin-build-${{ github.ref }}
@@ -28,7 +47,36 @@ jobs:
           gh api "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state=pending -f context="Kiểm tra (admin)" \
             -f description="Đang build và chạy test" -f target_url="$STATUS_URL" > /dev/null
 
+      - name: Chỉ chạy trên nhánh admin/…
+        if: ${{ !startsWith(github.ref_name, 'admin/') }}
+        run: |
+          echo "❌ Workflow này chỉ dành cho nhánh admin/… do trang quản trị tạo" | tee -a "$RUNNER_TEMP/ci.log"
+          exit 1
+
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # Gộp main mới nhất để kiểm tra (và đăng) đúng trên dữ liệu hiện tại của site
+      - name: Cập nhật nhánh theo main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin main
+          if git merge-base --is-ancestor origin/main HEAD; then echo "Nhánh đã có đủ thay đổi của main."; exit 0; fi
+          if ! git merge --no-edit -m "Tự động: cập nhật nhánh theo main" origin/main; then
+            DATA=$(git diff --name-only --diff-filter=U | grep '^data/' || true)
+            if [ -n "$DATA" ]; then
+              git merge --abort
+              echo "❌ Xung đột dữ liệu với main (cùng sửa một chỗ): $(echo $DATA) – mở lại trang quản trị, sửa trên dữ liệu mới rồi tạo PR mới" | tee -a "$RUNNER_TEMP/ci.log"
+              exit 1
+            fi
+            # Còn lại là file sinh tự động: lấy bản của main, bước build bên dưới sinh lại theo dữ liệu đã gộp
+            git diff --name-only --diff-filter=U | while read -r f; do
+              git checkout --theirs -- "$f" 2>/dev/null && git add -- "$f" || git rm -q -- "$f"
+            done
+            git commit --no-edit
+          fi
 
       - uses: actions/setup-node@v5
         with:
@@ -54,37 +102,65 @@ jobs:
         run: npx playwright install-deps chromium
 
       - name: Sinh lại dữ liệu và trang
-        run: npm run build
+        run: npm run build 2>&1 | tee -a "$RUNNER_TEMP/ci.log"
 
       - name: Test dữ liệu
-        run: npm run test:data
+        run: npm run test:data 2>&1 | tee -a "$RUNNER_TEMP/ci.log"
 
       - name: Test trợ lý hỏi đáp (Worker, không gọi API thật)
-        run: npm run test:worker
+        run: npm run test:worker 2>&1 | tee -a "$RUNNER_TEMP/ci.log"
 
       - name: Test giao diện (Playwright)
-        run: npm run test:e2e
+        run: npm run test:e2e 2>&1 | tee -a "$RUNNER_TEMP/ci.log"
 
       # Commit bằng GITHUB_TOKEN không kích hoạt workflow khác, nên tự gắn trạng thái "đã kiểm tra" cho commit mới
       - name: Commit trang đã build vào nhánh
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
           if git diff --cached --quiet; then
             echo "Không có gì cần build thêm."
           else
             git commit -m "Tự động: build lại trang theo dữ liệu từ trang quản trị"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
+          if [ "$(git rev-parse HEAD)" != "$GITHUB_SHA" ]; then git push origin "HEAD:${GITHUB_REF_NAME}"; fi
           gh api "repos/${GITHUB_REPOSITORY}/statuses/$(git rev-parse HEAD)" \
             -f state=success -f context="Kiểm tra (admin)" \
             -f description="Đã build và qua toàn bộ test" \
             -f target_url="$STATUS_URL" > /dev/null
           echo "### Đã build và kiểm tra – Pull Request sẵn sàng merge" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Tự đăng lên site (khi PR chọn "Tự đăng")
+        env:
+          PUBLISH: ${{ inputs.publish }}
+        run: |
+          PR=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$GITHUB_REF_NAME" --state open --json number,body \
+            --jq ".[] | select(\"$PUBLISH\" == \"true\" or ((.body // \"\") | contains(\"<!-- tu-dang -->\"))) | .number")
+          if [ -z "$PR" ]; then echo "PR không chọn tự đăng – chờ bấm Đăng trong trang quản trị."; exit 0; fi
+          if gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --merge --delete-branch; then
+            gh workflow run images.yml --repo "$GITHUB_REPOSITORY" --ref main || true
+            echo "### Đã tự đăng PR #$PR lên site" >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body "⚠️ Kiểm tra xanh nhưng chưa tự đăng được (nhánh cũ hoặc xung đột) – bấm **Cập nhật nhánh** trong trang quản trị rồi thử lại."
+          fi
+
+      # Lý do lỗi ngắn trong trạng thái + bình luận tóm tắt (có dấu admin-build-error) để trang quản trị hiện ra
       - name: Báo kiểm tra lỗi
         if: failure()
         run: |
+          REASON=$(node tools/ci-summary.js "$RUNNER_TEMP/ci.log" --short 2>/dev/null || echo "Build hoặc test lỗi – xem log")
           gh api "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state=failure -f context="Kiểm tra (admin)" \
-            -f description="Build hoặc test lỗi – xem log" -f target_url="$STATUS_URL" > /dev/null
+            -f description="${REASON:-Build hoặc test lỗi – xem log}" -f target_url="$STATUS_URL" > /dev/null
+          PR=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$GITHUB_REF_NAME" --state open --json number --jq '.[].number' | head -1)
+          if [ -n "$PR" ]; then
+            {
+              echo "<!-- admin-build-error -->"
+              echo "❌ **Kiểm tra chưa qua** – commit \`${GITHUB_SHA::7}\`. Lỗi chính:"
+              echo
+              echo '```'
+              node tools/ci-summary.js "$RUNNER_TEMP/ci.log" 2>/dev/null || echo "(không đọc được log)"
+              echo '```'
+              echo
+              echo "[Xem log đầy đủ]($STATUS_URL) · Sửa dữ liệu trong trang quản trị và tạo PR mới, hoặc bấm **Cập nhật nhánh** nếu lỗi do nhánh cũ."
+            } > "$RUNNER_TEMP/comment.md"
+            gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/comment.md" || true
+          fi

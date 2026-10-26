@@ -86,21 +86,27 @@ const inlineJson = value => JSON.stringify(value).replace(/</g, '\\u003c')
  * Chạy ngay đầu <body> mọi trang (trước khi vẽ): chọn mùa theo ngày trên máy người xem
  * (?season=<mã> để xem thử, ?season=none để tắt), đặt window.SEASON + màu của mùa.
  * Mùa tắt (enabled: false) chỉ hiện khi xem thử. Mùa đứng trước được ưu tiên.
+ * ?preview=site: trang quản trị xem trước bản nháp data/site.json (localStorage PREVIEW_SITE_KEY, dạng previewSiteData
+ * trong admin/admin.js) – thay danh sách mùa và màu mặc định, homeSeasonScript thay nội dung trang chủ.
  */
-function themeScript() {
-    const seasons = SITE_CONFIG.seasons.map(s => ({
+const PREVIEW_SITE_KEY = 'vt-admin-preview-site'
+function seasonList(seasons) {
+    return seasons.map(s => ({
         i: s.id, f: s.from, t: s.to,
         ...(s.enabled ? {} : { x: 1 }),
         ...(s.theme ? { h: s.theme.hue, a: s.theme.accentHue } : {}),
     }))
-    if (!seasons.length) return DARK_THEME_SCRIPT
-    return DARK_THEME_SCRIPT.replace('</script>', `\n(function(S,F){var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},` +
+}
+function themeScript() {
+    return DARK_THEME_SCRIPT.replace('</script>', `\n(function(S,F){var r=document.documentElement,m,P,c=function(h,a){r.style.setProperty('--hue-color',h);` +
+        `r.style.setProperty('--accent-hue',a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+h+', 64%, 22%)';` +
+        `if(m=document.querySelector('link[rel=icon]'))m.href='data:image/svg+xml,'+encodeURIComponent(F.replace(/\\{h\\}/g,h).replace(/\\{a\\}/g,a))};` +
+        `try{P=/[?&]preview=site/.test(location.search)&&JSON.parse(localStorage.getItem(${inlineJson(PREVIEW_SITE_KEY)}))}catch(e){}if(P){window.PREVIEW_SITE=P;S=P.s;c(P.d.h,P.d.a)}` +
+        `var q=/[?&]season=([a-z0-9-]+)/.exec(location.search),n=new Date(),p=function(v){return(v<10?'0':'')+v},` +
         `md=p(n.getMonth()+1)+'-'+p(n.getDate()),ymd=n.getFullYear()+'-'+md;for(var i=0;i<S.length;i++){var s=S[i];` +
         `if(q?q[1]===s.i:!s.x&&(s.f.length>5?ymd>=s.f&&ymd<=s.t:s.f<=s.t?md>=s.f&&md<=s.t:md>=s.f||md<=s.t)){` +
-        `var r=document.documentElement,m;window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null){r.style.setProperty('--hue-color',s.h);` +
-        `r.style.setProperty('--accent-hue',s.a);if(m=document.querySelector('meta[name=theme-color]'))m.content='hsl('+s.h+', 64%, 22%)';` +
-        `if(m=document.querySelector('link[rel=icon]'))m.href='data:image/svg+xml,'+encodeURIComponent(F.replace(/\\{h\\}/g,s.h).replace(/\\{a\\}/g,s.a))}return}}})(` +
-        `${inlineJson(seasons)},${inlineJson(logoSvg('{h}', '{a}'))})</script>`)
+        `window.SEASON=s.i;r.setAttribute('data-season',s.i);if(s.h!=null)c(s.h,s.a);return}}})(` +
+        `${inlineJson(seasonList(SITE_CONFIG.seasons))},${inlineJson(logoSvg('{h}', '{a}'))})</script>`)
 }
 
 /* Mọi trang: script màu theo mùa + màu thanh trình duyệt theo màu chủ đạo */
@@ -178,10 +184,13 @@ function homeSeasonScript(lang, site, siteRoot) {
         `for(var i=0;i<18;i++){var p=document.createElement('i');p.style.cssText='--x:'+(i*5.5+(i*37%11))%100+'%;--d:'+(9+i*7%8)+'s;--delay:-'+(i*13%17)+'s;--s:'+(9+i*5%9)+'px;--dx:'+((i%2?1:-1)*(20+i*11%60))+'px';box.appendChild(p)}` +
         `var b=document.createElement('button');b.type='button';b.className='decor__off';b.textContent=${inlineJson(T.decorOff)};` +
         `b.onclick=function(){box.remove();b.remove();try{localStorage.setItem('vt-decor-off','1')}catch(x){}};h.appendChild(box);h.appendChild(b)}`
+    /* Xem trước (?preview=site): nội dung mặc định + các mùa lấy từ bản nháp (tiếng Việt) thay cho bản đã build */
     return `<script>window.HOME_FEATURED=${inlineJson(SITE_CONFIG.featured)};` +
-        `(function(H){var s=window.SEASON&&H[window.SEASON],q=function(c){return document.querySelector(c)},e;window.HOME_SEASON=s||null;if(!s)return;` +
+        `(function(H){var q=function(c){return document.querySelector(c)},e,P=window.PREVIEW_SITE,A=function(s){` +
         `if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;` +
-        `if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}` +
+        `if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}};` +
+        `if(P&&P.home){H=P.H;window.HOME_FEATURED=P.home.featured;A(P.home)}` +
+        `var s=window.SEASON&&H[window.SEASON];if(P&&P.home)s=Object.assign({ft:P.home.ft},s);window.HOME_SEASON=s||null;if(!s)return;A(s);` +
         `if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;var c=s.promo.cd&&cd(s.promo.cd),k=e.querySelector('.home__countdown');if(c&&k){k.textContent=c;k.hidden=false}` +
         `if(s.promo.href){e.href=s.promo.href;if(s.promo.ext){e.target='_blank';e.rel='noopener'}}else e.lastElementChild.remove();e.hidden=false}` +
         `if(s.decor)decor(s.decor);${countdown}${decor}` +

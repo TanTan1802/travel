@@ -269,8 +269,9 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
 
 - **Đăng nhập** bằng *fine-grained token* GitHub: [Generate new token](https://github.com/settings/personal-access-tokens/new)
   → *Repository access*: chỉ repo `travel` → *Permissions*: `Contents`, `Pull requests`, `Issues` = **Read and write**
-  (Issues để duyệt ảnh người đọc) và `Commit statuses` = Read-only (xem PR đã kiểm tra xong chưa).
-  Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat, issue hay mã nguồn.
+  (Issues để duyệt ảnh người đọc), `Actions` = **Read and write** (nút *Cập nhật nhánh*) và `Commit statuses` = Read-only
+  (xem PR đã kiểm tra xong chưa). Token chỉ lưu trên trình duyệt đó và chỉ gửi tới `api.github.com`; không dán token vào chat,
+  issue hay mã nguồn. Nhập **ngày hết hạn token** khi đăng nhập (hoặc "Đổi ngày" ở Tổng quan) để được nhắc trước 14 ngày.
 - **Tổng quan**: số điểm đến, điểm thiếu bản dịch, món dùng ảnh minh họa, quán / điểm quá 12 tháng chưa kiểm tra,
   mùa đang chạy + mùa sắp tới, PR đang chờ và danh sách "cần chú ý". **Điểm đến**: lưới ảnh hoặc bảng, tìm, lọc, sắp xếp.
 - Trình sửa: số mục còn thiếu hiện ngay trên từng tab, danh sách dài thu gọn được, **tự lưu nháp** trên máy
@@ -291,11 +292,17 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   Workflow `admin-build.yml` tự build lại trang, chạy toàn bộ test rồi commit phần đã build vào PR và báo trạng thái
   `Kiểm tra (admin)`; khi PR **Sẵn sàng đăng**, bấm **Đăng lên site** ngay trong trang quản trị (hoặc Merge trên GitHub) –
   Cloudflare tự deploy, `images.yml` tự tải ảnh mới.
+  - **Tự đăng** (ô trong hộp xem lại, mặc định bật): PR có dấu `<!-- tu-dang -->`, kiểm tra xanh là workflow tự gộp vào main.
+  - **Lỗi**: trạng thái ghi lý do ngắn (`tools/ci-summary.js`) và PR có bình luận tóm tắt lỗi – trang quản trị hiện cả hai.
+  - **Cũ hơn main**: workflow luôn gộp main mới nhất trước khi build (file sinh tự động xung đột → lấy bản main rồi build lại;
+    xung đột trong `data/` → báo lỗi). Nút **Cập nhật nhánh** / **Cập nhật & đăng** chạy lại workflow trên nhánh PR.
 - **Giao diện & mùa** (`#/site`, dữ liệu `data/site.json`): màu chủ đạo + màu nhấn (có bảng màu mẫu, xem trước sáng/tối,
   chặn màu không đủ tương phản WCAG AA), slogan / dòng chữ nhỏ / ảnh bìa trang chủ theo 5 ngôn ngữ, danh sách điểm đến nổi bật.
   Thêm **mùa / chiến dịch** (Tết, hè biển, lúa chín…): khoảng ngày `MM-DD` lặp hằng năm hoặc `YYYY-MM-DD` một lần;
   trong khoảng đó site tự đổi màu mọi trang, slogan, ảnh bìa, dải thông báo có liên kết và mục nổi bật –
   chọn theo ngày trên máy người xem nên không cần build lại. Xem thử bất kỳ mùa nào: `/?season=<mã>` (`?season=none` = mặc định).
+  **👁 Xem trước trang chủ** dựng trang chủ từ bản đang sửa (chưa tạo PR): `index.html?preview=site` đọc bản nháp trong
+  localStorage của trình duyệt quản trị. Thanh **độ tương phản** cập nhật khi kéo màu, khuyên ≥ 5:1 và gợi ý màu gần nhất đạt chuẩn.
   Mỗi mùa có thể thêm **đếm ngược** trong dải thông báo ("Tết Đinh Mùi: còn 12 ngày") và **hiệu ứng trang trí** trên ảnh bìa
   (hoa đào / hoa mai / lá vàng / tuyết rơi – người xem tắt được, tự tắt khi bật giảm chuyển động).
 - Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
