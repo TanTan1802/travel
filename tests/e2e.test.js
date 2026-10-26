@@ -707,6 +707,42 @@ test('giao diện & mùa (data/site.json): mỗi mùa đổi màu, slogan, ảnh
     }
 })
 
+test('xem trước trang chủ từ trang quản trị (?preview=site): màu, slogan, ảnh, mùa và điểm nổi bật lấy từ bản nháp', async () => {
+    /* Cùng dạng previewSiteData trong admin/admin.js */
+    const draft = {
+        s: [{ i: 'thu-nghiem', f: '01-01', t: '12-31', x: 1, h: 340, a: 30 }],
+        d: { h: 225, a: 34 },
+        home: { sub: 'Bản nháp mặc định', title: 'Slogan <b>nháp</b>', img: null, ft: 'Nổi bật nháp', featured: ['hue', 'sa-pa'] },
+        H: { 'thu-nghiem': { sub: 'Mùa thử nghiệm', promo: { text: 'Thông báo nháp', href: 'le-hoi/index.html', ext: false }, featured: ['hoi-an'], ft: 'Nổi bật mùa' } },
+    }
+    const { page, errors, close } = await openPage('index.html?season=none')
+    await page.evaluate(v => localStorage.setItem('vt-admin-preview-site', v), JSON.stringify(draft))
+    const read = () => page.evaluate(() => ({
+        hue: getComputedStyle(document.documentElement).getPropertyValue('--hue-color').trim(),
+        sub: document.querySelector('.home__data-subtitle').textContent.trim(),
+        title: document.querySelector('.home__data-title').innerHTML.trim(),
+        ft: document.querySelector('#discover .section__title').textContent.trim(),
+        promo: document.querySelector('#home-promo').hidden ? null : document.querySelector('#home-promo span').textContent,
+        featured: [...document.querySelectorAll('#discover-list .discover__card')].map(a => a.getAttribute('href').match(/diem-den\/([^/]+)/)[1]),
+    }))
+    /* Mùa thử nghiệm đang tắt (x) → không tự chạy: giao diện mặc định của bản nháp */
+    await page.goto(`${server.url}index.html?preview=site`)
+    assert.deepEqual(await read(), { hue: '225', sub: 'Bản nháp mặc định', title: 'Slogan <b>nháp</b>', ft: 'Nổi bật nháp', promo: null, featured: ['hue', 'sa-pa'] })
+    /* Chọn xem mùa */
+    await page.goto(`${server.url}index.html?preview=site&season=thu-nghiem`)
+    const info = await read()
+    assert.equal(info.hue, '340')
+    assert.equal(info.sub, 'Mùa thử nghiệm')
+    assert.equal(info.promo, 'Thông báo nháp')
+    assert.equal(info.ft, 'Nổi bật mùa')
+    assert.deepEqual(info.featured, ['hoi-an'])
+    /* Không có ?preview=site: bản nháp không ảnh hưởng tới trang thật */
+    await page.goto(`${server.url}index.html?season=none`)
+    assert.notEqual((await read()).sub, 'Bản nháp mặc định')
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('mùa có đếm ngược và hiệu ứng trang trí: hiện đúng, tắt được, không chạy khi giảm chuyển động', async () => {
     const site = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/site.json'), 'utf8'))
     const season = site.seasons.find(s => s.decor && s.banner?.countdown)

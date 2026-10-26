@@ -13,6 +13,7 @@ const REPO = 'TanTan1802/travel'
 const BASE_BRANCH = 'main'
 const API = 'https://api.github.com'
 const TOKEN_KEY = 'vt-admin-token'
+const TOKEN_EXP_KEY = 'vt-admin-token-exp' // ngày hết hạn token (YYYY-MM-DD) – GitHub báo qua header hoặc người dùng tự nhập
 const FILES = {
     destinations: 'data/destinations.json',
     itineraries: 'data/itineraries.json',
@@ -49,6 +50,7 @@ const state = {
     open: new Map(),   // mục danh sách đang mở / đóng
     draft: null,       // bản nháp tìm thấy khi mở trang sửa
     prs: null,         // Pull Request từ trang quản trị (đang mở)
+    updating: {},      // PR vừa bấm "Cập nhật nhánh": số PR → thời điểm bấm
 }
 
 /*---------- Tiện ích ----------*/
@@ -95,6 +97,9 @@ async function gh(path, { method = 'GET', body, raw = false } = {}) {
         },
         body: body ? JSON.stringify(body) : undefined,
     })
+    /* Fine-grained token: GitHub gửi ngày hết hạn ("2026-12-01 00:00:00 UTC") nếu trình duyệt đọc được header */
+    const exp = res.headers.get('github-authentication-token-expiration')
+    if (exp) setTokenExp(exp.slice(0, 10))
     if (!res.ok) {
         let detail = ''
         try { detail = (await res.json()).message } catch { /* không có JSON */ }
@@ -118,11 +123,45 @@ async function login(token, remember) {
     } catch { /* trình duyệt chặn lưu trữ – vẫn dùng được trong phiên này */ }
 }
 
-function logout() {
+function logout(reason) {
     try { localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(TOKEN_KEY) } catch { /* bỏ qua */ }
     Object.assign(state, { token: null, user: null, avatar: null, baseSha: null, texts: {}, data: {}, bundle: null, mode: null, dirty: false, prs: null })
     location.hash = '#/'
-    render()
+    if (reason) renderLogin(reason)
+    else render()
+}
+
+/*---------- Hạn token ----------*/
+const DATE_RE = /^20\d{2}-\d{2}-\d{2}$/
+function tokenExp() {
+    try { const v = localStorage.getItem(TOKEN_EXP_KEY) || ''; return DATE_RE.test(v) ? v : '' } catch { return '' }
+}
+function setTokenExp(day) {
+    try {
+        if (DATE_RE.test(day || '')) localStorage.setItem(TOKEN_EXP_KEY, day)
+        else localStorage.removeItem(TOKEN_EXP_KEY)
+    } catch { /* bỏ qua */ }
+}
+/* Số ngày còn lại tới ngày hết hạn (âm = đã hết hạn), null = chưa biết */
+function tokenDaysLeft() {
+    const exp = tokenExp()
+    if (!exp) return null
+    const today = new Date(new Date().toISOString().slice(0, 10))
+    return Math.round((new Date(exp) - today) / 864e5)
+}
+const TOKEN_NEW_URL = 'https://github.com/settings/personal-access-tokens'
+function tokenNotice() {
+    const left = tokenDaysLeft()
+    const date = tokenExp().split('-').reverse().join('/')
+    if (left === null) {
+        return `<p class="muted small token-line">Chưa biết ngày hết hạn của token – <button type="button" class="link" data-token-exp>đặt ngày để được nhắc trước</button>.</p>`
+    }
+    if (left > 14) return `<p class="muted small token-line">Token hết hạn ngày ${date} (còn ${left} ngày) · <button type="button" class="link" data-token-exp>Đổi ngày</button></p>`
+    const cls = left <= 3 ? 'notice notice--bad' : 'notice notice--warn'
+    const msg = left < 0 ? `Token đã hết hạn ngày ${date}` : left === 0 ? 'Token hết hạn hôm nay' : `Token sắp hết hạn: còn ${left} ngày (${date})`
+    return `<div class="${cls}"><span><strong>${msg}.</strong> Tạo token mới (cùng quyền) trên GitHub rồi đăng xuất và đăng nhập lại bằng token mới – nếu không, trang quản trị sẽ không lưu được.</span>
+        <a class="btn btn--sm" href="${TOKEN_NEW_URL}" target="_blank" rel="noopener">Tạo token mới ↗</a>
+        <button type="button" class="btn btn--ghost btn--sm" data-token-exp>Đổi ngày</button></div>`
 }
 
 async function loadData() {
@@ -373,16 +412,16 @@ function buildFiles(b) {
     return changed
 }
 
-async function saveAsPullRequest(b, note) {
+async function saveAsPullRequest(b, note, autoPublish) {
     const action = state.isNew ? 'Thêm' : 'Cập nhật'
     return createPullRequest(buildFiles(b), {
         title: `${action} điểm đến: ${b.dest.name}`,
         slug: b.dest.id,
         summary: `${action} dữ liệu điểm đến **${b.dest.name}** (\`${b.dest.id}\`) từ trang quản trị.`,
-    }, note)
+    }, note, autoPublish)
 }
 
-async function createPullRequest(changed, { title, slug, summary }, note) {
+async function createPullRequest(changed, { title, slug, summary }, note, autoPublish = false) {
     const paths = Object.keys(changed)
     if (!paths.length) throw new Error('Không có thay đổi nào so với dữ liệu hiện tại.')
     const baseCommit = await gh(`/repos/${REPO}/git/commits/${state.baseSha}`)
@@ -404,7 +443,9 @@ async function createPullRequest(changed, { title, slug, summary }, note) {
         '\n**File thay đổi:**',
         ...paths.map(p => `- \`${p}\``),
         '\nWorkflow **Kiểm tra PR từ trang quản trị** sẽ tự build lại trang, thêm commit vào PR này và chạy toàn bộ test.',
-        'Khi kiểm tra xanh: xem lại thay đổi rồi merge – Cloudflare tự deploy, ảnh mới được tải về tự động.',
+        autoPublish
+            ? `**Tự đăng:** bật – khi kiểm tra xanh, PR tự gộp vào main (Cloudflare tự deploy, ảnh mới được tải về tự động).\n${AUTO_MARK}`
+            : 'Khi kiểm tra xanh: xem lại thay đổi rồi merge – Cloudflare tự deploy, ảnh mới được tải về tự động.',
     ].join('\n')
     return gh(`/repos/${REPO}/pulls`, { method: 'POST', body: { title, head: branch, base: BASE_BRANCH, body } })
 }
@@ -733,13 +774,42 @@ function listField(spec, items) {
 }
 
 /*---------- Chọn màu (giao diện & mùa) ----------*/
-function themePreview({ hue, accentHue }) {
-    const issues = contrastIssues({ hue, accentHue })
-    return `<div class="tp" style="--h:${Number(hue)};--a:${Number(accentHue)}">
+/* Mức dễ đọc theo độ tương phản thấp nhất: build chặn khi < 4.5:1, trang quản trị khuyên ≥ 5:1 để có khoảng an toàn */
+const SAFE_CONTRAST = 5
+function contrastLevel(ratio) {
+    if (ratio < 4.5) return ['bad', 'Chưa đạt – chữ khó đọc, build sẽ báo lỗi']
+    if (ratio < SAFE_CONTRAST) return ['warn', 'Sát ngưỡng – đạt tối thiểu nhưng chữ hơi nhạt, nên chỉnh thêm']
+    if (ratio < 7) return ['ok', 'Tốt – dễ đọc ở nền sáng lẫn nền tối']
+    return ['ok', 'Rất dễ đọc']
+}
+/* Cặp màu gần nhất (đổi ít độ nhất, chỉ đổi một màu) đạt ≥ 5:1 */
+function nearestSafeTheme({ hue, accentHue }) {
+    const wrap = v => ((v % 360) + 360) % 360
+    for (let d = 1; d <= 180; d++) {
+        for (const t of [{ hue, accentHue: wrap(accentHue + d) }, { hue, accentHue: wrap(accentHue - d) }, { hue: wrap(hue + d), accentHue }, { hue: wrap(hue - d), accentHue }]) {
+            if (minContrast(t) >= SAFE_CONTRAST) return t
+        }
+    }
+    return null
+}
+function themePreview({ hue, accentHue }, path) {
+    const t = { hue: Number(hue), accentHue: Number(accentHue) }
+    const issues = contrastIssues(t)
+    const pairs = contrastPairs(t)
+    const weakest = pairs.reduce((a, b) => (b.ratio < a.ratio ? b : a))
+    const [level, text] = contrastLevel(weakest.ratio)
+    const fix = level === 'ok' ? null : nearestSafeTheme(t)
+    const meter = `<div class="tp__meter tp__meter--${level}" role="status">
+            <span class="tp__ratio">${weakest.ratio.toFixed(2).replace('.', ',')}:1</span>
+            <span class="tp__bar" aria-hidden="true"><i style="width:${Math.min(100, (weakest.ratio / 7) * 100).toFixed(0)}%"></i><b style="left:${((4.5 / 7) * 100).toFixed(0)}%"></b><b style="left:${((SAFE_CONTRAST / 7) * 100).toFixed(0)}%"></b></span>
+            <span class="tp__level"><strong>${text}</strong><span class="small">Thấp nhất: ${esc(weakest.label.toLowerCase())}</span></span>
+            ${fix && path ? `<button type="button" class="btn btn--ghost btn--sm" data-preset="${fix.hue},${fix.accentHue}" data-path="${esc(JSON.stringify(path))}" title="Màu ${fix.hue} / nhấn ${fix.accentHue} – tương phản ${minContrast(fix).toFixed(1)}:1">Dùng màu gần nhất đạt chuẩn (${fix.hue} / ${fix.accentHue})</button>` : ''}
+        </div>`
+    return `${meter}<div class="tp" style="--h:${t.hue};--a:${t.accentHue}">
             <div class="tp__box tp__box--light"><span class="tp__sub">Chữ nhấn</span><strong class="tp__title">Tiêu đề trang</strong><span class="tp__text">Chữ nội dung thường</span><span class="tp__btn">Nút bấm</span></div>
             <div class="tp__box tp__box--dark"><span class="tp__sub">Chữ nhấn</span><strong class="tp__title">Chế độ tối</strong><span class="tp__text">Chữ nội dung thường</span><span class="tp__btn">Nút bấm</span></div>
         </div>
-        <div class="tp__issues">${issues.length ? `<div class="errors">⚠ Chưa đủ tương phản (chữ khó đọc) – chọn màu khác:<ul>${issues.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : '<p class="small tp__ok">✔ Độ tương phản đạt chuẩn WCAG AA</p>'}</div>`
+        <div class="tp__issues">${issues.length ? `<div class="errors">⚠ Chưa đủ tương phản (chữ khó đọc) – chọn màu khác:<ul>${issues.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : level === 'warn' ? '' : '<p class="small tp__ok">✔ Độ tương phản đạt chuẩn WCAG AA</p>'}</div>`
 }
 
 /* Thẻ mẫu màu: mô phỏng thu nhỏ đầu trang + tiêu đề + nút + chữ nhấn, kèm điểm tương phản */
@@ -777,7 +847,7 @@ function themeField(path, t) {
             <div><span class="field__lang">Màu nhấn (chữ nhỏ, sao đánh giá) – <output data-out="accentHue">${t.accentHue}</output></span>
                 <input type="range" class="hue-range" min="0" max="359" ${attrs([...path, 'accentHue'], 'number')} value="${t.accentHue}"></div>
         </div>
-        <div class="theme-preview">${themePreview(t)}</div>
+        <div class="theme-preview">${themePreview(t, path)}</div>
     </div>`
 }
 
@@ -995,7 +1065,7 @@ const MODES = {
         errorTab: msg => { const m = msg.match(/^Mùa (\d+)/); return m ? `s${Number(m[1]) - 1}` : 'general' },
         extraTab: '<button type="button" class="tab--add" data-season-add>＋ Thêm mùa</button>',
         datalist: () => linkDatalist(),
-        view: '<a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener">Xem trang chủ ↗</a>',
+        view: '<a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener">Trang chủ hiện tại ↗</a><button type="button" class="btn btn--sm" data-preview>👁 Xem trước trang chủ</button>',
         pr: w => ({ title: 'Cập nhật giao diện & mùa', slug: 'giao-dien', summary: `Cập nhật giao diện & mùa (\`data/site.json\`) từ trang quản trị: ${w.seasons.length} mùa (${w.seasons.filter(x => x.enabled).map(x => x.name).join(', ') || 'không mùa nào bật'}).` }),
     },
     events: {
@@ -1262,7 +1332,9 @@ function renderShell(crumbs = [], actions = '') {
     $('#side-nav').innerHTML = NAV.map(([href, label, icon]) => `<a href="#${href}" class="side__link${active === href ? ' is-active' : ''}"${active === href ? ' aria-current="page"' : ''}>
             <span class="side__icon" aria-hidden="true">${icon}</span>${label}${navCount(href)}</a>`).join('') +
         '<a href="#/new" class="side__link side__link--add"><span class="side__icon" aria-hidden="true">＋</span>Thêm điểm đến</a>'
-    $('#side-user').textContent = state.user ? `@${state.user}` : ''
+    const left = tokenDaysLeft()
+    $('#side-user').innerHTML = (state.user ? `@${esc(state.user)}` : '') +
+        (left !== null && left <= 14 ? `<span class="side__token">${left < 0 ? 'Token đã hết hạn' : `Token còn ${left} ngày`}</span>` : '')
     const avatar = $('#side-avatar')
     if (state.avatar) { avatar.src = state.avatar; avatar.hidden = false }
     $('#crumbs').innerHTML = crumbs.map(([label, href], i) => (href && i < crumbs.length - 1 ? `<a href="${href}">${esc(label)}</a>` : `<span>${esc(label)}</span>`)).join('<span class="crumbs__sep">/</span>')
@@ -1348,40 +1420,97 @@ const PR_STATUS = {
     unknown: ['Chưa rõ kết quả', 'chip--muted'],
 }
 
+/* Dấu trong nội dung PR: workflow tự gộp vào main khi kiểm tra xanh */
+const AUTO_MARK = '<!-- tu-dang -->'
+const AUTO_KEY = 'vt-admin-auto-publish'
+const autoPublishPref = () => { try { return localStorage.getItem(AUTO_KEY) !== '0' } catch { return true } }
+
 async function prStatus(sha) {
     try {
         const combined = await gh(`/repos/${REPO}/commits/${sha}/status`)
         const st = combined.statuses.find(x => x.context === STATUS_CONTEXT)
-        return st ? { status: st.state, url: st.target_url } : { status: 'pending' }
+        return st ? { status: st.state, url: st.target_url, reason: st.description || '' } : { status: 'pending' }
     } catch {
         return { status: 'unknown' } // token chưa có quyền Commit statuses: Read
+    }
+}
+
+/* Nhánh PR thiếu bao nhiêu commit của main (main đã đổi sau khi PR được kiểm tra) */
+async function prBehind(sha) {
+    try {
+        return (await gh(`/repos/${REPO}/compare/${BASE_BRANCH}...${sha}?per_page=1`)).behind_by || 0
+    } catch {
+        return 0
+    }
+}
+
+/* Bình luận tóm tắt lỗi mới nhất do workflow ghi (dấu admin-build-error) → các dòng lỗi trong khối ``` */
+async function prErrorDetail(number) {
+    try {
+        const comments = await gh(`/repos/${REPO}/issues/${number}/comments?per_page=100`)
+        const last = comments.filter(c => (c.body || '').includes('<!-- admin-build-error -->')).pop()
+        const m = last && last.body.match(/```\n([\s\S]*?)\n```/)
+        return m ? m[1].trim() : ''
+    } catch {
+        return ''
     }
 }
 
 async function loadPrs() {
     const list = await gh(`/repos/${REPO}/pulls?state=open&per_page=50`)
     const mine = list.filter(p => p.head.ref.startsWith('admin/'))
-    state.prs = await Promise.all(mine.map(async p => ({
-        number: p.number, title: p.title, url: p.html_url, branch: p.head.ref, sha: p.head.sha,
-        created: p.created_at, user: p.user && p.user.login, ...(await prStatus(p.head.sha)),
-    })))
+    state.prs = await Promise.all(mine.map(async p => {
+        const [st, behind] = await Promise.all([prStatus(p.head.sha), prBehind(p.head.sha)])
+        const bad = st.status === 'failure' || st.status === 'error'
+        return {
+            number: p.number, title: p.title, url: p.html_url, branch: p.head.ref, sha: p.head.sha,
+            created: p.created_at, user: p.user && p.user.login, auto: (p.body || '').includes(AUTO_MARK), behind,
+            ...st, detail: bad ? await prErrorDetail(p.number) : '',
+            /* Vừa bấm Cập nhật: chờ workflow báo "đang kiểm tra" (tối đa 2 phút) */
+            updating: st.status !== 'pending' && Date.now() - (state.updating[p.number] || 0) < 120000,
+        }
+    }))
     return state.prs
 }
 
 function prItem(p) {
     const [label, cls] = PR_STATUS[p.status] || PR_STATUS.unknown
+    const bad = p.status === 'failure' || p.status === 'error'
+    const pending = p.status === 'pending'
+    /* Nhánh cũ hơn main: đăng thẳng có thể ghi đè trang vừa build trên main → cập nhật (gộp main, build, test lại) trước */
+    if (p.updating) {
+        return `<li class="pr" data-pr="${p.number}">
+            <div class="pr__main"><a class="pr__title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+                <span class="pr__meta">#${p.number} · ${esc(p.user || '')} · ${ago(p.created)}</span></div>
+            <span class="chip chip--info"><span class="spin" aria-hidden="true"></span>Đang cập nhật theo main…</span>
+        </li>`
+    }
+    const stale = p.behind > 0 && !pending
+    const ready = p.status === 'success' || p.status === 'unknown'
+    const reason = bad && p.reason ? `<div class="pr__reason">
+            <p><strong>Lý do:</strong> ${esc(p.reason)}</p>
+            ${p.detail ? `<details><summary>Chi tiết lỗi</summary><pre>${esc(p.detail)}</pre></details>` : ''}
+            <p class="muted small">Sửa lại trong trang quản trị rồi tạo PR mới${p.behind ? ', hoặc bấm <strong>Cập nhật nhánh</strong> nếu lỗi do dữ liệu main đã đổi' : ''}. <a href="${esc(p.url || '')}" target="_blank" rel="noopener">Mở PR ↗</a></p>
+        </div>` : ''
     return `<li class="pr" data-pr="${p.number}">
         <div class="pr__main">
             <a class="pr__title" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>
             <span class="pr__meta">#${p.number} · ${esc(p.user || '')} · ${ago(p.created)}</span>
         </div>
-        <span class="chip ${cls}">${p.status === 'pending' ? '<span class="spin" aria-hidden="true"></span>' : ''}${label}</span>
+        <span class="pr__chips">
+            <span class="chip ${cls}">${pending ? '<span class="spin" aria-hidden="true"></span>' : ''}${label}</span>
+            ${p.auto ? `<span class="chip chip--info" title="Tự gộp vào main khi kiểm tra xanh">${pending ? 'Tự đăng khi xanh' : 'Tự đăng'}</span>` : ''}
+            ${stale ? `<span class="chip chip--warn" title="Main có ${p.behind} commit mới sau khi PR được kiểm tra">Cũ hơn main</span>` : ''}
+        </span>
         <div class="pr__actions">
             <a class="btn btn--ghost btn--sm" href="${esc(p.url)}/files" target="_blank" rel="noopener">Xem thay đổi</a>
-            ${p.status === 'failure' || p.status === 'error' ? `<a class="btn btn--ghost btn--sm" href="${esc(p.url || '')}/checks" target="_blank" rel="noopener">Xem lỗi</a>` : ''}
-            <button type="button" class="btn btn--sm" data-pr-merge="${p.number}"${p.status === 'success' || p.status === 'unknown' ? '' : ' disabled'} title="Gộp vào main – site tự cập nhật sau vài phút">Đăng lên site</button>
+            ${bad ? `<a class="btn btn--ghost btn--sm" href="${esc(p.url || '')}/checks" target="_blank" rel="noopener">Log</a>` : ''}
+            ${stale ? `<button type="button" class="btn btn--ghost btn--sm" data-pr-update="${p.number}" title="Gộp dữ liệu mới của main vào PR, build và chạy test lại (khoảng 5 phút)">Cập nhật nhánh</button>` : ''}
+            ${stale && ready ? `<button type="button" class="btn btn--sm" data-pr-update="${p.number}" data-publish="1" title="Cập nhật nhánh theo main, kiểm tra lại rồi tự đăng khi xanh">Cập nhật & đăng</button>`
+                : `<button type="button" class="btn btn--sm" data-pr-merge="${p.number}"${ready ? '' : ' disabled'} title="Gộp vào main – site tự cập nhật sau vài phút">Đăng lên site</button>`}
             <button type="button" class="btn btn--ghost btn--sm btn--danger" data-pr-close="${p.number}">Đóng</button>
         </div>
+        ${reason}
     </li>`
 }
 
@@ -1400,6 +1529,28 @@ async function mergePr(number) {
     toast(`Đã đăng PR #${number} – Cloudflare cập nhật site sau vài phút.`, 6000, 'ok')
 }
 
+/*
+ * Cập nhật nhánh: chạy lại workflow kiểm tra trên nhánh PR – workflow gộp main, build, test lại (publish = tự đăng khi xanh).
+ * Token thiếu quyền Actions thì dùng "Update branch" của GitHub (lần push đó cũng kích hoạt workflow).
+ */
+async function updatePr(number, publish) {
+    const pr = state.prs.find(p => p.number === number)
+    if (!pr) return
+    try {
+        await gh(`/repos/${REPO}/actions/workflows/admin-build.yml/dispatches`, { method: 'POST', body: { ref: pr.branch, inputs: { publish: publish ? 'true' : 'false' } } })
+    } catch (err) {
+        if (err.status !== 403 && err.status !== 404) throw err
+        if (publish) throw new Error('Token chưa có quyền Actions: Read and write – thêm quyền này cho token (GitHub → Settings → Developer settings → Fine-grained tokens) để dùng "Cập nhật & đăng".')
+        try {
+            await gh(`/repos/${REPO}/pulls/${number}/update-branch`, { method: 'PUT', body: { expected_head_sha: pr.sha } })
+        } catch (e) {
+            if (e.status === 422) throw new Error('Nhánh xung đột với main – thêm quyền Actions: Read and write cho token để workflow tự gộp, hoặc tạo lại thay đổi trên dữ liệu mới.')
+            throw e
+        }
+    }
+    toast(publish ? `Đang cập nhật PR #${number} – tự đăng khi kiểm tra xanh (khoảng 5 phút).` : `Đang cập nhật PR #${number} theo main và kiểm tra lại (khoảng 5 phút).`, 6000, 'ok')
+}
+
 async function closePr(number) {
     const pr = state.prs.find(p => p.number === number)
     if (!confirm(`Đóng PR #${number} mà không đăng? Thay đổi trong PR sẽ bị bỏ.`)) return
@@ -1416,7 +1567,7 @@ function refreshPrs(target) {
         if (!box) return
         box.innerHTML = prListHtml(prs)
         renderShellCount()
-        if (prs.some(p => p.status === 'pending')) refreshPrs.timer = setTimeout(() => refreshPrs(target), 20000)
+        if (prs.some(p => p.status === 'pending' || p.updating)) refreshPrs.timer = setTimeout(() => refreshPrs(target), 20000)
     }).catch(err => {
         const box = document.getElementById(target)
         if (box) box.innerHTML = `<p class="errors">Không tải được Pull Request: ${esc(err.message)}</p>`
@@ -1563,6 +1714,8 @@ function renderLogin(error) {
                 ${error ? `<div class="errors">${esc(error)}</div>` : ''}
                 <form id="login-form">
                     <div class="field"><label for="token">Token</label><input type="password" id="token" autocomplete="off" required placeholder="github_pat_…"></div>
+                    <div class="field"><label for="token-exp">Ngày hết hạn token (tùy chọn)</label><input type="date" id="token-exp" value="${esc(tokenExp())}">
+                        <p class="field__help">Trang quản trị nhắc trước 14 ngày để kịp tạo token mới.</p></div>
                     <label class="checks"><input type="checkbox" id="remember"> Ghi nhớ trên máy này (chỉ máy riêng của bạn)</label>
                     <button class="btn btn--block" type="submit">Đăng nhập</button>
                 </form>
@@ -1571,7 +1724,7 @@ function renderLogin(error) {
                     <ol class="steps">
                         <li>Mở <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Fine-grained tokens → Generate new token</a>.</li>
                         <li><strong>Repository access</strong>: Only select repositories → <code>travel</code>. Đặt thời hạn (vd. 90 ngày).</li>
-                        <li><strong>Permissions → Repository</strong>: <code>Contents</code>, <code>Pull requests</code> và <code>Issues</code> = Read and write (Issues để duyệt ảnh người đọc); <code>Commit statuses</code> = Read-only để xem PR đã kiểm tra xong chưa.</li>
+                        <li><strong>Permissions → Repository</strong>: <code>Contents</code>, <code>Pull requests</code> và <code>Issues</code> = Read and write (Issues để duyệt ảnh người đọc); <code>Actions</code> = Read and write (nút <em>Cập nhật nhánh</em>); <code>Commit statuses</code> = Read-only để xem PR đã kiểm tra xong chưa.</li>
                         <li>Bấm Generate, chép token (bắt đầu bằng <code>github_pat_</code>) và dán vào ô trên. Không gửi token cho ai khác.</li>
                     </ol>
                 </details>
@@ -1583,7 +1736,9 @@ function renderLogin(error) {
         btn.disabled = true
         btn.textContent = 'Đang kiểm tra…'
         try {
+            const exp = $('#token-exp').value
             await login($('#token').value.trim(), $('#remember').checked)
+            if (exp) setTokenExp(exp)
             await loadData()
             render()
         } catch (err) {
@@ -1605,9 +1760,11 @@ function renderDashboard() {
     $('#app').innerHTML = `
         <div class="page-head">
             <div><h1>Xin chào${state.user ? `, ${esc(state.user)}` : ''}</h1>
-            <p class="muted">Dữ liệu nhánh main · commit <code>${esc(state.baseSha.slice(0, 7))}</code> · tải ${ago(state.loadedAt)}</p></div>
+            <p class="muted">Dữ liệu nhánh main · commit <code>${esc(state.baseSha.slice(0, 7))}</code> · tải ${ago(state.loadedAt)}</p>
+            ${tokenDaysLeft() === null || tokenDaysLeft() > 14 ? tokenNotice() : ''}</div>
             <div class="page-head__actions"><a class="btn" href="#/new">＋ Thêm điểm đến</a><a class="btn btn--ghost" href="#/site">Giao diện & mùa</a></div>
         </div>
+        ${tokenDaysLeft() !== null && tokenDaysLeft() <= 14 ? tokenNotice() : ''}
         <div class="stats">
             <a class="stat" href="#/dest"><span class="stat__num">${dests.length}</span><span class="stat__label">Điểm đến</span></a>
             <a class="stat" href="#/dest?f=lang"><span class="stat__num">${sum('missing')}</span><span class="stat__label">Điểm đến thiếu bản dịch ko / zh / ja</span></a>
@@ -1707,7 +1864,7 @@ function renderPrsPage() {
     renderShell([['Tổng quan', '#/'], ['Pull Request']], '<button type="button" class="btn btn--ghost btn--sm" id="reload-prs">↻ Làm mới</button>')
     $('#app').innerHTML = `
         <div class="page-head"><div><h1>Pull Request từ trang quản trị</h1>
-            <p class="muted">Mỗi lần lưu tạo một PR. GitHub tự build lại trang và chạy toàn bộ test (khoảng 5 phút); khi <strong>Sẵn sàng đăng</strong>, bấm <strong>Đăng lên site</strong> – Cloudflare cập nhật sau vài phút.</p></div></div>
+            <p class="muted">Mỗi lần lưu tạo một PR. GitHub tự build lại trang và chạy toàn bộ test (khoảng 5 phút); khi <strong>Sẵn sàng đăng</strong>, bấm <strong>Đăng lên site</strong> (PR chọn <strong>Tự đăng</strong> thì tự lên site) – Cloudflare cập nhật sau vài phút. PR <strong>Cũ hơn main</strong>: bấm <strong>Cập nhật nhánh</strong> để gộp dữ liệu mới của site và kiểm tra lại.</p></div></div>
         <section class="card"><div id="all-prs">${prListHtml(state.prs)}</div></section>
         <p class="muted small">PR do người khác mở hoặc không bắt đầu bằng <code>admin/</code> xem ở <a href="https://github.com/${REPO}/pulls" target="_blank" rel="noopener">GitHub</a>.</p>`
     refreshPrs('all-prs')
@@ -1847,18 +2004,23 @@ function renderDone(pr) {
             <ol class="timeline">
                 <li class="is-done">Đã lưu thay đổi vào nhánh riêng và mở PR</li>
                 <li class="is-active">GitHub build lại trang và chạy toàn bộ test (khoảng 5 phút)</li>
-                <li>Bấm <strong>Đăng lên site</strong> khi PR sẵn sàng – Cloudflare cập nhật sau vài phút</li>
+                <li>${pr.auto ? 'Kiểm tra xanh → <strong>tự đăng lên site</strong>' : 'Bấm <strong>Đăng lên site</strong> khi PR sẵn sàng'} – Cloudflare cập nhật sau vài phút</li>
             </ol>
             <div id="done-pr">${prListHtml(null)}</div>
             <p><a href="#/">← Về tổng quan</a> · <a href="${esc(pr.html_url)}" target="_blank" rel="noopener">Mở PR trên GitHub ↗</a></p>
         </div>`
-    const poll = () => loadPrs().then(prs => {
+    const poll = () => loadPrs().then(async prs => {
         const box = document.getElementById('done-pr')
         if (!box) return
         const mine = prs.filter(p => p.number === pr.number)
-        box.innerHTML = prListHtml(mine, 'PR này đã được đăng hoặc đóng.')
+        /* Không còn mở: tự đăng xong (merged) hoặc đã đóng */
+        const gone = !mine.length && await gh(`/repos/${REPO}/pulls/${pr.number}`).catch(() => null)
+        box.innerHTML = gone && gone.merged_at
+            ? `<p class="notice notice--ok">✓ Đã kiểm tra xanh và đăng lên site ${ago(gone.merged_at)} – Cloudflare cập nhật sau vài phút. <a href="${SITE_URL}" target="_blank" rel="noopener">Xem site ↗</a></p>`
+            : prListHtml(mine, 'PR này đã được đóng.')
         renderShellCount()
-        if (mine[0] && mine[0].status === 'pending') setTimeout(poll, 20000)
+        if (gone && gone.merged_at) state.baseSha = null // main đã đổi – lần mở sau tải lại dữ liệu
+        if (mine[0] && (mine[0].status === 'pending' || (pr.auto && mine[0].status === 'success'))) setTimeout(poll, 20000)
     }).catch(() => {})
     poll()
 }
@@ -1949,6 +2111,7 @@ function openReview() {
             <summary><code>${esc(x.f)}</code><span><span class="text-ok">+${x.added}</span> <span class="text-bad">−${x.removed}</span></span></summary>
             <pre>${x.lines.slice(0, MAX).map(([t, l]) => `<span class="diff__l diff__l--${t === '+' ? 'add' : t === '-' ? 'del' : t === '…' ? 'gap' : 'ctx'}">${t === '…' ? `⋯ ${esc(l)}` : `${t} ${esc(l)}`}</span>`).join('')}${x.lines.length > MAX ? `<span class="diff__l diff__l--gap">⋯ còn ${x.lines.length - MAX} dòng – xem đầy đủ trên GitHub sau khi tạo PR</span>` : ''}</pre></details>`).join('')}</div>
         <div class="field"><label for="save-note">Ghi chú cho người duyệt (tùy chọn)</label><textarea id="save-note" rows="2" placeholder="vd. Cập nhật giá vé theo bảng giá mới tháng 10"></textarea></div>
+        <label class="checks auto-publish"><input type="checkbox" id="save-auto"${autoPublishPref() ? ' checked' : ''}> <span><strong>Tự đăng lên site khi kiểm tra xong</strong><br><span class="muted small">Build và test xanh → tự gộp vào main, không cần quay lại bấm Đăng. Lỗi thì PR giữ nguyên và hiện lý do.</span></span></label>
         <div class="modal__foot"><button type="button" class="btn btn--ghost" data-modal-close>Quay lại sửa</button><button type="button" class="btn" id="confirm-save">Tạo Pull Request</button></div>`)
 }
 
@@ -1959,9 +2122,12 @@ async function confirmSave(btn) {
     btn.innerHTML = '<span class="spin"></span> Đang tạo Pull Request…'
     try {
         const note = $('#save-note').value.trim()
+        const auto = $('#save-auto').checked
+        try { localStorage.setItem(AUTO_KEY, auto ? '1' : '0') } catch { /* bỏ qua */ }
         const pr = mode
-            ? await createPullRequest(mode.files(working), mode.pr(working), note)
-            : await saveAsPullRequest(working, note)
+            ? await createPullRequest(mode.files(working), mode.pr(working), note, auto)
+            : await saveAsPullRequest(working, note, auto)
+        pr.auto = auto
         clearDraft()
         closeModal()
         Object.assign(state, { dirty: false, bundle: null, mode: null, id: null, showErrors: false, draft: null, baseSha: null, prs: null })
@@ -2113,6 +2279,73 @@ function openPreview() {
         <div class="preview-frame" id="preview-frame"><iframe src="${url}" title="Xem trước trang điểm đến"></iframe></div>`, 'wide')
 }
 
+/*---------- Xem trước trang chủ với giao diện & mùa đang sửa (themeScript / homeSeasonScript trong tools/build.js đọc ?preview=site) ----------*/
+const PREVIEW_SITE_KEY = 'vt-admin-preview-site'
+const sloganHtml = text => esc(String(text || '').trim()).replace(/\*([^*]+)\*/g, '<b>$1</b>').replace(/\s*\n\s*/g, ' <br> ')
+const heroImg = (files, alt) => {
+    const file = files[0]
+    return { wiki: files.join('|'), src: LOCAL[file] ? LOCAL[file].lg : `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1920`, srcset: '', sizes: '100vw', alt }
+}
+
+/* data/site.json (bản nháp) → dữ liệu xem trước tiếng Việt, cùng dạng với script build ghi vào trang */
+function previewSiteData(site) {
+    const vi = map => (map && map.vi) || ''
+    const H = {}
+    site.seasons.forEach(sea => {
+        const hero = sea.hero || {}
+        const o = {}
+        if (hero.subtitle) o.sub = esc(vi(hero.subtitle))
+        if (hero.title) o.title = sloganHtml(vi(hero.title))
+        if (hero.image) o.img = heroImg(hero.image, vi(hero.alt || site.hero.alt))
+        if (sea.banner) {
+            const link = sea.banner.link || ''
+            o.promo = { text: vi(sea.banner.text), href: link, ext: link.startsWith('https://') }
+            if (sea.banner.countdown) o.promo.cd = { date: sea.banner.countdown.date, label: vi(sea.banner.countdown.label) }
+        }
+        if (sea.decor) o.decor = sea.decor
+        if (sea.featured) Object.assign(o, { featured: sea.featured, ft: sloganHtml(vi(sea.featuredTitle)) })
+        H[sea.id] = o
+    })
+    return {
+        s: site.seasons.map(sea => ({ i: sea.id, f: sea.from, t: sea.to, ...(sea.enabled ? {} : { x: 1 }), ...(sea.theme ? { h: sea.theme.hue, a: sea.theme.accentHue } : {}) })),
+        d: { h: site.theme.hue, a: site.theme.accentHue },
+        home: { sub: esc(vi(site.hero.subtitle)), title: sloganHtml(vi(site.hero.title)), img: site.hero.image.length ? heroImg(site.hero.image, vi(site.hero.alt)) : null, ft: sloganHtml(vi(site.featuredTitle)), featured: site.featured },
+        H,
+    }
+}
+
+function openSitePreview() {
+    const site = workingCopy()
+    try {
+        localStorage.setItem(PREVIEW_SITE_KEY, JSON.stringify(previewSiteData(site)))
+    } catch {
+        toast('Trình duyệt chặn lưu dữ liệu tạm – không xem trước được.', 5000, 'error')
+        return
+    }
+    const today = new Date().toISOString().slice(0, 10)
+    const active = site.seasons.find(sea => sea.enabled && seasonActive(sea, today))
+    const url = season => `../index.html?preview=site${season ? `&season=${encodeURIComponent(season)}` : ''}`
+    openModal(`
+        <div class="modal__head"><h2 id="modal-title">Xem trước trang chủ</h2>
+            <div class="preview-tools">
+                <select id="preview-season" aria-label="Mùa xem trước">
+                    <option value="">Hôm nay (${active ? esc(active.name) : 'giao diện mặc định'})</option>
+                    <option value="none">Giao diện mặc định (không mùa)</option>
+                    ${site.seasons.map(sea => `<option value="${esc(sea.id)}">Mùa: ${esc(sea.name)}${sea.enabled ? '' : ' (đang tắt)'}</option>`).join('')}
+                </select>
+                <div class="seg" role="group" aria-label="Kích thước"><button type="button" data-device="desktop" aria-pressed="true">Máy tính</button><button type="button" data-device="phone" aria-pressed="false">Điện thoại</button></div>
+                <a class="btn btn--ghost btn--sm" id="preview-open" href="${url('')}" target="_blank" rel="noopener">Mở tab mới ↗</a>
+                <button type="button" class="icon-btn" data-modal-close aria-label="Đóng">✕</button>
+            </div>
+        </div>
+        <p class="muted small">Trang chủ tiếng Việt dựng từ bản đang sửa: màu, slogan, ảnh bìa, thông báo, đếm ngược và điểm đến nổi bật. Chọn một mùa để xem trước mùa đó dù chưa tới ngày. Ảnh mới hiện từ Wikimedia Commons cho tới khi được tải về site.</p>
+        <div class="preview-frame" id="preview-frame"><iframe src="${url('')}" title="Xem trước trang chủ"></iframe></div>`, 'wide')
+    $('#preview-season').addEventListener('change', e => {
+        $('#preview-frame iframe').src = url(e.target.value)
+        $('#preview-open').href = url(e.target.value)
+    })
+}
+
 /*---------- Điều hướng ----------*/
 function openEditor(mode, id, isNew) {
     Object.assign(state, { mode, id, isNew, dirty: false, errors: [], showErrors: false, open: new Map(), draftSavedAt: null })
@@ -2129,7 +2362,7 @@ function render() {
         renderShell([['Đang tải…']])
         $('#app').innerHTML = '<div class="loading"><span class="spin"></span> Đang tải dữ liệu từ GitHub…</div>'
         return loadData().then(render).catch(err => {
-            if (err.status === 401) return logout()
+            if (err.status === 401) return logout('Token đã hết hạn hoặc bị thu hồi – tạo token mới trên GitHub rồi đăng nhập lại.')
             $('#app').innerHTML = `<div class="errors">Không tải được dữ liệu: ${esc(err.message)}</div>`
         })
     }
@@ -2178,7 +2411,7 @@ document.addEventListener('input', e => {
         if (box) {
             const t = get(b, path.slice(0, -1))
             box.querySelector(`[data-out="${path[path.length - 1]}"]`).textContent = el.value
-            box.querySelector('.theme-preview').innerHTML = themePreview(t)
+            box.querySelector('.theme-preview').innerHTML = themePreview(t, path.slice(0, -1))
         }
     } else if (kind === 'bool') {
         set(b, path, el.checked)
@@ -2247,6 +2480,16 @@ document.addEventListener('click', async e => {
         render()
         return
     }
+    if (t.closest('[data-token-exp]')) {
+        const v = prompt('Ngày hết hạn token (xem ở GitHub → Settings → Developer settings → Fine-grained tokens), dạng ngày/tháng/năm. Để trống = xóa.', tokenExp().split('-').reverse().join('/'))
+        if (v === null) return
+        const m = v.trim().match(/^(\d{1,2})[/.-](\d{1,2})[/.-](20\d{2})$/) || v.trim().match(/^(20\d{2})-(\d{2})-(\d{2})$/)
+        if (v.trim() && !m) { toast('Ngày chưa đúng dạng ngày/tháng/năm, vd. 31/12/2026.', 5000, 'error'); return }
+        const day = !m ? '' : m[1].length === 4 ? `${m[1]}-${m[2]}-${m[3]}` : `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`
+        setTokenExp(day)
+        render()
+        return
+    }
     if (t.closest('#reload-prs')) { state.prs = null; renderPrsPage(); return }
     if (t.closest('#reload-photos')) { renderPhotosPage(); return }
     const photoBtn = t.closest('[data-photo-approve], [data-photo-reject]')
@@ -2260,6 +2503,20 @@ document.addEventListener('click', async e => {
             photoBtn.disabled = false
             toast(err.status === 403 ? 'Token cần thêm quyền Issues: Read and write.' : err.message, 6000, 'error')
         }
+        return
+    }
+    const upd = t.closest('[data-pr-update]')
+    if (upd) {
+        upd.disabled = true
+        const number = Number(upd.dataset.prUpdate)
+        try {
+            await updatePr(number, !!upd.dataset.publish)
+            state.updating[number] = Date.now()
+        } catch (err) {
+            toast(err.message, 9000, 'error')
+        }
+        upd.disabled = false
+        render()
         return
     }
     const merge = t.closest('[data-pr-merge]')
@@ -2277,7 +2534,7 @@ document.addEventListener('click', async e => {
         render()
         return
     }
-    if (t.closest('[data-preview]') && state.bundle) { openPreview(); return }
+    if (t.closest('[data-preview]') && state.bundle) { state.mode === 'site' ? openSitePreview() : openPreview(); return }
     const device = t.closest('[data-device]')
     if (device) {
         $('#preview-frame').classList.toggle('preview-frame--phone', device.dataset.device === 'phone')
