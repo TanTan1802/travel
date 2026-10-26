@@ -66,7 +66,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
-    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq']
+    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -399,12 +399,14 @@ const DEST_DATA_DIR = 'assets/js/data/dest'
 const DEST_DATA_SCRIPTS = /(\s*)<script defer src="assets\/js\/data\/places\.js"><\/script>\s*<script defer src="assets\/js\/data\/sights\.js"><\/script>/
 const ITINERARIES_SCRIPT = /\s*<script defer src="assets\/js\/data\/itineraries\.js"><\/script>/
 const PHOTOS_SCRIPT = /\s*<script defer src="assets\/js\/data\/community-photos\.js"><\/script>/
+/* Lễ hội & sự kiện: trang điểm đến chỉ cần sự kiện của chính nó + nghỉ lễ toàn quốc → đưa vào data/dest/<id>.js */
+const EVENTS_SCRIPT = /\s*<script defer src="assets\/js\/data\/events\.js"><\/script>/
 /* Xem trước từ trang quản trị chỉ dùng cho destination.html?id=…&preview=1 – không đưa vào trang tĩnh */
 const PREVIEW_SCRIPT = /\s*<script defer src="assets\/js\/preview\.js"><\/script>/
 
 function destDataFile(d, site, enSite) {
     const pick = (obj, key) => JSON.stringify(obj && obj[key] ? { [key]: obj[key] } : {})
-    return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js + itineraries.js + en.js – không sửa tay. */\n' +
+    return '/* Sinh tự động bởi tools/build.js từ places.js + sights.js + itineraries.js + en.js + events.js – không sửa tay. */\n' +
         `const STAY_TYPES = ${JSON.stringify(site.STAY_TYPES)}\n` +
         `const TRANSPORT = ${JSON.stringify(site.TRANSPORT)}\n` +
         `const PLACES = ${pick(site.PLACES, d.id)}\n` +
@@ -412,7 +414,9 @@ function destDataFile(d, site, enSite) {
         `const TOUR_LENGTHS = ${JSON.stringify(site.TOUR_LENGTHS)}\n` +
         `const ITINERARIES = ${pick(site.ITINERARIES, d.id)}\n` +
         `const ITINERARIES_EN = ${pick(enSite.TRANSLATION_EN.itineraries, d.id)}\n` +
-        `const COMMUNITY_PHOTOS = ${JSON.stringify((site.COMMUNITY_PHOTOS || []).filter(p => p.dest === d.id))}\n`
+        `const COMMUNITY_PHOTOS = ${JSON.stringify((site.COMMUNITY_PHOTOS || []).filter(p => p.dest === d.id))}\n` +
+        `const EVENT_TYPES = ${JSON.stringify(site.EVENT_TYPES)}\n` +
+        `const EVENTS = ${JSON.stringify(site.EVENTS.filter(e => e.where === 'all' || e.where.includes(d.id)))}\n`
 }
 
 /*
@@ -428,10 +432,12 @@ function buildDestinationPage(template, lang, d, site) {
     const rel = destPath(lang, d.id)
     if (!DEST_DATA_SCRIPTS.test(template)) throw new Error('destination.html thiếu thẻ script places.js + sights.js')
     if (!ITINERARIES_SCRIPT.test(template)) throw new Error('destination.html thiếu thẻ script itineraries.js')
+    if (!EVENTS_SCRIPT.test(template)) throw new Error('destination.html thiếu thẻ script events.js')
     const ownScripts = [`${DEST_DATA_DIR}/${d.id}.js`, ...(localItinerary(site, d.id) ? [localDataPath(lang, d.id)] : [])]
     template = template.replace(DEST_DATA_SCRIPTS, ownScripts.map(src => `$1<script defer src="${src}"></script>`).join(''))
         .replace(ITINERARIES_SCRIPT, '')
         .replace(PHOTOS_SCRIPT, '')
+        .replace(EVENTS_SCRIPT, '')
         .replace(PREVIEW_SCRIPT, '')
     let { html, siteRoot } = prepareTemplate(template, lang, rel, site)
 
