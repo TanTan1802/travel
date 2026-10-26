@@ -4488,6 +4488,246 @@
         }
       ]
     ],
+    "phu-quy": [
+      [
+        {
+          "at": "m",
+          "name": [
+            "Tàu cao tốc Phan Thiết – Phú Quý",
+            "Phan Thiet – Phu Quy fast boat"
+          ],
+          "price": [
+            350000,
+            500000
+          ],
+          "note": [
+            "Đặt vé trước dịp lễ, hè; tàu nghỉ khi biển động",
+            "Book ahead for holidays and summer; boats stop in rough seas"
+          ],
+          "hours": "06:30–13:00",
+          "address": "Cảng Phan Thiết",
+          "cafe": {
+            "name": "Quán nước cảng Phan Thiết",
+            "drink": [
+              "Cà phê, nước mía chờ tàu",
+              "Coffee and sugarcane juice while waiting"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Bãi Nhỏ",
+            "Bai Nho beach"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Ngũ Phụng, Phú Quý",
+          "cafe": {
+            "name": "Quán dừa bãi Nhỏ",
+            "drink": [
+              "Nước dừa, nước ngọt",
+              "Coconut water and soft drinks"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chùa Linh Sơn",
+            "Linh Son pagoda"
+          ],
+          "price": 0,
+          "note": [
+            "Mặc lịch sự; đường lên dốc – đi sớm tránh nắng",
+            "Dress modestly; a steep road up – go early to beat the sun"
+          ],
+          "hours": "06:00–18:00",
+          "address": "Núi Cấm, Long Hải, Phú Quý",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Gành Hang",
+            "Ganh Hang rocks"
+          ],
+          "price": 0,
+          "note": [
+            "Đá trơn khi có sóng – mang giày bám",
+            "Rocks get slippery with waves – wear grippy shoes"
+          ],
+          "hours": "all",
+          "address": "Long Hải, Phú Quý",
+          "cafe": {
+            "name": "Cà phê ngắm biển Gành Hang",
+            "drink": [
+              "Cà phê, nước dừa",
+              "Coffee and coconut water"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Đi thuyền lặn ngắm san hô Hòn Tranh",
+            "Boat and snorkelling trip to Hon Tranh"
+          ],
+          "price": [
+            150000,
+            300000
+          ],
+          "note": [
+            "Giá mỗi người, thường gồm kính lặn, áo phao",
+            "Per person, usually with mask and life jacket"
+          ],
+          "hours": "07:00–16:00",
+          "address": "Bến thuyền Tam Thanh",
+          "cafe": {
+            "name": "Quán nước đảo Hòn Tranh",
+            "drink": [
+              "Nước dừa, trà đá",
+              "Coconut water and iced tea"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Lăng Vạn An Thạnh",
+            "Van An Thanh whale temple"
+          ],
+          "price": 0,
+          "note": [
+            "Lăng thờ cá Ông của ngư dân – giữ yên lặng khi vào",
+            "Fishermen's whale temple – keep quiet inside"
+          ],
+          "hours": "07:00–17:00",
+          "address": "Tam Thanh, Phú Quý",
+          "cafe": {
+            "name": "Quán cà phê làng chài Tam Thanh",
+            "drink": [
+              "Cà phê sữa đá, trà đá",
+              "Iced milk coffee and iced tea"
+            ],
+            "price": [
+              15000,
+              30000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "m",
+          "name": [
+            "Di tích mộ Thầy Nại",
+            "Thay Nai's tomb"
+          ],
+          "price": 0,
+          "hours": "07:00–17:00",
+          "address": "Long Hải, Phú Quý",
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Cánh đồng điện gió Phú Quý",
+            "Phu Quy wind farm"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Đường ven biển, Phú Quý",
+          "cafe": {
+            "name": "Quán dừa ven đường điện gió",
+            "drink": [
+              "Nước dừa, nước mía",
+              "Coconut water and sugarcane juice"
+            ],
+            "price": [
+              15000,
+              35000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ],
+      [
+        {
+          "at": "m",
+          "name": [
+            "Chợ Phú Quý",
+            "Phu Quy market"
+          ],
+          "price": 0,
+          "note": [
+            "Mua khô mực, khô cá làm quà – hỏi giá trước",
+            "Buy dried squid and fish – ask prices first"
+          ],
+          "hours": "05:00–10:00",
+          "address": "Tam Thanh, Phú Quý",
+          "cafe": {
+            "name": "Quán cà phê võng chợ Phú Quý",
+            "drink": [
+              "Cà phê sữa đá, nước mía",
+              "Iced milk coffee and sugarcane juice"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        },
+        {
+          "at": "a",
+          "name": [
+            "Biển Đồi Dương (Phan Thiết)",
+            "Doi Duong beach (Phan Thiet)"
+          ],
+          "price": 0,
+          "hours": "all",
+          "address": "Phường Phú Thủy, Phan Thiết",
+          "cafe": {
+            "name": "Cà phê ven biển Đồi Dương",
+            "drink": [
+              "Cà phê, nước dừa ngắm biển",
+              "Coffee and coconut water by the sea"
+            ],
+            "price": [
+              20000,
+              45000
+            ]
+          },
+          "updated": "2026-10"
+        }
+      ]
+    ],
     "quy-nhon": [
       [
         {

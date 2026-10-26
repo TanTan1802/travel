@@ -173,6 +173,20 @@
           230000,
           330000
         ]
+      },
+      {
+        "dest": "phu-quy",
+        "name": [
+          "cảng Phan Thiết",
+          "Phan Thiet port"
+        ],
+        "lat": 10.928,
+        "lng": 108.104,
+        "hours": 2.75,
+        "price": [
+          350000,
+          500000
+        ]
       }
     ]
   },
@@ -3212,6 +3226,222 @@
           "note": [
             "Resort mới, yên tĩnh.",
             "Newer, quieter resorts."
+          ]
+        }
+      ]
+    },
+    "phu-quy": {
+      "city": "Phú Quý",
+      "airport": "SGN",
+      "rail": "Phan Thiết",
+      "getThere": [
+        "Tàu cao tốc từ cảng Phan Thiết khoảng 2,5 – 3 giờ (thường 1 – 2 chuyến/ngày, nghỉ khi biển động). Tới Phan Thiết: tàu hỏa từ Sài Gòn khoảng 4 giờ, hoặc xe khách theo cao tốc khoảng 3 giờ.",
+        "Fast boat from Phan Thiet port, about 2.5 – 3 h (usually 1 – 2 sailings a day, cancelled in rough seas). To Phan Thiet: train from Saigon in about 4 h, or a bus on the expressway in about 3 h."
+      ],
+      "eats": [
+        {
+          "name": "Quán hải sản khu cảng Phú Quý",
+          "dish": [
+            "Ghẹ, cá mú, mực chọn tươi",
+            "Crab, grouper and squid picked fresh"
+          ],
+          "address": "Khu cảng Triều Dương, Phú Quý",
+          "price": [
+            200000,
+            500000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán gỏi cá trích Tam Thanh",
+          "dish": [
+            "Gỏi cá trích, cá nướng",
+            "Raw herring salad and grilled fish"
+          ],
+          "address": "Tam Thanh, Phú Quý",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán nhum nướng Ngũ Phụng",
+          "dish": [
+            "Nhum nướng mỡ hành, sò điệp",
+            "Grilled sea urchin and scallops with spring-onion oil"
+          ],
+          "address": "Ngũ Phụng, Phú Quý",
+          "price": [
+            100000,
+            300000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ốc đêm Phú Quý",
+          "dish": [
+            "Ốc vú nàng, ốc nhảy",
+            "Limpets and conch"
+          ],
+          "address": "Tam Thanh, Phú Quý",
+          "price": [
+            80000,
+            200000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán bánh canh chả cá chợ Phú Quý",
+          "dish": [
+            "Bánh canh chả cá, bún cá",
+            "Fish-cake noodle soup"
+          ],
+          "address": "Chợ Phú Quý",
+          "price": [
+            25000,
+            50000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán cơm gia đình Ngũ Phụng",
+          "dish": [
+            "Cơm cá kho, canh chua",
+            "Braised fish rice and sour soup"
+          ],
+          "address": "Ngũ Phụng, Phú Quý",
+          "price": [
+            50000,
+            100000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán lẩu cá Long Hải",
+          "dish": [
+            "Lẩu cá mú, cá bò hấp",
+            "Grouper hotpot and steamed filefish"
+          ],
+          "address": "Long Hải, Phú Quý",
+          "price": [
+            200000,
+            450000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán ăn sáng cảng Phan Thiết",
+          "dish": [
+            "Bánh căn, bánh canh trước giờ tàu",
+            "Banh can and noodle soup before the boat"
+          ],
+          "address": "Cảng Phan Thiết",
+          "price": [
+            30000,
+            60000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "cafes": [
+        {
+          "name": "Cà phê ngắm biển Gành Hang",
+          "drink": [
+            "Cà phê, nước dừa ngắm hoàng hôn",
+            "Coffee and coconut water at sunset"
+          ],
+          "address": "Gành Hang, Long Hải",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán sinh tố chợ Phú Quý",
+          "drink": [
+            "Sinh tố, nước ép trái cây",
+            "Smoothies and fruit juice"
+          ],
+          "address": "Chợ Phú Quý",
+          "price": [
+            20000,
+            45000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Cà phê sáng cảng Triều Dương",
+          "drink": [
+            "Cà phê phin, trà đá",
+            "Filter coffee and iced tea"
+          ],
+          "address": "Cảng Triều Dương",
+          "price": [
+            15000,
+            30000
+          ],
+          "updated": "2026-10"
+        },
+        {
+          "name": "Quán chè, nước mát Ngũ Phụng",
+          "drink": [
+            "Chè đậu, sâm bổ lượng, nước sâm",
+            "Sweet bean soup and herbal iced drinks"
+          ],
+          "address": "Ngũ Phụng, Phú Quý",
+          "price": [
+            15000,
+            35000
+          ],
+          "updated": "2026-10"
+        }
+      ],
+      "stays": [
+        {
+          "area": [
+            "Tam Thanh (gần cảng, chợ)",
+            "Tam Thanh (near the port and market)"
+          ],
+          "type": "homestay",
+          "price": [
+            300000,
+            700000
+          ],
+          "note": [
+            "Tiện tàu, chợ và quán ăn.",
+            "Handy for the boat, market and food."
+          ]
+        },
+        {
+          "area": [
+            "Ngũ Phụng – bãi Nhỏ",
+            "Ngu Phung – Bai Nho beach"
+          ],
+          "type": "homestay",
+          "price": [
+            400000,
+            900000
+          ],
+          "note": [
+            "Gần biển, yên tĩnh.",
+            "Close to the sea and quiet."
+          ]
+        },
+        {
+          "area": [
+            "Khách sạn trung tâm đảo",
+            "Hotels in the island centre"
+          ],
+          "type": "hotel",
+          "price": [
+            500000,
+            1200000
+          ],
+          "note": [
+            "Phòng có máy lạnh, đặt trước dịp hè.",
+            "Air-conditioned rooms – book ahead in summer."
           ]
         }
       ]

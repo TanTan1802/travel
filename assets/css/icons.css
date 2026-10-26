@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 147 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 149 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -17,6 +17,7 @@
 .ri-add-line:before { content: "\ea13"; }
 .ri-alarm-warning-line:before { content: "\ea1d"; }
 .ri-alert-line:before { content: "\ea21"; }
+.ri-anchor-line:before { content: "\ea30"; }
 .ri-ancient-gate-line:before { content: "\ea32"; }
 .ri-ancient-pavilion-line:before { content: "\ea34"; }
 .ri-apps-2-line:before { content: "\ea42"; }
@@ -30,6 +31,7 @@
 .ri-bank-card-line:before { content: "\ea92"; }
 .ri-bike-line:before { content: "\eabe"; }
 .ri-building-2-line:before { content: "\eb09"; }
+.ri-building-4-line:before { content: "\eb0d"; }
 .ri-building-line:before { content: "\eb0f"; }
 .ri-bus-2-line:before { content: "\eb11"; }
 .ri-calendar-2-line:before { content: "\eb21"; }

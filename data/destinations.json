@@ -12,6 +12,15 @@
     "thanh-pho": "Thành phố",
     "hang-dong": "Hang động"
   },
+  "beachTypes": {
+    "dao": "Đảo – đi tàu, máy bay",
+    "du-thuyen": "Vịnh & du thuyền",
+    "gan-thanh-pho": "Biển trong thành phố",
+    "gia-dinh": "Biển êm, hợp gia đình",
+    "lan-bien": "Lặn ngắm san hô",
+    "the-thao": "Lướt ván, thể thao biển",
+    "hoang-so": "Hoang sơ, ít khách"
+  },
   "destinations": [
     {
       "id": "vinh-ha-long",
@@ -21,6 +30,10 @@
       "categories": [
         "bien",
         "di-san"
+      ],
+      "beach": [
+        "du-thuyen",
+        "gia-dinh"
       ],
       "rating": 4.9,
       "lat": 20.9101,
@@ -600,6 +613,11 @@
         "bien",
         "nui"
       ],
+      "beach": [
+        "dao",
+        "du-thuyen",
+        "gia-dinh"
+      ],
       "rating": 4.7,
       "lat": 20.727,
       "lng": 107.048,
@@ -985,6 +1003,11 @@
         "thanh-pho",
         "bien"
       ],
+      "beach": [
+        "gan-thanh-pho",
+        "gia-dinh",
+        "the-thao"
+      ],
       "rating": 4.8,
       "lat": 16.0544,
       "lng": 108.2022,
@@ -1188,6 +1211,12 @@
       "categories": [
         "bien",
         "thanh-pho"
+      ],
+      "beach": [
+        "gan-thanh-pho",
+        "lan-bien",
+        "du-thuyen",
+        "gia-dinh"
       ],
       "rating": 4.6,
       "lat": 12.2388,
@@ -1396,6 +1425,10 @@
       "categories": [
         "bien"
       ],
+      "beach": [
+        "the-thao",
+        "gia-dinh"
+      ],
       "rating": 4.5,
       "lat": 10.9333,
       "lng": 108.287,
@@ -1477,6 +1510,106 @@
       ]
     },
     {
+      "id": "phu-quy",
+      "name": "Đảo Phú Quý",
+      "province": "Lâm Đồng (Bình Thuận cũ)",
+      "region": "trung",
+      "categories": [
+        "bien"
+      ],
+      "beach": [
+        "dao",
+        "hoang-so",
+        "lan-bien"
+      ],
+      "rating": 4.5,
+      "lat": 10.52,
+      "lng": 108.94,
+      "bestMonths": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "tagline": "Đảo tiền tiêu xanh ngắt giữa biển Đông",
+      "description": "Cách Phan Thiết khoảng 120 km về phía đông nam, đảo Phú Quý (Cù Lao Thu) có nước biển trong vắt, rạn san hô quanh Hòn Tranh, ghềnh đá Gành Hang và những trụ điện gió xoay giữa biển. Đảo còn giữ nếp sống làng chài bình yên với lăng Vạn An Thạnh thờ cá Ông, chùa Linh Sơn trên núi Cấm nhìn ra biển và hải sản tươi giá mềm – hợp đi 3 – 4 ngày, chạy xe máy vòng đảo.",
+      "highlights": [
+        "Chùa Linh Sơn",
+        "Gành Hang",
+        "Hòn Tranh",
+        "Lăng Vạn An Thạnh"
+      ],
+      "bestTime": "Tháng 3 – 7",
+      "duration": "3 – 4 ngày",
+      "hero": "Chualinhsonphuquy.jpg",
+      "gallery": [
+        {
+          "file": "ISS047-E-2328 - View of Vietnam.jpg",
+          "caption": "Toàn cảnh đảo Phú Quý nhìn từ Trạm Vũ trụ Quốc tế"
+        },
+        {
+          "file": "Chualinhsonphuquy.jpg",
+          "caption": "Bờ biển và làng chài nhìn từ chùa Linh Sơn"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Gỏi cá trích",
+          "desc": "Cá trích tươi trộn dừa nạo, hành tây, rau thơm, cuốn bánh tráng chấm nước mắm đậu phộng.",
+          "price": "120.000đ",
+          "file": "Gỏi Cá Trích.jpg"
+        },
+        {
+          "name": "Ốc vú nàng",
+          "desc": "Ốc bám trên ghềnh đá quanh đảo, luộc sả hoặc nướng mỡ hành – món \"phải thử\" ở Phú Quý.",
+          "price": "150.000đ/đĩa",
+          "file": "Cooked snails.JPG",
+          "illustrative": "Ốc nướng"
+        },
+        {
+          "name": "Nhum nướng mỡ hành",
+          "desc": "Nhum (cầu gai) bắt quanh rạn san hô, nướng mỡ hành thơm béo.",
+          "price": "20.000đ/con",
+          "file": "Hàu sữa nướng phô mai, Bình Tân, năm 2020 (17).jpg",
+          "illustrative": "Hải sản nướng"
+        },
+        {
+          "name": "Mực một nắng nướng",
+          "desc": "Mực câu đêm phơi một nắng, nướng than chấm tương ớt.",
+          "price": "450.000đ/kg",
+          "file": "Grilled squid 001.jpg",
+          "illustrative": "Mực nướng"
+        }
+      ],
+      "activities": [
+        {
+          "icon": "ri-sailboat-line",
+          "title": "Lặn ngắm san hô Hòn Tranh",
+          "desc": "Đi thuyền ra đảo nhỏ Hòn Tranh, lặn ngắm san hô và tắm biển nước trong."
+        },
+        {
+          "icon": "ri-ancient-pavilion-line",
+          "title": "Chùa Linh Sơn trên núi Cấm",
+          "desc": "Ngôi chùa cổ nhất đảo, tượng Quan Âm hướng ra biển và toàn cảnh làng chài."
+        },
+        {
+          "icon": "ri-sun-line",
+          "title": "Ngắm hoàng hôn Gành Hang",
+          "desc": "Ghềnh đá nhiều tầng, hang đá sát mép nước – đẹp nhất lúc chiều muộn."
+        },
+        {
+          "icon": "ri-motorbike-line",
+          "title": "Chạy xe vòng đảo",
+          "desc": "Khoảng 30 km đường ven biển qua cánh đồng điện gió, làng chài và các lăng thờ cá Ông."
+        }
+      ],
+      "tips": [
+        "Tàu cao tốc Phan Thiết – Phú Quý mất khoảng 2,5 – 3 giờ và thường nghỉ khi biển động (gió mùa đông bắc tháng 10 – 2) – đặt vé trước, mang thuốc chống say sóng và dự phòng thêm 1 ngày.",
+        "Thuê xe máy để đi lại trên đảo; ATM ít – mang đủ tiền mặt, nhất là khi ra Hòn Tranh."
+      ]
+    },
+    {
       "id": "quy-nhon",
       "name": "Quy Nhơn",
       "province": "Gia Lai (Bình Định cũ)",
@@ -1484,6 +1617,11 @@
       "categories": [
         "bien",
         "thanh-pho"
+      ],
+      "beach": [
+        "gan-thanh-pho",
+        "gia-dinh",
+        "lan-bien"
       ],
       "rating": 4.6,
       "lat": 13.7765,
@@ -1584,6 +1722,9 @@
       "region": "trung",
       "categories": [
         "bien"
+      ],
+      "beach": [
+        "hoang-so"
       ],
       "rating": 4.6,
       "lat": 13.3552,
@@ -1882,6 +2023,11 @@
       "categories": [
         "bien"
       ],
+      "beach": [
+        "dao",
+        "lan-bien",
+        "gia-dinh"
+      ],
       "rating": 4.8,
       "lat": 10.2899,
       "lng": 103.984,
@@ -1974,6 +2120,10 @@
       "categories": [
         "bien",
         "thanh-pho"
+      ],
+      "beach": [
+        "gan-thanh-pho",
+        "gia-dinh"
       ],
       "rating": 4.4,
       "lat": 10.346,
@@ -2164,6 +2314,11 @@
       "categories": [
         "bien",
         "di-san"
+      ],
+      "beach": [
+        "dao",
+        "lan-bien",
+        "hoang-so"
       ],
       "rating": 4.7,
       "lat": 8.682,
@@ -2450,6 +2605,11 @@
         "bien",
         "hang-dong"
       ],
+      "beach": [
+        "dao",
+        "lan-bien",
+        "hoang-so"
+      ],
       "rating": 4.6,
       "lat": 15.38,
       "lng": 109.12,
@@ -2654,6 +2814,10 @@
         "bien",
         "di-san"
       ],
+      "beach": [
+        "gia-dinh",
+        "du-thuyen"
+      ],
       "rating": 4.4,
       "lat": 10.383,
       "lng": 104.488,
@@ -2853,6 +3017,11 @@
         "bien",
         "di-san"
       ],
+      "beach": [
+        "the-thao",
+        "lan-bien",
+        "hoang-so"
+      ],
       "rating": 4.5,
       "lat": 11.5643,
       "lng": 108.9886,
@@ -2954,6 +3123,10 @@
       "region": "bac",
       "categories": [
         "bien"
+      ],
+      "beach": [
+        "dao",
+        "hoang-so"
       ],
       "rating": 4.6,
       "lat": 20.98,
@@ -3246,6 +3419,9 @@
       "categories": [
         "bien"
       ],
+      "beach": [
+        "hoang-so"
+      ],
       "rating": 4.4,
       "lat": 8.62,
       "lng": 104.72,
@@ -3527,6 +3703,11 @@
       "region": "nam",
       "categories": [
         "bien"
+      ],
+      "beach": [
+        "dao",
+        "hoang-so",
+        "lan-bien"
       ],
       "rating": 4.4,
       "lat": 9.68,

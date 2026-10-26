@@ -450,7 +450,17 @@
     "Lên kế hoạch từ {from}": "Plan a trip from {from}",
     "Đi {name} từ thành phố khác": "Getting to {name} from other cities",
     "{from} đi {to}": "{from} to {to}",
-    "Từ {from} đi các điểm gần {to}": "From {from} to places near {to}"
+    "Từ {from} đi các điểm gần {to}": "From {from} to places near {to}",
+    "Mọi bãi biển": "All beaches",
+    "Đảo – đi tàu, máy bay": "Islands – by boat or plane",
+    "Vịnh & du thuyền": "Bays & cruises",
+    "Biển trong thành phố": "City beaches",
+    "Biển êm, hợp gia đình": "Calm, family-friendly",
+    "Lặn ngắm san hô": "Snorkelling & coral",
+    "Lướt ván, thể thao biển": "Kitesurf & water sports",
+    "Hoang sơ, ít khách": "Unspoilt & quiet",
+    "Chọn biển theo sở thích": "Pick a beach by style",
+    "Lọc trên trang chủ": "Filter on the home page"
   },
   "html": {
     "Vùng miền": "Region",
@@ -564,7 +574,9 @@
     "km bờ biển": "km of coastline",
     "dân tộc anh em": "ethnic groups",
     "điểm đến trên Việt Travel": "destinations on Việt Travel",
-    "Lễ hội": "Festivals"
+    "Lễ hội": "Festivals",
+    "Kiểu biển": "Beach type",
+    "Lọc theo kiểu biển": "Filter by beach type"
   },
   "regions": {
     "bac": "Northern Vietnam",
@@ -1621,6 +1633,75 @@
       "tips": [
         "Visit the dunes at sunrise or sunset to avoid hot sand.",
         "Bring sunglasses and a face scarf when it is windy."
+      ]
+    },
+    "phu-quy": {
+      "name": "Phu Quy Island",
+      "province": "Lam Dong (formerly Binh Thuan)",
+      "tagline": "A turquoise outpost island in the East Sea",
+      "description": "About 120 km south-east of Phan Thiet, Phu Quy island (Cu Lao Thu) has crystal-clear water, coral reefs around Hon Tranh, the Ganh Hang rock shelves and wind turbines turning above the sea. Island life is still slow and peaceful, with the Van An Thanh whale temple, Linh Son pagoda on Cam mountain looking out to sea and fresh, inexpensive seafood – ideal for 3 – 4 days exploring by motorbike.",
+      "highlights": [
+        "Linh Son pagoda",
+        "Ganh Hang rocks",
+        "Hon Tranh islet",
+        "Van An Thanh whale temple"
+      ],
+      "bestTime": "March – July",
+      "duration": "3 – 4 days",
+      "gallery": [
+        {
+          "caption": "Phu Quy island seen from the International Space Station"
+        },
+        {
+          "caption": "The coast and fishing village from Linh Son pagoda"
+        }
+      ],
+      "foods": [
+        {
+          "name": "Raw herring salad",
+          "desc": "Fresh herring with grated coconut, onion and herbs, rolled in rice paper and dipped in peanut fish sauce.",
+          "price": "120,000 VND"
+        },
+        {
+          "name": "Limpets (oc vu nang)",
+          "desc": "Limpets prised from the rocks around the island, boiled with lemongrass or grilled with spring-onion oil – a Phu Quy must.",
+          "price": "150,000 VND a plate",
+          "illustrative": "Grilled snails"
+        },
+        {
+          "name": "Grilled sea urchin",
+          "desc": "Sea urchin from the reefs, grilled with spring-onion oil – rich and fragrant.",
+          "price": "20,000 VND each",
+          "illustrative": "Grilled seafood"
+        },
+        {
+          "name": "Grilled sun-dried squid",
+          "desc": "Night-caught squid dried for one day in the sun, grilled over charcoal with chilli sauce.",
+          "price": "450,000 VND/kg",
+          "illustrative": "Grilled squid"
+        }
+      ],
+      "activities": [
+        {
+          "title": "Snorkel at Hon Tranh",
+          "desc": "Take a boat to the little Hon Tranh islet to snorkel over coral and swim in clear water."
+        },
+        {
+          "title": "Linh Son pagoda on Cam mountain",
+          "desc": "The island's oldest pagoda, with a Guanyin statue facing the sea and views over the fishing village."
+        },
+        {
+          "title": "Sunset at Ganh Hang",
+          "desc": "Layered rock shelves and sea caves right at the water – best in the late afternoon."
+        },
+        {
+          "title": "Ride around the island",
+          "desc": "About 30 km of coastal road past the wind farm, fishing villages and whale temples."
+        }
+      ],
+      "tips": [
+        "The Phan Thiet – Phu Quy fast boat takes about 2.5 – 3 hours and often stops in rough seas (north-east monsoon, October – February) – book ahead, bring seasickness tablets and keep a spare day.",
+        "Rent a motorbike to get around; ATMs are few – bring enough cash, especially for the Hon Tranh trip."
       ]
     },
     "quy-nhon": {
@@ -3737,6 +3818,40 @@
           "morning": "Cable car up Ta Cu mountain to Southeast Asia's largest reclining Buddha.",
           "afternoon": "Ke Ga beach and the Pink Dunes.",
           "evening": "Return to Saigon or stay another night at the resort."
+        }
+      ]
+    },
+    "phu-quy": {
+      "days": [
+        {
+          "title": "Phan Thiet – out to the island",
+          "morning": "About 2.5 – 3 hours by fast boat from Phan Thiet port to Phu Quy.",
+          "afternoon": "Check in, rent a motorbike and swim at Bai Nho beach.",
+          "evening": "Fresh seafood around the port."
+        },
+        {
+          "title": "Linh Son pagoda – Ganh Hang",
+          "morning": "Go up to Linh Son pagoda on Cam mountain for views over the sea and village.",
+          "afternoon": "Walk the Ganh Hang rocks, take photos and wait for sunset.",
+          "evening": "Raw herring salad and limpets."
+        },
+        {
+          "title": "Snorkelling at Hon Tranh",
+          "morning": "Boat out to Hon Tranh and snorkel over the coral.",
+          "afternoon": "Swim and relax in a hammock on the islet, then head back.",
+          "evening": "Grilled sea urchin and sun-dried squid."
+        },
+        {
+          "title": "Around the island – fishing villages",
+          "morning": "Visit the Van An Thanh whale temple and Thay Nai's tomb.",
+          "afternoon": "Ride around the island past the wind farm and stop for a swim.",
+          "evening": "Stroll the night market and buy dried squid as gifts."
+        },
+        {
+          "title": "Back to the mainland",
+          "morning": "Breakfast, then the boat back to Phan Thiet.",
+          "afternoon": "Walk Doi Duong beach, then continue to Mui Ne or Saigon.",
+          "evening": "End of the trip."
         }
       ]
     },
