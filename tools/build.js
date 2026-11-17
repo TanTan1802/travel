@@ -17,7 +17,7 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 const esbuild = require('esbuild')
-const { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts } = require('./lib')
+const { ROOT, SITE_URL, SITE_VERIFICATION, WEB_ANALYTICS_TOKEN, loadBrowserScripts } = require('./lib')
 const { DEFAULT_THEME, logoSvg, pickText, sloganHtml } = require('./theme')
 
 const PAGE_DIR = 'diem-den'
@@ -830,7 +830,17 @@ function bundleFile(files, site, pageFiles) {
 
 const isOwnFile = src => src.startsWith(`${DEST_DATA_DIR}/`)
 
+/* Cloudflare Web Analytics – chỉ tải beacon trên tên miền thật (xem WEB_ANALYTICS_TOKEN trong tools/lib.js) */
+function analyticsScript() {
+    if (!WEB_ANALYTICS_TOKEN) return ''
+    const host = new URL(SITE_URL).hostname
+    const beacon = JSON.stringify({ token: WEB_ANALYTICS_TOKEN })
+    return `<script>if(location.hostname===${JSON.stringify(host)}){var b=document.createElement('script');b.defer=true;` +
+        `b.src='https://static.cloudflareinsights.com/beacon.min.js';b.setAttribute('data-cf-beacon',${JSON.stringify(beacon)});document.head.appendChild(b)}</script>`
+}
+
 function bundleScripts(html, siteRoot, site) {
+    html = html.replace('</body>', `${analyticsScript()}\n</body>`)
     html = bundleStyles(applyTheme(html), siteRoot)
     const pageFiles = [...html.matchAll(/<script defer src="([^"]+)"><\/script>/g)].map(m => m[1].slice(siteRoot.length))
     /* Một chuỗi script liền nhau (cho phép chú thích HTML xen giữa – chú thích bị bỏ) */

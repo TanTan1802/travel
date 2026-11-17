@@ -212,6 +212,12 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - Trang điểm đến: nút **In / PDF** ở lịch trình chỉ in tour đang chọn (đủ các ngày + chi phí); nút **Chia sẻ** dùng bảng chia sẻ của điện thoại hoặc sao chép liên kết `#itinerary`. In cả trang (Ctrl+P) vẫn gọn.
 - Trang kế hoạch: bản in gồm trang tóm tắt tuyến/chi phí và lịch từng ngày; nút **Sao chép dạng chữ** tạo lịch trình để dán vào Zalo/Messenger.
 
+## Thống kê truy cập (Cloudflare Web Analytics)
+Không cookie, không cần banner xin phép. Token ở `WEB_ANALYTICS_TOKEN` (tools/lib.js); `npm run build` chèn vào mọi trang tĩnh
+một đoạn script chỉ tải beacon khi trang chạy trên tên miền của `SITE_URL` (không đếm bản GitHub Pages, máy local, test).
+Xem số liệu: Cloudflare → *Analytics & Logs → Web Analytics* → `viet-travel.congtan5918.workers.dev`.
+Đổi sang tên miền riêng: thêm site mới trong Web Analytics và thay token. Để trống token = tắt.
+
 ## Google Search Console / Bing
 Chưa bật. Khi cần: Search Console → *Thêm tài sản* → *Tiền tố URL* → phương thức **Thẻ HTML**, chép giá trị `content="…"`
 vào `SITE_VERIFICATION.google` trong `tools/lib.js` (Bing: `msvalidate.01` → `SITE_VERIFICATION.bing`), chạy `npm run build`

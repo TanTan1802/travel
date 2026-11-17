@@ -62,4 +62,11 @@ function slugify(text) {
  */
 const SITE_VERIFICATION = { google: 'vS11gL2tnYRiS5MSdh18Cg9JxExRDNbk_TXODQvFxd4', bing: '' }
 
-module.exports = { ROOT, SITE_URL, SITE_VERIFICATION, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }
+/*
+ * Cloudflare Web Analytics (không cookie): token của site trong Cloudflare → Web Analytics.
+ * Build chèn vào mọi trang tĩnh; beacon chỉ tải khi trang chạy trên tên miền của SITE_URL
+ * (không đếm bản GitHub Pages, máy local, test). Để trống = tắt. Đổi tên miền: thêm site mới trong Cloudflare + đổi token.
+ */
+const WEB_ANALYTICS_TOKEN = '21920acef23244ae86b2bf329b82871e'
+
+module.exports = { ROOT, SITE_URL, SITE_VERIFICATION, WEB_ANALYTICS_TOKEN, loadBrowserScripts, loadDestinations, collectWikiFiles, slugify }
