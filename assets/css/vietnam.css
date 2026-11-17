@@ -3745,6 +3745,140 @@ body.dark-theme .book-link:hover {
   color: var(--accent-color);
 }
 
+:root {
+  /* Lịch du lịch 12 tháng: nền nhạt + chữ đậm (sáng) / nền trầm + chữ sáng (tối) – đều ≥ 4.5:1 */
+  --cal-good-bg: hsl(140, 50%, 88%);
+  --cal-good-text: hsl(140, 70%, 18%);
+  --cal-caution-bg: hsl(46, 95%, 84%);
+  --cal-caution-text: hsl(32, 85%, 20%);
+  --cal-avoid-bg: hsl(2, 85%, 90%);
+  --cal-avoid-text: hsl(0, 70%, 28%);
+}
+
+body.dark-theme {
+  --cal-good-bg: hsl(140, 35%, 20%);
+  --cal-good-text: hsl(140, 60%, 85%);
+  --cal-caution-bg: hsl(40, 45%, 20%);
+  --cal-caution-text: hsl(46, 90%, 80%);
+  --cal-avoid-bg: hsl(0, 40%, 23%);
+  --cal-avoid-text: hsl(0, 90%, 88%);
+}
+
+/* Cột nội dung bài cẩm nang là phần tử grid: min-width 0 để bảng rộng chỉ cuộn trong khung, không đẩy cả trang tràn ngang */
+.guide__body,
+.guide-section,
+.travel-cal {
+  min-width: 0;
+}
+
+.travel-cal__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 .5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.travel-cal__key {
+  padding: .25rem .75rem;
+  border-radius: 1rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.travel-cal__hint {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.travel-cal__scroll {
+  /* relative: nhãn ẩn (.visually-hidden, absolute) nằm trong khung cuộn, không làm trang tràn ngang */
+  position: relative;
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--input-color);
+}
+
+.travel-cal__table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  table-layout: fixed;
+  font-size: var(--smaller-font-size);
+}
+
+.travel-cal__table th,
+.travel-cal__table td {
+  padding: .4rem .35rem;
+  text-align: left;
+}
+
+.travel-cal__name {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 8.5rem;
+  background-color: var(--body-color);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.travel-cal__name a {
+  color: var(--title-color);
+}
+
+.travel-cal__name a:hover,
+.travel-cal__month a:hover {
+  color: var(--first-color-text);
+  text-decoration: underline;
+}
+
+.travel-cal__month {
+  text-align: center !important;
+  color: var(--title-color);
+  border-radius: .35rem;
+}
+
+.travel-cal__month a {
+  color: inherit;
+}
+
+.travel-cal__month--now {
+  color: var(--white-color);
+  background-color: var(--first-color);
+}
+
+.travel-cal__region {
+  padding-top: .9rem !important;
+  font-size: var(--small-font-size);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--first-color-text);
+}
+
+.travel-cal__seg {
+  border-radius: .35rem;
+  cursor: default;
+}
+
+.travel-cal__seg > span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.travel-cal__seg--good { color: var(--cal-good-text); background-color: var(--cal-good-bg); }
+.travel-cal__seg--caution { color: var(--cal-caution-text); background-color: var(--cal-caution-bg); }
+.travel-cal__seg--avoid { color: var(--cal-avoid-text); background-color: var(--cal-avoid-bg); }
+
+@media print {
+  .travel-cal__table { min-width: 0; }
+  .travel-cal__hint { display: none; }
+}
+
 .months-table {
   display: grid;
   border-radius: var(--radius);

@@ -968,12 +968,12 @@ function toEditableEvents(data) {
         events: data.events.map(e => ({
             id: e.id, type: e.type, whereAll: e.where === 'all', where: e.where === 'all' ? [] : [...e.where],
             useDates: !!e.dates, dates: e.dates ? [...e.dates] : ['', ''], months: e.months ? [...e.months] : [], lunar: !!e.lunar,
-            name: [...e.name], desc: [...e.desc], tip: [...e.tip],
+            severe: !!e.severe, name: [...e.name], short: e.short ? [...e.short] : ['', ''], desc: [...e.desc], tip: [...e.tip],
         })),
     }
 }
 
-const newEvent = () => ({ id: '', type: 'festival', whereAll: false, where: [], useDates: false, dates: ['', ''], months: [], lunar: false, name: ['', ''], desc: ['', ''], tip: ['', ''] })
+const newEvent = () => ({ id: '', type: 'festival', whereAll: false, where: [], useDates: false, dates: ['', ''], months: [], lunar: false, severe: false, name: ['', ''], short: ['', ''], desc: ['', ''], tip: ['', ''] })
 
 function fromEditableEvents(e) {
     const data = {
@@ -984,7 +984,12 @@ function fromEditableEvents(e) {
             if (x.useDates) out.dates = x.dates.map(d => String(d || '').trim())
             else out.months = x.months
             if (x.lunar && !x.useDates) out.lunar = true
-            for (const k of ['name', 'desc', 'tip']) out[k] = x[k].map(t => String(t || '').trim())
+            if (x.severe && x.type === 'weather') out.severe = true
+            out.name = x.name.map(t => String(t || '').trim())
+            /* Nhãn ngắn trên lịch 12 tháng: bỏ trống cả hai ô = không có */
+            const short = x.short.map(t => String(t || '').trim())
+            if (short.some(Boolean)) out.short = short
+            for (const k of ['desc', 'tip']) out[k] = x[k].map(t => String(t || '').trim())
             return out
         }),
     }
@@ -1008,6 +1013,7 @@ function validateEvents(data) {
         for (const [k, label] of [['name', 'tên'], ['desc', 'mô tả'], ['tip', 'lời khuyên']]) {
             if (!pairFilled(x[k])) e.push(`${w}: thiếu ${label} (tiếng Việt và tiếng Anh)`)
         }
+        if (x.short && !pairFilled(x.short)) e.push(`${w}: nhãn ngắn cần đủ tiếng Việt và tiếng Anh (hoặc bỏ trống cả hai)`)
     })
     return e
 }
@@ -1035,7 +1041,9 @@ function eventFields(i) {
             { type: 'checks', path: [...base, 'months'], label: 'Các tháng', options: MONTHS, numeric: true },
             { type: 'bool', path: [...base, 'lunar'], text: 'Theo âm lịch (ngày dương thay đổi mỗi năm)' },
         ]),
+        ...(ev.type === 'weather' ? [{ type: 'bool', path: [...base, 'severe'], label: 'Mức độ', text: 'Nên tránh (bão, lũ, biển động) – lịch 12 tháng tô đỏ các tháng ngoài mùa đẹp' }] : []),
         { type: 'pair', path: [...base, 'name'], label: 'Tên sự kiện' },
+        { type: 'pair', path: [...base, 'short'], label: 'Nhãn ngắn trên lịch 12 tháng (tùy chọn, vd. "Lúa chín")' },
         { type: 'pair', path: [...base, 'desc'], label: 'Mô tả', multiline: true },
         { type: 'pair', path: [...base, 'tip'], label: 'Lời khuyên cho du khách', multiline: true },
     ]

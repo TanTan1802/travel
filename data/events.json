@@ -255,6 +255,10 @@
         "Festival Huế",
         "Hue Festival"
       ],
+      "short": [
+        "Festival Huế",
+        "Hue Festival"
+      ],
       "desc": [
         "Chuỗi hoạt động văn hóa, nghệ thuật cung đình – các sự kiện chính thường vào năm chẵn.",
         "Royal arts and culture events – the main edition is usually held in even years."
@@ -279,6 +283,10 @@
         "Lễ hội pháo hoa quốc tế Đà Nẵng (DIFF)",
         "Da Nang International Fireworks Festival"
       ],
+      "short": [
+        "Pháo hoa DIFF",
+        "Fireworks festival"
+      ],
       "desc": [
         "Các đội pháo hoa quốc tế trình diễn trên sông Hàn vào các tối cuối tuần.",
         "International teams put on shows over the Han River on weekend nights."
@@ -302,6 +310,10 @@
       "name": [
         "Chợ tình Khâu Vai",
         "Khau Vai Love Market"
+      ],
+      "short": [
+        "Chợ tình Khâu Vai",
+        "Khau Vai love market"
       ],
       "desc": [
         "Ngày 26–27 tháng 3 âm lịch ở Mèo Vạc – phiên chợ độc đáo của đồng bào vùng cao.",
@@ -349,6 +361,10 @@
         "Lễ hội cà phê Buôn Ma Thuột",
         "Buon Ma Thuot Coffee Festival"
       ],
+      "short": [
+        "Lễ hội cà phê",
+        "Coffee festival"
+      ],
       "desc": [
         "Tháng 3, thường 2 năm/lần: đường phố cà phê, đua voi, cồng chiêng Tây Nguyên.",
         "Usually every other March: coffee streets, elephant races and gong music."
@@ -370,6 +386,10 @@
       "name": [
         "Festival Hoa Đà Lạt",
         "Da Lat Flower Festival"
+      ],
+      "short": [
+        "Festival Hoa",
+        "Flower Festival"
       ],
       "desc": [
         "Tháng 12, thường 2 năm/lần: diễu hành xe hoa, trưng bày hoa quanh hồ Xuân Hương.",
@@ -397,6 +417,10 @@
         "Mùa lúa chín trên ruộng bậc thang",
         "Golden rice terraces"
       ],
+      "short": [
+        "Lúa chín",
+        "Rice harvest"
+      ],
       "desc": [
         "Ruộng bậc thang vàng óng – đẹp nhất nửa cuối tháng 9 đến đầu tháng 10.",
         "Terraces turn gold – best from late September to early October."
@@ -422,6 +446,10 @@
         "Mùa nước đổ",
         "Water-pouring season"
       ],
+      "short": [
+        "Mùa nước đổ",
+        "Flooded terraces"
+      ],
       "desc": [
         "Ruộng bậc thang ngập nước phản chiếu trời mây, người dân vào vụ cấy.",
         "Flooded terraces mirror the sky as planting begins."
@@ -444,6 +472,10 @@
       "name": [
         "Mùa hoa tam giác mạch",
         "Buckwheat flower season"
+      ],
+      "short": [
+        "Hoa tam giác mạch",
+        "Buckwheat flowers"
       ],
       "desc": [
         "Hoa tam giác mạch hồng tím phủ các sườn đồi Đồng Văn, Sủng Là.",
@@ -468,6 +500,10 @@
         "Mùa hoa mận, hoa đào",
         "Plum and peach blossom season"
       ],
+      "short": [
+        "Hoa mận, đào",
+        "Plum & peach blossom"
+      ],
       "desc": [
         "Thung lũng Nà Ka trắng hoa mận, xen hoa đào hồng dịp Tết.",
         "Na Ka valley turns white with plum blossom, dotted with pink peach."
@@ -490,6 +526,10 @@
       "name": [
         "Mùa hoa cải trắng",
         "White mustard flower season"
+      ],
+      "short": [
+        "Hoa cải trắng",
+        "Mustard flowers"
       ],
       "desc": [
         "Đồi cải trắng trải dài ở Chiềng Đi, Nà Ka.",
@@ -514,6 +554,10 @@
         "Mùa hoa dã quỳ",
         "Wild sunflower season"
       ],
+      "short": [
+        "Hoa dã quỳ",
+        "Wild sunflowers"
+      ],
       "desc": [
         "Hoa dã quỳ vàng rực ven đường Tây Nguyên, đèo Prenn, núi Langbiang.",
         "Wild sunflowers line the Highlands roads, Prenn pass and Langbiang."
@@ -536,6 +580,10 @@
       "name": [
         "Mùa mai anh đào",
         "Cherry blossom season"
+      ],
+      "short": [
+        "Mai anh đào",
+        "Cherry blossom"
       ],
       "desc": [
         "Mai anh đào hồng quanh hồ Xuân Hương, đồi chè Cầu Đất.",
@@ -561,6 +609,10 @@
       "name": [
         "Mùa nước nổi miền Tây",
         "Mekong flood season"
+      ],
+      "short": [
+        "Mùa nước nổi",
+        "Flood season"
       ],
       "desc": [
         "Nước lên đồng: cá linh, bông điên điển, rừng tràm Trà Sư xanh mướt.",
@@ -588,6 +640,10 @@
         "Mùa rùa biển đẻ trứng",
         "Sea turtle nesting season"
       ],
+      "short": [
+        "Rùa đẻ trứng",
+        "Turtle nesting"
+      ],
       "desc": [
         "Xem rùa lên bãi đẻ trứng và thả rùa con ở Hòn Bảy Cạnh.",
         "Watch turtles nest and hatchlings released on Bay Canh island."
@@ -610,6 +666,10 @@
       "name": [
         "Mùa băng giá, có thể có tuyết",
         "Frost season – possible snow"
+      ],
+      "short": [
+        "Băng giá",
+        "Frost & snow"
       ],
       "desc": [
         "Đỉnh Fansipan và Ô Quy Hồ có thể xuất hiện băng giá, tuyết khi có không khí lạnh mạnh.",
@@ -638,9 +698,14 @@
         10,
         11
       ],
+      "severe": true,
       "name": [
         "Mùa mưa bão miền Trung",
         "Central Vietnam storm season"
+      ],
+      "short": [
+        "Mưa bão, lũ",
+        "Storms, floods"
       ],
       "desc": [
         "Mưa lớn, có thể ngập lụt và bão; phố cổ Hội An, Huế có thể ngập.",
@@ -666,9 +731,14 @@
         8,
         9
       ],
+      "severe": true,
       "name": [
         "Mùa biển động",
         "Rough-sea season"
+      ],
+      "short": [
+        "Biển động",
+        "Rough seas"
       ],
       "desc": [
         "Gió mùa làm biển động, tour đảo và tàu cao tốc có thể bị hủy.",
@@ -882,6 +952,10 @@
         "Mùa thu Hà Nội",
         "Hanoi autumn"
       ],
+      "short": [
+        "Thu đẹp",
+        "Autumn"
+      ],
       "desc": [
         "Trời hanh, nắng vàng nhẹ, hoa sữa thơm các phố Nguyễn Du, Quang Trung; cốm làng Vòng và gánh hoa cúc họa mi (cuối tháng 10–11) trên phố.",
         "Dry air and soft golden light, milk-flower scent on Nguyen Du and Quang Trung streets; green rice flakes from Vong village and street bicycles of daisies (late October–November)."
@@ -904,6 +978,10 @@
       "name": [
         "Mùa hoa loa kèn",
         "Easter lily season"
+      ],
+      "short": [
+        "Hoa loa kèn",
+        "Lilies"
       ],
       "desc": [
         "Cả tháng 4, hoa loa kèn trắng theo những xe đạp hàng hoa khắp phố cổ – nét đặc trưng chuyển mùa của Hà Nội.",
@@ -931,6 +1009,10 @@
       "name": [
         "Nồm ẩm miền Bắc",
         "Northern 'nồm' humidity"
+      ],
+      "short": [
+        "Nồm ẩm",
+        "Damp & humid"
       ],
       "desc": [
         "Độ ẩm gần 100%: nền nhà, tường đọng nước, trời mù sương, quần áo lâu khô; tầm nhìn trên vịnh và núi có thể kém.",
@@ -980,6 +1062,10 @@
         "Mùa lúa chín Tam Cốc",
         "Golden rice at Tam Coc"
       ],
+      "short": [
+        "Lúa chín",
+        "Rice harvest"
+      ],
       "desc": [
         "Lúa chín vàng hai bên sông Ngô Đồng giữa núi đá vôi – cảnh đẹp nhất năm khi đi thuyền Tam Cốc.",
         "Golden rice lines the Ngo Dong River between limestone peaks – the year's prettiest moment for the Tam Coc boat ride."
@@ -1027,6 +1113,10 @@
       "name": [
         "Mùa hoa đỗ quyên Fansipan",
         "Rhododendrons on Fansipan"
+      ],
+      "short": [
+        "Hoa đỗ quyên",
+        "Rhododendrons"
       ],
       "desc": [
         "Đỗ quyên đỏ, hồng, trắng nở dọc đường trekking và quanh đỉnh Fansipan; trời quang, ít mưa – mùa trekking đẹp.",
@@ -1085,6 +1175,10 @@
         "Mùa hoa đào, hoa mận cao nguyên đá",
         "Peach and plum blossom on the stone plateau"
       ],
+      "short": [
+        "Hoa đào, mận",
+        "Peach & plum blossom"
+      ],
       "desc": [
         "Đào hồng, mận trắng nở bên tường đá và nhà trình tường ở Lũng Cú, Sủng Là, Phố Cáo, Lao Xa.",
         "Pink peach and white plum blossom against stone walls and rammed-earth houses in Lung Cu, Sung La, Pho Cao and Lao Xa."
@@ -1106,6 +1200,10 @@
       "name": [
         "Lễ hội dù lượn \"Bay trên mùa vàng\"",
         "\"Flying over the golden season\" paragliding festival"
+      ],
+      "short": [
+        "Dù lượn mùa vàng",
+        "Paragliding festival"
       ],
       "desc": [
         "Dịp lúa chín, các phi công dù lượn cất cánh từ đỉnh đèo Khau Phạ bay trên thung lũng ruộng bậc thang; du khách có thể bay đôi cùng phi công.",
@@ -1129,6 +1227,10 @@
       "name": [
         "Mùa mận chín Mộc Châu",
         "Moc Chau plum harvest"
+      ],
+      "short": [
+        "Mận chín",
+        "Plum harvest"
       ],
       "desc": [
         "Vườn mận hậu trĩu quả đỏ tím, du khách được vào vườn tự hái và mua tại gốc.",
@@ -1154,6 +1256,10 @@
         "Thác Bản Giốc mùa nhiều nước",
         "Ban Gioc Falls at full flow"
       ],
+      "short": [
+        "Thác nhiều nước",
+        "Falls at full flow"
+      ],
       "desc": [
         "Thác đổ trắng xóa nhiều tầng nhất trong năm, cuối tháng 9 có thêm ruộng lúa chín vàng dưới chân thác.",
         "The falls are at their fullest and whitest, and in late September golden rice fields frame the base."
@@ -1176,6 +1282,10 @@
       "name": [
         "Mùa hoa sở Bình Liêu",
         "Tea-oil camellia blossom in Binh Lieu"
+      ],
+      "short": [
+        "Hoa sở",
+        "Camellia blossom"
       ],
       "desc": [
         "Hoa sở trắng phủ các đồi, cùng lau sậy trắng dọc đường cột mốc biên giới – Bình Liêu thường tổ chức lễ hội hoa sở dịp này.",
@@ -1303,6 +1413,10 @@
         "Mùa phượng tím Đà Lạt",
         "Purple jacaranda in Da Lat"
       ],
+      "short": [
+        "Phượng tím",
+        "Jacarandas"
+      ],
       "desc": [
         "Phượng tím nở dọc đường Yersin, Trần Phú, Hùng Vương và quanh hồ Xuân Hương – tiết trời mùa khô nắng đẹp.",
         "Jacarandas bloom along Yersin, Tran Phu and Hung Vuong streets and around Xuan Huong Lake – sunny dry-season weather."
@@ -1325,6 +1439,10 @@
       "name": [
         "Mùa cỏ hồng Đà Lạt",
         "Pink grass season in Da Lat"
+      ],
+      "short": [
+        "Cỏ hồng",
+        "Pink grass"
       ],
       "desc": [
         "Những đồi cỏ hồng ở Trại Mát, Langbiang, hồ Tuyền Lâm chuyển màu hồng phớt khi vào mùa khô.",
@@ -1349,6 +1467,10 @@
         "Mùa hoa cà phê nở trắng",
         "Coffee blossom season"
       ],
+      "short": [
+        "Hoa cà phê",
+        "Coffee blossom"
+      ],
       "desc": [
         "Sau đợt tưới đầu mùa khô, những vườn cà phê nở trắng, thơm ngát cả vùng trong vài ngày.",
         "After the first dry-season watering, coffee farms burst into white, fragrant blossom for a few days."
@@ -1371,6 +1493,10 @@
       "name": [
         "Mùa mai anh đào Măng Đen",
         "Cherry blossom in Mang Den"
+      ],
+      "short": [
+        "Mai anh đào",
+        "Cherry blossom"
       ],
       "desc": [
         "Mai anh đào nở hồng thị trấn và ven rừng thông, thường kèm hội mai anh đào và chợ phiên dịp đầu năm.",
@@ -1397,6 +1523,10 @@
       "name": [
         "Mùa gió lướt ván diều",
         "Kitesurfing season"
+      ],
+      "short": [
+        "Lướt ván diều",
+        "Kitesurfing"
       ],
       "desc": [
         "Gió mùa đông bắc thổi đều – Mũi Né thành điểm lướt ván diều nổi tiếng châu Á; bãi biển rực rỡ cánh diều.",
@@ -1425,6 +1555,10 @@
       "name": [
         "Mùa thám hiểm hang động",
         "Cave expedition season"
+      ],
+      "short": [
+        "Thám hiểm hang",
+        "Caving season"
       ],
       "desc": [
         "Mùa khô, các tour thám hiểm Sơn Đoòng, Hang Én, Tú Làn hoạt động; sông ngầm, hang Phong Nha, Thiên Đường mở cửa đầy đủ.",
@@ -1525,6 +1659,10 @@
         "Mùa trái cây miệt vườn",
         "Mekong orchard fruit season"
       ],
+      "short": [
+        "Mùa trái cây",
+        "Fruit season"
+      ],
       "desc": [
         "Sầu riêng, chôm chôm, măng cụt, xoài chín rộ – nhiều vườn ở Phong Điền, Cái Răng mở cửa cho khách ăn tại vườn.",
         "Durian, rambutan, mangosteen and mango are all in season – many orchards in Phong Dien and Cai Rang let you eat straight from the trees."
@@ -1557,6 +1695,10 @@
         "Mùa mưa miền Nam",
         "Southern rainy season"
       ],
+      "short": [
+        "Mùa mưa",
+        "Rainy season"
+      ],
       "desc": [
         "Mưa rào chiều tối, thường ngắn rồi tạnh; một số tuyến đường Sài Gòn ngập khi mưa lớn và triều cường; các đảo phía Nam có sóng lớn.",
         "Short afternoon downpours that pass quickly; some Saigon streets flood in heavy rain and high tides; seas around the southern islands get rough."
@@ -1564,6 +1706,104 @@
       "tip": [
         "Sắp hoạt động ngoài trời vào buổi sáng, luôn mang áo mưa; tàu ra Nam Du, Phú Quốc có thể hủy khi biển động.",
         "Plan outdoor activities in the morning and always carry a raincoat; boats to Nam Du and Phu Quoc may be cancelled in rough seas."
+      ]
+    },
+    {
+      "id": "mua-lu-vung-nui-bac",
+      "where": [
+        "sa-pa",
+        "ha-giang",
+        "mu-cang-chai",
+        "ban-gioc",
+        "ba-be",
+        "binh-lieu",
+        "moc-chau",
+        "mai-chau",
+        "pu-luong"
+      ],
+      "type": "weather",
+      "months": [
+        7,
+        8
+      ],
+      "severe": true,
+      "name": [
+        "Mưa lớn, lũ quét và sạt lở vùng núi phía Bắc",
+        "Heavy rain, flash floods and landslides in the northern mountains"
+      ],
+      "short": [
+        "Mưa lớn, sạt lở",
+        "Heavy rain, landslides"
+      ],
+      "desc": [
+        "Cao điểm mùa mưa ở vùng núi phía Bắc: mưa lớn kéo dài có thể gây lũ quét, sạt lở, đường đèo bị chia cắt.",
+        "The peak of the rainy season in the northern mountains: prolonged heavy rain can cause flash floods and landslides that cut mountain roads."
+      ],
+      "tip": [
+        "Theo dõi cảnh báo thiên tai, tránh đi đèo khi mưa lớn và để dư 1 ngày phòng đường bị chắn.",
+        "Follow disaster warnings, avoid mountain passes in heavy rain and keep a spare day in case roads are blocked."
+      ]
+    },
+    {
+      "id": "mua-mua-tay-nguyen",
+      "where": [
+        "da-lat",
+        "buon-ma-thuot",
+        "mang-den"
+      ],
+      "type": "weather",
+      "months": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "name": [
+        "Mùa mưa Tây Nguyên",
+        "Central Highlands rainy season"
+      ],
+      "short": [
+        "Mùa mưa",
+        "Rainy season"
+      ],
+      "desc": [
+        "Mưa rào gần như mỗi chiều, đường đất trơn; tháng 8 – 9 mưa dầm nhiều nhất.",
+        "Afternoon showers almost every day and slippery dirt roads; August – September are the wettest."
+      ],
+      "tip": [
+        "Đi chơi buổi sáng, mang áo mưa và giày đế bám khi đi thác, đi rừng.",
+        "Sightsee in the morning and bring a raincoat and grippy shoes for waterfalls and forest trails."
+      ]
+    },
+    {
+      "id": "nang-nong-mien-bac",
+      "where": [
+        "ha-noi",
+        "ninh-binh"
+      ],
+      "type": "weather",
+      "months": [
+        6,
+        7,
+        8
+      ],
+      "name": [
+        "Nắng nóng mùa hè miền Bắc",
+        "Northern summer heat"
+      ],
+      "short": [
+        "Nóng, mưa rào",
+        "Hot, showers"
+      ],
+      "desc": [
+        "Nhiệt độ thường trên 35°C, oi ẩm, hay có mưa rào và dông buổi chiều.",
+        "Temperatures often top 35°C with high humidity and frequent afternoon thunderstorms."
+      ],
+      "tip": [
+        "Tham quan sáng sớm và chiều muộn, uống đủ nước, tránh ra ngoài lúc 11 – 15h.",
+        "Sightsee early and late, stay hydrated and avoid going out from 11 am to 3 pm."
       ]
     }
   ]

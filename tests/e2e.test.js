@@ -225,6 +225,8 @@ test('bản đồ: Leaflet chỉ tải khi cần, hiện đủ điểm đến', 
 
 test('lập kế hoạch: hành trình gợi ý, số ngày, tuyến ngắn nhất, lưu và chia sẻ', async () => {
     const { page, errors, close } = await openPage('ke-hoach/index.html')
+    /* Cố định "hôm nay" trước ngày khởi hành 10/11/2026 hơn 16 ngày – kiểm tra được mục "Có dự báo từ…" dù chạy test vào ngày nào */
+    await page.clock.setFixedTime(new Date('2026-10-08T10:00:00+07:00'))
     /* Dữ liệu từng điểm đến tải riêng khi cần (aria-busy trong lúc tải) – chờ vẽ xong rồi mới đọc */
     const stops = async () => {
         await page.waitForSelector('#planner-page:not([aria-busy])')

@@ -178,7 +178,10 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 - Nội dung ở `assets/js/data/guides.js` (6 bài song ngữ: thời điểm đẹp, di chuyển, chi phí, ẩm thực, visa/giấy tờ, an toàn & liên lạc); hàm render ở `assets/js/guide-render.js`.
 - Build sinh `cam-nang/index.html`, `cam-nang/<slug>/index.html` và bản `en/` từ mẫu `guide.html` (nội dung render sẵn – tốt cho SEO), thêm vào sitemap; trang chủ có mục "Cẩm nang" (3 bài đầu).
-- Bài "Nên đi du lịch Việt Nam vào tháng nào?" có bảng 12 tháng tự sinh từ `bestMonths` của các điểm đến.
+- Bài "Nên đi du lịch Việt Nam vào tháng nào?" có bảng 12 tháng tự sinh từ `bestMonths` của các điểm đến, và **Lịch du lịch 12 tháng**
+  (`calendarWidget()` trong `guide-render.js`): mỗi điểm đến một hàng, ô xanh = mùa đẹp (`bestMonths`), đỏ = thời tiết nặng
+  (`severe: true` trong `data/events.json` – bão, lũ, biển động) ngoài mùa đẹp, vàng = còn lại; nhãn lấy từ `short` của mùa cảnh sắc /
+  lễ hội / thời tiết, các tháng liền nhau giống nhau gộp thành một dải. Sửa mùa hay thêm cảnh báo ở trang quản trị → bảng tự cập nhật.
 - Thêm bài mới: thêm một phần tử vào `GUIDES` rồi chạy `npm run build`.
 
 ## Trang khám phá (SEO) – `assets/js/seo-render.js`

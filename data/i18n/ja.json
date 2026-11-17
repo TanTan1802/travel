@@ -460,7 +460,15 @@
     "Lướt ván, thể thao biển": "カイトサーフィン・マリンスポーツ",
     "Hoang sơ, ít khách": "手つかずで静か",
     "Chọn biển theo sở thích": "好みで選ぶビーチ",
-    "Lọc trên trang chủ": "トップページで絞り込む"
+    "Lọc trên trang chủ": "トップページで絞り込む",
+    "Nên đi": "おすすめ",
+    "Cân nhắc": "検討",
+    "Hạn chế": "避ける",
+    "Ngoài mùa đẹp": "オフシーズン",
+    "Kéo ngang để xem đủ 12 tháng. Bấm tên điểm đến để xem lịch trình, bấm tháng để xem nên đi đâu.": "横にスクロールして12か月すべてを表示。目的地をタップするとモデルコース、月をタップするとおすすめの行き先が見られます。",
+    "Lịch du lịch 12 tháng": "12か月の旅行カレンダー",
+    "Điểm đến": "目的地",
+    "Tháng {from} – {to}": "{from}～{to}"
   },
   "html": {
     "Vùng miền": "地域",

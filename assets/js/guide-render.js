@@ -68,7 +68,87 @@ function monthsWidget() {
     `
 }
 
-const GUIDE_WIDGETS = { months: monthsWidget }
+/*
+ * Lịch du lịch 12 tháng: mỗi điểm đến một hàng, mỗi tháng một ô, tự sinh từ dữ liệu
+ * - xanh (nên đi): tháng trong bestMonths – nhãn là mùa cảnh sắc / lễ hội có nhãn ngắn (short)
+ * - đỏ (hạn chế): thời tiết nặng (severe: bão, lũ, biển động) ngoài mùa đẹp
+ * - vàng (cân nhắc): thời tiết cần lưu ý, thời tiết nặng rơi vào mùa đẹp, hoặc ngoài mùa đẹp (nhãn là mùa hoa / lễ hội nếu có)
+ * Các tháng liền nhau cùng trạng thái + nhãn được gộp thành một dải (colspan); dải 1 tháng chỉ hiện biểu tượng
+ * (nhãn trong title và cho trình đọc màn hình).
+ */
+const CAL_STATUS = {
+    good: { icon: 'ri-checkbox-circle-fill', label: () => t('Nên đi') },
+    caution: { icon: 'ri-error-warning-fill', label: () => t('Cân nhắc') },
+    avoid: { icon: 'ri-close-circle-fill', label: () => t('Hạn chế') },
+}
+
+function calendarCell(d, m) {
+    const here = (typeof EVENTS !== 'undefined' ? EVENTS : []).filter(e => e.where !== 'all' && e.where.includes(d.id) && eventMonths(e).includes(m))
+    const weather = here.filter(e => e.type === 'weather')
+    const severe = weather.find(e => e.severe)
+    const best = d.bestMonths.includes(m)
+    const short = e => pickLang(e.short || e.name)
+    const scene = here.find(e => e.type === 'nature' && e.short) || here.find(e => e.type === 'festival' && e.short)
+    if (best && !severe) return { status: 'good', label: scene ? short(scene) : t('Mùa đẹp') }
+    if (severe) return { status: best ? 'caution' : 'avoid', label: short(severe) }
+    if (weather.length) return { status: 'caution', label: short(weather[0]) }
+    /* Ngoài mùa đẹp nhưng có mùa hoa / lễ hội riêng (vd. hoa đào Hà Giang tháng 2 – 3) → vẫn đáng cân nhắc */
+    return { status: 'caution', label: scene ? short(scene) : t('Ngoài mùa đẹp') }
+}
+
+/* Gộp các tháng liền nhau giống nhau: [{ status, label, from, span }] */
+function calendarRow(d) {
+    const segs = []
+    for (let m = 1; m <= 12; m++) {
+        const cell = calendarCell(d, m)
+        const last = segs[segs.length - 1]
+        if (last && last.status === cell.status && last.label === cell.label) last.span++
+        else segs.push({ ...cell, from: m, span: 1 })
+    }
+    return segs
+}
+
+function calendarWidget() {
+    const months = Array.from({ length: 12 }, (_, i) => i + 1)
+    const range = seg => (seg.span === 1 ? t('Tháng {m}', { m: monthLabel(seg.from) })
+        : t('Tháng {from} – {to}', { from: monthLabel(seg.from), to: monthLabel(seg.from + seg.span - 1) }))
+    const regions = Object.keys(REGIONS).map(region => [region, DESTINATIONS.filter(d => d.region === region).sort((a, b) => b.lat - a.lat)])
+    return `
+        <div class="travel-cal">
+            <ul class="travel-cal__legend">
+                ${Object.entries(CAL_STATUS).map(([key, s]) => `<li class="travel-cal__key travel-cal__seg--${key}"><i class="${s.icon}"></i> ${s.label()}</li>`).join('')}
+            </ul>
+            <p class="travel-cal__hint">${t('Kéo ngang để xem đủ 12 tháng. Bấm tên điểm đến để xem lịch trình, bấm tháng để xem nên đi đâu.')}</p>
+            <div class="travel-cal__scroll" tabindex="0" role="region" aria-label="${t('Lịch du lịch 12 tháng')}">
+                <table class="travel-cal__table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="travel-cal__name">${t('Điểm đến')}</th>
+                            ${months.map(m => `<th scope="col" class="travel-cal__month" data-cal-month="${m}">${typeof monthUrl === 'function' ? `<a href="${monthUrl(m)}">${monthShort(m)}</a>` : monthShort(m)}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    ${regions.map(([region, list]) => `
+                        <tbody>
+                            <tr><th scope="rowgroup" colspan="13" class="travel-cal__region">${REGIONS[region]}</th></tr>
+                            ${list.map(d => `
+                                <tr>
+                                    <th scope="row" class="travel-cal__name"><a href="${destinationUrl(d.id)}">${d.name}</a></th>
+                                    ${calendarRow(d).map(seg => `
+                                        <td colspan="${seg.span}" class="travel-cal__seg travel-cal__seg--${seg.status}" title="${range(seg)}: ${CAL_STATUS[seg.status].label()} – ${seg.label}">
+                                            <span><i class="${CAL_STATUS[seg.status].icon}" aria-label="${CAL_STATUS[seg.status].label()}"></i> ${seg.span > 1 ? seg.label : `<span class="visually-hidden">${seg.label}</span>`}</span>
+                                        </td>
+                                    `).join('')}
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    `).join('')}
+                </table>
+            </div>
+        </div>
+    `
+}
+
+const GUIDE_WIDGETS = { months: monthsWidget, calendar: calendarWidget }
 
 function guideSection(section, i) {
     return `

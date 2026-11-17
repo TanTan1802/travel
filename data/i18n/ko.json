@@ -460,7 +460,15 @@
     "Lướt ván, thể thao biển": "카이트서핑 & 해양 스포츠",
     "Hoang sơ, ít khách": "한적한 자연 해변",
     "Chọn biển theo sở thích": "취향에 맞는 해변 고르기",
-    "Lọc trên trang chủ": "홈에서 필터"
+    "Lọc trên trang chủ": "홈에서 필터",
+    "Nên đi": "추천",
+    "Cân nhắc": "고려",
+    "Hạn chế": "피하기",
+    "Ngoài mùa đẹp": "비수기",
+    "Kéo ngang để xem đủ 12 tháng. Bấm tên điểm đến để xem lịch trình, bấm tháng để xem nên đi đâu.": "옆으로 밀어 12개월을 모두 보세요. 여행지를 누르면 일정을, 월을 누르면 추천 여행지를 볼 수 있습니다.",
+    "Lịch du lịch 12 tháng": "12개월 여행 달력",
+    "Điểm đến": "여행지",
+    "Tháng {from} – {to}": "{from} – {to}"
   },
   "html": {
     "Vùng miền": "지역",
