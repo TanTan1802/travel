@@ -774,3 +774,51 @@ test('trang quản trị /admin/: tải không lỗi, hiện form đăng nhập'
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('trang quản trị – Trekking: mở không đổi dữ liệu, cung mới thiếu thông tin bị chặn, đủ thì hết lỗi', async () => {
+    const fs = require('fs')
+    const path = require('path')
+    const { page, errors, close } = await openPage('admin/index.html')
+    /* Giả lập API GitHub: đọc file thẳng từ repo, không gọi mạng */
+    await page.route('https://api.github.com/**', route => {
+        const u = new URL(route.request().url())
+        const json = body => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(body) })
+        if (u.pathname === '/repos/TanTan1802/travel') return json({ permissions: { push: true } })
+        if (u.pathname === '/user') return json({ login: 'tester' })
+        if (u.pathname.endsWith('/git/ref/heads/main')) return json({ object: { sha: 'a'.repeat(40) } })
+        const file = u.pathname.match(/\/contents\/(.+)$/)
+        if (file) return route.fulfill({ status: 200, contentType: 'text/plain', body: fs.readFileSync(path.join(__dirname, '..', decodeURIComponent(file[1])), 'utf8') })
+        return json([])
+    })
+    await page.fill('#login-form input', 'github_pat_test')
+    await page.evaluate(() => document.querySelector('#login-form').requestSubmit())
+    await page.waitForSelector('.stats a[href="#/treks"]')
+    await page.evaluate(() => { location.hash = '#/treks' })
+    await page.waitForSelector('[data-trek-add]')
+    const treks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/treks.json'), 'utf8')).treks
+    assert.equal(await page.locator('.tabs [role=tab]').count(), treks.length)
+    /* Mở ra lưu lại ngay: không lỗi, không file nào đổi (định dạng giữ nguyên) */
+    assert.deepEqual(await page.evaluate(() => computeErrors()), [])
+    assert.deepEqual(await page.evaluate(() => Object.keys(MODES.treks.files(workingCopy()))), [])
+
+    await page.click('[data-trek-add]')
+    const i = treks.length
+    assert.ok((await page.evaluate(() => computeErrors())).some(m => m.startsWith(`Cung ${treks.length + 1}`)), 'cung mới trống phải báo lỗi')
+    const fill = (p, v) => page.fill(`[data-path='${JSON.stringify(['treks', 'treks', i, ...p])}']`, String(v))
+    await fill(['id'], 'thu-nghiem')
+    for (const k of ['name', 'province', 'distanceNote', 'start', 'end']) { await fill([k, 0], 'vi'); await fill([k, 1], 'en') }
+    await fill(['distanceKm', 0], 10)
+    await fill(['distanceKm', 1], 12)
+    await page.check(`[data-path='${JSON.stringify(['treks', 'treks', i, 'near'])}'][value="${treks[0].near[0]}"]`)
+    await page.check(`[data-path='${JSON.stringify(['treks', 'treks', i, 'bestMonths'])}'][value="10"]`)
+    for (const k of ['highlights', 'costs', 'safety']) { await fill([k, 0, 0], 'vi'); await fill([k, 0, 1], 'en') }
+    for (const j of [0, 1]) for (const k of ['title', 'text']) { await fill(['plan', j, k, 0], 'vi'); await fill(['plan', j, k, 1], 'en') }
+    assert.deepEqual(await page.evaluate(() => computeErrors()), [])
+    await fill(['days'], 3)
+    assert.match((await page.evaluate(() => computeErrors())).join('\n'), /lịch trình có 2 chặng nhưng số ngày là 3/)
+    const added = await page.evaluate(n => MODES.treks.working(state.bundle).treks[n], i)
+    assert.equal(added.summit, null, 'độ cao để trống = không leo đỉnh')
+    assert.ok(!('notice' in added) && !('images' in added), 'ô tùy chọn để trống không ghi vào dữ liệu')
+    assert.deepEqual(errors, [])
+    await close()
+})
