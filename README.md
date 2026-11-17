@@ -199,6 +199,17 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   thành trang đầy đủ tốt hơn cho SEO (tránh "nội dung mỏng"), vẫn tìm được từng điểm qua anchor.
 - Lời giới thiệu theo tháng/chủ đề ở `MONTH_NOTES`, `THEME_INTROS` (song ngữ). Trang cẩm nang có khối "Khám phá theo tháng & chủ đề".
 
+## Trekking (`trekking/`, dữ liệu `data/treks.json`)
+
+- Trang tổng `trekking/`: thang độ khó (dễ / trung bình / khó / rất khó), các cung theo độ khó, đồ cần mang theo từng mức,
+  nguyên tắc an toàn, cách chọn đơn vị tổ chức. Trang từng cung `trekking/<id>/`: độ khó, số ngày, quãng đường, điểm cao nhất,
+  người dẫn đường (bắt buộc / nên thuê), quy định (`notice`, vd. lệnh cấm trekking tự phát), lịch trình từng ngày, mùa đẹp
+  12 tháng, chi phí & thủ tục, an toàn, đồ mang theo, câu hỏi thường gặp (FAQPage JSON-LD), đường tới điểm xuất phát.
+- Hàm dựng trang ở `assets/js/trek-render.js` (chỉ dùng khi build), có trong sitemap, 5 ngôn ngữ (nội dung cung dạng `[vi, en]`).
+- Trang điểm đến có mục "Trekking quanh đây" (theo `near`), trang tháng có "Trekking đẹp tháng N" (theo `bestMonths`); menu có mục Trekking.
+- Thêm cung: thêm phần tử vào `data/treks.json` (schema `treks.schema.json`; `plan` phải đủ `days` ngày) rồi `npm run build`.
+  Số liệu (km, phí, quy định) ghi theo khoảng và ghi rõ "tham khảo"; cập nhật `updated` khi kiểm tra lại. Trang quản trị chưa sửa được mục này.
+
 ## Quán ăn, lưu trú & đặt chỗ (`data/places.json`)
 
 - Mỗi điểm đến có: 8 quán cụ thể (tên, món, địa chỉ, giá/người), 3 quán cà phê/quán nước (`cafes`), 3 khu nên ở (homestay/khách sạn/resort/du thuyền, giá/đêm), cách đi tới, sân bay và ga tàu gần nhất. Chuỗi viết dạng `[tiếng Việt, English]`.

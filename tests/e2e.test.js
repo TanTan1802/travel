@@ -564,7 +564,8 @@ async function lowContrastText(page) {
 }
 
 test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
-    const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html']
+    const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html',
+        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html']
     const problems = []
     for (const theme of ['dark', 'light']) {
         for (const rel of pages) {

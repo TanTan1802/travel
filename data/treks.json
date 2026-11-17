@@ -1,0 +1,381 @@
+{
+  "$schema": "./schema/treks.schema.json",
+  "levels": {
+    "easy": {
+      "icon": "ri-walk-line",
+      "label": ["Dễ", "Easy"],
+      "desc": ["Đi trong ngày, đường mòn rõ, dốc ngắn – người chưa từng trekking, đi cùng trẻ lớn vẫn được.", "Day hikes on clear trails with short climbs – fine for first-timers and older children."]
+    },
+    "moderate": {
+      "icon": "ri-footprint-line",
+      "label": ["Trung bình", "Moderate"],
+      "desc": ["2 ngày 1 đêm, 6 – 8 giờ đi bộ mỗi ngày, ngủ lều hoặc lán – nên tập đi bộ, leo cầu thang vài tuần trước.", "Two days and one night, 6 – 8 hours of walking a day, sleeping in tents or huts – train with walks and stairs for a few weeks first."]
+    },
+    "hard": {
+      "icon": "ri-landscape-line",
+      "label": ["Khó", "Hard"],
+      "desc": ["Đỉnh 2.800 – 3.100 m, dốc dài liên tục, đoạn đá hẹp – cần thể lực tốt và đã từng trekking qua đêm.", "Summits of 2,800 – 3,100 m, long relentless climbs and narrow rocky sections – you need good fitness and an overnight trek behind you."]
+    },
+    "expert": {
+      "icon": "ri-alarm-warning-line",
+      "label": ["Rất khó", "Very hard"],
+      "desc": ["3 ngày trở lên, đường rừng lầy, trơn, gió mạnh và lạnh – chỉ dành cho người có kinh nghiệm leo núi cao.", "Three days or more on muddy, slippery forest trails with strong, cold winds – only for experienced high-mountain trekkers."]
+    }
+  },
+  "treks": [
+    {
+      "id": "sa-pa-ban-lang",
+      "name": ["Bản làng Sa Pa: Lao Chải – Tả Van", "Sa Pa villages: Lao Chai – Ta Van"],
+      "province": ["Lào Cai", "Lao Cai"],
+      "region": "bac",
+      "near": ["sa-pa"],
+      "level": "easy",
+      "days": 1,
+      "distanceKm": [12, 20],
+      "distanceNote": ["một chiều, tùy lối đi; cuối ngày đi xe về thị trấn", "one way depending on the route; drive back to town at the end"],
+      "summit": null,
+      "bestMonths": [3, 4, 5, 9, 10, 11],
+      "guide": "recommended",
+      "start": ["Thị trấn Sa Pa", "Sa Pa town"],
+      "end": ["Bản Tả Van", "Ta Van village"],
+      "highlights": [
+        ["Ruộng bậc thang thung lũng Mường Hoa", "Muong Hoa valley rice terraces"],
+        ["Bản người Mông đen ở Lao Chải, người Giáy ở Tả Van", "Black Hmong villages at Lao Chai and Giay villages at Ta Van"],
+        ["Ăn trưa, nghỉ chân ở homestay trong bản", "Lunch and a rest at a village homestay"]
+      ],
+      "plan": [
+        {
+          "title": ["Sa Pa – Lao Chải – Tả Van", "Sa Pa – Lao Chai – Ta Van"],
+          "text": ["Đi bộ xuống thung lũng Mường Hoa theo đường mòn giữa ruộng bậc thang, qua Ý Linh Hồ và bản Lao Chải, ăn trưa ở homestay rồi tới Tả Van. Khoảng 6 – 8 giờ tính cả nghỉ; đi xe về thị trấn.", "Walk down into the Muong Hoa valley on paths between the rice terraces, via Y Linh Ho and Lao Chai, lunch at a homestay and on to Ta Van. About 6 – 8 hours with stops; drive back to town."]
+        }
+      ],
+      "costs": [
+        ["Người dẫn đường người Mông, Dao trong bản: thỏa thuận theo nhóm, thường gồm bữa trưa", "Hmong or Dao village guides: agree a group price, usually including lunch"],
+        ["Có thể thu vé tham quan bản tại điểm kiểm soát trên đường", "A village visitor ticket may be collected at a checkpoint on the way"]
+      ],
+      "safety": [
+        ["Đường đất ven ruộng rất trơn sau mưa – đi giày đế bám, mang gậy", "Paths along the paddies are very slippery after rain – wear grippy shoes and take a pole"],
+        ["Tránh tháng 7 – 8: mưa lớn, có nguy cơ sạt lở", "Avoid July – August: heavy rain and landslide risk"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "bach-ma-ngu-ho",
+      "name": ["Bạch Mã: Ngũ Hồ – Hải Vọng Đài", "Bach Ma: Five Lakes – Hai Vong Dai"],
+      "province": ["Thành phố Huế", "Hue City"],
+      "region": "trung",
+      "near": ["hue", "da-nang"],
+      "level": "easy",
+      "days": 1,
+      "distanceKm": [3, 8],
+      "distanceNote": ["tổng các đường mòn đi bộ; lên xuống đỉnh bằng xe của vườn quốc gia", "total of the walking trails; vehicles of the national park go up and down the mountain"],
+      "summit": 1450,
+      "bestMonths": [2, 3, 4, 5, 6, 7, 8],
+      "guide": "recommended",
+      "start": ["Cổng Vườn quốc gia Bạch Mã (Phú Lộc)", "Bach Ma National Park gate (Phu Loc)"],
+      "end": ["Cổng Vườn quốc gia Bạch Mã", "Bach Ma National Park gate"],
+      "highlights": [
+        ["Đường mòn Ngũ Hồ: năm hồ nước trong nối nhau bằng thác nhỏ", "Five Lakes trail: five clear pools linked by small falls"],
+        ["Hải Vọng Đài – nhìn xuống đầm Cầu Hai và biển", "Hai Vong Dai – views over Cau Hai lagoon and the sea"],
+        ["Rừng nguyên sinh, biệt thự Pháp cũ trên núi", "Primary forest and old French villas on the mountain"]
+      ],
+      "plan": [
+        {
+          "title": ["Đỉnh Bạch Mã và Ngũ Hồ", "Bach Ma summit and the Five Lakes"],
+          "text": ["Đi xe vườn quốc gia lên gần đỉnh, đi bộ lên Hải Vọng Đài; xuống đường mòn Ngũ Hồ (khoảng 1,5 – 3 km), tắm suối ở hồ cuối rồi về bãi xe. Có thể đi thêm đường mòn thác Đỗ Quyên.", "Ride the park vehicle up near the summit and walk to Hai Vong Dai; descend to the Five Lakes trail (about 1.5 – 3 km), swim in the last pools and walk back to the car park. Add the Rhododendron waterfall trail if you have time."]
+        }
+      ],
+      "costs": [
+        ["Vé vào vườn quốc gia khoảng 60.000 – 65.000đ/người lớn (tham khảo)", "National park entry about 60,000 – 65,000 VND per adult (indicative)"],
+        ["Xe trung chuyển lên đỉnh thuê theo chuyến, giá thay đổi theo số người", "Shuttle to the summit hired per trip; price depends on group size"]
+      ],
+      "safety": [
+        ["Có vắt rừng – đi tất cao, xịt chống côn trùng", "There are forest leeches – wear long socks and use repellent"],
+        ["Mùa mưa bão tháng 9 – 12 đường lên đỉnh có thể đóng", "In the September – December storm season the summit road may close"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "ta-nang-phan-dung",
+      "name": ["Tà Năng – Phan Dũng", "Ta Nang – Phan Dung"],
+      "province": ["Lâm Đồng (Lâm Đồng, Bình Thuận cũ)", "Lam Dong (formerly Lam Dong and Binh Thuan)"],
+      "region": "nam",
+      "near": ["da-lat", "mui-ne"],
+      "level": "moderate",
+      "days": 2,
+      "distanceKm": [28, 35],
+      "distanceNote": ["phần đi bộ của lộ trình 2 ngày phổ biến; cả cung dài khoảng 50 km", "the walking part of the usual two-day route; the full trail is about 50 km"],
+      "summit": 1100,
+      "bestMonths": [11, 12, 1, 2, 3, 4],
+      "guide": "required",
+      "start": ["Xã Tà Năng (Đức Trọng cũ)", "Ta Nang commune (former Duc Trong)"],
+      "end": ["Xã Phan Dũng (Tuy Phong cũ)", "Phan Dung commune (former Tuy Phong)"],
+      "highlights": [
+        ["Đồi cỏ trập trùng nối ba tỉnh cũ Lâm Đồng – Ninh Thuận – Bình Thuận", "Rolling grass hills across the former provinces of Lam Dong, Ninh Thuan and Binh Thuan"],
+        ["Rừng thông, suối đá, cắm trại trên đồi lộng gió", "Pine forest, rocky streams and camping on windy hilltops"],
+        ["Cung trekking phổ biến nhất miền Nam", "The most popular trek in southern Vietnam"]
+      ],
+      "plan": [
+        {
+          "title": ["Tà Năng – đồi cỏ – điểm cắm trại", "Ta Nang – grass hills – campsite"],
+          "text": ["Đi bộ qua rừng thông và các đồi cỏ, ăn trưa dọc đường, chiều tới điểm cắm trại trên đồi; người dẫn đường nấu ăn, dựng lều.", "Walk through pine forest and over grassy hills with lunch on the way, reaching a hilltop campsite in the afternoon; the guides cook and pitch the tents."]
+        },
+        {
+          "title": ["Đồi cỏ – suối – Phan Dũng", "Grass hills – streams – Phan Dung"],
+          "text": ["Ngắm bình minh trên đồi, đi tiếp qua suối và rừng khô xuống Phan Dũng; xe đón ra quốc lộ.", "Sunrise on the hills, then on via streams and dry forest down to Phan Dung, where a vehicle takes you back to the highway."]
+        }
+      ],
+      "costs": [
+        ["Thường đi theo tour trọn gói của đơn vị lữ hành (người dẫn đường, porter, lều, ăn uống, xe)", "Usually done as a package with a tour operator (guides, porters, tents, meals, transport)"]
+      ],
+      "safety": [
+        ["Từng có người mất tích, tử vong khi đi tự phát – chỉ đi cùng người dẫn đường địa phương, báo lịch trình cho người nhà", "Hikers have gone missing and died when going alone – only go with local guides and leave your plan with family"],
+        ["Mùa khô ban trưa rất nắng, ít bóng râm – mang đủ 2 – 3 lít nước", "Dry-season middays are very sunny with little shade – carry 2 – 3 litres of water"],
+        ["Mùa mưa suối dâng nhanh, không lội qua khi nước đục, chảy xiết", "In the rainy season streams rise fast – never cross when the water is muddy and fast"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "bidoup-nui-ba",
+      "name": ["Bidoup – Núi Bà", "Bidoup – Nui Ba"],
+      "province": ["Lâm Đồng", "Lam Dong"],
+      "region": "nam",
+      "near": ["da-lat"],
+      "level": "moderate",
+      "days": 2,
+      "distanceKm": [20, 27],
+      "distanceNote": ["cả đi và về, tùy cửa rừng xuất phát", "there and back, depending on the trailhead"],
+      "summit": 2287,
+      "bestMonths": [11, 12, 1, 2, 3, 4],
+      "guide": "required",
+      "start": ["Vườn quốc gia Bidoup – Núi Bà (Lạc Dương)", "Bidoup – Nui Ba National Park (Lac Duong)"],
+      "end": ["Vườn quốc gia Bidoup – Núi Bà", "Bidoup – Nui Ba National Park"],
+      "highlights": [
+        ["Đỉnh Bidoup – nóc nhà Lâm Đồng", "Bidoup peak – the roof of Lam Dong"],
+        ["Cây pơ mu cổ thụ khoảng 1.300 năm tuổi", "An ancient pơ mu (Fujian cypress) about 1,300 years old"],
+        ["Rừng rêu, rừng lá kim mờ sương", "Mossy forest and misty conifer woods"]
+      ],
+      "plan": [
+        {
+          "title": ["Cửa rừng – cây pơ mu cổ – đỉnh Bidoup", "Trailhead – ancient cypress – Bidoup summit"],
+          "text": ["Vào rừng từ trạm kiểm lâm, ghé cây pơ mu cổ thụ, leo dần qua rừng rêu lên đỉnh và cắm trại gần đỉnh.", "Enter the forest at the ranger station, stop at the ancient cypress and climb slowly through mossy forest to camp near the summit."]
+        },
+        {
+          "title": ["Săn mây – xuống núi", "Clouds at dawn – descent"],
+          "text": ["Đón bình minh và biển mây trên đỉnh, xuống núi theo đường cũ hoặc nhánh khác, trưa chiều về tới Đà Lạt.", "Watch the sunrise and sea of clouds from the top, descend by the same or another trail and reach Da Lat by the afternoon."]
+        }
+      ],
+      "costs": [
+        ["Đi cùng đơn vị có đăng ký với vườn quốc gia; vé vào rừng thường đã gồm trong giá tour", "Go with an operator registered with the national park; forest entry is usually included"]
+      ],
+      "safety": [
+        ["Rừng rậm, nhiều lối mòn giống nhau – không tách đoàn", "Dense forest with many similar paths – never leave the group"],
+        ["Đêm trên đỉnh có thể xuống dưới 10°C – mang áo ấm, túi ngủ", "Nights on the summit can drop below 10°C – bring warm layers and a sleeping bag"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "lao-than",
+      "name": ["Lảo Thẩn – Y Tý", "Lao Than – Y Ty"],
+      "province": ["Lào Cai", "Lao Cai"],
+      "region": "bac",
+      "near": ["sa-pa"],
+      "level": "moderate",
+      "days": 2,
+      "distanceKm": [16, 21],
+      "distanceNote": ["cả đi và về", "there and back"],
+      "summit": 2860,
+      "bestMonths": [3, 4, 9, 10, 11],
+      "guide": "required",
+      "start": ["Xã Y Tý (Bát Xát)", "Y Ty commune (Bat Xat)"],
+      "end": ["Xã Y Tý", "Y Ty commune"],
+      "notice": ["Từ tháng 5/2026, Vườn quốc gia Bát Xát cấm leo núi, trekking tự phát ở Lảo Thẩn và nhiều đỉnh khác; vào rừng không khai báo có thể bị phạt. Chỉ đi cùng đơn vị được phép và hỏi trước cung đã mở lại hay chưa.", "Since May 2026 Bat Xat National Park has banned unorganised climbing and trekking on Lao Than and several other peaks; entering the forest without registering can be fined. Only go with a permitted operator and check first whether the route has reopened."],
+      "highlights": [
+        ["Biển mây Y Tý, một trong những nơi săn mây đẹp nhất Tây Bắc", "The Y Ty cloud sea, one of the best in the northwest"],
+        ["Dốc thoải, đồi cỏ – đỉnh trên 2.800 m dễ chịu nhất cho người mới", "Gentle slopes and grassy hills – the friendliest 2,800 m-plus summit for beginners"],
+        ["Bản người Hà Nhì với nhà trình tường", "Ha Nhi villages of rammed-earth houses"]
+      ],
+      "plan": [
+        {
+          "title": ["Y Tý – chân núi – lán nghỉ", "Y Ty – trailhead – hut"],
+          "text": ["Từ Y Tý đi xe hoặc đi bộ khoảng 10 km tới chân núi, leo theo sườn đồi cỏ và rừng lên lán nghỉ qua đêm.", "From Y Ty drive or walk about 10 km to the trailhead, then climb grassy slopes and forest to an overnight hut."]
+        },
+        {
+          "title": ["Đỉnh Lảo Thẩn – xuống núi", "Lao Than summit – descent"],
+          "text": ["Dậy sớm lên đỉnh 2.860 m đón bình minh và biển mây, xuống núi về Y Tý.", "Rise early for the 2,860 m summit, sunrise and the cloud sea, then descend to Y Ty."]
+        }
+      ],
+      "costs": [
+        ["Porter, người dẫn đường địa phương do đơn vị tổ chức bố trí", "Porters and local guides arranged by the operator"]
+      ],
+      "safety": [
+        ["Vùng biên giới: mang căn cước/hộ chiếu", "Border area: carry ID or a passport"],
+        ["Sương mù dày làm mất phương hướng trên đồi trống – luôn đi sau người dẫn đường", "Thick fog makes the open hills disorienting – always follow your guide"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "ta-xua",
+      "name": ["Tà Xùa – sống lưng khủng long", "Ta Xua – the dinosaur's back"],
+      "province": ["Sơn La", "Son La"],
+      "region": "bac",
+      "near": ["moc-chau", "mu-cang-chai"],
+      "level": "hard",
+      "days": 2,
+      "distanceKm": [20, 25],
+      "distanceNote": ["cả đi và về", "there and back"],
+      "summit": 2865,
+      "bestMonths": [10, 11, 12, 1, 2, 3, 4],
+      "guide": "required",
+      "start": ["Xã Tà Xùa (Bắc Yên)", "Ta Xua commune (Bac Yen)"],
+      "end": ["Xã Tà Xùa", "Ta Xua commune"],
+      "highlights": [
+        ["Sống lưng khủng long – sống núi đá hẹp, hai bên là vực", "The dinosaur's back – a narrow rocky ridge with drops on both sides"],
+        ["Mùa săn mây tháng 10 – 4", "Cloud-hunting season from October to April"],
+        ["Rừng rêu, rừng trúc trên cao", "Mossy forest and bamboo high up"]
+      ],
+      "plan": [
+        {
+          "title": ["Bản Tà Xùa – Hai cây táo mèo – lán nghỉ", "Ta Xua village – Two Wild Apple Trees – hut"],
+          "text": ["Chặng đầu tới mốc Hai cây táo mèo khoảng 3,5 km (chừng 1,5 giờ), leo tiếp qua rừng lên lán nghỉ qua đêm.", "The first stage to the Two Wild Apple Trees is about 3.5 km (around 1.5 hours); climb on through forest to an overnight hut."]
+        },
+        {
+          "title": ["Đỉnh 2.865 m – sống lưng khủng long – xuống núi", "2,865 m summit – the dinosaur's back – descent"],
+          "text": ["Lên đỉnh đón mây, đi qua đoạn sống lưng khủng long (khoảng 3 km đá hẹp, dốc) rồi xuống bản.", "Summit at dawn for the clouds, cross the dinosaur's back (about 3 km of narrow, steep rock) and descend to the village."]
+        }
+      ],
+      "costs": [
+        ["Porter, người dẫn đường người Mông trong bản – đặt trước qua homestay hoặc đơn vị tổ chức", "Hmong porters and guides from the village – book ahead via a homestay or operator"]
+      ],
+      "safety": [
+        ["Không qua sống lưng khủng long khi mưa, gió mạnh hoặc sương mù dày", "Do not cross the dinosaur's back in rain, strong wind or thick fog"],
+        ["Cần đôi tay rảnh để bám đá – dùng balo đeo hai vai, cất gậy khi qua đoạn hẹp", "Keep both hands free for the rock – use a two-strap pack and stow poles on narrow sections"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "lung-cung",
+      "name": ["Lùng Cúng – Mù Cang Chải", "Lung Cung – Mu Cang Chai"],
+      "province": ["Lào Cai (Yên Bái cũ)", "Lao Cai (formerly Yen Bai)"],
+      "region": "bac",
+      "near": ["mu-cang-chai"],
+      "level": "hard",
+      "days": 2,
+      "distanceKm": [12, 15],
+      "distanceNote": ["chặng leo lên, khoảng 7 – 8 giờ đi bộ", "the climb, about 7 – 8 hours of walking"],
+      "summit": 2913,
+      "bestMonths": [3, 4, 9, 10, 11],
+      "guide": "required",
+      "start": ["Bản người Mông dưới chân núi (Mù Cang Chải)", "A Hmong village at the foot of the mountain (Mu Cang Chai)"],
+      "end": ["Bản xuất phát", "The starting village"],
+      "highlights": [
+        ["Đỉnh 2.913 m nhìn xuống ruộng bậc thang Mù Cang Chải", "A 2,913 m summit above the Mu Cang Chai terraces"],
+        ["Rừng già, trảng cỏ, biển mây buổi sớm", "Old forest, grassy clearings and morning clouds"],
+        ["Kết hợp mùa lúa chín tháng 9 – 10", "Pair it with the rice harvest in September – October"]
+      ],
+      "plan": [
+        {
+          "title": ["Bản – rừng già – lán nghỉ", "Village – old forest – hut"],
+          "text": ["Đoạn đầu dốc vừa qua nương ngô; sau bữa trưa đường dốc và rậm hơn trong rừng, chiều tới lán gần đỉnh.", "Moderate climbing through maize fields at first; after lunch the path gets steeper and denser in the forest, reaching a hut near the top by afternoon."]
+        },
+        {
+          "title": ["Đỉnh Lùng Cúng – xuống núi", "Lung Cung summit – descent"],
+          "text": ["Lên đỉnh đón bình minh, xuống núi theo đường cũ về bản.", "Summit for sunrise and descend the same way to the village."]
+        }
+      ],
+      "costs": [
+        ["Porter, người dẫn đường người Mông – đặt trước qua homestay hoặc đơn vị tổ chức", "Hmong porters and guides – book ahead via a homestay or operator"]
+      ],
+      "safety": [
+        ["Tránh tháng 7 – 8: mưa lớn, sạt lở, đường rừng lầy", "Avoid July – August: heavy rain, landslides and muddy forest trails"],
+        ["Rừng rậm dễ lạc – không tách khỏi người dẫn đường", "Easy to get lost in the dense forest – stay with your guide"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "fansipan-tram-ton",
+      "name": ["Fansipan qua Trạm Tôn", "Fansipan via Tram Ton"],
+      "province": ["Lào Cai", "Lao Cai"],
+      "region": "bac",
+      "near": ["sa-pa"],
+      "level": "hard",
+      "days": 2,
+      "distanceKm": [11, 12],
+      "distanceNote": ["một chiều lên đỉnh; có thể đi cáp treo xuống", "one way to the summit; you can take the cable car down"],
+      "summit": 3143,
+      "bestMonths": [3, 4, 5, 9, 10, 11],
+      "guide": "required",
+      "start": ["Đèo Trạm Tôn (khoảng 1.900 m)", "Tram Ton pass (about 1,900 m)"],
+      "end": ["Đỉnh Fansipan – cáp treo về Sa Pa, hoặc đi bộ về Trạm Tôn", "Fansipan summit – cable car to Sa Pa, or walk back to Tram Ton"],
+      "notice": ["Bắt buộc đi cùng porter hoặc hướng dẫn viên địa phương và đăng ký với Vườn quốc gia Hoàng Liên.", "You must go with a local porter or guide and register with Hoang Lien National Park."],
+      "highlights": [
+        ["Nóc nhà Đông Dương 3.143 m", "The roof of Indochina at 3,143 m"],
+        ["Rừng trúc, rừng đỗ quyên (hoa nở tháng 3 – 4)", "Bamboo and rhododendron forest (blooms in March – April)"],
+        ["Ngủ lán ở mốc 2.800 m, bình minh trên biển mây", "A night in the 2,800 m hut and sunrise over the clouds"]
+      ],
+      "plan": [
+        {
+          "title": ["Trạm Tôn – mốc 2.200 m – lán 2.800 m", "Tram Ton – 2,200 m camp – 2,800 m hut"],
+          "text": ["Đăng ký ở trạm kiểm lâm, leo qua rừng tới mốc 2.200 m (có lán, nước) rồi lên lán 2.800 m nghỉ đêm – hai mốc duy nhất có lán, bếp và nước.", "Register at the ranger post, climb through forest to the 2,200 m camp (hut and water) and on to the 2,800 m hut for the night – the only two points with huts, kitchens and water."]
+        },
+        {
+          "title": ["Đỉnh 3.143 m – về Sa Pa", "3,143 m summit – back to Sa Pa"],
+          "text": ["Dậy sớm leo lên đỉnh, ngắm bình minh; xuống bằng cáp treo (mua vé riêng) hoặc đi bộ về Trạm Tôn.", "Start early for the summit and sunrise; go down by cable car (separate ticket) or walk back to Tram Ton."]
+        }
+      ],
+      "costs": [
+        ["Phí kiểm lâm khoảng 150.000đ/người, nộp khi đăng ký (tham khảo)", "Ranger fee about 150,000 VND per person, paid at registration (indicative)"],
+        ["Porter khoảng 200.000 – 250.000đ/người/ngày, giá thay đổi theo nhóm (tham khảo)", "Porters about 200,000 – 250,000 VND per person per day, varying by group (indicative)"]
+      ],
+      "safety": [
+        ["Thời tiết trên 2.800 m đổi rất nhanh, mùa đông có thể có băng giá – mang áo gió, áo ấm, găng tay", "Weather above 2,800 m changes fast and winter can bring ice – bring a windproof, warm layers and gloves"],
+        ["Không leo tháng 6 – 8 khi mưa lớn kéo dài", "Do not climb in June – August during prolonged heavy rain"]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "pu-ta-leng",
+      "name": ["Pu Ta Leng", "Pu Ta Leng"],
+      "province": ["Lai Châu", "Lai Chau"],
+      "region": "bac",
+      "near": ["sa-pa"],
+      "level": "expert",
+      "days": 3,
+      "distanceKm": [23, 35],
+      "distanceNote": ["cả hành trình, tùy lối lên – xuống", "the whole trek, depending on the way up and down"],
+      "summit": 3049,
+      "bestMonths": [2, 3, 4, 10, 11],
+      "guide": "required",
+      "start": ["Xã Hồ Thầu (Tam Đường)", "Ho Thau commune (Tam Duong)"],
+      "end": ["Xã Tả Lèng (Tam Đường)", "Ta Leng commune (Tam Duong)"],
+      "notice": ["Cung đường rừng sâu, khu vực có quản lý bảo vệ rừng: chỉ đi cùng đơn vị tổ chức có porter địa phương, khai báo trước với chính quyền, ban quản lý rừng.", "A deep-forest route in a protected area: only go with an operator using local porters, and register with the authorities and forest managers first."],
+      "highlights": [
+        ["Đỉnh cao thứ hai Việt Nam (3.049 m)", "Vietnam's second-highest peak (3,049 m)"],
+        ["Rừng đỗ quyên nở rộ tháng 2 – 4", "Rhododendron forest in bloom from February to April"],
+        ["Rừng nguyên sinh, suối thác dọc đường", "Primary forest with streams and waterfalls along the way"]
+      ],
+      "plan": [
+        {
+          "title": ["Hồ Thầu – rừng nguyên sinh – lán", "Ho Thau – primary forest – hut"],
+          "text": ["Vào rừng từ Hồ Thầu, leo nhiều dốc liên tiếp qua rừng già, chiều nghỉ lán.", "Enter the forest from Ho Thau and climb a series of steep slopes through old forest to a hut for the night."]
+        },
+        {
+          "title": ["Đỉnh 3.049 m", "The 3,049 m summit"],
+          "text": ["Leo lên đỉnh qua rừng đỗ quyên, trảng cỏ và đá; nghỉ lán thêm một đêm.", "Climb to the summit through rhododendron forest, grassland and rock; another night in a hut."]
+        },
+        {
+          "title": ["Xuống núi về Tả Lèng", "Descent to Ta Leng"],
+          "text": ["Xuống núi qua rừng và suối về Tả Lèng; xe về Lai Châu hoặc Sa Pa.", "Descend through forest and streams to Ta Leng; drive to Lai Chau or Sa Pa."]
+        }
+      ],
+      "costs": [
+        ["Thường đi theo tour trọn gói 3 ngày 2 đêm (porter, ăn uống, lán, xe)", "Usually a three-day package (porters, meals, huts, transport)"]
+      ],
+      "safety": [
+        ["Đường lầy, đá rất trơn, gió mạnh – mưa bão trên núi rất nguy hiểm, sẵn sàng quay đầu", "Muddy paths, very slippery rock and strong wind – storms on the mountain are dangerous, be ready to turn back"],
+        ["Mỗi ngày đi bộ 5 – 6 giờ trên địa hình khó – tập thể lực ít nhất 1 tháng", "5 – 6 hours a day on hard ground – train for at least a month"]
+      ],
+      "updated": "2026-11"
+    }
+  ]
+}

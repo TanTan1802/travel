@@ -59,6 +59,8 @@ const SCRIPTS = [
     'assets/js/destination-render.js',
     'assets/js/guide-render.js',
     'assets/js/seo-render.js',
+    'assets/js/data/treks.js',
+    'assets/js/trek-render.js',
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
@@ -66,7 +68,8 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'pricesPage', 'pricesJsonLd', 'destinationSights', 'monthPage', 'monthTitle', 'monthDestinations', 'MONTH_NOTES',
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
-    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES']
+    'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
+    'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -223,6 +226,7 @@ const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.htm
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
 const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
+const trekPath = (lang, id = '') => `${LANGS[lang].prefix}trekking/${id ? `${id}/` : ''}index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
 
@@ -653,6 +657,31 @@ function explorePages(template, lang) {
             jsonLd: [{ '@type': 'FAQPage', mainEntity: routeSite.routeFaq(a, b).map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }],
             crumbs: [home, [b.name, pageUrl(destPath(lang, b.id))]],
         }), routeSite])
+    }
+    /* Trekking: trang tổng + từng cung (menu đánh dấu "Trekking") */
+    const trekTemplate = template.replace(' class="nav__link active-link"', ' class="nav__link"')
+        .replace('href="trekking/index.html" class="nav__link"', 'href="trekking/index.html" class="nav__link active-link"')
+    const faqLd = pairs => ({ '@type': 'FAQPage', mainEntity: pairs.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) })
+    const trekHubSite = loadSite(lang, rootFor(trekPath(lang)))
+    pages.push([trekPath(lang), () => buildContentPage(trekTemplate, lang, l => trekPath(l), trekHubSite, {
+        title: trekHubSite.trekHubTitle(),
+        description: trekHubSite.t('{count} cung trekking từ dễ đến rất khó, mỗi cung có quãng đường, độ cao, mùa đẹp, lịch trình từng ngày, chi phí và quy định cần biết.', { count: trekHubSite.TREKS.length }),
+        main: trekHubSite.trekHubPage(),
+        image: ogImage(trekHubSite, trekHubSite.getDestination('sa-pa') || trekHubSite.DESTINATIONS[0]),
+        jsonLd: [{ '@type': 'ItemList', name: trekHubSite.trekHubTitle(),
+            itemListElement: trekHubSite.TREKS.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: pageUrl(trekPath(lang, x.id)), name: trekHubSite.pickLang(x.name) })) }],
+        crumbs: [home],
+    }), trekHubSite])
+    const trekSite = loadSite(lang, rootFor(trekPath(lang, 'x')))
+    for (const tr of trekSite.TREKS) {
+        pages.push([trekPath(lang, tr.id), () => buildContentPage(trekTemplate, lang, l => trekPath(l, tr.id), trekSite, {
+            title: trekSite.trekTitle(tr),
+            description: trekSite.trekDescription(tr),
+            main: trekSite.trekPage(tr),
+            image: ogImage(trekSite, trekSite.getDestination(tr.near[0])),
+            jsonLd: [faqLd(trekSite.trekFaq(tr))],
+            crumbs: [home, [trekSite.t('Trekking'), pageUrl(trekPath(lang))]],
+        }), trekSite])
     }
     const festSite = loadSite(lang, rootFor(festivalPath(lang)))
     const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
