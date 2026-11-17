@@ -37,6 +37,12 @@ function collectWikiFiles() {
         d.foods.forEach(f => add(f.file, `${d.id} (món: ${f.name})`))
     }
 
+    /* Ảnh các cung trekking (data/treks.json – images) */
+    const treksFile = path.join(ROOT, 'data/treks.json')
+    if (fs.existsSync(treksFile)) {
+        JSON.parse(fs.readFileSync(treksFile, 'utf8')).treks.forEach(t => add(t.images, `trekking ${t.id}`))
+    }
+
     /* Ảnh bìa trang chủ mặc định và theo mùa (data/site.json) */
     const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/site.json'), 'utf8'))
     add(site.hero.image, 'trang chủ (ảnh bìa)')

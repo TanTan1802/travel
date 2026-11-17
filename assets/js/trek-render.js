@@ -63,8 +63,9 @@ const TREK_OPERATOR = [
     ['Sẵn sàng hoãn, đổi lịch khi thời tiết xấu thay vì cố đi.', 'Is willing to postpone when the weather is bad rather than push on.'],
 ]
 
-/* Ảnh của cung: ảnh của điểm đến gần, các cung cùng điểm đến lần lượt dùng ảnh khác nhau trong bộ ảnh */
+/* Ảnh của cung: ảnh riêng (images) nếu có; không thì ảnh của điểm đến gần, các cung cùng điểm đến lần lượt dùng ảnh khác nhau */
 function trekImages(tr) {
+    if (tr.images && tr.images.length) return [...tr.images, ...heroCandidates(getDestination(tr.near[0]))]
     const d = getDestination(tr.near[0])
     const k = trekList().filter(x => x.near[0] === tr.near[0]).findIndex(x => x.id === tr.id)
     const all = heroCandidates(d)
@@ -244,6 +245,9 @@ function trekPage(tr) {
             <article class="guide__body">
                 <section class="guide-section" id="tong-quan">
                     <h2 class="guide-section__title">${t('Tổng quan')}</h2>
+                    <figure class="trek-photo">
+                        <img data-wiki="${wikiAttr(trekImages(tr))}" data-width="1280" data-sizes="(max-width: 768px) calc(100vw - 32px), 760px" alt="${pickLang(tr.name)}" loading="lazy">
+                    </figure>
                     ${trekStats(tr)}
                     ${tr.notice ? `<p class="trek-notice"><i class="ri-alarm-warning-line"></i> <span>${pickLang(tr.notice)}</span></p>` : ''}
                     ${list(tr.highlights)}
