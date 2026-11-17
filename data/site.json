@@ -50,6 +50,80 @@
   },
   "seasons": [
     {
+      "id": "dat-ve-tet-2027",
+      "name": "Đặt vé Tết sớm 2027",
+      "enabled": true,
+      "from": "2026-11-15",
+      "to": "2027-01-24",
+      "theme": {
+        "hue": 15,
+        "accentHue": 42
+      },
+      "hero": {
+        "subtitle": {
+          "vi": "Tết Đinh Mùi 2027",
+          "en": "Lunar New Year 2027",
+          "ko": "2027 설날",
+          "zh": "2027 春节",
+          "ja": "2027 年テト（旧正月）"
+        },
+        "title": {
+          "vi": "Tết Này\nĐi Đâu? *Đặt Vé Sớm\nGiá Tốt*",
+          "en": "Where To\nThis Tet? *Book Early\nFor Better Fares*",
+          "ko": "이번 설날\n어디로? *일찍 예약하고\n알뜰하게*",
+          "zh": "今年春节\n去哪儿？*提早订票\n更划算*",
+          "ja": "今年のテトは\nどこへ？ *早めの予約で\nお得に*"
+        },
+        "image": [
+          "Amazing beach on Phu Quoc island Vietnam (38647607275).jpg",
+          "Beautiful beach on Phu Quoc island Vietnam (39543775721).jpg"
+        ],
+        "alt": {
+          "vi": "Biển Phú Quốc",
+          "en": "A beach on Phu Quoc island",
+          "ko": "푸꾸옥 해변",
+          "zh": "富国岛海滩",
+          "ja": "フーコック島のビーチ"
+        }
+      },
+      "banner": {
+        "text": {
+          "vi": "Tết nghỉ 7 ngày (4 – 10/2) – đặt vé sớm, xem nên đi đâu",
+          "en": "7 days off for Tet (4 – 10 Feb) – book early, see where to go",
+          "ko": "설 연휴 7일(2월 4 – 10일) – 일찍 예약하고 여행지 보기",
+          "zh": "春节放假 7 天（2 月 4 – 10 日）– 提早订票，看看去哪儿",
+          "ja": "テト休暇は 7 日間（2/4 – 2/10）– 早めの予約と行き先チェックを"
+        },
+        "link": "cam-nang/nghi-le-2027/index.html",
+        "countdown": {
+          "date": "2027-02-06",
+          "label": {
+            "vi": "Tết Đinh Mùi",
+            "en": "Lunar New Year",
+            "ko": "설날",
+            "zh": "春节",
+            "ja": "テト"
+          }
+        }
+      },
+      "featured": [
+        "phu-quoc",
+        "hoi-an",
+        "hue",
+        "da-lat",
+        "moc-chau",
+        "mui-ne",
+        "sai-gon"
+      ],
+      "featuredTitle": {
+        "vi": "Đẹp nhất\ndịp Tết",
+        "en": "Best places\nfor Tet",
+        "ko": "설날에\n가장 좋은 곳",
+        "zh": "春节\n最佳去处",
+        "ja": "テトに\nベストな旅先"
+      }
+    },
+    {
       "id": "tet-2027",
       "name": "Tết Đinh Mùi 2027",
       "enabled": true,

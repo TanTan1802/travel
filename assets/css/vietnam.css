@@ -5824,6 +5824,20 @@ a.home__promo[href]:hover {
   background-color: hsla(var(--hue-color), 64%, 12%, .9);
 }
 
+/* Màn hình hẹp: chữ thông báo chiếm cả dòng, đếm ngược + mũi tên xuống dòng dưới (không ép chữ thành cột hẹp đè lên menu) */
+@media screen and (max-width: 576px) {
+  .home__promo {
+    flex-wrap: wrap;
+    row-gap: .3rem;
+    border-radius: 1rem;
+  }
+
+  .home__promo span {
+    flex: 1 1 calc(100% - 1.5rem);
+    min-width: 0;
+  }
+}
+
 /* Lớp phủ tối nhẹ trên ảnh bìa trang chủ: menu và slogan chữ trắng luôn đọc được, kể cả ảnh nhiều trời sáng */
 .home {
   position: relative;
@@ -5844,6 +5858,21 @@ a.home__promo[href]:hover {
 
 .home__container {
   z-index: 2;
+}
+
+/* Điện thoại: khung ảnh bìa cao tối thiểu một màn hình (không cố định) – slogan / thông báo dài làm khung cao lên,
+   không tràn ngược lên đè menu; ảnh nền phủ theo khung */
+@media screen and (max-width: 767px) {
+  .home__container {
+    height: auto;
+    min-height: calc(100vh - var(--header-height));
+    padding-top: calc(var(--header-height) + 1rem);
+    padding-bottom: 2rem;
+  }
+
+  .home__img {
+    height: 100%;
+  }
 }
 
 /* Đếm ngược trong dải thông báo theo mùa */
