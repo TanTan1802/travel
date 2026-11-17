@@ -3,6 +3,9 @@
 hydrateWikiImages(document.getElementById('guide-page'))
 syncFavoriteButtons()
 
+/* Lịch du lịch 12 tháng: đánh dấu tháng hiện tại (theo ngày trên máy người xem) */
+document.querySelector(`.travel-cal [data-cal-month="${new Date().getMonth() + 1}"]`)?.classList.add('travel-cal__month--now')
+
 /* Trang lịch lễ hội (le-hoi/): lọc theo loại / miền, đánh dấu tháng hiện tại và sự kiện đang diễn ra */
 const festivalFilter = document.getElementById('festival-filter')
 if (festivalFilter) {

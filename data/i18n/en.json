@@ -460,7 +460,15 @@
     "Lướt ván, thể thao biển": "Kitesurf & water sports",
     "Hoang sơ, ít khách": "Unspoilt & quiet",
     "Chọn biển theo sở thích": "Pick a beach by style",
-    "Lọc trên trang chủ": "Filter on the home page"
+    "Lọc trên trang chủ": "Filter on the home page",
+    "Nên đi": "Go",
+    "Cân nhắc": "Consider",
+    "Hạn chế": "Avoid",
+    "Ngoài mùa đẹp": "Off season",
+    "Kéo ngang để xem đủ 12 tháng. Bấm tên điểm đến để xem lịch trình, bấm tháng để xem nên đi đâu.": "Scroll sideways to see all 12 months. Tap a destination for its itinerary, or a month to see where to go.",
+    "Lịch du lịch 12 tháng": "12-month travel calendar",
+    "Điểm đến": "Destination",
+    "Tháng {from} – {to}": "{from} – {to}"
   },
   "html": {
     "Vùng miền": "Region",

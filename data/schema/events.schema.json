@@ -41,7 +41,9 @@
           },
           "months": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/month" } },
           "lunar": { "type": "boolean" },
+          "severe": { "description": "Thời tiết nên tránh (bão, lũ, biển động) – lịch du lịch 12 tháng tô đỏ ngoài mùa đẹp", "type": "boolean" },
           "name": { "$ref": "common.schema.json#/$defs/pair" },
+          "short": { "description": "Nhãn ngắn trên lịch du lịch 12 tháng, vd. [\"Lúa chín\", \"Rice harvest\"]", "$ref": "common.schema.json#/$defs/pair" },
           "desc": { "$ref": "common.schema.json#/$defs/pair" },
           "tip": { "$ref": "common.schema.json#/$defs/pair" }
         }

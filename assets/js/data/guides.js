@@ -5,7 +5,7 @@
  * danh sách (list) hoặc widget tự sinh từ dữ liệu: 'months' (điểm đến đẹp theo tháng).
  * related: các điểm đến liên quan hiện ở cuối bài.
  */
-const GUIDE_UPDATED = '2026-10'
+const GUIDE_UPDATED = '2026-11'
 
 const GUIDES = [
     {
@@ -22,6 +22,13 @@ const GUIDES = [
                     ['Miền Nam nóng quanh năm: mùa khô tháng 12 – 4, mùa mưa tháng 5 – 11 nhưng thường chỉ mưa rào buổi chiều.', 'The South is warm all year: dry season Dec – Apr, rainy season May – Nov, usually with short afternoon showers.'],
                     ['Tây Nguyên (Đà Lạt, Buôn Ma Thuột) mát mẻ, mùa khô tháng 11 – 4 là lúc đẹp nhất.', 'The Central Highlands (Da Lat, Buon Ma Thuot) are cool; the dry season Nov – Apr is best.'],
                 ],
+            },
+            {
+                heading: ['Lịch du lịch 12 tháng: thời điểm vàng & cảnh báo', '12-month travel calendar: best times & warnings'],
+                paragraphs: [
+                    ['Xanh là mùa đẹp nhất, vàng là đi được nhưng nên cân nhắc thời tiết, đỏ là mùa bão, lũ hoặc biển động nên tránh. Bảng tự cập nhật theo dữ liệu mùa đẹp và lịch thời tiết của từng điểm đến.', 'Green is the best season, yellow means you can go but should check the weather, red is storm, flood or rough-sea season best avoided. The calendar updates itself from each destination\'s best months and weather calendar.'],
+                ],
+                widget: 'calendar',
             },
             {
                 heading: ['Điểm đến đẹp theo từng tháng', 'Where to go, month by month'],
