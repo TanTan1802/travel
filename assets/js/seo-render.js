@@ -217,6 +217,7 @@ function monthPage(m) {
             <h2 class="section__title">${t('Điểm đến đẹp nhất tháng {m}', { m: monthLabel(m) })}</h2>
             <div class="dest__grid container">${picks.map(d => destinationCard(d)).join('')}</div>
         </section>
+        ${typeof monthTreksHtml === 'function' ? monthTreksHtml(m) : ''}
     `
 }
 

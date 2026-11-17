@@ -500,6 +500,25 @@ test('ảnh trong repo: mọi file trong manifest đều tồn tại', () => {
     if (notLocal.length) console.log(`  ⚠️  ${notLocal.length} ảnh chưa tải về repo (workflow sẽ tải sau khi merge): ${notLocal.join(', ')}`)
 })
 
+test('trekking: mỗi cung có trang ở mọi ngôn ngữ, có trong sitemap, liên kết từ trang điểm đến gần', () => {
+    const { treks } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/treks.json'), 'utf8'))
+    const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
+    for (const p of LANG_PREFIXES) {
+        assert.ok(fs.existsSync(path.join(ROOT, `${p}trekking/index.html`)), `chưa build ${p}trekking/`)
+        for (const tr of treks) {
+            const rel = `${p}trekking/${tr.id}/index.html`
+            assert.ok(fs.existsSync(path.join(ROOT, rel)), `chưa build ${rel}`)
+            assert.ok(sitemap.includes(`${SITE_URL}${p}trekking/${tr.id}/`), `sitemap thiếu ${rel}`)
+        }
+    }
+    for (const tr of treks) {
+        for (const id of tr.near) {
+            const html = fs.readFileSync(path.join(ROOT, `diem-den/${id}/index.html`), 'utf8')
+            assert.ok(html.includes(`trekking/${tr.id}/index.html`), `trang ${id} thiếu liên kết tới cung ${tr.id}`)
+        }
+    }
+})
+
 test('trang tĩnh đã được build cho mọi điểm đến ở mọi ngôn ngữ', () => {
     for (const d of DESTINATIONS) {
         for (const rel of LANG_PREFIXES.map(p => `${p}diem-den/${d.id}/index.html`)) {

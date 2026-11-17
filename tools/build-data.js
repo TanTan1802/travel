@@ -44,6 +44,10 @@ const DATASETS = {
         vars: { photos: 'COMMUNITY_PHOTOS' },
         doc: 'Ảnh do người đọc gửi (đã duyệt, ghi tác giả + giấy phép) – thêm bằng tools/add-photo.js.',
     },
+    treks: {
+        vars: { levels: 'TREK_LEVELS', treks: 'TREKS' },
+        doc: 'Cung trekking: độ khó, quãng đường, độ cao, mùa đẹp, lịch trình từng ngày, chi phí, an toàn, quy định.\n * Trang trekking/ và trekking/<id>/ do assets/js/trek-render.js dựng khi build.',
+    },
     /* Không bắt buộc: chưa có data/routes.json thì ROUTES = null (trình lập kế hoạch ước tính theo đường chim bay) */
     routes: {
         whole: 'ROUTES',
@@ -168,6 +172,21 @@ function siteChecks(site, idSet) {
     return errors
 }
 
+/* Cung trekking: mã không trùng, điểm đến gần có thật, lịch trình đủ số ngày, quãng đường thấp ≤ cao */
+function trekChecks(data) {
+    const errors = []
+    const dests = new Set(data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    data.treks.treks.forEach(t => {
+        if (seen.has(t.id)) errors.push(`treks: mã ${t.id} bị trùng`)
+        seen.add(t.id)
+        t.near.filter(id => !dests.has(id)).forEach(id => errors.push(`treks.${t.id}: điểm đến gần ${id} không tồn tại`))
+        if (t.plan.length !== t.days) errors.push(`treks.${t.id}: lịch trình có ${t.plan.length} ngày, days = ${t.days}`)
+        if (t.distanceKm[0] > t.distanceKm[1]) errors.push(`treks.${t.id}: distanceKm thấp > cao`)
+    })
+    return errors
+}
+
 function loadAndValidate() {
     const ajv = createValidator()
     const data = {}
@@ -186,6 +205,7 @@ function loadAndValidate() {
         data[name] = json
     }
     if (!errors.length) errors.push(...crossChecks(data))
+    if (!errors.length) errors.push(...trekChecks(data))
 
     /* Giao diện & mùa: tools/build.js đọc thẳng data/site.json (trình duyệt không cần cả file) */
     const site = readJson(path.join(DATA_DIR, 'site.json'))

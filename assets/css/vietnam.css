@@ -3879,6 +3879,156 @@ body.dark-theme {
   .travel-cal__hint { display: none; }
 }
 
+/*=============== TREKKING (trekking/, trekking/<id>/) ===============*/
+:root {
+  --trek-easy-bg: hsl(140, 50%, 88%);
+  --trek-easy-text: hsl(140, 70%, 18%);
+  --trek-moderate-bg: hsl(46, 95%, 84%);
+  --trek-moderate-text: hsl(32, 85%, 20%);
+  --trek-hard-bg: hsl(24, 95%, 86%);
+  --trek-hard-text: hsl(18, 80%, 24%);
+  --trek-expert-bg: hsl(2, 85%, 90%);
+  --trek-expert-text: hsl(0, 70%, 28%);
+}
+
+body.dark-theme {
+  --trek-easy-bg: hsl(140, 35%, 20%);
+  --trek-easy-text: hsl(140, 60%, 85%);
+  --trek-moderate-bg: hsl(40, 45%, 20%);
+  --trek-moderate-text: hsl(46, 90%, 80%);
+  --trek-hard-bg: hsl(22, 45%, 21%);
+  --trek-hard-text: hsl(28, 95%, 82%);
+  --trek-expert-bg: hsl(0, 40%, 23%);
+  --trek-expert-text: hsl(0, 90%, 88%);
+}
+
+.trek-level--easy { color: var(--trek-easy-text); background-color: var(--trek-easy-bg); }
+.trek-level--moderate { color: var(--trek-moderate-text); background-color: var(--trek-moderate-bg); }
+.trek-level--hard { color: var(--trek-hard-text); background-color: var(--trek-hard-bg); }
+.trek-level--expert { color: var(--trek-expert-text); background-color: var(--trek-expert-bg); }
+
+span.trek-level {
+  display: inline-flex;
+  gap: .3rem;
+  align-items: center;
+  padding: .15rem .6rem;
+  border-radius: 1rem;
+  font-weight: var(--font-semi-bold);
+}
+
+.trek-levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .75rem;
+}
+
+.trek-levels__item {
+  display: grid;
+  gap: .35rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  font-size: var(--small-font-size);
+  line-height: 1.5;
+}
+
+.trek-levels__item strong {
+  font-size: var(--normal-font-size);
+}
+
+.trek-subtitle {
+  margin: 1rem 0 .5rem;
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+}
+
+.trek-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: .75rem;
+  margin: 0 0 1rem;
+}
+
+.trek-stats > div {
+  padding: .75rem 1rem;
+  border-radius: var(--radius);
+  background-color: var(--input-color);
+}
+
+.trek-stats dt {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+.trek-stats dt i {
+  color: var(--first-color-text);
+}
+
+.trek-stats dd {
+  margin: .2rem 0 0;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.trek-stats dd small {
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+.trek-notice {
+  display: flex;
+  gap: .6rem;
+  align-items: flex-start;
+  padding: .9rem 1rem;
+  border-radius: var(--radius);
+  color: var(--trek-expert-text);
+  background-color: var(--trek-expert-bg);
+  line-height: 1.6;
+}
+
+.trek-notice i {
+  font-size: 1.25rem;
+}
+
+.trek-plan {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 3px solid var(--input-color);
+  list-style: none;
+}
+
+.trek-plan__title {
+  margin-bottom: .35rem;
+  font-size: var(--normal-font-size);
+  color: var(--title-color);
+}
+
+.trek-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--smaller-font-size);
+  text-align: center;
+}
+
+.trek-months a {
+  display: block;
+  padding: .45rem 0;
+  border-radius: .35rem;
+  color: var(--text-color);
+  background-color: var(--input-color);
+}
+
+.trek-months__good a {
+  font-weight: var(--font-semi-bold);
+  color: var(--trek-easy-text);
+  background-color: var(--trek-easy-bg);
+}
+
 .months-table {
   display: grid;
   border-radius: var(--radius);
