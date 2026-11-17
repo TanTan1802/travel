@@ -38,6 +38,7 @@
       "guide": "recommended",
       "start": ["Thị trấn Sa Pa", "Sa Pa town"],
       "end": ["Bản Tả Van", "Ta Van village"],
+      "images": ["Mường Hoa Valley 11.jpg", "Mường Hoa Valley 10.jpg", "Mường Hoa Valley 01.jpg"],
       "highlights": [
         ["Ruộng bậc thang thung lũng Mường Hoa", "Muong Hoa valley rice terraces"],
         ["Bản người Mông đen ở Lao Chải, người Giáy ở Tả Van", "Black Hmong villages at Lao Chai and Giay villages at Ta Van"],
@@ -74,6 +75,7 @@
       "guide": "recommended",
       "start": ["Cổng Vườn quốc gia Bạch Mã (Phú Lộc)", "Bach Ma National Park gate (Phu Loc)"],
       "end": ["Cổng Vườn quốc gia Bạch Mã", "Bach Ma National Park gate"],
+      "images": ["Bach Ma National Park.jpg", "Bach Ma National Park - May 09th 2025.jpg"],
       "highlights": [
         ["Đường mòn Ngũ Hồ: năm hồ nước trong nối nhau bằng thác nhỏ", "Five Lakes trail: five clear pools linked by small falls"],
         ["Hải Vọng Đài – nhìn xuống đầm Cầu Hai và biển", "Hai Vong Dai – views over Cau Hai lagoon and the sea"],
@@ -110,6 +112,7 @@
       "guide": "required",
       "start": ["Xã Tà Năng (Đức Trọng cũ)", "Ta Nang commune (former Duc Trong)"],
       "end": ["Xã Phan Dũng (Tuy Phong cũ)", "Phan Dung commune (former Tuy Phong)"],
+      "images": ["Tà Năng – Phan Dũng trail grass hills in the dry season.jpg", "Camping in grass hill in Ta Nang - Phan Dung trekking trail.jpg", "Hiker walking in the grass hill in Ta Nang Phan Dung trekking trail.jpg"],
       "highlights": [
         ["Đồi cỏ trập trùng nối ba tỉnh cũ Lâm Đồng – Ninh Thuận – Bình Thuận", "Rolling grass hills across the former provinces of Lam Dong, Ninh Thuan and Binh Thuan"],
         ["Rừng thông, suối đá, cắm trại trên đồi lộng gió", "Pine forest, rocky streams and camping on windy hilltops"],
@@ -150,6 +153,7 @@
       "guide": "required",
       "start": ["Vườn quốc gia Bidoup – Núi Bà (Lạc Dương)", "Bidoup – Nui Ba National Park (Lac Duong)"],
       "end": ["Vườn quốc gia Bidoup – Núi Bà", "Bidoup – Nui Ba National Park"],
+      "images": ["Pine trees in Bidoup-Nui Ba National Park.jpg", "Hon Giao, Bidoup Nui Ba National Park.jpg"],
       "highlights": [
         ["Đỉnh Bidoup – nóc nhà Lâm Đồng", "Bidoup peak – the roof of Lam Dong"],
         ["Cây pơ mu cổ thụ khoảng 1.300 năm tuổi", "An ancient pơ mu (Fujian cypress) about 1,300 years old"],
@@ -190,6 +194,7 @@
       "start": ["Xã Y Tý (Bát Xát)", "Y Ty commune (Bat Xat)"],
       "end": ["Xã Y Tý", "Y Ty commune"],
       "notice": ["Từ tháng 5/2026, Vườn quốc gia Bát Xát cấm leo núi, trekking tự phát ở Lảo Thẩn và nhiều đỉnh khác; vào rừng không khai báo có thể bị phạt. Chỉ đi cùng đơn vị được phép và hỏi trước cung đã mở lại hay chưa.", "Since May 2026 Bat Xat National Park has banned unorganised climbing and trekking on Lao Than and several other peaks; entering the forest without registering can be fined. Only go with a permitted operator and check first whether the route has reopened."],
+      "images": ["Lảo Thẩn summit.jpg"],
       "highlights": [
         ["Biển mây Y Tý, một trong những nơi săn mây đẹp nhất Tây Bắc", "The Y Ty cloud sea, one of the best in the northwest"],
         ["Dốc thoải, đồi cỏ – đỉnh trên 2.800 m dễ chịu nhất cho người mới", "Gentle slopes and grassy hills – the friendliest 2,800 m-plus summit for beginners"],
@@ -229,6 +234,7 @@
       "guide": "required",
       "start": ["Xã Tà Xùa (Bắc Yên)", "Ta Xua commune (Bac Yen)"],
       "end": ["Xã Tà Xùa", "Ta Xua commune"],
+      "images": ["Sống lưng khủng long Tà Xùa.jpg", "Núi non Tà Xùa 1 -NKS.jpg", "Tà Xùa in morning mist.png"],
       "highlights": [
         ["Sống lưng khủng long – sống núi đá hẹp, hai bên là vực", "The dinosaur's back – a narrow rocky ridge with drops on both sides"],
         ["Mùa săn mây tháng 10 – 4", "Cloud-hunting season from October to April"],
@@ -268,6 +274,7 @@
       "guide": "required",
       "start": ["Bản người Mông dưới chân núi (Mù Cang Chải)", "A Hmong village at the foot of the mountain (Mu Cang Chai)"],
       "end": ["Bản xuất phát", "The starting village"],
+      "images": ["Lùng cúng.jpg"],
       "highlights": [
         ["Đỉnh 2.913 m nhìn xuống ruộng bậc thang Mù Cang Chải", "A 2,913 m summit above the Mu Cang Chai terraces"],
         ["Rừng già, trảng cỏ, biển mây buổi sớm", "Old forest, grassy clearings and morning clouds"],
@@ -308,6 +315,7 @@
       "start": ["Đèo Trạm Tôn (khoảng 1.900 m)", "Tram Ton pass (about 1,900 m)"],
       "end": ["Đỉnh Fansipan – cáp treo về Sa Pa, hoặc đi bộ về Trạm Tôn", "Fansipan summit – cable car to Sa Pa, or walk back to Tram Ton"],
       "notice": ["Bắt buộc đi cùng porter hoặc hướng dẫn viên địa phương và đăng ký với Vườn quốc gia Hoàng Liên.", "You must go with a local porter or guide and register with Hoang Lien National Park."],
+      "images": ["Fansipan summit pyramid monument sunset sea of clouds Sa Pa Vietnam.jpg", "Fansipan Summit 3143m aerial view Sa Pa Lao Cai Vietnam.jpg"],
       "highlights": [
         ["Nóc nhà Đông Dương 3.143 m", "The roof of Indochina at 3,143 m"],
         ["Rừng trúc, rừng đỗ quyên (hoa nở tháng 3 – 4)", "Bamboo and rhododendron forest (blooms in March – April)"],
