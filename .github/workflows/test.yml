@@ -46,7 +46,7 @@ jobs:
       - name: Trang tĩnh phải khớp dữ liệu (đã chạy npm run build)
         run: |
           npm run build
-          # -I: bỏ qua <lastmod> của sitemap (lấy theo ngày chạy build nên khác ngày là khác)
+          # -I: bỏ qua dòng <lastmod> của sitemap (ngày trang đổi nội dung – có thể lệch ngày khi gộp nhánh)
           git diff --exit-code -I '<lastmod>' -- diem-den assets/js/data assets/js/dist assets/css worker/src/knowledge.js ke-hoach cam-nang thang chu-de le-hoi en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js \
             || (echo "::error::Trang tĩnh chưa được build lại – chạy npm run build rồi commit." && exit 1)
 
