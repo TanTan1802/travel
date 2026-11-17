@@ -70,6 +70,20 @@ const LOCAL_IMAGES = {
         "w": 1728,
         "h": 1152
     },
+    "Bach Ma National Park - May 09th 2025.jpg": {
+        "xs": "assets/img/wiki/bach-ma-national-park-may-09th-2025-1f1c8e-480.webp",
+        "sm": "assets/img/wiki/bach-ma-national-park-may-09th-2025-1f1c8e-960.webp",
+        "lg": "assets/img/wiki/bach-ma-national-park-may-09th-2025-1f1c8e-1920.webp",
+        "w": 1206,
+        "h": 1596
+    },
+    "Bach Ma National Park.jpg": {
+        "xs": "assets/img/wiki/bach-ma-national-park-14019f-480.webp",
+        "sm": "assets/img/wiki/bach-ma-national-park-14019f-960.webp",
+        "lg": "assets/img/wiki/bach-ma-national-park-14019f-1920.webp",
+        "w": 1206,
+        "h": 1532
+    },
     "Bai Cay Men,Dao nam du.Xa An Sơn,huyen Kiên Hải, tỉnh Kiên Giang, Việt Nam,02-07-2016-Dyt - panoramio.jpg": {
         "xs": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-480.webp",
         "sm": "assets/img/wiki/bai-cay-men-dao-nam-du-xa-an-son-huyen-kien-hai-tinh-kien-giang-viet-nam-02-07-2-cb49a0-960.webp",
@@ -335,6 +349,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/ca-phe-sua-da-53db0a-1920.webp",
         "w": 1600,
         "h": 1200
+    },
+    "Camping in grass hill in Ta Nang - Phan Dung trekking trail.jpg": {
+        "xs": "assets/img/wiki/camping-in-grass-hill-in-ta-nang-phan-dung-trekking-trail-958e00-480.webp",
+        "sm": "assets/img/wiki/camping-in-grass-hill-in-ta-nang-phan-dung-trekking-trail-958e00-960.webp",
+        "lg": "assets/img/wiki/camping-in-grass-hill-in-ta-nang-phan-dung-trekking-trail-958e00-1920.webp",
+        "w": 1920,
+        "h": 1440
     },
     "Can Tho, Vietnam, Floating Market.jpg": {
         "xs": "assets/img/wiki/can-tho-vietnam-floating-market-3b9640-480.webp",
@@ -630,6 +651,20 @@ const LOCAL_IMAGES = {
         "w": 1472,
         "h": 1265
     },
+    "Fansipan Summit 3143m aerial view Sa Pa Lao Cai Vietnam.jpg": {
+        "xs": "assets/img/wiki/fansipan-summit-3143m-aerial-view-sa-pa-lao-cai-vietnam-2015d2-480.webp",
+        "sm": "assets/img/wiki/fansipan-summit-3143m-aerial-view-sa-pa-lao-cai-vietnam-2015d2-960.webp",
+        "lg": "assets/img/wiki/fansipan-summit-3143m-aerial-view-sa-pa-lao-cai-vietnam-2015d2-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Fansipan summit pyramid monument sunset sea of clouds Sa Pa Vietnam.jpg": {
+        "xs": "assets/img/wiki/fansipan-summit-pyramid-monument-sunset-sea-of-clouds-sa-pa-vietnam-8f7960-480.webp",
+        "sm": "assets/img/wiki/fansipan-summit-pyramid-monument-sunset-sea-of-clouds-sa-pa-vietnam-8f7960-960.webp",
+        "lg": "assets/img/wiki/fansipan-summit-pyramid-monument-sunset-sea-of-clouds-sa-pa-vietnam-8f7960-1920.webp",
+        "w": 1920,
+        "h": 1281
+    },
     "Fansipan-vietnam.jpg": {
         "xs": "assets/img/wiki/fansipan-vietnam-47cd66-480.webp",
         "sm": "assets/img/wiki/fansipan-vietnam-47cd66-960.webp",
@@ -770,6 +805,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Hiker walking in the grass hill in Ta Nang Phan Dung trekking trail.jpg": {
+        "xs": "assets/img/wiki/hiker-walking-in-the-grass-hill-in-ta-nang-phan-dung-trekking-trail-ce1357-480.webp",
+        "sm": "assets/img/wiki/hiker-walking-in-the-grass-hill-in-ta-nang-phan-dung-trekking-trail-ce1357-960.webp",
+        "lg": "assets/img/wiki/hiker-walking-in-the-grass-hill-in-ta-nang-phan-dung-trekking-trail-ce1357-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
     "Ho Chi Minh City Skyline 2022 (1).jpg": {
         "xs": "assets/img/wiki/ho-chi-minh-city-skyline-2022-1-bdddc7-480.webp",
         "sm": "assets/img/wiki/ho-chi-minh-city-skyline-2022-1-bdddc7-960.webp",
@@ -825,6 +867,13 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/homemade-hotpot-22e27f-1920.webp",
         "w": 1494,
         "h": 1920
+    },
+    "Hon Giao, Bidoup Nui Ba National Park.jpg": {
+        "xs": "assets/img/wiki/hon-giao-bidoup-nui-ba-national-park-5335eb-480.webp",
+        "sm": "assets/img/wiki/hon-giao-bidoup-nui-ba-national-park-5335eb-960.webp",
+        "lg": "assets/img/wiki/hon-giao-bidoup-nui-ba-national-park-5335eb-1920.webp",
+        "w": 1920,
+        "h": 1443
     },
     "Hu tieu trieu chau.JPG": {
         "xs": "assets/img/wiki/hu-tieu-trieu-chau-e1a37c-480.webp",
@@ -994,6 +1043,20 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1280
     },
+    "Lùng cúng.jpg": {
+        "xs": "assets/img/wiki/lung-cung-e49359-480.webp",
+        "sm": "assets/img/wiki/lung-cung-e49359-960.webp",
+        "lg": "assets/img/wiki/lung-cung-e49359-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Lảo Thẩn summit.jpg": {
+        "xs": "assets/img/wiki/lao-than-summit-8917b7-480.webp",
+        "sm": "assets/img/wiki/lao-than-summit-8917b7-960.webp",
+        "lg": "assets/img/wiki/lao-than-summit-8917b7-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
     "Lễ hội ẩm thực Cửa Việt th4n2023 đặc sản gà nướng sa lửa (15).jpg": {
         "xs": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-480.webp",
         "sm": "assets/img/wiki/le-hoi-am-thuc-cua-viet-th4n2023-dac-san-ga-nuong-sa-lua-15-94bef7-960.webp",
@@ -1141,6 +1204,27 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1056
     },
+    "Mường Hoa Valley 01.jpg": {
+        "xs": "assets/img/wiki/muong-hoa-valley-01-e7d464-480.webp",
+        "sm": "assets/img/wiki/muong-hoa-valley-01-e7d464-960.webp",
+        "lg": "assets/img/wiki/muong-hoa-valley-01-e7d464-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Mường Hoa Valley 10.jpg": {
+        "xs": "assets/img/wiki/muong-hoa-valley-10-c49be9-480.webp",
+        "sm": "assets/img/wiki/muong-hoa-valley-10-c49be9-960.webp",
+        "lg": "assets/img/wiki/muong-hoa-valley-10-c49be9-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Mường Hoa Valley 11.jpg": {
+        "xs": "assets/img/wiki/muong-hoa-valley-11-c912e9-480.webp",
+        "sm": "assets/img/wiki/muong-hoa-valley-11-c912e9-960.webp",
+        "lg": "assets/img/wiki/muong-hoa-valley-11-c912e9-1920.webp",
+        "w": 1920,
+        "h": 1025
+    },
     "Mắm cá lóc.JPG": {
         "xs": "assets/img/wiki/mam-ca-loc-276ddd-480.webp",
         "sm": "assets/img/wiki/mam-ca-loc-276ddd-960.webp",
@@ -1211,6 +1295,13 @@ const LOCAL_IMAGES = {
         "w": 1228,
         "h": 1920
     },
+    "Núi non Tà Xùa 1 -NKS.jpg": {
+        "xs": "assets/img/wiki/nui-non-ta-xua-1-nks-d9d4cc-480.webp",
+        "sm": "assets/img/wiki/nui-non-ta-xua-1-nks-d9d4cc-960.webp",
+        "lg": "assets/img/wiki/nui-non-ta-xua-1-nks-d9d4cc-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Nơi Bà Chúa Xứ Núi Sam ngự khi xưa.jpg": {
         "xs": "assets/img/wiki/noi-ba-chua-xu-nui-sam-ngu-khi-xua-ce1cf4-480.webp",
         "sm": "assets/img/wiki/noi-ba-chua-xu-nui-sam-ngu-khi-xua-ce1cf4-960.webp",
@@ -1250,6 +1341,13 @@ const LOCAL_IMAGES = {
         "xs": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-480.webp",
         "sm": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-960.webp",
         "lg": "assets/img/wiki/pho-bo-cau-giay-ha-noi-e98cab-1920.webp",
+        "w": 1920,
+        "h": 1280
+    },
+    "Pine trees in Bidoup-Nui Ba National Park.jpg": {
+        "xs": "assets/img/wiki/pine-trees-in-bidoup-nui-ba-national-park-483594-480.webp",
+        "sm": "assets/img/wiki/pine-trees-in-bidoup-nui-ba-national-park-483594-960.webp",
+        "lg": "assets/img/wiki/pine-trees-in-bidoup-nui-ba-national-park-483594-1920.webp",
         "w": 1920,
         "h": 1280
     },
@@ -1449,6 +1547,13 @@ const LOCAL_IMAGES = {
         "w": 1920,
         "h": 1440
     },
+    "Sống lưng khủng long Tà Xùa.jpg": {
+        "xs": "assets/img/wiki/song-lung-khung-long-ta-xua-8f9ae0-480.webp",
+        "sm": "assets/img/wiki/song-lung-khung-long-ta-xua-8f9ae0-960.webp",
+        "lg": "assets/img/wiki/song-lung-khung-long-ta-xua-8f9ae0-1920.webp",
+        "w": 1920,
+        "h": 1080
+    },
     "Tam Coc, Ninh Binh ,Vietnam.jpg": {
         "xs": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-480.webp",
         "sm": "assets/img/wiki/tam-coc-ninh-binh-vietnam-65beed-960.webp",
@@ -1609,6 +1714,20 @@ const LOCAL_IMAGES = {
         "lg": "assets/img/wiki/two-mini-banh-mi-vietnamese-sandwiches-661ce8-1920.webp",
         "w": 1920,
         "h": 1280
+    },
+    "Tà Năng – Phan Dũng trail grass hills in the dry season.jpg": {
+        "xs": "assets/img/wiki/ta-nang-phan-dung-trail-grass-hills-in-the-dry-season-18bb7b-480.webp",
+        "sm": "assets/img/wiki/ta-nang-phan-dung-trail-grass-hills-in-the-dry-season-18bb7b-960.webp",
+        "lg": "assets/img/wiki/ta-nang-phan-dung-trail-grass-hills-in-the-dry-season-18bb7b-1920.webp",
+        "w": 1920,
+        "h": 1440
+    },
+    "Tà Xùa in morning mist.png": {
+        "xs": "assets/img/wiki/ta-xua-in-morning-mist-516b43-480.webp",
+        "sm": "assets/img/wiki/ta-xua-in-morning-mist-516b43-960.webp",
+        "lg": "assets/img/wiki/ta-xua-in-morning-mist-516b43-1920.webp",
+        "w": 1920,
+        "h": 1281
     },
     "Tây Thiên - Mộ cổ thiền sư - panoramio.jpg": {
         "xs": "assets/img/wiki/tay-thien-mo-co-thien-su-panoramio-3816c4-480.webp",
