@@ -671,14 +671,32 @@ function explorePages(template, lang) {
     return pages
 }
 
-function buildSitemap(site) {
-    const today = new Date().toISOString().slice(0, 10)
+/*
+ * <lastmod> là ngày nội dung trang thực sự đổi (Google bỏ qua lastmod nếu trang nào cũng mang ngày build).
+ * Mỗi dòng kèm chú thích <!-- h:… --> = dấu vân tay nội dung trang (bỏ mã băm gói JS/CSS, phiên bản service worker);
+ * build lại mà dấu vân tay không đổi thì giữ ngày cũ trong sitemap.xml hiện có – build ngày nào cũng ra cùng kết quả.
+ */
+const SITEMAP_LINE = /<loc>([^<]+)<\/loc><lastmod>([\d-]+)<\/lastmod><\/url><!-- h:(\w+) -->/g
+const pageFingerprint = rel => crypto.createHash('md5')
+    .update(read(rel).replace(/assets\/js\/dist\/\w+\.js|assets\/css\/site-\w+\.css/g, ''))
+    .digest('hex').slice(0, 12)
+
+function buildSitemap(site, today = new Date().toISOString().slice(0, 10)) {
+    const previous = new Map()
+    if (fs.existsSync(path.join(ROOT, 'sitemap.xml'))) {
+        for (const [, loc, date, hash] of read('sitemap.xml').matchAll(SITEMAP_LINE)) previous.set(loc, { date, hash })
+    }
     const rels = Object.keys(LANGS).flatMap(lang =>
         [homePath(lang), plannerPath(lang), guidePath(lang), ...site.GUIDES.map(g => guidePath(lang, g.slug)),
             ...site.DESTINATIONS.map(d => destPath(lang, d.id)), ...exploreRels(lang)])
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${rels.map(rel => `  <url><loc>${pageUrl(rel)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${rels.map(rel => {
+        const loc = pageUrl(rel)
+        const hash = pageFingerprint(rel)
+        const old = previous.get(loc)
+        return `  <url><loc>${loc}</loc><lastmod>${old && old.hash === hash ? old.date : today}</lastmod></url><!-- h:${hash} -->`
+    }).join('\n')}
 </urlset>
 `
 }
