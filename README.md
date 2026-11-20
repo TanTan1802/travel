@@ -312,6 +312,11 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   tháng đi đẹp, người dẫn đường, quy định, ảnh riêng của cung (🔍 Tìm ảnh), điểm nổi bật, lịch trình từng chặng, chi phí,
   lưu ý an toàn và tháng kiểm tra (✓ Vẫn đúng). **＋ Thêm cung**, ↑ ↓ sắp xếp, Xóa cung. Trang kiểm tra trước giống lúc build
   (số chặng phải bằng số ngày, km thấp ≤ cao, điểm đến gần phải tồn tại…). Tổng quan nhắc cung quá 12 tháng chưa kiểm tra.
+- **Người xem 30 ngày** (Tổng quan): lượt xem, lượt truy cập, biểu đồ theo ngày, trang xem nhiều nhất, quốc gia, nguồn truy cập –
+  từ Cloudflare Web Analytics. Workflow **Số liệu người xem** (`thong-ke.yml`, 7:17 sáng hằng ngày, `tools/fetch-analytics.js`)
+  ghi `analytics.json` lên nhánh riêng `stats` (không kích hoạt deploy). Bật: thêm secret `CF_API_TOKEN` (Cloudflare → My Profile →
+  API Tokens → Create Custom Token, quyền *Account › Account Analytics › Read*) và `CF_ACCOUNT_ID` (cột phải trang Overview của
+  tài khoản Cloudflare) ở *Settings → Secrets and variables → Actions*, rồi bấm *Run workflow*. Tài khoản có nhiều site thì thêm `CF_SITE_TAG`.
 - **Cẩm nang** (`data/guides.json`): tab Chung (tháng cập nhật) + mỗi bài một tab – đường dẫn, biểu tượng, tiêu đề, tóm tắt,
   các mục (đoạn văn, danh sách, bảng tự sinh "lịch 12 tháng" / "đẹp theo tháng"), điểm đến liên quan. ＋ Thêm bài, ↑ ↓, Xóa bài.
 - **Cảng tàu & đường sắt** (`data/places.json` → `transport`): cảng tàu ra đảo (đảo, tên, tọa độ, giờ tàu chạy, giá vé) và

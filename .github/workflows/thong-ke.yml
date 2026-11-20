@@ -1,0 +1,52 @@
+# Số liệu người xem (Cloudflare Web Analytics) 30 ngày gần nhất → nhánh "stats" (file analytics.json),
+# trang quản trị hiện ở ô "Người xem" của Tổng quan. Nhánh riêng nên không kích hoạt deploy / build.
+# Cần secret CF_API_TOKEN (quyền Account Analytics: Read) và CF_ACCOUNT_ID; CF_SITE_TAG tùy chọn.
+# Chưa có secret thì workflow bỏ qua, không báo lỗi.
+name: Số liệu người xem
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 0 * * *' # 7:17 sáng hằng ngày giờ Việt Nam
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thong-ke
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Lấy số liệu từ Cloudflare
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_SITE_TAG: ${{ secrets.CF_SITE_TAG }}
+          OUT: ${{ runner.temp }}/stats/analytics.json
+        run: node tools/fetch-analytics.js
+
+      - name: Đẩy lên nhánh stats
+        env:
+          DIR: ${{ runner.temp }}/stats
+        run: |
+          if [ ! -f "$DIR/analytics.json" ]; then
+            echo "Chưa cấu hình CF_API_TOKEN / CF_ACCOUNT_ID – bỏ qua." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          cd "$DIR"
+          git init -q -b stats
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analytics.json
+          git commit -q -m "Số liệu người xem $(date -u +%F)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" stats
+          echo "### Đã cập nhật số liệu người xem (nhánh stats)" >> "$GITHUB_STEP_SUMMARY"

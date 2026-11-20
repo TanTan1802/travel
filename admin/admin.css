@@ -26,10 +26,12 @@
   --side-active: hsla(190, 70%, 60%, .18);
   --shadow: 0 1px 2px hsla(190, 40%, 15%, .06), 0 4px 16px hsla(190, 40%, 15%, .06);
   --radius: 12px;
+  --chart: #1f93ad; /* cột biểu đồ – đã kiểm tra độ sáng, độ đậm màu, tương phản với nền */
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
+  --chart: #2ea1b8;
   --brand: hsl(190, 60%, 45%);
   --brand-strong: hsl(190, 60%, 55%);
   --brand-soft: hsla(190, 60%, 45%, .15);
@@ -56,6 +58,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --chart: #2ea1b8;
     --brand: hsl(190, 60%, 45%);
     --brand-strong: hsl(190, 60%, 55%);
     --brand-soft: hsla(190, 60%, 45%, .15);
@@ -343,6 +346,24 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .season-now div { flex: 1; display: grid; }
 .health { display: flex; align-items: center; gap: .8rem; padding: .7rem .8rem; border-radius: 10px; border: 1px solid var(--line); background: var(--raised); }
 .health div { flex: 1; display: grid; gap: .15rem; }
+.traffic__tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .6rem; margin-bottom: .9rem; }
+.traffic__tile { display: grid; gap: .1rem; padding: .6rem .8rem; border-radius: 10px; background: var(--raised); border: 1px solid var(--line); }
+.traffic__tile strong { font-size: 1.5rem; line-height: 1.2; color: var(--text); font-variant-numeric: tabular-nums; }
+.traffic__tile span { font-size: .8rem; color: var(--muted); }
+.traffic__chart { position: relative; display: flex; align-items: flex-end; gap: 2px; height: 96px; padding-bottom: 1px; border-bottom: 1px solid var(--line); }
+.traffic__bar { position: relative; flex: 1; min-width: 0; height: 100%; display: flex; align-items: flex-end; cursor: default; outline: none; }
+.traffic__bar i { display: block; width: 100%; min-height: 2px; background: var(--chart); border-radius: 4px 4px 0 0; }
+.traffic__bar:hover i, .traffic__bar:focus-visible i { filter: brightness(1.15); }
+.traffic__bar::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); padding: .3rem .55rem; border-radius: 6px; background: var(--text); color: var(--card); font-size: .78rem; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .1s; }
+.traffic__bar:hover::after, .traffic__bar:focus-visible::after { opacity: 1; }
+.traffic__axis { display: flex; justify-content: space-between; margin: .3rem 0 .9rem; font-size: .75rem; color: var(--muted); }
+.traffic__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.traffic__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; font-size: .88rem; }
+.traffic__list li { display: flex; gap: .6rem; justify-content: space-between; padding: .25rem 0; border-bottom: 1px solid var(--line); }
+.traffic__list li span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.traffic__list li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.traffic h3 { font-size: .9rem; margin: 0 0 .4rem; }
+.sr-table { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .health__icon { display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 50%; font-weight: 700; }
 .health--ok { background: var(--ok-bg); border-color: transparent; }
 .health--ok .health__icon { color: var(--ok); border: 2px solid currentColor; }
