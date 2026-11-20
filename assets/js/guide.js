@@ -51,3 +51,63 @@ if (festivalFilter) {
         document.querySelector('.festival__empty').hidden = total > 0
     })
 }
+
+/* Trang Trekking: lọc cung theo độ khó / số ngày / miền / tháng đi (thẻ có data-trek-*) */
+const trekFilter = document.getElementById('trek-filter')
+if (trekFilter) {
+    const cards = [...document.querySelectorAll('[data-trek-level]')]
+    const count = trekFilter.querySelector('.trek-filter__count')
+    const empty = document.querySelector('.trek-filter__empty')
+    const apply = () => {
+        const f = Object.fromEntries(new FormData(trekFilter))
+        let shown = 0
+        cards.forEach(card => {
+            const d = card.dataset
+            const days = Number(d.trekDays)
+            const ok = (!f.level || d.trekLevel === f.level)
+                && (!f.days || (f.days === '3' ? days >= 3 : days === Number(f.days)))
+                && (!f.region || d.trekRegion === f.region)
+                && (!f.month || d.trekMonths.split(' ').includes(f.month))
+            card.hidden = !ok
+            if (ok) shown++
+        })
+        document.querySelectorAll('[data-trek-group]').forEach(sec => { sec.hidden = !sec.querySelector('[data-trek-level]:not([hidden])') })
+        count.textContent = count.dataset.template.replace('{count}', shown)
+        empty.hidden = shown > 0
+    }
+    trekFilter.hidden = false
+    trekFilter.addEventListener('change', apply)
+    trekFilter.addEventListener('submit', e => e.preventDefault())
+    apply()
+}
+
+/* Trang một cung: danh sách đồ cần mang – nhớ món đã tick trên máy này, in riêng danh sách */
+const gearBox = document.querySelector('[data-gear]')
+if (gearBox) {
+    const key = `trek-gear:${gearBox.dataset.gear}`
+    const boxes = [...gearBox.querySelectorAll('[data-gear-item]')]
+    const count = gearBox.querySelector('.trek-gear__count')
+    const save = () => {
+        const done = boxes.filter(b => b.checked).map(b => b.dataset.gearItem)
+        try { done.length ? localStorage.setItem(key, done.join(',')) : localStorage.removeItem(key) } catch { /* trình duyệt chặn lưu – vẫn tick được */ }
+        count.textContent = count.dataset.template.replace('{done}', done.length).replace('{total}', boxes.length)
+    }
+    let saved = []
+    try { saved = (localStorage.getItem(key) || '').split(',') } catch { /* bỏ qua */ }
+    boxes.forEach(b => { b.checked = saved.includes(b.dataset.gearItem) })
+    gearBox.querySelector('.trek-gear__bar').hidden = false
+    gearBox.addEventListener('change', e => { if (e.target.matches('[data-gear-item]')) save() })
+    gearBox.addEventListener('click', e => {
+        const btn = e.target.closest('[data-gear-action]')
+        if (!btn) return
+        if (btn.dataset.gearAction === 'reset') {
+            boxes.forEach(b => { b.checked = false })
+            save()
+        } else {
+            document.body.classList.add('print-gear')
+            window.addEventListener('afterprint', () => document.body.classList.remove('print-gear'), { once: true })
+            window.print()
+        }
+    })
+    save()
+}

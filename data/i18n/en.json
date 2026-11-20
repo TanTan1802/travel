@@ -509,7 +509,18 @@
     "Cung trekking khác": "Other treks",
     "Trekking quanh đây": "Treks nearby",
     "Trekking đẹp tháng {m}": "Best treks in {m}",
-    "Xem tất cả cung trekking": "See all treks"
+    "Xem tất cả cung trekking": "See all treks",
+    "Tìm cung phù hợp": "Find a route that suits you",
+    "Số ngày": "Days",
+    "Miền": "Region",
+    "Tháng đi": "Month",
+    "3 ngày trở lên": "3 days or more",
+    "{count} cung phù hợp": "{count} matching routes",
+    "Không có cung nào phù hợp – thử bỏ bớt điều kiện.": "No routes match – try removing a filter.",
+    "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "Tick off what you have packed – it is saved on this device, and you can print the list to take along.",
+    "{done}/{total} món đã chuẩn bị": "{done}/{total} items packed",
+    "Bỏ chọn tất cả": "Clear all",
+    "In danh sách": "Print list"
   },
   "html": {
     "Vùng miền": "Region",

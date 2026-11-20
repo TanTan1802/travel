@@ -509,7 +509,18 @@
     "Cung trekking khác": "ほかのトレッキングコース",
     "Trekking quanh đây": "近くのトレッキング",
     "Trekking đẹp tháng {m}": "{m}におすすめのトレッキング",
-    "Xem tất cả cung trekking": "すべてのトレッキングコースを見る"
+    "Xem tất cả cung trekking": "すべてのトレッキングコースを見る",
+    "Tìm cung phù hợp": "自分に合うルートを探す",
+    "Số ngày": "日数",
+    "Miền": "地域",
+    "Tháng đi": "旅行月",
+    "3 ngày trở lên": "3日以上",
+    "{count} cung phù hợp": "条件に合うルート {count} 件",
+    "Không có cung nào phù hợp – thử bỏ bớt điều kiện.": "条件に合うルートがありません。条件を減らしてみてください。",
+    "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "準備できた物にチェックしましょう – この端末に保存され、リストを印刷して持って行けます。",
+    "{done}/{total} món đã chuẩn bị": "{done}/{total} 点準備済み",
+    "Bỏ chọn tất cả": "すべて解除",
+    "In danh sách": "リストを印刷"
   },
   "html": {
     "Vùng miền": "地域",

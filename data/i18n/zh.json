@@ -509,7 +509,18 @@
     "Cung trekking khác": "其他徒步路线",
     "Trekking quanh đây": "附近徒步",
     "Trekking đẹp tháng {m}": "{m}最适合的徒步路线",
-    "Xem tất cả cung trekking": "查看全部徒步路线"
+    "Xem tất cả cung trekking": "查看全部徒步路线",
+    "Tìm cung phù hợp": "寻找适合你的路线",
+    "Số ngày": "天数",
+    "Miền": "地区",
+    "Tháng đi": "出行月份",
+    "3 ngày trở lên": "3天及以上",
+    "{count} cung phù hợp": "{count} 条符合的路线",
+    "Không có cung nào phù hợp – thử bỏ bớt điều kiện.": "没有符合的路线——请减少筛选条件。",
+    "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "勾选已准备好的物品——保存在本设备上,也可以打印清单随身携带。",
+    "{done}/{total} món đã chuẩn bị": "已准备 {done}/{total} 件",
+    "Bỏ chọn tất cả": "全部取消",
+    "In danh sách": "打印清单"
   },
   "html": {
     "Vùng miền": "地区",

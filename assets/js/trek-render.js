@@ -76,7 +76,7 @@ function trekImages(tr) {
 function trekCard(tr) {
     const level = trekLevel(tr)
     return `
-        <div class="dest-card-wrap">
+        <div class="dest-card-wrap" data-trek-level="${tr.level}" data-trek-days="${tr.days}" data-trek-region="${tr.region}" data-trek-months="${tr.bestMonths.join(' ')}">
             <a href="${trekUrl(tr.id)}" class="dest-card trek-card">
                 <div class="dest-card__media">
                     <img data-wiki="${wikiAttr(trekImages(tr))}" data-width="960" data-sizes="(max-width: 576px) calc(100vw - 32px), (max-width: 1024px) 46vw, 360px" alt="${pickLang(tr.name)}" class="dest-card__img" loading="lazy">
@@ -96,6 +96,41 @@ function trekCard(tr) {
             </a>
         </div>
     `
+}
+
+/* Bộ lọc trang Trekking: chạy bằng JS (assets/js/guide.js) – không có JS thì ẩn, vẫn xem đủ các cung theo độ khó */
+function trekFilterHtml(treks) {
+    const opt = (value, label) => `<option value="${value}">${label}</option>`
+    const select = (name, label, options) => `<label class="trek-filter__field"><span>${label}</span><select name="${name}">${opt('', t('Tất cả'))}${options}</select></label>`
+    const levels = TREK_ORDER.filter(l => treks.some(x => x.level === l))
+    const regions = Object.keys(REGIONS).filter(r => treks.some(x => x.region === r))
+    return `
+        <form class="trek-filter" id="trek-filter" hidden>
+            ${select('level', t('Độ khó'), levels.map(l => opt(l, pickLang(TREK_LEVELS[l].label))).join(''))}
+            ${select('days', t('Số ngày'), [opt('1', t('Trong ngày')), opt('2', t('{days} ngày {nights} đêm', { days: 2, nights: 1 })), opt('3', t('3 ngày trở lên'))].join(''))}
+            ${select('region', t('Miền'), regions.map(r => opt(r, REGIONS[r])).join(''))}
+            ${select('month', t('Tháng đi'), Array.from({ length: 12 }, (_, i) => opt(i + 1, t('Tháng {m}', { m: monthLabel(i + 1) }))).join(''))}
+            <p class="trek-filter__count" aria-live="polite" data-template="${t('{count} cung phù hợp')}"></p>
+        </form>
+        <p class="trek-filter__empty" hidden>${t('Không có cung nào phù hợp – thử bỏ bớt điều kiện.')}</p>`
+}
+
+/* Đồ cần mang theo dạng danh sách tick: lưu trên máy người xem (guide.js), nút in chỉ in phần này */
+function gearChecklistHtml(tr) {
+    return `
+        <section class="guide-section trek-gear" id="do-mang-theo" data-gear="${tr.id}">
+            <h2 class="guide-section__title">${t('Đồ cần mang theo')}</h2>
+            <p class="print-only trek-gear__print-title">${pickLang(tr.name)} · ${daysText(tr)} · ${pickLang(trekLevel(tr).label)}</p>
+            <p class="trek-gear__hint">${t('Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.')}</p>
+            <div class="trek-gear__bar" hidden>
+                <span class="trek-gear__count" aria-live="polite" data-template="${t('{done}/{total} món đã chuẩn bị')}"></span>
+                <button type="button" class="chip trek-gear__btn" data-gear-action="reset"><i class="ri-checkbox-blank-line"></i> ${t('Bỏ chọn tất cả')}</button>
+                <button type="button" class="chip chip--active trek-gear__btn" data-gear-action="print"><i class="ri-printer-line"></i> ${t('In danh sách')}</button>
+            </div>
+            <ul class="trek-gear__list">
+                ${gearFor(tr.level).map((x, i) => `<li><label><input type="checkbox" data-gear-item="${i}"> <span>${pickLang(x)}</span></label></li>`).join('')}
+            </ul>
+        </section>`
 }
 
 function trekHubTitle() {
@@ -120,6 +155,7 @@ function trekHubPage() {
                 <strong>${t('Nội dung')}</strong>
                 <ol>
                     <li><a href="#do-kho">${t('Thang độ khó')}</a></li>
+                    <li><a href="#tim-cung">${t('Tìm cung phù hợp')}</a></li>
                     ${TREK_ORDER.filter(l => treks.some(x => x.level === l)).map(l => `<li><a href="#${l}">${pickLang(TREK_LEVELS[l].label)}</a></li>`).join('')}
                     <li><a href="#do-mang-theo">${t('Đồ cần mang theo')}</a></li>
                     <li><a href="#an-toan">${t('Nguyên tắc an toàn')}</a></li>
@@ -138,8 +174,12 @@ function trekHubPage() {
                         `).join('')}
                     </div>
                 </section>
+                <section class="guide-section" id="tim-cung">
+                    <h2 class="guide-section__title">${t('Tìm cung phù hợp')}</h2>
+                    ${trekFilterHtml(treks)}
+                </section>
                 ${TREK_ORDER.filter(l => treks.some(x => x.level === l)).map(l => `
-                    <section class="guide-section" id="${l}">
+                    <section class="guide-section" id="${l}" data-trek-group>
                         <h2 class="guide-section__title"><i class="${TREK_LEVELS[l].icon}"></i> ${pickLang(TREK_LEVELS[l].label)}</h2>
                         <div class="dest__grid trek-grid">${treks.filter(x => x.level === l).map(trekCard).join('')}</div>
                     </section>
@@ -277,10 +317,7 @@ function trekPage(tr) {
                     ${list(tr.safety)}
                     <p><a href="${trekHubUrl('#an-toan')}">${t('Nguyên tắc an toàn chung khi trekking')} <i class="ri-arrow-right-line"></i></a></p>
                 </section>
-                <section class="guide-section" id="do-mang-theo">
-                    <h2 class="guide-section__title">${t('Đồ cần mang theo')}</h2>
-                    ${list(gearFor(tr.level))}
-                </section>
+                ${gearChecklistHtml(tr)}
                 <section class="guide-section" id="hoi-dap">
                     <h2 class="guide-section__title">${t('Câu hỏi thường gặp')}</h2>
                     <dl class="route-faq">${trekFaq(tr).map(([q, a]) => `<dt>${q}</dt><dd>${a}</dd>`).join('')}</dl>

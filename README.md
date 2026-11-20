@@ -210,6 +210,8 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   người dẫn đường (bắt buộc / nên thuê), quy định (`notice`, vd. lệnh cấm trekking tự phát), lịch trình từng ngày, mùa đẹp
   12 tháng, chi phí & thủ tục, an toàn, đồ mang theo, câu hỏi thường gặp (FAQPage JSON-LD), đường tới điểm xuất phát.
 - Hàm dựng trang ở `assets/js/trek-render.js` (chỉ dùng khi build), có trong sitemap, 5 ngôn ngữ (nội dung cung dạng `[vi, en]`).
+- Trang tổng có **bộ lọc** (độ khó, số ngày, miền, tháng đi – lọc ngay trên trình duyệt, thẻ mang `data-trek-*`); trang từng cung
+  có **danh sách đồ tick được** (nhớ trên máy người xem, khóa `trek-gear:<id>`) và nút **In danh sách** (chỉ in phần này).
 - Trang điểm đến có mục "Trekking quanh đây" (theo `near`), trang tháng có "Trekking đẹp tháng N" (theo `bestMonths`); menu có mục Trekking.
 - Thêm cung: thêm phần tử vào `data/treks.json` (schema `treks.schema.json`; `plan` phải đủ `days` ngày) rồi `npm run build`.
   Số liệu (km, phí, quy định) ghi theo khoảng và ghi rõ "tham khảo"; cập nhật `updated` khi kiểm tra lại. Trang quản trị chưa sửa được mục này.
