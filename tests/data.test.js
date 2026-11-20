@@ -844,3 +844,31 @@ test('tóm tắt lỗi CI cho trang quản trị: lấy dòng lỗi chính, mộ
     assert.equal(shortReason([]), 'Build hoặc test lỗi – xem log')
     assert.ok(shortReason([`❌ ${'x'.repeat(300)}`]).length <= 140)
 })
+
+test('kiểm tra site đang chạy: đọc đúng file / liên kết nội bộ của trang', () => {
+    process.env.SITE = 'https://site.test/'
+    delete require.cache[require.resolve('../tools/check-site')]
+    const { refsOf, typeProblem } = require('../tools/check-site')
+    const html = `<head><link rel="stylesheet" href="../../assets/css/dist/a.css"><script defer src="../../assets/js/dist/b.js"></script>
+        <script>const x = '<img src="khong-phai.jpg">'</script>
+        <meta property="og:image" content="https://site.test/assets/img/og/x.png"><meta property="og:image:width" content="1200">
+        <link rel="canonical" href="https://site.test/diem-den/hue/"></head>
+        <body><img srcset="../../assets/img/wiki/hon-giao,-bidoup-480.webp 480w, ../../assets/img/wiki/b-960.webp 960w" src="../../assets/img/wiki/b-960.webp">
+        <a href="../hoi-an/#an">Hội An</a><a href="https://example.com/">ngoài</a><a href="#top">lên</a><a href="mailto:a@b.c">thư</a></body>`
+    delete process.env.SITE
+    const refs = refsOf(html, 'https://site.test/diem-den/hue/')
+    const urls = refs.map(([u, k]) => `${k} ${u.replace('https://site.test/', '/')}`).sort()
+    assert.deepEqual(urls, [
+        'asset /assets/css/dist/a.css',
+        'asset /assets/img/og/x.png',
+        'asset /assets/img/wiki/b-960.webp',
+        'asset /assets/img/wiki/b-960.webp',
+        'asset /assets/img/wiki/hon-giao,-bidoup-480.webp',
+        'asset /assets/js/dist/b.js',
+        'link /diem-den/hoi-an/',
+        'link /diem-den/hue/',
+    ])
+    /* Cloudflare trả trang HTML cho file JS thiếu: phải báo lỗi dù mã 200 */
+    assert.match(typeProblem('https://site.test/assets/js/dist/b.js', 'text/html'), /text\/html/)
+    assert.equal(typeProblem('https://site.test/assets/js/dist/b.js', 'application/javascript'), '')
+})
