@@ -48,6 +48,10 @@ const DATASETS = {
         vars: { levels: 'TREK_LEVELS', treks: 'TREKS' },
         doc: 'Cung trekking: độ khó, quãng đường, độ cao, mùa đẹp, lịch trình từng ngày, chi phí, an toàn, quy định.\n * Trang trekking/ và trekking/<id>/ do assets/js/trek-render.js dựng khi build.',
     },
+    guides: {
+        vars: { updated: 'GUIDE_UPDATED', guides: 'GUIDES' },
+        doc: 'Cẩm nang du lịch: mỗi bài có slug (đường dẫn cam-nang/<slug>/), icon Remix, tiêu đề, tóm tắt, các mục\n * (đoạn văn, danh sách hoặc bảng tự sinh: months / calendar) và điểm đến liên quan. Trang do assets/js/guide-render.js dựng.',
+    },
     /* Không bắt buộc: chưa có data/routes.json thì ROUTES = null (trình lập kế hoạch ước tính theo đường chim bay) */
     routes: {
         whole: 'ROUTES',
@@ -187,6 +191,18 @@ function trekChecks(data) {
     return errors
 }
 
+function guideChecks(data) {
+    const errors = []
+    const dests = new Set(data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    data.guides.guides.forEach(g => {
+        if (seen.has(g.slug)) errors.push(`guides: slug ${g.slug} bị trùng`)
+        seen.add(g.slug)
+        ;(g.related || []).filter(id => !dests.has(id)).forEach(id => errors.push(`guides.${g.slug}: điểm đến liên quan ${id} không tồn tại`))
+    })
+    return errors
+}
+
 function loadAndValidate() {
     const ajv = createValidator()
     const data = {}
@@ -205,7 +221,7 @@ function loadAndValidate() {
         data[name] = json
     }
     if (!errors.length) errors.push(...crossChecks(data))
-    if (!errors.length) errors.push(...trekChecks(data))
+    if (!errors.length) errors.push(...trekChecks(data), ...guideChecks(data))
 
     /* Giao diện & mùa: tools/build.js đọc thẳng data/site.json (trình duyệt không cần cả file) */
     const site = readJson(path.join(DATA_DIR, 'site.json'))

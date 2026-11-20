@@ -180,7 +180,7 @@ Khi chưa cấu hình, mục bình luận được ẩn.
 
 ## Cẩm nang du lịch (`cam-nang/`)
 
-- Nội dung ở `assets/js/data/guides.js` (6 bài song ngữ: thời điểm đẹp, di chuyển, chi phí, ẩm thực, visa/giấy tờ, an toàn & liên lạc); hàm render ở `assets/js/guide-render.js`.
+- Nội dung ở `data/guides.json` (7 bài song ngữ, sửa được ở trang quản trị → **Cẩm nang**; build sinh `assets/js/data/guides.js`); hàm render ở `assets/js/guide-render.js`.
 - Build sinh `cam-nang/index.html`, `cam-nang/<slug>/index.html` và bản `en/` từ mẫu `guide.html` (nội dung render sẵn – tốt cho SEO), thêm vào sitemap; trang chủ có mục "Cẩm nang" (3 bài đầu).
 - Bài "Nên đi du lịch Việt Nam vào tháng nào?" có bảng 12 tháng tự sinh từ `bestMonths` của các điểm đến, và **Lịch du lịch 12 tháng**
   (`calendarWidget()` trong `guide-render.js`): mỗi điểm đến một hàng, ô xanh = mùa đẹp (`bestMonths`), đỏ = thời tiết nặng
@@ -310,6 +310,10 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   tháng đi đẹp, người dẫn đường, quy định, ảnh riêng của cung (🔍 Tìm ảnh), điểm nổi bật, lịch trình từng chặng, chi phí,
   lưu ý an toàn và tháng kiểm tra (✓ Vẫn đúng). **＋ Thêm cung**, ↑ ↓ sắp xếp, Xóa cung. Trang kiểm tra trước giống lúc build
   (số chặng phải bằng số ngày, km thấp ≤ cao, điểm đến gần phải tồn tại…). Tổng quan nhắc cung quá 12 tháng chưa kiểm tra.
+- **Cẩm nang** (`data/guides.json`): tab Chung (tháng cập nhật) + mỗi bài một tab – đường dẫn, biểu tượng, tiêu đề, tóm tắt,
+  các mục (đoạn văn, danh sách, bảng tự sinh "lịch 12 tháng" / "đẹp theo tháng"), điểm đến liên quan. ＋ Thêm bài, ↑ ↓, Xóa bài.
+- **Cảng tàu & đường sắt** (`data/places.json` → `transport`): cảng tàu ra đảo (đảo, tên, tọa độ, giờ tàu chạy, giá vé) và
+  đường sắt (giá vé đ/km, các tuyến, mỗi dòng "Tên ga: km"). Chặn xóa ga mà điểm đến nào đó còn dùng làm ga gần nhất.
 - **Ảnh người đọc**: các Issue "Gửi ảnh" hiện kèm ảnh, gợi ý sẵn điểm đến. **Duyệt & đăng** → bình luận duyệt vào Issue,
   workflow `photo-approve.yml` (chỉ chạy với bình luận của người có quyền ghi repo) tải ảnh, xóa EXIF/GPS, nén WebP
   (`tools/approve-photo.js` → `add-photo.js`), build, test, đẩy lên main rồi đóng Issue. **Từ chối** → gửi lời cảm ơn + lý do, đóng Issue.
@@ -333,7 +337,7 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   localStorage của trình duyệt quản trị. Thanh **độ tương phản** cập nhật khi kéo màu, khuyên ≥ 5:1 và gợi ý màu gần nhất đạt chuẩn.
   Mỗi mùa có thể thêm **đếm ngược** trong dải thông báo ("Tết Đinh Mùi: còn 12 ngày") và **hiệu ứng trang trí** trên ảnh bìa
   (hoa đào / hoa mai / lá vàng / tuyết rơi – người xem tắt được, tự tắt khi bật giảm chuyển động).
-- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
+- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Chuỗi giao diện (`data/i18n/*.json`) vẫn sửa trong repo.
 
 ## Thêm điểm đến mới
 Cách nhanh: trang quản trị `/admin/` → **+ Thêm điểm đến**. Sửa tay: xem [docs/du-lieu.md](docs/du-lieu.md)
