@@ -1544,6 +1544,29 @@ function closeNav() {
     $('#menu-toggle').setAttribute('aria-expanded', 'false')
 }
 
+/*==================== TÌNH TRẠNG SITE (workflow kiem-tra-site.yml) ====================*/
+/* Lần chạy gần nhất của bước kiểm tra site đang chạy + Issue "site-loi" còn mở (nếu có) */
+async function loadSiteHealth() {
+    try {
+        const [runs, issues] = await Promise.all([
+            gh(`/repos/${REPO}/actions/workflows/kiem-tra-site.yml/runs?per_page=1`),
+            gh(`/repos/${REPO}/issues?labels=site-loi&state=open&per_page=1`).catch(() => []),
+        ])
+        const run = runs.workflow_runs && runs.workflow_runs[0]
+        const issue = issues[0]
+        if (!run) return '<p class="muted small">Chưa có lần kiểm tra nào – workflow chạy sau lần đẩy lên main tới hoặc 6:41 sáng mai.</p>'
+        const when = `${ago(run.updated_at)} · <a href="${esc(run.html_url)}" target="_blank" rel="noopener">xem lần chạy ↗</a>`
+        if (run.status !== 'completed') return `<div class="health health--run"><span class="spin"></span><div><strong>Đang kiểm tra site…</strong><span class="muted small">Bắt đầu ${when}</span></div></div>`
+        if (run.conclusion === 'success') return `<div class="health health--ok"><span class="health__icon" aria-hidden="true">✓</span><div><strong>Site không có lỗi</strong><span class="muted small">Mọi trang, file JS / CSS / ảnh và liên kết nội bộ đều ổn · kiểm tra ${when}</span></div></div>`
+        if (run.conclusion === 'cancelled') return `<p class="muted small">Lần kiểm tra gần nhất bị hủy (có lần mới hơn đang chờ) · ${when}</p>`
+        return `<div class="health health--bad"><span class="health__icon" aria-hidden="true">!</span><div><strong>Site đang có lỗi</strong><span class="muted small">Kiểm tra ${when}${issue ? ` · <a href="${esc(issue.html_url)}" target="_blank" rel="noopener">chi tiết trong Issue #${issue.number} ↗</a>` : ''}</span></div></div>`
+    } catch (err) {
+        if (err.status === 404) return '<p class="muted small">Chưa có workflow kiểm tra site trên main.</p>'
+        if (err.status === 403) return '<p class="muted small">Token chưa có quyền <code>Actions: Read</code> – thêm quyền này để xem tình trạng site.</p>'
+        return `<p class="muted small">Không tải được kết quả kiểm tra: ${esc(err.message)}</p>`
+    }
+}
+
 /*==================== CHỈ SỐ DỮ LIỆU ====================*/
 function monthsAgo(ym) {
     if (!YM_RE.test(ym || '')) return 0
@@ -1978,10 +2001,15 @@ function renderDashboard() {
             </section>
         </div>
         <section class="card">
+            <div class="card__head"><h2>Tình trạng site</h2><a href="https://github.com/${REPO}/actions/workflows/kiem-tra-site.yml" target="_blank" rel="noopener">Lịch sử ↗</a></div>
+            <div id="dash-health"><p class="muted small"><span class="spin"></span> Đang tải kết quả kiểm tra…</p></div>
+        </section>
+        <section class="card">
             <div class="card__head"><h2>Cần chú ý</h2><a href="#/dest?f=attention">Xem tất cả →</a></div>
             ${attention.length ? `<ul class="attention">${attention.map(({ x, h }) => `<li><a href="#/edit/${x.id}"><img src="${esc(thumbUrl(x.hero))}" alt="" loading="lazy"><span><strong>${esc(x.name)}</strong><span class="chips">${healthChips(h, { ok: false })}</span></span></a></li>`).join('')}</ul>` : '<p class="empty">Mọi điểm đến đều đủ bản dịch và dữ liệu mới.</p>'}
         </section>`
     refreshPrs('dash-prs')
+    loadSiteHealth().then(html => { const box = $('#dash-health'); if (box) box.innerHTML = html })
     loadPhotos().then(renderShellCount).catch(() => {})
 }
 

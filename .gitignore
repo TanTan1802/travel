@@ -13,3 +13,4 @@ data/sheets/
 
 # Trạng thái cục bộ của wrangler dev
 .wrangler/
+site-check.md

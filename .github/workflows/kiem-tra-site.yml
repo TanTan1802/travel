@@ -1,0 +1,64 @@
+# Kiểm tra site ĐANG CHẠY: mọi trang trong sitemap mở được, mọi file JS / CSS / ảnh / liên kết nội bộ tồn tại (tools/check-site.js).
+# Chạy sau mỗi lần main thay đổi (đợi Cloudflare deploy xong) và mỗi sáng. Có lỗi → mở (hoặc cập nhật) Issue nhãn
+# "site-loi" để chủ repo nhận email; hết lỗi → tự đóng Issue. Trang quản trị hiện kết quả lần chạy gần nhất ở Tổng quan.
+name: Kiểm tra site đang chạy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '41 23 * * *' # 6:41 sáng hằng ngày giờ Việt Nam
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: kiem-tra-site
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Kiểm tra site
+        id: check
+        continue-on-error: true
+        env:
+          WAIT_FOR_DEPLOY: ${{ github.event_name == 'push' && '1' || '' }}
+        run: node tools/check-site.js
+
+      - name: Báo lỗi qua Issue
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create site-loi --color B60205 --description "Site đang chạy có trang / file lỗi (kiem-tra-site.yml)" --force
+          { cat site-check.md; echo; echo "Lần chạy: $RUN_URL"; echo; echo "_Issue tự đóng khi lần kiểm tra sau không còn lỗi._"; } > body.md
+          NUM=$(gh issue list --label site-loi --state open --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file body.md
+          else
+            gh issue create --title "Site đang chạy có lỗi" --label site-loi --body-file body.md
+          fi
+          echo "::error::Site có lỗi – xem Summary hoặc Issue nhãn site-loi."
+          exit 1
+
+      - name: Hết lỗi – đóng Issue
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          for NUM in $(gh issue list --label site-loi --state open --json number --jq '.[].number'); do
+            gh issue close "$NUM" --comment "✅ Lần kiểm tra mới không còn lỗi: $RUN_URL"
+          done
