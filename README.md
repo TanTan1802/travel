@@ -302,6 +302,10 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
     xem dạng máy tính / điện thoại trước khi đăng.
 - **Lễ hội & sự kiện** (`data/events.json`): sửa / thêm lễ hội, mùa cảnh sắc, nghỉ lễ, thời tiết – theo ngày cố định
   hoặc theo tháng (âm lịch), cả nước hoặc từng điểm đến.
+- **Trekking** (`data/treks.json`): mỗi cung một tab – độ khó, miền, điểm đến gần, số ngày, quãng đường, độ cao đỉnh,
+  tháng đi đẹp, người dẫn đường, quy định, ảnh riêng của cung (🔍 Tìm ảnh), điểm nổi bật, lịch trình từng chặng, chi phí,
+  lưu ý an toàn và tháng kiểm tra (✓ Vẫn đúng). **＋ Thêm cung**, ↑ ↓ sắp xếp, Xóa cung. Trang kiểm tra trước giống lúc build
+  (số chặng phải bằng số ngày, km thấp ≤ cao, điểm đến gần phải tồn tại…). Tổng quan nhắc cung quá 12 tháng chưa kiểm tra.
 - **Ảnh người đọc**: các Issue "Gửi ảnh" hiện kèm ảnh, gợi ý sẵn điểm đến. **Duyệt & đăng** → bình luận duyệt vào Issue,
   workflow `photo-approve.yml` (chỉ chạy với bình luận của người có quyền ghi repo) tải ảnh, xóa EXIF/GPS, nén WebP
   (`tools/approve-photo.js` → `add-photo.js`), build, test, đẩy lên main rồi đóng Issue. **Từ chối** → gửi lời cảm ơn + lý do, đóng Issue.
@@ -325,7 +329,7 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   localStorage của trình duyệt quản trị. Thanh **độ tương phản** cập nhật khi kéo màu, khuyên ≥ 5:1 và gợi ý màu gần nhất đạt chuẩn.
   Mỗi mùa có thể thêm **đếm ngược** trong dải thông báo ("Tết Đinh Mùi: còn 12 ngày") và **hiệu ứng trang trí** trên ảnh bìa
   (hoa đào / hoa mai / lá vàng / tuyết rơi – người xem tắt được, tự tắt khi bật giảm chuyển động).
-- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Lễ hội, cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
+- Mã nguồn: `admin/` (HTML/CSS/JS thuần, `robots.txt` chặn lập chỉ mục). Cẩm nang, cảng/ga tàu, chuỗi giao diện vẫn sửa trong repo.
 
 ## Thêm điểm đến mới
 Cách nhanh: trang quản trị `/admin/` → **+ Thêm điểm đến**. Sửa tay: xem [docs/du-lieu.md](docs/du-lieu.md)

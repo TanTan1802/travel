@@ -25,6 +25,7 @@ const FILES = {
     ja: 'data/i18n/ja.json',
     site: 'data/site.json',
     events: 'data/events.json',
+    treks: 'data/treks.json',
 }
 const TR_LANGS = ['en', 'ko', 'zh', 'ja']
 const LANG_NAMES = { en: 'English', ko: '한국어 (Hàn)', zh: '中文 (Trung)', ja: '日本語 (Nhật)' }
@@ -1063,6 +1064,166 @@ function eventsTabs() {
     return Object.fromEntries(Object.keys(types).map(type => [type, { label: `${types[type]} (${list.filter(x => x.type === type).length})`, fields: tab(type) }]))
 }
 
+/*==================== TREKKING (data/treks.json) ====================*/
+const TREK_LEVELS = () => Object.fromEntries(Object.entries(state.data.treks.levels).map(([k, v]) => [k, v.label[0]]))
+const TREK_REGIONS = { bac: 'Miền Bắc', trung: 'Miền Trung', nam: 'Miền Nam' }
+const TREK_GUIDE = { required: 'Bắt buộc / thực tế phải có người dẫn đường', recommended: 'Nên thuê người dẫn đường' }
+const emptyPair = () => ['', '']
+const emptyStage = () => ({ title: emptyPair(), text: emptyPair() })
+
+/* Bản sửa: ảnh là chuỗi "a | b" (ô Tìm ảnh), thông báo luôn có ô (để trống = không có), độ cao '' = không leo đỉnh */
+function toEditableTreks(data) {
+    return {
+        treks: data.treks.map(t => ({
+            ...clone(t),
+            summit: t.summit == null ? '' : t.summit,
+            notice: t.notice ? [...t.notice] : emptyPair(),
+            images: joinFiles(t.images),
+        })),
+    }
+}
+
+const newTrek = () => ({
+    id: '', name: emptyPair(), province: emptyPair(), region: 'bac', near: [], level: 'moderate', days: 2,
+    distanceKm: [0, 0], distanceNote: emptyPair(), summit: '', bestMonths: [], guide: 'required',
+    start: emptyPair(), end: emptyPair(), notice: emptyPair(), images: '',
+    highlights: [emptyPair()], plan: [emptyStage(), emptyStage()], costs: [emptyPair()], safety: [emptyPair()], updated: MONTH(),
+})
+
+const trimPair = p => (p || []).map(x => String(x || '').trim())
+
+function fromEditableTreks(e) {
+    const data = {
+        $schema: state.data.treks.$schema,
+        levels: state.data.treks.levels,
+        treks: e.treks.map(x => {
+            const out = {
+                id: String(x.id || '').trim(), name: trimPair(x.name), province: trimPair(x.province), region: x.region,
+                near: [...x.near], level: x.level, days: Number(x.days) || 0,
+                distanceKm: (x.distanceKm || []).map(n => Number(n) || 0), distanceNote: trimPair(x.distanceNote),
+                summit: x.summit === '' || x.summit == null ? null : Number(x.summit),
+                bestMonths: [...x.bestMonths], guide: x.guide, start: trimPair(x.start), end: trimPair(x.end),
+            }
+            const notice = trimPair(x.notice)
+            if (notice.some(Boolean)) out.notice = notice
+            const images = splitFiles(x.images)
+            if (images.length) out.images = images
+            out.highlights = x.highlights.map(trimPair)
+            out.plan = x.plan.map(s => ({ title: trimPair(s.title), text: trimPair(s.text) }))
+            out.costs = x.costs.map(trimPair)
+            out.safety = x.safety.map(trimPair)
+            out.updated = String(x.updated || '').trim()
+            return out
+        }),
+    }
+    return ordered(data, state.data.treks)
+}
+
+/* Giống schema + tools/build-data.js (trekChecks): lỗi hiện ngay trên trang thay vì đợi CI */
+function validateTreks(data) {
+    const e = []
+    const ids = new Set(state.data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    data.treks.forEach((x, i) => {
+        const w = `Cung ${i + 1} (${x.name[0] || x.id || 'mới'})`
+        if (!ID_RE.test(x.id)) e.push(`${w}: mã chỉ gồm chữ thường không dấu, số, gạch nối`)
+        if (seen.has(x.id)) e.push(`${w}: mã bị trùng`)
+        seen.add(x.id)
+        for (const [k, label] of [['name', 'tên cung'], ['province', 'tỉnh'], ['distanceNote', 'ghi chú quãng đường'], ['start', 'điểm xuất phát'], ['end', 'điểm kết thúc']]) {
+            if (!pairFilled(x[k])) e.push(`${w}: thiếu ${label} (tiếng Việt và tiếng Anh)`)
+        }
+        if (x.notice && !pairFilled(x.notice)) e.push(`${w}: quy định cần đủ tiếng Việt và tiếng Anh (hoặc bỏ trống cả hai)`)
+        if (!x.near.length) e.push(`${w}: chọn ít nhất một điểm đến gần`)
+        x.near.filter(id => !ids.has(id)).forEach(id => e.push(`${w}: điểm đến ${id} không tồn tại`))
+        if (!Number.isInteger(x.days) || x.days < 1 || x.days > 7) e.push(`${w}: số ngày đi bộ từ 1 đến 7`)
+        else if (x.plan.length !== x.days) e.push(`${w}: lịch trình có ${x.plan.length} chặng nhưng số ngày là ${x.days} – thêm / xóa chặng cho khớp`)
+        const [lo, hi] = x.distanceKm
+        if (!(lo > 0) || !(hi > 0)) e.push(`${w}: nhập quãng đường (km) thấp và cao`)
+        else if (lo > hi) e.push(`${w}: quãng đường thấp lớn hơn cao`)
+        if (x.summit !== null && !(Number.isInteger(x.summit) && x.summit >= 0 && x.summit <= 3200)) e.push(`${w}: độ cao đỉnh là số nguyên 0 – 3200 m (để trống nếu không leo đỉnh)`)
+        if (!x.bestMonths.length) e.push(`${w}: chọn ít nhất một tháng đi đẹp`)
+        ;(x.images || []).filter(f => !IMAGE_RE.test(f)).forEach(f => e.push(`${w}: ảnh "${f}" phải là tên file .jpg / .png / .webp`))
+        for (const [k, label] of [['highlights', 'điểm nổi bật'], ['costs', 'chi phí'], ['safety', 'lưu ý an toàn']]) {
+            if (!x[k].length) e.push(`${w}: cần ít nhất một mục ${label}`)
+            x[k].forEach((p, j) => { if (!pairFilled(p)) e.push(`${w}: ${label} ${j + 1} thiếu tiếng Việt hoặc tiếng Anh`) })
+        }
+        x.plan.forEach((s, j) => {
+            if (!pairFilled(s.title) || !pairFilled(s.text)) e.push(`${w}: chặng ${j + 1} thiếu tiêu đề hoặc nội dung (tiếng Việt và tiếng Anh)`)
+        })
+        if (!YM_RE.test(x.updated)) e.push(`${w}: tháng cập nhật dạng YYYY-MM`)
+    })
+    return e
+}
+
+function buildTreksFiles(data) {
+    const text = `${JSON.stringify(data, null, 2)}\n`
+    return text === state.texts.treks ? {} : { [FILES.treks]: text }
+}
+
+const pairList = (path, label, addLabel, help) => ({
+    type: 'list', path, label, addLabel, help, newItem: emptyPair,
+    itemLabel: p => p[0] || '(trống)',
+    fields: j => [{ type: 'pair', path: [...path, j], multiline: true }],
+})
+
+function trekFields(i) {
+    const tr = state.bundle.treks.treks[i]
+    const n = state.bundle.treks.treks.length
+    const base = ['treks', 'treks', i]
+    const saved = state.data.treks.treks.some(x => x.id === tr.id)
+    return [
+        { type: 'html', html: `<div class="toolbar">
+                ${saved ? `<a href="${SITE_URL}trekking/${esc(tr.id)}/" target="_blank" rel="noopener">Trang hiện tại ↗</a>` : '<span class="badge badge--miss">Cung mới – có trang sau khi đăng</span>'}
+                <span style="margin-left:auto"></span>
+                <button type="button" class="icon-btn" data-trek-op="up" data-index="${i}"${i === 0 ? ' disabled' : ''} title="Đưa lên trước trong danh sách">↑</button>
+                <button type="button" class="icon-btn" data-trek-op="down" data-index="${i}"${i === n - 1 ? ' disabled' : ''} title="Đưa xuống">↓</button>
+                <button type="button" class="icon-btn icon-btn--danger" data-trek-op="del" data-index="${i}">Xóa cung</button>
+            </div>
+            <p class="muted small">Trekking ảnh hưởng an toàn người đọc: chỉ ghi thông tin đã kiểm chứng (quy định địa phương, độ cao, quãng đường). Nguồn lệch nhau thì ghi khoảng và giải thích ở "Ghi chú quãng đường".</p>` },
+        { type: 'group', cols: 3, fields: [
+            { type: 'text', path: [...base, 'id'], label: 'Mã (đường dẫn trang)', placeholder: 'vd. bach-moc-luong-tu', help: saved ? 'Đổi mã sẽ đổi địa chỉ trang – hạn chế đổi.' : 'Chữ thường không dấu, số, gạch nối.' },
+            { type: 'select', path: [...base, 'level'], label: 'Độ khó', options: TREK_LEVELS() },
+            { type: 'select', path: [...base, 'region'], label: 'Miền', options: TREK_REGIONS },
+        ] },
+        { type: 'pair', path: [...base, 'name'], label: 'Tên cung' },
+        { type: 'pair', path: [...base, 'province'], label: 'Tỉnh' },
+        { type: 'checks', path: [...base, 'near'], label: 'Điểm đến gần (trang điểm đến hiện mục "Trekking quanh đây")', options: destOptions() },
+        { type: 'html', html: '<h3>Thông số</h3>' },
+        { type: 'group', cols: 3, fields: [
+            { type: 'number', path: [...base, 'days'], label: 'Số ngày đi bộ (1 – 7)', step: 1, help: 'Lịch trình bên dưới phải có đúng chừng ấy chặng.' },
+            { type: 'number', path: [...base, 'distanceKm', 0], label: 'Quãng đường thấp (km)', step: 0.5 },
+            { type: 'number', path: [...base, 'distanceKm', 1], label: 'Quãng đường cao (km)', step: 0.5 },
+        ] },
+        { type: 'pair', path: [...base, 'distanceNote'], label: 'Ghi chú quãng đường', help: 'vd. "cả lên và xuống" / "chặng leo lên, khoảng 7 – 8 giờ đi bộ".' },
+        { type: 'group', fields: [
+            { type: 'text', path: [...base, 'summit'], label: 'Độ cao điểm cao nhất (m)', placeholder: 'để trống nếu không leo đỉnh' },
+            { type: 'select', path: [...base, 'guide'], label: 'Người dẫn đường', options: TREK_GUIDE },
+        ] },
+        { type: 'checks', path: [...base, 'bestMonths'], label: 'Tháng đi đẹp (hiện ở trang theo tháng)', options: MONTHS, numeric: true },
+        { type: 'pair', path: [...base, 'start'], label: 'Điểm xuất phát' },
+        { type: 'pair', path: [...base, 'end'], label: 'Điểm kết thúc' },
+        { type: 'pair', path: [...base, 'notice'], label: 'Quy định / thông báo cần biết (tùy chọn)', multiline: true, help: 'vd. cấm đi tự phát, phải đăng ký với kiểm lâm. Để trống cả hai ô = không có.' },
+        { type: 'image', path: [...base, 'images'], label: 'Ảnh của chính cung (ảnh đầu là ảnh bìa, ngăn bằng |)', multi: true, query: tr.name[1] || tr.name[0] || '',
+            help: 'Chỉ chọn ảnh chụp đúng cung / đỉnh này. Để trống = dùng ảnh điểm đến gần.' },
+        { type: 'html', html: '<h3>Nội dung</h3>' },
+        pairList([...base, 'highlights'], 'Điểm nổi bật', 'Thêm điểm nổi bật'),
+        { type: 'list', path: [...base, 'plan'], label: `Lịch trình (${tr.plan.length} / ${tr.days} chặng)`, addLabel: 'Thêm chặng', newItem: emptyStage,
+            itemLabel: (s, j) => s.title[0] || `Chặng ${j + 1}`,
+            fields: j => [
+                { type: 'pair', path: [...base, 'plan', j, 'title'], label: 'Tiêu đề chặng' },
+                { type: 'pair', path: [...base, 'plan', j, 'text'], label: 'Nội dung', multiline: true },
+            ] },
+        pairList([...base, 'costs'], 'Chi phí tham khảo', 'Thêm mục chi phí', 'Ghi khoảng giá và nguồn gốc (porter, phí vào rừng, xe…), không ghi giá cứng.'),
+        pairList([...base, 'safety'], 'Lưu ý an toàn', 'Thêm lưu ý'),
+        { type: 'verify', path: [...base, 'updated'], label: 'Kiểm tra thông tin' },
+    ]
+}
+
+function treksTabs() {
+    if (!state.bundle.treks.treks.length) return { t0: { label: 'Chưa có cung', fields: () => [{ type: 'html', html: '<p class="empty">Chưa có cung trekking nào – bấm "＋ Thêm cung".</p>' }] } }
+    return Object.fromEntries(state.bundle.treks.treks.map((tr, i) => [`t${i}`, { label: tr.name[0] || 'Cung mới', fields: () => trekFields(i) }]))
+}
+
 /* Các loại dữ liệu không phải điểm đến: cách mở, kiểm tra, lưu và tab của từng loại */
 const MODES = {
     site: {
@@ -1085,6 +1246,26 @@ const MODES = {
         extraTab: '', datalist: () => '',
         view: `<a class="btn btn--ghost btn--sm" href="../thang/${new Date().getMonth() + 1}/index.html" target="_blank" rel="noopener">Xem trang tháng này ↗</a>`,
         pr: w => ({ title: 'Cập nhật lễ hội & sự kiện', slug: 'su-kien', summary: `Cập nhật lễ hội & sự kiện (\`data/events.json\`) từ trang quản trị: ${w.events.length} sự kiện.` }),
+    },
+    treks: {
+        route: '/treks', label: 'Trekking', firstTab: 't0',
+        desc: 'Các cung trekking: độ khó, quãng đường, lịch trình từng chặng, chi phí, lưu ý an toàn và ảnh.',
+        open: () => ({ treks: toEditableTreks(state.data.treks) }),
+        working: b => fromEditableTreks(b.treks), validate: validateTreks, files: buildTreksFiles, tabs: treksTabs,
+        errorTab: msg => { const m = msg.match(/^Cung (\d+)/); return m ? `t${Number(m[1]) - 1}` : 't0' },
+        extraTab: '<button type="button" class="tab--add" data-trek-add>＋ Thêm cung</button>',
+        datalist: () => '',
+        view: `<a class="btn btn--ghost btn--sm" href="../trekking/" target="_blank" rel="noopener">Trang Trekking hiện tại ↗</a>`,
+        pr: w => {
+            const old = new Map(state.data.treks.treks.map(t => [t.id, JSON.stringify(t)]))
+            const added = w.treks.filter(t => !old.has(t.id)).map(t => t.name[0])
+            const edited = w.treks.filter(t => old.has(t.id) && old.get(t.id) !== JSON.stringify(t)).map(t => t.name[0])
+            const ids = new Set(w.treks.map(t => t.id))
+            const removed = state.data.treks.treks.filter(t => !ids.has(t.id)).map(t => t.name[0])
+            const parts = [added.length && `thêm ${added.join(', ')}`, edited.length && `sửa ${edited.join(', ')}`, removed.length && `xóa ${removed.join(', ')}`].filter(Boolean)
+            const what = parts.join('; ') || 'sắp xếp lại'
+            return { title: `Trekking: ${what}`.slice(0, 120), slug: 'trekking', summary: `Cập nhật trekking (\`data/treks.json\`) từ trang quản trị: ${what} – ${w.treks.length} cung.` }
+        },
     },
 }
 
@@ -1327,6 +1508,7 @@ const NAV = [
     ['/dest', 'Điểm đến', '◉'],
     ['/site', 'Giao diện & mùa', '◐'],
     ['/events', 'Lễ hội & sự kiện', '✦'],
+    ['/treks', 'Trekking', '▲'],
     ['/photos', 'Ảnh người đọc', '▣'],
     ['/prs', 'Pull Request', '⇄'],
 ]
@@ -1763,6 +1945,7 @@ function renderDashboard() {
     const sum = key => health.reduce((n, { h }) => n + (Array.isArray(h[key]) ? (h[key].length ? 1 : 0) : h[key]), 0)
     const season = activeSeason()
     const next = nextSeason()
+    const staleTreks = d.treks.treks.filter(t => monthsAgo(t.updated) > 12)
     const attention = health.filter(({ h }) => h.score > 0).sort((a, b) => b.h.score - a.h.score).slice(0, 8)
     renderShell([['Tổng quan']], '<button type="button" class="btn btn--ghost btn--sm" id="reload">↻ Tải lại dữ liệu</button>')
     $('#app').innerHTML = `
@@ -1778,6 +1961,7 @@ function renderDashboard() {
             <a class="stat" href="#/dest?f=lang"><span class="stat__num">${sum('missing')}</span><span class="stat__label">Điểm đến thiếu bản dịch ko / zh / ja</span></a>
             <a class="stat" href="#/dest?f=illus"><span class="stat__num">${sum('illus')}</span><span class="stat__label">Món đang dùng ảnh minh họa</span></a>
             <a class="stat" href="#/dest?f=stale"><span class="stat__num">${sum('stale')}</span><span class="stat__label">Quán / điểm quá 12 tháng chưa kiểm tra</span></a>
+            <a class="stat" href="#/treks"><span class="stat__num">${d.treks.treks.length}</span><span class="stat__label">Cung trekking${staleTreks.length ? ` · <span class="text-bad">${staleTreks.length} quá 12 tháng chưa kiểm tra</span>` : ''}</span></a>
         </div>
         <div class="cols">
             <section class="card">
@@ -2605,6 +2789,30 @@ document.addEventListener('click', async e => {
     if (t.closest('[data-season-add]') && state.mode === 'site') {
         state.bundle.site.seasons.push(newSeason())
         state.tab = `s${state.bundle.site.seasons.length - 1}`
+        markDirty()
+        renderEditor()
+        return
+    }
+    if (t.closest('[data-trek-add]') && state.mode === 'treks') {
+        state.bundle.treks.treks.push(newTrek())
+        state.tab = `t${state.bundle.treks.treks.length - 1}`
+        markDirty()
+        renderEditor()
+        return
+    }
+    const trekOp = t.closest('[data-trek-op]')
+    if (trekOp && state.mode === 'treks') {
+        const list = state.bundle.treks.treks
+        const i = Number(trekOp.dataset.index)
+        if (trekOp.dataset.trekOp === 'del') {
+            if (!confirm(`Xóa cung "${list[i].name[0] || list[i].id || 'mới'}"? Trang của cung sẽ bị gỡ khỏi site sau khi đăng.`)) return
+            list.splice(i, 1)
+            state.tab = `t${Math.max(0, i - 1)}`
+        } else {
+            const j = trekOp.dataset.trekOp === 'up' ? i - 1 : i + 1
+            ;[list[i], list[j]] = [list[j], list[i]]
+            state.tab = `t${j}`
+        }
         markDirty()
         renderEditor()
         return
