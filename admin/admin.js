@@ -26,6 +26,7 @@ const FILES = {
     site: 'data/site.json',
     events: 'data/events.json',
     treks: 'data/treks.json',
+    guides: 'data/guides.json',
 }
 const TR_LANGS = ['en', 'ko', 'zh', 'ja']
 const LANG_NAMES = { en: 'English', ko: '한국어 (Hàn)', zh: '中文 (Trung)', ja: '日本語 (Nhật)' }
@@ -1064,6 +1065,11 @@ function eventsTabs() {
     return Object.fromEntries(Object.keys(types).map(type => [type, { label: `${types[type]} (${list.filter(x => x.type === type).length})`, fields: tab(type) }]))
 }
 
+/* Nút ↑ ↓ Xóa của một mục (mỗi mục một tab) – xử lý chung ở trình bấm data-item-op */
+const itemTools = (i, n, delLabel) => `<button type="button" class="icon-btn" data-item-op="up" data-index="${i}"${i === 0 ? ' disabled' : ''} title="Đưa lên trước">↑</button>
+                <button type="button" class="icon-btn" data-item-op="down" data-index="${i}"${i === n - 1 ? ' disabled' : ''} title="Đưa xuống">↓</button>
+                <button type="button" class="icon-btn icon-btn--danger" data-item-op="del" data-index="${i}">${delLabel}</button>`
+
 /*==================== TREKKING (data/treks.json) ====================*/
 const TREK_LEVELS = () => Object.fromEntries(Object.entries(state.data.treks.levels).map(([k, v]) => [k, v.label[0]]))
 const TREK_REGIONS = { bac: 'Miền Bắc', trung: 'Miền Trung', nam: 'Miền Nam' }
@@ -1175,9 +1181,7 @@ function trekFields(i) {
         { type: 'html', html: `<div class="toolbar">
                 ${saved ? `<a href="${SITE_URL}trekking/${esc(tr.id)}/" target="_blank" rel="noopener">Trang hiện tại ↗</a>` : '<span class="badge badge--miss">Cung mới – có trang sau khi đăng</span>'}
                 <span style="margin-left:auto"></span>
-                <button type="button" class="icon-btn" data-trek-op="up" data-index="${i}"${i === 0 ? ' disabled' : ''} title="Đưa lên trước trong danh sách">↑</button>
-                <button type="button" class="icon-btn" data-trek-op="down" data-index="${i}"${i === n - 1 ? ' disabled' : ''} title="Đưa xuống">↓</button>
-                <button type="button" class="icon-btn icon-btn--danger" data-trek-op="del" data-index="${i}">Xóa cung</button>
+                ${itemTools(i, n, 'Xóa cung')}
             </div>
             <p class="muted small">Trekking ảnh hưởng an toàn người đọc: chỉ ghi thông tin đã kiểm chứng (quy định địa phương, độ cao, quãng đường). Nguồn lệch nhau thì ghi khoảng và giải thích ở "Ghi chú quãng đường".</p>` },
         { type: 'group', cols: 3, fields: [
@@ -1224,6 +1228,229 @@ function treksTabs() {
     return Object.fromEntries(state.bundle.treks.treks.map((tr, i) => [`t${i}`, { label: tr.name[0] || 'Cung mới', fields: () => trekFields(i) }]))
 }
 
+/*==================== CẨM NANG (data/guides.json) ====================*/
+const GUIDE_WIDGETS = { '': 'Không có', calendar: 'Lịch du lịch 12 tháng (tự sinh)', months: 'Điểm đến đẹp theo từng tháng (tự sinh)' }
+const emptySection = () => ({ heading: emptyPair(), paragraphs: [], list: [], widget: '' })
+
+function toEditableGuides(data) {
+    return {
+        updated: data.updated,
+        guides: data.guides.map(g => ({
+            ...clone(g),
+            related: [...(g.related || [])],
+            sections: g.sections.map(sec => ({ heading: [...sec.heading], paragraphs: clone(sec.paragraphs || []), list: clone(sec.list || []), widget: sec.widget || '' })),
+        })),
+    }
+}
+
+const newGuide = () => ({ slug: '', icon: 'ri-book-open-line', title: emptyPair(), summary: emptyPair(), sections: [{ ...emptySection(), paragraphs: [emptyPair()] }], related: [] })
+
+function fromEditableGuides(e) {
+    const data = {
+        $schema: state.data.guides.$schema,
+        updated: String(e.updated || '').trim(),
+        guides: e.guides.map(g => {
+            const out = { slug: String(g.slug || '').trim(), icon: String(g.icon || '').trim(), title: trimPair(g.title), summary: trimPair(g.summary) }
+            out.sections = g.sections.map(sec => {
+                const s = { heading: trimPair(sec.heading) }
+                if (sec.paragraphs.length) s.paragraphs = sec.paragraphs.map(trimPair)
+                if (sec.list.length) s.list = sec.list.map(trimPair)
+                if (sec.widget) s.widget = sec.widget
+                return s
+            })
+            if (g.related.length) out.related = [...g.related]
+            return out
+        }),
+    }
+    return ordered(data, state.data.guides)
+}
+
+function validateGuides(data) {
+    const e = []
+    const ids = new Set(state.data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    if (!YM_RE.test(data.updated)) e.push('Chung: tháng cập nhật dạng YYYY-MM')
+    if (data.guides.length < 3) e.push('Chung: cần ít nhất 3 bài (trang chủ hiện 3 bài)')
+    data.guides.forEach((g, i) => {
+        const w = `Bài ${i + 1} (${g.title[0] || g.slug || 'mới'})`
+        if (!ID_RE.test(g.slug)) e.push(`${w}: đường dẫn chỉ gồm chữ thường không dấu, số, gạch nối`)
+        if (seen.has(g.slug)) e.push(`${w}: đường dẫn bị trùng`)
+        seen.add(g.slug)
+        if (!/^ri-[a-z0-9-]+$/.test(g.icon)) e.push(`${w}: biểu tượng dạng ri-…-line`)
+        if (!pairFilled(g.title)) e.push(`${w}: thiếu tiêu đề (tiếng Việt và tiếng Anh)`)
+        if (!pairFilled(g.summary)) e.push(`${w}: thiếu tóm tắt (tiếng Việt và tiếng Anh)`)
+        if (!g.sections.length) e.push(`${w}: cần ít nhất một mục`)
+        g.sections.forEach((sec, j) => {
+            const m = `${w}: mục ${j + 1}`
+            if (!pairFilled(sec.heading)) e.push(`${m} thiếu tiêu đề`)
+            if (!sec.paragraphs && !sec.list && !sec.widget) e.push(`${m} chưa có nội dung (đoạn văn, danh sách hoặc bảng tự sinh)`)
+            ;[...(sec.paragraphs || []), ...(sec.list || [])].forEach(p => { if (!pairFilled(p)) e.push(`${m} có dòng thiếu tiếng Việt hoặc tiếng Anh`) })
+        })
+        ;(g.related || []).filter(id => !ids.has(id)).forEach(id => e.push(`${w}: điểm đến ${id} không tồn tại`))
+    })
+    return [...new Set(e)]
+}
+
+function buildGuidesFiles(data) {
+    const text = `${JSON.stringify(data, null, 2)}\n`
+    return text === state.texts.guides ? {} : { [FILES.guides]: text }
+}
+
+function guideFields(i) {
+    const g = state.bundle.guides.guides[i]
+    const base = ['guides', 'guides', i]
+    const saved = state.data.guides.guides.some(x => x.slug === g.slug)
+    return [
+        { type: 'html', html: `<div class="toolbar">
+                ${saved ? `<a href="${SITE_URL}cam-nang/${esc(g.slug)}/" target="_blank" rel="noopener">Trang hiện tại ↗</a>` : '<span class="badge badge--miss">Bài mới – có trang sau khi đăng</span>'}
+                <span style="margin-left:auto"></span>
+                ${itemTools(i, state.bundle.guides.guides.length, 'Xóa bài')}
+            </div>
+            <p class="muted small">Thứ tự bài = thứ tự trên trang Cẩm nang; 3 bài đầu hiện ở trang chủ. Bản dịch ko / zh / ja của cẩm nang hiện dùng tiếng Anh.</p>` },
+        { type: 'group', fields: [
+            { type: 'text', path: [...base, 'slug'], label: 'Đường dẫn (cam-nang/…/)', placeholder: 'vd. mang-theo-gi', help: saved ? 'Đổi đường dẫn sẽ đổi địa chỉ trang – hạn chế đổi.' : 'Chữ thường không dấu, số, gạch nối.' },
+            { type: 'text', path: [...base, 'icon'], label: 'Biểu tượng', placeholder: 'ri-book-open-line', list: 'icon-list', help: ICON_HELP },
+        ] },
+        { type: 'pair', path: [...base, 'title'], label: 'Tiêu đề bài' },
+        { type: 'pair', path: [...base, 'summary'], label: 'Tóm tắt (hiện trên thẻ bài và mô tả tìm kiếm)', multiline: true },
+        { type: 'list', path: [...base, 'sections'], label: `Các mục (${g.sections.length})`, addLabel: 'Thêm mục', newItem: () => ({ ...emptySection(), paragraphs: [emptyPair()] }),
+            itemLabel: (sec, j) => sec.heading[0] || `Mục ${j + 1}`,
+            fields: j => [
+                { type: 'pair', path: [...base, 'sections', j, 'heading'], label: 'Tiêu đề mục' },
+                pairList([...base, 'sections', j, 'paragraphs'], 'Đoạn văn', 'Thêm đoạn văn'),
+                pairList([...base, 'sections', j, 'list'], 'Danh sách gạch đầu dòng', 'Thêm dòng'),
+                { type: 'select', path: [...base, 'sections', j, 'widget'], label: 'Bảng tự sinh từ dữ liệu (tùy chọn)', options: GUIDE_WIDGETS },
+            ] },
+        { type: 'checks', path: [...base, 'related'], label: 'Điểm đến liên quan (hiện cuối bài)', options: destOptions() },
+    ]
+}
+
+function guidesTabs() {
+    const tabs = { general: { label: 'Chung', fields: () => [
+        { type: 'html', html: '<p class="muted small">Tháng cập nhật hiện là "ngày sửa đổi" của mọi bài cẩm nang (Google dùng để biết nội dung còn mới).</p>' },
+        { type: 'verify', path: ['guides', 'updated'], label: 'Kiểm tra nội dung cẩm nang' },
+        { type: 'text', path: ['guides', 'updated'], label: 'Tháng cập nhật (YYYY-MM)' },
+    ] } }
+    state.bundle.guides.guides.forEach((g, i) => { tabs[`g${i}`] = { label: g.title[0] || 'Bài mới', fields: () => guideFields(i) } })
+    return tabs
+}
+
+/*==================== CẢNG TÀU & ĐƯỜNG SẮT (data/places.json → transport) ====================*/
+const newPort = () => ({ dest: '', name: emptyPair(), lat: '', lng: '', hours: '', price: ['', ''] })
+const newLine = () => ({ name: emptyPair(), kmh: 40, stations: '' })
+const stationsText = st => Object.entries(st).map(([n, km]) => `${n}: ${km}`).join('\n')
+
+function toEditableTransport(t) {
+    return {
+        ports: clone(t.ports),
+        rail: { note: t.rail.note || '', fare: { ...t.rail.fare }, lines: t.rail.lines.map(l => ({ name: [...l.name], kmh: l.kmh, stations: stationsText(l.stations) })) },
+    }
+}
+
+/* "Hà Nội: 0" mỗi dòng → { "Hà Nội": 0 }; dòng sai dạng giữ lại để báo lỗi */
+function parseStations(text) {
+    const out = {}
+    const bad = []
+    String(text || '').split('\n').map(l => l.trim()).filter(Boolean).forEach(l => {
+        const m = l.match(/^(.+?)\s*:\s*(\d+(?:\.\d+)?)$/)
+        if (m) out[m[1].trim()] = Number(m[2])
+        else bad.push(l)
+    })
+    return { stations: out, bad }
+}
+
+const num = v => (v === '' || v == null ? NaN : Number(v))
+
+function fromEditableTransport(e) {
+    const rail = { fare: { saving: num(e.rail.fare.saving), comfort: num(e.rail.fare.comfort), min: num(e.rail.fare.min) },
+        lines: e.rail.lines.map(l => ({ name: trimPair(l.name), kmh: num(l.kmh), stations: parseStations(l.stations).stations })) }
+    if (String(e.rail.note || '').trim()) rail.note = String(e.rail.note).trim()
+    const places = clone(state.data.places)
+    places.transport = {
+        ...places.transport,
+        rail,
+        ports: e.ports.map(p => ({ dest: p.dest, name: trimPair(p.name), lat: num(p.lat), lng: num(p.lng), hours: num(p.hours), price: (p.price || []).map(num) })),
+    }
+    return ordered(places, state.data.places)
+}
+
+function validateTransport(places) {
+    const e = []
+    const ids = new Set(state.data.destinations.destinations.map(d => d.id))
+    const { ports, rail } = places.transport
+    const edit = state.bundle.transport
+    ports.forEach((p, i) => {
+        const w = `Cảng ${i + 1} (${p.name[0] || 'mới'})`
+        if (!ids.has(p.dest)) e.push(`${w}: chọn đảo / điểm đến tàu chạy tới`)
+        if (!pairFilled(p.name)) e.push(`${w}: thiếu tên cảng (tiếng Việt và tiếng Anh)`)
+        if (!(p.lat >= 8 && p.lat <= 24) || !(p.lng >= 102 && p.lng <= 110)) e.push(`${w}: tọa độ phải trong Việt Nam (vĩ độ 8 – 24, kinh độ 102 – 110)`)
+        if (!(p.hours > 0)) e.push(`${w}: thời gian đi tàu (giờ) phải lớn hơn 0`)
+        if (!p.price.every(n => Number.isInteger(n) && n >= 0)) e.push(`${w}: nhập giá vé thấp và cao (đồng)`)
+        else if (p.price[0] > p.price[1]) e.push(`${w}: giá thấp lớn hơn giá cao`)
+    })
+    const f = rail.fare
+    if (!(Number.isInteger(f.saving) && f.saving > 0) || !(Number.isInteger(f.comfort) && f.comfort > 0)) e.push('Đường sắt: giá vé đ/km là số nguyên lớn hơn 0')
+    if (!(Number.isInteger(f.min) && f.min >= 0)) e.push('Đường sắt: giá tối thiểu một chặng (đồng)')
+    if (!rail.lines.length) e.push('Đường sắt: cần ít nhất một tuyến')
+    rail.lines.forEach((l, i) => {
+        const w = `Đường sắt: tuyến ${i + 1} (${l.name[0] || 'mới'})`
+        if (!pairFilled(l.name)) e.push(`${w} thiếu tên (tiếng Việt và tiếng Anh)`)
+        if (!(l.kmh > 0)) e.push(`${w}: tốc độ trung bình phải lớn hơn 0`)
+        const { bad } = parseStations(edit.rail.lines[i] && edit.rail.lines[i].stations)
+        bad.forEach(x => e.push(`${w}: dòng "${x}" không đúng dạng "Tên ga: km"`))
+        if (Object.keys(l.stations).length < 2) e.push(`${w}: cần ít nhất 2 ga`)
+    })
+    /* Ga của từng điểm đến (tab Quán & lưu trú → cách đi) phải còn trên một tuyến */
+    const stations = new Set(rail.lines.flatMap(l => Object.keys(l.stations)))
+    Object.entries(places.places).forEach(([id, p]) => {
+        if (p.rail && !stations.has(p.rail)) e.push(`Đường sắt: ga "${p.rail}" (ga gần ${id}) không còn trên tuyến nào`)
+    })
+    return e
+}
+
+function buildTransportFiles(places) {
+    const text = `${JSON.stringify(places, null, 2)}\n`
+    return text === state.texts.places ? {} : { [FILES.places]: text }
+}
+
+function transportTabs() {
+    const portTab = () => [
+        { type: 'html', html: '<p class="muted small">Cảng tàu cao tốc ra đảo: trình lập kế hoạch tính chặng đường bộ tới cảng rồi đi tàu. Giá vé một chiều, người lớn.</p>' },
+        { type: 'list', path: ['transport', 'ports'], label: 'Cảng tàu ra đảo', addLabel: 'Thêm cảng', newItem: newPort,
+            itemLabel: p => `${p.name[0] || 'Cảng mới'} → ${(destOptions()[p.dest]) || '?'}`,
+            fields: i => [
+                { type: 'group', fields: [
+                    { type: 'select', path: ['transport', 'ports', i, 'dest'], label: 'Đảo / điểm đến', options: { '': '— chọn —', ...destOptions() } },
+                    { type: 'number', path: ['transport', 'ports', i, 'hours'], label: 'Thời gian tàu chạy (giờ)', step: 0.25 },
+                ] },
+                { type: 'pair', path: ['transport', 'ports', i, 'name'], label: 'Tên cảng' },
+                { type: 'group', fields: [
+                    { type: 'number', path: ['transport', 'ports', i, 'lat'], label: 'Vĩ độ', step: 0.001 },
+                    { type: 'number', path: ['transport', 'ports', i, 'lng'], label: 'Kinh độ', step: 0.001 },
+                ] },
+                { type: 'range', path: ['transport', 'ports', i, 'price'], label: 'Giá vé (đồng)', low: 'Giá thấp', high: 'Giá cao' },
+            ] },
+    ]
+    const railTab = () => [
+        { type: 'textarea', path: ['transport', 'rail', 'note'], label: 'Ghi chú cách tính', rows: 2 },
+        { type: 'group', cols: 3, fields: [
+            { type: 'number', path: ['transport', 'rail', 'fare', 'saving'], label: 'Giá tiết kiệm (đ/km)', step: 50, help: 'Ghế mềm điều hòa' },
+            { type: 'number', path: ['transport', 'rail', 'fare', 'comfort'], label: 'Giá thoải mái (đ/km)', step: 50, help: 'Giường nằm khoang 4' },
+            { type: 'number', path: ['transport', 'rail', 'fare', 'min'], label: 'Giá tối thiểu một chặng (đồng)', step: 10000 },
+        ] },
+        { type: 'list', path: ['transport', 'rail', 'lines'], label: 'Các tuyến', addLabel: 'Thêm tuyến', newItem: newLine,
+            itemLabel: l => `${l.name[0] || 'Tuyến mới'} · ${String(l.stations || '').split('\n').filter(x => x.trim()).length} ga`,
+            fields: i => [
+                { type: 'group', fields: [
+                    { type: 'pair', path: ['transport', 'rail', 'lines', i, 'name'], label: 'Tên tuyến' },
+                    { type: 'number', path: ['transport', 'rail', 'lines', i, 'kmh'], label: 'Tốc độ trung bình kể cả dừng đỗ (km/h)', step: 1 },
+                ] },
+                { type: 'textarea', path: ['transport', 'rail', 'lines', i, 'stations'], label: 'Các ga – mỗi dòng "Tên ga: km lý trình"', rows: 8 },
+            ] },
+    ]
+    return { ports: { label: `Cảng tàu ra đảo (${state.bundle.transport.ports.length})`, fields: portTab }, rail: { label: 'Đường sắt', fields: railTab } }
+}
+
 /* Các loại dữ liệu không phải điểm đến: cách mở, kiểm tra, lưu và tab của từng loại */
 const MODES = {
     site: {
@@ -1253,7 +1480,8 @@ const MODES = {
         open: () => ({ treks: toEditableTreks(state.data.treks) }),
         working: b => fromEditableTreks(b.treks), validate: validateTreks, files: buildTreksFiles, tabs: treksTabs,
         errorTab: msg => { const m = msg.match(/^Cung (\d+)/); return m ? `t${Number(m[1]) - 1}` : 't0' },
-        extraTab: '<button type="button" class="tab--add" data-trek-add>＋ Thêm cung</button>',
+        extraTab: '<button type="button" class="tab--add" data-item-add>＋ Thêm cung</button>',
+        items: { list: b => b.treks.treks, make: () => newTrek(), prefix: 't', name: x => x.name[0] || x.id, confirmDel: 'Trang của cung sẽ bị gỡ khỏi site sau khi đăng.' },
         datalist: () => '',
         view: `<a class="btn btn--ghost btn--sm" href="../trekking/" target="_blank" rel="noopener">Trang Trekking hiện tại ↗</a>`,
         pr: w => {
@@ -1266,6 +1494,37 @@ const MODES = {
             const what = parts.join('; ') || 'sắp xếp lại'
             return { title: `Trekking: ${what}`.slice(0, 120), slug: 'trekking', summary: `Cập nhật trekking (\`data/treks.json\`) từ trang quản trị: ${what} – ${w.treks.length} cung.` }
         },
+    },
+    guides: {
+        route: '/guides', label: 'Cẩm nang', firstTab: 'g0',
+        desc: 'Các bài cẩm nang du lịch: tiêu đề, tóm tắt, từng mục (đoạn văn, danh sách, bảng tự sinh) và điểm đến liên quan.',
+        open: () => ({ guides: toEditableGuides(state.data.guides) }),
+        working: b => fromEditableGuides(b.guides), validate: validateGuides, files: buildGuidesFiles, tabs: guidesTabs,
+        errorTab: msg => { const m = msg.match(/^Bài (\d+)/); return m ? `g${Number(m[1]) - 1}` : 'general' },
+        extraTab: '<button type="button" class="tab--add" data-item-add>＋ Thêm bài</button>',
+        items: { list: b => b.guides.guides, make: () => newGuide(), prefix: 'g', name: x => x.title[0] || x.slug, confirmDel: 'Trang của bài sẽ bị gỡ khỏi site sau khi đăng.' },
+        datalist: () => iconDatalist(),
+        view: '<a class="btn btn--ghost btn--sm" href="../cam-nang/" target="_blank" rel="noopener">Trang Cẩm nang hiện tại ↗</a>',
+        pr: w => {
+            const old = new Map(state.data.guides.guides.map(g => [g.slug, JSON.stringify(g)]))
+            const added = w.guides.filter(g => !old.has(g.slug)).map(g => g.title[0])
+            const edited = w.guides.filter(g => old.has(g.slug) && old.get(g.slug) !== JSON.stringify(g)).map(g => g.title[0])
+            const slugs = new Set(w.guides.map(g => g.slug))
+            const removed = state.data.guides.guides.filter(g => !slugs.has(g.slug)).map(g => g.title[0])
+            const parts = [added.length && `thêm "${added.join('", "')}"`, edited.length && `sửa "${edited.join('", "')}"`, removed.length && `xóa "${removed.join('", "')}"`].filter(Boolean)
+            const what = parts.join('; ') || 'cập nhật'
+            return { title: `Cẩm nang: ${what}`.slice(0, 120), slug: 'cam-nang', summary: `Cập nhật cẩm nang (\`data/guides.json\`) từ trang quản trị: ${what} – ${w.guides.length} bài.` }
+        },
+    },
+    transport: {
+        route: '/transport', label: 'Cảng tàu & đường sắt', firstTab: 'ports',
+        desc: 'Cảng tàu cao tốc ra đảo và các tuyến đường sắt (ga, km lý trình, giá vé) – dùng để tính chặng trong trình lập kế hoạch.',
+        open: () => ({ transport: toEditableTransport(state.data.places.transport) }),
+        working: b => fromEditableTransport(b.transport), validate: validateTransport, files: buildTransportFiles, tabs: transportTabs,
+        errorTab: msg => (msg.startsWith('Đường sắt') ? 'rail' : 'ports'),
+        extraTab: '', datalist: () => '',
+        view: '<a class="btn btn--ghost btn--sm" href="../ke-hoach/" target="_blank" rel="noopener">Trình lập kế hoạch ↗</a>',
+        pr: w => ({ title: 'Cập nhật cảng tàu & đường sắt', slug: 'giao-thong', summary: `Cập nhật cảng tàu & đường sắt (\`data/places.json\` → transport) từ trang quản trị: ${w.transport.ports.length} cảng, ${w.transport.rail.lines.length} tuyến đường sắt.` }),
     },
 }
 
@@ -1509,6 +1768,8 @@ const NAV = [
     ['/site', 'Giao diện & mùa', '◐'],
     ['/events', 'Lễ hội & sự kiện', '✦'],
     ['/treks', 'Trekking', '▲'],
+    ['/guides', 'Cẩm nang', '❖'],
+    ['/transport', 'Cảng tàu & đường sắt', '⚓'],
     ['/photos', 'Ảnh người đọc', '▣'],
     ['/prs', 'Pull Request', '⇄'],
 ]
@@ -2821,25 +3082,28 @@ document.addEventListener('click', async e => {
         renderEditor()
         return
     }
-    if (t.closest('[data-trek-add]') && state.mode === 'treks') {
-        state.bundle.treks.treks.push(newTrek())
-        state.tab = `t${state.bundle.treks.treks.length - 1}`
+    /* Thêm / di chuyển / xóa mục ở các loại dữ liệu mỗi mục một tab (trekking, cẩm nang…) – MODES[x].items */
+    const items = MODES[state.mode] && MODES[state.mode].items
+    if (t.closest('[data-item-add]') && items) {
+        const list = items.list(state.bundle)
+        list.push(items.make())
+        state.tab = `${items.prefix}${list.length - 1}`
         markDirty()
         renderEditor()
         return
     }
-    const trekOp = t.closest('[data-trek-op]')
-    if (trekOp && state.mode === 'treks') {
-        const list = state.bundle.treks.treks
-        const i = Number(trekOp.dataset.index)
-        if (trekOp.dataset.trekOp === 'del') {
-            if (!confirm(`Xóa cung "${list[i].name[0] || list[i].id || 'mới'}"? Trang của cung sẽ bị gỡ khỏi site sau khi đăng.`)) return
+    const itemOp = t.closest('[data-item-op]')
+    if (itemOp && items) {
+        const list = items.list(state.bundle)
+        const i = Number(itemOp.dataset.index)
+        if (itemOp.dataset.itemOp === 'del') {
+            if (!confirm(`Xóa "${items.name(list[i]) || 'mục mới'}"? ${items.confirmDel || ''}`)) return
             list.splice(i, 1)
-            state.tab = `t${Math.max(0, i - 1)}`
+            state.tab = `${items.prefix}${Math.max(0, i - 1)}`
         } else {
-            const j = trekOp.dataset.trekOp === 'up' ? i - 1 : i + 1
+            const j = itemOp.dataset.itemOp === 'up' ? i - 1 : i + 1
             ;[list[i], list[j]] = [list[j], list[i]]
-            state.tab = `t${j}`
+            state.tab = `${items.prefix}${j}`
         }
         markDirty()
         renderEditor()

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "guides.schema.json",
+  "title": "Cẩm nang du lịch",
+  "description": "Bài cẩm nang (trang cam-nang/<slug>/). Chuỗi hai ngôn ngữ [tiếng Việt, English].",
+  "type": "object",
+  "required": ["updated", "guides"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "updated": { "description": "Tháng cập nhật cẩm nang (dateModified trên trang)", "$ref": "common.schema.json#/$defs/yearMonth" },
+    "guides": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "icon", "title", "summary", "sections"],
+        "properties": {
+          "slug": { "description": "Đường dẫn cam-nang/<slug>/", "$ref": "common.schema.json#/$defs/id" },
+          "icon": { "$ref": "common.schema.json#/$defs/icon" },
+          "title": { "$ref": "common.schema.json#/$defs/pair" },
+          "summary": { "$ref": "common.schema.json#/$defs/pair" },
+          "sections": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["heading"],
+              "anyOf": [{ "required": ["paragraphs"] }, { "required": ["list"] }, { "required": ["widget"] }],
+              "properties": {
+                "heading": { "$ref": "common.schema.json#/$defs/pair" },
+                "paragraphs": { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/pair" } },
+                "list": { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/pair" } },
+                "widget": { "description": "Bảng tự sinh từ dữ liệu: months = điểm đến đẹp theo tháng, calendar = lịch du lịch 12 tháng", "type": "string", "enum": ["months", "calendar"] }
+              }
+            }
+          },
+          "related": { "description": "Điểm đến liên quan hiện cuối bài", "type": "array", "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/id" } }
+        }
+      }
+    }
+  }
+}
