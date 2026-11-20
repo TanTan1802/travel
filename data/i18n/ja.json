@@ -580,7 +580,6 @@
     "Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!": "該当する旅行先がありません。別のキーワードでお試しください！",
     "Đăng Ký": "ニュースレターに",
     "Nhận Tin": "登録しよう",
-    "Nhận cẩm nang du lịch Việt Nam và ưu đãi đặc biệt giảm đến 30%.": "ベトナム旅行ガイドと最大 30% オフの特典をお届けします。",
     "Đăng ký": "登録",
     "Bạn chọn điểm đến,": "旅行先はあなたが選び、",
     "chúng tôi mang đến": "最高の体験は",
@@ -596,7 +595,6 @@
     "TP. Hồ Chí Minh": "ホーチミン市",
     "Cần Thơ": "カントー",
     "Phú Quốc": "フーコック",
-    "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).": "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. 写真：Wikimedia Commons (CC BY / CC BY-SA)。",
     "Điều khoản": "利用規約",
     "Chính sách bảo mật": "プライバシーポリシー",
     "Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.": "ベトナムの絶景を巡る：各旅行先の写真、グルメ、体験。",
@@ -637,7 +635,9 @@
     "Lễ hội": "祭り",
     "Kiểu biển": "ビーチのタイプ",
     "Lọc theo kiểu biển": "ビーチのタイプで絞り込む",
-    "Trekking": "トレッキング"
+    "Trekking": "トレッキング",
+    "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "月に一度のメール：見頃を迎える旅行先、近づくお祭り、新しい旅行ガイドをお届けします。",
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 写真：Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode のテンプレートをもとにしたデザイン"
   },
   "regions": {
     "bac": "北部ベトナム",

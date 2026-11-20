@@ -3936,12 +3936,20 @@ span.trek-level {
 
 .trek-levels {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: .75rem;
+}
+
+/* 4 mức độ khó: 2 × 2 thay vì 3 + 1 lẻ */
+@media screen and (min-width: 576px) {
+  .trek-levels {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .trek-levels__item {
   display: grid;
+  align-content: start;
   gap: .35rem;
   padding: 1rem;
   border-radius: var(--radius);
@@ -4873,9 +4881,18 @@ body.dark-theme .sight__price--free {
     display: none;
   }
 
+  /* Điện thoại: nút chính rộng hết, 3 nút phụ thành hàng nút nhỏ thay vì 4 nút to chồng nhau */
   .season__actions .button {
     width: 100%;
     justify-content: center;
+  }
+
+  .season__actions .button--ghost {
+    width: auto;
+    flex: 1 1 auto;
+    padding: .6rem .9rem;
+    border-radius: 2rem;
+    font-size: var(--small-font-size);
   }
 }
 

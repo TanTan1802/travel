@@ -580,7 +580,6 @@
     "Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!": "일치하는 여행지가 없습니다. 다른 검색어를 입력해 보세요!",
     "Đăng Ký": "뉴스레터",
     "Nhận Tin": "구독하기",
-    "Nhận cẩm nang du lịch Việt Nam và ưu đãi đặc biệt giảm đến 30%.": "베트남 여행 가이드와 최대 30% 특별 할인 혜택을 받아 보세요.",
     "Đăng ký": "구독",
     "Bạn chọn điểm đến,": "여행지는 당신이 고르고,",
     "chúng tôi mang đến": "완벽한 경험은",
@@ -596,7 +595,6 @@
     "TP. Hồ Chí Minh": "호찌민시",
     "Cần Thơ": "껀터",
     "Phú Quốc": "푸꾸옥",
-    "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).": "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. 사진: Wikimedia Commons (CC BY / CC BY-SA).",
     "Điều khoản": "이용약관",
     "Chính sách bảo mật": "개인정보 처리방침",
     "Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.": "베트남의 절경을 만나다 – 여행지마다 사진, 음식, 체험.",
@@ -637,7 +635,9 @@
     "Lễ hội": "축제",
     "Kiểu biển": "해변 유형",
     "Lọc theo kiểu biển": "해변 유형으로 필터",
-    "Trekking": "트레킹"
+    "Trekking": "트레킹",
+    "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "한 달에 한 번: 제철을 맞은 여행지, 다가오는 축제, 새 여행 가이드를 보내 드립니다.",
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 사진: Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode 템플릿 기반 디자인"
   },
   "regions": {
     "bac": "북부 베트남",

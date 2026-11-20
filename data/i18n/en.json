@@ -580,7 +580,6 @@
     "Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!": "No matching destinations. Try another keyword!",
     "Đăng Ký": "Subscribe To",
     "Nhận Tin": "Our Newsletter",
-    "Nhận cẩm nang du lịch Việt Nam và ưu đãi đặc biệt giảm đến 30%.": "Get our Vietnam travel guide and special offers of up to 30% off.",
     "Đăng ký": "Subscribe",
     "Bạn chọn điểm đến,": "You choose the destination,",
     "chúng tôi mang đến": "we bring you",
@@ -596,7 +595,6 @@
     "TP. Hồ Chí Minh": "Ho Chi Minh City",
     "Cần Thơ": "Can Tho",
     "Phú Quốc": "Phu Quoc",
-    "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).": "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Photos: Wikimedia Commons (CC BY / CC BY-SA).",
     "Điều khoản": "Terms",
     "Chính sách bảo mật": "Privacy policy",
     "Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.": "Discover Vietnam's scenic wonders – photos, food and experiences at every destination.",
@@ -637,7 +635,9 @@
     "Lễ hội": "Festivals",
     "Kiểu biển": "Beach type",
     "Lọc theo kiểu biển": "Filter by beach type",
-    "Trekking": "Trekking"
+    "Trekking": "Trekking",
+    "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "One email a month: destinations coming into season, upcoming festivals and new guides.",
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · Photos: Wikimedia Commons (CC BY / CC BY-SA) · Design based on a Bedimcode template"
   },
   "regions": {
     "bac": "Northern Vietnam",
