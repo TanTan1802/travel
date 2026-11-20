@@ -580,7 +580,6 @@
     "Không tìm thấy điểm đến phù hợp. Hãy thử từ khóa khác nhé!": "没有匹配的目的地。换个关键词试试！",
     "Đăng Ký": "订阅",
     "Nhận Tin": "我们的电子报",
-    "Nhận cẩm nang du lịch Việt Nam và ưu đãi đặc biệt giảm đến 30%.": "获取越南旅行指南和最高 7 折的特别优惠。",
     "Đăng ký": "订阅",
     "Bạn chọn điểm đến,": "你选目的地，",
     "chúng tôi mang đến": "我们为你带来",
@@ -596,7 +595,6 @@
     "TP. Hồ Chí Minh": "胡志明市",
     "Cần Thơ": "芹苴",
     "Phú Quốc": "富国岛",
-    "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. Ảnh: Wikimedia Commons (CC BY / CC BY-SA).": "&#169; Copyright © 2021 BEDIMCODE. Website clone by TanTan. 照片：Wikimedia Commons (CC BY / CC BY-SA)。",
     "Điều khoản": "条款",
     "Chính sách bảo mật": "隐私政策",
     "Khám phá mọi danh lam thắng cảnh Việt Nam – hình ảnh, ẩm thực và trải nghiệm vui chơi tại từng điểm đến.": "探索越南名胜——每个目的地的照片、美食与体验。",
@@ -637,7 +635,9 @@
     "Lễ hội": "节庆",
     "Kiểu biển": "海滩类型",
     "Lọc theo kiểu biển": "按海滩类型筛选",
-    "Trekking": "徒步"
+    "Trekking": "徒步",
+    "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "每月一封邮件：当季最美的目的地、即将到来的节庆和最新旅行指南。",
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 图片：Wikimedia Commons (CC BY / CC BY-SA) · 设计基于 Bedimcode 模板"
   },
   "regions": {
     "bac": "越南北部",
