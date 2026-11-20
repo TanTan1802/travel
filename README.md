@@ -210,6 +210,8 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   người dẫn đường (bắt buộc / nên thuê), quy định (`notice`, vd. lệnh cấm trekking tự phát), lịch trình từng ngày, mùa đẹp
   12 tháng, chi phí & thủ tục, an toàn, đồ mang theo, câu hỏi thường gặp (FAQPage JSON-LD), đường tới điểm xuất phát.
 - Hàm dựng trang ở `assets/js/trek-render.js` (chỉ dùng khi build), có trong sitemap, 5 ngôn ngữ (nội dung cung dạng `[vi, en]`).
+- Trang tổng có **bộ lọc** (độ khó, số ngày, miền, tháng đi – lọc ngay trên trình duyệt, thẻ mang `data-trek-*`); trang từng cung
+  có **danh sách đồ tick được** (nhớ trên máy người xem, khóa `trek-gear:<id>`) và nút **In danh sách** (chỉ in phần này).
 - Trang điểm đến có mục "Trekking quanh đây" (theo `near`), trang tháng có "Trekking đẹp tháng N" (theo `bestMonths`); menu có mục Trekking.
 - Thêm cung: thêm phần tử vào `data/treks.json` (schema `treks.schema.json`; `plan` phải đủ `days` ngày) rồi `npm run build`.
   Số liệu (km, phí, quy định) ghi theo khoảng và ghi rõ "tham khảo"; cập nhật `updated` khi kiểm tra lại. Trang quản trị chưa sửa được mục này.
@@ -310,6 +312,11 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   tháng đi đẹp, người dẫn đường, quy định, ảnh riêng của cung (🔍 Tìm ảnh), điểm nổi bật, lịch trình từng chặng, chi phí,
   lưu ý an toàn và tháng kiểm tra (✓ Vẫn đúng). **＋ Thêm cung**, ↑ ↓ sắp xếp, Xóa cung. Trang kiểm tra trước giống lúc build
   (số chặng phải bằng số ngày, km thấp ≤ cao, điểm đến gần phải tồn tại…). Tổng quan nhắc cung quá 12 tháng chưa kiểm tra.
+- **Người xem 30 ngày** (Tổng quan): lượt xem, lượt truy cập, biểu đồ theo ngày, trang xem nhiều nhất, quốc gia, nguồn truy cập –
+  từ Cloudflare Web Analytics. Workflow **Số liệu người xem** (`thong-ke.yml`, 7:17 sáng hằng ngày, `tools/fetch-analytics.js`)
+  ghi `analytics.json` lên nhánh riêng `stats` (không kích hoạt deploy). Bật: thêm secret `CF_API_TOKEN` (Cloudflare → My Profile →
+  API Tokens → Create Custom Token, quyền *Account › Account Analytics › Read*) và `CF_ACCOUNT_ID` (cột phải trang Overview của
+  tài khoản Cloudflare) ở *Settings → Secrets and variables → Actions*, rồi bấm *Run workflow*. Tài khoản có nhiều site thì thêm `CF_SITE_TAG`.
 - **Cẩm nang** (`data/guides.json`): tab Chung (tháng cập nhật) + mỗi bài một tab – đường dẫn, biểu tượng, tiêu đề, tóm tắt,
   các mục (đoạn văn, danh sách, bảng tự sinh "lịch 12 tháng" / "đẹp theo tháng"), điểm đến liên quan. ＋ Thêm bài, ↑ ↓, Xóa bài.
 - **Cảng tàu & đường sắt** (`data/places.json` → `transport`): cảng tàu ra đảo (đảo, tên, tọa độ, giờ tàu chạy, giá vé) và

@@ -1828,6 +1828,42 @@ async function loadSiteHealth() {
     }
 }
 
+/*==================== NGƯỜI XEM (Cloudflare Web Analytics → nhánh stats, workflow thong-ke.yml) ====================*/
+const fmtNum = n => Number(n || 0).toLocaleString('vi-VN')
+const fmtDay = iso => iso.slice(8, 10) + '/' + iso.slice(5, 7)
+
+async function loadTraffic() {
+    let s
+    try {
+        s = JSON.parse(await gh(`/repos/${REPO}/contents/analytics.json?ref=stats`, { raw: true }))
+    } catch (err) {
+        if (err.status === 404) return `<p class="muted small">Chưa có số liệu. Bật bằng cách thêm 2 secret <code>CF_API_TOKEN</code> (Cloudflare → My Profile → API Tokens → Create Token, quyền <em>Account › Account Analytics › Read</em>) và <code>CF_ACCOUNT_ID</code> vào
+            <a href="https://github.com/${REPO}/settings/secrets/actions" target="_blank" rel="noopener">Settings → Secrets → Actions</a>, rồi chạy workflow
+            <a href="https://github.com/${REPO}/actions/workflows/thong-ke.yml" target="_blank" rel="noopener">Số liệu người xem</a>.</p>`
+        return `<p class="muted small">Không tải được số liệu: ${esc(err.message)}</p>`
+    }
+    const upd = $('#traffic-updated')
+    if (upd) upd.textContent = `cập nhật ${ago(s.updated)}`
+    const max = Math.max(1, ...s.daily.map(d => d.views))
+    const perDay = Math.round(s.totals.views / Math.max(1, s.daily.length))
+    const bars = s.daily.map(d => `<span class="traffic__bar" tabindex="0" data-tip="${fmtDay(d.date)}: ${fmtNum(d.views)} lượt xem · ${fmtNum(d.visits)} lượt truy cập" aria-hidden="true"><i style="height:${Math.max(2, Math.round(d.views / max * 100))}%"></i></span>`).join('')
+    const list = (rows, label, href) => rows.length ? `<ul class="traffic__list">${rows.slice(0, 8).map(r => `<li><span>${href ? `<a href="${esc(href(r))}" target="_blank" rel="noopener">${esc(label(r))}</a>` : esc(label(r))}</span><span>${fmtNum(r.views)}</span></li>`).join('')}</ul>` : '<p class="muted small">Chưa có.</p>'
+    return `
+        <div class="traffic__tiles">
+            <div class="traffic__tile"><strong>${fmtNum(s.totals.views)}</strong><span>lượt xem trang</span></div>
+            <div class="traffic__tile"><strong>${fmtNum(s.totals.visits)}</strong><span>lượt truy cập</span></div>
+            <div class="traffic__tile"><strong>${fmtNum(perDay)}</strong><span>lượt xem / ngày</span></div>
+        </div>
+        <div class="traffic__chart" role="img" aria-label="Lượt xem mỗi ngày từ ${fmtDay(s.from)} đến ${fmtDay(s.to)}, cao nhất ${fmtNum(max)}">${bars}</div>
+        <div class="traffic__axis"><span>${fmtDay(s.from)}</span><span>cao nhất ${fmtNum(max)} / ngày</span><span>${fmtDay(s.to)}</span></div>
+        <table class="sr-table"><caption>Lượt xem mỗi ngày</caption><thead><tr><th>Ngày</th><th>Lượt xem</th><th>Lượt truy cập</th></tr></thead>
+            <tbody>${s.daily.map(d => `<tr><td>${fmtDay(d.date)}</td><td>${d.views}</td><td>${d.visits}</td></tr>`).join('')}</tbody></table>
+        <div class="traffic__cols">
+            <div><h3>Trang xem nhiều nhất</h3>${list(s.pages, r => r.path, r => SITE_URL + r.path.replace(/^\//, ''))}</div>
+            <div><h3>Quốc gia</h3>${list(s.countries, r => r.country)}<h3 style="margin-top:.8rem">Đến từ</h3>${list(s.referrers.filter(r => r.host && r.host !== '(không rõ)'), r => r.host)}</div>
+        </div>`
+}
+
 /*==================== CHỈ SỐ DỮ LIỆU ====================*/
 function monthsAgo(ym) {
     if (!YM_RE.test(ym || '')) return 0
@@ -2261,6 +2297,10 @@ function renderDashboard() {
                 <div id="dash-prs">${prListHtml(state.prs)}</div>
             </section>
         </div>
+        <section class="card traffic">
+            <div class="card__head"><h2>Người xem 30 ngày</h2><span class="muted small" id="traffic-updated"></span></div>
+            <div id="dash-traffic"><p class="muted small"><span class="spin"></span> Đang tải số liệu…</p></div>
+        </section>
         <section class="card">
             <div class="card__head"><h2>Tình trạng site</h2><a href="https://github.com/${REPO}/actions/workflows/kiem-tra-site.yml" target="_blank" rel="noopener">Lịch sử ↗</a></div>
             <div id="dash-health"><p class="muted small"><span class="spin"></span> Đang tải kết quả kiểm tra…</p></div>
@@ -2271,6 +2311,7 @@ function renderDashboard() {
         </section>`
     refreshPrs('dash-prs')
     loadSiteHealth().then(html => { const box = $('#dash-health'); if (box) box.innerHTML = html })
+    loadTraffic().then(html => { const box = $('#dash-traffic'); if (box) box.innerHTML = html })
     loadPhotos().then(renderShellCount).catch(() => {})
 }
 
