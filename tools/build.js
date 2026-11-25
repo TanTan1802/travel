@@ -61,6 +61,8 @@ const SCRIPTS = [
     'assets/js/seo-render.js',
     'assets/js/data/treks.js',
     'assets/js/trek-render.js',
+    'assets/js/data/tours.js',
+    'assets/js/tour-render.js',
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
@@ -69,7 +71,8 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'themeList', 'themePage', 'themeTitle', 'THEME_INTROS', 'exploreHubHtml', 't', 'monthLabel',
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
-    'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination']
+    'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -226,6 +229,7 @@ const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.htm
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
 const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
+const tourPath = (lang, id = '') => `${LANGS[lang].prefix}tour/${id ? `${id}/` : ''}index.html`
 const trekPath = (lang, id = '') => `${LANGS[lang].prefix}trekking/${id ? `${id}/` : ''}index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
 const rootFor = rel => '../'.repeat(rel.split('/').length - 1)
@@ -683,6 +687,30 @@ function explorePages(template, lang) {
             crumbs: [home, [trekSite.t('Trekking'), pageUrl(trekPath(lang))]],
         }), trekSite])
     }
+    /* Tour & combo: trang tổng + từng tour (menu đánh dấu "Tour") */
+    const tourTemplate = template.replace(' class="nav__link active-link"', ' class="nav__link"')
+        .replace('href="tour/index.html" class="nav__link"', 'href="tour/index.html" class="nav__link active-link"')
+    const tourHubSite = loadSite(lang, rootFor(tourPath(lang)))
+    pages.push([tourPath(lang), () => buildContentPage(tourTemplate, lang, l => tourPath(l), tourHubSite, {
+        title: tourHubSite.tourHubTitle(),
+        description: tourHubSite.t('{count} tour trọn gói từ 1 đến 4 ngày: lịch trình từng ngày, điểm tham quan kèm giá vé, chi phí ước tính và link đặt phòng.', { count: tourHubSite.TOUR_PACKAGES.length }),
+        main: tourHubSite.tourHubPage(),
+        image: ogImage(tourHubSite, tourHubSite.getDestination('phu-quoc') || tourHubSite.DESTINATIONS[0]),
+        jsonLd: [{ '@type': 'ItemList', name: tourHubSite.tourHubTitle(),
+            itemListElement: tourHubSite.TOUR_PACKAGES.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: pageUrl(tourPath(lang, x.id)), name: tourHubSite.pickLang(x.name) })) }],
+        crumbs: [home],
+    }), tourHubSite])
+    const tourSite = loadSite(lang, rootFor(tourPath(lang, 'x')))
+    for (const tp of tourSite.TOUR_PACKAGES) {
+        pages.push([tourPath(lang, tp.id), () => buildContentPage(tourTemplate, lang, l => tourPath(l, tp.id), tourSite, {
+            title: tourSite.tourTitle(tp),
+            description: tourSite.tourDescription(tp),
+            main: tourSite.tourPage(tp),
+            image: ogImage(tourSite, tourSite.getDestination(tp.dest)),
+            jsonLd: [tourSite.tourJsonLd(tp, pageUrl(tourPath(lang, tp.id)))],
+            crumbs: [home, [tourSite.t('Tour & combo'), pageUrl(tourPath(lang))]],
+        }), tourSite])
+    }
     const festSite = loadSite(lang, rootFor(festivalPath(lang)))
     const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
     /* Menu: đánh dấu "Lễ hội" thay cho "Cẩm nang" (mẫu guide.html) */
@@ -932,6 +960,8 @@ function main() {
     fs.rmSync(path.join(ROOT, MONTH_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, THEME_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, FESTIVAL_DIR), { recursive: true, force: true })
+    /* Trang trekking / tour đã xóa khỏi dữ liệu không còn sót lại trên site */
+    for (const dir of ['trekking', 'tour']) fs.rmSync(path.join(ROOT, dir), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
     fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).forEach(f => fs.rmSync(path.join(ROOT, CSS_DIR, f)))

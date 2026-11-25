@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tours.schema.json",
+  "title": "Tour & combo",
+  "description": "Gói tour 1 – 4 ngày ở một điểm đến. Lịch trình trỏ tới điểm tham quan trong sights.json (theo tên tiếng Việt) để tự lấy giá vé, giờ mở cửa; chi phí tính lúc build. Chuỗi hai ngôn ngữ [tiếng Việt, English].",
+  "type": "object",
+  "required": ["styles", "tours"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "styles": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/id" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["icon", "label", "desc"],
+        "properties": {
+          "icon": { "$ref": "common.schema.json#/$defs/icon" },
+          "label": { "$ref": "common.schema.json#/$defs/pair" },
+          "desc": { "$ref": "common.schema.json#/$defs/pair" }
+        }
+      }
+    },
+    "tours": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "dest", "style", "days", "stay", "summary", "plan", "updated"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "name": { "$ref": "common.schema.json#/$defs/pair" },
+          "dest": { "description": "Điểm đến (mã trong destinations.json)", "$ref": "common.schema.json#/$defs/id" },
+          "style": { "description": "Phong cách (khóa trong styles)", "$ref": "common.schema.json#/$defs/id" },
+          "days": { "description": "Số ngày; plan có đúng chừng ấy mục; số đêm = days − 1", "type": "integer", "minimum": 1, "maximum": 4 },
+          "stay": { "description": "Loại lưu trú (khóa trong places.json stayTypes) – lấy giá phòng của điểm đến; tour 1 ngày để trống", "type": "array", "uniqueItems": true, "items": { "type": "string", "enum": ["homestay", "hotel", "resort", "boat"] } },
+          "summary": { "$ref": "common.schema.json#/$defs/pair" },
+          "plan": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "text", "sights"],
+              "properties": {
+                "title": { "$ref": "common.schema.json#/$defs/pair" },
+                "text": { "$ref": "common.schema.json#/$defs/pair" },
+                "sights": { "description": "Tên tiếng Việt của điểm tham quan trong sights.json của điểm đến", "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+              }
+            }
+          },
+          "tips": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/pair" } },
+          "images": { "description": "Ảnh riêng trên Wikimedia Commons; bỏ trống = ảnh điểm đến", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/imageFile" } },
+          "updated": { "$ref": "common.schema.json#/$defs/yearMonth" }
+        }
+      }
+    }
+  }
+}

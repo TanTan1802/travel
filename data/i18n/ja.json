@@ -520,7 +520,30 @@
     "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "準備できた物にチェックしましょう – この端末に保存され、リストを印刷して持って行けます。",
     "{done}/{total} món đã chuẩn bị": "{done}/{total} 点準備済み",
     "Bỏ chọn tất cả": "すべて解除",
-    "In danh sách": "リストを印刷"
+    "In danh sách": "リストを印刷",
+    "{n} đêm lưu trú (phòng đôi, chia 2 người)": "宿泊 {n} 泊（ダブルルームを2人で利用）",
+    "Ăn uống, đi lại tại chỗ": "食事・現地の移動",
+    "Tour & combo du lịch Việt Nam: lịch trình 1 – 4 ngày, chi phí ước tính": "ベトナムのツアー＆パッケージ：1 – 4日の行程と費用の目安",
+    "Phong cách": "スタイル",
+    "{count} tour phù hợp": "条件に合うツアー {count} 件",
+    "Không có tour nào phù hợp – thử bỏ bớt điều kiện.": "条件に合うツアーがありません。条件を減らしてみてください。",
+    "Giá là ước tính / người, tính từ giá vé và giá phòng trên trang điểm đến (có ghi tháng kiểm tra): mức thấp là phòng rẻ nhất + ăn bình dân, mức cao là phòng đắt nhất cùng loại + nhà hàng.": "料金は1人あたりの目安で、各旅行先ページの入場料と客室料金（確認月つき）から計算しています。安い方は最安の客室＋大衆食堂、高い方は同タイプで最も高い客室＋レストランです。",
+    "Chưa gồm vé máy bay, tàu xe tới điểm đến – xem trang đường đi hoặc trình lập kế hoạch.": "目的地までの航空券・列車・バス代は含みません。ルートページや旅行プランナーをご覧ください。",
+    "Combo của resort, khu vui chơi (phòng + vé) thường rẻ hơn mua lẻ – so giá trước khi đặt.": "リゾートやテーマパークのセット（客室＋チケット）は別々に買うより安いことが多いので、予約前に比べましょう。",
+    "{count} tour trọn gói từ 1 đến 4 ngày: lịch trình từng ngày, điểm tham quan kèm giá vé, chi phí ước tính và link đặt phòng.": "1～4日のパッケージ {count} 件：日ごとの行程、入場料つきの見どころ、費用の目安と予約リンク。",
+    "Tìm tour phù hợp": "自分に合うツアーを探す",
+    "Cách tính chi phí": "費用の計算方法",
+    "Tour {name}: lịch trình {days}, chi phí": "{name}：{days}の行程と費用",
+    "Lịch trình từng ngày, giá vé từng điểm, chi phí ước tính {cost} / người.": "日ごとの行程、各スポットの入場料、1人あたり約 {cost}。",
+    "Đặt phòng & lên kế hoạch": "予約と計画",
+    "Tour & combo": "ツアー＆パッケージ",
+    "người": "人",
+    "Tổng / người": "合計 / 1人",
+    "Chưa gồm vé máy bay, tàu xe tới {dest} và chi tiêu cá nhân. Giá vé, giá phòng lấy từ trang điểm đến – combo phòng + vé của resort, khu vui chơi có thể rẻ hơn.": "{dest}までの交通費と個人的な出費は含みません。入場料・客室料金は旅行先ページのもので、リゾートやテーマパークの客室＋チケットのセットの方が安い場合があります。",
+    "Mẹo": "ヒント",
+    "Tour khác": "ほかのツアー",
+    "Xem tất cả tour & combo": "すべてのツアー＆パッケージを見る",
+    "Tour & combo ở đây": "ここのツアー＆パッケージ"
   },
   "html": {
     "Vùng miền": "地域",
@@ -637,7 +660,8 @@
     "Lọc theo kiểu biển": "ビーチのタイプで絞り込む",
     "Trekking": "トレッキング",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "月に一度のメール：見頃を迎える旅行先、近づくお祭り、新しい旅行ガイドをお届けします。",
-    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 写真：Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode のテンプレートをもとにしたデザイン"
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 写真：Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode のテンプレートをもとにしたデザイン",
+    "Tour": "ツアー"
   },
   "regions": {
     "bac": "北部ベトナム",

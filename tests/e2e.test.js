@@ -565,7 +565,7 @@ async function lowContrastText(page) {
 
 test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
     const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html',
-        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html']
+        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html']
     const problems = []
     for (const theme of ['dark', 'light']) {
         for (const rel of pages) {
@@ -891,6 +891,25 @@ test('trekking: lọc cung theo tháng / số ngày, danh sách đồ tick đư�
     assert.match(printed.bodyClass, /print-gear/)
     await page.click('[data-gear-action="reset"]')
     assert.equal(await page.$$eval('[data-gear-item]:checked', a => a.length), 0)
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('tour & combo: lọc theo phong cách / số ngày / tháng', async () => {
+    const { tours } = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/tours.json'), 'utf8'))
+    const dests = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/destinations.json'), 'utf8')).destinations
+    const best = id => dests.find(d => d.id === id).bestMonths
+    const { page, errors, close } = await openPage('tour/index.html')
+    await page.waitForSelector('#tour-filter:not([hidden])')
+    const shown = () => page.$$eval('[data-tour-style]:not([hidden])', a => a.length)
+    assert.equal(await shown(), tours.length)
+    await page.selectOption('#tour-filter select[name=days]', '1')
+    assert.equal(await shown(), tours.filter(x => x.days === 1).length)
+    await page.selectOption('#tour-filter select[name=days]', '')
+    await page.selectOption('#tour-filter select[name=month]', '12')
+    assert.equal(await shown(), tours.filter(x => best(x.dest).includes(12)).length)
+    await page.selectOption('#tour-filter select[name=style]', 'culture')
+    assert.equal(await shown(), tours.filter(x => best(x.dest).includes(12) && x.style === 'culture').length)
     assert.deepEqual(errors, [])
     await close()
 })

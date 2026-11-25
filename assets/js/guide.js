@@ -52,22 +52,23 @@ if (festivalFilter) {
     })
 }
 
-/* Trang Trekking: lọc cung theo độ khó / số ngày / miền / tháng đi (thẻ có data-trek-*) */
-const trekFilter = document.getElementById('trek-filter')
-if (trekFilter) {
-    const cards = [...document.querySelectorAll('[data-trek-level]')]
-    const count = trekFilter.querySelector('.trek-filter__count')
-    const empty = document.querySelector('.trek-filter__empty')
+/* Trang Trekking / Tour: lọc thẻ theo độ khó hoặc phong cách / số ngày / miền / tháng đi (thẻ có data-<loại>-*) */
+function setupCardFilter(form, kind, first) {
+    if (!form) return
+    const attr = k => `${kind}${k[0].toUpperCase()}${k.slice(1)}`
+    const cards = [...document.querySelectorAll(`[data-${kind}-${first}]`)]
+    const count = form.querySelector('.trek-filter__count')
+    const empty = form.parentElement.querySelector('.trek-filter__empty')
     const apply = () => {
-        const f = Object.fromEntries(new FormData(trekFilter))
+        const f = Object.fromEntries(new FormData(form))
         let shown = 0
         cards.forEach(card => {
             const d = card.dataset
-            const days = Number(d.trekDays)
-            const ok = (!f.level || d.trekLevel === f.level)
+            const days = Number(d[attr('days')])
+            const ok = (!f[first] || d[attr(first)] === f[first])
                 && (!f.days || (f.days === '3' ? days >= 3 : days === Number(f.days)))
-                && (!f.region || d.trekRegion === f.region)
-                && (!f.month || d.trekMonths.split(' ').includes(f.month))
+                && (!f.region || d[attr('region')] === f.region)
+                && (!f.month || d[attr('months')].split(' ').includes(f.month))
             card.hidden = !ok
             if (ok) shown++
         })
@@ -75,11 +76,13 @@ if (trekFilter) {
         count.textContent = count.dataset.template.replace('{count}', shown)
         empty.hidden = shown > 0
     }
-    trekFilter.hidden = false
-    trekFilter.addEventListener('change', apply)
-    trekFilter.addEventListener('submit', e => e.preventDefault())
+    form.hidden = false
+    form.addEventListener('change', apply)
+    form.addEventListener('submit', e => e.preventDefault())
     apply()
 }
+setupCardFilter(document.getElementById('trek-filter'), 'trek', 'level')
+setupCardFilter(document.getElementById('tour-filter'), 'tour', 'style')
 
 /* Trang một cung: danh sách đồ cần mang – nhớ món đã tick trên máy này, in riêng danh sách */
 const gearBox = document.querySelector('[data-gear]')

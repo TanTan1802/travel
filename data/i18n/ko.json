@@ -520,7 +520,30 @@
     "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "챙긴 물건을 체크하세요 – 이 기기에 저장되며 목록을 인쇄해 가져갈 수 있습니다.",
     "{done}/{total} món đã chuẩn bị": "{done}/{total}개 준비 완료",
     "Bỏ chọn tất cả": "모두 해제",
-    "In danh sách": "목록 인쇄"
+    "In danh sách": "목록 인쇄",
+    "{n} đêm lưu trú (phòng đôi, chia 2 người)": "숙박 {n}박 (더블룸 2인 1실 기준)",
+    "Ăn uống, đi lại tại chỗ": "식비·현지 교통",
+    "Tour & combo du lịch Việt Nam: lịch trình 1 – 4 ngày, chi phí ước tính": "베트남 투어 & 패키지: 1 – 4일 일정과 예상 비용",
+    "Phong cách": "스타일",
+    "{count} tour phù hợp": "조건에 맞는 투어 {count}개",
+    "Không có tour nào phù hợp – thử bỏ bớt điều kiện.": "조건에 맞는 투어가 없습니다 – 조건을 줄여 보세요.",
+    "Giá là ước tính / người, tính từ giá vé và giá phòng trên trang điểm đến (có ghi tháng kiểm tra): mức thấp là phòng rẻ nhất + ăn bình dân, mức cao là phòng đắt nhất cùng loại + nhà hàng.": "가격은 1인 기준 예상치로, 여행지 페이지의 입장료·객실 요금(확인한 달 표시)으로 계산합니다. 낮은 쪽은 가장 저렴한 객실 + 현지 식당, 높은 쪽은 같은 유형의 가장 비싼 객실 + 레스토랑 기준입니다.",
+    "Chưa gồm vé máy bay, tàu xe tới điểm đến – xem trang đường đi hoặc trình lập kế hoạch.": "목적지까지의 항공·기차·버스 요금은 포함되지 않습니다 – 경로 페이지나 여행 플래너를 확인하세요.",
+    "Combo của resort, khu vui chơi (phòng + vé) thường rẻ hơn mua lẻ – so giá trước khi đặt.": "리조트·테마파크 패키지(객실 + 입장권)가 따로 사는 것보다 저렴한 경우가 많으니 예약 전 비교하세요.",
+    "{count} tour trọn gói từ 1 đến 4 ngày: lịch trình từng ngày, điểm tham quan kèm giá vé, chi phí ước tính và link đặt phòng.": "1 – 4일 패키지 일정 {count}개: 일자별 일정, 입장료가 표시된 명소, 예상 비용과 예약 링크.",
+    "Tìm tour phù hợp": "나에게 맞는 투어 찾기",
+    "Cách tính chi phí": "비용 계산 방법",
+    "Tour {name}: lịch trình {days}, chi phí": "{name}: {days} 일정과 비용",
+    "Lịch trình từng ngày, giá vé từng điểm, chi phí ước tính {cost} / người.": "일자별 일정, 명소별 입장료, 1인 예상 비용 {cost}.",
+    "Đặt phòng & lên kế hoạch": "예약 & 일정 짜기",
+    "Tour & combo": "투어 & 패키지",
+    "người": "인",
+    "Tổng / người": "합계 / 1인",
+    "Chưa gồm vé máy bay, tàu xe tới {dest} và chi tiêu cá nhân. Giá vé, giá phòng lấy từ trang điểm đến – combo phòng + vé của resort, khu vui chơi có thể rẻ hơn.": "{dest}까지의 교통비와 개인 지출은 포함되지 않습니다. 입장료·객실 요금은 여행지 페이지 기준이며, 리조트·테마파크의 객실 + 입장권 패키지가 더 저렴할 수 있습니다.",
+    "Mẹo": "팁",
+    "Tour khác": "다른 투어",
+    "Xem tất cả tour & combo": "모든 투어 & 패키지 보기",
+    "Tour & combo ở đây": "이곳의 투어 & 패키지"
   },
   "html": {
     "Vùng miền": "지역",
@@ -637,7 +660,8 @@
     "Lọc theo kiểu biển": "해변 유형으로 필터",
     "Trekking": "트레킹",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "한 달에 한 번: 제철을 맞은 여행지, 다가오는 축제, 새 여행 가이드를 보내 드립니다.",
-    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 사진: Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode 템플릿 기반 디자인"
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 사진: Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode 템플릿 기반 디자인",
+    "Tour": "투어"
   },
   "regions": {
     "bac": "북부 베트남",

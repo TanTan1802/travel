@@ -520,7 +520,30 @@
     "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "勾选已准备好的物品——保存在本设备上,也可以打印清单随身携带。",
     "{done}/{total} món đã chuẩn bị": "已准备 {done}/{total} 件",
     "Bỏ chọn tất cả": "全部取消",
-    "In danh sách": "打印清单"
+    "In danh sách": "打印清单",
+    "{n} đêm lưu trú (phòng đôi, chia 2 người)": "住宿 {n} 晚（双人间，两人分摊）",
+    "Ăn uống, đi lại tại chỗ": "餐饮及当地交通",
+    "Tour & combo du lịch Việt Nam: lịch trình 1 – 4 ngày, chi phí ước tính": "越南旅游线路与套餐：1 – 4 天行程及预估费用",
+    "Phong cách": "风格",
+    "{count} tour phù hợp": "{count} 条符合的行程",
+    "Không có tour nào phù hợp – thử bỏ bớt điều kiện.": "没有符合的行程——请减少筛选条件。",
+    "Giá là ước tính / người, tính từ giá vé và giá phòng trên trang điểm đến (có ghi tháng kiểm tra): mức thấp là phòng rẻ nhất + ăn bình dân, mức cao là phòng đắt nhất cùng loại + nhà hàng.": "价格为每人预估，按各目的地页面的门票和房价（标有核实月份）计算：低价为最便宜的房间加平价餐饮，高价为同类最贵的房间加餐厅。",
+    "Chưa gồm vé máy bay, tàu xe tới điểm đến – xem trang đường đi hoặc trình lập kế hoạch.": "不含前往目的地的机票、火车或大巴——请查看路线页面或行程规划器。",
+    "Combo của resort, khu vui chơi (phòng + vé) thường rẻ hơn mua lẻ – so giá trước khi đặt.": "度假村、乐园的套餐（住宿 + 门票）往往比单买便宜——预订前请比价。",
+    "{count} tour trọn gói từ 1 đến 4 ngày: lịch trình từng ngày, điểm tham quan kèm giá vé, chi phí ước tính và link đặt phòng.": "{count} 条 1 至 4 天的套餐行程：每日行程、景点门票、预估费用和预订链接。",
+    "Tìm tour phù hợp": "寻找适合你的行程",
+    "Cách tính chi phí": "费用如何估算",
+    "Tour {name}: lịch trình {days}, chi phí": "{name}：{days}行程与费用",
+    "Lịch trình từng ngày, giá vé từng điểm, chi phí ước tính {cost} / người.": "每日行程、各景点门票，预估每人 {cost}。",
+    "Đặt phòng & lên kế hoạch": "预订与规划",
+    "Tour & combo": "旅游线路与套餐",
+    "người": "人",
+    "Tổng / người": "合计 / 人",
+    "Chưa gồm vé máy bay, tàu xe tới {dest} và chi tiêu cá nhân. Giá vé, giá phòng lấy từ trang điểm đến – combo phòng + vé của resort, khu vui chơi có thể rẻ hơn.": "不含前往{dest}的交通费和个人消费。门票、房价取自目的地页面——度假村、乐园的住宿 + 门票套餐可能更便宜。",
+    "Mẹo": "小贴士",
+    "Tour khác": "其他行程",
+    "Xem tất cả tour & combo": "查看全部行程与套餐",
+    "Tour & combo ở đây": "这里的行程与套餐"
   },
   "html": {
     "Vùng miền": "地区",
@@ -637,7 +660,8 @@
     "Lọc theo kiểu biển": "按海滩类型筛选",
     "Trekking": "徒步",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "每月一封邮件：当季最美的目的地、即将到来的节庆和最新旅行指南。",
-    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 图片：Wikimedia Commons (CC BY / CC BY-SA) · 设计基于 Bedimcode 模板"
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 图片：Wikimedia Commons (CC BY / CC BY-SA) · 设计基于 Bedimcode 模板",
+    "Tour": "行程"
   },
   "regions": {
     "bac": "越南北部",
