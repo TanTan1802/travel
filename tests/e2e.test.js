@@ -898,7 +898,14 @@ test('trekking: lọc cung theo tháng / số ngày, danh sách đồ tick đư�
 test('tour & combo: lọc theo phong cách / số ngày / tháng', async () => {
     const { tours } = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/tours.json'), 'utf8'))
     const dests = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data/destinations.json'), 'utf8')).destinations
-    const best = id => dests.find(d => d.id === id).bestMonths
+    /* Tháng đẹp của tour: đẹp ở mọi điểm của hành trình (không có tháng chung thì theo điểm đầu) – như tourBestMonths */
+    const months = id => dests.find(d => d.id === id).bestMonths
+    const bestOf = x => {
+        let cur = x.dest
+        const lists = x.plan.map(d => months(cur = d.dest || cur))
+        const common = lists[0].filter(m => lists.every(l => l.includes(m)))
+        return common.length ? common : lists[0]
+    }
     const { page, errors, close } = await openPage('tour/index.html')
     await page.waitForSelector('#tour-filter:not([hidden])')
     const shown = () => page.$$eval('[data-tour-style]:not([hidden])', a => a.length)
@@ -907,9 +914,9 @@ test('tour & combo: lọc theo phong cách / số ngày / tháng', async () => {
     assert.equal(await shown(), tours.filter(x => x.days === 1).length)
     await page.selectOption('#tour-filter select[name=days]', '')
     await page.selectOption('#tour-filter select[name=month]', '12')
-    assert.equal(await shown(), tours.filter(x => best(x.dest).includes(12)).length)
+    assert.equal(await shown(), tours.filter(x => bestOf(x).includes(12)).length)
     await page.selectOption('#tour-filter select[name=style]', 'culture')
-    assert.equal(await shown(), tours.filter(x => best(x.dest).includes(12) && x.style === 'culture').length)
+    assert.equal(await shown(), tours.filter(x => bestOf(x).includes(12) && x.style === 'culture').length)
     assert.deepEqual(errors, [])
     await close()
 })

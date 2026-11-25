@@ -4055,6 +4055,56 @@ span.trek-level {
   color: var(--title-color);
 }
 
+.pkg-leg {
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+  margin: 0 0 .6rem;
+  padding: .5rem .75rem;
+  border-left: 3px solid var(--first-color);
+  border-radius: 0 .5rem .5rem 0;
+  background-color: var(--input-color);
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.pkg-leg strong {
+  color: var(--title-color);
+}
+
+.pkg-next {
+  display: grid;
+  gap: .75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pkg-next__item {
+  display: grid;
+  gap: .4rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--input-color);
+}
+
+.pkg-next__name {
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.pkg-next__meta {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.pkg-next__item .pkg-leg {
+  margin: 0;
+}
+
+.pkg-next__item .book-link {
+  justify-self: start;
+}
+
 /* Trang Trekking: bộ lọc */
 .trek-filter {
   display: grid;

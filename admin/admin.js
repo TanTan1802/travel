@@ -1233,10 +1233,12 @@ function treksTabs() {
 const TOUR_STYLE_OPTS = () => Object.fromEntries(Object.entries(state.data.tours.styles).map(([k, v]) => [k, v.label[0]]))
 const STAY_OPTS = () => Object.fromEntries(Object.entries(state.data.places.stayTypes).map(([k, v]) => [k, v[0]]))
 const destSightNames = dest => ((state.data.sights.sights[dest] || []).flat()).map(x => x.name[0])
-const newTourDay = () => ({ title: emptyPair(), text: emptyPair(), sights: [] })
+const newTourDay = () => ({ dest: '', title: emptyPair(), text: emptyPair(), sights: [] })
+/* Điểm đến của ngày i (tour liên tuyến: ngày nào ghi dest thì đổi từ ngày đó) */
+const tourDayDest = (tp, i) => tp.plan.slice(0, i + 1).reduce((d, day) => day.dest || d, tp.dest)
 
 function toEditableTours(data) {
-    return { tours: data.tours.map(x => ({ ...clone(x), tips: clone(x.tips || []), images: joinFiles(x.images) })) }
+    return { tours: data.tours.map(x => ({ ...clone(x), plan: x.plan.map(d => ({ dest: '', ...clone(d) })), tips: clone(x.tips || []), images: joinFiles(x.images) })) }
 }
 
 const newTour = () => ({ id: '', name: emptyPair(), dest: '', style: Object.keys(state.data.tours.styles)[0], days: 2, stay: ['hotel'],
@@ -1249,7 +1251,7 @@ function fromEditableTours(e) {
         tours: e.tours.map(x => {
             const out = { id: String(x.id || '').trim(), name: trimPair(x.name), dest: x.dest, style: x.style, days: Number(x.days) || 0,
                 stay: Number(x.days) === 1 ? [] : [...x.stay], summary: trimPair(x.summary),
-                plan: x.plan.map(d => ({ title: trimPair(d.title), text: trimPair(d.text), sights: [...d.sights] })) }
+                plan: x.plan.map((d, k) => ({ ...(k && d.dest && d.dest !== tourDayDest(x, k - 1) ? { dest: d.dest } : {}), title: trimPair(d.title), text: trimPair(d.text), sights: [...d.sights] })) }
             if (x.tips.length) out.tips = x.tips.map(trimPair)
             const images = splitFiles(x.images)
             if (images.length) out.images = images
@@ -1273,15 +1275,17 @@ function validateTours(data) {
         if (!pairFilled(x.name)) e.push(`${w}: thiếu tên tour (tiếng Việt và tiếng Anh)`)
         if (!pairFilled(x.summary)) e.push(`${w}: thiếu tóm tắt (tiếng Việt và tiếng Anh)`)
         if (!ids.has(x.dest)) { e.push(`${w}: chọn điểm đến`); return }
-        if (!Number.isInteger(x.days) || x.days < 1 || x.days > 4) e.push(`${w}: số ngày từ 1 đến 4`)
+        if (!Number.isInteger(x.days) || x.days < 1 || x.days > 7) e.push(`${w}: số ngày từ 1 đến 7`)
         else if (x.plan.length !== x.days) e.push(`${w}: lịch trình có ${x.plan.length} ngày nhưng số ngày là ${x.days} – thêm / xóa ngày cho khớp`)
-        const stays = state.data.places.places[x.dest].stays.map(s => s.type)
         if (x.days > 1 && !x.stay.length) e.push(`${w}: tour qua đêm cần chọn loại lưu trú`)
-        x.stay.filter(t => !stays.includes(t)).forEach(t => e.push(`${w}: ${x.dest} chưa có lưu trú loại "${STAY_OPTS()[t] || t}" – chọn loại khác`))
-        const names = new Set(destSightNames(x.dest))
         x.plan.forEach((d, j) => {
+            const dest = tourDayDest(x, j)
             if (!pairFilled(d.title) || !pairFilled(d.text)) e.push(`${w}: ngày ${j + 1} thiếu tiêu đề hoặc nội dung (tiếng Việt và tiếng Anh)`)
-            d.sights.filter(n => !names.has(n)).forEach(n => e.push(`${w}: ngày ${j + 1} – "${n}" không thuộc điểm đến đang chọn`))
+            const names = new Set(destSightNames(dest))
+            d.sights.filter(n => !names.has(n)).forEach(n => e.push(`${w}: ngày ${j + 1} – "${n}" không thuộc điểm đến của ngày đó`))
+            if (j < x.days - 1 && x.stay.length && !state.data.places.places[dest].stays.some(s => x.stay.includes(s.type))) {
+                e.push(`${w}: đêm ${j + 1} ở ${destOptions()[dest]} – chưa có lưu trú loại đã chọn, chọn thêm loại khác`)
+            }
         })
         ;(x.tips || []).forEach((p, j) => { if (!pairFilled(p)) e.push(`${w}: mẹo ${j + 1} thiếu tiếng Việt hoặc tiếng Anh`) })
         ;(x.images || []).filter(f => !IMAGE_RE.test(f)).forEach(f => e.push(`${w}: ảnh "${f}" phải là tên file .jpg / .png / .webp`))
@@ -1297,21 +1301,21 @@ function buildToursFiles(data) {
 
 /* Ước tính nhanh vé + phòng (site cộng thêm ăn uống, đi lại theo trình lập kế hoạch) */
 function tourQuickCost(tp) {
-    const all = (state.data.sights.sights[tp.dest] || []).flat()
     const fmt = n => (n >= 1e6 ? `${(Math.round(n / 1e5) / 10).toString().replace('.', ',')}tr` : `${Math.round(n / 1000)}k`)
-    const tickets = tp.plan.flatMap(d => d.sights).map(n => all.find(s => s.name[0] === n)).filter(Boolean)
+    const tickets = tp.plan.flatMap((d, i) => d.sights.map(n => (state.data.sights.sights[tourDayDest(tp, i)] || []).flat().find(s => s.name[0] === n))).filter(Boolean)
         .map(s => (Array.isArray(s.price) ? s.price : [s.price || 0, s.price || 0])).reduce((a, b) => [a[0] + b[0], a[1] + b[1]], [0, 0])
     const nights = Number(tp.days) - 1
-    const stays = ((state.data.places.places[tp.dest] || {}).stays || []).filter(s => tp.stay.includes(s.type))
-    const stay = nights > 0 && stays.length ? [Math.min(...stays.map(s => s.price[0])) / 2 * nights, Math.max(...stays.map(s => s.price[1])) / 2 * nights] : [0, 0]
-    return `<p class="notice">Vé các điểm: <strong>${fmt(tickets[0])} – ${fmt(tickets[1])}</strong>${nights > 0 ? ` · ${nights} đêm phòng đôi chia 2: <strong>${fmt(stay[0])} – ${fmt(stay[1])}</strong>` : ''} / người. Trang tour cộng thêm ăn uống, đi lại (cùng cách tính với trình lập kế hoạch).</p>`
+    const stay = Array.from({ length: Math.max(0, nights) }, (_, i) => {
+        const stays = ((state.data.places.places[tourDayDest(tp, i)] || {}).stays || []).filter(s => tp.stay.includes(s.type))
+        return stays.length ? [Math.min(...stays.map(s => s.price[0])) / 2, Math.max(...stays.map(s => s.price[1])) / 2] : [0, 0]
+    }).reduce((a, b) => [a[0] + b[0], a[1] + b[1]], [0, 0])
+    return `<p class="notice">Vé các điểm: <strong>${fmt(tickets[0])} – ${fmt(tickets[1])}</strong>${nights > 0 ? ` · ${nights} đêm phòng đôi chia 2: <strong>${fmt(stay[0])} – ${fmt(stay[1])}</strong>` : ''} / người. Trang tour cộng thêm ăn uống, đi lại và chặng di chuyển giữa các điểm (cùng cách tính với trình lập kế hoạch).</p>`
 }
 
 function tourFields(i) {
     const tp = state.bundle.tours.tours[i]
     const base = ['tours', 'tours', i]
     const saved = state.data.tours.tours.some(x => x.id === tp.id)
-    const sights = destSightNames(tp.dest)
     return [
         { type: 'html', html: `<div class="toolbar">
                 ${saved ? `<a href="${SITE_URL}tour/${esc(tp.id)}/" target="_blank" rel="noopener">Trang hiện tại ↗</a>` : '<span class="badge badge--miss">Tour mới – có trang sau khi đăng</span>'}
@@ -1321,22 +1325,24 @@ function tourFields(i) {
             <p class="muted small">Lịch trình chọn từ điểm tham quan đã có của điểm đến – giá vé, giờ mở cửa lấy từ đó nên tour luôn khớp trang điểm đến. Muốn thêm điểm mới: sửa ở Điểm đến → tab Điểm tham quan trước.</p>` },
         { type: 'group', cols: 3, fields: [
             { type: 'text', path: [...base, 'id'], label: 'Mã (đường dẫn tour/…/)', placeholder: 'vd. phu-quoc-3-ngay', help: saved ? 'Đổi mã sẽ đổi địa chỉ trang – hạn chế đổi.' : 'Chữ thường không dấu, số, gạch nối.' },
-            { type: 'select', path: [...base, 'dest'], label: 'Điểm đến', options: { '': '— chọn —', ...destOptions() }, rerender: true },
+            { type: 'select', path: [...base, 'dest'], label: 'Điểm đến (ngày đầu)', options: { '': '— chọn —', ...destOptions() }, rerender: true },
             { type: 'select', path: [...base, 'style'], label: 'Phong cách', options: TOUR_STYLE_OPTS() },
         ] },
         { type: 'pair', path: [...base, 'name'], label: 'Tên tour' },
         { type: 'pair', path: [...base, 'summary'], label: 'Tóm tắt (thẻ tour, mô tả tìm kiếm)', multiline: true },
         { type: 'group', fields: [
-            { type: 'number', path: [...base, 'days'], label: 'Số ngày (1 – 4)', step: 1, help: 'Số đêm = số ngày − 1. Lịch trình phải có đúng chừng ấy ngày.' },
+            { type: 'number', path: [...base, 'days'], label: 'Số ngày (1 – 7)', step: 1, help: 'Số đêm = số ngày − 1. Lịch trình phải có đúng chừng ấy ngày.' },
             ...(Number(tp.days) > 1 ? [{ type: 'checks', path: [...base, 'stay'], label: 'Loại lưu trú (lấy giá phòng của điểm đến)', options: STAY_OPTS() }] : []),
         ] },
         ...(tp.dest ? [{ type: 'html', html: tourQuickCost(tp) }] : []),
         { type: 'list', path: [...base, 'plan'], label: `Lịch trình (${tp.plan.length} / ${tp.days} ngày)`, addLabel: 'Thêm ngày', newItem: newTourDay,
-            itemLabel: (d, j) => d.title[0] || `Ngày ${j + 1}`,
+            itemLabel: (d, j) => `${d.title[0] || `Ngày ${j + 1}`} · ${destOptions()[tourDayDest(tp, j)] || '?'}`,
             fields: j => [
+                ...(j ? [{ type: 'select', path: [...base, 'plan', j, 'dest'], label: 'Điểm đến của ngày (tour liên tuyến)', options: { '': `Như ngày trước (${destOptions()[tourDayDest(tp, j - 1)] || '?'})`, ...destOptions() }, rerender: true,
+                    help: 'Đổi điểm đến từ ngày này – trang tour tự tính chặng di chuyển (xe / tàu / bay), thời gian và giá.' }] : []),
                 { type: 'pair', path: [...base, 'plan', j, 'title'], label: 'Tiêu đề ngày' },
                 { type: 'pair', path: [...base, 'plan', j, 'text'], label: 'Nội dung', multiline: true },
-                tp.dest ? { type: 'checks', path: [...base, 'plan', j, 'sights'], label: 'Điểm tham quan trong ngày', options: Object.fromEntries(sights.map(n => [n, n])) }
+                tp.dest ? { type: 'checks', path: [...base, 'plan', j, 'sights'], label: `Điểm tham quan trong ngày – ${destOptions()[tourDayDest(tp, j)] || ''}`, options: Object.fromEntries(destSightNames(tourDayDest(tp, j)).map(n => [n, n])) }
                     : { type: 'html', html: '<p class="muted small">Chọn điểm đến trước để chọn điểm tham quan.</p>' },
             ] },
         pairList([...base, 'tips'], 'Mẹo (tùy chọn)', 'Thêm mẹo'),

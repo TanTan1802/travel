@@ -206,12 +206,21 @@ function tourChecks(data) {
         if (!dests.has(t.dest)) return errors.push(`${w}: điểm đến ${t.dest} không tồn tại`)
         if (!data.tours.styles[t.style]) errors.push(`${w}: phong cách ${t.style} chưa khai báo trong styles`)
         if (t.plan.length !== t.days) errors.push(`${w}: lịch trình có ${t.plan.length} ngày, days = ${t.days}`)
-        const stays = data.places.places[t.dest].stays.map(s => s.type)
         if (t.days > 1 && !t.stay.length) errors.push(`${w}: tour qua đêm cần loại lưu trú (stay)`)
         if (t.days === 1 && t.stay.length) errors.push(`${w}: tour 1 ngày không có lưu trú`)
-        t.stay.filter(type => !stays.includes(type)).forEach(type => errors.push(`${w}: ${t.dest} chưa có lưu trú loại ${type} trong places.json`))
-        const names = new Set(data.sights.sights[t.dest].flat().map(s => s.name[0]))
-        t.plan.forEach((d, i) => d.sights.filter(n => !names.has(n)).forEach(n => errors.push(`${w}: ngày ${i + 1} – "${n}" không có trong sights.${t.dest}`)))
+        /* Điểm đến từng ngày (liên tuyến: plan[i].dest), nơi ngủ đêm phải có loại lưu trú, điểm tham quan thuộc đúng điểm đến */
+        let dest = t.dest
+        t.plan.forEach((d, k) => {
+            if (d.dest) {
+                if (!dests.has(d.dest)) return errors.push(`${w}: ngày ${k + 1} – điểm đến ${d.dest} không tồn tại`)
+                dest = d.dest
+            }
+            if (k < t.days - 1 && !data.places.places[dest].stays.some(s => t.stay.includes(s.type))) {
+                errors.push(`${w}: đêm ${k + 1} ở ${dest} – chưa có lưu trú loại ${t.stay.join(' / ')} trong places.json`)
+            }
+            const names = new Set(data.sights.sights[dest].flat().map(s => s.name[0]))
+            d.sights.filter(n => !names.has(n)).forEach(n => errors.push(`${w}: ngày ${k + 1} – "${n}" không có trong sights.${dest}`))
+        })
     })
     return errors
 }

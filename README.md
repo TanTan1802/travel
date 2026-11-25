@@ -211,7 +211,12 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - **Chi phí / người tính tự động** (`assets/js/tour-render.js` → `tourCost`): vé các điểm + phòng đôi chia 2 (giá `stays`
   của điểm đến theo loại trong `stay`) + ăn uống, đi lại (`dailyCosts`, cùng cách tính với trình lập kế hoạch).
   Chưa gồm vé máy bay / tàu xe tới nơi. Cập nhật giá vé, giá phòng ở trang quản trị → giá tour tự đổi theo.
-- Trang điểm đến có mục "Tour & combo ở đây"; nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng điểm đến và số ngày.
+- **Tour liên tuyến** (phong cách `route`, tối đa 7 ngày): ngày nào đổi điểm đến thì ghi `dest` trong `plan` – chặng di chuyển
+  (xe / tàu / bay / tàu ra đảo), thời gian, giá tính bằng `transportOptions` như trình lập kế hoạch và cộng vào chi phí; ngủ đêm ở
+  điểm đến của ngày đó; tháng đẹp = tháng đẹp ở mọi điểm.
+- **Nối tiếp hành trình**: mỗi trang tour gợi ý tối đa 3 tour bắt đầu gần nơi tour kết thúc (chặng nối ≤ 6 giờ) kèm nút
+  "Ghép 2 tour" mở trình lập kế hoạch đã điền sẵn mọi chặng của cả hai tour.
+- Trang điểm đến có mục "Tour & combo ở đây" (cả tour liên tuyến đi qua); nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng các chặng.
 
 ## Trekking (`trekking/`, dữ liệu `data/treks.json`)
 

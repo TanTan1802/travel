@@ -543,7 +543,15 @@
     "Mẹo": "小贴士",
     "Tour khác": "其他行程",
     "Xem tất cả tour & combo": "查看全部行程与套餐",
-    "Tour & combo ở đây": "这里的行程与套餐"
+    "Tour & combo ở đây": "这里的行程与套餐",
+    "Di chuyển giữa các điểm ({n} chặng)": "各站之间的交通（{n} 段）",
+    "Hành trình": "行程路线",
+    "Nối tiếp hành trình": "继续你的行程",
+    "Phòng ở {dest}": "{dest}的住宿",
+    "Tháng đẹp ở mọi điểm của hành trình": "每一站都适合的月份",
+    "Đi tiếp từ {dest} sang một tour khác – chặng nối và chi phí đã tính sẵn, bấm để mở trình lập kế hoạch với cả hai tour.": "从{dest}接着走另一条行程——衔接路段和费用已算好，点击即可在行程规划器中打开两条行程。",
+    "Cùng điểm đến – không cần di chuyển": "同一目的地——无需转移",
+    "Ghép 2 tour: {n} ngày": "合并两条行程：{n} 天"
   },
   "html": {
     "Vùng miền": "地区",

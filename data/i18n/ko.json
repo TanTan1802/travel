@@ -543,7 +543,15 @@
     "Mẹo": "팁",
     "Tour khác": "다른 투어",
     "Xem tất cả tour & combo": "모든 투어 & 패키지 보기",
-    "Tour & combo ở đây": "이곳의 투어 & 패키지"
+    "Tour & combo ở đây": "이곳의 투어 & 패키지",
+    "Di chuyển giữa các điểm ({n} chặng)": "목적지 간 이동 ({n}구간)",
+    "Hành trình": "여정",
+    "Nối tiếp hành trình": "여정 이어가기",
+    "Phòng ở {dest}": "{dest} 숙소",
+    "Tháng đẹp ở mọi điểm của hành trình": "모든 여행지가 좋은 달",
+    "Đi tiếp từ {dest} sang một tour khác – chặng nối và chi phí đã tính sẵn, bấm để mở trình lập kế hoạch với cả hai tour.": "{dest}에서 다른 투어로 이어가세요 – 연결 구간과 비용이 계산되어 있으며, 클릭하면 두 투어가 담긴 여행 플래너가 열립니다.",
+    "Cùng điểm đến – không cần di chuyển": "같은 여행지 – 이동 불필요",
+    "Ghép 2 tour: {n} ngày": "두 투어 합치기: {n}일"
   },
   "html": {
     "Vùng miền": "지역",

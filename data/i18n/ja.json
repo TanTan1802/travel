@@ -543,7 +543,15 @@
     "Mẹo": "ヒント",
     "Tour khác": "ほかのツアー",
     "Xem tất cả tour & combo": "すべてのツアー＆パッケージを見る",
-    "Tour & combo ở đây": "ここのツアー＆パッケージ"
+    "Tour & combo ở đây": "ここのツアー＆パッケージ",
+    "Di chuyển giữa các điểm ({n} chặng)": "目的地間の移動（{n} 区間）",
+    "Hành trình": "ルート",
+    "Nối tiếp hành trình": "旅を続ける",
+    "Phòng ở {dest}": "{dest}の宿",
+    "Tháng đẹp ở mọi điểm của hành trình": "どの目的地もベストシーズンの月",
+    "Đi tiếp từ {dest} sang một tour khác – chặng nối và chi phí đã tính sẵn, bấm để mở trình lập kế hoạch với cả hai tour.": "{dest}から別のツアーへ – つなぎの区間と費用は計算済みで、クリックすると両方のツアーを入れた旅行プランナーが開きます。",
+    "Cùng điểm đến – không cần di chuyển": "同じ目的地 – 移動なし",
+    "Ghép 2 tour: {n} ngày": "2つのツアーをつなぐ：{n}日"
   },
   "html": {
     "Vùng miền": "地域",
