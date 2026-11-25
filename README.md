@@ -203,6 +203,16 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   thành trang đầy đủ tốt hơn cho SEO (tránh "nội dung mỏng"), vẫn tìm được từng điểm qua anchor.
 - Lời giới thiệu theo tháng/chủ đề ở `MONTH_NOTES`, `THEME_INTROS` (song ngữ). Trang cẩm nang có khối "Khám phá theo tháng & chủ đề".
 
+## Tour & combo (`tour/`, dữ liệu `data/tours.json`)
+- Gói 1 – 4 ngày ở một điểm đến, theo phong cách (nghỉ dưỡng, gia đình, biển đảo, núi rừng, văn hóa). Trang tổng `tour/` có
+  bộ lọc phong cách / số ngày / miền / tháng đi; trang từng tour `tour/<id>/`: lịch trình từng ngày, chi phí, đặt phòng, mùa đẹp.
+- Lịch trình **trỏ tới điểm tham quan trong `data/sights.json`** (tên tiếng Việt) nên giá vé, giờ mở cửa, địa chỉ luôn khớp
+  trang điểm đến; `npm run build` báo lỗi nếu tên không tồn tại, số ngày lệch, loại lưu trú điểm đến không có.
+- **Chi phí / người tính tự động** (`assets/js/tour-render.js` → `tourCost`): vé các điểm + phòng đôi chia 2 (giá `stays`
+  của điểm đến theo loại trong `stay`) + ăn uống, đi lại (`dailyCosts`, cùng cách tính với trình lập kế hoạch).
+  Chưa gồm vé máy bay / tàu xe tới nơi. Cập nhật giá vé, giá phòng ở trang quản trị → giá tour tự đổi theo.
+- Trang điểm đến có mục "Tour & combo ở đây"; nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng điểm đến và số ngày.
+
 ## Trekking (`trekking/`, dữ liệu `data/treks.json`)
 
 - Trang tổng `trekking/`: thang độ khó (dễ / trung bình / khó / rất khó), các cung theo độ khó, đồ cần mang theo từng mức,

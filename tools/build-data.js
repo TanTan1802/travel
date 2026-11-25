@@ -48,6 +48,10 @@ const DATASETS = {
         vars: { levels: 'TREK_LEVELS', treks: 'TREKS' },
         doc: 'Cung trekking: độ khó, quãng đường, độ cao, mùa đẹp, lịch trình từng ngày, chi phí, an toàn, quy định.\n * Trang trekking/ và trekking/<id>/ do assets/js/trek-render.js dựng khi build.',
     },
+    tours: {
+        vars: { styles: 'TOUR_STYLES', tours: 'TOUR_PACKAGES' },
+        doc: 'Tour & combo 1 – 4 ngày: lịch trình trỏ tới điểm tham quan (sights.json) để lấy giá vé; chi phí ước tính tính lúc build.\n * Trang tour/ và tour/<id>/ do assets/js/tour-render.js dựng khi build.',
+    },
     guides: {
         vars: { updated: 'GUIDE_UPDATED', guides: 'GUIDES' },
         doc: 'Cẩm nang du lịch: mỗi bài có slug (đường dẫn cam-nang/<slug>/), icon Remix, tiêu đề, tóm tắt, các mục\n * (đoạn văn, danh sách hoặc bảng tự sinh: months / calendar) và điểm đến liên quan. Trang do assets/js/guide-render.js dựng.',
@@ -191,6 +195,27 @@ function trekChecks(data) {
     return errors
 }
 
+function tourChecks(data) {
+    const errors = []
+    const dests = new Set(data.destinations.destinations.map(d => d.id))
+    const seen = new Set()
+    data.tours.tours.forEach(t => {
+        const w = `tours.${t.id}`
+        if (seen.has(t.id)) errors.push(`tours: mã ${t.id} bị trùng`)
+        seen.add(t.id)
+        if (!dests.has(t.dest)) return errors.push(`${w}: điểm đến ${t.dest} không tồn tại`)
+        if (!data.tours.styles[t.style]) errors.push(`${w}: phong cách ${t.style} chưa khai báo trong styles`)
+        if (t.plan.length !== t.days) errors.push(`${w}: lịch trình có ${t.plan.length} ngày, days = ${t.days}`)
+        const stays = data.places.places[t.dest].stays.map(s => s.type)
+        if (t.days > 1 && !t.stay.length) errors.push(`${w}: tour qua đêm cần loại lưu trú (stay)`)
+        if (t.days === 1 && t.stay.length) errors.push(`${w}: tour 1 ngày không có lưu trú`)
+        t.stay.filter(type => !stays.includes(type)).forEach(type => errors.push(`${w}: ${t.dest} chưa có lưu trú loại ${type} trong places.json`))
+        const names = new Set(data.sights.sights[t.dest].flat().map(s => s.name[0]))
+        t.plan.forEach((d, i) => d.sights.filter(n => !names.has(n)).forEach(n => errors.push(`${w}: ngày ${i + 1} – "${n}" không có trong sights.${t.dest}`)))
+    })
+    return errors
+}
+
 function guideChecks(data) {
     const errors = []
     const dests = new Set(data.destinations.destinations.map(d => d.id))
@@ -221,7 +246,7 @@ function loadAndValidate() {
         data[name] = json
     }
     if (!errors.length) errors.push(...crossChecks(data))
-    if (!errors.length) errors.push(...trekChecks(data), ...guideChecks(data))
+    if (!errors.length) errors.push(...trekChecks(data), ...guideChecks(data), ...tourChecks(data))
 
     /* Giao diện & mùa: tools/build.js đọc thẳng data/site.json (trình duyệt không cần cả file) */
     const site = readJson(path.join(DATA_DIR, 'site.json'))

@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 154 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 150 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -68,7 +68,6 @@
 .ri-error-warning-fill:before { content: "\eca0"; }
 .ri-error-warning-line:before { content: "\eca1"; }
 .ri-eye-line:before { content: "\ecb5"; }
-.ri-facebook-box-fill:before { content: "\ecb8"; }
 .ri-feedback-line:before { content: "\ecc1"; }
 .ri-file-copy-line:before { content: "\ecd5"; }
 .ri-film-line:before { content: "\ed21"; }
@@ -98,7 +97,6 @@
 .ri-image-add-line:before { content: "\ee47"; }
 .ri-image-line:before { content: "\ee4b"; }
 .ri-information-line:before { content: "\ee59"; }
-.ri-instagram-fill:before { content: "\ee65"; }
 .ri-landscape-line:before { content: "\ee7d"; }
 .ri-layout-grid-line:before { content: "\ee90"; }
 .ri-leaf-line:before { content: "\eea3"; }
@@ -157,7 +155,6 @@
 .ri-ticket-2-line:before { content: "\f20b"; }
 .ri-time-line:before { content: "\f20f"; }
 .ri-train-line:before { content: "\f223"; }
-.ri-twitter-fill:before { content: "\f23a"; }
 .ri-umbrella-line:before { content: "\f243"; }
 .ri-user-follow-line:before { content: "\f261"; }
 .ri-user-line:before { content: "\f264"; }
@@ -165,5 +162,4 @@
 .ri-wallet-3-line:before { content: "\f2ac"; }
 .ri-water-flash-line:before { content: "\f2b0"; }
 .ri-windy-line:before { content: "\f2ca"; }
-.ri-youtube-fill:before { content: "\f2d4"; }
 .ri-zoom-in-line:before { content: "\f2db"; }

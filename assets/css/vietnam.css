@@ -3967,6 +3967,94 @@ span.trek-level {
   color: var(--title-color);
 }
 
+/* Trang Tour & combo */
+.trek-stats a {
+  color: var(--first-color-text);
+}
+
+.pkg-styles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .75rem;
+}
+
+.pkg-styles__item {
+  display: grid;
+  align-content: start;
+  gap: .35rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--input-color);
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+}
+
+.pkg-styles__item strong {
+  color: var(--title-color);
+  font-size: var(--normal-font-size);
+}
+
+.pkg-sights {
+  display: grid;
+  gap: .4rem;
+  margin-top: .6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pkg-sight {
+  display: grid;
+  gap: .2rem;
+  padding: .55rem .75rem;
+  border-radius: .5rem;
+  background-color: var(--input-color);
+}
+
+.pkg-sight__name {
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.pkg-sight__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem .9rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.pkg-sight__meta a {
+  color: var(--first-color-text);
+}
+
+.pkg-cost {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: .75rem;
+}
+
+.pkg-cost th,
+.pkg-cost td {
+  padding: .6rem .25rem;
+  border-bottom: 1px solid var(--input-color);
+  text-align: left;
+  font-weight: var(--font-medium);
+  color: var(--text-color);
+}
+
+.pkg-cost td {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pkg-cost tfoot th,
+.pkg-cost tfoot td {
+  border-bottom: 0;
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
 /* Trang Trekking: bộ lọc */
 .trek-filter {
   display: grid;

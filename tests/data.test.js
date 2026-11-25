@@ -872,3 +872,23 @@ test('kiểm tra site đang chạy: đọc đúng file / liên kết nội bộ 
     assert.match(typeProblem('https://site.test/assets/js/dist/b.js', 'text/html'), /text\/html/)
     assert.equal(typeProblem('https://site.test/assets/js/dist/b.js', 'application/javascript'), '')
 })
+
+test('tour & combo: mỗi tour có trang ở 5 ngôn ngữ, có trong sitemap, trang điểm đến liên kết tới tour', () => {
+    const { tours } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/tours.json'), 'utf8'))
+    const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')
+    for (const p of ['', 'en/', 'ko/', 'zh/', 'ja/']) {
+        assert.ok(fs.existsSync(path.join(ROOT, `${p}tour/index.html`)), `chưa build ${p}tour/`)
+        for (const tp of tours) {
+            const rel = `${p}tour/${tp.id}/index.html`
+            assert.ok(fs.existsSync(path.join(ROOT, rel)), `chưa build ${rel}`)
+            assert.ok(sitemap.includes(`${SITE_URL}${p}tour/${tp.id}/`), `sitemap thiếu ${rel}`)
+        }
+    }
+    for (const tp of tours) {
+        const html = fs.readFileSync(path.join(ROOT, `diem-den/${tp.dest}/index.html`), 'utf8')
+        assert.ok(html.includes(`tour/${tp.id}/index.html`), `trang ${tp.dest} thiếu liên kết tới tour ${tp.id}`)
+        const page = fs.readFileSync(path.join(ROOT, `tour/${tp.id}/index.html`), 'utf8')
+        assert.match(page, /class="pkg-cost"/, `${tp.id}: thiếu bảng chi phí`)
+        assert.ok(!/NaN|undefined/.test(page.replace(/<script[\s\S]*?<\/script>/g, '')), `${tp.id}: có NaN / undefined trong trang`)
+    }
+})

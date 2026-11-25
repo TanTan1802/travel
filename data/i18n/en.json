@@ -520,7 +520,30 @@
     "Đánh dấu món đã chuẩn bị – lưu trên máy này, in ra để mang theo.": "Tick off what you have packed – it is saved on this device, and you can print the list to take along.",
     "{done}/{total} món đã chuẩn bị": "{done}/{total} items packed",
     "Bỏ chọn tất cả": "Clear all",
-    "In danh sách": "Print list"
+    "In danh sách": "Print list",
+    "{n} đêm lưu trú (phòng đôi, chia 2 người)": "{n} nights accommodation (double room, shared by 2)",
+    "Ăn uống, đi lại tại chỗ": "Food and local transport",
+    "Tour & combo du lịch Việt Nam: lịch trình 1 – 4 ngày, chi phí ước tính": "Vietnam tours & packages: 1 – 4 day itineraries with estimated costs",
+    "Phong cách": "Style",
+    "{count} tour phù hợp": "{count} matching tours",
+    "Không có tour nào phù hợp – thử bỏ bớt điều kiện.": "No tours match – try removing a filter.",
+    "Giá là ước tính / người, tính từ giá vé và giá phòng trên trang điểm đến (có ghi tháng kiểm tra): mức thấp là phòng rẻ nhất + ăn bình dân, mức cao là phòng đắt nhất cùng loại + nhà hàng.": "Prices are per-person estimates built from the ticket and room prices on each destination page (each with the month it was checked): the low end is the cheapest room plus street food, the high end the priciest room of that type plus restaurants.",
+    "Chưa gồm vé máy bay, tàu xe tới điểm đến – xem trang đường đi hoặc trình lập kế hoạch.": "Flights, trains or buses to the destination are not included – see the route pages or the trip planner.",
+    "Combo của resort, khu vui chơi (phòng + vé) thường rẻ hơn mua lẻ – so giá trước khi đặt.": "Resort and theme-park bundles (room + tickets) are often cheaper than buying separately – compare before booking.",
+    "{count} tour trọn gói từ 1 đến 4 ngày: lịch trình từng ngày, điểm tham quan kèm giá vé, chi phí ước tính và link đặt phòng.": "{count} packaged trips of 1 to 4 days: day-by-day plans, sights with ticket prices, estimated costs and booking links.",
+    "Tìm tour phù hợp": "Find a tour that suits you",
+    "Cách tính chi phí": "How costs are estimated",
+    "Tour {name}: lịch trình {days}, chi phí": "{name}: {days} itinerary and costs",
+    "Lịch trình từng ngày, giá vé từng điểm, chi phí ước tính {cost} / người.": "Day-by-day plan, ticket prices for each sight, estimated {cost} per person.",
+    "Đặt phòng & lên kế hoạch": "Book & plan",
+    "Tour & combo": "Tours & packages",
+    "người": "person",
+    "Tổng / người": "Total / person",
+    "Chưa gồm vé máy bay, tàu xe tới {dest} và chi tiêu cá nhân. Giá vé, giá phòng lấy từ trang điểm đến – combo phòng + vé của resort, khu vui chơi có thể rẻ hơn.": "Excludes flights, trains or buses to {dest} and personal spending. Ticket and room prices come from the destination page – resort or theme-park room + ticket bundles may be cheaper.",
+    "Mẹo": "Tips",
+    "Tour khác": "Other tours",
+    "Xem tất cả tour & combo": "See all tours & packages",
+    "Tour & combo ở đây": "Tours & packages here"
   },
   "html": {
     "Vùng miền": "Region",
@@ -637,7 +660,8 @@
     "Lọc theo kiểu biển": "Filter by beach type",
     "Trekking": "Trekking",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "One email a month: destinations coming into season, upcoming festivals and new guides.",
-    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · Photos: Wikimedia Commons (CC BY / CC BY-SA) · Design based on a Bedimcode template"
+    "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · Photos: Wikimedia Commons (CC BY / CC BY-SA) · Design based on a Bedimcode template",
+    "Tour": "Tours"
   },
   "regions": {
     "bac": "Northern Vietnam",
