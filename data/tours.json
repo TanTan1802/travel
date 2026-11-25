@@ -55,6 +55,17 @@
         "Di sản, chợ, làng nghề và ẩm thực địa phương.",
         "Heritage sites, markets, craft villages and local food."
       ]
+    },
+    "route": {
+      "icon": "ri-route-line",
+      "label": [
+        "Liên tuyến",
+        "Multi-stop"
+      ],
+      "desc": [
+        "Nhiều điểm đến trong một chuyến – chặng di chuyển, thời gian và giá tính sẵn.",
+        "Several destinations in one trip – transfers, times and fares worked out for you."
+      ]
     }
   },
   "tours": [
@@ -600,6 +611,390 @@
         [
           "Tháng 9 – 11 mùa nước nổi, sông nước đẹp nhất; mùa trái cây rộ tháng 5 – 8.",
           "Sep – Nov is flood season, when the waterways are at their best; fruit season peaks May – Aug."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "da-lat-nha-trang-5-ngay",
+      "name": [
+        "Đà Lạt – Nha Trang 5 ngày: núi rồi biển",
+        "Da Lat – Nha Trang in 5 days: highlands then sea"
+      ],
+      "dest": "da-lat",
+      "style": "route",
+      "days": 5,
+      "stay": [
+        "hotel"
+      ],
+      "summary": [
+        "Hai ngày phố núi se lạnh, qua đèo xuống biển Nha Trang: Tháp Bà, VinWonders, lặn ngắm san hô Hòn Mun.",
+        "Two cool days in the highlands, then down the pass to Nha Trang for Po Nagar, VinWonders and snorkelling at Hon Mun."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Trung tâm Đà Lạt",
+            "Central Da Lat"
+          ],
+          "text": [
+            "Dạo hồ Xuân Hương, đi tàu cổ từ ga Đà Lạt, tối ăn vặt chợ đêm.",
+            "Stroll Xuan Huong lake, ride the old train from Da Lat station, street food at the night market."
+          ],
+          "sights": [
+            "Hồ Xuân Hương – quảng trường Lâm Viên",
+            "Ga Đà Lạt – tàu Trại Mát",
+            "Chợ đêm Đà Lạt"
+          ]
+        },
+        {
+          "title": [
+            "Rừng thông – hồ Tuyền Lâm – thác",
+            "Pine forest – Tuyen Lam lake – waterfall"
+          ],
+          "text": [
+            "Cáp treo Robin xuống Thiền viện Trúc Lâm và hồ Tuyền Lâm, chiều chơi máng trượt thác Datanla.",
+            "Robin cable car to Truc Lam monastery and Tuyen Lam lake, then the Datanla falls alpine coaster."
+          ],
+          "sights": [
+            "Cáp treo Robin – Thiền viện Trúc Lâm",
+            "Hồ Tuyền Lâm",
+            "Thác Datanla – máng trượt"
+          ]
+        },
+        {
+          "dest": "nha-trang",
+          "title": [
+            "Qua đèo xuống Nha Trang",
+            "Down the pass to Nha Trang"
+          ],
+          "text": [
+            "Sáng đi xe xuống Nha Trang qua đèo Khánh Lê, chiều thăm Tháp Bà Po Nagar, tắm biển Trần Phú, tối dạo chợ đêm.",
+            "Morning coach down the Khanh Le pass to Nha Trang, then Po Nagar towers, a swim on Tran Phu beach and the night market."
+          ],
+          "sights": [
+            "Tháp Bà Po Nagar",
+            "Biển Trần Phú",
+            "Chợ đêm Nha Trang"
+          ]
+        },
+        {
+          "title": [
+            "Hòn Tre – VinWonders",
+            "Hon Tre – VinWonders"
+          ],
+          "text": [
+            "Cáp treo sang đảo, chơi công viên chủ đề và công viên nước, tối xem show nhạc nước.",
+            "Cable car to the island, theme park and water park, then the evening water show."
+          ],
+          "sights": [
+            "Cáp treo + VinWonders Nha Trang",
+            "Công viên nước VinWonders",
+            "Show nhạc nước Tata"
+          ]
+        },
+        {
+          "title": [
+            "Hòn Mun – tắm bùn",
+            "Hon Mun – mud bath"
+          ],
+          "text": [
+            "Tàu ra Hòn Mun lặn ngắm san hô, chiều tắm bùn khoáng rồi ra sân bay Cam Ranh.",
+            "Boat to Hon Mun for snorkelling, a mineral mud bath in the afternoon, then Cam Ranh airport."
+          ],
+          "sights": [
+            "Tour đảo Hòn Mun – lặn san hô",
+            "Tắm bùn khoáng I-Resort"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Đèo Khánh Lê nhiều khúc cua – người say xe nên uống thuốc trước, tránh đi khi mưa lớn.",
+          "The Khanh Le pass is very winding – take motion-sickness tablets and avoid it in heavy rain."
+        ],
+        [
+          "Bay vào Đà Lạt (Liên Khương), bay ra Nha Trang (Cam Ranh) để khỏi quay lại.",
+          "Fly into Da Lat (Lien Khuong) and out of Nha Trang (Cam Ranh) to avoid backtracking."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "hue-da-nang-hoi-an-5-ngay",
+      "name": [
+        "Huế – Đà Nẵng – Hội An 5 ngày: con đường di sản",
+        "Hue – Da Nang – Hoi An in 5 days: the heritage road"
+      ],
+      "dest": "hue",
+      "style": "route",
+      "days": 5,
+      "stay": [
+        "hotel",
+        "homestay"
+      ],
+      "summary": [
+        "Kinh thành và lăng tẩm Huế, vượt đèo Hải Vân vào Đà Nẵng, rồi phố cổ Hội An và thánh địa Mỹ Sơn.",
+        "Hue citadel and royal tombs, over the Hai Van pass to Da Nang, then Hoi An old town and the My Son sanctuary."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Kinh thành Huế",
+            "Hue citadel"
+          ],
+          "text": [
+            "Đại Nội buổi sáng, chiều chùa Thiên Mụ, tối nghe ca Huế trên sông Hương.",
+            "The Imperial City in the morning, Thien Mu pagoda in the afternoon, Hue folk songs on the Perfume River at night."
+          ],
+          "sights": [
+            "Đại Nội Huế – Ngọ Môn, Tử Cấm Thành",
+            "Chùa Thiên Mụ",
+            "Ca Huế trên thuyền rồng"
+          ]
+        },
+        {
+          "title": [
+            "Lăng tẩm",
+            "Royal tombs"
+          ],
+          "text": [
+            "Lăng Khải Định, lăng Minh Mạng, ghé làng hương Thủy Xuân.",
+            "Khai Dinh and Minh Mang tombs, then the Thuy Xuan incense village."
+          ],
+          "sights": [
+            "Lăng Khải Định",
+            "Lăng Minh Mạng",
+            "Làng hương Thủy Xuân"
+          ]
+        },
+        {
+          "dest": "da-nang",
+          "title": [
+            "Đèo Hải Vân – Đà Nẵng",
+            "Hai Van pass – Da Nang"
+          ],
+          "text": [
+            "Đi xe qua đèo Hải Vân vào Đà Nẵng, chiều tắm biển Mỹ Khê, tối du thuyền sông Hàn.",
+            "Drive over the Hai Van pass into Da Nang, swim at My Khe in the afternoon, Han River cruise at night."
+          ],
+          "sights": [
+            "Đèo Hải Vân",
+            "Biển Mỹ Khê",
+            "Du thuyền sông Hàn"
+          ]
+        },
+        {
+          "dest": "hoi-an",
+          "title": [
+            "Phố cổ Hội An",
+            "Hoi An old town"
+          ],
+          "text": [
+            "Xuống Hội An (khoảng 45 phút), dạo phố cổ, Chùa Cầu, tối thả hoa đăng sông Hoài.",
+            "Down to Hoi An (about 45 minutes), the old town and Japanese Bridge, lanterns on the Hoai River at night."
+          ],
+          "sights": [
+            "Vé tham quan phố cổ Hội An",
+            "Chùa Cầu",
+            "Thả hoa đăng sông Hoài"
+          ]
+        },
+        {
+          "title": [
+            "Mỹ Sơn – rừng dừa",
+            "My Son – coconut forest"
+          ],
+          "text": [
+            "Sáng sớm thánh địa Mỹ Sơn, chiều thuyền thúng rừng dừa Bảy Mẫu, ra sân bay Đà Nẵng.",
+            "My Son sanctuary early, basket boats in the Bay Mau coconut forest, then Da Nang airport."
+          ],
+          "sights": [
+            "Khu đền tháp Mỹ Sơn",
+            "Rừng dừa Bảy Mẫu – thuyền thúng"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Tháng 9 – 12 mùa mưa bão miền Trung, Huế và Hội An dễ ngập – đi tháng 2 – 8.",
+          "Sep – Dec is storm season and Hue and Hoi An flood easily – go Feb – Aug."
+        ],
+        [
+          "Bay vào Huế (Phú Bài), bay ra Đà Nẵng.",
+          "Fly into Hue (Phu Bai) and out of Da Nang."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "ha-noi-ninh-binh-ha-long-4-ngay",
+      "name": [
+        "Hà Nội – Ninh Bình – Hạ Long 4 ngày",
+        "Hanoi – Ninh Binh – Ha Long in 4 days"
+      ],
+      "dest": "ha-noi",
+      "style": "route",
+      "days": 4,
+      "stay": [
+        "hotel"
+      ],
+      "summary": [
+        "Phố cổ Hà Nội, đò Tràng An và Hang Múa, rồi một ngày trên vịnh Hạ Long – vòng kinh điển miền Bắc.",
+        "Hanoi old quarter, Trang An boats and Mua Cave, then a day on Ha Long Bay – the classic northern loop."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Hà Nội",
+            "Hanoi"
+          ],
+          "text": [
+            "Văn Miếu, hồ Hoàn Kiếm, tối xem múa rối nước.",
+            "Temple of Literature, Hoan Kiem lake and a water puppet show at night."
+          ],
+          "sights": [
+            "Văn Miếu – Quốc Tử Giám",
+            "Hồ Hoàn Kiếm – cầu Thê Húc",
+            "Nhà hát Múa rối nước Thăng Long"
+          ]
+        },
+        {
+          "dest": "ninh-binh",
+          "title": [
+            "Ninh Bình",
+            "Ninh Binh"
+          ],
+          "text": [
+            "Đi xe khoảng 2 giờ xuống Ninh Bình, đò Tràng An, chiều leo Hang Múa ngắm hoàng hôn.",
+            "About 2 hours by road to Ninh Binh, the Trang An boat ride, then climb Mua Cave for sunset."
+          ],
+          "sights": [
+            "Khu du lịch Tràng An",
+            "Hang Múa"
+          ]
+        },
+        {
+          "dest": "vinh-ha-long",
+          "title": [
+            "Vịnh Hạ Long",
+            "Ha Long Bay"
+          ],
+          "text": [
+            "Đi xe ra Hạ Long, tàu tham quan vịnh: hang Sửng Sốt, đảo Ti Tốp.",
+            "Drive to Ha Long and take a bay boat to Sung Sot cave and Ti Top island."
+          ],
+          "sights": [
+            "Vé tham quan vịnh Hạ Long (tuyến 1–2)",
+            "Hang Sửng Sốt",
+            "Đảo Ti Tốp"
+          ]
+        },
+        {
+          "title": [
+            "Cáp treo – về Hà Nội",
+            "Cable car – back to Hanoi"
+          ],
+          "text": [
+            "Cáp treo Nữ Hoàng lên đồi Ba Đèo, trưa về Hà Nội (khoảng 2 giờ 30 phút theo cao tốc).",
+            "Queen cable car up Ba Deo hill, then back to Hanoi at midday (about 2.5 hours on the expressway)."
+          ],
+          "sights": [
+            "Cáp treo Nữ Hoàng – đồi Ba Đèo"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Chặng Ninh Bình – Hạ Long đi xe khoảng 3 giờ; nhiều đơn vị có xe đưa đón thẳng.",
+          "Ninh Binh to Ha Long is about 3 hours by road; many operators run direct transfers."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "sai-gon-can-tho-chau-doc-4-ngay",
+      "name": [
+        "Sài Gòn – Cần Thơ – Châu Đốc 4 ngày: miền Tây sông nước",
+        "Saigon – Can Tho – Chau Doc in 4 days: the Mekong Delta"
+      ],
+      "dest": "sai-gon",
+      "style": "route",
+      "days": 4,
+      "stay": [
+        "hotel"
+      ],
+      "summary": [
+        "Một ngày Sài Gòn, chợ nổi Cái Răng lúc bình minh, rồi rừng tràm Trà Sư và núi Sam ở Châu Đốc.",
+        "A day in Saigon, Cai Rang floating market at dawn, then Tra Su cajuput forest and Sam mountain in Chau Doc."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Sài Gòn",
+            "Saigon"
+          ],
+          "text": [
+            "Dinh Độc Lập, Nhà thờ Đức Bà, chợ Bến Thành, tối food tour xe máy Quận 4.",
+            "Independence Palace, Notre-Dame cathedral, Ben Thanh market, then a District 4 motorbike food tour."
+          ],
+          "sights": [
+            "Dinh Độc Lập",
+            "Nhà thờ Đức Bà",
+            "Chợ Bến Thành",
+            "Food tour xe máy Quận 4"
+          ]
+        },
+        {
+          "dest": "can-tho",
+          "title": [
+            "Về Cần Thơ",
+            "To Can Tho"
+          ],
+          "text": [
+            "Đi xe khoảng 3 giờ 30 phút về Cần Thơ, chiều nhà cổ Bình Thủy, tối du thuyền bến Ninh Kiều.",
+            "About 3.5 hours by road to Can Tho, the Binh Thuy ancient house in the afternoon, a Ninh Kieu wharf cruise at night."
+          ],
+          "sights": [
+            "Nhà cổ Bình Thủy",
+            "Bến Ninh Kiều – du thuyền"
+          ]
+        },
+        {
+          "title": [
+            "Chợ nổi Cái Răng – Phong Điền",
+            "Cai Rang floating market – Phong Dien"
+          ],
+          "text": [
+            "Xuồng ra chợ nổi lúc 5 – 6 giờ sáng, ghé lò hủ tiếu, trưa ăn ở vườn trái cây Phong Điền.",
+            "Boat to the floating market at 5 – 6 am, a noodle workshop, lunch in the Phong Dien orchards."
+          ],
+          "sights": [
+            "Chợ nổi Cái Răng",
+            "Lò hủ tiếu Sáu Hoài",
+            "Vườn trái cây Phong Điền"
+          ]
+        },
+        {
+          "dest": "chau-doc",
+          "title": [
+            "Châu Đốc",
+            "Chau Doc"
+          ],
+          "text": [
+            "Đi xe sang Châu Đốc, xuồng rừng tràm Trà Sư, chiều miếu Bà Chúa Xứ núi Sam; về Sài Gòn khoảng 6 giờ hoặc ở lại thêm đêm.",
+            "Drive to Chau Doc, row through the Tra Su cajuput forest, then the Lady Xu temple on Sam mountain; back to Saigon takes about 6 hours, or stay another night."
+          ],
+          "sights": [
+            "Rừng tràm Trà Sư",
+            "Miếu Bà Chúa Xứ núi Sam"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Rừng tràm Trà Sư đẹp nhất mùa nước nổi tháng 9 – 11, bèo phủ xanh mặt nước.",
+          "Tra Su is at its best in the Sep – Nov flood season, when duckweed carpets the water."
         ]
       ],
       "updated": "2026-11"

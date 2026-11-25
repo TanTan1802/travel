@@ -100,7 +100,7 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
   hoặc khi đánh dấu "đã kiểm tra" (cột `confirmed`).
 - `npm run check-freshness`, `npm run check-links`, `npm run check-images` + workflow **Kiểm tra định kỳ dữ liệu** hằng tháng.
 - `npm run check-site` + workflow **Kiểm tra site đang chạy** (`kiem-tra-site.yml`): sau mỗi lần main thay đổi (đợi Cloudflare
-  deploy xong) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
+  deploy xong; có lỗi thì đợi 3 phút kiểm tra lại vì bộ nhớ đệm Cloudflare còn trộn trang cũ / mới) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
   nội bộ tồn tại, đúng loại file. Có lỗi → Issue nhãn `site-loi` (GitHub gửi email), hết lỗi → tự đóng. Trang quản trị hiện
   kết quả ở ô **Tình trạng site** (token cần quyền `Actions: Read`). Kiểm tra bản trên máy: `SITE=http://localhost:8000/ npm run check-site`.
 - Form **"Báo sai"** ngay trên trang (`assets/js/report.js`): gửi tới `reportEndpoint` trong `config.js`, chưa cấu hình thì
@@ -211,7 +211,12 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
 - **Chi phí / người tính tự động** (`assets/js/tour-render.js` → `tourCost`): vé các điểm + phòng đôi chia 2 (giá `stays`
   của điểm đến theo loại trong `stay`) + ăn uống, đi lại (`dailyCosts`, cùng cách tính với trình lập kế hoạch).
   Chưa gồm vé máy bay / tàu xe tới nơi. Cập nhật giá vé, giá phòng ở trang quản trị → giá tour tự đổi theo.
-- Trang điểm đến có mục "Tour & combo ở đây"; nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng điểm đến và số ngày.
+- **Tour liên tuyến** (phong cách `route`, tối đa 7 ngày): ngày nào đổi điểm đến thì ghi `dest` trong `plan` – chặng di chuyển
+  (xe / tàu / bay / tàu ra đảo), thời gian, giá tính bằng `transportOptions` như trình lập kế hoạch và cộng vào chi phí; ngủ đêm ở
+  điểm đến của ngày đó; tháng đẹp = tháng đẹp ở mọi điểm.
+- **Nối tiếp hành trình**: mỗi trang tour gợi ý tối đa 3 tour bắt đầu gần nơi tour kết thúc (chặng nối ≤ 6 giờ) kèm nút
+  "Ghép 2 tour" mở trình lập kế hoạch đã điền sẵn mọi chặng của cả hai tour.
+- Trang điểm đến có mục "Tour & combo ở đây" (cả tour liên tuyến đi qua); nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng các chặng.
 
 ## Trekking (`trekking/`, dữ liệu `data/treks.json`)
 
@@ -327,6 +332,9 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   ghi `analytics.json` lên nhánh riêng `stats` (không kích hoạt deploy). Bật: thêm secret `CF_API_TOKEN` (Cloudflare → My Profile →
   API Tokens → Create Custom Token, quyền *Account › Account Analytics › Read*) và `CF_ACCOUNT_ID` (cột phải trang Overview của
   tài khoản Cloudflare) ở *Settings → Secrets and variables → Actions*, rồi bấm *Run workflow*. Tài khoản có nhiều site thì thêm `CF_SITE_TAG`.
+- **Tour & combo** (`data/tours.json`): mỗi tour một tab – mã, điểm đến, phong cách, số ngày, loại lưu trú, tóm tắt, lịch trình
+  từng ngày (điểm tham quan **chọn từ danh sách sẵn có** của điểm đến), mẹo, ảnh, tháng kiểm tra. Hiện ước tính vé + phòng ngay khi sửa.
+  ＋ Thêm tour, ↑ ↓, Xóa tour; kiểm tra trước giống lúc build.
 - **Cẩm nang** (`data/guides.json`): tab Chung (tháng cập nhật) + mỗi bài một tab – đường dẫn, biểu tượng, tiêu đề, tóm tắt,
   các mục (đoạn văn, danh sách, bảng tự sinh "lịch 12 tháng" / "đẹp theo tháng"), điểm đến liên quan. ＋ Thêm bài, ↑ ↓, Xóa bài.
 - **Cảng tàu & đường sắt** (`data/places.json` → `transport`): cảng tàu ra đảo (đảo, tên, tọa độ, giờ tàu chạy, giá vé) và
