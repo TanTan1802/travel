@@ -100,7 +100,7 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
   hoặc khi đánh dấu "đã kiểm tra" (cột `confirmed`).
 - `npm run check-freshness`, `npm run check-links`, `npm run check-images` + workflow **Kiểm tra định kỳ dữ liệu** hằng tháng.
 - `npm run check-site` + workflow **Kiểm tra site đang chạy** (`kiem-tra-site.yml`): sau mỗi lần main thay đổi (đợi Cloudflare
-  deploy xong) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
+  deploy xong; có lỗi thì đợi 3 phút kiểm tra lại vì bộ nhớ đệm Cloudflare còn trộn trang cũ / mới) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
   nội bộ tồn tại, đúng loại file. Có lỗi → Issue nhãn `site-loi` (GitHub gửi email), hết lỗi → tự đóng. Trang quản trị hiện
   kết quả ở ô **Tình trạng site** (token cần quyền `Actions: Read`). Kiểm tra bản trên máy: `SITE=http://localhost:8000/ npm run check-site`.
 - Form **"Báo sai"** ngay trên trang (`assets/js/report.js`): gửi tới `reportEndpoint` trong `config.js`, chưa cấu hình thì
@@ -327,6 +327,9 @@ Sửa hoặc thêm điểm đến ngay trên trình duyệt, không cần cài g
   ghi `analytics.json` lên nhánh riêng `stats` (không kích hoạt deploy). Bật: thêm secret `CF_API_TOKEN` (Cloudflare → My Profile →
   API Tokens → Create Custom Token, quyền *Account › Account Analytics › Read*) và `CF_ACCOUNT_ID` (cột phải trang Overview của
   tài khoản Cloudflare) ở *Settings → Secrets and variables → Actions*, rồi bấm *Run workflow*. Tài khoản có nhiều site thì thêm `CF_SITE_TAG`.
+- **Tour & combo** (`data/tours.json`): mỗi tour một tab – mã, điểm đến, phong cách, số ngày, loại lưu trú, tóm tắt, lịch trình
+  từng ngày (điểm tham quan **chọn từ danh sách sẵn có** của điểm đến), mẹo, ảnh, tháng kiểm tra. Hiện ước tính vé + phòng ngay khi sửa.
+  ＋ Thêm tour, ↑ ↓, Xóa tour; kiểm tra trước giống lúc build.
 - **Cẩm nang** (`data/guides.json`): tab Chung (tháng cập nhật) + mỗi bài một tab – đường dẫn, biểu tượng, tiêu đề, tóm tắt,
   các mục (đoạn văn, danh sách, bảng tự sinh "lịch 12 tháng" / "đẹp theo tháng"), điểm đến liên quan. ＋ Thêm bài, ↑ ↓, Xóa bài.
 - **Cảng tàu & đường sắt** (`data/places.json` → `transport`): cảng tàu ra đảo (đảo, tên, tọa độ, giờ tàu chạy, giá vé) và

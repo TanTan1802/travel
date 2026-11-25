@@ -913,3 +913,45 @@ test('tour & combo: lọc theo phong cách / số ngày / tháng', async () => {
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('trang quản trị – Tour & combo: mở không đổi dữ liệu, chọn điểm đến hiện điểm tham quan, đủ thông tin thì hết lỗi', async () => {
+    const fs = require('fs')
+    const path = require('path')
+    const { page, errors, close } = await openPage('admin/index.html')
+    await page.route('https://api.github.com/**', route => {
+        const u = new URL(route.request().url())
+        const json = body => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(body) })
+        if (u.pathname === '/repos/TanTan1802/travel') return json({ permissions: { push: true } })
+        if (u.pathname.endsWith('/git/ref/heads/main')) return json({ object: { sha: 'a'.repeat(40) } })
+        const file = u.pathname.match(/\/contents\/(.+)$/)
+        const local = file && path.join(__dirname, '..', decodeURIComponent(file[1]))
+        if (local) return fs.existsSync(local) ? route.fulfill({ status: 200, contentType: 'text/plain', body: fs.readFileSync(local, 'utf8') }) : route.fulfill({ status: 404, body: '{}' })
+        return json([])
+    })
+    await page.fill('#login-form input', 'github_pat_test')
+    await page.evaluate(() => document.querySelector('#login-form').requestSubmit())
+    await page.waitForSelector('.stats')
+    const { tours } = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/tours.json'), 'utf8'))
+    await page.evaluate(() => { location.hash = '#/tours' })
+    await page.waitForSelector('[data-item-add]')
+    assert.equal(await page.locator('.tabs [role=tab]').count(), tours.length)
+    assert.deepEqual(await page.evaluate(() => computeErrors()), [])
+    assert.deepEqual(await page.evaluate(() => Object.keys(MODES.tours.files(workingCopy()))), [])
+
+    await page.click('[data-item-add]')
+    const i = tours.length
+    const at = p => `[data-path='${JSON.stringify(['tours', 'tours', i, ...p])}']`
+    assert.ok((await page.evaluate(() => computeErrors())).some(m => m.includes('chọn điểm đến')))
+    await page.selectOption(at(['dest']), 'ninh-binh')
+    await page.waitForSelector(`${at(['plan', 0, 'sights'])}[value="Hang Múa"]`)
+    await page.fill(at(['id']), 'thu-ninh-binh')
+    for (const k of ['name', 'summary']) { await page.fill(at([k, 0]), 'vi'); await page.fill(at([k, 1]), 'en') }
+    for (const j of [0, 1]) for (const k of ['title', 'text']) { await page.fill(at(['plan', j, k, 0]), 'vi'); await page.fill(at(['plan', j, k, 1]), 'en') }
+    await page.check(`${at(['plan', 0, 'sights'])}[value="Hang Múa"]`)
+    await page.check(`${at(['stay'])}[value="homestay"]`)
+    await page.uncheck(`${at(['stay'])}[value="hotel"]`)
+    assert.deepEqual(await page.evaluate(() => computeErrors()), [])
+    assert.match(await page.textContent('.notice'), /Vé các điểm/)
+    assert.deepEqual(errors, [])
+    await close()
+})

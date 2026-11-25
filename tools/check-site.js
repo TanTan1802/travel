@@ -101,9 +101,8 @@ async function pool(items, fn) {
     }))
 }
 
-async function main() {
-    if (process.env.WAIT_FOR_DEPLOY) await waitForDeploy()
-    const started = Date.now()
+/* Một lượt kiểm tra toàn site: { problems, checkedPages, refCount } */
+async function crawl() {
     const sitemap = await get(`${BASE}sitemap.xml`)
     if (sitemap.status !== 200) throw new Error(`Không tải được sitemap.xml (${sitemap.status})`)
     const pages = [...new Set([...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => new URL(m[1].replace(/&amp;/g, '&')).pathname))]
@@ -131,12 +130,26 @@ async function main() {
         const why = res.status !== 200 ? `lỗi ${res.status}` : kind === 'asset' ? typeProblem(url, res.type) : ''
         if (why) problems.push({ url, why, from: [...from] })
     })
+    return { problems, checkedPages, refCount: todo.length }
+}
+
+async function main() {
+    if (process.env.WAIT_FOR_DEPLOY) await waitForDeploy()
+    const started = Date.now()
+    let { problems, checkedPages, refCount } = await crawl()
+    /* Ngay sau deploy, bộ nhớ đệm của Cloudflare có thể còn trộn trang cũ / mới vài phút (trang cũ gọi bundle đã thay):
+       có lỗi thì đợi 3 phút kiểm tra lại, chỉ báo lỗi còn lại – tránh mở Issue nhầm */
+    if (problems.length && process.env.WAIT_FOR_DEPLOY) {
+        console.log(`Có ${problems.length} lỗi – đợi 3 phút cho bộ nhớ đệm cập nhật rồi kiểm tra lại…`)
+        await sleep(180000)
+        ;({ problems, checkedPages, refCount } = await crawl())
+    }
 
     const rel = u => `/${u.replace(BASE, '')}`
     const lines = [
         `## Kiểm tra site đang chạy – ${BASE}`,
         '',
-        `${checkedPages} trang trong sitemap · ${todo.length} file / liên kết nội bộ · ${Math.round((Date.now() - started) / 1000)} giây`,
+        `${checkedPages} trang trong sitemap · ${refCount} file / liên kết nội bộ · ${Math.round((Date.now() - started) / 1000)} giây`,
         '',
     ]
     if (!problems.length) lines.push('✅ Không có lỗi: mọi trang mở được, mọi file JS / CSS / ảnh / liên kết nội bộ đều tồn tại.')
