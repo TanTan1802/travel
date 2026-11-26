@@ -138,7 +138,7 @@
     "Chọn ngày để xem dự báo thời tiết từng ngày và thêm lịch trình vào lịch của bạn.": "选择日期可查看每日天气预报，并将行程添加到日历。",
     "Thêm lịch trình {tour} vào lịch (.ics)": "将{tour}行程添加到日历（.ics）",
     "Thêm vào lịch": "添加到日历",
-    "Thêm vào lịch (.ics)": "添加到日历（.ics）",
+    "Thêm vào lịch (.ics)": "加入日历（.ics）",
     "Cả tuyến trên Google Maps": "在 Google 地图查看全程路线",
     "Chọn ngày khởi hành để thêm lịch trình vào lịch và xem dự báo thời tiết từng ngày.": "选择出发日期即可将行程添加到日历并查看每日天气预报。",
     "Chọn ngày khởi hành trước để thêm vào lịch": "请先选择出发日期再添加到日历",
@@ -560,7 +560,15 @@
     "Về lịch gốc": "恢复原行程",
     "+ Thêm điểm ở {dest} ({n})": "+ 添加{dest}的地点（{n}）",
     "Tìm vé online": "在线找票",
-    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "部分订房、订票链接带有推荐码：Viet Travel 可能获得佣金，你支付的价格不变。"
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "部分订房、订票链接带有推荐码：Viet Travel 可能获得佣金，你支付的价格不变。",
+    "Đi trọn gói, khỏi lo lịch trình": "套餐出行，行程不用操心",
+    "{count} tour từ 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến – lịch từng ngày, chặng di chuyển và chi phí đã tính sẵn.": "{count} 条 1 至 7 天的行程，含多目的地线路——每日行程、交通和费用都已算好。",
+    "Tour đẹp tháng {m}": "{m}的推荐行程",
+    "Bản đồ hành trình: {route}": "行程地图：{route}",
+    "Chia sẻ lịch này": "分享这个行程",
+    "Ngày đi": "出发日期",
+    "In lịch trình": "打印行程",
+    "Chọn ngày đi để tạo lịch": "请先选择出发日期再生成日历"
   },
   "html": {
     "Vùng miền": "地区",

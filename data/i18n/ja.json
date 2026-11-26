@@ -560,7 +560,15 @@
     "Về lịch gốc": "元の行程に戻す",
     "+ Thêm điểm ở {dest} ({n})": "+ {dest}のスポットを追加（{n}）",
     "Tìm vé online": "オンラインでチケットを探す",
-    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "一部の予約・チケットのリンクには紹介コードが付いており、Viet Travel が手数料を受け取ることがあります。お支払い額は変わりません。"
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "一部の予約・チケットのリンクには紹介コードが付いており、Viet Travel が手数料を受け取ることがあります。お支払い額は変わりません。",
+    "Đi trọn gói, khỏi lo lịch trình": "パッケージで旅程の心配なし",
+    "{count} tour từ 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến – lịch từng ngày, chặng di chuyển và chi phí đã tính sẵn.": "1～7日のツアー {count} 件、複数の目的地をめぐるコースも – 日ごとの行程、移動と費用は計算済み。",
+    "Tour đẹp tháng {m}": "{m}のおすすめツアー",
+    "Bản đồ hành trình: {route}": "ルート地図：{route}",
+    "Chia sẻ lịch này": "この行程を共有",
+    "Ngày đi": "出発日",
+    "In lịch trình": "行程を印刷",
+    "Chọn ngày đi để tạo lịch": "カレンダーを作るには出発日を選んでください"
   },
   "html": {
     "Vùng miền": "地域",

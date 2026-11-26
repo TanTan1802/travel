@@ -560,7 +560,15 @@
     "Về lịch gốc": "원래 일정으로",
     "+ Thêm điểm ở {dest} ({n})": "+ {dest}의 장소 추가 ({n})",
     "Tìm vé online": "온라인 티켓 찾기",
-    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "일부 예약·티켓 링크에는 추천 코드가 있어 Viet Travel이 수수료를 받을 수 있으며, 결제 금액은 같습니다."
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "일부 예약·티켓 링크에는 추천 코드가 있어 Viet Travel이 수수료를 받을 수 있으며, 결제 금액은 같습니다.",
+    "Đi trọn gói, khỏi lo lịch trình": "패키지로 일정 걱정 없이",
+    "{count} tour từ 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến – lịch từng ngày, chặng di chuyển và chi phí đã tính sẵn.": "1 – 7일 투어 {count}개, 여러 여행지를 잇는 코스 포함 – 일자별 일정, 이동 구간과 비용이 계산되어 있습니다.",
+    "Tour đẹp tháng {m}": "{m} 추천 투어",
+    "Bản đồ hành trình: {route}": "여정 지도: {route}",
+    "Chia sẻ lịch này": "이 일정 공유",
+    "Ngày đi": "출발일",
+    "In lịch trình": "일정 인쇄",
+    "Chọn ngày đi để tạo lịch": "캘린더를 만들려면 출발일을 선택하세요"
   },
   "html": {
     "Vùng miền": "지역",

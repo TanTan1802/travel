@@ -73,7 +73,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
     'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
-    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'privacyPage', 'privacyTitle']
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'privacyPage', 'privacyTitle']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -491,6 +491,7 @@ function buildHome(template, lang, site) {
     html = setLangSwitch(html, lang, siteRoot, homePath)
         .replace(/<!-- build:grid -->[\s\S]*?<!-- \/build:grid -->/, `<!-- build:grid -->${cards}<!-- /build:grid -->`)
         .replace(/<!-- build:guides -->[\s\S]*?<!-- \/build:guides -->/, `<!-- build:guides -->${site.homeGuidesSection()}<!-- /build:guides -->`)
+        .replace(/<!-- build:tours -->[\s\S]*?<!-- \/build:tours -->/, `<!-- build:tours -->${site.homeToursSection()}<!-- /build:tours -->`)
         .replace(/(<span id="dest-count">)\d+(<\/span>)/, `$1${site.DESTINATIONS.length}$2`)
         .replace(/(data-dest-count>)\d+/g, `$1${site.DESTINATIONS.length}`)
         .replace(/<!-- build:alternate -->[\s\S]*?<!-- \/build:alternate -->/,

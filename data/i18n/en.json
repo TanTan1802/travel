@@ -560,7 +560,15 @@
     "Về lịch gốc": "Back to the original plan",
     "+ Thêm điểm ở {dest} ({n})": "+ Add places in {dest} ({n})",
     "Tìm vé online": "Find tickets online",
-    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "Some booking and ticket links carry a referral code: Viet Travel may earn a commission at no extra cost to you."
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "Some booking and ticket links carry a referral code: Viet Travel may earn a commission at no extra cost to you.",
+    "Đi trọn gói, khỏi lo lịch trình": "Package trips, no planning needed",
+    "{count} tour từ 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến – lịch từng ngày, chặng di chuyển và chi phí đã tính sẵn.": "{count} tours of 1 to 7 days, including multi-stop trips – day-by-day plans, transfers and costs already worked out.",
+    "Tour đẹp tháng {m}": "Best tours in {m}",
+    "Bản đồ hành trình: {route}": "Route map: {route}",
+    "Chia sẻ lịch này": "Share this plan",
+    "Ngày đi": "Start date",
+    "In lịch trình": "Print itinerary",
+    "Chọn ngày đi để tạo lịch": "Pick a start date to create the calendar"
   },
   "html": {
     "Vùng miền": "Region",

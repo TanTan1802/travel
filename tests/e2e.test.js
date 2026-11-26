@@ -980,3 +980,46 @@ test('tour: tùy chỉnh – bỏ / thêm điểm tính lại chi phí, nhớ sa
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('tour liên tuyến: bản đồ hành trình có đủ điểm dừng đánh số và nhãn chặng', async () => {
+    const { page, errors, close } = await openPage('tour/hue-da-nang-hoi-an-5-ngay/index.html')
+    await page.$eval('.pkg-map', x => x.scrollIntoView({ block: 'center' }))
+    await page.waitForSelector('.pkg-map-pin', { state: 'attached', timeout: 15000 })
+    const stops = JSON.parse(await page.$eval('.pkg-map', x => x.dataset.tourMap))
+    assert.equal(await page.$$eval('.pkg-map-pin', a => a.length), stops.length)
+    assert.equal(await page.$$eval('.pkg-map-leg', a => a.length), stops.length - 1)
+    assert.match(await page.$eval('.pkg-map-leg', x => x.textContent), /~/, 'nhãn chặng có thời gian di chuyển')
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('tour: chia sẻ lịch đã chỉnh qua link, xuất .ics theo ngày đi, in riêng lịch trình', async () => {
+    const { page, errors, close } = await openPage('tour/da-lat-nha-trang-5-ngay/index.html')
+    await page.waitForSelector('.pkg-actions:not([hidden])')
+    await page.uncheck('[data-pick="3:Cáp treo + VinWonders Nha Trang"]')
+    await page.click('[data-tour-action="share"]')
+    const url = await page.evaluate(() => navigator.clipboard.readText())
+    assert.match(url, /#c=[0-9a-z.]+$/, 'link chia sẻ mang lựa chọn đã chỉnh')
+
+    /* Người nhận (trình duyệt khác, không có lựa chọn đã lưu) thấy đúng lịch đã chỉnh */
+    const other = await openPage(`tour/da-lat-nha-trang-5-ngay/index.html${url.slice(url.indexOf('#'))}`)
+    await other.page.waitForSelector('.pkg-actions:not([hidden])')
+    assert.equal(await other.page.$eval('[data-pick="3:Cáp treo + VinWonders Nha Trang"]', x => x.checked), false)
+    await other.close()
+
+    await page.fill('[data-tour-start]', '2027-01-15')
+    const [download] = await Promise.all([page.waitForEvent('download'), page.click('[data-tour-action="ics"]')])
+    const ics = require('fs').readFileSync(await download.path(), 'utf8')
+    assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, 5, 'mỗi ngày một sự kiện')
+    assert.match(ics, /DTSTART;TZID=Asia\/Ho_Chi_Minh:20270115T080000/)
+    assert.match(ics, /DTSTART;TZID=Asia\/Ho_Chi_Minh:20270119T080000/)
+    assert.doesNotMatch(ics.replace(/\r\n /g, ''), /• Cáp treo \+ VinWonders/, 'điểm đã bỏ không có trong lịch')
+    assert.match(ics.replace(/\r\n /g, ''), /Tháp Bà Po Nagar/)
+
+    await page.click('[data-tour-action="print"]')
+    const printed = await page.evaluate(() => window.__printed)
+    assert.equal(printed?.count, 1)
+    assert.match(printed.bodyClass, /print-tour/)
+    assert.deepEqual(errors, [])
+    await close()
+})

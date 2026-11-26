@@ -220,6 +220,11 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   "Ghép 2 tour" mở trình lập kế hoạch đã điền sẵn mọi chặng của cả hai tour.
 - **Tùy chỉnh tour trên trang**: bỏ tick điểm không muốn đi, "+ Thêm điểm ở …" để thêm điểm khác của điểm đến – vé và tổng tính
   lại ngay, lựa chọn nhớ trên máy (`tour-custom:<id>`), nút "Về lịch gốc".
+- **Bản đồ hành trình** (tour nhiều điểm): điểm dừng đánh số, đường nối, nhãn phương tiện + giá từng chặng; Leaflet chỉ tải khi cuộn tới.
+- **Chia sẻ / xuất lịch / in**: "Chia sẻ lịch này" ghi lựa chọn bỏ / thêm điểm vào link (`#c=…`, vị trí ô đổi so với lịch gốc,
+  cơ số 36); chọn ngày đi → "Thêm vào lịch (.ics)" mỗi ngày một sự kiện (điểm đang chọn + chặng); "In lịch trình" chỉ in lịch + chi phí.
+- **Tour xuất hiện ở**: trang chủ (mục "Tour & combo", tối đa 6, ưu tiên liên tuyến), trang tháng ("Tour đẹp tháng N"), trang
+  đường đi (tour ở điểm đến), trang điểm đến ("Tour & combo ở đây").
 - **Link đặt chỗ có mã đối tác** (`SITE_CONFIG.affiliate` trong `assets/js/config.js`): `params` thêm tham số (vd. Booking.com
   `aid=…`), `wrap` bọc link theo mẫu đối tác (vd. Klook, `{url}` = link gốc). Để trống = link thường. Có mã → trang tour ghi rõ
   "link có mã giới thiệu", trang chính sách bảo mật thêm mục affiliate. Điểm có vé từ 300k có link "Tìm vé online" (Klook).
