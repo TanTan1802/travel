@@ -582,7 +582,21 @@
     "Lịch trình 1 – 7 ngày, chi phí ước tính": "1 – 7 day itineraries with estimated costs",
     "Cung đường, độ khó, quy định": "Routes, difficulty and rules",
     "Ghép nhiều điểm đến, tính chi phí": "Combine destinations and estimate costs",
-    "Lịch lễ hội cả năm": "Festival calendar for the year"
+    "Lịch lễ hội cả năm": "Festival calendar for the year",
+    "So sánh điểm đến Việt Nam: chi phí, mùa đẹp, đường đi": "Compare Vietnam destinations: costs, best seasons, getting there",
+    "Ngay tại đây": "You are already here",
+    "Loại hình": "Type",
+    "Tháng đẹp": "Best months",
+    "Chi phí 3 ngày 2 đêm / người": "Cost for 3 days 2 nights / person",
+    "Từ Hà Nội": "From Hanoi",
+    "Từ TP. Hồ Chí Minh": "From Ho Chi Minh City",
+    "Nên ở": "Suggested stay",
+    "Điểm đến {n}": "Destination {n}",
+    "— không chọn —": "— none —",
+    "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "Pick 2 – 3 destinations to see side by side: 3-day costs, best months, getting there from Hanoi and Ho Chi Minh City, highlights and food.",
+    "Tiêu chí": "Criteria",
+    "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "Costs are per-person estimates excluding flights or transport there – the same method as the destination pages. Travel fares shown are budget fares.",
+    "So sánh {name} với {others}": "Compare {name} with {others}"
   },
   "html": {
     "Vùng miền": "Region",
@@ -702,7 +716,8 @@
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · Photos: Wikimedia Commons (CC BY / CC BY-SA) · Design based on a Bedimcode template",
     "Tour": "Tours",
     "Tìm kiếm": "Search",
-    "Tìm kiếm (/)": "Search (/)"
+    "Tìm kiếm (/)": "Search (/)",
+    "So sánh điểm đến": "Compare destinations"
   },
   "regions": {
     "bac": "Northern Vietnam",

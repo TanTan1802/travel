@@ -582,7 +582,21 @@
     "Lịch trình 1 – 7 ngày, chi phí ước tính": "1～7日の行程と費用の目安",
     "Cung đường, độ khó, quy định": "ルート、難易度、規則",
     "Ghép nhiều điểm đến, tính chi phí": "複数の目的地を組み合わせて費用を計算",
-    "Lịch lễ hội cả năm": "1年の祭りカレンダー"
+    "Lịch lễ hội cả năm": "1年の祭りカレンダー",
+    "So sánh điểm đến Việt Nam: chi phí, mùa đẹp, đường đi": "ベトナムの目的地を比較：費用、ベストシーズン、アクセス",
+    "Ngay tại đây": "ここが出発地",
+    "Loại hình": "タイプ",
+    "Tháng đẹp": "ベストシーズン",
+    "Chi phí 3 ngày 2 đêm / người": "2泊3日の費用 / 1人",
+    "Từ Hà Nội": "ハノイから",
+    "Từ TP. Hồ Chí Minh": "ホーチミンから",
+    "Nên ở": "おすすめ滞在",
+    "Điểm đến {n}": "目的地 {n}",
+    "— không chọn —": "— 選択しない —",
+    "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "2～3か所を選んで並べて比較：3日間の費用、ベストシーズン、ハノイ・ホーチミンからのアクセス、見どころ、料理。",
+    "Tiêu chí": "項目",
+    "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "費用は1人あたりの目安で、現地までの交通費は含みません（旅行先ページと同じ計算）。移動料金は節約プランの料金です。",
+    "So sánh {name} với {others}": "{name}を{others}と比較"
   },
   "html": {
     "Vùng miền": "地域",
@@ -702,7 +716,8 @@
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 写真：Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode のテンプレートをもとにしたデザイン",
     "Tour": "ツアー",
     "Tìm kiếm": "検索",
-    "Tìm kiếm (/)": "検索 (/)"
+    "Tìm kiếm (/)": "検索 (/)",
+    "So sánh điểm đến": "目的地を比較"
   },
   "regions": {
     "bac": "北部ベトナム",

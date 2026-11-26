@@ -2,6 +2,30 @@
   "note": "Sinh bởi tools/build.js – bundle của các lần build gần nhất (mới nhất trước), file ngoài danh sách bị xóa",
   "generations": [
     [
+      "assets/css/site-69a53c7590.css",
+      "assets/js/dist/0e27e2dbe5.js",
+      "assets/js/dist/0f4b4b2bb5.js",
+      "assets/js/dist/1575bc85d4.js",
+      "assets/js/dist/2e7f5a8913.js",
+      "assets/js/dist/3830debfde.js",
+      "assets/js/dist/4cd692c220.js",
+      "assets/js/dist/6456719fa6.js",
+      "assets/js/dist/686ef0f788.js",
+      "assets/js/dist/74caf5041f.js",
+      "assets/js/dist/8121ce4e7f.js",
+      "assets/js/dist/8c75c686e9.js",
+      "assets/js/dist/8f08cb7e47.js",
+      "assets/js/dist/94d0dee27a.js",
+      "assets/js/dist/a0e91553d1.js",
+      "assets/js/dist/a6e1b470b5.js",
+      "assets/js/dist/c99d42b684.js",
+      "assets/js/dist/dfcd00c5cc.js",
+      "assets/js/dist/e67ca7191b.js",
+      "assets/js/dist/ecae95ad23.js",
+      "assets/js/dist/ee68393f06.js",
+      "assets/js/dist/f404047530.js"
+    ],
+    [
       "assets/css/site-684959c5ad.css",
       "assets/js/dist/0e27e2dbe5.js",
       "assets/js/dist/1cec6b77d9.js",
@@ -48,30 +72,6 @@
       "assets/js/dist/e66e3236c8.js",
       "assets/js/dist/e67ca7191b.js",
       "assets/js/dist/edeb265afc.js"
-    ],
-    [
-      "assets/css/site-7c11a914ce.css",
-      "assets/js/dist/0c91864fd9.js",
-      "assets/js/dist/0e27e2dbe5.js",
-      "assets/js/dist/15cb9a0cb9.js",
-      "assets/js/dist/2b6be2df1c.js",
-      "assets/js/dist/335e3810bf.js",
-      "assets/js/dist/41f01fd9b4.js",
-      "assets/js/dist/48b18ad8d4.js",
-      "assets/js/dist/6618ee91ef.js",
-      "assets/js/dist/728b19c4c3.js",
-      "assets/js/dist/7c51e7546d.js",
-      "assets/js/dist/8b6c1b9513.js",
-      "assets/js/dist/95d4c7220e.js",
-      "assets/js/dist/a367aa707b.js",
-      "assets/js/dist/b1f25d9223.js",
-      "assets/js/dist/bc904ce821.js",
-      "assets/js/dist/c1c9aeef49.js",
-      "assets/js/dist/c212f196b0.js",
-      "assets/js/dist/e66e3236c8.js",
-      "assets/js/dist/ea2bcd4788.js",
-      "assets/js/dist/eaad641c8e.js",
-      "assets/js/dist/f01861a1da.js"
     ]
   ]
 }

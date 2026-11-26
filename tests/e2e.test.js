@@ -565,7 +565,7 @@ async function lowContrastText(page) {
 
 test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
     const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html',
-        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html', 'tour/da-lat-nha-trang-5-ngay/index.html', 'chinh-sach-bao-mat/index.html']
+        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html', 'tour/da-lat-nha-trang-5-ngay/index.html', 'chinh-sach-bao-mat/index.html', 'so-sanh/index.html']
     const problems = []
     for (const theme of ['dark', 'light']) {
         for (const rel of pages) {
@@ -1046,6 +1046,20 @@ test('ô tìm kiếm: có trên mọi loại trang, hiểu "Phú Quốc 3 ngày"
     await page.fill('.search__input', 'Hội An ăn gì')
     await page.waitForSelector('.search__item')
     await Promise.all([page.waitForURL(/diem-den\/hoi-an\/#food$/), page.keyboard.press('Enter')])
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('so sánh điểm đến: chọn theo link ?d=, đổi lựa chọn cập nhật cột và link', async () => {
+    const { page, errors, close } = await openPage('so-sanh/index.html?d=da-lat,sa-pa,hoi-an')
+    const cols = () => page.$$eval('thead th[data-col]:not([hidden])', a => a.map(x => x.dataset.col))
+    assert.deepEqual(await cols(), ['da-lat', 'sa-pa', 'hoi-an'])
+    await page.selectOption('[data-compare-pick="2"]', '')
+    assert.deepEqual(await cols(), ['da-lat', 'sa-pa'])
+    assert.match(page.url(), /d=da-lat(%2C|,)sa-pa$/)
+    await page.selectOption('[data-compare-pick="0"]', 'phu-quoc')
+    assert.deepEqual(await cols(), ['phu-quoc', 'sa-pa'], 'cột theo đúng thứ tự đã chọn')
+    assert.match(await page.textContent('tbody tr:nth-child(5) td[data-col="phu-quoc"]'), /Tiết kiệm/)
     assert.deepEqual(errors, [])
     await close()
 })

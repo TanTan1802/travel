@@ -64,6 +64,7 @@ const SCRIPTS = [
     'assets/js/data/tours.js',
     'assets/js/tour-render.js',
     'assets/js/legal-render.js',
+    'assets/js/compare-render.js',
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
@@ -73,7 +74,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
     'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
-    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'tourStopNames', 'tourDaysText', 'tourCost', 'priceRange', 'TREK_LEVELS', 'TOUR_STYLES', 'privacyPage', 'privacyTitle']
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'tourStopNames', 'tourDaysText', 'tourCost', 'priceRange', 'TREK_LEVELS', 'TOUR_STYLES', 'privacyPage', 'privacyTitle', 'comparePage', 'compareTitle']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -230,6 +231,7 @@ const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.htm
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
 const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
+const comparePath = lang => `${LANGS[lang].prefix}so-sanh/index.html`
 const privacyPath = lang => `${LANGS[lang].prefix}chinh-sach-bao-mat/index.html`
 const tourPath = (lang, id = '') => `${LANGS[lang].prefix}tour/${id ? `${id}/` : ''}index.html`
 const trekPath = (lang, id = '') => `${LANGS[lang].prefix}trekking/${id ? `${id}/` : ''}index.html`
@@ -714,6 +716,16 @@ function explorePages(template, lang) {
             crumbs: [home, [tourSite.t('Tour & combo'), pageUrl(tourPath(lang))]],
         }), tourSite])
     }
+    /* So sánh điểm đến: bảng dựng sẵn mọi điểm, guide.js hiện 2 – 3 cột theo ?d= */
+    const compareSite = loadSite(lang, rootFor(comparePath(lang)))
+    pages.push([comparePath(lang), () => buildContentPage(template.replace(' class="nav__link active-link"', ' class="nav__link"'), lang, comparePath, compareSite, {
+        title: compareSite.compareTitle(),
+        description: compareSite.t('Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.'),
+        main: compareSite.comparePage(),
+        image: ogImage(compareSite, compareSite.getDestination('phu-quoc')),
+        jsonLd: [],
+        crumbs: [home],
+    }), compareSite])
     /* Chính sách bảo mật: nội dung theo cấu hình thật lúc build (đo lượt xem, form, trợ lý, bình luận) */
     const privacySite = loadSite(lang, rootFor(privacyPath(lang)))
     pages.push([privacyPath(lang), () => buildContentPage(template.replace(' class="nav__link active-link"', ' class="nav__link"'), lang, privacyPath, privacySite, {
@@ -1036,7 +1048,7 @@ function main() {
     fs.rmSync(path.join(ROOT, THEME_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, FESTIVAL_DIR), { recursive: true, force: true })
     /* Trang trekking / tour đã xóa khỏi dữ liệu không còn sót lại trên site */
-    for (const dir of ['trekking', 'tour', 'chinh-sach-bao-mat']) fs.rmSync(path.join(ROOT, dir), { recursive: true, force: true })
+    for (const dir of ['trekking', 'tour', 'chinh-sach-bao-mat', 'so-sanh']) fs.rmSync(path.join(ROOT, dir), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
     /* Bundle JS / CSS cũ không xóa ở đây: pruneBundles() giữ lại vài thế hệ gần nhất (xem dưới) */
 

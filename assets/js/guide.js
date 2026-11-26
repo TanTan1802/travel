@@ -220,3 +220,24 @@ if (tourMap && typeof whenVisible === 'function') {
         map.fitBounds(points, { padding: [40, 40], maxZoom: 9 })
     })
 }
+
+/* Trang so sánh: hiện 2 – 3 cột theo lựa chọn, ghi vào link ?d=a,b,c để chia sẻ */
+const compareBox = document.querySelector('[data-compare]')
+if (compareBox) {
+    const picks = [...compareBox.querySelectorAll('[data-compare-pick]')]
+    const valid = new Set([...picks[0].options].map(o => o.value))
+    const fromUrl = (new URLSearchParams(location.search).get('d') || '').split(',').filter(id => valid.has(id)).slice(0, 3)
+    if (fromUrl.length >= 2) picks.forEach((sel, i) => { sel.value = fromUrl[i] || '' })
+    const apply = () => {
+        const chosen = [...new Set(picks.map(s => s.value).filter(Boolean))]
+        compareBox.querySelectorAll('[data-col]').forEach(el => { el.hidden = !chosen.includes(el.dataset.col) })
+        /* Cột theo đúng thứ tự đã chọn */
+        compareBox.querySelectorAll('tr').forEach(tr => chosen.forEach(id => { const c = tr.querySelector(`[data-col="${id}"]`); if (c) tr.append(c) }))
+        hydrateWikiImages(compareBox)
+        const url = new URL(location.href)
+        url.searchParams.set('d', chosen.join(','))
+        history.replaceState(null, '', url)
+    }
+    compareBox.addEventListener('change', e => { if (e.target.matches('[data-compare-pick]')) apply() })
+    apply()
+}

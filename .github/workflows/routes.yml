@@ -38,7 +38,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B data/osrm-routes
-          git add -A data/routes.json assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi duong-di trekking tour chinh-sach-bao-mat en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
+          git add -A data/routes.json assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi duong-di trekking tour chinh-sach-bao-mat so-sanh en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
           bash tools/check-staged.sh
           if git diff --cached --quiet; then
             echo "Không có thay đổi."

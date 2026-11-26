@@ -582,7 +582,21 @@
     "Lịch trình 1 – 7 ngày, chi phí ước tính": "1 – 7 天行程及预估费用",
     "Cung đường, độ khó, quy định": "路线、难度与规定",
     "Ghép nhiều điểm đến, tính chi phí": "组合多个目的地并估算费用",
-    "Lịch lễ hội cả năm": "全年节庆日历"
+    "Lịch lễ hội cả năm": "全年节庆日历",
+    "So sánh điểm đến Việt Nam: chi phí, mùa đẹp, đường đi": "越南目的地对比：费用、最佳季节、交通",
+    "Ngay tại đây": "就在这里",
+    "Loại hình": "类型",
+    "Tháng đẹp": "最佳月份",
+    "Chi phí 3 ngày 2 đêm / người": "3 天 2 晚费用 / 人",
+    "Từ Hà Nội": "从河内",
+    "Từ TP. Hồ Chí Minh": "从胡志明市",
+    "Nên ở": "建议停留",
+    "Điểm đến {n}": "目的地 {n}",
+    "— không chọn —": "— 不选 —",
+    "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "选择 2 – 3 个目的地并排对比：3 天费用、最佳月份、从河内和胡志明市出发的交通、亮点和美食。",
+    "Tiêu chí": "对比项",
+    "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "费用为每人估算，不含前往的交通——与目的地页面计算方式相同。交通票价为经济价。",
+    "So sánh {name} với {others}": "将{name}与{others}对比"
   },
   "html": {
     "Vùng miền": "地区",
@@ -702,7 +716,8 @@
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 图片：Wikimedia Commons (CC BY / CC BY-SA) · 设计基于 Bedimcode 模板",
     "Tour": "行程",
     "Tìm kiếm": "搜索",
-    "Tìm kiếm (/)": "搜索 (/)"
+    "Tìm kiếm (/)": "搜索 (/)",
+    "So sánh điểm đến": "对比目的地"
   },
   "regions": {
     "bac": "越南北部",

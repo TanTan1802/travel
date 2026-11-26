@@ -239,6 +239,7 @@ function staySection(d) {
                     ${hubTransportTable(d)}
                     ${typeof nearbyTreksHtml === 'function' ? nearbyTreksHtml(d) : ''}
                     ${typeof nearbyToursHtml === 'function' ? nearbyToursHtml(d) : ''}
+                    ${typeof compareLinkHtml === 'function' ? compareLinkHtml(d) : ''}
                     <div class="book-links">${linkButtons(travel)}</div>
                 </div>
                 <p class="budget__note">${t('Giá phòng tham khảo cho 2 người/đêm, cao hơn vào lễ Tết và cuối tuần. Việt Travel không nhận hoa hồng từ các trang đặt chỗ.')}</p>
