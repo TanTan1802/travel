@@ -431,6 +431,33 @@ function initBudgetFilter() {
     })
 }
 
+/*==================== BẠN ĐÃ XEM GẦN ĐÂY ====================*/
+function initRecent() {
+    const box = document.getElementById('recent')
+    const list = document.getElementById('recent-list')
+    if (!box || !list || typeof Recent === 'undefined') return
+    const TYPES = { dest: t('Điểm đến'), tour: t('Tour'), trek: t('Trekking') }
+    const url = x => (x.t === 'dest' ? destinationUrl(x.id) : `${SITE_ROOT}${LANG_PREFIX}${x.t === 'tour' ? 'tour' : 'trekking'}/${x.id}/index.html`)
+    const nameOf = n => (n && typeof n === 'object' ? n[LANG] || n.vi || Object.values(n)[0] : n)
+    const items = Recent.list()
+        .filter(x => TYPES[x.t])
+        .map(x => ({ ...x, dest: getDestination(x.t === 'dest' ? x.id : x.d), n: nameOf(x.n) }))
+        .filter(x => (x.t === 'dest' ? x.dest : x.n))
+        .slice(0, 6)
+    box.hidden = !items.length
+    if (!items.length) return
+    list.innerHTML = items.map(x => `
+        <a href="${url(x)}" class="recent__item">
+            ${x.dest ? `<img data-wiki="${wikiAttr(heroCandidates(x.dest))}" data-width="480" alt="" loading="lazy">` : '<span class="recent__noimg"><i class="ri-image-line"></i></span>'}
+            <span class="recent__text"><small>${TYPES[x.t]}</small><strong>${x.t === 'dest' ? x.dest.name : x.n}</strong></span>
+        </a>`).join('')
+    hydrateWikiImages(list)
+    document.getElementById('recent-clear')?.addEventListener('click', () => {
+        Recent.clear()
+        box.hidden = true
+    })
+}
+
 function initExplore() {
     const params = new URLSearchParams(location.search)
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
@@ -456,6 +483,7 @@ function initExplore() {
 
     initFavoriteFilter()
     initMonthFilter()
+    initRecent()
     initBudgetFilter()
     initNearFilter()
 

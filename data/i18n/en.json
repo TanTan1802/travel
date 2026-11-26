@@ -723,7 +723,9 @@
     "Tìm kiếm": "Search",
     "Tìm kiếm (/)": "Search (/)",
     "So sánh điểm đến": "Compare destinations",
-    "Lọc theo ngân sách": "Filter by budget"
+    "Lọc theo ngân sách": "Filter by budget",
+    "Xóa lịch sử": "Clear history",
+    "Bạn đã xem gần đây": "Recently viewed"
   },
   "regions": {
     "bac": "Northern Vietnam",

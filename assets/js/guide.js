@@ -116,6 +116,14 @@ if (gearBox) {
 }
 
 /* Trang một tour: tùy chỉnh lịch – bỏ / thêm điểm tham quan, tính lại vé và tổng; nhớ lựa chọn trên máy này */
+/* Ghi "đã xem gần đây" cho trang tour / trekking (trang chủ hiện lại) */
+{
+    const tourId = document.querySelector('[data-tour-custom]')?.dataset.tourCustom
+    const trekId = (location.pathname.match(/\/trekking\/([a-z0-9-]+)\/(index\.html)?$/) || [])[1]
+    const name = document.querySelector('h1')?.textContent.trim()
+    if ((tourId || trekId) && name) Recent.add({ t: tourId ? 'tour' : 'trek', id: tourId || trekId, n: { [LANG]: name }, d: Recent.pageDest() })
+}
+
 const tourCustom = document.querySelector('[data-tour-custom]')
 if (tourCustom) {
     const key = `tour-custom:${tourCustom.dataset.tourCustom}`

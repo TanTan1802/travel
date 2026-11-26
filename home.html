@@ -139,6 +139,15 @@
                 </div>
             </section>
 
+            <!-- Đã xem gần đây: lưu trên máy người xem (assets/js/favorites.js), chỉ hiện khi có (assets/js/home.js) -->
+            <section class="recent container" id="recent" aria-labelledby="recent-title" hidden>
+                <div class="recent__head">
+                    <h2 class="recent__title" id="recent-title"><i class="ri-history-line"></i> Bạn đã xem gần đây</h2>
+                    <button type="button" class="recent__clear" id="recent-clear">Xóa lịch sử</button>
+                </div>
+                <div class="recent__list" id="recent-list"></div>
+            </section>
+
             <!--==================== ABOUT ====================-->
             <section class="about section" id="about">
                 <div class="about__container container grid">

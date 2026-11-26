@@ -1060,6 +1060,26 @@ test('ô tìm kiếm: có trên mọi loại trang, hiểu "Phú Quốc 3 ngày"
     await close()
 })
 
+test('đã xem gần đây: trang điểm đến, tour, trekking hiện lại ở trang chủ', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.ok(await page.isHidden('#recent'), 'chưa xem gì thì ẩn mục đã xem')
+    for (const url of ['diem-den/hoi-an/index.html', 'tour/da-lat-3-ngay/index.html', 'trekking/lao-than/index.html']) {
+        await page.goto(`${server.url}${url}`)
+        await page.waitForLoadState('load')
+    }
+    await page.goto(`${server.url}index.html`)
+    const items = await page.$$eval('#recent-list .recent__item', a => a.map(x => x.getAttribute('href')))
+    assert.deepEqual(items, ['trekking/lao-than/index.html', 'tour/da-lat-3-ngay/index.html', 'diem-den/hoi-an/index.html'])
+    await page.goto(`${server.url}en/index.html`)
+    assert.ok((await page.textContent('#recent-list')).includes('Hoi An'), 'trang tiếng Anh dùng tên tiếng Anh của điểm đến')
+    await page.click('#recent-clear')
+    assert.ok(await page.isHidden('#recent'))
+    await page.reload()
+    assert.ok(await page.isHidden('#recent'), 'xóa lịch sử phải giữ sau khi tải lại')
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('so sánh điểm đến: chọn theo link ?d=, đổi lựa chọn cập nhật cột và link', async () => {
     const { page, errors, close } = await openPage('so-sanh/index.html?d=da-lat,sa-pa,hoi-an')
     const cols = () => page.$$eval('thead th[data-col]:not([hidden])', a => a.map(x => x.dataset.col))

@@ -7268,3 +7268,86 @@ body.dark-theme #destination {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/*==================== BẠN ĐÃ XEM GẦN ĐÂY (trang chủ) ====================*/
+.recent {
+    padding-top: 2rem;
+}
+.recent[hidden] {
+    display: none;
+}
+.recent__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .75rem;
+}
+.recent__title {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: var(--h3-font-size);
+    color: var(--title-color);
+}
+.recent__clear {
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+.recent__list {
+    display: flex;
+    gap: .75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: .25rem;
+}
+.recent__item {
+    flex: 0 0 210px;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .45rem;
+    border-radius: 1rem;
+    background: var(--container-color);
+    box-shadow: var(--shadow);
+    color: var(--title-color);
+    scroll-snap-align: start;
+}
+.recent__item img,
+.recent__noimg {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: .75rem;
+    object-fit: cover;
+    background: var(--input-color);
+}
+.recent__noimg {
+    display: grid;
+    place-items: center;
+    color: var(--text-color-light);
+}
+.recent__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.recent__text small {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+}
+.recent__text strong {
+    font-size: var(--small-font-size);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

@@ -8,6 +8,7 @@ const destRoot = document.getElementById('destination')
 const destId = window.DEST_ID || new URLSearchParams(location.search).get('id')
 const dest = getDestination(destId)
 const isPrerendered = destRoot.hasAttribute('data-prerendered')
+if (dest) Recent.add({ t: 'dest', id: dest.id })
 
 /*==================== GALLERY: LẤP ĐẦY HÀNG CUỐI ====================*/
 /*

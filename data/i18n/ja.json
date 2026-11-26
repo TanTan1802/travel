@@ -723,7 +723,9 @@
     "Tìm kiếm": "検索",
     "Tìm kiếm (/)": "検索 (/)",
     "So sánh điểm đến": "目的地を比較",
-    "Lọc theo ngân sách": "予算で絞り込む"
+    "Lọc theo ngân sách": "予算で絞り込む",
+    "Xóa lịch sử": "履歴を消去",
+    "Bạn đã xem gần đây": "最近見たページ"
   },
   "regions": {
     "bac": "北部ベトナム",
