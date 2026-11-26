@@ -601,7 +601,14 @@
     "3 ngày dưới 2 triệu": "3 days under 2M ₫",
     "3 ngày 2 – 2,5 triệu": "3 days 2 – 2.5M ₫",
     "3 ngày trên 2,5 triệu": "3 days over 2.5M ₫",
-    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "Estimated cost for 3 days 2 nights per person, budget level, excluding travel to get there"
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "Estimated cost for 3 days 2 nights per person, budget level, excluding travel to get there",
+    "Điểm đến đi được dưới 5 triệu": "Destinations you can do for under 5 million VND",
+    "3 ngày 2 đêm tại chỗ": "3 days 2 nights on the ground",
+    "Từ Hà Nội (khứ hồi)": "From Hanoi (return)",
+    "Từ TP. Hồ Chí Minh (khứ hồi)": "From Ho Chi Minh City (return)",
+    "Tổng": "Total",
+    "Trên 5 triệu": "Over 5 million",
+    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{n} of {all} destinations can be done for under 5 million VND per person from at least one of the two cities. On-the-ground costs cover room, food, sights and local transport at budget level; the trip there is an estimated budget fare for the suggested transport."
   },
   "html": {
     "Vùng miền": "Region",

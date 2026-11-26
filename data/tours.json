@@ -1364,6 +1364,152 @@
         ]
       ],
       "updated": "2026-11"
+    },
+    {
+      "id": "bac-trung-nam-7-ngay",
+      "name": [
+        "Việt Nam 7 ngày Bắc – Trung – Nam: Hà Nội, Hội An, Sài Gòn",
+        "Vietnam in 7 days, north to south: Hanoi, Hoi An, Saigon"
+      ],
+      "dest": "ha-noi",
+      "style": "route",
+      "days": 7,
+      "stay": [
+        "hotel",
+        "homestay"
+      ],
+      "summary": [
+        "Ba miền trong một tuần: phố cổ Hà Nội, đèn lồng Hội An và Bà Nà, rồi Sài Gòn với địa đạo Củ Chi và một ngày miền Tây sông nước. Hai chặng bay, không phải quay lại.",
+        "Three regions in one week: Hanoi's Old Quarter, Hoi An's lanterns and Ba Na Hills, then Saigon with the Cu Chi tunnels and a day on the Mekong Delta. Two flights, no backtracking."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Hà Nội – phố cổ, Hồ Gươm",
+            "Hanoi – Old Quarter and Hoan Kiem Lake"
+          ],
+          "text": [
+            "Dạo Hồ Gươm, đền Ngọc Sơn, ngồi xích lô quanh 36 phố phường; tối xem múa rối nước.",
+            "Walk around Hoan Kiem Lake and Ngoc Son temple, take a cyclo through the Old Quarter, then a water puppet show in the evening."
+          ],
+          "sights": [
+            "Hồ Hoàn Kiếm – cầu Thê Húc",
+            "Đền Ngọc Sơn",
+            "Xích lô 36 phố phường",
+            "Nhà hát Múa rối nước Thăng Long"
+          ]
+        },
+        {
+          "title": [
+            "Hà Nội – Lăng Bác, Văn Miếu",
+            "Hanoi – Ho Chi Minh Mausoleum and Temple of Literature"
+          ],
+          "text": [
+            "Sáng viếng Lăng Bác, Chùa Một Cột, Văn Miếu; chiều Nhà tù Hỏa Lò, hoàng hôn ở Hồ Tây.",
+            "Morning at the Ho Chi Minh Mausoleum, One Pillar Pagoda and the Temple of Literature; afternoon at Hoa Lo prison and sunset on West Lake."
+          ],
+          "sights": [
+            "Lăng Chủ tịch Hồ Chí Minh",
+            "Chùa Một Cột",
+            "Văn Miếu – Quốc Tử Giám",
+            "Nhà tù Hỏa Lò",
+            "Hồ Tây – phủ Tây Hồ"
+          ]
+        },
+        {
+          "dest": "hoi-an",
+          "title": [
+            "Bay vào miền Trung – phố cổ Hội An",
+            "Fly to central Vietnam – Hoi An Old Town"
+          ],
+          "text": [
+            "Sáng bay Hà Nội – Đà Nẵng, xe về Hội An. Chiều dạo phố cổ, Chùa Cầu, tối thả hoa đăng trên sông Hoài.",
+            "Morning flight from Hanoi to Da Nang and a transfer to Hoi An. Explore the Old Town and the Japanese Bridge, then float a lantern on the Hoai River."
+          ],
+          "sights": [
+            "Vé tham quan phố cổ Hội An",
+            "Chùa Cầu",
+            "Thả hoa đăng sông Hoài"
+          ]
+        },
+        {
+          "dest": "da-nang",
+          "title": [
+            "Bà Nà Hills – Cầu Vàng",
+            "Ba Na Hills – Golden Bridge"
+          ],
+          "text": [
+            "Cả ngày trên Bà Nà: cáp treo, Cầu Vàng, Làng Pháp. Tối nghỉ ở Đà Nẵng, xem Cầu Rồng.",
+            "A full day at Ba Na Hills: cable car, Golden Bridge and the French Village. Overnight in Da Nang and see the Dragon Bridge."
+          ],
+          "sights": [
+            "Bà Nà Hills – Cầu Vàng",
+            "Làng Pháp – vườn hoa Le Jardin D'Amour",
+            "Cầu Rồng"
+          ]
+        },
+        {
+          "dest": "sai-gon",
+          "title": [
+            "Bay vào Sài Gòn",
+            "Fly to Saigon"
+          ],
+          "text": [
+            "Sáng bay Đà Nẵng – TP. Hồ Chí Minh. Chiều thăm Dinh Độc Lập, Nhà thờ Đức Bà, Bưu điện Thành phố; tối food tour xe máy Quận 4.",
+            "Morning flight from Da Nang to Ho Chi Minh City. Afternoon at Independence Palace, Notre-Dame Cathedral and the Central Post Office; motorbike food tour in District 4 at night."
+          ],
+          "sights": [
+            "Dinh Độc Lập",
+            "Nhà thờ Đức Bà",
+            "Bưu điện Thành phố",
+            "Food tour xe máy Quận 4"
+          ]
+        },
+        {
+          "title": [
+            "Địa đạo Củ Chi – trung tâm",
+            "Cu Chi tunnels – city centre"
+          ],
+          "text": [
+            "Sáng đi địa đạo Củ Chi, chiều về Bảo tàng Chứng tích Chiến tranh và chợ Bến Thành.",
+            "Morning at the Cu Chi tunnels, afternoon at the War Remnants Museum and Ben Thanh market."
+          ],
+          "sights": [
+            "Địa đạo Củ Chi",
+            "Bảo tàng Chứng tích Chiến tranh",
+            "Chợ Bến Thành"
+          ]
+        },
+        {
+          "title": [
+            "Một ngày miền Tây – bay về",
+            "A day in the Mekong Delta – fly home"
+          ],
+          "text": [
+            "Đi Mỹ Tho – cồn Thới Sơn, xuồng ba lá trong rạch dừa Bến Tre, chiều về TP. Hồ Chí Minh ra sân bay.",
+            "Day trip to My Tho and Thoi Son islet with a sampan ride through Ben Tre's coconut canals, back to Ho Chi Minh City for the flight home."
+          ],
+          "sights": [
+            "Mỹ Tho – cồn Thới Sơn",
+            "Xuồng ba lá rạch dừa Bến Tre"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Đặt hai chặng bay một chiều Hà Nội → Đà Nẵng và Đà Nẵng → TP. Hồ Chí Minh thay vì vé khứ hồi; sân bay Đà Nẵng cách Hội An khoảng 30 km.",
+          "Book two one-way flights, Hanoi → Da Nang and Da Nang → Ho Chi Minh City, instead of returns; Da Nang airport is about 30 km from Hoi An."
+        ],
+        [
+          "Ba miền khác khí hậu: Hà Nội có mùa đông lạnh, miền Trung mưa nhiều khoảng tháng 10 – 12, miền Nam mùa mưa khoảng tháng 5 – 11 (thường mưa rào buổi chiều) – mang áo khoác mỏng và áo mưa.",
+          "The three regions have different climates: Hanoi has a cool winter, central Vietnam is wettest around October – December and the south's rainy season runs roughly May – November (mostly afternoon showers) – pack a light jacket and a rain poncho."
+        ],
+        [
+          "Lịch khá dày – muốn chậm hơn thì bỏ Bà Nà để thêm một ngày ở Hội An, hoặc dùng nút tùy chỉnh để bớt điểm tham quan.",
+          "The pace is brisk – to slow down, swap Ba Na Hills for an extra day in Hoi An, or use the customise option to drop some sights."
+        ]
+      ],
+      "updated": "2026-11"
     }
   ]
 }

@@ -601,7 +601,14 @@
     "3 ngày dưới 2 triệu": "3日間 200万₫未満",
     "3 ngày 2 – 2,5 triệu": "3日間 200万–250万₫",
     "3 ngày trên 2,5 triệu": "3日間 250万₫超",
-    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1人あたり2泊3日の目安費用（節約）、現地までの交通費を除く"
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1人あたり2泊3日の目安費用（節約）、現地までの交通費を除く",
+    "Điểm đến đi được dưới 5 triệu": "500万₫以下で行ける旅行先",
+    "3 ngày 2 đêm tại chỗ": "現地2泊3日",
+    "Từ Hà Nội (khứ hồi)": "ハノイから（往復）",
+    "Từ TP. Hồ Chí Minh (khứ hồi)": "ホーチミン市から（往復）",
+    "Tổng": "合計",
+    "Trên 5 triệu": "500万₫超",
+    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{all}か所中{n}か所は、2都市の少なくとも一方から1人500万₫以下で行けます。現地費用は節約レベルの宿・食事・入場料・現地交通を含み、移動費はおすすめ交通手段の節約時の目安運賃です。"
   },
   "html": {
     "Vùng miền": "地域",

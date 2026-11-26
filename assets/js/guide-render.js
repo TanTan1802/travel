@@ -148,7 +148,62 @@ function calendarWidget() {
     `
 }
 
-const GUIDE_WIDGETS = { months: monthsWidget, calendar: calendarWidget }
+/* Đi dưới 5 triệu: 3 ngày 2 đêm mức tiết kiệm + khứ hồi tiết kiệm từ Hà Nội / TP. Hồ Chí Minh – cùng công thức trang điểm đến */
+const BUDGET_LIMIT = 5e6
+const BUDGET_HUBS = ['ha-noi', 'sai-gon']
+function budgetLeg(hubId, d) {
+    if (hubId === d.id) return { cost: 0, html: t('Ngay tại đây') }
+    const res = transportOptions(getDestination(hubId), d, 'saving')
+    const o = res.options.find(x => x.mode === res.recommended) || res.options[0]
+    return { cost: o.cost * 2, html: `<i class="${MODE_ICONS[o.mode]}"></i> ${modeLabel(o)}` }
+}
+function budgetRows() {
+    return DESTINATIONS.map(d => {
+        const stay = tripCost(d.id, 3, 'saving').total
+        const from = BUDGET_HUBS.map(h => { const leg = budgetLeg(h, d); return { ...leg, total: stay + leg.cost } })
+        return { d, stay, from, best: Math.min(...from.map(f => f.total)) }
+    }).filter(r => r.best <= BUDGET_LIMIT).sort((a, b) => a.best - b.best)
+}
+function budgetWidget() {
+    const rows = budgetRows()
+    return `
+        <div class="compare-scroll guide-table" tabindex="0" role="region" aria-label="${t('Điểm đến đi được dưới 5 triệu')}">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th scope="col">${t('Điểm đến')}</th>
+                        <th scope="col">${t('3 ngày 2 đêm tại chỗ')}</th>
+                        <th scope="col">${t('Từ Hà Nội (khứ hồi)')}</th>
+                        <th scope="col">${t('Từ TP. Hồ Chí Minh (khứ hồi)')}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map(r => `
+                        <tr>
+                            <th scope="row"><a href="${destinationUrl(r.d.id)}">${r.d.name}</a></th>
+                            <td>${shortVnd(r.stay)}</td>
+                            ${r.from.map(f => (f.total <= BUDGET_LIMIT
+                                ? `<td>${f.html}${f.cost ? ` · ${shortVnd(f.cost)}` : ''}<br>${t('Tổng')}: <strong>${shortVnd(f.total)}</strong></td>`
+                                : `<td class="is-muted">${t('Trên 5 triệu')}</td>`)).join('')}
+                        </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>
+        <p class="budget__note">${t('{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.', { n: rows.length, all: DESTINATIONS.length })}</p>
+    `
+}
+
+/* Đi cùng trẻ em: tour kiểu gia đình / nghỉ dưỡng (tour-render.js) kèm chi phí ước tính */
+function familyWidget() {
+    const list = tourList().filter(x => ['family', 'resort'].includes(x.style))
+    return `
+        <ul class="guide-section__list">
+            ${list.map(x => `<li><a href="${tourUrl(x.id)}">${pickLang(x.name)}</a> · ${tourDaysText(x)} · ${priceRange(tourCost(x).total)} / ${t('người')}</li>`).join('')}
+        </ul>
+    `
+}
+
+const GUIDE_WIDGETS = { months: monthsWidget, calendar: calendarWidget, budget: budgetWidget, family: familyWidget }
 
 function guideSection(section, i) {
     return `

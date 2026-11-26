@@ -601,7 +601,14 @@
     "3 ngày dưới 2 triệu": "3일 200만₫ 미만",
     "3 ngày 2 – 2,5 triệu": "3일 200만–250만₫",
     "3 ngày trên 2,5 triệu": "3일 250만₫ 초과",
-    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1인 2박 3일 예상 비용(절약형), 현지까지 교통비 제외"
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1인 2박 3일 예상 비용(절약형), 현지까지 교통비 제외",
+    "Điểm đến đi được dưới 5 triệu": "500만₫ 이하로 갈 수 있는 여행지",
+    "3 ngày 2 đêm tại chỗ": "현지 2박 3일",
+    "Từ Hà Nội (khứ hồi)": "하노이 출발 (왕복)",
+    "Từ TP. Hồ Chí Minh (khứ hồi)": "호찌민시 출발 (왕복)",
+    "Tổng": "합계",
+    "Trên 5 triệu": "500만₫ 초과",
+    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{all}곳 중 {n}곳은 두 도시 중 한 곳 이상에서 1인 500만₫ 이하로 다녀올 수 있습니다. 현지 비용은 절약형 기준 숙소, 식사, 입장료, 현지 교통을 포함하며, 이동 요금은 추천 교통수단의 절약형 예상 요금입니다."
   },
   "html": {
     "Vùng miền": "지역",

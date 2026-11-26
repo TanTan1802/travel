@@ -7351,3 +7351,18 @@ body.dark-theme #destination {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* Bảng trong bài cẩm nang (đi dưới 5 triệu) */
+.guide-table {
+  margin-top: 1rem;
+}
+.compare-table thead th {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+.compare-table tbody th a {
+  color: var(--first-color-text);
+}
+.compare-table td.is-muted {
+  color: var(--text-color-light);
+}

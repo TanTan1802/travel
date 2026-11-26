@@ -677,6 +677,208 @@
         "ly-son",
         "phong-nha"
       ]
+    },
+    {
+      "slug": "di-tiet-kiem-duoi-5-trieu",
+      "icon": "ri-coins-line",
+      "title": [
+        "Đi tiết kiệm dưới 5 triệu: đi đâu, đi thế nào",
+        "Travel on under 5 million VND: where to go and how"
+      ],
+      "summary": [
+        "Danh sách điểm đến mà 3 ngày 2 đêm cộng vé khứ hồi từ Hà Nội hoặc TP. Hồ Chí Minh vẫn dưới 5 triệu / người – tính từ chính dữ liệu giá của site – kèm cách giữ chi phí thấp.",
+        "Destinations where 3 days and 2 nights plus a return trip from Hanoi or Ho Chi Minh City stay under 5 million VND per person – calculated from the site's own price data – with ways to keep costs down."
+      ],
+      "sections": [
+        {
+          "heading": [
+            "5 triệu được gì?",
+            "What does 5 million VND get you?"
+          ],
+          "paragraphs": [
+            [
+              "Bảng dưới cộng hai phần: chi phí 3 ngày 2 đêm tại chỗ ở mức tiết kiệm (phòng, ăn uống, vé tham quan, đi lại trong vùng) và vé khứ hồi tiết kiệm cho phương tiện gợi ý từ Hà Nội hoặc TP. Hồ Chí Minh. Cùng công thức với phần chi phí trên trang từng điểm đến, nên con số luôn khớp với site.",
+              "The table adds two parts: 3 days and 2 nights on the ground at budget level (room, food, sights, local transport) and a budget return trip by the suggested transport from Hanoi or Ho Chi Minh City. It uses the same formula as the cost section on each destination page, so the numbers always match the site."
+            ],
+            [
+              "Điểm đến gần thành phố bạn ở thường rẻ hơn hẳn vì đi xe khách hoặc tàu thay cho máy bay.",
+              "Destinations close to your home city are usually much cheaper, because a bus or train replaces the flight."
+            ]
+          ]
+        },
+        {
+          "heading": [
+            "Điểm đến đi được dưới 5 triệu",
+            "Destinations you can do for under 5 million"
+          ],
+          "widget": "budget"
+        },
+        {
+          "heading": [
+            "Cách giữ chi phí thấp",
+            "How to keep costs down"
+          ],
+          "list": [
+            [
+              "Đi chặng dài bằng xe giường nằm hoặc tàu đêm: vừa đi lại vừa đỡ một đêm phòng.",
+              "Take long legs by sleeper bus or overnight train: you travel and save a night's room at the same time."
+            ],
+            [
+              "Đặt vé máy bay sớm và tránh cuối tuần, lễ Tết; vé giá rẻ thường chỉ gồm hành lý xách tay.",
+              "Book flights early and avoid weekends and public holidays; budget fares usually include cabin baggage only."
+            ],
+            [
+              "Ở homestay, nhà nghỉ hoặc hostel phòng tập thể – nhiều nơi có bếp chung và cho thuê xe máy.",
+              "Stay in homestays, guesthouses or hostel dorms – many have a shared kitchen and rent out scooters."
+            ],
+            [
+              "Ăn ở quán địa phương, chợ đêm; hỏi giá trước khi gọi món ở nơi không có thực đơn ghi giá.",
+              "Eat at local eateries and night markets; ask the price first where the menu has none."
+            ],
+            [
+              "Đi mùa thấp điểm: phòng và tour rẻ hơn, nhưng xem kỹ thời tiết của điểm đến (mục Thời điểm du lịch).",
+              "Travel in the low season: rooms and tours are cheaper, but check the destination's weather first (see When to visit)."
+            ],
+            [
+              "Đi nhóm 2 – 4 người để chia tiền phòng, thuê xe, thuê thuyền.",
+              "Travel in a group of 2 – 4 to split rooms, car hire and boat hire."
+            ]
+          ]
+        },
+        {
+          "heading": [
+            "Lập kế hoạch với số tiền của bạn",
+            "Plan around your own budget"
+          ],
+          "paragraphs": [
+            [
+              "Trình lập kế hoạch tính chi phí theo số ngày, số người và mức chi tiêu bạn chọn; trang chủ có bộ lọc ngân sách 3 ngày để lọc nhanh điểm đến.",
+              "The trip planner calculates costs for the number of days, travellers and spending level you choose; the home page has a 3-day budget filter to narrow destinations quickly."
+            ]
+          ]
+        }
+      ],
+      "related": [
+        "ninh-binh",
+        "ha-giang",
+        "can-tho",
+        "quy-nhon"
+      ]
+    },
+    {
+      "slug": "du-lich-voi-tre-em",
+      "icon": "ri-parent-line",
+      "title": [
+        "Du lịch Việt Nam với trẻ em",
+        "Travelling in Vietnam with children"
+      ],
+      "summary": [
+        "Chọn điểm đến, nhịp đi, đi lại và sức khỏe khi đi cùng con nhỏ – kèm các tour lịch nhẹ hợp gia đình.",
+        "Choosing destinations, pace, transport and health when travelling with young children – plus easy-paced family tours."
+      ],
+      "sections": [
+        {
+          "heading": [
+            "Chọn điểm đến",
+            "Choosing where to go"
+          ],
+          "list": [
+            [
+              "Ưu tiên nơi ít di chuyển: một điểm đến với 2 – 3 đêm ở cùng một chỗ dễ chịu hơn nhiều so với đổi khách sạn mỗi ngày.",
+              "Favour places with little travel: one destination with 2 – 3 nights in the same place is far easier than changing hotels every day."
+            ],
+            [
+              "Biển có bãi thoải, sóng nhẹ và resort có hồ bơi, sân chơi hợp với trẻ nhỏ; khu vui chơi lớn có ở Phú Quốc, Nha Trang, Đà Nẵng.",
+              "Gently sloping beaches with calm water and resorts with a pool and play area suit young children; big theme parks are in Phu Quoc, Nha Trang and Da Nang."
+            ],
+            [
+              "Xem tháng đẹp của từng nơi để tránh mùa mưa bão – mỗi trang điểm đến có lịch theo tháng.",
+              "Check each place's best months to avoid the storm season – every destination page has a month-by-month calendar."
+            ]
+          ]
+        },
+        {
+          "heading": [
+            "Tour lịch nhẹ hợp gia đình",
+            "Easy-paced family tours"
+          ],
+          "widget": "family"
+        },
+        {
+          "heading": [
+            "Nhịp đi và ăn ở",
+            "Pace, food and rooms"
+          ],
+          "list": [
+            [
+              "Mỗi ngày 1 – 2 điểm chính, nghỉ trưa trong phòng vào giờ nắng gắt.",
+              "One or two main sights a day, with a rest indoors in the midday heat."
+            ],
+            [
+              "Đặt phòng gia đình hoặc phòng thông nhau, hỏi trước về nôi, giường phụ.",
+              "Book a family or connecting room and ask ahead about cots and extra beds."
+            ],
+            [
+              "Uống nước đóng chai, chọn quán đông khách, đồ ăn nấu chín; mang theo đồ ăn vặt quen thuộc của bé.",
+              "Drink bottled water, pick busy eateries and cooked food; bring your child's familiar snacks."
+            ]
+          ]
+        },
+        {
+          "heading": [
+            "Đi lại",
+            "Getting around"
+          ],
+          "list": [
+            [
+              "Máy bay: theo quy định của hãng, thường dưới 2 tuổi là em bé (ngồi lòng người lớn), từ 2 đến dưới 12 tuổi là trẻ em – kiểm tra giá vé và hành lý cho xe đẩy khi đặt.",
+              "Flights: airline rules apply, usually under 2 is an infant (on an adult's lap) and 2 to under 12 is a child – check fares and stroller allowance when booking."
+            ],
+            [
+              "Tàu hỏa có giá vé trẻ em và miễn vé cho bé nhỏ đi chung chỗ với người lớn – xem quy định độ tuổi mới nhất trên dsvn.vn.",
+              "Trains have child fares and free travel for small children sharing an adult's seat – check the latest age rules on dsvn.vn."
+            ],
+            [
+              "Nhiều khu vui chơi tính vé trẻ em theo chiều cao thay vì tuổi – xem bảng giá trước khi đi.",
+              "Many theme parks price children's tickets by height rather than age – check the price list before you go."
+            ],
+            [
+              "Ô tô công nghệ và taxi thường không có ghế trẻ em; tránh chở trẻ bằng xe máy, nếu bắt buộc thì phải có mũ bảo hiểm vừa cỡ.",
+              "Ride-hailing cars and taxis rarely have child seats; avoid carrying children on scooters, and if you must, use a properly fitted helmet."
+            ]
+          ]
+        },
+        {
+          "heading": [
+            "Sức khỏe và an toàn",
+            "Health and safety"
+          ],
+          "list": [
+            [
+              "Nắng gắt quanh năm ở miền Nam và miền Trung: mũ, kem chống nắng, áo dài tay mỏng, uống nhiều nước.",
+              "The sun is strong year-round in the south and centre: hat, sunscreen, light long sleeves and plenty of water."
+            ],
+            [
+              "Dùng kem chống muỗi, nhất là mùa mưa – sốt xuất huyết lây qua muỗi đốt.",
+              "Use mosquito repellent, especially in the rainy season – dengue is spread by mosquito bites."
+            ],
+            [
+              "Mang thuốc hạ sốt, men tiêu hóa, oresol và thuốc riêng của bé; ghi số cấp cứu 115.",
+              "Pack fever reducer, probiotics, oral rehydration salts and your child's own medicine; note the ambulance number 115."
+            ],
+            [
+              "Cho bé mặc áo phao khi đi tàu, cano ra đảo – hỏi đơn vị tour có áo cỡ trẻ em không.",
+              "Children should wear life jackets on boats and speedboats – ask the operator for child sizes."
+            ]
+          ]
+        }
+      ],
+      "related": [
+        "phu-quoc",
+        "nha-trang",
+        "da-nang",
+        "da-lat"
+      ]
     }
   ]
 }
