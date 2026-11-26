@@ -568,7 +568,21 @@
     "Chia sẻ lịch này": "分享这个行程",
     "Ngày đi": "出发日期",
     "In lịch trình": "打印行程",
-    "Chọn ngày đi để tạo lịch": "请先选择出发日期再生成日历"
+    "Chọn ngày đi để tạo lịch": "请先选择出发日期再生成日历",
+    "Tour": "行程",
+    "Trang": "页面",
+    "Tìm kiếm": "搜索",
+    "Tìm điểm đến, món ăn, tour…": "搜索目的地、美食、行程…",
+    "Ví dụ: \"Phú Quốc 3 ngày\", \"Hội An ăn gì\", \"trekking\", \"tháng 12\"": "例如：“富国岛 3 天”、“会安 美食”、“徒步”、“12 月”",
+    "Không tìm thấy – thử tên khác, viết không dấu hoặc ít từ hơn.": "没有找到——换个名称或少输入几个词试试。",
+    "{name}: ăn gì?": "{name}：吃什么？",
+    "ăn gì": "吃什么 美食",
+    "Đi đâu tháng {m}?": "{m}去哪儿？",
+    "Điểm đến, lễ hội, tour đẹp trong tháng": "当月的目的地、节庆与行程",
+    "Lịch trình 1 – 7 ngày, chi phí ước tính": "1 – 7 天行程及预估费用",
+    "Cung đường, độ khó, quy định": "路线、难度与规定",
+    "Ghép nhiều điểm đến, tính chi phí": "组合多个目的地并估算费用",
+    "Lịch lễ hội cả năm": "全年节庆日历"
   },
   "html": {
     "Vùng miền": "地区",
@@ -686,7 +700,9 @@
     "Trekking": "徒步",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "每月一封邮件：当季最美的目的地、即将到来的节庆和最新旅行指南。",
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 图片：Wikimedia Commons (CC BY / CC BY-SA) · 设计基于 Bedimcode 模板",
-    "Tour": "行程"
+    "Tour": "行程",
+    "Tìm kiếm": "搜索",
+    "Tìm kiếm (/)": "搜索 (/)"
   },
   "regions": {
     "bac": "越南北部",

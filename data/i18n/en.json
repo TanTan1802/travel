@@ -568,7 +568,21 @@
     "Chia sẻ lịch này": "Share this plan",
     "Ngày đi": "Start date",
     "In lịch trình": "Print itinerary",
-    "Chọn ngày đi để tạo lịch": "Pick a start date to create the calendar"
+    "Chọn ngày đi để tạo lịch": "Pick a start date to create the calendar",
+    "Tour": "Tour",
+    "Trang": "Page",
+    "Tìm kiếm": "Search",
+    "Tìm điểm đến, món ăn, tour…": "Search destinations, food, tours…",
+    "Ví dụ: \"Phú Quốc 3 ngày\", \"Hội An ăn gì\", \"trekking\", \"tháng 12\"": "E.g. \"Phu Quoc 3 days\", \"Hoi An food\", \"trekking\", \"December\"",
+    "Không tìm thấy – thử tên khác, viết không dấu hoặc ít từ hơn.": "Nothing found – try another name or fewer words.",
+    "{name}: ăn gì?": "{name}: what to eat",
+    "ăn gì": "what to eat food",
+    "Đi đâu tháng {m}?": "Where to go in {m}?",
+    "Điểm đến, lễ hội, tour đẹp trong tháng": "Destinations, festivals and tours for the month",
+    "Lịch trình 1 – 7 ngày, chi phí ước tính": "1 – 7 day itineraries with estimated costs",
+    "Cung đường, độ khó, quy định": "Routes, difficulty and rules",
+    "Ghép nhiều điểm đến, tính chi phí": "Combine destinations and estimate costs",
+    "Lịch lễ hội cả năm": "Festival calendar for the year"
   },
   "html": {
     "Vùng miền": "Region",
@@ -686,7 +700,9 @@
     "Trekking": "Trekking",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "One email a month: destinations coming into season, upcoming festivals and new guides.",
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · Photos: Wikimedia Commons (CC BY / CC BY-SA) · Design based on a Bedimcode template",
-    "Tour": "Tours"
+    "Tour": "Tours",
+    "Tìm kiếm": "Search",
+    "Tìm kiếm (/)": "Search (/)"
   },
   "regions": {
     "bac": "Northern Vietnam",

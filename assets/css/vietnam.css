@@ -340,8 +340,131 @@ body.page-detail {
 }
 
 .header--solid .nav__logo,
+.header--solid .nav__search,
 .header--solid .nav__toggle {
   color: var(--title-color);
+}
+
+/* Hộp tìm kiếm toàn site (search.js) */
+.search {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vh 1rem 1rem;
+  background-color: rgba(0, 0, 0, .45);
+}
+
+.search[hidden] {
+  display: none;
+}
+
+.search__box {
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background-color: var(--body-color);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+  overflow: hidden;
+}
+
+.search__bar {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--input-color);
+  color: var(--text-color);
+  font-size: 1.15rem;
+}
+
+.search__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--title-color);
+  font: inherit;
+  font-size: var(--normal-font-size);
+}
+
+.search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search__close {
+  border: 0;
+  background: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.search__list {
+  margin: 0;
+  padding: .4rem;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.search__item {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  padding: .6rem .7rem;
+  border-radius: .5rem;
+  color: var(--text-color);
+}
+
+.search__item i {
+  margin-top: .15rem;
+  color: var(--first-color-text);
+  font-size: 1.1rem;
+}
+
+.search__item span {
+  display: grid;
+  gap: .1rem;
+  min-width: 0;
+}
+
+.search__item strong {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.search__item small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--small-font-size);
+}
+
+[aria-selected="true"] > .search__item,
+.search__item:hover {
+  background-color: var(--input-color);
+}
+
+.search__empty,
+.search__hint {
+  margin: 0;
+  padding: .75rem 1rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.search__hint {
+  border-top: 1px solid var(--input-color);
+}
+
+body.search-is-open {
+  overflow: hidden;
 }
 
 /* Hero */

@@ -568,7 +568,21 @@
     "Chia sẻ lịch này": "이 일정 공유",
     "Ngày đi": "출발일",
     "In lịch trình": "일정 인쇄",
-    "Chọn ngày đi để tạo lịch": "캘린더를 만들려면 출발일을 선택하세요"
+    "Chọn ngày đi để tạo lịch": "캘린더를 만들려면 출발일을 선택하세요",
+    "Tour": "투어",
+    "Trang": "페이지",
+    "Tìm kiếm": "검색",
+    "Tìm điểm đến, món ăn, tour…": "여행지, 음식, 투어 검색…",
+    "Ví dụ: \"Phú Quốc 3 ngày\", \"Hội An ăn gì\", \"trekking\", \"tháng 12\"": "예: \"푸꾸옥 3일\", \"호이안 음식\", \"트레킹\", \"12월\"",
+    "Không tìm thấy – thử tên khác, viết không dấu hoặc ít từ hơn.": "결과가 없습니다 – 다른 이름이나 더 적은 단어로 검색해 보세요.",
+    "{name}: ăn gì?": "{name}: 무엇을 먹을까?",
+    "ăn gì": "먹을 것 음식",
+    "Đi đâu tháng {m}?": "{m}에 어디로 갈까?",
+    "Điểm đến, lễ hội, tour đẹp trong tháng": "이달의 여행지, 축제, 투어",
+    "Lịch trình 1 – 7 ngày, chi phí ước tính": "1 – 7일 일정과 예상 비용",
+    "Cung đường, độ khó, quy định": "코스, 난이도, 규정",
+    "Ghép nhiều điểm đến, tính chi phí": "여러 여행지를 묶고 비용 계산",
+    "Lịch lễ hội cả năm": "연간 축제 달력"
   },
   "html": {
     "Vùng miền": "지역",
@@ -686,7 +700,9 @@
     "Trekking": "트레킹",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "한 달에 한 번: 제철을 맞은 여행지, 다가오는 축제, 새 여행 가이드를 보내 드립니다.",
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 사진: Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode 템플릿 기반 디자인",
-    "Tour": "투어"
+    "Tour": "투어",
+    "Tìm kiếm": "검색",
+    "Tìm kiếm (/)": "검색 (/)"
   },
   "regions": {
     "bac": "북부 베트남",

@@ -73,7 +73,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
     'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
-    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'privacyPage', 'privacyTitle']
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'tourStopNames', 'tourDaysText', 'tourCost', 'priceRange', 'TREK_LEVELS', 'TOUR_STYLES', 'privacyPage', 'privacyTitle']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -977,6 +977,47 @@ function updateCoreAssets(sw, homeHtml) {
     return sw.replace(/(\/\* build:core-assets \*\/)[\s\S]*?(\n\s*\/\* \/build:core-assets \*\/)/, `$1\n${assets.join('\n')}$2`)
 }
 
+/*
+ * Chỉ mục ô tìm kiếm (assets/js/data/search-<lang>.json, search.js tải khi mở ô tìm):
+ * mỗi mục { t: loại, n: tên, s: dòng phụ, u: đường dẫn từ gốc site, k: từ khóa đã bỏ dấu }.
+ * "Hội An ăn gì" → mục ẩm thực của điểm đến; "Phú Quốc 3 ngày" → tour (từ khóa có "3 ngay 2 dem").
+ */
+const plainText = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+function buildSearchIndex(lang) {
+    const site = loadSite(lang, '')
+    const folder = rel => rel.replace(/index\.html$/, '')
+    const kw = (...parts) => plainText(parts.flat().join(' '))
+    const items = []
+    for (const d of site.DESTINATIONS) {
+        const url = folder(destPath(lang, d.id))
+        items.push({ t: 'dest', n: d.name, s: `${d.province} · ${site.REGIONS[d.region]}`, u: url,
+            k: kw(d.name, d.province, d.tagline, d.categories.map(c => site.CATEGORIES[c]), d.foods.map(f => f.name)) })
+        items.push({ t: 'food', n: site.t('{name}: ăn gì?', { name: d.name }), s: d.foods.slice(0, 4).map(f => f.name).join(', '), u: `${url}#food`,
+            k: kw(d.name, d.province, d.foods.map(f => f.name), 'an gi am thuc mon ngon dac san food eat what to eat', site.t('ăn gì')) })
+    }
+    for (const tp of site.TOUR_PACKAGES) {
+        const nights = tp.days - 1
+        items.push({ t: 'tour', n: site.pickLang(tp.name), s: `${site.tourStopNames(tp)} · ${site.tourDaysText(tp)} · ${site.priceRange(site.tourCost(tp).total)}`, u: folder(tourPath(lang, tp.id)),
+            k: kw(tp.name, site.tourStopNames(tp), site.pickLang(site.TOUR_STYLES[tp.style].label), `${tp.days}ngay ${nights} dem ${tp.days}n${nights}d tour combo`, site.tourDaysText(tp)) })
+    }
+    for (const tr of site.TREKS) {
+        items.push({ t: 'trek', n: site.pickLang(tr.name), s: `${site.pickLang(tr.province)} · ${site.pickLang(site.TREK_LEVELS[tr.level].label)}`, u: folder(trekPath(lang, tr.id)),
+            k: kw(tr.name, tr.province, 'trekking leo nui hiking', tr.summit ? `${tr.summit}m` : '') })
+    }
+    for (const g of site.GUIDES) items.push({ t: 'guide', n: site.pickLang(g.title), s: site.pickLang(g.summary).slice(0, 90), u: folder(guidePath(lang, g.slug)), k: kw(g.title, g.summary) })
+    for (let m = 1; m <= 12; m++) {
+        items.push({ t: 'page', n: site.t('Đi đâu tháng {m}?', { m: site.monthLabel(m) }), s: site.t('Điểm đến, lễ hội, tour đẹp trong tháng'), u: folder(monthPath(lang, m)),
+            k: kw(`thang ${m} month ${m}`, site.monthLabel(m), site.t('Đi đâu tháng {m}?', { m: site.monthLabel(m) })) })
+    }
+    items.push(
+        { t: 'page', n: site.t('Tour & combo'), s: site.t('Lịch trình 1 – 7 ngày, chi phí ước tính'), u: folder(tourPath(lang)), k: kw('tour combo tron goi package', site.t('Tour & combo')) },
+        { t: 'page', n: site.t('Trekking'), s: site.t('Cung đường, độ khó, quy định'), u: folder(trekPath(lang)), k: kw('trekking leo nui hiking', site.t('Trekking')) },
+        { t: 'page', n: site.t('Lên kế hoạch'), s: site.t('Ghép nhiều điểm đến, tính chi phí'), u: folder(plannerPath(lang)), k: kw('ke hoach lich trinh planner plan', site.t('Lên kế hoạch')) },
+        { t: 'page', n: site.t('Lễ hội'), s: site.t('Lịch lễ hội cả năm'), u: folder(festivalPath(lang)), k: kw('le hoi festival su kien', site.t('Lễ hội')) },
+    )
+    return items
+}
+
 function main() {
     const destTemplate = read('destination.html')
     const homeTemplate = read('home.html')
@@ -1034,6 +1075,7 @@ function main() {
         }
     })
 
+    for (const lang of Object.keys(LANGS)) write(`assets/js/data/search-${lang}.json`, JSON.stringify(buildSearchIndex(lang)))
     bundles.forEach((code, rel) => write(rel, code))
     pruneBundles([...bundles.keys()])
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))

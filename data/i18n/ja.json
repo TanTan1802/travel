@@ -568,7 +568,21 @@
     "Chia sẻ lịch này": "この行程を共有",
     "Ngày đi": "出発日",
     "In lịch trình": "行程を印刷",
-    "Chọn ngày đi để tạo lịch": "カレンダーを作るには出発日を選んでください"
+    "Chọn ngày đi để tạo lịch": "カレンダーを作るには出発日を選んでください",
+    "Tour": "ツアー",
+    "Trang": "ページ",
+    "Tìm kiếm": "検索",
+    "Tìm điểm đến, món ăn, tour…": "目的地、料理、ツアーを検索…",
+    "Ví dụ: \"Phú Quốc 3 ngày\", \"Hội An ăn gì\", \"trekking\", \"tháng 12\"": "例：「フーコック 3日」「ホイアン グルメ」「トレッキング」「12月」",
+    "Không tìm thấy – thử tên khác, viết không dấu hoặc ít từ hơn.": "見つかりません – 別の名前か、少ない単語で試してください。",
+    "{name}: ăn gì?": "{name}：何を食べる？",
+    "ăn gì": "食べ物 グルメ",
+    "Đi đâu tháng {m}?": "{m}はどこへ行く？",
+    "Điểm đến, lễ hội, tour đẹp trong tháng": "その月の目的地、祭り、ツアー",
+    "Lịch trình 1 – 7 ngày, chi phí ước tính": "1～7日の行程と費用の目安",
+    "Cung đường, độ khó, quy định": "ルート、難易度、規則",
+    "Ghép nhiều điểm đến, tính chi phí": "複数の目的地を組み合わせて費用を計算",
+    "Lịch lễ hội cả năm": "1年の祭りカレンダー"
   },
   "html": {
     "Vùng miền": "地域",
@@ -686,7 +700,9 @@
     "Trekking": "トレッキング",
     "Mỗi tháng một thư: điểm đến đang vào mùa đẹp, lễ hội sắp tới và cẩm nang mới.": "月に一度のメール：見頃を迎える旅行先、近づくお祭り、新しい旅行ガイドをお届けします。",
     "© 2026 Việt Travel · Ảnh: Wikimedia Commons (CC BY / CC BY-SA) · Giao diện dựa trên mẫu của Bedimcode": "© 2026 Viet Travel · 写真：Wikimedia Commons (CC BY / CC BY-SA) · Bedimcode のテンプレートをもとにしたデザイン",
-    "Tour": "ツアー"
+    "Tour": "ツアー",
+    "Tìm kiếm": "検索",
+    "Tìm kiếm (/)": "検索 (/)"
   },
   "regions": {
     "bac": "北部ベトナム",

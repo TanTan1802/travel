@@ -1023,3 +1023,29 @@ test('tour: chia sẻ lịch đã chỉnh qua link, xuất .ics theo ngày đi, 
     assert.deepEqual(errors, [])
     await close()
 })
+
+test('ô tìm kiếm: có trên mọi loại trang, hiểu "Phú Quốc 3 ngày", "Hội An ăn gì", chọn bằng bàn phím', async () => {
+    for (const url of ['index.html', 'diem-den/hoi-an/index.html', 'ke-hoach/index.html', 'tour/index.html']) {
+        const { page, close } = await openPage(url)
+        assert.equal(await page.locator('#search-open').count(), 1, `${url} thiếu nút tìm`)
+        await close()
+    }
+    const { page, errors, close } = await openPage('cam-nang/index.html')
+    await page.keyboard.press('/')
+    await page.waitForSelector('.search:not([hidden])')
+    const first = async q => {
+        await page.fill('.search__input', q)
+        await page.waitForFunction(() => document.querySelector('.search__item, .search__empty'))
+        return page.$eval('.search__item strong', x => x.textContent).catch(() => '')
+    }
+    assert.match(await first('Phú Quốc 3 ngày'), /Phú Quốc nghỉ dưỡng/)
+    assert.match(await first('hoi an an gi'), /Hội An: ăn gì/)
+    assert.match(await first('da lat nha trang'), /Đà Lạt – Nha Trang/)
+    await page.fill('.search__input', 'xyzabc')
+    await page.waitForSelector('.search__empty')
+    await page.fill('.search__input', 'Hội An ăn gì')
+    await page.waitForSelector('.search__item')
+    await Promise.all([page.waitForURL(/diem-den\/hoi-an\/#food$/), page.keyboard.press('Enter')])
+    assert.deepEqual(errors, [])
+    await close()
+})
