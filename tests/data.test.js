@@ -892,3 +892,42 @@ test('tour & combo: mỗi tour có trang ở 5 ngôn ngữ, có trong sitemap, t
         assert.ok(!/NaN|undefined/.test(page.replace(/<script[\s\S]*?<\/script>/g, '')), `${tp.id}: có NaN / undefined trong trang`)
     }
 })
+
+test('trợ lý hỏi đáp: kho kiến thức có mọi tour và cung trekking (kèm đường dẫn)', () => {
+    const text = fs.readFileSync(path.join(ROOT, 'worker/src/knowledge.js'), 'utf8')
+    const { tours } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/tours.json'), 'utf8'))
+    const { treks } = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/treks.json'), 'utf8'))
+    for (const tp of tours) assert.ok(text.includes(`tour/${tp.id}/`), `trợ lý thiếu tour ${tp.id}`)
+    for (const tr of treks) assert.ok(text.includes(`trekking/${tr.id}/`), `trợ lý thiếu cung ${tr.id}`)
+})
+
+test('bundle JS / CSS: trang chỉ gọi bundle của lần build mới nhất, file cũ giữ tối đa 3 thế hệ, không có file thừa', () => {
+    const { generations } = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets/js/dist/generations.json'), 'utf8'))
+    assert.ok(generations.length >= 1 && generations.length <= 3, 'giữ 1 – 3 thế hệ bundle')
+    const keep = new Set(generations.flat())
+    const files = [
+        ...fs.readdirSync(path.join(ROOT, 'assets/js/dist')).filter(f => f.endsWith('.js')).map(f => `assets/js/dist/${f}`),
+        ...fs.readdirSync(path.join(ROOT, 'assets/css')).filter(f => /^site-\w+\.css$/.test(f)).map(f => `assets/css/${f}`),
+    ]
+    files.forEach(f => assert.ok(keep.has(f), `${f} không thuộc thế hệ nào – lẽ ra đã bị xóa`))
+    generations.flat().forEach(f => assert.ok(fs.existsSync(path.join(ROOT, f)), `thiếu ${f}`))
+    const latest = new Set(generations[0])
+    for (const page of ['index.html', 'tour/index.html', 'en/trekking/index.html']) {
+        const html = fs.readFileSync(path.join(ROOT, page), 'utf8')
+        for (const [, ref] of html.matchAll(/(assets\/(?:js\/dist\/[0-9a-f]+\.js|css\/site-\w+\.css))/g)) {
+            assert.ok(latest.has(ref), `${page} gọi ${ref} không thuộc lần build mới nhất`)
+        }
+    }
+})
+
+test('chính sách bảo mật: có ở 5 ngôn ngữ, chân trang liên kết tới, chỉ nêu tính năng đang bật', () => {
+    for (const p of ['', 'en/', 'ko/', 'zh/', 'ja/']) assert.ok(fs.existsSync(path.join(ROOT, `${p}chinh-sach-bao-mat/index.html`)), `chưa build ${p}chinh-sach-bao-mat/`)
+    assert.match(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), /href="chinh-sach-bao-mat\/index\.html"/, 'chân trang thiếu liên kết chính sách bảo mật')
+    const html = fs.readFileSync(path.join(ROOT, 'chinh-sach-bao-mat/index.html'), 'utf8').replace(/<script[\s\S]*?<\/script>/g, '')
+    const config = fs.readFileSync(path.join(ROOT, 'assets/js/config.js'), 'utf8')
+    const empty = key => new RegExp(`${key}: ''`).test(config)
+    if (empty('newsletterEndpoint')) assert.doesNotMatch(html, /Email đăng ký nhận tin/, 'form nhận tin chưa bật nhưng trang nói có thu email')
+    if (empty('assistantEndpoint')) assert.doesNotMatch(html, /Claude API/, 'trợ lý chưa bật nhưng trang nói có gửi câu hỏi')
+    const { WEB_ANALYTICS_TOKEN } = require('../tools/lib')
+    assert.equal(/Cloudflare Web Analytics/.test(html), Boolean(WEB_ANALYTICS_TOKEN), 'đoạn đo lượt xem phải khớp việc có bật Web Analytics')
+})

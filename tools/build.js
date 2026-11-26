@@ -63,6 +63,7 @@ const SCRIPTS = [
     'assets/js/trek-render.js',
     'assets/js/data/tours.js',
     'assets/js/tour-render.js',
+    'assets/js/legal-render.js',
 ]
 const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', 'TOUR_LENGTHS', 'COMMUNITY_PHOTOS', 'DESTINATIONS', 'REGIONS', 'CATEGORIES', 'LOCAL_IMAGES', 'WIKI_BASE', 'TRANSLATION_EN',
     'renderDestinationPage', 'destinationCard', 'wikiImg', 'wikiSrcset', 'imageSizes',
@@ -72,7 +73,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
     'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
-    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd']
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'privacyPage', 'privacyTitle']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -229,6 +230,7 @@ const monthPath = (lang, m) => `${LANGS[lang].prefix}${MONTH_DIR}/${m}/index.htm
 const themePath = (lang, slug) => `${LANGS[lang].prefix}${THEME_DIR}/${slug}/index.html`
 const festivalPath = lang => `${LANGS[lang].prefix}${FESTIVAL_DIR}/index.html`
 const routePath = (lang, from, to) => `${LANGS[lang].prefix}${ROUTE_DIR}/${from}-${to}/index.html`
+const privacyPath = lang => `${LANGS[lang].prefix}chinh-sach-bao-mat/index.html`
 const tourPath = (lang, id = '') => `${LANGS[lang].prefix}tour/${id ? `${id}/` : ''}index.html`
 const trekPath = (lang, id = '') => `${LANGS[lang].prefix}trekking/${id ? `${id}/` : ''}index.html`
 const pageUrl = rel => SITE_URL + rel.replace(/index\.html$/, '')
@@ -711,6 +713,16 @@ function explorePages(template, lang) {
             crumbs: [home, [tourSite.t('Tour & combo'), pageUrl(tourPath(lang))]],
         }), tourSite])
     }
+    /* Chính sách bảo mật: nội dung theo cấu hình thật lúc build (đo lượt xem, form, trợ lý, bình luận) */
+    const privacySite = loadSite(lang, rootFor(privacyPath(lang)))
+    pages.push([privacyPath(lang), () => buildContentPage(template.replace(' class="nav__link active-link"', ' class="nav__link"'), lang, privacyPath, privacySite, {
+        title: privacySite.privacyTitle(),
+        description: privacySite.t('Việt Travel lưu gì trên máy bạn, đo lượt xem thế nào, dùng dịch vụ bên ngoài nào và cách liên hệ, yêu cầu xóa.'),
+        main: privacySite.privacyPage({ analytics: Boolean(WEB_ANALYTICS_TOKEN) }),
+        image: `${SITE_URL}assets/img/og/hoi-an.jpg`,
+        jsonLd: [],
+        crumbs: [home],
+    }), privacySite])
     const festSite = loadSite(lang, rootFor(festivalPath(lang)))
     const festPicks = festSite.festivalGroups().flatMap(([, list]) => list)
     /* Menu: đánh dấu "Lễ hội" thay cho "Cẩm nang" (mẫu guide.html) */
@@ -783,6 +795,27 @@ function updateServiceWorkerVersion(sw) {
  * Nhờ vậy mọi trang điểm đến cùng ngôn ngữ dùng chung một bundle (trình duyệt chỉ tải một lần).
  */
 const DIST_DIR = 'assets/js/dist'
+/*
+ * Giữ bundle của KEEP_GENERATIONS lần build khác nhau gần nhất. Ngay sau deploy, bộ nhớ đệm (Cloudflare, trình duyệt,
+ * service worker) còn trang HTML cũ vài phút – trang cũ gọi bundle cũ; xóa ngay thì trang đó mất JS / CSS (lỗi 404).
+ * Danh sách thế hệ ghi ở assets/js/dist/generations.json (được commit cùng bundle).
+ */
+const KEEP_GENERATIONS = 3
+const GENERATIONS_FILE = `${DIST_DIR}/generations.json`
+function pruneBundles(current) {
+    let generations = []
+    try { generations = JSON.parse(read(GENERATIONS_FILE)).generations || [] } catch { /* lần đầu: chưa có */ }
+    const now = [...current].sort()
+    generations = [now, ...generations.filter(g => JSON.stringify(g) !== JSON.stringify(now))]
+    generations = generations.slice(0, KEEP_GENERATIONS)
+    const keep = new Set(generations.flat())
+    const existing = [
+        ...(fs.existsSync(path.join(ROOT, DIST_DIR)) ? fs.readdirSync(path.join(ROOT, DIST_DIR)).filter(f => f.endsWith('.js')).map(f => `${DIST_DIR}/${f}`) : []),
+        ...fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).map(f => `${CSS_DIR}/${f}`),
+    ]
+    existing.filter(rel => !keep.has(rel)).forEach(rel => fs.rmSync(path.join(ROOT, rel)))
+    write(GENERATIONS_FILE, `${JSON.stringify({ note: 'Sinh bởi tools/build.js – bundle của các lần build gần nhất (mới nhất trước), file ngoài danh sách bị xóa', generations }, null, 2)}\n`)
+}
 const bundles = new Map()
 
 /* LOCAL_IMAGES dạng gọn: chỉ lưu tên gốc + kích thước, đường dẫn 3 cỡ dựng lại trên trình duyệt (~64 KB → ~25 KB) */
@@ -961,10 +994,9 @@ function main() {
     fs.rmSync(path.join(ROOT, THEME_DIR), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, FESTIVAL_DIR), { recursive: true, force: true })
     /* Trang trekking / tour đã xóa khỏi dữ liệu không còn sót lại trên site */
-    for (const dir of ['trekking', 'tour']) fs.rmSync(path.join(ROOT, dir), { recursive: true, force: true })
+    for (const dir of ['trekking', 'tour', 'chinh-sach-bao-mat']) fs.rmSync(path.join(ROOT, dir), { recursive: true, force: true })
     fs.rmSync(path.join(ROOT, DEST_DATA_DIR), { recursive: true, force: true })
-    fs.rmSync(path.join(ROOT, DIST_DIR), { recursive: true, force: true })
-    fs.readdirSync(path.join(ROOT, CSS_DIR)).filter(f => /^site-\w+\.css$/.test(f)).forEach(f => fs.rmSync(path.join(ROOT, CSS_DIR, f)))
+    /* Bundle JS / CSS cũ không xóa ở đây: pruneBundles() giữ lại vài thế hệ gần nhất (xem dưới) */
 
     let count = 0
     let explore = 0
@@ -1002,6 +1034,7 @@ function main() {
     })
 
     bundles.forEach((code, rel) => write(rel, code))
+    pruneBundles([...bundles.keys()])
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))
     write('sw.js', updateServiceWorkerVersion(updateCoreAssets(read('sw.js'), read(homePath('vi')))))
     /* Biểu tượng tab trình duyệt theo màu mặc định (mùa có màu riêng thì script đầu trang thay bằng bản cùng màu) */

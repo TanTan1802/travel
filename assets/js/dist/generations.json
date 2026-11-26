@@ -1,0 +1,53 @@
+{
+  "note": "Sinh bởi tools/build.js – bundle của các lần build gần nhất (mới nhất trước), file ngoài danh sách bị xóa",
+  "generations": [
+    [
+      "assets/css/site-2b1ae5f742.css",
+      "assets/js/dist/0e27e2dbe5.js",
+      "assets/js/dist/1b7f77af8a.js",
+      "assets/js/dist/1c162c0a5d.js",
+      "assets/js/dist/1c9b58e8cb.js",
+      "assets/js/dist/274850aa31.js",
+      "assets/js/dist/340b777205.js",
+      "assets/js/dist/4b0dcd684a.js",
+      "assets/js/dist/4df726788e.js",
+      "assets/js/dist/5a10f8be66.js",
+      "assets/js/dist/5b1d4c5bb2.js",
+      "assets/js/dist/751d7df22a.js",
+      "assets/js/dist/8f09a2b412.js",
+      "assets/js/dist/964d3d2813.js",
+      "assets/js/dist/9b67ef692d.js",
+      "assets/js/dist/9b9ccedc84.js",
+      "assets/js/dist/a2b14c3a7b.js",
+      "assets/js/dist/b4ea9d3fd4.js",
+      "assets/js/dist/b69cd92829.js",
+      "assets/js/dist/d4d98288f4.js",
+      "assets/js/dist/dfdb74c1ae.js",
+      "assets/js/dist/e5a374d442.js"
+    ],
+    [
+      "assets/css/site-2b1ae5f742.css",
+      "assets/js/dist/0d1721f06c.js",
+      "assets/js/dist/0e27e2dbe5.js",
+      "assets/js/dist/1c9b58e8cb.js",
+      "assets/js/dist/3859410ebc.js",
+      "assets/js/dist/4ee2ed7580.js",
+      "assets/js/dist/4f3e88f400.js",
+      "assets/js/dist/751d7df22a.js",
+      "assets/js/dist/79549852c8.js",
+      "assets/js/dist/805786af11.js",
+      "assets/js/dist/964d3d2813.js",
+      "assets/js/dist/af912dbd93.js",
+      "assets/js/dist/b9a9e4b88c.js",
+      "assets/js/dist/c407f3ccdf.js",
+      "assets/js/dist/d12b70962e.js",
+      "assets/js/dist/d702acd959.js",
+      "assets/js/dist/da35803cde.js",
+      "assets/js/dist/deb6d9ee21.js",
+      "assets/js/dist/dfdb74c1ae.js",
+      "assets/js/dist/e645b398eb.js",
+      "assets/js/dist/eda1291bf1.js",
+      "assets/js/dist/f1cfdd63e3.js"
+    ]
+  ]
+}

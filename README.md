@@ -99,6 +99,8 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 - Trường `updated` (tháng cập nhật) cho từng điểm tham quan / quán, hiện trên trang; đồng bộ Google Sheets tự ghi khi sửa
   hoặc khi đánh dấu "đã kiểm tra" (cột `confirmed`).
 - `npm run check-freshness`, `npm run check-links`, `npm run check-images` + workflow **Kiểm tra định kỳ dữ liệu** hằng tháng.
+- **Bundle cũ giữ lại 3 lần build** (`assets/js/dist/generations.json`): ngay sau deploy, trang cũ còn trong bộ nhớ đệm vẫn
+  tải được JS / CSS của nó; file ngoài 3 thế hệ gần nhất mới bị xóa.
 - `npm run check-site` + workflow **Kiểm tra site đang chạy** (`kiem-tra-site.yml`): sau mỗi lần main thay đổi (đợi Cloudflare
   deploy xong; có lỗi thì đợi 3 phút kiểm tra lại vì bộ nhớ đệm Cloudflare còn trộn trang cũ / mới) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
   nội bộ tồn tại, đúng loại file. Có lỗi → Issue nhãn `site-loi` (GitHub gửi email), hết lỗi → tự đóng. Trang quản trị hiện
