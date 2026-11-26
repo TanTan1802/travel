@@ -50,7 +50,7 @@ const DATASETS = {
     },
     tours: {
         vars: { styles: 'TOUR_STYLES', tours: 'TOUR_PACKAGES' },
-        doc: 'Tour & combo 1 – 4 ngày: lịch trình trỏ tới điểm tham quan (sights.json) để lấy giá vé; chi phí ước tính tính lúc build.\n * Trang tour/ và tour/<id>/ do assets/js/tour-render.js dựng khi build.',
+        doc: 'Tour & combo 1 – 7 ngày: lịch trình trỏ tới điểm tham quan (sights.json) để lấy giá vé; chi phí ước tính tính lúc build.\n * Trang tour/ và tour/<id>/ do assets/js/tour-render.js dựng khi build.',
     },
     guides: {
         vars: { updated: 'GUIDE_UPDATED', guides: 'GUIDES' },

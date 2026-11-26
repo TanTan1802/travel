@@ -1,5 +1,5 @@
 /* Sinh tự động bởi tools/build-icons.js (npm run icons) – không sửa tay.
-   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 153 icon site đang dùng. */
+   Remix Icon v2.5.0 (Apache License 2.0, https://remixicon.com) – chỉ giữ 158 icon site đang dùng. */
 @font-face {
   font-family: "remixicon";
   src: url("../fonts/remixicon.woff2") format("woff2");
@@ -31,6 +31,7 @@
 .ri-bank-card-line:before { content: "\ea92"; }
 .ri-bar-chart-line:before { content: "\ea9e"; }
 .ri-bike-line:before { content: "\eabe"; }
+.ri-book-open-line:before { content: "\eadb"; }
 .ri-building-2-line:before { content: "\eb09"; }
 .ri-building-4-line:before { content: "\eb0d"; }
 .ri-building-line:before { content: "\eb0f"; }
@@ -57,11 +58,13 @@
 .ri-cloud-line:before { content: "\eb9d"; }
 .ri-cloud-off-line:before { content: "\eb9f"; }
 .ri-cloudy-line:before { content: "\eba5"; }
+.ri-coins-line:before { content: "\ebb4"; }
 .ri-compass-3-line:before { content: "\ebbe"; }
 .ri-coupon-3-line:before { content: "\ebe8"; }
 .ri-cup-line:before { content: "\ec06"; }
 .ri-delete-bin-line:before { content: "\ec2a"; }
 .ri-direction-line:before { content: "\ec34"; }
+.ri-download-2-line:before { content: "\ec54"; }
 .ri-download-cloud-2-line:before { content: "\ec56"; }
 .ri-drizzle-line:before { content: "\ec68"; }
 .ri-drop-line:before { content: "\ec6a"; }
@@ -91,6 +94,7 @@
 .ri-heart-3-fill:before { content: "\ee0a"; }
 .ri-heart-3-line:before { content: "\ee0b"; }
 .ri-heavy-showers-line:before { content: "\ee15"; }
+.ri-history-line:before { content: "\ee17"; }
 .ri-home-4-line:before { content: "\ee1d"; }
 .ri-home-heart-line:before { content: "\ee2a"; }
 .ri-hospital-line:before { content: "\ee37"; }
@@ -136,6 +140,7 @@
 .ri-road-map-line:before { content: "\f08e"; }
 .ri-route-line:before { content: "\f09b"; }
 .ri-sailboat-line:before { content: "\f0ad"; }
+.ri-scales-3-line:before { content: "\f0b7"; }
 .ri-search-line:before { content: "\f0d1"; }
 .ri-send-plane-line:before { content: "\f0da"; }
 .ri-share-line:before { content: "\f0fe"; }

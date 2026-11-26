@@ -104,6 +104,16 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     assert.ok(oct > 0 && oct < total, 'lọc tháng 10 phải thu hẹp kết quả')
     await page.selectOption('#month-filter', '0')
 
+    /* Lọc ngân sách: đúng số điểm có chi phí 3 ngày (tiết kiệm) dưới 2 triệu theo DEST_COSTS */
+    await page.selectOption('#budget-filter', 'low')
+    const cheap = await page.evaluate(() => Object.values(DEST_COSTS).filter(c => c[0] < 2e6).length)
+    assert.ok(cheap > 0 && cheap < total)
+    assert.equal(await count(), cheap, 'lọc ngân sách sai số điểm đến')
+    assert.ok(await page.isVisible('#filter-reset'))
+    await page.click('#filter-reset')
+    assert.equal(await page.$eval('#budget-filter', s => s.value), 'all')
+    assert.equal(await count(), total)
+
     await page.fill('#explore-search', 'Hội An')
     await page.click('#dest-grid .fav-btn[data-favorite="hoi-an"]')
     await page.fill('#explore-search', '')
@@ -565,7 +575,7 @@ async function lowContrastText(page) {
 
 test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
     const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html',
-        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html', 'tour/da-lat-nha-trang-5-ngay/index.html', 'chinh-sach-bao-mat/index.html']
+        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html', 'tour/da-lat-nha-trang-5-ngay/index.html', 'chinh-sach-bao-mat/index.html', 'so-sanh/index.html']
     const problems = []
     for (const theme of ['dark', 'light']) {
         for (const rel of pages) {
@@ -1020,6 +1030,83 @@ test('tour: chia sẻ lịch đã chỉnh qua link, xuất .ics theo ngày đi, 
     const printed = await page.evaluate(() => window.__printed)
     assert.equal(printed?.count, 1)
     assert.match(printed.bodyClass, /print-tour/)
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('ô tìm kiếm: có trên mọi loại trang, hiểu "Phú Quốc 3 ngày", "Hội An ăn gì", chọn bằng bàn phím', async () => {
+    for (const url of ['index.html', 'diem-den/hoi-an/index.html', 'ke-hoach/index.html', 'tour/index.html']) {
+        const { page, close } = await openPage(url)
+        assert.equal(await page.locator('#search-open').count(), 1, `${url} thiếu nút tìm`)
+        await close()
+    }
+    const { page, errors, close } = await openPage('cam-nang/index.html')
+    await page.keyboard.press('/')
+    await page.waitForSelector('.search:not([hidden])')
+    const first = async q => {
+        await page.fill('.search__input', q)
+        await page.waitForFunction(() => document.querySelector('.search__item, .search__empty'))
+        return page.$eval('.search__item strong', x => x.textContent).catch(() => '')
+    }
+    assert.match(await first('Phú Quốc 3 ngày'), /Phú Quốc nghỉ dưỡng/)
+    assert.match(await first('hoi an an gi'), /Hội An: ăn gì/)
+    assert.match(await first('da lat nha trang'), /Đà Lạt – Nha Trang/)
+    await page.fill('.search__input', 'xyzabc')
+    await page.waitForSelector('.search__empty')
+    await page.fill('.search__input', 'Hội An ăn gì')
+    await page.waitForSelector('.search__item')
+    await Promise.all([page.waitForURL(/diem-den\/hoi-an\/#food$/), page.keyboard.press('Enter')])
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('đã xem gần đây: trang điểm đến, tour, trekking hiện lại ở trang chủ', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.ok(await page.isHidden('#recent'), 'chưa xem gì thì ẩn mục đã xem')
+    for (const url of ['diem-den/hoi-an/index.html', 'tour/da-lat-3-ngay/index.html', 'trekking/lao-than/index.html']) {
+        await page.goto(`${server.url}${url}`)
+        await page.waitForLoadState('load')
+    }
+    await page.goto(`${server.url}index.html`)
+    const items = await page.$$eval('#recent-list .recent__item', a => a.map(x => x.getAttribute('href')))
+    assert.deepEqual(items, ['trekking/lao-than/index.html', 'tour/da-lat-3-ngay/index.html', 'diem-den/hoi-an/index.html'])
+    await page.goto(`${server.url}en/index.html`)
+    assert.ok((await page.textContent('#recent-list')).includes('Hoi An'), 'trang tiếng Anh dùng tên tiếng Anh của điểm đến')
+    await page.click('#recent-clear')
+    assert.ok(await page.isHidden('#recent'))
+    await page.reload()
+    assert.ok(await page.isHidden('#recent'), 'xóa lịch sử phải giữ sau khi tải lại')
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('cài app (PWA): nút chỉ hiện khi trình duyệt cho cài, bấm mở hộp cài', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.ok(await page.isHidden('#install-app'), 'chưa có beforeinstallprompt thì ẩn nút')
+    await page.evaluate(() => {
+        const e = new Event('beforeinstallprompt', { cancelable: true })
+        e.prompt = () => { window.__installPrompted = true }
+        e.userChoice = Promise.resolve({ outcome: 'accepted' })
+        window.dispatchEvent(e)
+    })
+    assert.ok(await page.isVisible('#install-app'))
+    await page.click('#install-app')
+    assert.equal(await page.evaluate(() => window.__installPrompted), true)
+    await page.waitForFunction(() => document.querySelector('.install').hidden)
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('so sánh điểm đến: chọn theo link ?d=, đổi lựa chọn cập nhật cột và link', async () => {
+    const { page, errors, close } = await openPage('so-sanh/index.html?d=da-lat,sa-pa,hoi-an')
+    const cols = () => page.$$eval('thead th[data-col]:not([hidden])', a => a.map(x => x.dataset.col))
+    assert.deepEqual(await cols(), ['da-lat', 'sa-pa', 'hoi-an'])
+    await page.selectOption('[data-compare-pick="2"]', '')
+    assert.deepEqual(await cols(), ['da-lat', 'sa-pa'])
+    assert.match(page.url(), /d=da-lat(%2C|,)sa-pa$/)
+    await page.selectOption('[data-compare-pick="0"]', 'phu-quoc')
+    assert.deepEqual(await cols(), ['phu-quoc', 'sa-pa'], 'cột theo đúng thứ tự đã chọn')
+    assert.match(await page.textContent('tbody tr:nth-child(5) td[data-col="phu-quoc"]'), /Tiết kiệm/)
     assert.deepEqual(errors, [])
     await close()
 })

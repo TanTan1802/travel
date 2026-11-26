@@ -223,6 +223,30 @@ input {
   cursor: pointer;
 }
 
+/* Nút tìm kiếm (search.js): điện thoại nằm cạnh nút menu, máy tính sau menu */
+.nav__search {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  margin-right: .75rem;
+  padding: .35rem;
+  border: 0;
+  background: none;
+  color: var(--white-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    margin-left: auto;
+  }
+
+  .nav__search {
+    margin: 0 0 0 1rem;
+  }
+}
+
 .nav__menu {
   position: relative;
 }
@@ -278,6 +302,7 @@ input {
 }
 
 .scroll-header .nav__logo,
+.scroll-header .nav__search,
 .scroll-header .nav__toggle {
   color: var(--title-color);
 }

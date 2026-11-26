@@ -1,0 +1,172 @@
+/* Chỉ dùng ở trang lập kế hoạch (planner.html) – tách từ vietnam.css (quy tắc chỉ nhắm lớp có riêng ở trang này) để các trang khác không phải tải. */
+
+.cost-details {
+  margin-top: .75rem;
+}
+
+.cost-details summary {
+  cursor: pointer;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text);
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  margin: .6rem 0 0;
+  color: var(--text-color);
+  font-size: var(--smaller-font-size);
+}
+
+.map-legend[hidden] {
+  display: none;
+}
+
+.map-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  white-space: nowrap;
+}
+
+.plan-days {
+  display: grid;
+  gap: 1rem;
+}
+
+.plan-day {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--container-color);
+  box-shadow: var(--shadow);
+  break-inside: avoid;
+}
+
+.plan-day--travel {
+  border-left: 4px solid var(--accent-color);
+}
+
+.plan-day__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .75rem;
+  margin-bottom: var(--mb-0-75);
+}
+
+.plan-day__number {
+  padding: .2rem .7rem;
+  border-radius: 2rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.plan-day__title {
+  font-size: var(--h3-font-size);
+}
+
+@media print {
+  .plan-day {
+    padding: .75rem 0;
+    border: none;
+    border-bottom: 1px solid hsl(var(--hue-color), 15%, 85%);
+    border-radius: 0;
+  }
+
+  .plan-day--travel {
+    border-left: none;
+  }
+}
+
+.plan-day__date {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--text-color-light);
+}
+
+.plan-day__stay {
+  display: grid;
+  gap: .5rem;
+  margin-top: .85rem;
+  padding: .75rem .9rem;
+  border-radius: .5rem;
+  background-color: var(--input-color);
+  font-size: var(--small-font-size);
+}
+
+.plan-day__stay i {
+  color: var(--first-color-text);
+}
+
+.bookings__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem 1rem;
+  margin-bottom: var(--mb-1);
+}
+
+.bookings__head .bookings__title {
+  margin-bottom: 0;
+}
+
+.bookings__progress {
+  padding: .25rem .8rem;
+  border-radius: 2rem;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.bookings__hint {
+  display: flex;
+  gap: .4rem;
+  align-items: center;
+  margin-bottom: var(--mb-1);
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.bookings__list {
+  display: grid;
+  gap: .75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.offline-status {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .5rem;
+  font-size: var(--smaller-font-size);
+  color: hsl(150, 55%, 30%);
+}
+
+.offline-status--stale {
+  color: hsl(30, 85%, 40%);
+}
+
+body.dark-theme .offline-status {
+  color: hsl(150, 50%, 60%);
+}
+
+.style-tips summary {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.style-tips__list {
+  display: grid;
+  gap: .35rem;
+  margin-top: .5rem;
+  padding-left: 1.1rem;
+  font-size: var(--small-font-size);
+}

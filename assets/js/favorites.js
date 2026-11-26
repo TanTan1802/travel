@@ -143,3 +143,38 @@ document.addEventListener('click', e => {
     else showToast(t('Kế hoạch tối đa {n} điểm đến', { n: PLAN_MAX_STOPS }))
     syncPlanButtons()
 })
+
+/*==================== ĐÃ XEM GẦN ĐÂY (LƯU TRÊN TRÌNH DUYỆT) ====================*/
+/*
+ * Trang điểm đến, tour, trekking ghi lại khi mở; trang chủ hiện mục "Bạn đã xem gần đây".
+ * Mỗi mục: { t: 'dest' | 'tour' | 'trek', id, n: { <ngôn ngữ>: tên } (tour / trekking), d: điểm đến gắn với trang (lấy ảnh) }.
+ */
+const Recent = (() => {
+    const KEY = 'viet-travel:recent'
+    const MAX = 8
+    function list() {
+        try {
+            const items = JSON.parse(localStorage.getItem(KEY) || '[]')
+            return Array.isArray(items) ? items.filter(x => x && x.t && x.id) : []
+        } catch {
+            return []
+        }
+    }
+    function add(item) {
+        const same = x => x.t === item.t && x.id === item.id
+        const old = list().find(same)
+        /* Giữ tên đã lưu ở ngôn ngữ khác (xem bản tiếng Việt rồi bản tiếng Anh) */
+        if (item.n && old && old.n && typeof old.n === 'object') item = { ...item, n: { ...old.n, ...item.n } }
+        const items = [item, ...list().filter(x => !same(x))].slice(0, MAX)
+        try { localStorage.setItem(KEY, JSON.stringify(items)) } catch { /* chặn lưu trữ: bỏ qua */ }
+    }
+    function clear() {
+        try { localStorage.removeItem(KEY) } catch { /* bỏ qua */ }
+    }
+    /* Điểm đến của trang theo ảnh chia sẻ (assets/img/og/<id>.jpg) */
+    function pageDest() {
+        const m = (document.querySelector('meta[property="og:image"]')?.content || '').match(/\/og\/([a-z0-9-]+)\.jpg/)
+        return m ? m[1] : ''
+    }
+    return { list, add, clear, pageDest }
+})()

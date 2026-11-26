@@ -23,7 +23,7 @@ function privacySections({ analytics }) {
             P('Phần lớn tính năng (yêu thích, kế hoạch chuyến đi, danh sách đồ) chạy ngay trên trình duyệt của bạn và chỉ lưu trên máy bạn.', 'Most features (favourites, trip plans, packing lists) run in your browser and are stored only on your device.'),
         ]],
         [P('Dữ liệu lưu trên máy bạn', 'Data stored on your device'), [
-            P('Bộ nhớ của trình duyệt (localStorage) giữ: điểm đến yêu thích, kế hoạch chuyến đi, giao diện sáng / tối, món đồ đã đánh dấu chuẩn bị, lịch đã lưu để xem khi không có mạng.', 'Your browser’s storage (localStorage) keeps: favourite destinations, trip plans, light / dark theme, ticked packing items and itineraries saved for offline use.'),
+            P('Bộ nhớ của trình duyệt (localStorage) giữ: điểm đến yêu thích, các trang điểm đến / tour đã xem gần đây, kế hoạch chuyến đi, giao diện sáng / tối, món đồ đã đánh dấu chuẩn bị, lịch đã lưu để xem khi không có mạng.', 'Your browser’s storage (localStorage) keeps: favourite destinations, recently viewed destinations / tours, trip plans, light / dark theme, ticked packing items and itineraries saved for offline use.'),
             P('Bộ nhớ đệm (service worker) lưu sẵn một số trang để site mở được khi mất mạng; dự báo thời tiết được nhớ tạm trong phiên.', 'A cache (service worker) keeps some pages so the site works offline; weather forecasts are remembered for the session.'),
             P('Những dữ liệu này không được gửi về máy chủ. Muốn xóa: vào cài đặt trình duyệt → xóa dữ liệu trang web của site này.', 'None of this is sent to a server. To delete it, clear this site’s data in your browser settings.'),
         ]],

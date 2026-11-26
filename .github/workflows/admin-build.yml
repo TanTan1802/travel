@@ -116,7 +116,7 @@ jobs:
       # Commit bằng GITHUB_TOKEN không kích hoạt workflow khác, nên tự gắn trạng thái "đã kiểm tra" cho commit mới
       - name: Commit trang đã build vào nhánh
         run: |
-          git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi duong-di trekking tour chinh-sach-bao-mat en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
+          git add -A assets/js/data assets/js/dist assets/css worker/src/knowledge.js diem-den ke-hoach cam-nang thang chu-de le-hoi duong-di trekking tour chinh-sach-bao-mat so-sanh en ko zh ja index.html assets/img/favicon.svg sitemap.xml robots.txt sw.js
           bash tools/check-staged.sh
           if git diff --cached --quiet; then
             echo "Không có gì cần build thêm."

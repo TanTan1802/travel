@@ -1,0 +1,293 @@
+/* Chỉ dùng ở trang chủ (home.html) – tách từ vietnam.css (quy tắc chỉ nhắm lớp có riêng ở trang này) để các trang khác không phải tải. */
+
+.month-filter {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .35rem;
+  padding: 0 .4rem 0 .8rem;
+  border-radius: 2rem;
+  background-color: var(--input-color);
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+}
+
+.month-filter i {
+  color: var(--accent-color);
+}
+
+.month-filter select {
+  padding: .5rem .25rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+  outline: none;
+}
+
+.month-filter select option {
+  color: #222;
+}
+
+.month-filter--active {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.month-filter--active i {
+  color: var(--white-color);
+}
+
+.filter-panel {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  border-radius: calc(var(--radius) + .25rem);
+  background-color: var(--container-color);
+  box-shadow: 0 10px 30px hsla(var(--hue-color), 40%, 20%, .08);
+  border: 1px solid var(--input-color);
+}
+
+.filter-panel .explore__search {
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+  border: 1px solid transparent;
+  border-radius: .9rem;
+  transition: border-color .2s, background-color .2s;
+}
+
+.filter-panel .explore__search:focus-within {
+  border-color: var(--first-color);
+  background-color: var(--container-color);
+}
+
+.filter-panel__groups {
+  display: grid;
+  gap: 1rem;
+}
+
+.filter-group {
+  display: grid;
+  gap: .5rem;
+  min-width: 0;
+}
+
+.filter-group__label {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-color-light);
+}
+
+.filter-group__label i {
+  color: var(--accent-color);
+  font-size: 1rem;
+}
+
+.filter-group--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .25rem;
+  padding: .3rem;
+  border-radius: 1rem;
+  background-color: var(--input-color);
+}
+
+.segmented .chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  padding: .55rem .25rem;
+  border-radius: .75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.segmented .chip:hover {
+  background-color: var(--container-color);
+}
+
+.segmented .chip.chip--active {
+  background-color: var(--first-color);
+  color: var(--white-color);
+  box-shadow: 0 4px 12px hsla(var(--hue-color), 60%, 20%, .25);
+}
+
+.segmented .chip__count {
+  background: none;
+  padding: 0;
+  font-weight: normal;
+  opacity: .75;
+}
+
+.filter-panel .month-filter {
+  padding: 0 .5rem 0 .9rem;
+}
+
+.filter-panel .month-filter--active {
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.filter-group--inline .chip--fav.chip--active {
+  background-color: hsl(350, 75%, 52%);
+  border-color: hsl(350, 75%, 52%);
+  color: var(--white-color);
+}
+
+.filter-panel__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--input-color);
+}
+
+.filter-panel__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+}
+
+.filter-panel .explore__result {
+  margin: 0;
+  text-align: left;
+  font-weight: var(--font-semi-bold);
+}
+
+.filter-reset[hidden] {
+  display: none;
+}
+
+.filter-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .35rem .8rem;
+  border-radius: 2rem;
+  background-color: hsla(350, 75%, 52%, .1);
+  color: hsl(350, 65%, 42%);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi-bold);
+  cursor: pointer;
+}
+
+body.dark-theme .filter-reset {
+  color: hsl(350, 80%, 75%);
+}
+
+@media screen and (max-width: 767px) {
+  .segmented .chip span {
+    font-size: var(--smaller-font-size);
+    white-space: nowrap;
+  }
+
+  .filter-group--inline > * {
+    flex: 1 1 auto;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .filter-panel {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .filter-panel__groups {
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    grid-template-areas:
+      "region inline"
+      "type type"
+      "beach beach";
+    align-items: end;
+    column-gap: 1.5rem;
+  }
+
+  .filter-panel__groups > .filter-group:nth-child(1) { grid-area: region; }
+
+  .filter-panel__groups > .filter-group:nth-child(2) { grid-area: type; }
+
+  .filter-panel__groups > .filter-group:nth-child(3) { grid-area: beach; }
+
+  .filter-panel__groups > .filter-group:nth-child(4) { grid-area: inline; justify-content: flex-end; }
+}
+
+.event-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.trip-banner {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-fixed, 100);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  max-width: min(420px, calc(100vw - 2rem));
+  padding: .75rem 1rem;
+  border-radius: 1rem;
+  background-color: var(--container-color);
+  box-shadow: 0 8px 28px hsla(0, 0%, 0%, .18);
+  border-left: 4px solid var(--accent-color);
+}
+
+.trip-banner[hidden] {
+  display: none;
+}
+
+.trip-banner__icon {
+  font-size: 1.6rem;
+  color: var(--first-color-text);
+}
+
+.trip-banner__text {
+  display: grid;
+  gap: .15rem;
+  font-size: var(--small-font-size);
+}
+
+.trip-banner__text strong {
+  color: var(--title-color);
+}
+
+.trip-banner__text a {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text);
+}
+
+.trip-banner__close {
+  align-self: flex-start;
+  border: none;
+  background: none;
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+  cursor: pointer;
+}

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="assets/css/icons.css">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/vietnam.css">
+        <link rel="stylesheet" href="assets/css/page-home.css">
 
         <link rel="canonical" href="https://viet-travel.congtan5918.workers.dev/">
         <!-- build:alternate -->
@@ -95,6 +96,8 @@
                     <i class="ri-close-line nav__close" id="nav-close"></i>
                 </div>
 
+                <button type="button" class="nav__search" id="search-open" aria-label="Tìm kiếm" title="Tìm kiếm (/)"><i class="ri-search-line"></i></button>
+
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="ri-function-line"></i>
                 </div>
@@ -135,6 +138,15 @@
                         </a>
                     </div>
                 </div>
+            </section>
+
+            <!-- Đã xem gần đây: lưu trên máy người xem (assets/js/favorites.js), chỉ hiện khi có (assets/js/home.js) -->
+            <section class="recent container" id="recent" aria-labelledby="recent-title" hidden>
+                <div class="recent__head">
+                    <h2 class="recent__title" id="recent-title"><i class="ri-history-line"></i> Bạn đã xem gần đây</h2>
+                    <button type="button" class="recent__clear" id="recent-clear">Xóa lịch sử</button>
+                </div>
+                <div class="recent__list" id="recent-list"></div>
             </section>
 
             <!--==================== ABOUT ====================-->
@@ -261,6 +273,10 @@
                                     <i class="ri-calendar-event-line"></i>
                                     <select id="month-filter" aria-label="Lọc theo tháng đi"></select>
                                 </label>
+                                <label class="month-filter">
+                                    <i class="ri-wallet-3-line"></i>
+                                    <select id="budget-filter" aria-label="Lọc theo ngân sách"></select>
+                                </label>
                                 <button type="button" class="chip chip--fav" id="fav-filter" aria-pressed="false">
                                     <i class="ri-heart-3-fill"></i> Yêu thích <span class="chip__count" id="fav-count">0</span>
                                 </button>
@@ -274,6 +290,7 @@
                             <div class="filter-panel__status">
                                 <p class="explore__result" id="explore-result"></p>
                                 <button type="button" class="filter-reset" id="filter-reset" hidden><i class="ri-refresh-line"></i> Xóa bộ lọc</button>
+                                <a href="so-sanh/index.html" class="explore__compare"><i class="ri-scales-3-line"></i> So sánh điểm đến</a>
                             </div>
                             <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
                                 <button type="button" class="view-toggle__btn view-toggle__btn--active" data-view="grid" aria-pressed="true">
@@ -1169,6 +1186,7 @@
         <script defer src="assets/js/components.js"></script>
         <script defer src="assets/js/today.js"></script>
         <script defer src="assets/js/map.js"></script>
+        <script defer src="assets/js/data/dest-costs.js"></script>
         <script defer src="assets/js/home.js"></script>
         <script defer src="assets/js/quiz.js"></script>
         <script defer src="assets/js/config.js"></script>
@@ -1176,6 +1194,7 @@
         <script defer src="assets/js/assistant.js"></script>
 
         <!--=============== MAIN JS ===============-->
+        <script defer src="assets/js/search.js"></script>
         <script defer src="assets/js/main.js"></script>
     </body>
 </html>
