@@ -218,6 +218,7 @@ function monthPage(m) {
             <div class="dest__grid container">${picks.map(d => destinationCard(d)).join('')}</div>
         </section>
         ${typeof monthTreksHtml === 'function' ? monthTreksHtml(m) : ''}
+        ${typeof monthToursHtml === 'function' ? monthToursHtml(m) : ''}
     `
 }
 
@@ -534,6 +535,7 @@ function routePage(a, b) {
                         <a href="${destinationUrl(b.id)}#itinerary" class="button button--flex">${t('Xem lịch trình {name}', { name: b.name })} <i class="ri-arrow-right-line"></i></a>
                         <a href="${plannerUrl(`?p=${b.id}.3&o=${a.id}`)}" class="book-link"><i class="ri-calendar-todo-line"></i> ${t('Lên kế hoạch từ {from}', vars)}</a>
                     </p>
+                    ${typeof nearbyToursHtml === 'function' ? nearbyToursHtml(b) : ''}
                 </section>
                 <section class="guide-section explore-hub">
                     ${others.length ? `

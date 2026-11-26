@@ -126,7 +126,12 @@ if (tourCustom) {
     const defaults = new Map(boxes.map(b => [b.dataset.pick, b.checked]))
     let saved = {}
     try { saved = JSON.parse(localStorage.getItem(key) || '{}') } catch { /* bỏ qua */ }
-    boxes.forEach(b => { if (b.dataset.pick in saved) b.checked = saved[b.dataset.pick] })
+    /* Link chia sẻ #c=<vị trí các ô đổi so với lịch gốc, cơ số 36> – ưu tiên hơn lựa chọn đã lưu trên máy */
+    const shared = (location.hash.match(/^#c=([0-9a-z.]*)$/) || [])[1]
+    if (shared !== undefined) {
+        const flip = new Set(shared.split('.').filter(Boolean).map(x => parseInt(x, 36)))
+        boxes.forEach((b, i) => { b.checked = flip.has(i) ? !defaults.get(b.dataset.pick) : defaults.get(b.dataset.pick) })
+    } else boxes.forEach(b => { if (b.dataset.pick in saved) b.checked = saved[b.dataset.pick] })
     const update = () => {
         let lo = 0
         let hi = 0
@@ -141,11 +146,77 @@ if (tourCustom) {
         try { Object.keys(changed).length ? localStorage.setItem(key, JSON.stringify(changed)) : localStorage.removeItem(key) } catch { /* bỏ qua */ }
         tourCustom.querySelector('[data-custom-reset]').hidden = !Object.keys(changed).length
     }
-    tourCustom.querySelectorAll('.pkg-pick, .pkg-more, .pkg-custom-hint').forEach(el => { el.hidden = false })
+    tourCustom.querySelectorAll('.pkg-pick, .pkg-more, .pkg-custom-hint, .pkg-actions').forEach(el => { el.hidden = false })
+    const actions = tourCustom.querySelector('.pkg-actions')
+    const shareUrl = () => {
+        const flip = boxes.map((b, i) => (b.checked !== defaults.get(b.dataset.pick) ? i.toString(36) : null)).filter(Boolean)
+        return `${location.href.split('#')[0]}${flip.length ? `#c=${flip.join('.')}` : ''}`
+    }
+    /* Mỗi ngày: tiêu đề, điểm đến, các điểm đang chọn (kể cả điểm thêm), chặng di chuyển */
+    const dayPlans = () => [...tourCustom.querySelectorAll('.trek-plan__day')].map(day => ({
+        title: day.dataset.dayTitle,
+        dest: day.dataset.dayDest,
+        leg: day.querySelector(':scope > .pkg-leg')?.textContent.replace(/\s+/g, ' ').trim() || '',
+        sights: [...day.querySelectorAll('[data-pick]:checked')].map(b => b.closest('.pkg-sight').querySelector('.pkg-sight__name').textContent.trim()),
+    }))
+    actions.addEventListener('click', async e => {
+        const btn = e.target.closest('[data-tour-action]')
+        if (!btn) return
+        const name = actions.dataset.tourName
+        if (btn.dataset.tourAction === 'share') {
+            const url = shareUrl()
+            if (navigator.share) { try { await navigator.share({ title: name, url }); return } catch { /* người dùng hủy – sao chép thay */ } }
+            copyText(url, t('Đã sao chép liên kết'))
+        } else if (btn.dataset.tourAction === 'ics') {
+            const input = actions.querySelector('[data-tour-start]')
+            if (!input.value) { input.focus(); showToast(t('Chọn ngày đi để tạo lịch')); return }
+            const url = shareUrl()
+            const events = dayPlans().map((d, i) => ({
+                start: localStamp(addDays(input.value, i), '08:00'),
+                end: localStamp(addDays(input.value, i), '20:00'),
+                summary: `${d.title} – ${d.dest}`,
+                description: [d.leg, ...d.sights.map(x => `• ${x}`), url].filter(Boolean).join('\n'),
+                location: d.dest,
+            }))
+            downloadTextFile(`${safeFileName(name)}.ics`, buildIcs({ name, events }))
+        } else {
+            document.body.classList.add('print-tour')
+            window.addEventListener('afterprint', () => document.body.classList.remove('print-tour'), { once: true })
+            window.print()
+        }
+    })
     tourCustom.addEventListener('change', e => { if (e.target.matches('[data-pick]')) update() })
     tourCustom.querySelector('[data-custom-reset]').addEventListener('click', () => {
         boxes.forEach(b => { b.checked = defaults.get(b.dataset.pick) })
         update()
     })
     update()
+}
+
+/* Trang tour nhiều điểm: bản đồ hành trình – điểm dừng đánh số, đường nối, nhãn chặng (Leaflet tải khi cuộn tới) */
+const tourMap = document.querySelector('[data-tour-map]')
+if (tourMap && typeof whenVisible === 'function') {
+    whenVisible(tourMap, async () => {
+        if (!(await loadLeaflet())) return
+        const stops = JSON.parse(tourMap.dataset.tourMap)
+        const legs = JSON.parse(tourMap.dataset.legs || '[]')
+        const map = createMap(tourMap, { zoom: 6 })
+        const points = stops.map(s => [s.lat, s.lng])
+        L.polyline(points, { color: getComputedStyle(document.documentElement).getPropertyValue('--first-color').trim() || '#8b4513', weight: 3, dashArray: '6 8' }).addTo(map)
+        stops.forEach((s, i) => {
+            L.marker([s.lat, s.lng], {
+                icon: L.divIcon({ className: 'pkg-map-pin', html: `<span>${i + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }),
+                keyboard: false,
+            }).bindTooltip(`${i + 1}. ${s.n} · ${tourMap.dataset.daysLabel.replace('{n}', s.d)}`, { direction: 'top', offset: [0, -14] }).addTo(map)
+        })
+        legs.forEach((leg, i) => {
+            const [a, b] = [points[i], points[i + 1]]
+            if (!a || !b) return
+            L.marker([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], {
+                interactive: false, keyboard: false,
+                icon: L.divIcon({ className: 'pkg-map-leg', html: `<span>${leg.l}</span>`, iconSize: null }),
+            }).addTo(map)
+        })
+        map.fitBounds(points, { padding: [40, 40], maxZoom: 9 })
+    })
 }

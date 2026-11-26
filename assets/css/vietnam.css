@@ -3184,6 +3184,18 @@ body.dark-theme .stop__warn {
     opacity: 1 !important;
   }
 
+  /* Chế độ "In lịch trình" ở trang tour: chỉ giữ lịch từng ngày (điểm đang chọn) và chi phí */
+  body.print-tour .main > :not(.guide),
+  body.print-tour .guide__toc,
+  body.print-tour .guide__body > :not(#lich-trinh):not(#chi-phi),
+  body.print-tour .pkg-actions,
+  body.print-tour .pkg-custom-hint,
+  body.print-tour .pkg-more,
+  body.print-tour .pkg-pick,
+  body.print-tour .pkg-sight--off {
+    display: none !important;
+  }
+
   /* Chế độ "In danh sách đồ" ở trang trekking: chỉ giữ danh sách */
   body.print-gear .main > :not(.guide),
   body.print-gear .guide__toc,
@@ -4057,6 +4069,41 @@ span.trek-level {
   color: var(--text-color);
 }
 
+.pkg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+.pkg-actions .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.pkg-actions__date {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.pkg-actions__date input {
+  padding: .4rem .6rem;
+  border: 1px solid var(--input-color);
+  border-radius: .5rem;
+  background-color: var(--input-color);
+  color: var(--text-color);
+  font: inherit;
+}
+
+.pkg-actions[hidden],
 .pkg-custom-hint[hidden],
 .pkg-more[hidden] {
   display: none;
@@ -4105,6 +4152,66 @@ span.trek-level {
   border-bottom: 0;
   font-weight: var(--font-semi-bold);
   color: var(--title-color);
+}
+
+.pkg-map-wrap {
+  margin: 1rem 0 0;
+}
+
+.pkg-map {
+  position: relative;
+  z-index: 0;
+  height: 340px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--input-color);
+}
+
+.pkg-map__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem .5rem;
+  margin-top: .5rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.pkg-map__caption b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  font-size: .75rem;
+}
+
+.pkg-map-pin span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: var(--first-color);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+}
+
+.pkg-map-leg span {
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  padding: .15rem .45rem;
+  border-radius: .4rem;
+  background-color: rgba(255, 255, 255, .95);
+  color: #222;
+  font-size: .72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
 }
 
 .pkg-leg {

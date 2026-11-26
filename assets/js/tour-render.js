@@ -59,8 +59,10 @@ function tourLeg(fromId, toId) {
     const option = pick(saving)
     return { from: a, to: b, option, cost: [option.cost, pick(comfort).cost] }
 }
+/* [thấp, cao] → "120k" nếu bằng nhau, không thì "120k–210k" */
+const rangeText = r => (r[0] === r[1] ? shortVnd(r[0]) : priceRange(r))
 const tourLegs = tp => tp.plan.map((_, i) => (i ? tourLeg(tourDayDest(tp, i - 1), tourDayDest(tp, i)) : null))
-const legHtml = leg => `<p class="pkg-leg"><i class="${MODE_ICONS[leg.option.mode]}"></i> <span><strong>${leg.from.name} → ${leg.to.name}</strong> · ${modeLabel(leg.option)} · ${priceRange(leg.cost)}${modeNote(leg.option) ? ` <small>(${modeNote(leg.option)})</small>` : ''}</span></p>`
+const legHtml = leg => `<p class="pkg-leg"><i class="${MODE_ICONS[leg.option.mode]}"></i> <span><strong>${leg.from.name} → ${leg.to.name}</strong> · ${modeLabel(leg.option)} · ${rangeText(leg.cost)}${modeNote(leg.option) ? ` <small>(${modeNote(leg.option)})</small>` : ''}</span></p>`
 
 /* Chi phí / người: từng khoản [thấp, cao] + tổng */
 function tourCost(tp) {
@@ -299,13 +301,21 @@ function tourPage(tp) {
                     </figure>
                     <p>${pickLang(tp.summary)}</p>
                     ${tourStats(tp)}
+                    ${tourMapHtml(tp)}
                 </section>
                 <section class="guide-section" id="lich-trinh" data-tour-custom="${tp.id}">
                     <h2 class="guide-section__title">${t('Lịch trình từng ngày')}</h2>
                     <p class="pkg-custom-hint" hidden><i class="ri-equalizer-line"></i> ${t('Tùy chỉnh: bỏ tick điểm không muốn đi, mở "Thêm điểm" để thêm – chi phí tính lại ngay, lựa chọn được nhớ trên máy này.')} <button type="button" class="chip" data-custom-reset>${t('Về lịch gốc')}</button></p>
+                    <div class="pkg-actions" hidden data-tour-name="${escapeAttr(pickLang(tp.name))}">
+                        <button type="button" class="chip" data-tour-action="share"><i class="ri-share-line"></i> ${t('Chia sẻ lịch này')}</button>
+                        <label class="pkg-actions__date">${t('Ngày đi')} <input type="date" data-tour-start></label>
+                        <button type="button" class="chip" data-tour-action="ics"><i class="ri-calendar-event-line"></i> ${t('Thêm vào lịch (.ics)')}</button>
+                        <button type="button" class="chip" data-tour-action="print"><i class="ri-printer-line"></i> ${t('In lịch trình')}</button>
+                    </div>
+                    <p class="print-only"><strong>${pickLang(tp.name)}</strong> · ${tourStopNames(tp)} · ${tourDaysText(tp)}</p>
                     <ol class="trek-plan">
                         ${tp.plan.map((day, i) => `
-                            <li class="trek-plan__day">
+                            <li class="trek-plan__day" data-day-title="${escapeAttr(`${tp.days > 1 ? `${t('Ngày {n}', { n: i + 1 })}: ` : ''}${pickLang(day.title)}`)}" data-day-dest="${escapeAttr(getDestination(tourDayDest(tp, i)).name)}">
                                 ${legs[i] ? legHtml(legs[i]) : ''}
                                 <h3 class="trek-plan__title">${tp.days > 1 ? `${t('Ngày {n}', { n: i + 1 })}: ` : ''}${pickLang(day.title)}</h3>
                                 <p>${pickLang(day.text)}</p>
@@ -367,6 +377,54 @@ function tourExtrasHtml(tp, i) {
             <summary>${t('+ Thêm điểm ở {dest} ({n})', { dest: getDestination(dest).name, n: extras.length })}</summary>
             <ul class="pkg-sights">${extras.map(x => tourSightHtml(x, `+${dest}:${x.name[0]}`, false)).join('')}</ul>
         </details>`
+}
+
+/* Bản đồ hành trình (tour nhiều điểm): dữ liệu điểm dừng + chặng cho guide.js; Leaflet chỉ tải khi cuộn tới */
+function tourMapHtml(tp) {
+    const stops = tourStops(tp)
+    if (stops.length < 2) return ''
+    const legs = tourLegs(tp).filter(Boolean)
+    const data = stops.map(s => { const d = getDestination(s.id); return { n: d.name, lat: d.lat, lng: d.lng, d: s.days, r: d.region } })
+    const legData = legs.map(l => ({ m: l.option.mode, l: `${modeLabel(l.option)} · ${rangeText(l.cost)}` }))
+    const label = t('Bản đồ hành trình: {route}', { route: tourStopNames(tp) })
+    return `
+        <figure class="pkg-map-wrap">
+            <div class="pkg-map" data-tour-map="${escapeAttr(JSON.stringify(data))}" data-legs="${escapeAttr(JSON.stringify(legData))}" data-days-label="${escapeAttr(t('{n} ngày'))}" role="img" aria-label="${escapeAttr(label)}"></div>
+            <figcaption class="pkg-map__caption">${stops.map((s, i) => `<span><b>${i + 1}</b> ${getDestination(s.id).name} · ${t('{n} ngày', { n: s.days })}</span>`).join('<i class="ri-arrow-right-line" aria-hidden="true"></i>')}</figcaption>
+        </figure>`
+}
+
+/* Trang chủ: tour nổi bật – ưu tiên tour liên tuyến, mỗi điểm đến đầu tiên một tour, tối đa 6 */
+function homeToursSection() {
+    const all = tourList()
+    const ordered = [...all.filter(x => tourStops(x).length > 1), ...all.filter(x => tourStops(x).length === 1)]
+    const seen = new Set()
+    const picks = ordered.filter(x => (seen.has(x.dest) ? false : seen.add(x.dest))).slice(0, 6)
+    if (!picks.length) return ''
+    return `
+        <section class="section pkg-home" id="tours">
+            <span class="section__subtitle">${t('Tour & combo')}</span>
+            <h2 class="section__title">${t('Đi trọn gói, khỏi lo lịch trình')}</h2>
+            <p class="season__description container">${t('{count} tour từ 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến – lịch từng ngày, chặng di chuyển và chi phí đã tính sẵn.', { count: all.length })}</p>
+            <div class="dest__grid container">${picks.map(tourCard).join('')}</div>
+            <div class="guides-home__more">
+                <a href="${tourHubUrl()}" class="button button--flex">${t('Xem tất cả tour & combo')} <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </section>
+    `
+}
+
+/* Trang tháng: tour đẹp trong tháng (đẹp ở mọi điểm của hành trình) */
+function monthToursHtml(m) {
+    const tours = tourList().filter(x => tourBestMonths(x).includes(m))
+    if (!tours.length) return ''
+    return `
+        <section class="section">
+            <h2 class="section__title">${t('Tour đẹp tháng {m}', { m: monthLabel(m) })}</h2>
+            <div class="dest__grid container">${tours.map(tourCard).join('')}</div>
+            <p class="container"><a href="${tourHubUrl()}">${t('Xem tất cả tour & combo')} <i class="ri-arrow-right-line"></i></a></p>
+        </section>
+    `
 }
 
 /* Trang điểm đến: các tour ở đây */
