@@ -608,7 +608,9 @@
     "Từ TP. Hồ Chí Minh (khứ hồi)": "From Ho Chi Minh City (return)",
     "Tổng": "Total",
     "Trên 5 triệu": "Over 5 million",
-    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{n} of {all} destinations can be done for under 5 million VND per person from at least one of the two cities. On-the-ground costs cover room, food, sights and local transport at budget level; the trip there is an estimated budget fare for the suggested transport."
+    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{n} of {all} destinations can be done for under 5 million VND per person from at least one of the two cities. On-the-ground costs cover room, food, sights and local transport at budget level; the trip there is an estimated budget fare for the suggested transport.",
+    "Cài app Việt Travel": "Install the Viet Travel app",
+    "Trên iPhone / iPad: bấm nút Chia sẻ của Safari rồi chọn \"Thêm vào MH chính\".": "On iPhone / iPad: tap Safari’s Share button, then choose \"Add to Home Screen\"."
   },
   "html": {
     "Vùng miền": "Region",

@@ -185,3 +185,49 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
         navigator.serviceWorker.register(`${window.SITE_ROOT || ''}sw.js`).catch(() => { /* bỏ qua */ })
     })
 }
+
+/*==================== PWA: NÚT CÀI APP ====================*/
+/*
+ * Chrome / Edge / Android: giữ sự kiện beforeinstallprompt, hiện nút "Cài app" ở chân trang; bấm thì mở hộp cài của trình duyệt.
+ * iPhone / iPad (Safari không có sự kiện này): nút mở hướng dẫn Chia sẻ → Thêm vào MH chính.
+ * Đang chạy dạng app (standalone) thì không hiện.
+ */
+;(() => {
+    const standalone = window.matchMedia?.('(display-mode: standalone)').matches || navigator.standalone === true
+    const host = document.querySelector('.footer__data')
+    if (standalone || !host || typeof t !== 'function') return
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    const wrap = document.createElement('div')
+    wrap.className = 'install'
+    wrap.hidden = true
+    wrap.innerHTML = `
+        <button type="button" class="button button--flex install__btn" id="install-app"><i class="ri-download-2-line"></i> ${t('Cài app Việt Travel')}</button>
+        <p class="install__hint" id="install-hint" hidden>${t('Trên iPhone / iPad: bấm nút Chia sẻ của Safari rồi chọn "Thêm vào MH chính".')}</p>`
+    host.append(wrap)
+    const btn = wrap.querySelector('button')
+    const hint = wrap.querySelector('.install__hint')
+    btn.setAttribute('aria-controls', 'install-hint')
+    let deferred = null
+    window.addEventListener('beforeinstallprompt', e => {
+        e.preventDefault()
+        deferred = e
+        wrap.hidden = false
+    })
+    window.addEventListener('appinstalled', () => {
+        deferred = null
+        wrap.hidden = true
+    })
+    if (ios) wrap.hidden = false
+    btn.addEventListener('click', async () => {
+        if (deferred) {
+            const prompt = deferred
+            deferred = null
+            prompt.prompt()
+            const { outcome } = await prompt.userChoice
+            if (outcome === 'accepted') wrap.hidden = true
+        } else {
+            hint.hidden = !hint.hidden
+            btn.setAttribute('aria-expanded', String(!hint.hidden))
+        }
+    })
+})()

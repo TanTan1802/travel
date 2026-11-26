@@ -1080,6 +1080,23 @@ test('đã xem gần đây: trang điểm đến, tour, trekking hiện lại �
     await close()
 })
 
+test('cài app (PWA): nút chỉ hiện khi trình duyệt cho cài, bấm mở hộp cài', async () => {
+    const { page, errors, close } = await openPage('index.html')
+    assert.ok(await page.isHidden('#install-app'), 'chưa có beforeinstallprompt thì ẩn nút')
+    await page.evaluate(() => {
+        const e = new Event('beforeinstallprompt', { cancelable: true })
+        e.prompt = () => { window.__installPrompted = true }
+        e.userChoice = Promise.resolve({ outcome: 'accepted' })
+        window.dispatchEvent(e)
+    })
+    assert.ok(await page.isVisible('#install-app'))
+    await page.click('#install-app')
+    assert.equal(await page.evaluate(() => window.__installPrompted), true)
+    await page.waitForFunction(() => document.querySelector('.install').hidden)
+    assert.deepEqual(errors, [])
+    await close()
+})
+
 test('so sánh điểm đến: chọn theo link ?d=, đổi lựa chọn cập nhật cột và link', async () => {
     const { page, errors, close } = await openPage('so-sanh/index.html?d=da-lat,sa-pa,hoi-an')
     const cols = () => page.$$eval('thead th[data-col]:not([hidden])', a => a.map(x => x.dataset.col))

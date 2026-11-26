@@ -608,7 +608,9 @@
     "Từ TP. Hồ Chí Minh (khứ hồi)": "ホーチミン市から（往復）",
     "Tổng": "合計",
     "Trên 5 triệu": "500万₫超",
-    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{all}か所中{n}か所は、2都市の少なくとも一方から1人500万₫以下で行けます。現地費用は節約レベルの宿・食事・入場料・現地交通を含み、移動費はおすすめ交通手段の節約時の目安運賃です。"
+    "{n} / {all} điểm đến đi được dưới 5 triệu / người từ ít nhất một trong hai thành phố. Chi phí tại chỗ gồm phòng, ăn uống, vé tham quan, đi lại trong vùng ở mức tiết kiệm; vé chặng đi là giá tiết kiệm ước tính cho phương tiện gợi ý.": "{all}か所中{n}か所は、2都市の少なくとも一方から1人500万₫以下で行けます。現地費用は節約レベルの宿・食事・入場料・現地交通を含み、移動費はおすすめ交通手段の節約時の目安運賃です。",
+    "Cài app Việt Travel": "Viet Travel アプリをインストール",
+    "Trên iPhone / iPad: bấm nút Chia sẻ của Safari rồi chọn \"Thêm vào MH chính\".": "iPhone / iPad: Safari の共有ボタンをタップし、「ホーム画面に追加」を選びます。"
   },
   "html": {
     "Vùng miền": "地域",

@@ -7366,3 +7366,19 @@ body.dark-theme #destination {
 .compare-table td.is-muted {
   color: var(--text-color-light);
 }
+
+/* Nút cài app (PWA) ở chân trang – assets/js/main.js */
+.install[hidden],
+.install__hint[hidden] {
+  display: none;
+}
+.install__btn {
+  padding: .65rem 1.1rem;
+  font-size: var(--small-font-size);
+}
+.install__hint {
+  max-width: 260px;
+  margin-top: .6rem;
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
