@@ -223,7 +223,7 @@ function staySection(d) {
     const travel = [
         places.airport ? { label: t('Vé máy bay tới {code}', { code: places.airport }), icon: 'ri-plane-line', url: `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights to ${places.airport}`)}` } : null,
         places.rail ? { label: t('Vé tàu (ga {station})', { station: places.rail }), icon: 'ri-train-line', url: 'https://dsvn.vn/' } : null,
-        { label: t('Vé xe khách / limousine'), icon: 'ri-bus-2-line', url: 'https://vexere.com/' },
+        { label: t('Vé xe khách / limousine'), icon: 'ri-bus-2-line', url: affiliateUrl('https://vexere.com/') },
     ].filter(Boolean)
     return `
         <section class="stay section" id="stay">

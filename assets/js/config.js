@@ -25,6 +25,18 @@ const SITE_CONFIG = {
      * 2. Vào https://giscus.app, nhập repo → copy data-repo-id, data-category, data-category-id vào đây.
      * Để trống repoId/categoryId: mục bình luận được ẩn.
      */
+    /*
+     * Mã đối tác (affiliate) cho link đặt chỗ – lấy trong trang quản lý của từng chương trình đối tác.
+     * params: chuỗi thêm vào cuối link của trang đó, vd. 'booking.com': 'aid=1234567'.
+     * wrap:   mẫu link bọc do đối tác cung cấp, {url} là link gốc đã mã hóa,
+     *         vd. 'klook.com': 'https://affiliate.klook.com/redirect?aid=…&k_site={url}' (chép đúng mẫu trong trang đối tác).
+     * Để trống: link giữ nguyên như bình thường. Có mã → site tự ghi rõ "link có mã giới thiệu" và cập nhật trang chính sách.
+     */
+    affiliate: {
+        params: { 'booking.com': '', 'agoda.com': '', 'airbnb.com': '', 'vexere.com': '' },
+        wrap: { 'klook.com': '' },
+    },
+
     giscus: {
         repo: 'TanTan1802/travel',
         repoId: '',

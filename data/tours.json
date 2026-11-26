@@ -998,6 +998,372 @@
         ]
       ],
       "updated": "2026-11"
+    },
+    {
+      "id": "quy-nhon-phu-yen-5-ngay",
+      "name": [
+        "Quy Nhơn – Phú Yên 5 ngày: biển xanh, gành đá",
+        "Quy Nhon – Phu Yen in 5 days: blue sea and rock reefs"
+      ],
+      "dest": "quy-nhon",
+      "style": "route",
+      "days": 5,
+      "stay": [
+        "hotel"
+      ],
+      "summary": [
+        "Eo Gió, cano Kỳ Co, lặn Hòn Khô ở Quy Nhơn; xuống Phú Yên ngắm Gành Đá Đĩa, đầm Ô Loan và đón bình minh Mũi Điện.",
+        "Eo Gio, the Ky Co speedboat and Hon Kho snorkelling in Quy Nhon, then down to Phu Yen for Ganh Da Dia, O Loan lagoon and sunrise at Mui Dien."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Quy Nhơn – Eo Gió",
+            "Quy Nhon – Eo Gio"
+          ],
+          "text": [
+            "Ghềnh Ráng Tiên Sa, chiều ra Eo Gió ngắm hoàng hôn, tối ăn hải sản chợ đêm.",
+            "Ghenh Rang Tien Sa, Eo Gio for sunset, then seafood at the night market."
+          ],
+          "sights": [
+            "Ghềnh Ráng Tiên Sa – mộ Hàn Mặc Tử",
+            "Eo Gió",
+            "Chợ đêm Quy Nhơn"
+          ]
+        },
+        {
+          "title": [
+            "Kỳ Co – Hòn Khô",
+            "Ky Co – Hon Kho"
+          ],
+          "text": [
+            "Cano ra Kỳ Co và Bãi Dứa, chiều lặn ngắm san hô Hòn Khô.",
+            "Speedboat to Ky Co and Bai Dua, then snorkelling at Hon Kho."
+          ],
+          "sights": [
+            "Tour cano Kỳ Co – Bãi Dứa",
+            "Hòn Khô – lặn san hô"
+          ]
+        },
+        {
+          "dest": "phu-yen",
+          "title": [
+            "Xuống Phú Yên – Gành Đá Đĩa",
+            "To Phu Yen – Ganh Da Dia"
+          ],
+          "text": [
+            "Đi xe xuống Tuy An: Gành Đá Đĩa, nhà thờ Mằng Lăng, hoàng hôn đầm Ô Loan.",
+            "Drive south to Tuy An: Ganh Da Dia, Mang Lang church and sunset over O Loan lagoon."
+          ],
+          "sights": [
+            "Gành Đá Đĩa",
+            "Nhà thờ Mằng Lăng",
+            "Bãi Môn – đầm Ô Loan"
+          ]
+        },
+        {
+          "title": [
+            "Mũi Điện – vịnh Xuân Đài",
+            "Mui Dien – Xuan Dai bay"
+          ],
+          "text": [
+            "Dậy sớm đón bình minh Mũi Điện, chiều vịnh Xuân Đài và Gành Ông.",
+            "Sunrise at Mui Dien, then Xuan Dai bay and Ganh Ong in the afternoon."
+          ],
+          "sights": [
+            "Mũi Điện – hải đăng Đại Lãnh",
+            "Vịnh Xuân Đài – làng Đo Đo",
+            "Gành Ông – bãi Xép"
+          ]
+        },
+        {
+          "title": [
+            "Tuy Hòa",
+            "Tuy Hoa"
+          ],
+          "text": [
+            "Tháp Nhạn, biển Tuy Hòa, bay về từ sân bay Tuy Hòa.",
+            "Nhan tower and Tuy Hoa beach, then fly home from Tuy Hoa airport."
+          ],
+          "sights": [
+            "Tháp Nhạn",
+            "Biển Tuy Hòa"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Bay vào Quy Nhơn (Phù Cát), bay ra Tuy Hòa để khỏi quay lại.",
+          "Fly into Quy Nhon (Phu Cat) and out of Tuy Hoa to avoid backtracking."
+        ],
+        [
+          "Tháng 10 – 12 mùa mưa bão, cano ra đảo hay nghỉ.",
+          "Oct – Dec is storm season and island boats often stop."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "mui-ne-da-lat-4-ngay",
+      "name": [
+        "Mũi Né – Đà Lạt 4 ngày: đồi cát rồi rừng thông",
+        "Mui Ne – Da Lat in 4 days: sand dunes then pine forests"
+      ],
+      "dest": "mui-ne",
+      "style": "route",
+      "days": 4,
+      "stay": [
+        "resort",
+        "homestay"
+      ],
+      "summary": [
+        "Đồi cát Bay, Bàu Trắng lúc bình minh, Suối Tiên ở Mũi Né; lên Đà Lạt mát lạnh với hồ Tuyền Lâm và thác Datanla.",
+        "Red dunes, White Sand Dunes at sunrise and Fairy Stream in Mui Ne; then up to cool Da Lat for Tuyen Lam lake and Datanla falls."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Mũi Né – đồi cát Bay",
+            "Mui Ne – red dunes"
+          ],
+          "text": [
+            "Nhận phòng resort, chiều đi bộ Suối Tiên, ngắm hoàng hôn đồi cát Bay, tối ghé làng chài.",
+            "Check in, walk Fairy Stream, sunset on the red dunes and the fishing village in the evening."
+          ],
+          "sights": [
+            "Suối Tiên (Suối Hồng)",
+            "Đồi cát Bay (đồi cát Đỏ)",
+            "Làng chài Mũi Né"
+          ]
+        },
+        {
+          "title": [
+            "Bàu Trắng – tháp Chàm",
+            "White dunes – Cham towers"
+          ],
+          "text": [
+            "Xe jeep đón bình minh Bàu Trắng, chiều tháp Chàm Poshanư và lâu đài rượu vang.",
+            "Jeep to the White Sand Dunes for sunrise, then the Poshanu Cham towers and the wine castle."
+          ],
+          "sights": [
+            "Đồi cát Bàu Trắng",
+            "Tháp Chàm Poshanư",
+            "Lâu đài rượu vang RD"
+          ]
+        },
+        {
+          "dest": "da-lat",
+          "title": [
+            "Lên Đà Lạt",
+            "Up to Da Lat"
+          ],
+          "text": [
+            "Đi xe lên Đà Lạt qua đèo, chiều dạo hồ Xuân Hương, tối chợ đêm.",
+            "Drive up the passes to Da Lat, stroll Xuan Huong lake, then the night market."
+          ],
+          "sights": [
+            "Hồ Xuân Hương – quảng trường Lâm Viên",
+            "Chợ đêm Đà Lạt"
+          ]
+        },
+        {
+          "title": [
+            "Hồ Tuyền Lâm – thác Datanla",
+            "Tuyen Lam lake – Datanla falls"
+          ],
+          "text": [
+            "Cáp treo Robin xuống Thiền viện Trúc Lâm, hồ Tuyền Lâm, máng trượt Datanla rồi bay về từ Liên Khương.",
+            "Robin cable car to Truc Lam, Tuyen Lam lake and the Datanla coaster, then fly home from Lien Khuong."
+          ],
+          "sights": [
+            "Cáp treo Robin – Thiền viện Trúc Lâm",
+            "Hồ Tuyền Lâm",
+            "Thác Datanla – máng trượt"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Mũi Né không có khách sạn trong dữ liệu nên tour tính theo resort / homestay.",
+          "Mui Ne is costed on resorts / homestays."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "ha-giang-vong-cung-4-ngay",
+      "name": [
+        "Vòng cung Hà Giang 4 ngày: Quản Bạ – Đồng Văn – Mã Pí Lèng",
+        "The Ha Giang loop in 4 days: Quan Ba – Dong Van – Ma Pi Leng"
+      ],
+      "dest": "ha-giang",
+      "style": "nature",
+      "days": 4,
+      "stay": [
+        "homestay",
+        "hotel"
+      ],
+      "summary": [
+        "Cung đèo đẹp nhất miền Bắc: cổng trời Quản Bạ, dinh họ Vương, cột cờ Lũng Cú, đèo Mã Pí Lèng và thuyền sông Nho Quế.",
+        "The north’s finest mountain loop: Quan Ba gate, the Vuong palace, Lung Cu flag tower, Ma Pi Leng pass and a boat on the Nho Que river."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Hà Giang – Quản Bạ – Yên Minh",
+            "Ha Giang – Quan Ba – Yen Minh"
+          ],
+          "text": [
+            "Chụp ảnh cột mốc Km0, lên cổng trời Quản Bạ ngắm núi đôi, qua rừng thông Yên Minh.",
+            "Photo at the Km0 marker, up to Quan Ba gate and the twin mountains, through the Yen Minh pine forest."
+          ],
+          "sights": [
+            "Cột mốc Km0 Hà Giang",
+            "Cổng trời Quản Bạ – núi đôi Cô Tiên",
+            "Rừng thông Yên Minh"
+          ]
+        },
+        {
+          "title": [
+            "Dinh họ Vương – Lũng Cú – Đồng Văn",
+            "Vuong palace – Lung Cu – Dong Van"
+          ],
+          "text": [
+            "Dinh thự họ Vương, dốc Thẩm Mã, cột cờ Lũng Cú cực Bắc, tối phố cổ Đồng Văn.",
+            "The Vuong palace, Tham Ma slope, Lung Cu flag tower at the northern tip, then Dong Van old quarter at night."
+          ],
+          "sights": [
+            "Dinh thự họ Vương",
+            "Dốc Thẩm Mã",
+            "Cột cờ Lũng Cú",
+            "Phố cổ Đồng Văn"
+          ]
+        },
+        {
+          "title": [
+            "Mã Pí Lèng – sông Nho Quế",
+            "Ma Pi Leng – Nho Que river"
+          ],
+          "text": [
+            "Qua đèo Mã Pí Lèng, đi thuyền hẻm Tu Sản trên sông Nho Quế, chiều theo cung Mèo Vạc – Du Già.",
+            "Over Ma Pi Leng pass, a boat through Tu San canyon on the Nho Que, then the Meo Vac – Du Gia road."
+          ],
+          "sights": [
+            "Đèo Mã Pí Lèng – hẻm Tu Sản",
+            "Thuyền sông Nho Quế",
+            "Cung đường Mèo Vạc – Du Già"
+          ]
+        },
+        {
+          "title": [
+            "Du Già – về Hà Giang",
+            "Du Gia – back to Ha Giang"
+          ],
+          "text": [
+            "Tắm thác Du Già buổi sáng, chiều về thành phố Hà Giang.",
+            "Swim at Du Gia waterfall in the morning, then back to Ha Giang town."
+          ],
+          "sights": [
+            "Thác Du Già"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Đèo dốc, cua gắt: nếu chưa quen đi xe máy đường núi, thuê xe kèm người lái địa phương (easy rider).",
+          "Steep passes and hairpins: if you are not used to mountain riding, hire a local easy rider."
+        ],
+        [
+          "Vùng biên giới – mang căn cước / hộ chiếu; tháng 10 – 11 mùa hoa tam giác mạch.",
+          "Border area – carry ID or a passport; buckwheat flowers bloom in Oct – Nov."
+        ]
+      ],
+      "updated": "2026-11"
+    },
+    {
+      "id": "ha-tien-phu-quoc-4-ngay",
+      "name": [
+        "Hà Tiên – Phú Quốc 4 ngày: đảo Hải Tặc rồi đảo ngọc",
+        "Ha Tien – Phu Quoc in 4 days: the Pirate Islands then the pearl island"
+      ],
+      "dest": "ha-tien",
+      "style": "route",
+      "days": 4,
+      "stay": [
+        "hotel"
+      ],
+      "summary": [
+        "Thị trấn ven biển Hà Tiên, tàu ra quần đảo Hải Tặc hoang sơ, rồi tàu cao tốc sang Phú Quốc với cáp treo Hòn Thơm và Sunset Town.",
+        "Seaside Ha Tien, a boat to the unspoilt Pirate Islands, then the fast ferry to Phu Quoc for the Hon Thom cable car and Sunset Town."
+      ],
+      "plan": [
+        {
+          "title": [
+            "Hà Tiên",
+            "Ha Tien"
+          ],
+          "text": [
+            "Lăng Mạc Cửu, chùa Phù Dung, Thạch Động, tối ăn hải sản chợ đêm.",
+            "The Mac Cuu tombs, Phu Dung pagoda, Thach Dong cave, then seafood at the night market."
+          ],
+          "sights": [
+            "Lăng Mạc Cửu – núi Lăng",
+            "Chùa Phù Dung – núi Tô Châu",
+            "Thạch Động",
+            "Chợ đêm Hà Tiên"
+          ]
+        },
+        {
+          "title": [
+            "Quần đảo Hải Tặc",
+            "The Pirate Islands"
+          ],
+          "text": [
+            "Tàu cao tốc ra quần đảo Hải Tặc, tắm biển, lặn ngắm san hô bãi Nam, chiều về Hà Tiên.",
+            "Fast boat out to the Pirate Islands, swimming and snorkelling at Bai Nam, back to Ha Tien in the afternoon."
+          ],
+          "sights": [
+            "Tàu cao tốc ra quần đảo Hải Tặc",
+            "Bãi Nam – lặn san hô, câu cá"
+          ]
+        },
+        {
+          "dest": "phu-quoc",
+          "title": [
+            "Sang Phú Quốc",
+            "Over to Phu Quoc"
+          ],
+          "text": [
+            "Tàu cao tốc sang Phú Quốc, nhận phòng Dương Đông, chiều Dinh Cậu, tối chợ đêm.",
+            "Fast ferry to Phu Quoc, check in at Duong Dong, Dinh Cau shrine and the night market."
+          ],
+          "sights": [
+            "Dinh Cậu",
+            "Chợ đêm Dinh Cậu"
+          ]
+        },
+        {
+          "title": [
+            "Cáp treo Hòn Thơm – Sunset Town",
+            "Hon Thom cable car – Sunset Town"
+          ],
+          "text": [
+            "Cáp treo vượt biển và Aquatopia, hoàng hôn Sunset Town rồi bay về.",
+            "The sea cable car and Aquatopia, sunset at Sunset Town, then fly home."
+          ],
+          "sights": [
+            "Cáp treo Hòn Thơm + Aquatopia",
+            "Sunset Town – show Kiss of the Sea"
+          ]
+        }
+      ],
+      "tips": [
+        [
+          "Tàu Hà Tiên – Phú Quốc và ra đảo Hải Tặc hay nghỉ khi biển động (tháng 6 – 9) – đặt vé linh hoạt.",
+          "Ferries to Phu Quoc and the Pirate Islands often stop in rough seas (Jun – Sep) – book flexible tickets."
+        ]
+      ],
+      "updated": "2026-11"
     }
   ]
 }

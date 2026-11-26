@@ -36,8 +36,11 @@ function privacySections({ analytics }) {
         ]],
         [P('Dịch vụ bên ngoài', 'Third-party services'), [
             P('Khi bạn mở trang có các phần sau, trình duyệt kết nối trực tiếp tới dịch vụ đó (họ thấy địa chỉ IP như với mọi trang web): Open-Meteo (thời tiết – gửi tọa độ của điểm đến, không phải của bạn), OpenStreetMap và cdnjs (bản đồ), Wikimedia Commons (một số ảnh).', 'When a page uses these, your browser connects to the service directly (they see your IP address, as with any website): Open-Meteo (weather – sends the destination’s coordinates, not yours), OpenStreetMap and cdnjs (maps), Wikimedia Commons (some photos).'),
-            P('Các nút Booking.com, Airbnb, Google Maps, Google Calendar, Vexere chỉ mở trang của họ; từ đó áp dụng chính sách của chính họ.', 'Buttons for Booking.com, Airbnb, Google Maps, Google Calendar and Vexere just open their sites; their own policies apply from there.'),
+            P('Các nút Booking.com, Airbnb, Klook, Google Maps, Google Calendar, Vexere chỉ mở trang của họ; từ đó áp dụng chính sách của chính họ.', 'Buttons for Booking.com, Airbnb, Klook, Google Maps, Google Calendar and Vexere just open their sites; their own policies apply from there.'),
         ]],
+        ...(typeof affiliateActive === 'function' && affiliateActive() ? [[P('Link giới thiệu (affiliate)', 'Affiliate links'), [
+            P('Một số link đặt phòng, đặt vé có mã giới thiệu. Khi bạn đặt qua link đó, đối tác biết bạn đến từ Việt Travel (thường qua cookie của chính họ) và Việt Travel có thể nhận hoa hồng; giá bạn trả không đổi.', 'Some booking and ticket links carry a referral code. If you book through one, the partner knows you came from Viet Travel (usually via its own cookie) and Viet Travel may earn a commission; the price you pay is the same.'),
+        ]]] : []),
         [P('Thông tin bạn gửi cho chúng tôi', 'Information you send us'), [
             cfg.reportEndpoint
                 ? P('Form "Báo sai thông tin" gửi nội dung bạn nhập qua Formspree tới người quản lý site; chỉ dùng để sửa dữ liệu.', 'The "Report an error" form sends what you type via Formspree to the site owner; it is used only to fix the data.')

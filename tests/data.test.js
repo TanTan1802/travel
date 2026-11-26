@@ -931,3 +931,24 @@ test('chính sách bảo mật: có ở 5 ngôn ngữ, chân trang liên kết t
     const { WEB_ANALYTICS_TOKEN } = require('../tools/lib')
     assert.equal(/Cloudflare Web Analytics/.test(html), Boolean(WEB_ANALYTICS_TOKEN), 'đoạn đo lượt xem phải khớp việc có bật Web Analytics')
 })
+
+test('link đối tác (affiliate): để trống giữ nguyên link, có mã thì thêm tham số hoặc bọc link đúng trang', () => {
+    const vm = require('vm')
+    const src = fs.readFileSync(path.join(ROOT, 'assets/js/components.js'), 'utf8')
+    const start = src.indexOf('function affiliateUrl(')
+    const code = src.slice(start, src.indexOf('const priceRange', start))
+    const run = affiliate => {
+        const ctx = { SITE_CONFIG: { affiliate }, URL }
+        vm.createContext(ctx)
+        vm.runInContext(`${code}; this.affiliateUrl = affiliateUrl; this.affiliateActive = affiliateActive`, ctx)
+        return ctx
+    }
+    const off = run({ params: { 'booking.com': '' }, wrap: { 'klook.com': '' } })
+    assert.equal(off.affiliateUrl('https://www.booking.com/searchresults.html?ss=Hue'), 'https://www.booking.com/searchresults.html?ss=Hue')
+    assert.equal(off.affiliateActive(), false)
+    const on = run({ params: { 'booking.com': 'aid=123' }, wrap: { 'klook.com': 'https://aff.example/r?aid=9&k_site={url}' } })
+    assert.equal(on.affiliateUrl('https://www.booking.com/searchresults.html?ss=Hue'), 'https://www.booking.com/searchresults.html?ss=Hue&aid=123')
+    assert.equal(on.affiliateUrl('https://www.klook.com/en-US/search/?query=a b'), `https://aff.example/r?aid=9&k_site=${encodeURIComponent('https://www.klook.com/en-US/search/?query=a b')}`)
+    assert.equal(on.affiliateUrl('https://www.airbnb.com/s/x'), 'https://www.airbnb.com/s/x', 'trang không có mã giữ nguyên')
+    assert.equal(on.affiliateActive(), true)
+})

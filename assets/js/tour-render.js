@@ -239,16 +239,23 @@ function tourStats(tp) {
     return `<dl class="trek-stats">${stats.map(([icon, label, value]) => `<div><dt><i class="${icon}"></i> ${label}</dt><dd>${value}</dd></div>`).join('')}</dl>`
 }
 
-function tourSightHtml(s) {
+/* Điểm có vé từ mức này (cáp treo, khu vui chơi, tour đảo…) hiện link tìm vé online */
+const TICKET_LINK_MIN = 300000
+const escapeAttr = v => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
+
+/* key: mã ổn định của điểm trong tour (ngày + tên) để nhớ lựa chọn tùy chỉnh; on: có trong tour gốc */
+function tourSightHtml(s, key = '', on = true) {
     const [low, high] = sightRange(s)
     const price = !high ? t('Miễn phí') : low === high ? shortVnd(low) : priceRange([low, high])
     return `
-        <li class="pkg-sight">
+        <li class="pkg-sight${on ? '' : ' pkg-sight--extra'}">
+            ${key ? `<label class="pkg-pick" hidden><input type="checkbox" data-pick="${escapeAttr(key)}" data-lo="${low}" data-hi="${high}"${on ? ' checked' : ''}> <span class="visually-hidden">${on ? t('Giữ trong tour') : t('Thêm vào tour')}</span></label>` : ''}
             <span class="pkg-sight__name">${pickLang(s.name)}</span>
             <span class="pkg-sight__meta">
                 <span><i class="ri-ticket-2-line"></i> ${price}</span>
                 ${s.hours ? `<span><i class="ri-time-line"></i> ${sightHours(s.hours)}</span>` : ''}
                 ${s.address ? `<a href="${mapsSearchUrl(s.address)}" target="_blank" rel="noopener"><i class="ri-map-pin-line"></i> ${s.address}</a>` : ''}
+                ${high >= TICKET_LINK_MIN ? `<a href="${ticketSearchUrl(s.name[1] || s.name[0])}" target="_blank" rel="noopener nofollow${affiliateActive() ? ' sponsored' : ''}"><i class="ri-coupon-3-line"></i> ${t('Tìm vé online')}</a>` : ''}
             </span>
         </li>`
 }
@@ -293,15 +300,17 @@ function tourPage(tp) {
                     <p>${pickLang(tp.summary)}</p>
                     ${tourStats(tp)}
                 </section>
-                <section class="guide-section" id="lich-trinh">
+                <section class="guide-section" id="lich-trinh" data-tour-custom="${tp.id}">
                     <h2 class="guide-section__title">${t('Lịch trình từng ngày')}</h2>
+                    <p class="pkg-custom-hint" hidden><i class="ri-equalizer-line"></i> ${t('Tùy chỉnh: bỏ tick điểm không muốn đi, mở "Thêm điểm" để thêm – chi phí tính lại ngay, lựa chọn được nhớ trên máy này.')} <button type="button" class="chip" data-custom-reset>${t('Về lịch gốc')}</button></p>
                     <ol class="trek-plan">
                         ${tp.plan.map((day, i) => `
                             <li class="trek-plan__day">
                                 ${legs[i] ? legHtml(legs[i]) : ''}
                                 <h3 class="trek-plan__title">${tp.days > 1 ? `${t('Ngày {n}', { n: i + 1 })}: ` : ''}${pickLang(day.title)}</h3>
                                 <p>${pickLang(day.text)}</p>
-                                <ul class="pkg-sights">${tourDaySights(tp, i).map(tourSightHtml).join('')}</ul>
+                                <ul class="pkg-sights">${tourDaySights(tp, i).map(x => tourSightHtml(x, `${i}:${x.name[0]}`)).join('')}</ul>
+                                ${tourExtrasHtml(tp, i)}
                             </li>
                         `).join('')}
                     </ol>
@@ -311,9 +320,9 @@ function tourPage(tp) {
                     <table class="pkg-cost">
                         <caption class="visually-hidden">${t('Chi phí ước tính / người')}</caption>
                         <tbody>
-                            ${items.map(x => `<tr><th scope="row"><i class="${x.icon}"></i> ${x.label}</th><td>${priceRange(x.range)}</td></tr>`).join('')}
+                            ${items.map(x => `<tr><th scope="row"><i class="${x.icon}"></i> ${x.label}</th><td${x.key === 'tickets' ? ' data-cost-tickets' : ''}>${priceRange(x.range)}</td></tr>`).join('')}
                         </tbody>
-                        <tfoot><tr><th scope="row">${t('Tổng / người')}</th><td>${priceRange(total)}</td></tr></tfoot>
+                        <tfoot><tr><th scope="row">${t('Tổng / người')}</th><td data-cost-total data-other="${total[0] - items[0].range[0]},${total[1] - items[0].range[1]}">${priceRange(total)}</td></tr></tfoot>
                     </table>
                     <p class="budget__note">${t('Chưa gồm vé máy bay, tàu xe tới {dest} và chi tiêu cá nhân. Giá vé, giá phòng lấy từ trang điểm đến – combo phòng + vé của resort, khu vui chơi có thể rẻ hơn.', { dest: getDestination(stops[0].id).name })}</p>
                 </section>
@@ -323,6 +332,7 @@ function tourPage(tp) {
                         <a href="${tourPlannerUrl(tp)}" class="book-link"><i class="ri-calendar-todo-line"></i> ${t('Thêm vào kế hoạch chuyến đi')}</a>
                         ${tp.stay.length ? stops.filter((x, k) => k < stops.length - 1 || x.days > 1).map(x => `<a href="${stayLinks(getDestination(x.id).name, '', '', x.days)[0].url}" class="book-link" target="_blank" rel="noopener nofollow"><i class="ri-hotel-line"></i> ${stops.length > 1 ? t('Phòng ở {dest}', { dest: getDestination(x.id).name }) : 'Booking.com'}</a>`).join('') : ''}
                     </div>
+                    ${affiliateActive() ? `<p class="budget__note">${t('Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.')}</p>` : ''}
                     <div class="month-nav">
                         ${HUB_IDS.filter(id => id !== stops[0].id).map(id => `<a href="${routeUrl(id, stops[0].id)}" class="chip">${t('{from} đi {to}', { from: getDestination(id).name, to: getDestination(stops[0].id).name })}</a>`).join('')}
                     </div>
@@ -343,6 +353,20 @@ function tourPage(tp) {
             </article>
         </div>
     `
+}
+
+/* "Thêm điểm": điểm tham quan khác của điểm đến – chỉ ở ngày đầu mỗi chặng để không trùng */
+function tourExtrasHtml(tp, i) {
+    const dest = tourDayDest(tp, i)
+    if (i && tourDayDest(tp, i - 1) === dest) return ''
+    const used = new Set(tp.plan.flatMap((d, k) => (tourDayDest(tp, k) === dest ? d.sights : [])))
+    const extras = (SIGHTS[dest] || []).flat().filter(x => !used.has(x.name[0]))
+    if (!extras.length) return ''
+    return `
+        <details class="pkg-more" hidden>
+            <summary>${t('+ Thêm điểm ở {dest} ({n})', { dest: getDestination(dest).name, n: extras.length })}</summary>
+            <ul class="pkg-sights">${extras.map(x => tourSightHtml(x, `+${dest}:${x.name[0]}`, false)).join('')}</ul>
+        </details>`
 }
 
 /* Trang điểm đến: các tour ở đây */

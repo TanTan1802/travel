@@ -553,7 +553,14 @@
     "Cùng điểm đến – không cần di chuyển": "同一目的地——无需转移",
     "Ghép 2 tour: {n} ngày": "合并两条行程：{n} 天",
     "Chính sách bảo mật": "隐私政策",
-    "Việt Travel lưu gì trên máy bạn, đo lượt xem thế nào, dùng dịch vụ bên ngoài nào và cách liên hệ, yêu cầu xóa.": "Viet Travel 在你的设备上保存什么、如何统计访问量、使用哪些外部服务，以及如何联系和要求删除。"
+    "Việt Travel lưu gì trên máy bạn, đo lượt xem thế nào, dùng dịch vụ bên ngoài nào và cách liên hệ, yêu cầu xóa.": "Viet Travel 在你的设备上保存什么、如何统计访问量、使用哪些外部服务，以及如何联系和要求删除。",
+    "Giữ trong tour": "保留在行程中",
+    "Thêm vào tour": "加入行程",
+    "Tùy chỉnh: bỏ tick điểm không muốn đi, mở \"Thêm điểm\" để thêm – chi phí tính lại ngay, lựa chọn được nhớ trên máy này.": "自定义：取消勾选不想去的地方，打开“添加地点”来增加——费用即时重算，选择保存在本设备上。",
+    "Về lịch gốc": "恢复原行程",
+    "+ Thêm điểm ở {dest} ({n})": "+ 添加{dest}的地点（{n}）",
+    "Tìm vé online": "在线找票",
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "部分订房、订票链接带有推荐码：Viet Travel 可能获得佣金，你支付的价格不变。"
   },
   "html": {
     "Vùng miền": "地区",

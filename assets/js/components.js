@@ -72,6 +72,25 @@ function shortVnd(n) {
     }
     return `${Math.round(n / 1000)}k`
 }
+/* Link đặt chỗ có mã đối tác (SITE_CONFIG.affiliate) – không có mã thì giữ nguyên link */
+function affiliateUrl(url) {
+    const aff = typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.affiliate
+    if (!aff) return url
+    let host = ''
+    try { host = new URL(url).hostname.replace(/^www\./, '') } catch { return url }
+    const match = rules => Object.entries(rules || {}).find(([h, v]) => v && (host === h || host.endsWith(`.${h}`)))
+    const wrap = match(aff.wrap)
+    if (wrap) return wrap[1].replace('{url}', encodeURIComponent(url))
+    const params = match(aff.params)
+    return params ? `${url}${url.includes('?') ? '&' : '?'}${params[1].replace(/^[?&]/, '')}` : url
+}
+const affiliateActive = () => {
+    const aff = typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.affiliate
+    return Boolean(aff && [...Object.values(aff.params || {}), ...Object.values(aff.wrap || {})].some(Boolean))
+}
+/* Tìm vé trải nghiệm trên Klook theo tên tiếng Anh của điểm */
+const ticketSearchUrl = name => affiliateUrl(`https://www.klook.com/en-US/search/?query=${encodeURIComponent(name)}`)
+
 const priceRange = ([low, high]) => `${shortVnd(low)}–${shortVnd(high)}`
 
 const mapsSearchUrl = query => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
@@ -108,8 +127,8 @@ function stayLinks(city, area = '', checkin = '', nights = 0, people = 2) {
         airbnb.set('checkin', checkin); airbnb.set('checkout', checkout)
     }
     return [
-        { label: 'Booking.com', icon: 'ri-hotel-line', url: `https://www.booking.com/searchresults.html?${booking}` },
-        { label: 'Airbnb', icon: 'ri-home-heart-line', url: `https://www.airbnb.com/s/${encodeURIComponent(`${city}, Vietnam`)}/homes?${airbnb}` },
+        { label: 'Booking.com', icon: 'ri-hotel-line', url: affiliateUrl(`https://www.booking.com/searchresults.html?${booking}`) },
+        { label: 'Airbnb', icon: 'ri-home-heart-line', url: affiliateUrl(`https://www.airbnb.com/s/${encodeURIComponent(`${city}, Vietnam`)}/homes?${airbnb}`) },
         { label: 'Google Maps', icon: 'ri-map-pin-line', url: mapsSearchUrl(`${area ? `${area} ` : ''}hotel ${city}`) },
     ]
 }
@@ -284,8 +303,8 @@ function transportLinks(a, b, mode, date = '') {
     }
     const rail = railRoute(a, b)
     if (rail) links.push({ mode: 'train', label: t('Vé tàu {from} – {to}', { from: rail.from, to: rail.to }), icon: MODE_ICONS.train, url: 'https://dsvn.vn/' })
-    if (mode === 'boat') links.push({ mode: 'boat', label: t('Vé tàu cao tốc'), icon: MODE_ICONS.boat, url: 'https://vexere.com/' })
-    links.push({ mode: 'road', label: t('Vé xe khách / limousine'), icon: MODE_ICONS.road, url: 'https://vexere.com/' })
+    if (mode === 'boat') links.push({ mode: 'boat', label: t('Vé tàu cao tốc'), icon: MODE_ICONS.boat, url: affiliateUrl('https://vexere.com/') })
+    links.push({ mode: 'road', label: t('Vé xe khách / limousine'), icon: MODE_ICONS.road, url: affiliateUrl('https://vexere.com/') })
     links.push({ label: t('Chỉ đường'), icon: 'ri-route-line', url: mapsDirectionsUrl(a, b) })
     /* Phương tiện đang chọn lên đầu */
     return [...links.filter(l => l.mode === mode), ...links.filter(l => l.mode !== mode)]

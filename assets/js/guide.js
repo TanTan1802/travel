@@ -114,3 +114,38 @@ if (gearBox) {
     })
     save()
 }
+
+/* Trang một tour: tùy chỉnh lịch – bỏ / thêm điểm tham quan, tính lại vé và tổng; nhớ lựa chọn trên máy này */
+const tourCustom = document.querySelector('[data-tour-custom]')
+if (tourCustom) {
+    const key = `tour-custom:${tourCustom.dataset.tourCustom}`
+    const boxes = [...tourCustom.querySelectorAll('[data-pick]')]
+    const ticketsCell = document.querySelector('[data-cost-tickets]')
+    const totalCell = document.querySelector('[data-cost-total]')
+    const other = (totalCell?.dataset.other || '0,0').split(',').map(Number)
+    const defaults = new Map(boxes.map(b => [b.dataset.pick, b.checked]))
+    let saved = {}
+    try { saved = JSON.parse(localStorage.getItem(key) || '{}') } catch { /* bỏ qua */ }
+    boxes.forEach(b => { if (b.dataset.pick in saved) b.checked = saved[b.dataset.pick] })
+    const update = () => {
+        let lo = 0
+        let hi = 0
+        const changed = {}
+        boxes.forEach(b => {
+            b.closest('.pkg-sight').classList.toggle('pkg-sight--off', !b.checked)
+            if (b.checked) { lo += Number(b.dataset.lo); hi += Number(b.dataset.hi) }
+            if (b.checked !== defaults.get(b.dataset.pick)) changed[b.dataset.pick] = b.checked
+        })
+        if (ticketsCell) ticketsCell.textContent = priceRange([lo, hi])
+        if (totalCell) totalCell.textContent = priceRange([lo + other[0], hi + other[1]])
+        try { Object.keys(changed).length ? localStorage.setItem(key, JSON.stringify(changed)) : localStorage.removeItem(key) } catch { /* bỏ qua */ }
+        tourCustom.querySelector('[data-custom-reset]').hidden = !Object.keys(changed).length
+    }
+    tourCustom.querySelectorAll('.pkg-pick, .pkg-more, .pkg-custom-hint').forEach(el => { el.hidden = false })
+    tourCustom.addEventListener('change', e => { if (e.target.matches('[data-pick]')) update() })
+    tourCustom.querySelector('[data-custom-reset]').addEventListener('click', () => {
+        boxes.forEach(b => { b.checked = defaults.get(b.dataset.pick) })
+        update()
+    })
+    update()
+}

@@ -218,6 +218,11 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   điểm đến của ngày đó; tháng đẹp = tháng đẹp ở mọi điểm.
 - **Nối tiếp hành trình**: mỗi trang tour gợi ý tối đa 3 tour bắt đầu gần nơi tour kết thúc (chặng nối ≤ 6 giờ) kèm nút
   "Ghép 2 tour" mở trình lập kế hoạch đã điền sẵn mọi chặng của cả hai tour.
+- **Tùy chỉnh tour trên trang**: bỏ tick điểm không muốn đi, "+ Thêm điểm ở …" để thêm điểm khác của điểm đến – vé và tổng tính
+  lại ngay, lựa chọn nhớ trên máy (`tour-custom:<id>`), nút "Về lịch gốc".
+- **Link đặt chỗ có mã đối tác** (`SITE_CONFIG.affiliate` trong `assets/js/config.js`): `params` thêm tham số (vd. Booking.com
+  `aid=…`), `wrap` bọc link theo mẫu đối tác (vd. Klook, `{url}` = link gốc). Để trống = link thường. Có mã → trang tour ghi rõ
+  "link có mã giới thiệu", trang chính sách bảo mật thêm mục affiliate. Điểm có vé từ 300k có link "Tìm vé online" (Klook).
 - Trang điểm đến có mục "Tour & combo ở đây" (cả tour liên tuyến đi qua); nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng các chặng.
 
 ## Trekking (`trekking/`, dữ liệu `data/treks.json`)
