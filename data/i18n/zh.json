@@ -596,7 +596,12 @@
     "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "选择 2 – 3 个目的地并排对比：3 天费用、最佳月份、从河内和胡志明市出发的交通、亮点和美食。",
     "Tiêu chí": "对比项",
     "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "费用为每人估算，不含前往的交通——与目的地页面计算方式相同。交通票价为经济价。",
-    "So sánh {name} với {others}": "将{name}与{others}对比"
+    "So sánh {name} với {others}": "将{name}与{others}对比",
+    "Mọi ngân sách": "任意预算",
+    "3 ngày dưới 2 triệu": "3天 200万₫以下",
+    "3 ngày 2 – 2,5 triệu": "3天 200万–250万₫",
+    "3 ngày trên 2,5 triệu": "3天 250万₫以上",
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "每人3天2晚预估费用（经济型），不含往返交通"
   },
   "html": {
     "Vùng miền": "地区",
@@ -717,7 +722,8 @@
     "Tour": "行程",
     "Tìm kiếm": "搜索",
     "Tìm kiếm (/)": "搜索 (/)",
-    "So sánh điểm đến": "对比目的地"
+    "So sánh điểm đến": "对比目的地",
+    "Lọc theo ngân sách": "按预算筛选"
   },
   "regions": {
     "bac": "越南北部",

@@ -596,7 +596,12 @@
     "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "2～3か所を選んで並べて比較：3日間の費用、ベストシーズン、ハノイ・ホーチミンからのアクセス、見どころ、料理。",
     "Tiêu chí": "項目",
     "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "費用は1人あたりの目安で、現地までの交通費は含みません（旅行先ページと同じ計算）。移動料金は節約プランの料金です。",
-    "So sánh {name} với {others}": "{name}を{others}と比較"
+    "So sánh {name} với {others}": "{name}を{others}と比較",
+    "Mọi ngân sách": "すべての予算",
+    "3 ngày dưới 2 triệu": "3日間 200万₫未満",
+    "3 ngày 2 – 2,5 triệu": "3日間 200万–250万₫",
+    "3 ngày trên 2,5 triệu": "3日間 250万₫超",
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1人あたり2泊3日の目安費用（節約）、現地までの交通費を除く"
   },
   "html": {
     "Vùng miền": "地域",
@@ -717,7 +722,8 @@
     "Tour": "ツアー",
     "Tìm kiếm": "検索",
     "Tìm kiếm (/)": "検索 (/)",
-    "So sánh điểm đến": "目的地を比較"
+    "So sánh điểm đến": "目的地を比較",
+    "Lọc theo ngân sách": "予算で絞り込む"
   },
   "regions": {
     "bac": "北部ベトナム",

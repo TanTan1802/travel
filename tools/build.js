@@ -74,7 +74,7 @@ const EXPORTS = ['PLACES', 'SIGHTS', 'STAY_TYPES', 'TRANSPORT', 'ITINERARIES', '
     'festivalPage', 'festivalTitle', 'festivalGroups', 'destinationSeoTitle', 'destinationSeoDescription',
     'routePairs', 'routePage', 'routeTitle', 'routeDescription', 'routeFaq', 'EVENTS', 'EVENT_TYPES',
     'TREKS', 'trekHubPage', 'trekHubTitle', 'trekPage', 'trekTitle', 'trekDescription', 'trekFaq', 'getDestination',
-    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'tourStopNames', 'tourDaysText', 'tourCost', 'priceRange', 'TREK_LEVELS', 'TOUR_STYLES', 'privacyPage', 'privacyTitle', 'comparePage', 'compareTitle']
+    'TOUR_PACKAGES', 'tourHubPage', 'tourHubTitle', 'tourPage', 'tourTitle', 'tourDescription', 'tourJsonLd', 'homeToursSection', 'tourStopNames', 'tourDaysText', 'tourCost', 'priceRange', 'TREK_LEVELS', 'TOUR_STYLES', 'privacyPage', 'privacyTitle', 'comparePage', 'compareTitle', 'tripCost']
 
 const read = rel => fs.readFileSync(path.join(ROOT, rel), 'utf8')
 const write = (rel, content) => {
@@ -1088,6 +1088,9 @@ function main() {
     })
 
     for (const lang of Object.keys(LANGS)) write(`assets/js/data/search-${lang}.json`, JSON.stringify(buildSearchIndex(lang)))
+    /* Chi phí 3 ngày 2 đêm / người [tiết kiệm, thoải mái] cho bộ lọc ngân sách ở trang chủ (trang chủ không nạp giá phòng) */
+    const costSite = loadSite('vi', '')
+    write('assets/js/data/dest-costs.js', `/* Sinh bởi tools/build.js – chi phí 3 ngày 2 đêm / người [tiết kiệm, thoải mái], cùng cách tính tripCost */\nconst DEST_COSTS = ${JSON.stringify(Object.fromEntries(costSite.DESTINATIONS.map(d => [d.id, ['saving', 'comfort'].map(tier => costSite.tripCost(d.id, 3, tier).total)])))}\n`)
     bundles.forEach((code, rel) => write(rel, code))
     pruneBundles([...bundles.keys()])
     write('sitemap.xml', buildSitemap(loadSite('vi', '')))

@@ -596,7 +596,12 @@
     "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "2 – 3곳을 골라 나란히 비교하세요: 3일 비용, 좋은 달, 하노이·호치민에서 가는 방법, 하이라이트, 음식.",
     "Tiêu chí": "기준",
     "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "비용은 1인 예상치이며 현지까지의 교통비는 제외됩니다 – 여행지 페이지와 같은 계산 방식. 이동 요금은 절약 기준입니다.",
-    "So sánh {name} với {others}": "{name}을(를) {others}와 비교"
+    "So sánh {name} với {others}": "{name}을(를) {others}와 비교",
+    "Mọi ngân sách": "모든 예산",
+    "3 ngày dưới 2 triệu": "3일 200만₫ 미만",
+    "3 ngày 2 – 2,5 triệu": "3일 200만–250만₫",
+    "3 ngày trên 2,5 triệu": "3일 250만₫ 초과",
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "1인 2박 3일 예상 비용(절약형), 현지까지 교통비 제외"
   },
   "html": {
     "Vùng miền": "지역",
@@ -717,7 +722,8 @@
     "Tour": "투어",
     "Tìm kiếm": "검색",
     "Tìm kiếm (/)": "검색 (/)",
-    "So sánh điểm đến": "여행지 비교"
+    "So sánh điểm đến": "여행지 비교",
+    "Lọc theo ngân sách": "예산별 필터"
   },
   "regions": {
     "bac": "북부 베트남",

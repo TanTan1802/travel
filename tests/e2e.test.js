@@ -104,6 +104,16 @@ test('trang chủ: tìm kiếm, lọc vùng miền, lọc tháng, yêu thích', 
     assert.ok(oct > 0 && oct < total, 'lọc tháng 10 phải thu hẹp kết quả')
     await page.selectOption('#month-filter', '0')
 
+    /* Lọc ngân sách: đúng số điểm có chi phí 3 ngày (tiết kiệm) dưới 2 triệu theo DEST_COSTS */
+    await page.selectOption('#budget-filter', 'low')
+    const cheap = await page.evaluate(() => Object.values(DEST_COSTS).filter(c => c[0] < 2e6).length)
+    assert.ok(cheap > 0 && cheap < total)
+    assert.equal(await count(), cheap, 'lọc ngân sách sai số điểm đến')
+    assert.ok(await page.isVisible('#filter-reset'))
+    await page.click('#filter-reset')
+    assert.equal(await page.$eval('#budget-filter', s => s.value), 'all')
+    assert.equal(await count(), total)
+
     await page.fill('#explore-search', 'Hội An')
     await page.click('#dest-grid .fav-btn[data-favorite="hoi-an"]')
     await page.fill('#explore-search', '')

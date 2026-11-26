@@ -103,6 +103,7 @@ const exploreState = {
     view: 'grid',
     favoritesOnly: false,
     month: 0,
+    budget: 'all',
     near: null,
 }
 
@@ -220,10 +221,10 @@ function renderChips(containerId, options, key, { icons = null } = {}) {
 
 /* Có bộ lọc nào đang bật không (để hiện nút "Xóa bộ lọc") */
 const filtersActive = () => exploreState.region !== 'all' || exploreState.category !== 'all' || exploreState.beach !== 'all'
-    || exploreState.month > 0 || exploreState.favoritesOnly || exploreState.query.trim() !== ''
+    || exploreState.month > 0 || exploreState.budget !== 'all' || exploreState.favoritesOnly || exploreState.query.trim() !== ''
 
 function resetFilters() {
-    Object.assign(exploreState, { region: 'all', category: 'all', beach: 'all', month: 0, favoritesOnly: false, query: '' })
+    Object.assign(exploreState, { region: 'all', category: 'all', beach: 'all', month: 0, budget: 'all', favoritesOnly: false, query: '' })
     syncChips('region-filters', 'region')
     syncChips('category-filters', 'category')
     syncChips('beach-filters', 'beach')
@@ -233,6 +234,11 @@ function resetFilters() {
     if (month) {
         month.value = '0'
         month.parentElement.classList.remove('month-filter--active')
+    }
+    const budget = document.getElementById('budget-filter')
+    if (budget) {
+        budget.value = 'all'
+        budget.parentElement.classList.remove('month-filter--active')
     }
     const fav = document.getElementById('fav-filter')
     if (fav) {
@@ -326,7 +332,8 @@ function renderGrid({ more = false } = {}) {
             (exploreState.category === 'all' || d.categories.includes(exploreState.category)) &&
             (exploreState.beach === 'all' || (d.beach || []).includes(exploreState.beach)) &&
             (!exploreState.favoritesOnly || Favorites.has(d.id)) &&
-            (!exploreState.month || d.bestMonths.includes(exploreState.month)))
+            (!exploreState.month || d.bestMonths.includes(exploreState.month)) &&
+            inBudget(d.id))
         .map(d => ({ d, match: tokens.length ? scoreDestination(d, tokens) : { score: 0, hint: '' } }))
         .filter(r => r.match)
         .map(r => (exploreState.near ? { ...r, km: distanceKm(exploreState.near, r.d) } : r))
@@ -399,6 +406,31 @@ function initMonthFilter() {
     })
 }
 
+/* Ngân sách 3 ngày 2 đêm / người, mức tiết kiệm (DEST_COSTS sinh khi build, cùng công thức trang điểm đến) */
+const BUDGETS = { low: [0, 2e6], mid: [2e6, 2.5e6], high: [2.5e6, Infinity] }
+function inBudget(id) {
+    const range = BUDGETS[exploreState.budget]
+    const cost = typeof DEST_COSTS !== 'undefined' && DEST_COSTS[id] ? DEST_COSTS[id][0] : null
+    return !range || cost === null || (cost >= range[0] && cost < range[1])
+}
+
+function initBudgetFilter() {
+    const select = document.getElementById('budget-filter')
+    if (!select) return
+    select.innerHTML = [
+        ['all', t('Mọi ngân sách')],
+        ['low', t('3 ngày dưới 2 triệu')],
+        ['mid', t('3 ngày 2 – 2,5 triệu')],
+        ['high', t('3 ngày trên 2,5 triệu')],
+    ].map(([v, label]) => `<option value="${v}">${label}</option>`).join('')
+    select.title = t('Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi')
+    select.addEventListener('change', () => {
+        exploreState.budget = select.value
+        select.parentElement.classList.toggle('month-filter--active', exploreState.budget !== 'all')
+        renderGrid()
+    })
+}
+
 function initExplore() {
     const params = new URLSearchParams(location.search)
     if (REGIONS[params.get('region')]) exploreState.region = params.get('region')
@@ -424,6 +456,7 @@ function initExplore() {
 
     initFavoriteFilter()
     initMonthFilter()
+    initBudgetFilter()
     initNearFilter()
 
     const count = document.getElementById('dest-count')

@@ -596,7 +596,12 @@
     "Chọn 2 – 3 điểm đến để xem cạnh nhau: chi phí 3 ngày, tháng đẹp, đường đi từ Hà Nội và TP. Hồ Chí Minh, điểm nhấn, đặc sản.": "Pick 2 – 3 destinations to see side by side: 3-day costs, best months, getting there from Hanoi and Ho Chi Minh City, highlights and food.",
     "Tiêu chí": "Criteria",
     "Chi phí là ước tính / người, chưa gồm vé máy bay, tàu xe tới nơi – cùng cách tính với trang điểm đến. Giá chặng đi là mức tiết kiệm.": "Costs are per-person estimates excluding flights or transport there – the same method as the destination pages. Travel fares shown are budget fares.",
-    "So sánh {name} với {others}": "Compare {name} with {others}"
+    "So sánh {name} với {others}": "Compare {name} with {others}",
+    "Mọi ngân sách": "Any budget",
+    "3 ngày dưới 2 triệu": "3 days under 2M ₫",
+    "3 ngày 2 – 2,5 triệu": "3 days 2 – 2.5M ₫",
+    "3 ngày trên 2,5 triệu": "3 days over 2.5M ₫",
+    "Chi phí ước tính 3 ngày 2 đêm / người, mức tiết kiệm, chưa gồm vé tới nơi": "Estimated cost for 3 days 2 nights per person, budget level, excluding travel to get there"
   },
   "html": {
     "Vùng miền": "Region",
@@ -717,7 +722,8 @@
     "Tour": "Tours",
     "Tìm kiếm": "Search",
     "Tìm kiếm (/)": "Search (/)",
-    "So sánh điểm đến": "Compare destinations"
+    "So sánh điểm đến": "Compare destinations",
+    "Lọc theo ngân sách": "Filter by budget"
   },
   "regions": {
     "bac": "Northern Vietnam",
