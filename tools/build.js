@@ -170,7 +170,7 @@ function homeSeasonScript(lang, site, siteRoot) {
         if (hero.title) o.title = sloganHtml(pickText(hero.title, lang))
         if (hero.image) {
             const file = hero.image[0]
-            o.img = { wiki: hero.image.join('|'), src: site.wikiImg(file, 1920), srcset: site.wikiSrcset(file) || '', sizes: site.imageSizes(1920), alt: pickText(hero.alt || SITE_CONFIG.hero.alt, lang) }
+            o.img = { wiki: hero.image.join('|'), src: site.wikiImg(file, 1920), srcset: site.wikiSrcset(file) || '', sm: site.wikiSrcset(file, 960) || '', sizes: site.imageSizes(1920), alt: pickText(hero.alt || SITE_CONFIG.hero.alt, lang) }
         }
         if (s.banner) {
             const link = s.banner.link || ''
@@ -196,7 +196,7 @@ function homeSeasonScript(lang, site, siteRoot) {
     return `<script>window.HOME_FEATURED=${inlineJson(SITE_CONFIG.featured)};` +
         `(function(H){var q=function(c){return document.querySelector(c)},e,P=window.PREVIEW_SITE,A=function(s){` +
         `if(s.sub)q('.home__data-subtitle').innerHTML=s.sub;if(s.title)q('.home__data-title').innerHTML=s.title;` +
-        `if(s.img&&(e=q('.home__img'))){e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}};` +
+        `if(s.img&&(e=q('.home__img'))){var o=e.parentElement.querySelector('source');if(o){if(s.img.sm)o.srcset=s.img.sm;else o.remove()}e.setAttribute('data-wiki',s.img.wiki);e.alt=s.img.alt;if(s.img.srcset){e.sizes=s.img.sizes;e.srcset=s.img.srcset}else e.removeAttribute('srcset');e.src=s.img.src}};` +
         `if(P&&P.home){H=P.H;window.HOME_FEATURED=P.home.featured;A(P.home)}` +
         `var s=window.SEASON&&H[window.SEASON];if(P&&P.home)s=Object.assign({ft:P.home.ft},s);window.HOME_SEASON=s||null;if(!s)return;A(s);` +
         `if(s.promo&&(e=q('#home-promo'))){e.querySelector('span').textContent=s.promo.text;var c=s.promo.cd&&cd(s.promo.cd),k=e.querySelector('.home__countdown');if(c&&k){k.textContent=c;k.hidden=false}` +
@@ -280,6 +280,8 @@ function translateHtml(html, map) {
 /*
  * Ảnh quan trọng nhất trang (data-priority: ảnh bìa) được ghi sẵn src/srcset vào HTML
  * để trình duyệt tải ngay từ đầu thay vì chờ JavaScript – cải thiện LCP.
+ * Ảnh bìa toàn màn hình nằm trong <picture>: màn hình ≤ 768px chỉ chọn tới bản 960 (điện thoại mật độ 2,5 – 3
+ * sẽ lấy bản 1920 nặng gấp ~3 lần); .hero-pic { display: contents } nên bố cục không đổi.
  */
 function prioritizeImages(html, site) {
     return html.replace(/<img ([^>]*?)data-priority([^>]*)>/g, (m, before, after) => {
@@ -289,8 +291,10 @@ function prioritizeImages(html, site) {
         if (!file) return `<img ${before}data-priority${after}>`
         const width = Number((attrs.match(/data-width="(\d+)"/) || [])[1]) || 1280
         const name = file.replace(/&quot;/g, '"')
-        return `<img ${attrs.trim()} data-priority src="${site.wikiImg(name, width)}" ` +
+        const img = `<img ${attrs.trim()} data-priority src="${site.wikiImg(name, width)}" ` +
             `srcset="${site.wikiSrcset(name)}" sizes="${site.imageSizes(width)}" fetchpriority="high">`
+        const small = width > 960 && site.wikiSrcset(name, 960)
+        return small ? `<picture class="hero-pic"><source media="(max-width: 768px)" srcset="${small}" sizes="100vw">${img}</picture>` : img
     })
 }
 

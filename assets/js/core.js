@@ -31,14 +31,16 @@ function wikiImg(file, width = 1280) {
 /*
  * srcset cho ảnh đã tối ưu (WebP 480/960/1920 theo cạnh dài) – trình duyệt tự chọn ảnh vừa với màn hình.
  * Mô tả bằng chiều rộng thật (ảnh dọc/ảnh gốc nhỏ hẹp hơn 480/960/1920), bỏ cỡ trùng nhau.
+ * maxBox: bỏ các cỡ lớn hơn (ảnh thẻ / ảnh nhỏ không cần bản 1920 – nặng gấp ~3 bản 960 trên màn hình mật độ cao).
  */
-function wikiSrcset(file) {
+function wikiSrcset(file, maxBox = 1920) {
     const local = localImage(file)
     if (!local || !local.xs) return ''
     const long = Math.max(local.w || 0, local.h || 0)
     const widthAt = box => (!long || long <= box ? local.w || box : Math.round(local.w * box / long))
     const seen = new Set()
     return [['xs', 480], ['sm', 960], ['lg', 1920]]
+        .filter(([, box]) => box <= maxBox)
         .map(([key, box]) => [key, widthAt(box)])
         .filter(([, w]) => !seen.has(w) && seen.add(w))
         .map(([key, w]) => `${SITE_ROOT}${local[key]} ${w}w`).join(', ')
@@ -91,7 +93,8 @@ function wikiAttr(files) {
 
 function markImgFallback(img) {
     img.classList.add('img--hidden')
-    if (img.parentElement) img.parentElement.classList.add('img-fallback')
+    const box = (img.closest('picture') || img).parentElement
+    if (box) box.classList.add('img-fallback')
     img.dispatchEvent(new CustomEvent('wiki:failed', { bubbles: true }))
 }
 
@@ -106,8 +109,21 @@ function hydrateWikiImages(root = document) {
         let index = 0
 
         img.dataset.hydrated = ''
+        /*
+         * Điện thoại (màn hình ≤ 768px) dùng tối đa bản 960: mật độ điểm ảnh 2,5 – 3 khiến trình duyệt chọn bản 1920
+         * (~3 lần dung lượng) cho thẻ chỉ rộng 300 – 400px. Màn hình lớn giữ đủ các cỡ.
+         * Ảnh bìa (data-priority) giữ nguyên srcset đã ghi sẵn lúc build (bản cho màn hình nhỏ nằm ở <source>).
+         */
+        const maxBox = 'priority' in img.dataset || window.innerWidth > 768 ? 1920 : 960
+        /* Ảnh bìa trong <picture> (ghi sẵn lúc build): đổi ảnh dự phòng thì đổi cả <source> cho màn hình nhỏ */
+        const source = img.parentElement && img.parentElement.tagName === 'PICTURE' ? img.parentElement.querySelector('source') : null
         const load = file => {
-            const srcset = wikiSrcset(file)
+            if (source) {
+                const small = wikiSrcset(file, 960)
+                if (small) source.srcset = small
+                else source.remove()
+            }
+            const srcset = wikiSrcset(file, maxBox)
             if (srcset) {
                 img.sizes = img.dataset.sizes || imageSizes(width)
                 img.srcset = srcset
