@@ -551,7 +551,16 @@
     "Tháng đẹp ở mọi điểm của hành trình": "どの目的地もベストシーズンの月",
     "Đi tiếp từ {dest} sang một tour khác – chặng nối và chi phí đã tính sẵn, bấm để mở trình lập kế hoạch với cả hai tour.": "{dest}から別のツアーへ – つなぎの区間と費用は計算済みで、クリックすると両方のツアーを入れた旅行プランナーが開きます。",
     "Cùng điểm đến – không cần di chuyển": "同じ目的地 – 移動なし",
-    "Ghép 2 tour: {n} ngày": "2つのツアーをつなぐ：{n}日"
+    "Ghép 2 tour: {n} ngày": "2つのツアーをつなぐ：{n}日",
+    "Chính sách bảo mật": "プライバシーポリシー",
+    "Việt Travel lưu gì trên máy bạn, đo lượt xem thế nào, dùng dịch vụ bên ngoài nào và cách liên hệ, yêu cầu xóa.": "Viet Travel が端末に保存する内容、アクセスの数え方、利用する外部サービス、問い合わせ・削除依頼の方法。",
+    "Giữ trong tour": "ツアーに残す",
+    "Thêm vào tour": "ツアーに追加",
+    "Tùy chỉnh: bỏ tick điểm không muốn đi, mở \"Thêm điểm\" để thêm – chi phí tính lại ngay, lựa chọn được nhớ trên máy này.": "カスタマイズ：行かない場所のチェックを外し、「スポットを追加」で追加 – 費用はすぐに再計算され、選択はこの端末に保存されます。",
+    "Về lịch gốc": "元の行程に戻す",
+    "+ Thêm điểm ở {dest} ({n})": "+ {dest}のスポットを追加（{n}）",
+    "Tìm vé online": "オンラインでチケットを探す",
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "一部の予約・チケットのリンクには紹介コードが付いており、Viet Travel が手数料を受け取ることがあります。お支払い額は変わりません。"
   },
   "html": {
     "Vùng miền": "地域",

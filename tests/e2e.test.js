@@ -565,7 +565,7 @@ async function lowContrastText(page) {
 
 test('giao diện tối và sáng: chữ đủ tương phản với nền (WCAG AA)', async () => {
     const pages = ['index.html', 'diem-den/hue/index.html', 'ke-hoach/index.html?p=hue.2,da-nang.2&o=ha-noi&d=2026-12-10', 'cam-nang/thoi-diem-du-lich/index.html', 'thang/11/index.html',
-        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html']
+        'trekking/index.html', 'trekking/fansipan-tram-ton/index.html', 'tour/index.html', 'tour/phu-quoc-nghi-duong-3-ngay/index.html', 'tour/da-lat-nha-trang-5-ngay/index.html', 'chinh-sach-bao-mat/index.html']
     const problems = []
     for (const theme of ['dark', 'light']) {
         for (const rel of pages) {
@@ -959,6 +959,24 @@ test('trang quản trị – Tour & combo: mở không đổi dữ liệu, chọ
     await page.uncheck(`${at(['stay'])}[value="hotel"]`)
     assert.deepEqual(await page.evaluate(() => computeErrors()), [])
     assert.match(await page.textContent('.notice'), /Vé các điểm/)
+    assert.deepEqual(errors, [])
+    await close()
+})
+
+test('tour: tùy chỉnh – bỏ / thêm điểm tính lại chi phí, nhớ sau khi tải lại, về lịch gốc', async () => {
+    const { page, errors, close } = await openPage('tour/da-lat-nha-trang-5-ngay/index.html')
+    await page.waitForSelector('.pkg-custom-hint:not([hidden])')
+    const total = () => page.textContent('[data-cost-total]')
+    const start = await total()
+    await page.uncheck('[data-pick="3:Cáp treo + VinWonders Nha Trang"]')
+    const less = await total()
+    assert.notEqual(less, start, 'bỏ điểm có vé phải làm tổng thay đổi')
+    await page.reload()
+    await page.waitForSelector('.pkg-custom-hint:not([hidden])')
+    assert.equal(await total(), less, 'lựa chọn được nhớ sau khi tải lại')
+    assert.equal(await page.$eval('[data-pick="3:Cáp treo + VinWonders Nha Trang"]', x => x.checked), false)
+    await page.click('[data-custom-reset]')
+    assert.equal(await total(), start, 'về lịch gốc')
     assert.deepEqual(errors, [])
     await close()
 })

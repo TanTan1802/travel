@@ -12,8 +12,10 @@ const OUT = 'worker/src/knowledge.js'
 
 const site = loadBrowserScripts([
     'assets/js/i18n.js', 'assets/js/data/destinations.js', 'assets/js/core.js', 'assets/js/data/itineraries.js',
-    'assets/js/data/places.js', 'assets/js/data/sights.js', 'assets/js/data/events.js', 'assets/js/components.js',
-], ['DESTINATIONS', 'REGIONS', 'CATEGORIES', 'ITINERARIES', 'TOUR_LENGTHS', 'PLACES', 'SIGHTS', 'STAY_TYPES', 'EVENTS', 'EVENT_TYPES', 'tripCost'],
+    'assets/js/data/places.js', 'assets/js/data/routes.js', 'assets/js/data/sights.js', 'assets/js/data/events.js', 'assets/js/components.js',
+    'assets/js/data/treks.js', 'assets/js/data/tours.js', 'assets/js/tour-render.js',
+], ['DESTINATIONS', 'REGIONS', 'CATEGORIES', 'ITINERARIES', 'TOUR_LENGTHS', 'PLACES', 'SIGHTS', 'STAY_TYPES', 'EVENTS', 'EVENT_TYPES', 'tripCost',
+    'TREKS', 'TREK_LEVELS', 'TOUR_PACKAGES', 'TOUR_STYLES', 'tourCost', 'tourStops', 'tourLegs', 'tourDayDest', 'tourDaySights', 'tourBestMonths', 'getDestination', 'modeLabel'],
 { SITE_ROOT: '', SITE_LANG: 'vi' })
 
 const vnd = n => `${Math.round(n / 1000).toLocaleString('vi-VN')}k`
@@ -58,6 +60,33 @@ function destinationBlock(d) {
     ].join('\n')
 }
 
+/* Tour & combo: hành trình, lịch từng ngày, chặng di chuyển, chi phí – cùng hàm tính với trang tour/ */
+function tourBlock(tp) {
+    const stops = site.tourStops(tp).map(x => `${site.getDestination(x.id).name} ${x.days} ngày`).join(' → ')
+    const { items, total } = site.tourCost(tp)
+    const legs = site.tourLegs(tp)
+    return [
+        `### ${vi(tp.name)} (mã tour: ${tp.id})`,
+        `Hành trình: ${stops} · ${tp.days} ngày ${tp.days - 1} đêm · Phong cách: ${vi(site.TOUR_STYLES[tp.style].label)} · Tháng đẹp: ${site.tourBestMonths(tp).join(', ')}`,
+        `Trang: ${SITE_URL}tour/${tp.id}/ · Tóm tắt: ${vi(tp.summary)}`,
+        `Chi phí ước tính/người: ${range(total)} (${items.map(x => `${x.label}: ${range(x.range)}`).join('; ')}). Chưa gồm vé máy bay/tàu xe tới điểm đầu.`,
+        ...tp.plan.map((day, i) => `- Ngày ${i + 1} (${site.getDestination(site.tourDayDest(tp, i)).name})${legs[i] ? ` [di chuyển ${legs[i].from.name} → ${legs[i].to.name}: ${site.modeLabel(legs[i].option)}, ${range(legs[i].cost)}]` : ''} – ${vi(day.title)}: ${vi(day.text)} Điểm: ${site.tourDaySights(tp, i).map(x => vi(x.name)).join(', ')}`),
+        ...(tp.tips || []).map(x => `- Mẹo: ${vi(x)}`),
+    ].join('\n')
+}
+
+function trekBlock(tr) {
+    return [
+        `### Trekking ${vi(tr.name)} (mã: ${tr.id})`,
+        `${vi(tr.province)} · Độ khó: ${vi(site.TREK_LEVELS[tr.level].label)} · ${tr.days} ngày · ${tr.distanceKm[0]}–${tr.distanceKm[1]} km (${vi(tr.distanceNote)})${tr.summit ? ` · Đỉnh ${tr.summit} m` : ''} · Tháng đẹp: ${tr.bestMonths.join(', ')} · Người dẫn đường: ${tr.guide === 'required' ? 'bắt buộc' : 'nên thuê'}`,
+        `Trang: ${SITE_URL}trekking/${tr.id}/ · Xuất phát: ${vi(tr.start)}`,
+        ...(tr.notice ? [`QUY ĐỊNH: ${vi(tr.notice)}`] : []),
+        ...tr.plan.map((d, i) => `- Ngày ${i + 1} – ${vi(d.title)}: ${vi(d.text)}`),
+        `Chi phí: ${tr.costs.map(vi).join(' | ')}`,
+        `An toàn: ${tr.safety.map(vi).join(' | ')}`,
+    ].join('\n')
+}
+
 function knowledgeText() {
     const national = site.EVENTS.filter(e => e.where === 'all')
     return [
@@ -67,6 +96,12 @@ function knowledgeText() {
         ...national.map(e => `- ${eventLine(e)}`),
         '',
         ...site.DESTINATIONS.map(destinationBlock),
+        '',
+        `## Tour & combo trọn gói (${SITE_URL}tour/) – 1 đến 7 ngày, có tour liên tuyến nhiều điểm đến`,
+        ...site.TOUR_PACKAGES.map(tourBlock),
+        '',
+        `## Trekking (${SITE_URL}trekking/) – luôn nhắc quy định và an toàn khi trả lời`,
+        ...site.TREKS.map(trekBlock),
     ].join('\n')
 }
 
@@ -76,7 +111,7 @@ function main() {
     fs.writeFileSync(path.join(ROOT, OUT),
         '/* Sinh tự động bởi tools/build-knowledge.js (npm run build) – không sửa tay. */\n' +
         `export default ${JSON.stringify(text)}\n`)
-    console.log(`✅ ${OUT}: ${site.DESTINATIONS.length} điểm đến, ${(text.length / 1024).toFixed(0)} KB văn bản`)
+    console.log(`✅ ${OUT}: ${site.DESTINATIONS.length} điểm đến, ${site.TOUR_PACKAGES.length} tour, ${site.TREKS.length} cung trekking, ${(text.length / 1024).toFixed(0)} KB văn bản`)
 }
 
 if (require.main === module) main()

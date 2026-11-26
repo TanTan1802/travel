@@ -99,6 +99,8 @@ Website có thể cài lên màn hình chính điện thoại/máy tính và xem
 - Trường `updated` (tháng cập nhật) cho từng điểm tham quan / quán, hiện trên trang; đồng bộ Google Sheets tự ghi khi sửa
   hoặc khi đánh dấu "đã kiểm tra" (cột `confirmed`).
 - `npm run check-freshness`, `npm run check-links`, `npm run check-images` + workflow **Kiểm tra định kỳ dữ liệu** hằng tháng.
+- **Bundle cũ giữ lại 3 lần build** (`assets/js/dist/generations.json`): ngay sau deploy, trang cũ còn trong bộ nhớ đệm vẫn
+  tải được JS / CSS của nó; file ngoài 3 thế hệ gần nhất mới bị xóa.
 - `npm run check-site` + workflow **Kiểm tra site đang chạy** (`kiem-tra-site.yml`): sau mỗi lần main thay đổi (đợi Cloudflare
   deploy xong; có lỗi thì đợi 3 phút kiểm tra lại vì bộ nhớ đệm Cloudflare còn trộn trang cũ / mới) và 6:41 sáng hằng ngày, mở mọi trang trong sitemap trên site thật và kiểm tra mọi file JS / CSS / ảnh / liên kết
   nội bộ tồn tại, đúng loại file. Có lỗi → Issue nhãn `site-loi` (GitHub gửi email), hết lỗi → tự đóng. Trang quản trị hiện
@@ -216,6 +218,11 @@ Sinh tự động khi build từ dữ liệu sẵn có (5 ngôn ngữ, có trong
   điểm đến của ngày đó; tháng đẹp = tháng đẹp ở mọi điểm.
 - **Nối tiếp hành trình**: mỗi trang tour gợi ý tối đa 3 tour bắt đầu gần nơi tour kết thúc (chặng nối ≤ 6 giờ) kèm nút
   "Ghép 2 tour" mở trình lập kế hoạch đã điền sẵn mọi chặng của cả hai tour.
+- **Tùy chỉnh tour trên trang**: bỏ tick điểm không muốn đi, "+ Thêm điểm ở …" để thêm điểm khác của điểm đến – vé và tổng tính
+  lại ngay, lựa chọn nhớ trên máy (`tour-custom:<id>`), nút "Về lịch gốc".
+- **Link đặt chỗ có mã đối tác** (`SITE_CONFIG.affiliate` trong `assets/js/config.js`): `params` thêm tham số (vd. Booking.com
+  `aid=…`), `wrap` bọc link theo mẫu đối tác (vd. Klook, `{url}` = link gốc). Để trống = link thường. Có mã → trang tour ghi rõ
+  "link có mã giới thiệu", trang chính sách bảo mật thêm mục affiliate. Điểm có vé từ 300k có link "Tìm vé online" (Klook).
 - Trang điểm đến có mục "Tour & combo ở đây" (cả tour liên tuyến đi qua); nút "Thêm vào kế hoạch" mở trình lập kế hoạch với đúng các chặng.
 
 ## Trekking (`trekking/`, dữ liệu `data/treks.json`)

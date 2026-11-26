@@ -4010,6 +4010,58 @@ span.trek-level {
   background-color: var(--input-color);
 }
 
+.pkg-sight {
+  position: relative;
+}
+
+.pkg-pick:not([hidden]) ~ .pkg-sight__name,
+.pkg-pick:not([hidden]) ~ .pkg-sight__meta {
+  padding-left: 1.75rem;
+}
+
+.pkg-pick {
+  position: absolute;
+  top: .6rem;
+  left: .75rem;
+}
+
+.pkg-pick input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--first-color);
+}
+
+.pkg-sight--off .pkg-sight__name {
+  text-decoration: line-through;
+}
+
+.pkg-more {
+  margin-top: .5rem;
+}
+
+.pkg-more summary {
+  cursor: pointer;
+  font-weight: var(--font-semi-bold);
+  color: var(--first-color-text);
+}
+
+.pkg-custom-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .8rem;
+  border-radius: .5rem;
+  background-color: var(--input-color);
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.pkg-custom-hint[hidden],
+.pkg-more[hidden] {
+  display: none;
+}
+
 .pkg-sight__name {
   font-weight: var(--font-semi-bold);
   color: var(--title-color);

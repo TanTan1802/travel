@@ -551,7 +551,16 @@
     "Tháng đẹp ở mọi điểm của hành trình": "Months that are good at every stop",
     "Đi tiếp từ {dest} sang một tour khác – chặng nối và chi phí đã tính sẵn, bấm để mở trình lập kế hoạch với cả hai tour.": "Carry on from {dest} into another tour – the connecting leg and costs are worked out; one click opens the trip planner with both tours.",
     "Cùng điểm đến – không cần di chuyển": "Same destination – no transfer needed",
-    "Ghép 2 tour: {n} ngày": "Combine both tours: {n} days"
+    "Ghép 2 tour: {n} ngày": "Combine both tours: {n} days",
+    "Chính sách bảo mật": "Privacy policy",
+    "Việt Travel lưu gì trên máy bạn, đo lượt xem thế nào, dùng dịch vụ bên ngoài nào và cách liên hệ, yêu cầu xóa.": "What Viet Travel stores on your device, how visits are counted, which outside services are used and how to contact us or ask for deletion.",
+    "Giữ trong tour": "Keep in the tour",
+    "Thêm vào tour": "Add to the tour",
+    "Tùy chỉnh: bỏ tick điểm không muốn đi, mở \"Thêm điểm\" để thêm – chi phí tính lại ngay, lựa chọn được nhớ trên máy này.": "Customise: untick places you’d skip, open \"Add places\" to add more – costs update instantly and your choices are saved on this device.",
+    "Về lịch gốc": "Back to the original plan",
+    "+ Thêm điểm ở {dest} ({n})": "+ Add places in {dest} ({n})",
+    "Tìm vé online": "Find tickets online",
+    "Một số link đặt phòng, đặt vé có mã giới thiệu: Việt Travel có thể nhận hoa hồng, giá bạn trả không đổi.": "Some booking and ticket links carry a referral code: Viet Travel may earn a commission at no extra cost to you."
   },
   "html": {
     "Vùng miền": "Region",
